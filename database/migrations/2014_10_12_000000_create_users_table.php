@@ -13,9 +13,9 @@ return new class extends Migration
             $table->string('prefixed_id')->unique();
             $table->string('email')->unique();
             $table->string('name')->nullable();
-            $table->string('state')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('state')->default('pending');
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

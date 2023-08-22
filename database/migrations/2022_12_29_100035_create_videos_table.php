@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('slug');
-            $table->string('state');
+            $table->string('state')->default('pending');
             $table->json('content')->nullable();
             $table->json('summary')->nullable();
             $table->json('titles')->nullable();

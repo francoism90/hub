@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('collection_name');
             $table->string('disk');
             $table->unsignedBigInteger('size');
-            $table->string('state');
+            $table->string('state')->default('pending');
             $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamp('imported_at')->nullable();
             $table->timestamps();
