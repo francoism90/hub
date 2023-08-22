@@ -64,6 +64,7 @@ class Video extends Model implements HasMedia, Viewable
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'name',
         'titles',
         'content',
@@ -72,7 +73,6 @@ class Video extends Model implements HasMedia, Viewable
         'episode',
         'adult',
         'snapshot',
-        'status',
         'released_at',
     ];
 
@@ -104,7 +104,7 @@ class Video extends Model implements HasMedia, Viewable
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $dispatchesEvents = [
         'created' => VideoCreated::class,

@@ -6,7 +6,6 @@ use Domain\Media\Commands\MissingModels;
 use Domain\Tags\Commands\CreateTag;
 use Domain\Tags\Commands\SortTags;
 use Domain\Videos\Commands\CleanVideos;
-use Domain\Videos\Commands\ImportVideos;
 use Domain\Videos\Commands\RegenerateVideos;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -16,7 +15,6 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         SyncIndexes::class,
-        ImportVideos::class,
         RegenerateVideos::class,
         CleanVideos::class,
         MissingModels::class,

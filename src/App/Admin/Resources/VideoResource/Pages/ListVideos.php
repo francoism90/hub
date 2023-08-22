@@ -2,9 +2,8 @@
 
 namespace App\Admin\Resources\VideoResource\Pages;
 
+use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource;
-use Domain\Videos\States\Pending;
-use Domain\Videos\States\Verified;
 use Domain\Videos\States\VideoState;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -15,6 +14,7 @@ use Filament\Tables\Table;
 
 class ListVideos extends ListRecords
 {
+    use InteractsWithScout;
     use Translatable;
 
     protected static string $resource = VideoResource::class;
@@ -25,31 +25,35 @@ class ListVideos extends ListRecords
             ->deferLoading()
             ->columns([
                 Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->limit()
                     ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('state')
+                    ->label(__('State'))
                     ->formatStateUsing(fn (VideoState $state) => $state->label())
                     ->icon(fn (VideoState $state): string => match ($state->getValue()) {
-                        Pending::class => 'heroicon-o-minus-circle',
-                        Verified::class => 'heroicon-o-check-circle',
+                        'pending' => 'heroicon-o-minus-circle',
+                        'verified' => 'heroicon-o-check-circle',
                         default => 'heroicon-o-x-circle',
                     })
                     ->color(fn (VideoState $state): string => match ($state->getValue()) {
-                        Pending::class => 'gray',
-                        Verified::class => 'success',
+                        'pending' => 'gray',
+                        'verified' => 'success',
                         default => 'warning',
                     })
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->sortable(),
 
                 Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
@@ -76,12 +80,6 @@ class ListVideos extends ListRecords
     {
         return [
             Actions\LocaleSwitcher::make(),
-
-            Actions\Action::make('edit')
-                ->button()
-                ->icon('heroicon-o-squares-plus')
-                ->label(__('Import videos'))
-                ->url(fn (): string => route('filament.admin.resources.videos.import')),
 
             Actions\CreateAction::make()
                 ->button()

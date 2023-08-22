@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources\UserResource\Pages;
 
+use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\UserResource;
 use Domain\Users\States\Pending;
 use Domain\Users\States\UserState;
@@ -14,6 +15,8 @@ use Filament\Tables\Table;
 
 class ListUsers extends ListRecords
 {
+    use InteractsWithScout;
+
     protected static string $resource = UserResource::class;
 
     public function table(Table $table): Table

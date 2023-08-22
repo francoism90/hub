@@ -43,20 +43,8 @@ class VideoResource extends Resource
         return [
             'index' => Pages\ListVideos::route('/'),
             'create' => Pages\CreateVideo::route('/create'),
-            'import' => Pages\ImportVideos::route('/import'),
             'edit' => Pages\EditVideo::route('/{record}'),
         ];
-    }
-
-    protected function applySearchToTableQuery(Builder $query): Builder
-    {
-        $this->applyColumnSearchesToTableQuery($query);
-
-        if (filled($search = $this->getTableSearch())) {
-            $query->whereIn('id', Video::search($search)->keys());
-        }
-
-        return $query;
     }
 
     public static function getEloquentQuery(): Builder

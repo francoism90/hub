@@ -44,7 +44,10 @@ class CreateViewsTable extends Migration
         $this->schema->create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('viewable');
-            $table->foreignId('visitor')->nullable()->constrained(table: 'users')->nullOnDelete();
+            $table->foreignId('visitor')
+                ->nullable()
+                ->constrained(table: 'users')
+                ->nullOnDelete();
             $table->string('collection')->nullable();
             $table->timestamp('viewed_at')->useCurrent();
         });
