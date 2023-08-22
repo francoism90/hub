@@ -48,17 +48,6 @@ class VideoResource extends Resource
         ];
     }
 
-    protected function applySearchToTableQuery(Builder $query): Builder
-    {
-        $this->applyColumnSearchesToTableQuery($query);
-
-        if (filled($search = $this->getTableSearch())) {
-            $query->whereIn('id', Video::search($search)->keys());
-        }
-
-        return $query;
-    }
-
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
