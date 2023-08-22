@@ -2,14 +2,13 @@
 
 namespace Support\ModelState;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use ReflectionClass;
 use Spatie\ModelStates\State;
 
 class StateOptions
 {
-    public function execute(State|string $state, ?Model $mode = null): Collection
+    public function execute(State|string $state): Collection
     {
         $states = call_user_func([$state, 'all']);
 
