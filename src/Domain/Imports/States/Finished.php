@@ -8,7 +8,7 @@ class Finished extends ImportState
 
     public function label(): string
     {
-        return __('Successful');
+        return __('Finished');
     }
 
     public function color(): string
