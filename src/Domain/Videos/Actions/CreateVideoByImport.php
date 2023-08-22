@@ -29,7 +29,6 @@ class CreateVideoByImport
                 $import->state->transitionTo(Finished::class);
             }
 
-            // Process model
             Bus::chain([
                 new ProcessVideo($model),
                 new OptimizeVideo($model),

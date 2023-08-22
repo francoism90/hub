@@ -6,17 +6,19 @@ use App\Admin\Resources\ImportResource;
 use Domain\Imports\Actions\SyncImports;
 use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
+use Domain\Imports\States\Finished;
 use Domain\Imports\States\ImportState;
-use Filament\Actions;
+use Domain\Imports\States\Pending;
+use Domain\Videos\Actions\CreateVideoByImport;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Contracts\Support\Htmlable;
-use Filament\Forms\Components;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
+use Support\ModelState\StateOptions;
 
 class ListImports extends ListRecords
 {
@@ -47,12 +49,12 @@ class ListImports extends ListRecords
                     ->formatStateUsing(fn (ImportState $state) => $state->label())
                     ->icon(fn (ImportState $state): string => match ($state->getValue()) {
                         'pending' => 'heroicon-o-minus-circle',
-                        'verified' => 'heroicon-o-check-circle',
+                        'finished' => 'heroicon-o-check-circle',
                         default => 'heroicon-o-x-circle',
                     })
                     ->color(fn (ImportState $state): string => match ($state->getValue()) {
                         'pending' => 'gray',
-                        'verified' => 'success',
+                        'finished' => 'success',
                         default => 'warning',
                     })
                     ->sortable(),
@@ -70,10 +72,11 @@ class ListImports extends ListRecords
                     ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('state')
+                    ->options(fn () => app(StateOptions::class)->execute(ImportState::class)),
             ])
             ->actions([
-                //
+                $this->importAction(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -92,12 +95,12 @@ class ListImports extends ListRecords
         ];
     }
 
-    protected function importAction(): Action
+    protected function importAction(): Tables\Actions\Action
     {
-        return Action::make('import')
+        return Tables\Actions\Action::make('import')
             ->label(__('Import'))
-            ->icon('heroicon-o-archive-box')
-            ->action(fn (Import $record) => app(SyncImports::class)->execute(ImportType::video()));
+            ->disabled(fn (Import $record) => is_a($record->state, Finished::class, true))
+            ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
     }
 
     protected function syncAction(): Action
