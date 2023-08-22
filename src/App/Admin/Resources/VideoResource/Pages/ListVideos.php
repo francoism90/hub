@@ -25,11 +25,13 @@ class ListVideos extends ListRecords
             ->deferLoading()
             ->columns([
                 Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->limit()
                     ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('state')
+                    ->label(__('State'))
                     ->formatStateUsing(fn (VideoState $state) => $state->label())
                     ->icon(fn (VideoState $state): string => match ($state->getValue()) {
                         'pending' => 'heroicon-o-minus-circle',
@@ -45,11 +47,13 @@ class ListVideos extends ListRecords
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->sortable(),
 
                 Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
