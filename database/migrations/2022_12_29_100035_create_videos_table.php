@@ -19,15 +19,14 @@ return new class extends Migration
             $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('slug');
-            $table->string('state')->default('pending');
             $table->json('content')->nullable();
             $table->json('summary')->nullable();
             $table->json('titles')->nullable();
             $table->string('season')->nullable();
             $table->string('episode')->nullable();
             $table->float('snapshot')->nullable();
-            $table->string('status')->nullable();
             $table->boolean('adult')->default(false);
+            $table->string('state')->default('pending');
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('file_name');
             $table->string('mime_type')->nullable();
-            $table->string('collection_name');
+            $table->string('collection');
             $table->string('disk');
             $table->unsignedBigInteger('size');
             $table->string('state')->default('pending');
             $table->unsignedInteger('order_column')->nullable()->index();
-            $table->timestamp('imported_at')->nullable();
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
     }
