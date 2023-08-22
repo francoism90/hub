@@ -32,6 +32,16 @@ class ListImports extends ListRecords
                     ->searchable()
                     ->sortable(),
 
+                Columns\TextColumn::make('name')
+                    ->limit()
+                    ->searchable()
+                    ->sortable(),
+
+                Columns\TextColumn::make('type')
+                    ->label(__('Type'))
+                    ->formatStateUsing(fn (ImportType $state): ?string => $state?->label)
+                    ->sortable(),
+
                 Columns\TextColumn::make('state')
                     ->formatStateUsing(fn (ImportState $state) => $state->label())
                     ->icon(fn (ImportState $state): string => match ($state->getValue()) {

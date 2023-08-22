@@ -2,6 +2,7 @@
 
 namespace Foundation\Providers;
 
+use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
             'tag' => Tag::class,
             'user' => User::class,
             'video' => Video::class,
+            'import' => Import::class,
         ]);
     }
 

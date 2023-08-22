@@ -32,6 +32,7 @@ class Import extends Model
     protected $fillable = [
         'user_id',
         'file_name',
+        'name',
         'mime_type',
         'size',
         'type',

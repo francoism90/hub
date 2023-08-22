@@ -17,7 +17,7 @@ class SyncImports
 
         $this->createModels($finder, $type);
 
-        $this->cleanupModels($finder, $type);
+        $this->cleanupModels($finder);
     }
 
     protected function createModels(Finder $finder, ImportType $type): void
@@ -31,7 +31,7 @@ class SyncImports
             ]));
     }
 
-    protected function cleanupModels(Finder $finder, ImportType $type): void
+    protected function cleanupModels(Finder $finder): void
     {
         $fileNames = collect($finder)
             ->map(fn (SplFileInfo $file) => $file->getFilename())
