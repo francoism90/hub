@@ -99,7 +99,7 @@ class ListImports extends ListRecords
     {
         return Tables\Actions\Action::make('import')
             ->label(__('Import'))
-            ->disabled(fn (Import $record) => is_a($record->state, Finished::class, true))
+            ->disabled(fn (Import $record) => $record->state->equals(Finished::class))
             ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
     }
 
