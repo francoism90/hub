@@ -27,6 +27,8 @@ class CreateVideoByImport
 
             if ($import->state->canTransitionTo(Finished::class)) {
                 $import->state->transitionTo(Finished::class);
+
+                $import->updateOrFail(['finished_at' => now()]);
             }
 
             Bus::chain([
