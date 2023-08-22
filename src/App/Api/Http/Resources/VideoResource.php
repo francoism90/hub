@@ -25,6 +25,7 @@ class VideoResource extends JsonResource
             'stream' => $this->stream,
             'placeholder' => $this->placeholder,
             'thumbnail' => $this->thumbnail,
+            'state' => $this->whenAppended('state'),
             'summary' => $this->whenAppended('summary'),
             'content' => $this->whenAppended('content'),
             'snapshot' => $this->whenAppended('snapshot'),

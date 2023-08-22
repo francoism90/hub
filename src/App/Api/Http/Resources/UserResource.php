@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'email' => $this->whenAppended('email'),
             'roles' => $this->whenAppended('roles', $this->roles()),
             'permissions' => $this->whenAppended('permissions', $this->permissions()),
+            'state' => $this->whenAppended('state'),
             'created_at' => $this->whenAppended('created_at'),
             'updated_at' => $this->whenAppended('updated_at'),
         ];
