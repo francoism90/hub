@@ -33,12 +33,14 @@ class SyncImports
 
     protected function cleanupModels(Finder $finder, ImportType $type): void
     {
-        // $fileNames = $this->getFileNames($finder);
+        $fileNames = collect($finder)
+            ->map(fn (SplFileInfo $file) => $file->getFilename())
+            ->flatten();
 
-        // Import::query()
-        //     ->pending()
-        //     ->whereNotIn('file_name', $fileNames->all())
-        //     ->delete();
+        Import::query()
+            ->pending()
+            ->whereNotIn('file_name', $fileNames)
+            ->delete();
     }
 
     protected function getImportables(ImportType $type): Finder

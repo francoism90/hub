@@ -83,8 +83,8 @@ class ListImports extends ListRecords
 
     protected function syncFormAction(): Action
     {
-        return Action::make('scan')
-            ->label(__('Scan'))
+        return Action::make('sync')
+            ->label(__('Sync'))
             ->icon('heroicon-o-archive-box')
             ->action(fn () => app(SyncImports::class)->execute(ImportType::video()));
     }
