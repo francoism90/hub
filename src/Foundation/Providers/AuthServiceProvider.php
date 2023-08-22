@@ -2,6 +2,8 @@
 
 namespace Foundation\Providers;
 
+use Domain\Imports\Models\Import;
+use Domain\Imports\Policies\ImportPolicy;
 use Domain\Media\Models\Media;
 use Domain\Media\Policies\MediaPolicy;
 use Domain\Tags\Models\Tag;
@@ -24,5 +26,6 @@ class AuthServiceProvider extends ServiceProvider
         Media::class => MediaPolicy::class,
         Tag::class => TagPolicy::class,
         Video::class => VideoPolicy::class,
+        Import::class => ImportPolicy::class,
     ];
 }
