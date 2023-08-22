@@ -16,13 +16,12 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->string('name');
             $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('collection');
-            $table->string('disk');
+            $table->string('type');
             $table->unsignedBigInteger('size');
-            $table->string('state')->default('pending');
+            $table->string('name')->nullable();
+            $table->string('mime_type')->nullable();
+            $table->string('state');
             $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();

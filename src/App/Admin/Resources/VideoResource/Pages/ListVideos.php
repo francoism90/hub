@@ -32,13 +32,13 @@ class ListVideos extends ListRecords
                 Columns\TextColumn::make('state')
                     ->formatStateUsing(fn (VideoState $state) => $state->label())
                     ->icon(fn (VideoState $state): string => match ($state->getValue()) {
-                        Pending::class => 'heroicon-o-minus-circle',
-                        Verified::class => 'heroicon-o-check-circle',
+                        'pending' => 'heroicon-o-minus-circle',
+                        'verified' => 'heroicon-o-check-circle',
                         default => 'heroicon-o-x-circle',
                     })
                     ->color(fn (VideoState $state): string => match ($state->getValue()) {
-                        Pending::class => 'gray',
-                        Verified::class => 'success',
+                        'pending' => 'gray',
+                        'verified' => 'success',
                         default => 'warning',
                     })
                     ->toggleable(isToggledHiddenByDefault: false)
@@ -76,12 +76,6 @@ class ListVideos extends ListRecords
     {
         return [
             Actions\LocaleSwitcher::make(),
-
-            Actions\Action::make('edit')
-                ->button()
-                ->icon('heroicon-o-squares-plus')
-                ->label(__('Import videos'))
-                ->url(fn (): string => route('filament.admin.resources.videos.import')),
 
             Actions\CreateAction::make()
                 ->button()

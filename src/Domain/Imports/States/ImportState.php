@@ -15,7 +15,9 @@ abstract class ImportState extends State
     {
         return parent::config()
             ->default(Pending::class)
-            ->allowTransition(Pending::class, Finished::class)
-            ->allowTransition(Pending::class, Failed::class);
+            ->allowTransition(Pending::class, Failed::class)
+            ->allowTransition(Pending::class, Processing::class)
+            ->allowTransition(Processing::class, Failed::class)
+            ->allowTransition(Processing::class, Finished::class);
     }
 }

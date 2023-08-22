@@ -41,6 +41,7 @@ class VideoQueryBuilder extends Builder
 
     public function recommended(User $user = null): self
     {
+        /** @var User $user */
         // $user ??= auth()->user();
 
         return $this
@@ -49,6 +50,7 @@ class VideoQueryBuilder extends Builder
 
     public function favorites(User $user = null): self
     {
+        /** @var User $user */
         $user ??= auth()->user();
 
         return $this
@@ -61,6 +63,7 @@ class VideoQueryBuilder extends Builder
 
     public function following(User $user = null): self
     {
+        /** @var User $user */
         $user ??= auth()->user();
 
         return $this
@@ -73,6 +76,7 @@ class VideoQueryBuilder extends Builder
 
     public function viewed(User $user = null): self
     {
+        /** @var User $user */
         $user ??= auth()->user();
 
         return $this

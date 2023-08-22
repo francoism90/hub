@@ -48,7 +48,7 @@ class ImportResource extends Resource
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                //
             ]);
     }
 

@@ -26,7 +26,7 @@ trait InteractsWithFormData
                 }
 
                 if ($value instanceof State) {
-                    return class_basename($value);
+                    return $value->getValue();
                 }
 
                 if ($value instanceof Enum) {

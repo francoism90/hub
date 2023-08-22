@@ -3,6 +3,8 @@
 namespace Domain\Imports\Models;
 
 use Database\Factories\ImportFactory;
+use Domain\Imports\Enums\ImportType;
+use Domain\Imports\QueryBuilders\ImportQueryBuilder;
 use Domain\Imports\States\ImportState;
 use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,13 +31,11 @@ class Import extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
         'file_name',
         'mime_type',
-        'collection',
-        'disk',
         'size',
-        'imported_at',
+        'type',
+        'finished_at',
     ];
 
     /**
@@ -50,6 +50,7 @@ class Import extends Model
      */
     protected $casts = [
         'state' => ImportState::class,
+        'type' => ImportType::class,
         'finished_at' => 'datetime',
     ];
 
@@ -63,5 +64,10 @@ class Import extends Model
     protected static function newFactory(): ImportFactory
     {
         return ImportFactory::new();
+    }
+
+    public function newEloquentBuilder($query): ImportQueryBuilder
+    {
+        return new ImportQueryBuilder($query);
     }
 }

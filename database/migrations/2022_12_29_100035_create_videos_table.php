@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('episode')->nullable();
             $table->float('snapshot')->nullable();
             $table->boolean('adult')->default(false);
-            $table->string('state')->default('pending');
+            $table->string('state');
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
