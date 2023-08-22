@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Videos\States;
+namespace Domain\Imports\States;
 
-class Pending extends VideoState
+class Pending extends ImportState
 {
     public static $name = 'pending';
 

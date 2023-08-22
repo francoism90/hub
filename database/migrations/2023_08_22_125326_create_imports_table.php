@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('imports', function (Blueprint $table) {
+            $table->id();
+            $table->nullableMorphs('model');
+            $table
+                ->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->string('name');
+            $table->string('file_name');
+            $table->string('mime_type')->nullable();
+            $table->string('collection_name');
+            $table->string('disk');
+            $table->unsignedBigInteger('size');
+            $table->string('state');
+            $table->unsignedInteger('order_column')->nullable()->index();
+            $table->timestamp('imported_at')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('imports');
+    }
+};

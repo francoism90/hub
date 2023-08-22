@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Users\States;
+namespace Domain\Imports\States;
 
-class Failed extends UserState
+class Failed extends ImportState
 {
     public static $name = 'failed';
 
