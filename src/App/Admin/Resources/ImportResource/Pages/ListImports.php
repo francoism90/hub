@@ -5,6 +5,7 @@ namespace App\Admin\Resources\ImportResource\Pages;
 use App\Admin\Resources\ImportResource;
 use Domain\Imports\Actions\SyncImports;
 use Domain\Imports\Enums\ImportType;
+use Domain\Imports\Models\Import;
 use Domain\Imports\States\ImportState;
 use Filament\Actions;
 use Filament\Actions\Action;
@@ -87,11 +88,19 @@ class ListImports extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            $this->syncFormAction(),
+            $this->syncAction(),
         ];
     }
 
-    protected function syncFormAction(): Action
+    protected function importAction(): Action
+    {
+        return Action::make('import')
+            ->label(__('Import'))
+            ->icon('heroicon-o-archive-box')
+            ->action(fn (Import $record) => app(SyncImports::class)->execute(ImportType::video()));
+    }
+
+    protected function syncAction(): Action
     {
         return Action::make('sync')
             ->label(__('Sync'))

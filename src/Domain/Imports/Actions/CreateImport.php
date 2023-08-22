@@ -15,6 +15,10 @@ class CreateImport
             ->first();
 
         if ($model) {
+            $model->updateOrFail(
+                Arr::only($attributes, ['name', 'size', 'type', 'mime_type'])
+            );
+
             return $model;
         }
 
