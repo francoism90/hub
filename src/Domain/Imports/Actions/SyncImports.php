@@ -4,7 +4,6 @@ namespace Domain\Imports\Actions;
 
 use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;

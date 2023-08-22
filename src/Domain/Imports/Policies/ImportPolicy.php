@@ -2,8 +2,8 @@
 
 namespace Domain\Imports\Policies;
 
-use Domain\Users\Models\User;
 use Domain\Imports\Models\Import;
+use Domain\Users\Models\User;
 
 class ImportPolicy
 {

@@ -3,8 +3,6 @@
 namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Resources\VideoResource;
-use Domain\Videos\States\Pending;
-use Domain\Videos\States\Verified;
 use Domain\Videos\States\VideoState;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
