@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources\VideoResource\RelationManagers;
 
+use Domain\Media\Models\Media;
 use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -89,8 +90,10 @@ class MediaRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('download')
+                    ->label(__('Download'))
+                    ->icon('heroicon-s-arrow-down-circle')
+                    ->url(fn (Media $media) => $media->getUrl()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
