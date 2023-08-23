@@ -4,7 +4,6 @@ namespace Foundation\Console;
 
 use Domain\Media\Commands\MissingModels;
 use Domain\Videos\Commands\CleanVideos;
-use Domain\Videos\Commands\RegenerateVideos;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Support\Scout\Commands\SyncIndexes;
@@ -13,7 +12,6 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         SyncIndexes::class,
-        RegenerateVideos::class,
         CleanVideos::class,
         MissingModels::class,
     ];
