@@ -4,9 +4,7 @@ namespace App\Admin\Resources\UserResource\Pages;
 
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\UserResource;
-use Domain\Users\States\Pending;
 use Domain\Users\States\UserState;
-use Domain\Users\States\Verified;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
@@ -36,13 +34,13 @@ class ListUsers extends ListRecords
                 Columns\TextColumn::make('state')
                     ->formatStateUsing(fn (UserState $state) => $state->label())
                     ->icon(fn (UserState $state): string => match ($state->getValue()) {
-                        Pending::class => 'heroicon-o-minus-circle',
-                        Verified::class => 'heroicon-o-check-circle',
+                        'pending' => 'heroicon-o-minus-circle',
+                        'verified' => 'heroicon-o-check-circle',
                         default => 'heroicon-o-x-circle',
                     })
                     ->color(fn (UserState $state): string => match ($state->getValue()) {
-                        Pending::class => 'gray',
-                        Verified::class => 'success',
+                        'pending' => 'gray',
+                        'verified' => 'success',
                         default => 'warning',
                     })
                     ->toggleable(isToggledHiddenByDefault: false)
