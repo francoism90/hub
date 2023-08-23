@@ -30,7 +30,6 @@ class ImportResource extends Resource
     {
         return [
             'index' => Pages\ListImports::route('/'),
-            'create' => Pages\CreateImport::route('/create'),
             'edit' => Pages\EditImport::route('/{record}/edit'),
         ];
     }
