@@ -38,6 +38,9 @@ class CleanVideos extends Command implements Isolatable
 
     protected function getTrashedModels(): LazyCollection
     {
-        return Video::onlyTrashed()->cursor();
+        return Video::query()
+            ->onlyTrashed()
+            ->take(25)
+            ->cursor();
     }
 }
