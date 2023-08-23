@@ -4,6 +4,8 @@ namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\VideoResource;
+use Domain\Videos\Actions\RegenerateVideo;
+use Domain\Videos\Models\Video;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\EditRecord\Concerns\Translatable;
@@ -40,9 +42,20 @@ class EditVideo extends EditRecord
     {
         return [
             Actions\LocaleSwitcher::make(),
-            Actions\DeleteAction::make(),
-            Actions\ForceDeleteAction::make(),
-            Actions\RestoreAction::make(),
+
+            Actions\Action::make('regenerate')
+                ->label(__('Regenerate'))
+                ->icon('heroicon-o-document-check')
+                ->action(fn (Video $record) => app(RegenerateVideo::class)->execute($record)),
+
+            Actions\DeleteAction::make()
+                ->icon('heroicon-o-trash'),
+
+            Actions\ForceDeleteAction::make()
+                ->icon('heroicon-o-trash'),
+
+            Actions\RestoreAction::make()
+                ->icon('heroicon-s-arrow-uturn-up'),
         ];
     }
 }

@@ -4,12 +4,8 @@ namespace Domain\Videos\Actions;
 
 use Domain\Imports\Actions\MarkAsFinished;
 use Domain\Imports\Models\Import;
-use Domain\Videos\Jobs\OptimizeVideo;
-use Domain\Videos\Jobs\ProcessVideo;
-use Domain\Videos\Jobs\ReleaseVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
 
 class CreateVideoByImport
@@ -27,11 +23,7 @@ class CreateVideoByImport
 
             app(MarkAsFinished::class)->execute($import);
 
-            Bus::chain([
-                new ProcessVideo($model),
-                new OptimizeVideo($model),
-                new ReleaseVideo($model),
-            ])->dispatch();
+            app(RegenerateVideo::class)->execute($model);
         });
     }
 }

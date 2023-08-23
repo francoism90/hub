@@ -2,7 +2,7 @@
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\ReleaseVideo as TransitionToRelease;
+use Domain\Videos\Actions\MarkVideoReleased;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -63,7 +63,7 @@ class ReleaseVideo implements ShouldQueue
 
     public function handle(): void
     {
-        app(TransitionToRelease::class)->execute($this->model);
+        app(MarkVideoReleased::class)->execute($this->model);
     }
 
     /**
