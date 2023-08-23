@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TagQueryBuilder extends Builder
 {
-    public function whereType(TagType $type): self
+    public function type(TagType $type): self
     {
         return $this->where('type', $type->value);
     }

@@ -27,7 +27,7 @@ class SetTagsOrder
     protected function getTags(TagType $value): LazyCollection
     {
         return Tag::query()
-            ->whereType($value)
+            ->type($value)
             ->orderBy('name')
             ->cursor();
     }
