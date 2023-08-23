@@ -4,7 +4,6 @@ namespace Foundation\Console;
 
 use Domain\Media\Commands\MissingModels;
 use Domain\Tags\Commands\CreateTag;
-use Domain\Tags\Commands\SortTags;
 use Domain\Videos\Commands\CleanVideos;
 use Domain\Videos\Commands\RegenerateVideos;
 use Illuminate\Console\Scheduling\Schedule;
@@ -19,7 +18,6 @@ class Kernel extends ConsoleKernel
         CleanVideos::class,
         MissingModels::class,
         CreateTag::class,
-        SortTags::class,
     ];
 
     protected function schedule(Schedule $schedule): void
