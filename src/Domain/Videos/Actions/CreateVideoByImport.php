@@ -2,8 +2,8 @@
 
 namespace Domain\Videos\Actions;
 
+use Domain\Imports\Actions\MarkAsFinished;
 use Domain\Imports\Models\Import;
-use Domain\Imports\States\Finished;
 use Domain\Videos\Jobs\OptimizeVideo;
 use Domain\Videos\Jobs\ProcessVideo;
 use Domain\Videos\Jobs\ReleaseVideo;
@@ -25,11 +25,7 @@ class CreateVideoByImport
                 ->addMediaFromDisk($import->file_name, 'import')
                 ->toMediaCollection('clips');
 
-            if ($import->state->canTransitionTo(Finished::class)) {
-                $import->state->transitionTo(Finished::class);
-
-                $import->updateOrFail(['finished_at' => now()]);
-            }
+            app(MarkAsFinished::class)->execute($import);
 
             Bus::chain([
                 new ProcessVideo($model),
