@@ -5,7 +5,7 @@ if (! function_exists('human_filesize')) {
     {
         $size = floatval($size);
 
-        $units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        $unit = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
         $step = 1024;
 
@@ -16,6 +16,6 @@ if (! function_exists('human_filesize')) {
             $i++;
         }
 
-        return round($size, $precision).$units[$i];
+        return round($size, $precision).$unit[$i];
     }
 }
