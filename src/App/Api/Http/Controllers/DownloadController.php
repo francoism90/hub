@@ -4,7 +4,8 @@ namespace App\Api\Http\Controllers;
 
 use Domain\Media\Models\Media;
 use Foundation\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DownloadController extends Controller
 {
@@ -13,8 +14,8 @@ class DownloadController extends Controller
         $this->middleware(['auth.session', 'private']);
     }
 
-    public function __invoke(Media $media): BinaryFileResponse
+    public function __invoke(Media $media, Request $request): StreamedResponse
     {
-        return response()->download($media->getPath());
+        return $media->toInlineResponse($request);
     }
 }
