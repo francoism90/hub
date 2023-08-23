@@ -3,6 +3,7 @@
 namespace App\Admin\Resources\ImportResource\Pages;
 
 use App\Admin\Resources\ImportResource;
+use Domain\Imports\Actions\BulkImport;
 use Domain\Imports\Actions\SyncImports;
 use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
@@ -88,6 +89,7 @@ class ListImports extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            $this->bulkImportAction(),
             $this->syncAction(),
         ];
     }
@@ -98,6 +100,14 @@ class ListImports extends ListRecords
             ->label(__('Import'))
             ->disabled(fn (Import $record) => $record->state->equals(Finished::class))
             ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
+    }
+
+    protected function bulkImportAction(): Action
+    {
+        return Action::make('bulk_import')
+            ->label(__('Import'))
+            ->icon('heroicon-o-squares-plus')
+            ->action(fn () => app(BulkImport::class)->execute(ImportType::video()));
     }
 
     protected function syncAction(): Action
