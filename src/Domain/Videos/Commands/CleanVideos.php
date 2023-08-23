@@ -21,7 +21,7 @@ class CleanVideos extends Command implements Isolatable
 
     public function handle(): void
     {
-        $models = $this->getModels();
+        $models = $this->getTrashedModels();
 
         if ($models->isEmpty()) {
             $this->info('No videos to permanently remove');
@@ -36,7 +36,7 @@ class CleanVideos extends Command implements Isolatable
         }
     }
 
-    protected function getModels(): LazyCollection
+    protected function getTrashedModels(): LazyCollection
     {
         return Video::onlyTrashed()->cursor();
     }
