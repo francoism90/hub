@@ -2,10 +2,14 @@
     @apply flex items-center justify-between py-10;
 
     &-brand {
-        @apply inline-flex items-center gap-3 font-medium text-2xl lowercase;
+        @apply flex items-center space-x-4 font-medium text-2xl lowercase;
     }
 
     &-logo {
         @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-12 w-12 p-0.5;
+    }
+
+    &-menu {
+        @apply flex items-center space-x-6;
     }
 }
