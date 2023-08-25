@@ -9,7 +9,9 @@
     </dl>
 
     <h2 class="text-2xl font-bold leading-8 tracking-tight">
-        {{ $item->name }}
+        <a href="{{ route('videos.view', $item) }}">
+            {{ $item->name }}
+        </a>
     </h2>
 
     @if ($item->tags)
