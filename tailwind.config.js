@@ -5,7 +5,18 @@ export default {
     './src/App/**/*.blade.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: [
+          'Inter, ui-sans-serif, system-ui',
+          {
+            fontFeatureSettings: '"calt", "case", "ccmp", "cv11", "ss01"',
+            fontVariationSettings: '"opsz" 32'
+          }
+        ],
+        serif: ['Montserrat, ui-serif']
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/typography'),

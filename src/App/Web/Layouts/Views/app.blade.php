@@ -20,6 +20,9 @@
     </style>
 
     @vite('src/App/Web/Resources/Assets/css/app.css')
+    @googlefonts('sans')
+    @googlefonts('serif')
+    @googlefonts('code')
 </head>
 
  <body class="antialiased">

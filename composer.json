@@ -28,6 +28,7 @@
         "pusher/pusher-php-server": "^7.2.3",
         "spatie/laravel-db-snapshots": "^2.5.2",
         "spatie/laravel-enum": "^3.0.2",
+        "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-json-api-paginate": "^1.13.0",
         "spatie/laravel-medialibrary": "^10.11.4",
         "spatie/laravel-model-states": "^2.4.6",
