@@ -1,3 +1,3 @@
-<div class="container">
+<div {{ $attributes->merge(['class' => implode(' ', ['container', $class])]) }}>
     {{ $slot }}
 </div>

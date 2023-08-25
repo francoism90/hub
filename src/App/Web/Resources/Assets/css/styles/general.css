@@ -1,4 +1,4 @@
 body,
 html {
-    @apply bg-gray-950 text-white;
+    @apply relative bg-gray-950 text-white;
 }

@@ -1,0 +1,138 @@
+.shaka-video-container * {
+    @apply z-0 font-sans;
+}
+
+.shaka-bottom-controls {
+    @apply z-10 flex flex-col p-0;
+}
+
+.shaka-controls-button-panel {
+    @apply order-2 flex h-10 items-center px-2;
+}
+
+.shaka-controls-button-panel > * {
+    @apply text-base-300 h-10;
+}
+
+.shaka-controls-button-panel > *:focus {
+    @apply text-base-100 outline-none;
+}
+
+.shaka-controls-button-panel > *:hover {
+    @apply text-base-100;
+}
+
+.shaka-ad-controls {
+    @apply order-1;
+}
+
+.shaka-range-container {
+    @apply top-0 mx-2;
+}
+
+.shaka-small-play-button {
+    @apply -order-3;
+}
+
+.shaka-current-time {
+    @apply text-sm;
+}
+
+.shaka-seek-bar-container {
+    @apply relative -top-1 mb-0 h-1 rounded-none;
+}
+
+.shaka-seek-bar-container input[type="range"]::-webkit-slider-thumb,
+.shaka-seek-bar-container input[type="range"]::-moz-range-thumb,
+.shaka-seek-bar-container input[type="range"]::-ms-thumb {
+    @apply bg-primary;
+}
+
+.shaka-overflow-menu,
+.shaka-settings-menu {
+    @apply bottom-14 right-2 min-w-[200px] rounded-sm bg-black/75;
+}
+
+.shaka-overflow-menu i,
+.shaka-settings-menu i {
+    @apply p-2;
+}
+
+.shaka-settings-menu button {
+    @apply py-0 text-sm leading-normal;
+}
+
+.shaka-settings-menu button span {
+    @apply ml-8 text-sm;
+}
+
+.shaka-settings-menu button[aria-selected="true"] span {
+    @apply order-2 ml-0;
+}
+
+.shaka-settings-menu button[aria-selected="true"] i {
+    @apply order-1 text-sm;
+}
+
+.shaka-overflow-menu button {
+    @apply p-0;
+}
+
+.shaka-overflow-menu button i {
+    @apply hidden;
+}
+
+.shaka-overflow-menu button .shaka-overflow-button-label {
+    @apply flex h-10 flex-grow flex-row items-center justify-between outline-none;
+}
+
+.shaka-overflow-menu button .shaka-overflow-button-label span {
+    @apply flex flex-shrink-0 items-center px-4 text-sm;
+}
+
+.shaka-overflow-menu span + span {
+    @apply px-4 text-sm text-white;
+}
+
+.shaka-overflow-menu span + span:after {
+    @apply text-sm;
+}
+
+.shaka-overflow-menu .shaka-pip-button span + span {
+    @apply px-4;
+}
+
+.shaka-back-to-overflow-button {
+    @apply text-base-300 h-10 text-sm;
+}
+
+.shaka-back-to-overflow-button .material-icons-round {
+    @apply pr-2 text-lg;
+}
+
+.shaka-back-to-overflow-button span {
+    @apply !m-0;
+}
+
+.shaka-back-to-overflow-button .material-icons-round {
+    @apply px-1.5 text-lg;
+}
+
+.shaka-overflow-menu button:hover,
+.shaka-settings-menu button:hover {
+    @apply bg-white/10;
+}
+
+.shaka-overflow-menu button:focus,
+.shaka-settings-menu button:focus {
+    @apply border-none bg-white/10 outline-none;
+}
+
+.shaka-overflow-menu button,
+.shaka-settings-menu button {
+    @apply text-base-300;
+}
+
+.shaka-captions-off {
+    @apply text-base-300;
+}

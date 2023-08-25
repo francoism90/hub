@@ -1,4 +1,8 @@
+/* Styles */
 @import "./styles.css";
+
+/* Vendor */
+@import "@/shaka-player/dist/controls";
 
 @tailwind base;
 @tailwind components;

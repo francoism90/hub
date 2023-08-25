@@ -9,4 +9,9 @@ trait WithVideo
 {
     #[Locked]
     public Video $video;
+
+    public function bootWithVideo(): void
+    {
+        $this->authorize('view', $this->video);
+    }
 }

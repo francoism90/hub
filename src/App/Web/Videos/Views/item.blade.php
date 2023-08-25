@@ -18,7 +18,15 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <a class="py-2" href="#">
-        <x-videos::preview :item="$item" class="bg-black w-full h-40" />
+    <a class="py-2" href="{{ route('videos.view', $item) }}">
+        <x-videos::player
+            :model="$item"
+            :manifest="$item->preview"
+            :controls="false"
+            playsinline
+            muted
+            loop
+            class="bg-black w-full h-52 object-cover"
+        />
     </a>
 </article>
