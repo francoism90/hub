@@ -1,3 +1,7 @@
 .navbar {
-    @apply flex h-16 min-h-[4rem] bg-black;
+    @apply flex items-center justify-between py-10;
+
+    &-logo {
+        @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-12 w-12 ;
+    }
 }

@@ -1,4 +1,4 @@
 body,
 html {
-    @apply h-screen min-h-screen bg-gray-500;
+    @apply bg-gray-950 text-white;
 }
