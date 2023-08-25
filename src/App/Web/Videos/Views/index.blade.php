@@ -5,13 +5,15 @@
 
     <x-layouts::container>
         <main class="flex sm:space-x-24">
-            <livewire:videos-filter />
+
 
             <div class="grid gap-y-12">
                 @foreach ($items as $item)
                     <x-videos::item :item="$item" />
                 @endforeach
             </div>
+
+            <livewire:videos-filter />
 
             {{-- {{ $items->links() }} --}}
         </main>
