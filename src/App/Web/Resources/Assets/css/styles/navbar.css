@@ -1,0 +1,3 @@
+.navbar {
+    @apply flex min-h-[4rem];
+}
