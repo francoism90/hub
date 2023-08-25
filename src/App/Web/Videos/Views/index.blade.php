@@ -1,3 +1,3 @@
 <div>
-    foo
+    <x-layouts::navigation />
 </div>
