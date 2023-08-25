@@ -15,4 +15,8 @@
     @if ($item->tags)
         <x-videos::tags :items="$item->tags" />
     @endif
+
+    <a class="py-2" href="#">
+        <x-videos::preview :item="$item" class="bg-black w-full h-40" />
+    </a>
 </article>
