@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 export default {
   content: [
     './src/App/**/*.php',
@@ -15,7 +18,11 @@ export default {
           }
         ],
         serif: ['Montserrat, ui-serif']
-      }
+      },
+      colors: {
+        primary: colors.pink,
+        gray: colors.gray,
+      },
     }
   },
   plugins: [
