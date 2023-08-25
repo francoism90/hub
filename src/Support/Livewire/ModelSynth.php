@@ -2,19 +2,11 @@
 
 namespace Support\Livewire;
 
-use Illuminate\Database\Eloquent\Model;
 use Livewire\Features\SupportModels\ModelSynth as Synth;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ModelSynth extends Synth
 {
-    public static $key = 'model';
-
-    public static function match($target)
-    {
-        return $target instanceof Model;
-    }
-
     public function dehydrate($target) {
         if (! $target->exists) {
             throw new \Exception('Can\'t set model as property if it hasn\'t been persisted yet');
