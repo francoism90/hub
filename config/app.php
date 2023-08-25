@@ -174,6 +174,7 @@ return [
         Foundation\Providers\RouteServiceProvider::class,
         Foundation\Providers\SanctumServiceProvider::class,
         Foundation\Providers\TelescopeServiceProvider::class,
+        Foundation\Providers\ViewServiceProvider::class,
     ])->toArray(),
 
     /*

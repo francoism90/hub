@@ -20,11 +20,19 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        Blade::componentNamespace('App\\Web\\Videos\\Components', 'videos');
+        $items = collect([
+            ['namespace' => 'App\\Web\\Videos\\Components', 'prefix' => 'videos'],
+        ]);
+
+        $items->each(fn (array $item) => Blade::componentNamespace(...$item));
     }
 
     protected function configureViews(): void
     {
-        $this->loadViewsFrom(app_path('Web\Videos\Views'), 'videos');
+        $items = collect([
+            ['path' => app_path('Web/Videos/Views'), 'namespace' => 'videos'],
+        ]);
+
+        $items->each(fn (array $item) => $this->loadViewsFrom(...$item));
     }
 }
