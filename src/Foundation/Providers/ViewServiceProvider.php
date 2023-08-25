@@ -21,6 +21,7 @@ class ViewServiceProvider extends ServiceProvider
     protected function configureComponents(): void
     {
         $items = collect([
+            ['namespace' => 'App\\Web\\Layouts\\Components', 'prefix' => 'layouts'],
             ['namespace' => 'App\\Web\\Videos\\Components', 'prefix' => 'videos'],
         ]);
 
@@ -30,6 +31,7 @@ class ViewServiceProvider extends ServiceProvider
     protected function configureViews(): void
     {
         $items = collect([
+            ['path' => app_path('Web/Layouts/Views'), 'namespace' => 'layouts'],
             ['path' => app_path('Web/Videos/Views'), 'namespace' => 'videos'],
         ]);
 
