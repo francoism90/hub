@@ -1,5 +1,5 @@
 <div>
-    <x-layouts::navigation />
+    <x-layouts::navbar />
 
     <h1 class="text-3xl font-bold underline">
         Hello world!

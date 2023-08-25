@@ -5,10 +5,10 @@ namespace App\Web\Layouts\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Navigation extends Component
+class Navbar extends Component
 {
     public function render(): View
     {
-        return view('layouts::navigation');
+        return view('layouts::navbar');
     }
 }
