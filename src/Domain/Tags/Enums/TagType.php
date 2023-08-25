@@ -5,20 +5,20 @@ namespace Domain\Tags\Enums;
 use Spatie\Enum\Laravel\Enum;
 
 /**
- * @method static self studio()
  * @method static self genre()
- * @method static self language()
+ * @method static self studio()
  * @method static self person()
+ * @method static self language()
  */
 class TagType extends Enum
 {
     protected static function labels(): array
     {
         return [
-            'studio' => __('Studio'),
             'genre' => __('Genre'),
-            'language' => __('Language'),
+            'studio' => __('Studio'),
             'person' => __('Person'),
+            'language' => __('Language'),
         ];
     }
 }
