@@ -1,6 +1,7 @@
 <header class="navbar">
-    <a class="navbar-logo">
+    <a class="navbar-brand" href="/">
         <x-heroicon-s-play-circle class="navbar-logo" />
+        <span>Hub</span>
     </a>
 
     <div>
