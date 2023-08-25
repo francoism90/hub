@@ -11,4 +11,8 @@
     <h2 class="text-2xl font-bold leading-8 tracking-tight">
         {{ $item->name }}
     </h2>
+
+    @if ($item->tags)
+        <x-videos::tags :items="$item->tags" />
+    @endif
 </article>

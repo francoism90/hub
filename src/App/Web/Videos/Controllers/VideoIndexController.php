@@ -4,10 +4,8 @@ namespace App\Web\Videos\Controllers;
 
 use Domain\Videos\Models\Video;
 use Illuminate\Pagination\CursorPaginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Livewire\Component;
-use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
 class VideoIndexController extends Component
@@ -29,6 +27,7 @@ class VideoIndexController extends Component
     protected function builder(): CursorPaginator
     {
         return Video::query()
+            ->with('tags')
             ->cursorPaginate(12);
     }
 }
