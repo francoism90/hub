@@ -30,10 +30,14 @@
 
                 @if ($video->tags)
                     <div class="py-5 space-y-1">
-                        <h2 class="text-xs uppercase tracking-wide text-gray-400">Tags</h2>
+                        <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
                         <x-videos::tags :items="$video->tags" />
                     </div>
                 @endif
+
+                <div class="py-5 space-y-1">
+                    <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Similar videos') }}</h2>
+                </div>
             </div>
         </x-layouts::container>
     </article>

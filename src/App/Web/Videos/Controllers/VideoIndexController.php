@@ -28,6 +28,7 @@ class VideoIndexController extends Component
     {
         return Video::query()
             ->with('tags')
+            ->inRandomSeedOrder()
             ->cursorPaginate(12);
     }
 }
