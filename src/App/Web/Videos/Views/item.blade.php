@@ -23,10 +23,10 @@
             :model="$item"
             :manifest="$item->preview"
             :controls="false"
+            class="bg-black w-full h-52 object-cover"
             playsinline
             muted
             loop
-            class="bg-black w-full h-52 object-cover"
         />
     </a>
 </article>
