@@ -42,9 +42,18 @@ trait WithFilters
     }
 
     #[Computed]
-    public function tagLabel(): string
+    public function tagLabel(): ?string
     {
-        return TagType::tryFrom($this->type)->label;
+        return TagType::tryFrom($this->type)?->label;
+    }
+
+    public function setTag(Tag $model): void
+    {
+        $this->tag = $this->tag !== $model->getRouteKey()
+            ? $model->getRouteKey()
+            : null;
+
+        $this->resetPage();
     }
 
     public function toggle(): void

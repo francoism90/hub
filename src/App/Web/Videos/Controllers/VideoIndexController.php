@@ -38,13 +38,6 @@ class VideoIndexController extends Component
         ]);
     }
 
-    public function setTag(Tag $model): void
-    {
-        $this->tag = $model->getRouteKey();
-
-        $this->resetPage();
-    }
-
     protected function builder(): Paginator
     {
         return Video::query()
