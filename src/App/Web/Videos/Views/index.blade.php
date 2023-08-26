@@ -3,8 +3,8 @@
         <x-layouts::navbar />
     </x-layouts::container>
 
-    <x-layouts::container>
-        <main class="flex sm:space-x-24">
+    <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
+        <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @foreach ($items as $item)
                     <x-videos::item :item="$item" />
@@ -19,7 +19,7 @@
                         <button
                             @if ($items->onFirstPage()) disabled @endif
                             x-data
-                            @click.window="window.scrollTo({top: 0, behavior: 'smooth'})"
+                            @click.window="window.scrollTo({ top: 0, behavior: 'smooth' })"
                             class="cursor-auto text-gray-300 disabled:opacity-50"
                             wire:click="previousPage"
                             wire:loading.attr="disabled"
@@ -35,7 +35,7 @@
                         <button
                             @if ($items->onLastPage()) disabled @endif
                             x-data
-                            @click.window="window.scrollTo({top: 0, behavior: 'smooth'})"
+                            @click.window="window.scrollTo({ top: 0, behavior: 'smooth' })"
                             class="cursor-auto text-gray-300 disabled:opacity-50"
                             wire:click="nextPage"
                             wire:loading.attr="disabled"
@@ -46,8 +46,8 @@
                     </nav>
                 @endif
             </div>
+        </div>
 
-            <livewire:videos-filter />
-        </main>
+        <livewire:videos-filter />
     </x-layouts::container>
 </div>
