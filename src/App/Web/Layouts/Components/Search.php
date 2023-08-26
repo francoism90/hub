@@ -30,7 +30,7 @@ class Search extends Component
         return Video::query()
             ->with('tags')
             ->when(filled($this->search), function (Builder $query) {
-                $models = Video::search($this->search)->take(12);
+                $models = Video::search($this->search)->take(10);
 
                 return $query
                     ->whereIn('id', $models->keys())
@@ -47,7 +47,7 @@ class Search extends Component
 
         return Tag::query()
             ->when(filled($this->search), function (Builder $query) {
-                $models = Tag::search($this->search)->take(12);
+                $models = Tag::search($this->search)->take(10);
 
                 return $query
                     ->whereIn('id', $models->keys())
