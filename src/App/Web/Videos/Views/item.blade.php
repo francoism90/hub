@@ -18,34 +18,36 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <div
-        x-data="{ preview: false }"
-        @mouseover="preview = true"
-        @mouseleave="preview = false"
-        class="relative h-60 min-h-[15rem] max-h-[15rem] w-full"
-    >
-        <a href="{{ route('videos.view', $item) }}">
-            <img
-                alt="{{ $item->name }}"
-                src="{{ $item->thumbnail }}"
-                class="bg-black w-full h-full object-cover"
-                crossorigin="use-credentials"
-                loading="lazy"
-            />
+    <div class="py-2">
+        <div
+            x-data="{ preview: false }"
+            @mouseover="preview = true"
+            @mouseleave="preview = false"
+            class="relative h-60 min-h-[15rem] max-h-[15rem] w-full"
+        >
+            <a href="{{ route('videos.view', $item) }}">
+                <img
+                    alt="{{ $item->name }}"
+                    src="{{ $item->thumbnail }}"
+                    class="bg-black w-full h-full object-cover"
+                    crossorigin="use-credentials"
+                    loading="lazy"
+                />
 
-            <x-videos::player
-                x-cloak
-                x-show="preview"
-                @mouseover="preview = true"
-                @mouseleave="preview = false"
-                :model="$item"
-                :manifest="$item->preview"
-                :controls="false"
-                class="absolute inset-0 bg-black w-full h-full object-cover"
-                autoplay
-                muted
-                loop
-            />
-        </a>
+                <x-videos::player
+                    x-cloak
+                    x-show="preview"
+                    @mouseover="preview = true"
+                    @mouseleave="preview = false"
+                    :model="$item"
+                    :manifest="$item->preview"
+                    :controls="false"
+                    class="absolute inset-0 bg-black w-full h-full object-cover"
+                    autoplay
+                    muted
+                    loop
+                />
+            </a>
+        </div>
     </div>
 </article>
