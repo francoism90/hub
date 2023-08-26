@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    public ?string $search = 'a';
+    public ?string $search = null;
 
     public function render(): View
     {

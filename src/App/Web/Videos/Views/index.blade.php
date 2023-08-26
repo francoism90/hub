@@ -47,8 +47,7 @@
 
         <livewire:videos-filter
             :$tag
-            :$search
-        />
+            :$search />
     </x-layouts::container>
 
     <x-layouts::footer />

@@ -1,0 +1,11 @@
+.btn {
+    @apply flex items-center justify-center;
+
+    &-sm {
+        @apply h-6 px-3 text-sm;
+    }
+
+    &-rounded {
+        @apply rounded-sm;
+    }
+}

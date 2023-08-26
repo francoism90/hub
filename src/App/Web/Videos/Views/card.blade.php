@@ -8,7 +8,7 @@
         </dd>
     </dl>
 
-    <h2 class="capitalize text-2xl font-bold leading-8 tracking-tight line-clamp-2">
+    <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
         <a href="{{ route('videos.view', $item) }}">
             {{ $item->name }}
         </a>
