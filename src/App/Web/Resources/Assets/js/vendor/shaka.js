@@ -1,5 +1,5 @@
 import shaka from 'shaka-player/dist/shaka-player.ui'
 
-shaka.polyfill.installAll();
+shaka.polyfill.installAll()
 
-window.shaka = shaka;
+window.shaka = shaka

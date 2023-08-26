@@ -1,1 +1,1 @@
-import "./vendor";
+import './vendor'
