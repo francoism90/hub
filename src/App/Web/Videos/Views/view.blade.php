@@ -26,7 +26,8 @@
                     </h1>
                 </header>
 
-                <div class="grid grid-cols-2 divide-x divide-gray-700 text-gray-300 hover:text-gray-100 text-center text-sm py-5">
+                <div
+                    class="grid grid-cols-2 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300 hover:text-gray-100">
                     <div>Add to Playlist</div>
                     <div>Edit Video</div>
                 </div>

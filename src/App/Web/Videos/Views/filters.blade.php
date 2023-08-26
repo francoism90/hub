@@ -9,9 +9,8 @@
             <div class="flex flex-col flex-wrap space-y-4">
                 @foreach ($this->tags as $item)
                     <a
-                        class="text-sm cursor-pointer font-medium uppercase text-gray-400 hover:text-primary-500 {{ $item->getRouteKey() === $tag ? 'text-primary-500' : '' }}"
-                        wire:click="$parent.setTag('{{ $item->getRouteKey() }}')"
-                    >
+                        class="{{ $item->getRouteKey() === $tag ? 'text-primary-500' : '' }} cursor-pointer text-sm font-medium uppercase text-gray-400 hover:text-primary-500"
+                        wire:click="$parent.setTag('{{ $item->getRouteKey() }}')">
                         {{ $item->name }}
                     </a>
                 @endforeach

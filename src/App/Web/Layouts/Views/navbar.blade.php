@@ -21,7 +21,7 @@
             <x-videos::search />
         </a>
 
-        <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard')}}">
+        <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard') }}">
             <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
     </nav>
