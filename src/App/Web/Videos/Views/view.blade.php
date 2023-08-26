@@ -11,19 +11,27 @@
 
         <x-layouts::container>
             <div class="grid grid-cols-1 divide-y divide-gray-700">
-                <header class="py-5">
-                    <dl>
-                        <dt class="sr-only">Published on</dt>
-                        <dd class="text-base font-medium leading-6 text-gray-400">
-                            <time datetime="{{ $video->created_at->format('Y-m-d\TH:i:s.uP') }}">
-                                {{ $video->created_at->format('F d, Y') }}
-                            </time>
-                        </dd>
-                    </dl>
+                <header class="flex flex-no-wrap justify-between items-center py-5">
+                    <div class="grow mr-5">
+                        <dl>
+                            <dt class="sr-only">Published on</dt>
+                            <dd class="text-base font-medium leading-6 text-gray-400">
+                                <time datetime="{{ $video->created_at->format('Y-m-d\TH:i:s.uP') }}">
+                                    {{ $video->created_at->format('F d, Y') }}
+                                </time>
+                            </dd>
+                        </dl>
 
-                    <h1 class="text-xl font-extrabold tracking-tight text-gray-100 md:text-3xl">
-                        {{ $video->name }}
-                    </h1>
+                        <h1 class="text-xl font-extrabold tracking-tight text-gray-100 md:text-3xl">
+                            {{ $video->name }}
+                        </h1>
+                    </div>
+
+                    <div class="inline-flex space-x-3">
+                        <x-heroicon-m-pencil-square class="h-6 w-6" />
+
+                        <x-heroicon-m-squares-plus class="h-6 w-6" />
+                    </div>
                 </header>
 
                 @if ($video->tags)
