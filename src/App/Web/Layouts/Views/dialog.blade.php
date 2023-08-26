@@ -1,4 +1,4 @@
-<div x-data="{ open: true }">
+<div x-data="{ open: false }">
     {{ $slot }}
 
     <template x-teleport="body">

@@ -22,6 +22,11 @@ class Filters extends Component
         return view('videos::filters');
     }
 
+    public function mount(): void
+    {
+        $this->select();
+    }
+
     #[Computed]
     public function tags(): TagCollection
     {
@@ -36,6 +41,21 @@ class Filters extends Component
     public function name(): string
     {
         return TagType::tryFrom($this->type)->label;
+    }
+
+    public function select(): void
+    {
+        if (blank($this->tag)) {
+            return;
+        }
+
+        $types = collect(TagType::toValues());
+
+        $tag = Tag::findByPrefixedId($this->tag);
+
+        $this->type = $tag instanceof Tag && filled($tag->type)
+            ? $types->first(fn (string $type) => $tag->type->value === $type)
+            : $types->first();
     }
 
     public function toggle(): void

@@ -1,7 +1,7 @@
 <x-layouts::dialog>
     <x-heroicon-m-magnifying-glass
         @click="open = true"
-        class="h-6 w-6" />
+        class="h-6 w-6 cursor-pointer" />
 
     <x-slot:content>
         <div class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
