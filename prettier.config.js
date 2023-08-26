@@ -8,6 +8,12 @@ export default {
   overrides: [
     {
       files: ["*.blade.php"],
+      options: {
+        parser: 'blade',
+        wrapAttributes: 'preserve',
+        sortTailwindcssClasses: true,
+        indentInnerHtml: false,
+      }
     }
   ]
 }

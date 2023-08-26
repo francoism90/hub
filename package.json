@@ -7,6 +7,7 @@
         "format": "npx prettier --write src/App/"
     },
     "devDependencies": {
+        "@shufo/prettier-plugin-blade": "^1.11.1",
         "@tailwindcss/typography": "^0.5.9",
         "autoprefixer": "^10.4.15",
         "axios": "^1.1.2",
