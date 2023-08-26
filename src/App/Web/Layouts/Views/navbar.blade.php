@@ -34,7 +34,7 @@
                 class="h-6 w-6 navbar-item sm:hidden cursor-pointer" />
 
             <x-slot:content>
-                <div class="">
+                <aside>
                     <div class="flex justify-end">
                         <button
                             class="p-10 focus:outline-none"
@@ -57,7 +57,7 @@
                             {{ __('Playlists') }}
                         </a>
                     </nav>
-                </div>
+                </aside>
             </x-slot:content>
         </x-layouts::drawer>
     </nav>
