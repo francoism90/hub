@@ -10,7 +10,7 @@
         </a>
 
         <a class="navbar-item">
-            {{ __('Trending') }}
+            {{ __('Tags') }}
         </a>
 
         <a class="navbar-item">
