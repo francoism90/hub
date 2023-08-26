@@ -22,14 +22,18 @@
                 </button>
             </header>
 
-            <div class="border-t border-gray-700">
+            <div class="border-t border-gray-700 overflow-auto max-h-[32rem]">
                 @if (blank($search))
                     <div class="px-4 py-20 text-center text-gray-300">
                         No recent searches
                     </div>
                 @endif
 
-                {{ $search }}
+                @if ($items->isNotEmpty())
+                     @foreach ($items as $item)
+                        <x-videos::item :item="$item" />
+                    @endforeach
+                @endif
             </div>
         </div>
     </x-slot:content>
