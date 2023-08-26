@@ -27,12 +27,13 @@ class Filters extends Component
     {
         return Tag::query()
             ->type($this->type)
-            ->inRandomSeedOrder()
-            ->get();
+            ->orderBy('name')
+            ->get()
+            ->sortByDesc(fn (Tag $item) => $item->getRouteKey() === $this->tag);
     }
 
     #[Computed]
-    public function name(): ?string
+    public function name(): string
     {
         return TagType::tryFrom($this->type)->label;
     }
