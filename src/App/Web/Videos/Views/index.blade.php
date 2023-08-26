@@ -50,4 +50,6 @@
 
         <livewire:videos-filter />
     </x-layouts::container>
+
+    <x-layouts::footer />
 </div>
