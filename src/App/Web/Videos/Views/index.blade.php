@@ -7,7 +7,7 @@
         <main class="flex sm:space-x-24">
 
 
-            <div class="grid gap-y-12">
+            <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @foreach ($items as $item)
                     <x-videos::item :item="$item" />
                 @endforeach

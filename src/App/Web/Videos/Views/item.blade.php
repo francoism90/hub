@@ -1,4 +1,4 @@
-<article class="flex flex-col space-y-1.5">
+<article class="flex flex-col space-y-1.5 py-8">
     <dl>
         <dt class="sr-only">Published on</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
