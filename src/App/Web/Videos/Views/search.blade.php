@@ -12,7 +12,7 @@
                     type="search"
                     class="bg-transparent border-transparent h-12 focus:outline-none w-full"
                     placeholder="{{ __('Search') }}"
-                    wire:model.live="search"
+                    wire:model.live.debounce.250ms="search"
                 >
 
                 <button
