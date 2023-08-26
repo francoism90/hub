@@ -44,8 +44,7 @@
 
                     <div class="grid grid-cols-1 gap-y-4">
                         @foreach ($tags as $tag)
-                            {{ $tag->name }}
-                            {{-- <x-videos::item :item="$video" /> --}}
+                            <x-tags::item :item="$tag" />
                         @endforeach
                     </div>
                 @endif

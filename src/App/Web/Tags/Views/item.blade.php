@@ -1,13 +1,8 @@
 <article class="rounded bg-gray-700/40 p-4 shadow-md">
     <div class="flex flex-row flex-nowrap items-center space-x-4">
-        <div class="h-16 w-16 flex-none">
-            <a href="{{ route('videos.view', $item) }}">
-                <img
-                    alt="{{ $item->name }}"
-                    src="{{ $item->thumbnail }}"
-                    class="h-full w-full bg-black object-cover"
-                    crossorigin="use-credentials"
-                    loading="lazy" />
+        <div class="h-16 w-16 flex items-center justify-center rounded bg-gray-600 py-1 px-2 text-xs text-gray-200">
+            <a href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
+                <x-heroicon-o-hashtag class="h-4 w-4" />
             </a>
         </div>
 
@@ -23,14 +18,10 @@
                 </dl>
 
                 <h2 class="capitalize text-sm font-bold leading-6 tracking-tight line-clamp-2">
-                    <a href="{{ route('videos.view', $item) }}">
+                    <a href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
                         {{ $item->name }}
                     </a>
                 </h2>
-
-                @if ($item->tags)
-                    <x-videos::tags :items="$item->tags" />
-                @endif
             </div>
         </div>
     </div>
