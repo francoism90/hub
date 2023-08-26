@@ -11,8 +11,10 @@
             <div
                 x-cloak
                 x-show="open"
-                class="modal"
-                role="dialog">
+                x-transition
+                role="dialog"
+                x-on:click.away="open = false"
+                class="modal">
                 {{ $content }}
             </div>
         </div>
