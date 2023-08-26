@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'class_namespace' => 'App\\Web\\Resources\\Components',
+    'class_namespace' => 'App',
 
     /*
     |---------------------------------------------------------------------------
