@@ -6,6 +6,6 @@
     }
 
     &-overlay {
-        @apply fixed inset-0 h-screen w-screen overflow-hidden bg-black/50;
+        @apply fixed inset-0 h-screen w-screen overflow-hidden bg-black/50 backdrop-blur-sm;
     }
 }
