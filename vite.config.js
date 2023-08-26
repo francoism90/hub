@@ -31,4 +31,16 @@ export default defineConfig({
       refresh: [...refreshPaths, 'src/App/**'],
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 1024,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
+          utils: ['axios'],
+          ws: ['laravel-echo', 'pusher-js']
+        }
+      }
+    }
+  }
 })
