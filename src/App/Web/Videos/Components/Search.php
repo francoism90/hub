@@ -2,8 +2,8 @@
 
 namespace App\Web\Videos\Components;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
+use Livewire\Component;
 
 class Search extends Component
 {

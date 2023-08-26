@@ -18,7 +18,7 @@
         </a>
 
         <a class="navbar-item">
-            <x-videos::search />
+            <livewire:videos-search />
         </a>
 
         <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard') }}">
