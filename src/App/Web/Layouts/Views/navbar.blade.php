@@ -18,7 +18,7 @@
         </a>
 
         <a class="navbar-item">
-            <x-heroicon-m-magnifying-glass class="h-6 w-6" />
+            <x-videos::search />
         </a>
 
         <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard')}}">

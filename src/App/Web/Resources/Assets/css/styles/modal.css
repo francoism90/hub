@@ -1,0 +1,11 @@
+.modal {
+    @apply fixed z-10 flex h-screen w-screen overflow-auto;
+
+    &-center {
+        @apply items-center justify-center;
+    }
+
+    &-overlay {
+        @apply fixed inset-0 h-screen w-screen overflow-hidden bg-black/50;
+    }
+}
