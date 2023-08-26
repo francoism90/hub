@@ -23,7 +23,7 @@
                         </dd>
                     </dl>
 
-                    <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+                    <h1 class="text-xl font-extrabold tracking-tight text-gray-100 md:text-3xl">
                         {{ $video->name }}
                     </h1>
                 </header>
