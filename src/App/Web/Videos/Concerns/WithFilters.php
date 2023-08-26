@@ -10,12 +10,6 @@ use Livewire\Attributes\Computed;
 
 trait WithFilters
 {
-    #[Reactive]
-    public ?string $tag = null;
-
-    #[Reactive]
-    public ?string $search = null;
-
     public ?string $type = null;
 
     public function bootWithFilters(): void

@@ -3,8 +3,8 @@
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithFilters;
+use Illuminate\View\Component;
 use Illuminate\View\View;
-use Livewire\Component;
 
 class Filters extends Component
 {

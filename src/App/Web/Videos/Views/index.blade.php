@@ -1,6 +1,6 @@
 <div>
     <x-layouts::container class="py-10">
-        <livewire:layout-navbar :$tag :$search :$type />
+        <x-layouts::navbar />
     </x-layouts::container>
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
@@ -46,7 +46,7 @@
         </div>
 
         <aside class="hidden md:flex">
-            <livewire:videos-filter :$tag :$search />
+            <x-videos::filters />
         </aside>
     </x-layouts::container>
 

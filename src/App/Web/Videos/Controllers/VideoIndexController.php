@@ -2,6 +2,7 @@
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Videos\Concerns\WithFilters;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -13,6 +14,7 @@ use Livewire\Attributes\Url;
 
 class VideoIndexController extends Component
 {
+    use WithFilters;
     use WithPagination;
 
     #[Url(history: true)]
