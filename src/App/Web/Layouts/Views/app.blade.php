@@ -30,6 +30,7 @@
     {{ $slot }}
 
     @vite('src/App/Web/Resources/Assets/js/app.js')
+    @stack('scripts')
 
 </body>
 </html>
