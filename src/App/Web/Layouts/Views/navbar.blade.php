@@ -18,7 +18,11 @@
         </a>
 
         <a class="navbar-item">
-            <x-heroicon-m-magnifying-glass class="h-6 w-6 fill-white" />
+            <x-heroicon-m-magnifying-glass class="h-6 w-6" />
+        </a>
+
+        <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard')}}">
+            <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
     </nav>
 </header>
