@@ -2,7 +2,7 @@
     <div class="flex flex-row flex-nowrap items-center space-x-4">
         <div class="h-16 w-16 flex items-center justify-center rounded bg-gray-600 py-1 px-2 text-xs text-gray-200">
             <a href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
-                <x-heroicon-o-hashtag class="h-4 w-4" />
+                <x-dynamic-component :component="$icon" class="h-5 w-5" />
             </a>
         </div>
 
