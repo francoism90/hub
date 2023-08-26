@@ -115,7 +115,7 @@ class VideoQueryBuilder extends Builder
             ->map(fn (mixed $item) => ! $item instanceof Tag
                 ? Tag::findByPrefixedIdOrFail($item)
                 : $item
-        );
+            );
 
         return $this->WithAnyTags($items);
     }

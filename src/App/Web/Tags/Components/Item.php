@@ -11,7 +11,8 @@ class Item extends Component
 {
     public function __construct(
         public Tag $item,
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

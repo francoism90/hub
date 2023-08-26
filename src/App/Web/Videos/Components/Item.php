@@ -10,7 +10,8 @@ class Item extends Component
 {
     public function __construct(
         public Video $item,
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

@@ -10,7 +10,8 @@ class Tags extends Component
 {
     public function __construct(
         public TagCollection $items,
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

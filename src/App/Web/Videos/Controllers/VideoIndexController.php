@@ -3,14 +3,13 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithFilters;
-use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Url;
 
 class VideoIndexController extends Component
 {

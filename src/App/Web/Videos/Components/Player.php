@@ -12,7 +12,8 @@ class Player extends Component
         public Video $model,
         public string $manifest,
         public bool $controls = true,
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

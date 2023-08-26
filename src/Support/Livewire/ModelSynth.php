@@ -2,12 +2,13 @@
 
 namespace Support\Livewire;
 
-use Livewire\Features\SupportModels\ModelSynth as Synth;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Livewire\Features\SupportModels\ModelSynth as Synth;
 
 class ModelSynth extends Synth
 {
-    public function dehydrate($target) {
+    public function dehydrate($target)
+    {
         if (! $target->exists) {
             throw new \Exception('Can\'t set model as property if it hasn\'t been persisted yet');
         }
@@ -23,7 +24,8 @@ class ModelSynth extends Synth
         ];
     }
 
-    public function hydrate($data, $meta) {
+    public function hydrate($data, $meta)
+    {
         $key = $meta['key'];
         $class = $meta['class'];
 

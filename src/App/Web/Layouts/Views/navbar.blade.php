@@ -5,15 +5,15 @@
     </a>
 
     <nav class="navbar-menu">
-        <a class="hidden sm:flex navbar-item">
+        <a class="navbar-item hidden sm:flex">
             {{ __('Recent') }}
         </a>
 
-        <a class="hidden sm:flex navbar-item">
+        <a class="navbar-item hidden sm:flex">
             {{ __('Tags') }}
         </a>
 
-        <a class="hidden sm:flex navbar-item">
+        <a class="navbar-item hidden sm:flex">
             {{ __('Playlists') }}
         </a>
 
@@ -23,15 +23,14 @@
 
         <a
             class="navbar-item"
-            href="{{ route('filament.admin.pages.dashboard') }}"
-        >
+            href="{{ route('filament.admin.pages.dashboard') }}">
             <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
 
         <x-layouts::drawer>
             <x-heroicon-o-bars-3
                 @click="open = true"
-                class="h-6 w-6 navbar-item sm:hidden cursor-pointer" />
+                class="navbar-item h-6 w-6 cursor-pointer sm:hidden" />
 
             <x-slot:content>
                 <aside>
@@ -40,20 +39,20 @@
                             class="p-10 focus:outline-none"
                             aria-label="Toggle Menu"
                             @click="open = false">
-                                <x-heroicon-o-x-mark class="h-10 w-10" />
+                            <x-heroicon-o-x-mark class="h-10 w-10" />
                         </button>
                     </div>
 
-                    <nav class="flex flex-col flex-nowrap p-10 space-y-5">
-                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                    <nav class="flex flex-col flex-nowrap space-y-5 p-10">
+                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
                             {{ __('Recent') }}
                         </a>
 
-                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
                             {{ __('Tags') }}
                         </a>
 
-                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
                             {{ __('Playlists') }}
                         </a>
                     </nav>

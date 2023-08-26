@@ -2,9 +2,9 @@
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Videos\Concerns\WithVideo;
 use Illuminate\View\View;
 use Livewire\Component;
-use App\Web\Videos\Concerns\WithVideo;
 
 class VideoViewController extends Component
 {

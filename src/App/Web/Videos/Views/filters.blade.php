@@ -1,5 +1,5 @@
-<div class="sm:min-w-[18rem] sm:max-w-[18rem] self-start overflow-auto">
-    <div class="rounded sm:bg-gray-900/70 p-6 shadow-md">
+<div class="self-start overflow-auto sm:min-w-[18rem] sm:max-w-[18rem]">
+    <div class="rounded p-6 shadow-md sm:bg-gray-900/70">
         <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggle">
             <h3 class="headline">{{ __('By :name', ['name' => $this->tagLabel]) }}</h3>
             <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />

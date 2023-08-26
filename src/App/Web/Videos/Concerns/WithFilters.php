@@ -2,9 +2,9 @@
 
 namespace App\Web\Videos\Concerns;
 
-use Domain\Tags\Models\Tag;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
+use Domain\Tags\Models\Tag;
 use Livewire\Attributes\Computed;
 
 trait WithFilters
