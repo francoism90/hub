@@ -1,8 +1,8 @@
 .modal {
-    @apply fixed z-10 flex h-screen w-screen overflow-auto;
+    @apply mx-auto flex justify-center overflow-auto;
 
     &-center {
-        @apply items-center justify-center;
+        @apply m-auto items-center;
     }
 
     &-overlay {

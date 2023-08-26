@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div x-data="{ open: true }">
     <x-heroicon-m-magnifying-glass
         @click="open = true"
         class="h-6 w-6"
@@ -14,11 +14,14 @@
             <div
             x-cloak
             x-show="open"
-            class="modal modal-center"
+            class="modal"
         >
+            <div class="w-full m-5 sm:m-10 max-w-3xl rounded bg-gray-900/70 p-6 shadow-md">
+
             Modal contents...
 
             <button @click="open = false">Close Dialog</button>
+            </div>
         </div>
 
         </div>
