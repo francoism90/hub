@@ -9,7 +9,7 @@ use Livewire\Attributes\Computed;
 
 trait WithFilters
 {
-    public ?string $type = null;
+    public ?string $type = 'genre';
 
     public function bootWithFilters(): void
     {
@@ -49,9 +49,9 @@ trait WithFilters
 
     public function setTag(Tag $model): void
     {
-        $this->tag = $this->tag !== $model->getRouteKey()
-            ? $model->getRouteKey()
-            : null;
+        $this->tag = ($model->getRouteKey() === $this->tag)
+            ? $this->reset('tag')
+            : $model->getRouteKey();
 
         $this->resetPage();
     }
