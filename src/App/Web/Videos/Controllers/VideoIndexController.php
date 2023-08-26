@@ -15,7 +15,7 @@ class VideoIndexController extends Component
 {
     use WithPagination;
 
-    #[Url(history: true, as: 't')]
+    #[Url(history: true)]
     public ?string $tag = null;
 
     public function boot(): void
