@@ -1,6 +1,6 @@
 <div>
     <x-layouts::container class="py-10">
-        <livewire:layout-navbar :$tag :$search />
+        <livewire:layout-navbar :$tag :$search :$type />
     </x-layouts::container>
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">

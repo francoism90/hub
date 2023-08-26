@@ -16,7 +16,8 @@ trait WithFilters
     #[Reactive]
     public ?string $search = null;
 
-    public ?string $type = 'genre';
+    #[Reactive]
+    public ?string $type = null;
 
     public function bootWithFilters(): void
     {

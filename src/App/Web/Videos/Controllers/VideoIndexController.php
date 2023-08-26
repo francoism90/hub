@@ -21,6 +21,9 @@ class VideoIndexController extends Component
     #[Url(history: true)]
     public ?string $tag = null;
 
+    #[Url(history: true)]
+    public ?string $type = null;
+
     public function boot(): void
     {
         $this->authorize('viewAny', Video::class);
