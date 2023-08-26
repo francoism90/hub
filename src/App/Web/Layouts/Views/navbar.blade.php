@@ -34,7 +34,7 @@
                 class="h-6 w-6 navbar-item sm:hidden cursor-pointer" />
 
             <x-slot:content>
-                <div class="fixed inset-x-0 z-10 min-h-screen w-full transform bg-gray-950/90 duration-300 ease-in-out translate-x-0">
+                <div class="">
                     <div class="flex justify-end">
                         <button
                             class="p-10 focus:outline-none"
