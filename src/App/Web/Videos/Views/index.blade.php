@@ -5,9 +5,9 @@
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
-            <div wire:key="now()" class="grid grid-cols-1 divide-y divide-gray-700">
+            <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @foreach ($items as $item)
-                    <x-videos::item :item="$item" />
+                    <x-videos::card :item="$item" />
                 @endforeach
 
                 @if ($items->hasPages())

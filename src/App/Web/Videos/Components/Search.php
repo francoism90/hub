@@ -10,16 +10,16 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    public ?string $search = null;
+    public ?string $search = 'a';
 
     public function render(): View
     {
         return view('videos::search', [
-            'items' => $this->builder(),
+            'videos' => $this->videos(),
         ]);
     }
 
-    protected function builder(): Collection
+    protected function videos(): Collection
     {
         if (blank($this->search)) {
             return collect();
