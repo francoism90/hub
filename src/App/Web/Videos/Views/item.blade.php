@@ -18,15 +18,34 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <a class="py-2" href="{{ route('videos.view', $item) }}">
-        <x-videos::player
-            :model="$item"
-            :manifest="$item->preview"
-            :controls="false"
-            class="bg-black w-full h-52 object-cover"
-            playsinline
-            muted
-            loop
-        />
-    </a>
+    <div
+        x-data="{ preview: false }"
+        @mouseover="preview = true"
+        @mouseleave="preview = false"
+        class="relative h-60 min-h-[15rem] max-h-[15rem] w-full"
+    >
+        <a href="{{ route('videos.view', $item) }}">
+            <img
+                alt="{{ $item->name }}"
+                src="{{ $item->thumbnail }}"
+                class="bg-black w-full h-full object-cover"
+                crossorigin="use-credentials"
+                loading="lazy"
+            />
+
+            <x-videos::player
+                x-cloak
+                x-show="preview"
+                @mouseover="preview = true"
+                @mouseleave="preview = false"
+                :model="$item"
+                :manifest="$item->preview"
+                :controls="false"
+                class="absolute inset-0 bg-black w-full h-full object-cover"
+                autoplay
+                muted
+                loop
+            />
+        </a>
+    </div>
 </article>

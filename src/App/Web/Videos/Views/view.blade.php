@@ -8,7 +8,6 @@
             :model="$video"
             :manifest="$video->stream"
             class="bg-black w-full h-64 max-h-64 lg:h-[32rem] lg:max-h-[32rem]"
-            playsinline
         />
 
         <x-layouts::container>
