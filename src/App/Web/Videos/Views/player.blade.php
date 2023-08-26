@@ -64,7 +64,21 @@
                     }
                 }
 
+                ui.forward = class extends shaka.ui.Element {
+                    constructor(parent, controls) {
+                        super(parent, controls)
+                        parent.appendChild(forward($refs.video, 10))
+                    }
+                }
+
+                ui.forward.Factory = class {
+                    create(rootElement, controls) {
+                       return new ui.forward(rootElement, controls)
+                    }
+                }
+
                 window.shaka.ui.Controls.registerElement('replay', new ui.replay.Factory())
+                window.shaka.ui.Controls.registerElement('forward', new ui.forward.Factory())
 
                 // Configure UI
                 ui.configure({
@@ -74,6 +88,7 @@
                     controlPanelElements: [
                         'play_pause',
                         'replay',
+                        'forward',
                         'time_and_duration',
                         'spacer',
                         'fullscreen',
