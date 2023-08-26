@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Web\Videos\Components;
+namespace App\Web\Layouts\Components;
 
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -14,8 +15,9 @@ class Search extends Component
 
     public function render(): View
     {
-        return view('videos::search', [
+        return view('layouts::search', [
             'videos' => $this->videos(),
+            'tags' => $this->tags(),
         ]);
     }
 
@@ -29,6 +31,23 @@ class Search extends Component
             ->with('tags')
             ->when(filled($this->search), function (Builder $query) {
                 $models = Video::search($this->search)->take(12);
+
+                return $query
+                    ->whereIn('id', $models->keys())
+                    ->orderByRaw("FIELD ('id', {$models->keys()->implode(',')})");
+            })
+            ->get();
+    }
+
+    protected function tags(): Collection
+    {
+        if (blank($this->search)) {
+            return collect();
+        }
+
+        return Tag::query()
+            ->when(filled($this->search), function (Builder $query) {
+                $models = Tag::search($this->search)->take(12);
 
                 return $query
                     ->whereIn('id', $models->keys())

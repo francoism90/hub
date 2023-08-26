@@ -22,7 +22,7 @@
                 </button>
             </header>
 
-            <div class="border-t border-gray-700 overflow-auto max-h-[32rem] p-6">
+            <div class="border-t border-gray-700 flex flex-col space-y-6 overflow-auto max-h-[32rem] p-6">
                 @if (blank($search))
                     <div class="py-16 text-center text-gray-300">
                         No recent searches
@@ -30,11 +30,22 @@
                 @endif
 
                 @if ($videos->isNotEmpty())
-                    <h2 class="headline pb-6">{{ __('Videos') }}</h2>
+                    <h2 class="headline">{{ __('Videos') }}</h2>
 
                     <div class="grid grid-cols-1 gap-y-4">
                         @foreach ($videos as $video)
                             <x-videos::item :item="$video" />
+                        @endforeach
+                    </div>
+                @endif
+
+                @if ($tags->isNotEmpty())
+                    <h2 class="headline">{{ __('Tags') }}</h2>
+
+                    <div class="grid grid-cols-1 gap-y-4">
+                        @foreach ($tags as $tag)
+                            {{ $tag->name }}
+                            {{-- <x-videos::item :item="$video" /> --}}
                         @endforeach
                     </div>
                 @endif

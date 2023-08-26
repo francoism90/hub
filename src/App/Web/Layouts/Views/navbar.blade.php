@@ -1,7 +1,7 @@
 <header class="navbar">
     <a class="navbar-brand" href="/">
         <x-heroicon-s-play-circle class="navbar-logo" />
-        <span>Hub</span>
+        <span>{{ config('app.name') }}</span>
     </a>
 
     <nav class="navbar-menu">
@@ -18,7 +18,7 @@
         </a>
 
         <a class="navbar-item">
-            <livewire:videos-search />
+            <livewire:layout-search />
         </a>
 
         <a class="navbar-item" href="{{ route('filament.admin.pages.dashboard') }}">
