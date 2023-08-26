@@ -2,6 +2,8 @@
 
 namespace Domain\Videos\QueryBuilders;
 
+use ArrayAccess;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
@@ -102,5 +104,16 @@ class VideoQueryBuilder extends Builder
             fn (Builder $query) => $query
                 ->where('id', 0)
         );
+    }
+
+    public function tags(Tag|array|ArrayAccess $tags): self
+    {
+        $items = collect($tags)
+            ->map(fn (mixed $item) => ! $item instanceof Tag
+                ? Tag::findByPrefixedIdOrFail($item)
+                : $item
+        );
+
+        return $this->WithAnyTags($items);
     }
 }

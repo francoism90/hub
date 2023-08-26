@@ -8,9 +8,13 @@ use Domain\Tags\Models\Tag;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\Attributes\Reactive;
 
 class Filters extends Component
 {
+    #[Reactive]
+    public ?string $tag = null;
+
     public ?string $type = 'genre';
 
     public function render(): View

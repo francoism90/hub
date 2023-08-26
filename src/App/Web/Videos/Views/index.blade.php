@@ -5,7 +5,7 @@
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
-            <div class="grid grid-cols-1 divide-y divide-gray-700">
+            <div wire:key="now()" class="grid grid-cols-1 divide-y divide-gray-700">
                 @foreach ($items as $item)
                     <x-videos::item :item="$item" />
                 @endforeach
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <livewire:videos-filter />
+        <livewire:videos-filter :$tag />
     </x-layouts::container>
 
     <x-layouts::footer />
