@@ -9,8 +9,10 @@
                 <x-heroicon-o-magnifying-glass class="h-6 w-6 text-gray-300" />
 
                 <input
+                    type="search"
                     class="bg-transparent border-transparent h-12 focus:outline-none w-full"
                     placeholder="{{ __('Search') }}"
+                    wire:model.live="search"
                 >
 
                 <button
@@ -21,6 +23,7 @@
             </header>
 
             <div class="border-t border-gray-700">
+
             </div>
         </div>
     </x-slot:content>
