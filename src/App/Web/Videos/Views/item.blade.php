@@ -20,7 +20,7 @@
                     </dd>
                 </dl>
 
-                <h2 class="text-sm font-bold leading-6 tracking-tight line-clamp-2">
+                <h2 class="capitalize text-sm font-bold leading-6 tracking-tight line-clamp-2">
                     <a href="{{ route('videos.view', $item) }}">
                         {{ $item->name }}
                     </a>

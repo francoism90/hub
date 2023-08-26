@@ -21,7 +21,7 @@
                         </dd>
                     </dl>
 
-                    <h1 class="text-xl font-extrabold tracking-tight text-gray-100 md:text-3xl">
+                    <h1 class="capitalize text-xl font-extrabold tracking-tight text-gray-100 md:text-3xl">
                         {{ $video->name }}
                     </h1>
                 </header>
