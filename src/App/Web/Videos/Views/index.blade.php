@@ -45,9 +45,9 @@
             </div>
         </div>
 
-        <livewire:videos-filter
-            :$tag
-            :$search />
+        <aside class="hidden md:flex">
+            <livewire:videos-filter :$tag :$search />
+        </aside>
     </x-layouts::container>
 
     <x-layouts::footer />
