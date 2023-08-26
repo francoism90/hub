@@ -16,7 +16,6 @@ trait WithFilters
     #[Reactive]
     public ?string $search = null;
 
-    #[Reactive]
     public ?string $type = null;
 
     public function bootWithFilters(): void

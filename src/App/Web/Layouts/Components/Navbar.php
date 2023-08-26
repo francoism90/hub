@@ -8,8 +8,6 @@ use Livewire\Component;
 
 class Navbar extends Component
 {
-    use WithFilters;
-
     public function render(): View
     {
         return view('layouts::navbar');

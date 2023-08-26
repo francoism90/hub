@@ -28,7 +28,7 @@
             <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
 
-        <x-layouts::drawer>
+        {{-- <x-layouts::drawer>
             <x-heroicon-o-bars-3
                 @click="open = true"
                 class="h-6 w-6 navbar-item sm:hidden cursor-pointer" />
@@ -51,6 +51,6 @@
                     </div>
                 </div>
             </x-slot:content>
-        </x-layouts::drawer>
+        </x-layouts::drawer> --}}
     </nav>
 </header>
