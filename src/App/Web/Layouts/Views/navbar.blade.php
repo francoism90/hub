@@ -44,8 +44,10 @@
                         </button>
                     </div>
 
+                    {{ $tag }}
+
                     <div class="">
-                        <livewire:videos-filter :$tag :$search />
+
                     </div>
                 </div>
             </x-slot:content>
