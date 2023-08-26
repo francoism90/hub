@@ -1,5 +1,5 @@
 .drawer {
-    @apply fixed inset-x-0 z-10 min-h-screen w-full bg-gray-950/90;
+    @apply fixed inset-0 z-10 h-screen w-screen overflow-auto bg-gray-950/90;
 
     &-overlay {
         @apply fixed inset-0 h-screen w-screen overflow-hidden bg-black/50 backdrop-blur-sm;

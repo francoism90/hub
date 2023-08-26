@@ -1,5 +1,5 @@
 .modal {
-    @apply mx-auto flex justify-center overflow-auto;
+    @apply z-10 mx-auto flex justify-center overflow-auto;
 
     &-center {
         @apply m-auto items-center;
