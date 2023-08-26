@@ -23,7 +23,13 @@
             </header>
 
             <div class="border-t border-gray-700">
+                @if (blank($search))
+                    <div class="px-4 py-20 text-center text-gray-300">
+                        No recent searches
+                    </div>
+                @endif
 
+                {{ $search }}
             </div>
         </div>
     </x-slot:content>
