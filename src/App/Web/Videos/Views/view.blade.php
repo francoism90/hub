@@ -7,8 +7,7 @@
         <x-videos::player
             :model="$video"
             :manifest="$video->stream"
-            class="bg-black w-full h-64 max-h-64 lg:h-[32rem] lg:max-h-[32rem]"
-        />
+            class="h-64 max-h-64 w-full bg-black lg:h-[32rem] lg:max-h-[32rem]" />
 
         <x-layouts::container>
             <div class="grid grid-cols-1 divide-y divide-gray-700">
@@ -28,13 +27,13 @@
                 </header>
 
                 @if ($video->tags)
-                    <div class="py-5 space-y-1">
+                    <div class="space-y-1 py-5">
                         <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
                         <x-videos::tags :items="$video->tags" />
                     </div>
                 @endif
 
-                <div class="py-5 space-y-1">
+                <div class="space-y-1 py-5">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Similar videos') }}</h2>
                 </div>
             </div>

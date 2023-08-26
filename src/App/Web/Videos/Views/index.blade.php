@@ -14,8 +14,7 @@
                     <nav
                         role="navigation"
                         aria-label="Pagination Navigation"
-                        class="flex items-center justify-between py-6"
-                    >
+                        class="flex items-center justify-between py-6">
                         <button
                             @if ($items->onFirstPage()) disabled @endif
                             x-data
@@ -23,8 +22,7 @@
                             class="cursor-auto text-gray-300 disabled:opacity-50"
                             wire:click="previousPage"
                             wire:loading.attr="disabled"
-                            rel="prev"
-                        >
+                            rel="prev">
                             {{ __('Previous') }}
                         </button>
 
@@ -39,8 +37,7 @@
                             class="cursor-auto text-gray-300 disabled:opacity-50"
                             wire:click="nextPage"
                             wire:loading.attr="disabled"
-                            rel="next"
-                        >
+                            rel="next">
                             {{ __('Next') }}
                         </button>
                     </nav>

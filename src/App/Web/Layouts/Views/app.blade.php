@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8" />
     <meta name="application-name" content="{{ config('app.name') }}">
@@ -25,7 +26,7 @@
     @googlefonts('code')
 </head>
 
- <body class="antialiased">
+<body class="antialiased">
 
     {{ $slot }}
 
@@ -33,4 +34,5 @@
     @stack('scripts')
 
 </body>
+
 </html>

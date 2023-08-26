@@ -23,16 +23,14 @@
             x-data="{ preview: false }"
             @mouseover="preview = true"
             @mouseleave="preview = false"
-            class="relative h-60 min-h-[15rem] max-h-[15rem] w-full"
-        >
+            class="relative h-60 max-h-[15rem] min-h-[15rem] w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->name }}"
                     src="{{ $item->thumbnail }}"
-                    class="bg-black w-full h-full object-cover"
+                    class="h-full w-full bg-black object-cover"
                     crossorigin="use-credentials"
-                    loading="lazy"
-                />
+                    loading="lazy" />
 
                 <x-videos::player
                     x-cloak
@@ -42,11 +40,10 @@
                     :model="$item"
                     :manifest="$item->preview"
                     :controls="false"
-                    class="absolute inset-0 bg-black w-full h-full object-cover"
+                    class="absolute inset-0 h-full w-full bg-black object-cover"
                     autoplay
                     muted
-                    loop
-                />
+                    loop />
             </a>
         </div>
     </div>

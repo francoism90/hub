@@ -18,7 +18,7 @@
         </a>
 
         <a class="navbar-item">
-            <x-heroicon-m-magnifying-glass class="w-6 h-6 fill-white" />
+            <x-heroicon-m-magnifying-glass class="h-6 w-6 fill-white" />
         </a>
     </nav>
 </header>

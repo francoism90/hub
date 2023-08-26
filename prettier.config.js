@@ -3,6 +3,7 @@ export default {
   semi: false,
   singleQuote: true,
   plugins: [
+    '@shufo/prettier-plugin-blade',
     'prettier-plugin-tailwindcss',
   ],
   overrides: [

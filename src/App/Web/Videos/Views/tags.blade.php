@@ -2,8 +2,7 @@
     @foreach ($items as $item)
         <a
             class="text-sm font-medium uppercase text-primary-500 hover:text-primary-400"
-            href="/tags/next-js"
-        >
+            href="/tags/next-js">
             {{ $item->name }}
         </a>
     @endforeach
