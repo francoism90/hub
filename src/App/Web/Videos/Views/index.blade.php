@@ -7,7 +7,7 @@
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @foreach ($items as $item)
-                    <x-videos::card :item="$item" />
+                    <x-videos::card :$item />
                 @endforeach
 
                 @if ($items->hasPages())
@@ -45,7 +45,10 @@
             </div>
         </div>
 
-        <livewire:videos-filter :$tag />
+        <livewire:videos-filter
+            :$tag
+            :$search
+        />
     </x-layouts::container>
 
     <x-layouts::footer />

@@ -3,6 +3,7 @@
 namespace Domain\Videos\QueryBuilders;
 
 use ArrayAccess;
+use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
+    use InteractsWithScout;
+
     public function captions(): self
     {
         return $this->where(fn (Builder $query) => $query

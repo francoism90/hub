@@ -16,6 +16,9 @@ class VideoIndexController extends Component
     use WithPagination;
 
     #[Url(history: true)]
+    public ?string $search = null;
+
+    #[Url(history: true)]
     public ?string $tag = null;
 
     public function boot(): void
@@ -42,6 +45,7 @@ class VideoIndexController extends Component
         return Video::query()
             ->with('tags')
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
+            ->when(filled($this->search), fn (Builder $query) => $query->search($this->search))
             ->inRandomSeedOrder()
             ->paginate(12);
     }

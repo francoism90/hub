@@ -15,6 +15,9 @@ class Filters extends Component
     #[Reactive]
     public ?string $tag = null;
 
+    #[Reactive]
+    public ?string $search = null;
+
     public ?string $type = 'genre';
 
     public function render(): View

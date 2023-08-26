@@ -30,7 +30,11 @@
                 @endif
 
                 @if ($videos->isNotEmpty())
-                    <h2 class="headline">{{ __('Videos') }}</h2>
+                    <h2 class="headline">
+                        <a href="{{ route('videos.index', compact('search')) }}">
+                            {{ __('Videos') }}
+                        </a>
+                    </h2>
 
                     <div class="grid grid-cols-1 gap-y-4">
                         @foreach ($videos as $video)

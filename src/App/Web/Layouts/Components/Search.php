@@ -29,13 +29,10 @@ class Search extends Component
 
         return Video::query()
             ->with('tags')
-            ->when(filled($this->search), function (Builder $query) {
-                $models = Video::search($this->search)->take(10);
-
-                return $query
-                    ->whereIn('id', $models->keys())
-                    ->orderByRaw("FIELD ('id', {$models->keys()->implode(',')})");
-            })
+            ->when(filled($this->search), fn (Builder $query) => $query->search(
+                value: $this->search,
+                limit: 10
+            ))
             ->get();
     }
 
@@ -46,13 +43,10 @@ class Search extends Component
         }
 
         return Tag::query()
-            ->when(filled($this->search), function (Builder $query) {
-                $models = Tag::search($this->search)->take(10);
-
-                return $query
-                    ->whereIn('id', $models->keys())
-                    ->orderByRaw("FIELD ('id', {$models->keys()->implode(',')})");
-            })
+            ->when(filled($this->search), fn (Builder $query) => $query->search(
+                value: $this->search,
+                limit: 10
+            ))
             ->get();
     }
 }
