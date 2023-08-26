@@ -28,7 +28,7 @@
             <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
 
-        {{-- <x-layouts::drawer>
+        <x-layouts::drawer>
             <x-heroicon-o-bars-3
                 @click="open = true"
                 class="h-6 w-6 navbar-item sm:hidden cursor-pointer" />
@@ -44,13 +44,21 @@
                         </button>
                     </div>
 
-                    {{ $tag }}
+                    <nav class="flex flex-col flex-nowrap p-10 space-y-5">
+                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                            {{ __('Recent') }}
+                        </a>
 
-                    <div class="">
+                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                            {{ __('Tags') }}
+                        </a>
 
-                    </div>
+                        <a class="text-2xl font-bold tracking-widest text-gray-100 cursor-pointer">
+                            {{ __('Playlists') }}
+                        </a>
+                    </nav>
                 </div>
             </x-slot:content>
-        </x-layouts::drawer> --}}
+        </x-layouts::drawer>
     </nav>
 </header>

@@ -3,7 +3,6 @@
 namespace App\Web\Videos\Concerns;
 
 use Domain\Tags\Models\Tag;
-use Livewire\Attributes\Reactive;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Livewire\Attributes\Computed;
