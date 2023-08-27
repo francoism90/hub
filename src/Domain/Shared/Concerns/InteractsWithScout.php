@@ -4,7 +4,7 @@ namespace Domain\Shared\Concerns;
 
 trait InteractsWithScout
 {
-    public function search(string $value, int $limit = 10): self
+    public function search(string $value = '*', int $limit = 10): self
     {
         $models = $this->getModel()->search($value)->take($limit);
 
