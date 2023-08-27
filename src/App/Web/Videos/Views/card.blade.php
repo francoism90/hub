@@ -28,6 +28,7 @@
                 <img
                     alt="{{ $item->name }}"
                     src="{{ $item->thumbnail }}"
+                    srcset="{{ $item->placeholder }}"
                     class="h-full w-full bg-black object-cover text-transparent"
                     crossorigin="use-credentials"
                     loading="lazy"
