@@ -22,6 +22,8 @@ class TagIndexController extends Component
     #[Computed()]
     public function items(): TagCollection
     {
-        return Tag::all();
+        return Tag::query()
+            ->inRandomSeedOrder()
+            ->get();
     }
 }
