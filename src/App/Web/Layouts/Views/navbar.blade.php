@@ -9,7 +9,7 @@
             {{ __('Recent') }}
         </a>
 
-        <a href="{{ route('tags.index') }}" class="navbar-item hidden sm:flex">
+        <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'navbar-item hidden sm:flex') }}">
             {{ __('Tags') }}
         </a>
 

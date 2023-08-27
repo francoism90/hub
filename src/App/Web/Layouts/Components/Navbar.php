@@ -11,4 +11,12 @@ class Navbar extends Component
     {
         return view('layouts::navbar');
     }
+
+    public function active(string $name, string $class = null): string
+    {
+        return request()->routeIs($name)
+            ? implode(' ', [$class, 'navbar-item-active'])
+            : $class
+        ;
+    }
 }

@@ -2,7 +2,11 @@
     @apply flex items-center justify-between;
 
     &-item {
-        @apply cursor-pointer;
+        @apply cursor-pointer hover:text-primary-300 focus:text-primary-500 active:text-primary-500;
+
+        &-active {
+            @apply text-primary-500 hover:text-primary-500;
+        }
     }
 
     &-brand {
