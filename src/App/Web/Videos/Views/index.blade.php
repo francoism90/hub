@@ -6,6 +6,21 @@
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
+                @if (filled($search))
+                <div class="inline-flex flex-nowrap justify-between items-center pb-4 text-sm text-gray-400">
+                    <div class="pr-4 line-clamp-1">
+                        <span>{{ __('results for') }}</span>
+                        <span class="font-bold">{{ $search }}</span>
+                    </div>
+
+                    <div>
+                        <a wire:click="resetSearch">
+                            <x-heroicon-o-x-circle class="h-5 w-5" />
+                        </a>
+                    </div>
+                </div>
+                @endif
+
                 @foreach ($items as $item)
                     <x-videos::card :$item />
                 @endforeach
