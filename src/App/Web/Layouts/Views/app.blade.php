@@ -12,7 +12,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#39336c" />
     <meta name="msapplication-TileColor" content="#39336c" />
     <meta name="theme-color" content="#39336c" />
-    {!! SEOMeta::generate(true) !!}
+    {!! SEOMeta::generate() !!}
     <style>
         [x-cloak] {
             display: none !important;
