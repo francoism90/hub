@@ -4,14 +4,23 @@ namespace Domain\Shared\Concerns;
 
 trait InteractsWithScout
 {
-    public function search(string $value = '*', int $limit = 10): self
+    public function search(string $value = '*'): self
     {
-        $models = $this->getModel()->search($value)->take($limit);
+        $column = $this->getTableColumn();
+
+        $models = $this->getModel()->search($value);
 
         return $this
             ->reorder()
-            ->whereIn('id', $models->keys())
-            ->take($limit)
-            ->orderByRaw('FIELD (id, ?)', [$models->keys()->implode(',')]);
+            ->whereIn($column, $models->keys())
+            ->orderByRaw("FIELD ({$column}, ?)", [$models->keys()->implode(',')]);
+    }
+
+    protected function getTableColumn(): string
+    {
+        return implode('.', [
+            $this->getModel()->getTable(),
+            $this->getModel()->getKeyName(),
+        ]);
     }
 }

@@ -110,6 +110,7 @@ class VideoIndexController extends Component
                 value: $this->search,
                 limit: 12 * 6
             ))
+            ->take(12 * 6)
             ->paginate(12);
     }
 }
