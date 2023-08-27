@@ -32,7 +32,7 @@ class Search extends Component
         return Video::query()
             ->with('tags')
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
-            ->take(10)
+            ->take(5)
             ->get();
     }
 
@@ -45,7 +45,7 @@ class Search extends Component
 
         return Tag::query()
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
-            ->take(10)
+            ->take(5)
             ->get();
     }
 }
