@@ -23,7 +23,7 @@
             x-data="{ preview: false }"
             @mouseover="preview = true"
             @mouseleave="preview = false"
-            class="relative h-60 max-h-[15rem] min-h-[15rem] w-full">
+            class="relative h-64 max-h-[15rem] min-h-[15rem] w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->name }}"
