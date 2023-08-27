@@ -117,6 +117,8 @@ class VideoQueryBuilder extends Builder
                 : $item
             );
 
-        return $this->WithAnyTags($items);
+        return $this
+            ->inRandomSeedOrder()
+            ->WithAnyTags($items);
     }
 }
