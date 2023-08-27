@@ -12,14 +12,12 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#39336c" />
     <meta name="msapplication-TileColor" content="#39336c" />
     <meta name="theme-color" content="#39336c" />
-    <title>{{ config('app.name') }}</title>
-    <meta name="description" content="Hub App" />
+    {!! SEOMeta::generate(true) !!}
     <style>
         [x-cloak] {
             display: none !important;
         }
     </style>
-
     @vite('src/App/Web/Resources/Assets/css/app.css')
     @googlefonts('sans')
     @googlefonts('serif')

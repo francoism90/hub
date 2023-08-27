@@ -2,6 +2,7 @@
 
 namespace Foundation\Providers;
 
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +15,15 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureSeo();
         $this->configureComponents();
         $this->configureViews();
+    }
+
+    protected function configureSeo(): void
+    {
+        SEOMeta::setTitleDefault(config('app.name'));
+        SEOMeta::setRobots('noindex,nofollow');
     }
 
     protected function configureComponents(): void

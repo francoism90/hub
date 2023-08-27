@@ -3,6 +3,7 @@
 namespace App\Web\Tags\Controllers;
 
 use App\Web\Tags\Concerns\WithTags;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Tags\Models\Tag;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -12,6 +13,11 @@ use Livewire\Component;
 class TagIndexController extends Component
 {
     use WithTags;
+
+    public function mount(): void
+    {
+        SEOMeta::setTitle(__('Tags'));
+    }
 
     public function render(): View
     {
