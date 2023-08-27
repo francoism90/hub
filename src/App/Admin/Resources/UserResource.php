@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\UserResource\Pages;
 use Domain\Users\Models\User;
 use Filament\Forms\Components;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
+    use InteractsWithScout;
+
     protected static ?string $model = User::class;
 
     protected static ?string $recordTitleAttribute = 'name';
@@ -70,16 +73,5 @@ class UserResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
-    }
-
-    protected function applySearchToTableQuery(Builder $query): Builder
-    {
-        $this->applyColumnSearchesToTableQuery($query);
-
-        if (filled($search = $this->getTableSearch())) {
-            $query->whereIn('id', User::search($search)->keys());
-        }
-
-        return $query;
     }
 }
