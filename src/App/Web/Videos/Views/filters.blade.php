@@ -5,7 +5,7 @@
             <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />
         </div>
 
-        <div class="max-h-[32rem] overflow-auto px-4">
+        <div class="max-h-[28rem] overflow-auto px-4">
             <div class="flex flex-col flex-wrap space-y-4">
                 @foreach ($this->tags as $item)
                     <a
