@@ -30,7 +30,8 @@
                 @endif
 
                 @if ($videos->isNotEmpty())
-                    <a class="inline-flex items-center space-x-2 text-primary-500" href="{{ route('videos.index', compact('search')) }}">
+                    <a class="inline-flex items-center space-x-2 text-primary-500"
+                        href="{{ route('videos.index', compact('search')) }}">
                         <h2 class="headline">
                             {{ __('Videos') }}
                         </h2>

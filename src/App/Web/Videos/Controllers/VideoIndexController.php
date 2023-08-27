@@ -10,10 +10,10 @@ use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Computed;
 
 class VideoIndexController extends Component
 {
@@ -62,6 +62,7 @@ class VideoIndexController extends Component
     {
         if ($model->getRouteKey() === $this->tag) {
             $this->resetTag();
+
             return;
         }
 

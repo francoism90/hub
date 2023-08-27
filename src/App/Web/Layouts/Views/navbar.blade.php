@@ -39,7 +39,8 @@
                         </button>
                     </div>
 
-                    <nav class="flex flex-col flex-nowrap space-y-5 p-10 text-2xl font-bold tracking-widest text-gray-100">
+                    <nav
+                        class="flex flex-col flex-nowrap space-y-5 p-10 text-2xl font-bold tracking-widest text-gray-100">
                         <a href="{{ route('videos.index') }}" class="drawer-item">
                             {{ __('Recent') }}
                         </a>

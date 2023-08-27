@@ -7,8 +7,8 @@ use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Livewire\Component;
 use Livewire\Attributes\Computed;
+use Livewire\Component;
 
 class Search extends Component
 {
