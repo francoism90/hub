@@ -8,7 +8,7 @@
             {{ __('Tags') }}
         </h1>
 
-        <div class="flex flex-wrap gap-x-2 gap-y-3 py-6">
+        <div class="flex flex-wrap gap-3 py-6">
             @foreach ($this->items as $item)
                 <x-tags::card :$item />
             @endforeach

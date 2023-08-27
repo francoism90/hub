@@ -23,6 +23,7 @@ class TagIndexController extends Component
     {
         return Tag::query()
             ->withCount('videos')
+            ->orderByDesc('videos_count')
             ->get();
     }
 }
