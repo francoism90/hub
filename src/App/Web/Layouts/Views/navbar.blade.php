@@ -5,21 +5,21 @@
     </a>
 
     <nav class="navbar-menu">
-        <a class="navbar-item hidden sm:flex">
-            {{ __('Recent') }}
-        </a>
+        <div class="hidden sm:flex">
+            <a class="navbar-item">
+                {{ __('Recent') }}
+            </a>
 
-        <a class="navbar-item hidden sm:flex">
-            {{ __('Tags') }}
-        </a>
+            <a href="{{ route('tags.index') }}" class="navbar-item">
+                {{ __('Tags') }}
+            </a>
 
-        <a class="navbar-item hidden sm:flex">
-            {{ __('Playlists') }}
-        </a>
+            <a class="navbar-item">
+                {{ __('Playlists') }}
+            </a>
+        </div>
 
-        <a class="navbar-item">
-            <livewire:layout-search />
-        </a>
+        <livewire:layout-search />
 
         <a
             class="navbar-item"
@@ -43,16 +43,16 @@
                         </button>
                     </div>
 
-                    <nav class="flex flex-col flex-nowrap space-y-5 p-10">
-                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
+                    <nav class="flex flex-col flex-nowrap space-y-5 p-10 text-2xl font-bold tracking-widest text-gray-100">
+                        <a class="cursor-pointer">
                             {{ __('Recent') }}
                         </a>
 
-                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
+                        <a href="{{ route('tags.index') }}" class="cursor-pointer">
                             {{ __('Tags') }}
                         </a>
 
-                        <a class="cursor-pointer text-2xl font-bold tracking-widest text-gray-100">
+                        <a class="cursor-pointer">
                             {{ __('Playlists') }}
                         </a>
                     </nav>
