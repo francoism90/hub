@@ -8,7 +8,7 @@ trait InteractsWithScout
     {
         $column = $this->getTableColumn();
 
-        $models = $this->getModel()->search($value);
+        $models = $this->getModel()->search($value)->take(500);
 
         return $this
             ->reorder()
