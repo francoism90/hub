@@ -9,7 +9,7 @@
         </h1>
 
         <div class="flex flex-wrap gap-y-3 gap-x-2 py-6">
-            @foreach ($items as $item)
+            @foreach ($this->items as $item)
                 <x-tags::card :$item />
             @endforeach
         </div>
