@@ -30,13 +30,16 @@
                     src="{{ $item->thumbnail }}"
                     class="h-full w-full bg-black object-cover text-transparent"
                     crossorigin="use-credentials"
-                    loading="lazy" />
+                    loading="lazy"
+                    @mouseover="preview = true"
+                    @mouseleave="preview = false"
+                    @touchstart.passive="preview = true"
+                    @touchend.passive="preview = false"
+                    @touchcancel.passive="preview = false" />
 
                 <x-videos::player
                     x-cloak
                     x-show="preview"
-                    @mouseover="preview = true"
-                    @mouseleave="preview = false"
                     :model="$item"
                     :manifest="$item->preview"
                     :controls="false"
