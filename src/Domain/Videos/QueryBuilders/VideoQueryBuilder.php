@@ -112,7 +112,9 @@ class VideoQueryBuilder extends Builder
     public function tags(Tag|array|ArrayAccess $tags): self
     {
         $items = collect($tags)
-            ->map(fn (mixed $item) => ! $item instanceof Tag
+            ->filter()
+            ->unique()
+            ->map(fn (Tag|string $item) => ! $item instanceof Tag
                 ? Tag::findByPrefixedIdOrFail($item)
                 : $item
             );
