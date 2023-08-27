@@ -5,6 +5,8 @@ namespace App\Web\Tags\Controllers;
 use App\Web\Tags\Concerns\WithTags;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -20,10 +22,10 @@ class TagIndexController extends Component
 
 
     #[Computed()]
-    public function items(): TagCollection
+    public function items(): Collection
     {
         return Tag::query()
-            ->inRandomSeedOrder()
+            ->withCount('videos')
             ->get();
     }
 }
