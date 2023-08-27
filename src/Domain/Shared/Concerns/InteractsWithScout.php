@@ -11,6 +11,7 @@ trait InteractsWithScout
         return $this
             ->reorder()
             ->whereIn('id', $models->keys())
+            ->take($limit)
             ->orderByRaw('FIELD (id, ?)', [$models->keys()->implode(',')]);
     }
 }
