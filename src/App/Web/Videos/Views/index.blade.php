@@ -6,16 +6,16 @@
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
-                @if (filled($search))
+                @if (filled($search) || filled($tag))
                     <div class="inline-flex flex-nowrap items-center justify-between pb-4 text-sm text-gray-400">
                         <div class="line-clamp-1 pr-4">
-                            <span>{{ __('results for') }}</span>
-                            <span class="font-bold">{{ $search }}</span>
+                            <span>{{ __('filter by') }}</span>
+                            <span class="lowercase">{{ implode(' + ', array_filter([$search, $this->tagName])) }}</span>
                         </div>
 
                         <div>
-                            <a class="cursor-pointer" wire:click="resetSearch">
-                                <x-heroicon-o-x-circle class="h-5 w-5" />
+                            <a class="cursor-pointer" wire:click="resetQuery('search', 'tag')">
+                                <x-heroicon-o-x-circle class="h-6 w-6" />
                             </a>
                         </div>
                     </div>

@@ -51,17 +51,10 @@ class VideoIndexController extends Component
         ]);
     }
 
-    public function resetTag(): void
-    {
-        $this->reset('tag');
-
-        $this->resetPage();
-    }
-
     public function setTag(Tag $model): void
     {
         if ($model->getRouteKey() === $this->tag) {
-            $this->resetTag();
+            $this->resetQuery('tag');
 
             return;
         }
@@ -71,18 +64,20 @@ class VideoIndexController extends Component
         $this->resetPage();
     }
 
-    public function resetSearch(): void
-    {
-        $this->reset('search');
-
-        $this->resetPage();
-    }
-
     public function toggleType(): void
     {
         $types = $this->tagTypes();
 
         $this->type = $types->after($this->type, $types->first());
+    }
+
+    public function resetQuery(...$properties): void
+    {
+        collect($properties)
+            ->filter(fn (string $property) => in_array($property, ['search', 'tag']))
+            ->map(fn (string $property) => $this->reset($property));
+
+        $this->resetPage();
     }
 
     #[Computed]
@@ -96,9 +91,15 @@ class VideoIndexController extends Component
     }
 
     #[Computed]
-    public function tagLabel(): ?string
+    public function tagType(): ?string
     {
         return $this->findTagType($this->type)?->label;
+    }
+
+    #[Computed]
+    public function tagName(): mixed
+    {
+        return $this->findTagModel($this->tag)?->name;
     }
 
     protected function builder(): Paginator

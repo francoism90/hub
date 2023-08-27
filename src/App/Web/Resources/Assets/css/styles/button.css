@@ -1,8 +1,16 @@
 .btn {
-    @apply flex items-center justify-center;
+    @apply line-clamp-1 flex min-w-min items-center justify-center space-x-1;
+
+    &-primary {
+        @apply border-primary-500/50 bg-primary-500;
+    }
+
+    &-outline {
+        @apply border bg-transparent;
+    }
 
     &-sm {
-        @apply h-6 px-3 text-sm;
+        @apply h-6 text-sm;
     }
 
     &-rounded {
