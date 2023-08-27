@@ -14,7 +14,7 @@
                     </div>
 
                     <div>
-                        <a wire:click="resetSearch">
+                        <a class="cursor-pointer" wire:click="resetSearch">
                             <x-heroicon-o-x-circle class="h-5 w-5" />
                         </a>
                     </div>
