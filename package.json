@@ -19,10 +19,8 @@
         "prettier": "^3.0.2",
         "prettier-plugin-tailwindcss": "^0.5.3",
         "pusher-js": "^8.3.0",
+        "shaka-player": "^4.3.9",
         "tailwindcss": "^3.3.3",
         "vite": "^4.0.0"
-    },
-    "dependencies": {
-        "shaka-player": "^4.3.9"
     }
 }
