@@ -1,0 +1,19 @@
+<div>
+    <x-layouts::container class="py-10">
+        <x-layouts::navbar />
+    </x-layouts::container>
+
+    <x-layouts::container>
+        <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            {{ __('Tags') }}
+        </h1>
+
+        <div class="flex flex-wrap gap-y-3 gap-x-2 py-6">
+            @foreach ($items as $item)
+                <x-tags::card :$item />
+            @endforeach
+        </div>
+    </x-layouts::container>
+
+    <x-layouts::footer />
+</div>

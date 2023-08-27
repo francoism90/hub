@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\Attributes\Computed;
 
 class Search extends Component
 {
@@ -21,7 +22,8 @@ class Search extends Component
         ]);
     }
 
-    protected function videos(): Collection
+    #[Computed]
+    public function videos(): Collection
     {
         if (blank($this->search)) {
             return collect();
@@ -34,7 +36,8 @@ class Search extends Component
             ->get();
     }
 
-    protected function tags(): Collection
+    #[Computed]
+    public function tags(): Collection
     {
         if (blank($this->search)) {
             return collect();

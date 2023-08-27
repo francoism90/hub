@@ -1,4 +1,4 @@
-<div x-data="{ open: true }" {{ $attributes }}>
+<div x-data="{ open: false }" {{ $attributes }}>
     {{ $slot }}
 
     <template x-teleport="body">
@@ -8,6 +8,7 @@
             x-cloak
             x-trap.noscroll="open"
             wire:ignore.self>
+
             <div
                 x-cloak
                 x-show="open"
