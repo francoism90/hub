@@ -106,10 +106,7 @@ class VideoIndexController extends Component
             ->with('tags')
             ->inRandomSeedOrder()
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
-            ->when(filled($this->search), fn (Builder $query) => $query->search(
-                value: $this->search,
-                limit: 12 * 6
-            ))
+            ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
             ->take(12 * 6)
             ->paginate(12);
     }
