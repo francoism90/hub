@@ -22,10 +22,10 @@ class VideoIndexController extends Component
     use WithPagination;
 
     #[Url(history: true)]
-    public ?string $search = null;
+    public ?string $search = '';
 
     #[Url(history: true)]
-    public ?string $tag = null;
+    public ?string $tag = '';
 
     public ?string $type = 'genre';
 
@@ -51,11 +51,21 @@ class VideoIndexController extends Component
         ]);
     }
 
+    public function resetTag(): void
+    {
+        $this->reset('tag');
+
+        $this->resetPage();
+    }
+
     public function setTag(Tag $model): void
     {
-        $this->tag = ($model->getRouteKey() === $this->tag)
-            ? $this->reset('tag')
-            : $model->getRouteKey();
+        if ($model->getRouteKey() === $this->tag) {
+            $this->resetTag();
+            return;
+        }
+
+        $this->tag = $model->getRouteKey();
 
         $this->resetPage();
     }
@@ -87,12 +97,12 @@ class VideoIndexController extends Component
     {
         return Video::query()
             ->with('tags')
+            ->inRandomSeedOrder()
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
             ->when(filled($this->search), fn (Builder $query) => $query->search(
                 value: $this->search,
                 limit: 12 * 6
             ))
-            ->inRandomSeedOrder()
             ->paginate(12);
     }
 }
