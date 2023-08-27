@@ -4,7 +4,7 @@
         class="h-6 w-6 cursor-pointer" />
 
     <x-slot:content>
-        <div class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
+        <div @keydown.escape="open = false" class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
             <header class="relative flex items-center space-x-4 px-4">
                 <x-heroicon-o-magnifying-glass class="h-6 w-6 text-gray-300" />
 
@@ -30,8 +30,8 @@
                 @endif
 
                 @if ($videos->isNotEmpty())
-                    <a class="inline-flex items-center space-x-2" href="{{ route('videos.index', compact('search')) }}">
-                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6 text-primary-500" />
+                    <a class="inline-flex items-center space-x-2 text-primary-500" href="{{ route('videos.index', compact('search')) }}">
+                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
 
                         <h2 class="headline">
                             {{ __('Videos') }}
@@ -46,7 +46,13 @@
                 @endif
 
                 @if ($tags->isNotEmpty())
-                    <h2 class="headline">{{ __('Tags') }}</h2>
+                    <a class="inline-flex items-center space-x-2 text-primary-500" href="{{ route('videos.index', compact('search')) }}">
+                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
+
+                        <h2 class="headline">
+                            {{ __('Tags') }}
+                        </h2>
+                    </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
                         @foreach ($tags as $tag)
