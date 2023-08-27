@@ -5,32 +5,28 @@
     </a>
 
     <nav class="navbar-menu">
-        <div class="hidden sm:flex">
-            <a class="navbar-item">
-                {{ __('Recent') }}
-            </a>
+        <a href="{{ route('videos.index') }}" class="navbar-item hidden sm:flex">
+            {{ __('Recent') }}
+        </a>
 
-            <a href="{{ route('tags.index') }}" class="navbar-item">
-                {{ __('Tags') }}
-            </a>
+        <a href="{{ route('tags.index') }}" class="navbar-item hidden sm:flex">
+            {{ __('Tags') }}
+        </a>
 
-            <a class="navbar-item">
-                {{ __('Playlists') }}
-            </a>
-        </div>
+        <a href="{{ route('tags.index') }}" class="navbar-item hidden sm:flex">
+            {{ __('Playlists') }}
+        </a>
 
         <livewire:layout-search />
 
-        <a
-            class="navbar-item"
-            href="{{ route('filament.admin.pages.dashboard') }}">
+        <a href="{{ route('filament.admin.pages.dashboard') }}">
             <x-heroicon-o-user-circle class="h-6 w-6" />
         </a>
 
         <x-layouts::drawer>
             <x-heroicon-o-bars-3
                 @click="open = true"
-                class="navbar-item h-6 w-6 cursor-pointer sm:hidden" />
+                class="h-6 w-6 cursor-pointer sm:hidden" />
 
             <x-slot:content>
                 <aside>
@@ -44,15 +40,15 @@
                     </div>
 
                     <nav class="flex flex-col flex-nowrap space-y-5 p-10 text-2xl font-bold tracking-widest text-gray-100">
-                        <a class="cursor-pointer">
+                        <a href="{{ route('videos.index') }}" class="drawer-item">
                             {{ __('Recent') }}
                         </a>
 
-                        <a href="{{ route('tags.index') }}" class="cursor-pointer">
+                        <a href="{{ route('tags.index') }}" class="drawer-item">
                             {{ __('Tags') }}
                         </a>
 
-                        <a class="cursor-pointer">
+                        <a href="{{ route('tags.index') }}" class="drawer-item">
                             {{ __('Playlists') }}
                         </a>
                     </nav>

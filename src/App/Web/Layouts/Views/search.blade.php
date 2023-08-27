@@ -31,11 +31,11 @@
 
                 @if ($videos->isNotEmpty())
                     <a class="inline-flex items-center space-x-2 text-primary-500" href="{{ route('videos.index', compact('search')) }}">
-                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
-
                         <h2 class="headline">
                             {{ __('Videos') }}
                         </h2>
+
+                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
                     </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
@@ -46,9 +46,7 @@
                 @endif
 
                 @if ($tags->isNotEmpty())
-                    <a class="inline-flex items-center space-x-2 text-primary-500" href="{{ route('videos.index', compact('search')) }}">
-                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
-
+                    <a class="inline-flex items-center space-x-2 text-primary-500">
                         <h2 class="headline">
                             {{ __('Tags') }}
                         </h2>

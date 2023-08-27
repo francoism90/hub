@@ -1,6 +1,10 @@
 .navbar {
     @apply flex items-center justify-between;
 
+    &-item {
+        @apply cursor-pointer;
+    }
+
     &-brand {
         @apply flex items-center space-x-4 text-2xl font-medium lowercase;
     }
