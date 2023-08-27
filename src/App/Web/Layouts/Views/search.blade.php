@@ -12,6 +12,7 @@
                     type="search"
                     class="h-12 w-full border-transparent bg-transparent focus:outline-none"
                     placeholder="{{ __('Search') }}"
+                    autofocus
                     wire:model.live.debounce.250ms="search">
 
                 <button
@@ -29,11 +30,13 @@
                 @endif
 
                 @if ($videos->isNotEmpty())
-                    <h2 class="headline">
-                        <a href="{{ route('videos.index', compact('search')) }}">
+                    <a class="inline-flex items-center space-x-2" href="{{ route('videos.index', compact('search')) }}">
+                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6 text-primary-500" />
+
+                        <h2 class="headline">
                             {{ __('Videos') }}
-                        </a>
-                    </h2>
+                        </h2>
+                    </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
                         @foreach ($videos as $video)
