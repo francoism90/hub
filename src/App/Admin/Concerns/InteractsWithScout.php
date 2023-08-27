@@ -13,7 +13,6 @@ trait InteractsWithScout
         $this->applyColumnSearchesToTableQuery($query);
 
         return $query
-            ->when(filled($search), fn (Builder $query) => $query->search($search))
-            ->take(10);
+            ->when(filled($search), fn (Builder $query) => $query->search($search));
     }
 }
