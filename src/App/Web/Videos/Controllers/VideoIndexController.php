@@ -70,6 +70,13 @@ class VideoIndexController extends Component
         $this->resetPage();
     }
 
+    public function resetSearch(): void
+    {
+        $this->reset('search');
+
+        $this->resetPage();
+    }
+
     public function toggleType(): void
     {
         $types = $this->tagTypes();
