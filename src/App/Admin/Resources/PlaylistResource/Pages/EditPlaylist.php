@@ -5,9 +5,9 @@ namespace App\Admin\Resources\PlaylistResource\Pages;
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\PlaylistResource;
 use App\Admin\Resources\PlaylistResource\Forms\GeneralForm;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Contracts\Support\Htmlable;
-use Filament\Forms\Form;
 
 class EditPlaylist extends EditRecord
 {

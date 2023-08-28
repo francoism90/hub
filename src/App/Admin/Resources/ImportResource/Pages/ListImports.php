@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources\ImportResource\Pages;
 
+use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Resources\ImportResource;
 use Domain\Imports\Actions\BulkImport;
 use Domain\Imports\Actions\SyncImports;
@@ -9,17 +10,17 @@ use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
 use Domain\Imports\States\Finished;
 use Domain\Imports\States\ImportState;
-use Domain\Videos\Actions\CreateVideoByImport;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Support\ModelState\StateOptions;
 
 class ListImports extends ListRecords
 {
+    use InteractsWithState;
+
     protected static string $resource = ImportResource::class;
 
     public function table(Table $table): Table
@@ -99,7 +100,7 @@ class ListImports extends ListRecords
         return Tables\Actions\Action::make('import')
             ->label(__('Import'))
             ->disabled(fn (Import $record) => $record->state->equals(Finished::class))
-            ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
+            ->action(fn (Import $record) => static::stateOptions($record));
     }
 
     protected function bulkImportAction(): Action
