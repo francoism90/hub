@@ -4,6 +4,7 @@ namespace Domain\Videos\Concerns;
 
 use ArrayAccess;
 use Domain\Videos\Models\Video;
+use Domain\Videos\Models\Videoable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 

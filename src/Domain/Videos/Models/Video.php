@@ -4,6 +4,7 @@ namespace Domain\Videos\Models;
 
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Database\Factories\VideoFactory;
+use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Tags\Enums\TagType;
@@ -36,6 +37,7 @@ use Spatie\Translatable\HasTranslations;
 class Video extends Model implements HasMedia, Viewable
 {
     use InteractsWithMedia;
+    use InteractsWithPlaylists;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithViews;

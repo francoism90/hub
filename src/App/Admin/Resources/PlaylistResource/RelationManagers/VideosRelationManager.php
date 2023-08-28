@@ -13,26 +13,6 @@ class VideosRelationManager extends RelationManager
 {
     protected static string $relationship = 'videos';
 
-    public function form(Form $form): Form
-    {
-        return $form
-            ->columns(1)
-            ->schema([
-                // Components\TextInput::make('name')
-                //     ->required()
-                //     ->maxLength(255),
-
-                // Components\Select::make('collection_name')
-                //     ->required()
-                //     ->label(__('Collection'))
-                //     ->options($this
-                //         ->getOwnerRecord()
-                //         ->getRegisteredMediaCollections()
-                //         ->pluck('name', 'name')
-                //     ),
-            ]);
-    }
-
     public function table(Table $table): Table
     {
         return $table
@@ -58,18 +38,19 @@ class VideosRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make()
+                    ->preloadRecordSelect(),
             ])
             ->actions([
-                //
+                Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DetachBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make(),
             ]);
     }
 }
