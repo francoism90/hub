@@ -27,6 +27,7 @@ class VideoIndexController extends Component
     #[Url(history: true)]
     public ?string $tag = '';
 
+    #[Url(history: true)]
     public ?string $type = 'genre';
 
     public function mount(): void
