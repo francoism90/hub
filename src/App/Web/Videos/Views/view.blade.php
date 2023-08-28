@@ -19,6 +19,13 @@
                                 {{ $video->created_at->format('F d, Y') }}
                             </time>
                         </dd>
+
+                        @if ($video->episode || $video->season)
+                            <dt class="sr-only">Episode</dt>
+                            <dd class="text-base font-medium leading-6 text-gray-400">
+                                {{ $video->season }}{{ $video->episode }}
+                            </dd>
+                        @endif
                     </dl>
 
                     <h1 class="text-xl font-extrabold capitalize tracking-tight text-gray-100 md:text-3xl">

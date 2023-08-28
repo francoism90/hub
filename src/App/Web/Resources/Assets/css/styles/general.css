@@ -7,12 +7,10 @@ dl {
     @apply inline-flex flex-wrap items-center;
 
     dd:after {
-        @apply pr-1;
-        content: '•';
+        @apply pr-1 content-['-'];
     }
 
     dd:last-child:after {
-        @apply pr-0;
-        content: '';
+        @apply pr-0 content-[];
     }
 }
