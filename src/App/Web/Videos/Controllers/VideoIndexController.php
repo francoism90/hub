@@ -28,19 +28,13 @@ class VideoIndexController extends Component
     public ?string $tag = '';
 
     #[Url(history: true)]
-    public ?string $type = 'genre';
+    public ?string $type = '';
 
     public function mount(): void
     {
-        if (blank($this->tag)) {
-            return;
-        }
-
         $types = $this->tagTypes();
 
-        $tag = $this->findTagModel($this->tag);
-
-        $this->type = $tag instanceof Tag && filled($tag->type)
+        $this->type = (filled($this->tag) && $tag = $this->findTagModel($this->tag))
             ? $types->first(fn (string $type) => $tag->type->value === $type)
             : $types->first();
     }
