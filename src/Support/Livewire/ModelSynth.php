@@ -36,8 +36,10 @@ class ModelSynth extends Synth
             $class = $aliasClass;
         }
 
+        // dd((new $class)->getRouteKeyName());
+
         $model = (new $class)
-            ->newQueryForRestoration($key)
+            ->newQueryWithoutScopes()
             ->where((new $class)->getRouteKeyName(), $key)
             ->useWritePdo()
             ->firstOrFail();
