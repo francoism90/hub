@@ -5,8 +5,8 @@
     </a>
 
     <nav class="navbar-menu">
-        <a href="{{ route('videos.index') }}" class="navbar-item hidden sm:flex">
-            {{ __('Recent') }}
+        <a href="{{ route('videos.index') }}" class="{{ $active('videos.index', 'navbar-item hidden sm:flex') }}">
+            {{ __('Videos') }}
         </a>
 
         <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'navbar-item hidden sm:flex') }}">
