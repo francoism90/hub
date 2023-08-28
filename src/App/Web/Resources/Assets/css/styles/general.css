@@ -1,6 +1,6 @@
 body,
 html {
-    @apply relative bg-gray-950 text-white;
+    @apply relative h-screen min-h-screen bg-gray-950 text-white;
 }
 
 dl {

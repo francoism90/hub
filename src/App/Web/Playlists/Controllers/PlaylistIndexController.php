@@ -4,14 +4,21 @@ namespace App\Web\Playlists\Controllers;
 
 use App\Web\Playlists\Concerns\WithPlaylists;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Illuminate\Support\Collection;
+use Domain\Playlists\Models\Playlist;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class PlaylistIndexController extends Component
 {
     use WithPlaylists;
+    use WithPagination;
+
+    #[Url(history: true)]
+    public ?string $search = '';
 
     public function mount(): void
     {
@@ -20,12 +27,26 @@ class PlaylistIndexController extends Component
 
     public function render(): View
     {
-        return view('playlists::index');
+        return view('playlists::index', [
+            'items' => $this->builder(),
+        ]);
     }
 
-    #[Computed()]
-    public function items(): Collection
+    public function resetQuery(...$properties): void
     {
-        return collect();
+        collect($properties)
+            ->filter(fn (string $property) => in_array($property, ['search']))
+            ->map(fn (string $property) => $this->reset($property));
+
+        $this->resetPage();
+    }
+
+    protected function builder(): Paginator
+    {
+        return Playlist::query()
+            ->inRandomSeedOrder()
+            ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
+            ->take(12 * 6)
+            ->paginate(12);
     }
 }
