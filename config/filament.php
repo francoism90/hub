@@ -14,16 +14,19 @@ return [
     |
     */
 
-    // 'broadcasting' => [
+    'broadcasting' => [
 
-    // 'echo' => [
-    //     'broadcaster' => 'pusher',
-    //     'key' => env('VITE_PUSHER_APP_KEY'),
-    //     'cluster' => env('VITE_PUSHER_APP_CLUSTER'),
-    //     'forceTLS' => true,
-    // ],
+        'echo' => [
+            'broadcaster' => 'pusher',
+            'key' => env('VITE_PUSHER_APP_KEY'),
+            'cluster' => env('VITE_PUSHER_APP_CLUSTER'),
+            'wsHost' => env('VITE_PUSHER_HOST'),
+            'wssPort' => env('VITE_PUSHER_PORT'),
+            'disableStats' => true,
+            'encrypted' => true,
+        ],
 
-    // ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
