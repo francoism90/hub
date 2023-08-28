@@ -53,6 +53,9 @@ class Playlist extends Model implements HasMedia, Viewable
     protected $fillable = [
         'user_id',
         'name',
+        'content',
+        'type',
+        'order_column',
     ];
 
     /**
