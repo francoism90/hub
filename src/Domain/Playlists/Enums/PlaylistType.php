@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Tags\Enums;
+namespace Domain\Playlists\Enums;
 
 use Spatie\Enum\Laravel\Enum;
 

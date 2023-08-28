@@ -6,7 +6,7 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithViews;
-use Domain\Tags\Enums\PlaylistType;
+use Domain\Playlists\Enums\PlaylistType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Database\Eloquent\Casts\Attribute;
