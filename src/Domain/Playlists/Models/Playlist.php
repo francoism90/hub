@@ -4,6 +4,7 @@ namespace Domain\Playlists\Models;
 
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Domain\Playlists\Enums\PlaylistType;
+use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithViews;
@@ -87,10 +88,10 @@ class Playlist extends Model implements HasMedia, Viewable
     //     return VideoFactory::new();
     // }
 
-    // public function newEloquentBuilder($query): VideoQueryBuilder
-    // {
-    //     return new VideoQueryBuilder($query);
-    // }
+    public function newEloquentBuilder($query): PlaylistQueryBuilder
+    {
+        return new PlaylistQueryBuilder($query);
+    }
 
     // public function newCollection(array $models = []): VideoCollection
     // {

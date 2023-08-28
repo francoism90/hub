@@ -44,8 +44,9 @@ class PlaylistIndexController extends Component
     protected function builder(): Paginator
     {
         return Playlist::query()
-            ->inRandomSeedOrder()
+            ->listable()
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
+            ->orderByDesc('created_at')
             ->take(12 * 6)
             ->paginate(12);
     }
