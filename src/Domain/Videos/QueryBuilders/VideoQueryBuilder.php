@@ -112,12 +112,12 @@ class VideoQueryBuilder extends Builder
     public function tags(Tag|array|ArrayAccess $tags): self
     {
         $items = collect($tags)
-            ->filter()
             ->unique()
             ->map(fn (Tag|string $item) => ! $item instanceof Tag
                 ? Tag::findByPrefixedId($item)
                 : $item
-            );
+            )
+            ->filter();
 
         return $this
             ->when($items->isNotEmpty(), fn (Builder $query) => $query
