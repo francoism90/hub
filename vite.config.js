@@ -28,7 +28,7 @@ export default defineConfig({
         'src/App/Web/Resources/Assets/css/app.css',
         'src/App/Web/Resources/Assets/js/app.js',
       ],
-      refresh: [...refreshPaths, 'src/App/**'],
+      refresh: [...refreshPaths, 'src/App/**', 'src/Admin/**'],
     }),
   ],
   build: {
