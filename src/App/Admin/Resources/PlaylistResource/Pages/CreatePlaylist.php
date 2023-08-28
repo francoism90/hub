@@ -2,8 +2,8 @@
 
 namespace App\Admin\Resources\PlaylistResource\Pages;
 
-use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\PlaylistResource;
+use App\Admin\Resources\PlaylistResource\Forms\GeneralForm;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Forms\Form;
 use Filament\Forms\Components;
@@ -17,9 +17,7 @@ class CreatePlaylist extends CreateRecord
         return $form
             ->columns(1)
             ->schema([
-                Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                GeneralForm::name(),
             ]);
     }
 }
