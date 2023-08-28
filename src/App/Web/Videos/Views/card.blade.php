@@ -1,17 +1,26 @@
 <article class="flex flex-col space-y-1.5 py-8">
-    <dl>
+    <dl class="inline-flex">
         <dt class="sr-only">Published on</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
             <time datetime="{{ $item->created_at->format('Y-m-d\TH:i:s.uP') }}">
                 {{ $item->created_at->format('F d, Y') }}
             </time>
+        </dd>
 
-            <span> - </span>
-
+        <dt class="sr-only">Duration</dt>
+        <dd class="text-base font-medium leading-4 text-gray-400">
             <time datetime="{{ duration($item->duration) }}">
                 {{ duration($item->duration) }}
             </time>
         </dd>
+
+        @if ($item->episode || $item->season)
+            <dt class="sr-only">Episode</dt>
+            <dd class="text-base font-medium leading-4 text-gray-400">
+                <span> - </span>
+                {{ $item->season }}{{ $item->episode }}
+            </dd>
+        @endif
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
