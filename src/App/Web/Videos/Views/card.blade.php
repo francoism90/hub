@@ -5,6 +5,12 @@
             <time datetime="{{ $item->created_at->format('Y-m-d\TH:i:s.uP') }}">
                 {{ $item->created_at->format('F d, Y') }}
             </time>
+
+            <span> - </span>
+
+            <time datetime="{{ duration($item->duration) }}">
+                {{ duration($item->duration) }}
+            </time>
         </dd>
     </dl>
 
