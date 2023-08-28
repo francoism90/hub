@@ -35,7 +35,7 @@ class VideoIndexController extends Component
         $types = $this->tagTypes();
 
         $this->type = (filled($this->tag) && $tag = $this->findTagModel($this->tag))
-            ? $types->first(fn (string $type) => $tag->type->value === $type)
+            ? $types->first(fn (string $type) => $tag->type?->value === $type)
             : $types->first();
     }
 
