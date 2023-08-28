@@ -17,7 +17,6 @@
         @if ($item->episode || $item->season)
             <dt class="sr-only">Episode</dt>
             <dd class="text-base font-medium leading-4 text-gray-400">
-                <span> - </span>
                 {{ $item->season }}{{ $item->episode }}
             </dd>
         @endif
