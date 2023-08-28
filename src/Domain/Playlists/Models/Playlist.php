@@ -7,6 +7,7 @@ use Domain\Playlists\States\PlaylistState;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +31,7 @@ class Playlist extends Model implements HasMedia, Viewable
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
+    use HasVideos;
     use Favoriteable;
     use Followable;
     use Notifiable;
