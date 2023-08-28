@@ -97,7 +97,7 @@
                 seekBarColors: {
                     base: 'rgba(255, 255, 255, 0.3)',
                     buffered: 'rgba(255, 255, 255, 0.54)',
-                    played: 'rgba(57, 51, 108, 1)'
+                    played: 'rgba(236, 72, 153, 1)'
                 }
             })
             @endif
