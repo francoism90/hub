@@ -36,8 +36,6 @@ class ModelSynth extends Synth
             $class = $aliasClass;
         }
 
-        // dd((new $class)->getRouteKeyName());
-
         $model = (new $class)
             ->newQueryWithoutScopes()
             ->where((new $class)->getRouteKeyName(), $key)
