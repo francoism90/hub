@@ -16,7 +16,6 @@ class Navbar extends Component
     {
         return request()->routeIs($name)
             ? implode(' ', [$class, 'navbar-item-active'])
-            : $class
-        ;
+            : $class;
     }
 }
