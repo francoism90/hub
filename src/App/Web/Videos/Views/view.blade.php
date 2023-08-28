@@ -36,8 +36,11 @@
 
                 <div
                     class="grid grid-cols-2 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300 hover:text-gray-100">
-                    <div>Add to Playlist</div>
-                    <div>Edit Video</div>
+                    <a>Add to Playlist</a>
+
+                    @can('update', $video)
+                        <a href="{{ route('filament.admin.resources.videos.edit', $video) }}">Edit Video</a>
+                    @endcan
                 </div>
 
                 @if ($video->tags)
