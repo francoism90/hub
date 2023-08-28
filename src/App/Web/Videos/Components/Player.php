@@ -10,7 +10,7 @@ class Player extends Component
 {
     public function __construct(
         public Video $model,
-        public string $manifest,
+        public string $manifest = '',
         public bool $controls = true,
     ) {
     }
