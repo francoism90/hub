@@ -16,6 +16,7 @@ class TagQueryBuilder extends Builder
             $type = TagType::tryFrom($type);
         }
 
-        return $this->where('type', $type->value);
+        return $this
+            ->when(filled($type), fn (Builder $query) => $query->where('type', $type->value));
     }
 }
