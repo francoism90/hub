@@ -7,7 +7,8 @@
         <x-videos::player
             :model="$video"
             :manifest="$video->stream"
-            class="h-64 max-h-64 w-full bg-black lg:h-[32rem] lg:max-h-[32rem]" />
+            class="h-64 max-h-64 w-full bg-black lg:h-[32rem] lg:max-h-[32rem]"
+            autoplay />
 
         <x-layouts::container>
             <div class="grid grid-cols-1 divide-y divide-gray-700">
