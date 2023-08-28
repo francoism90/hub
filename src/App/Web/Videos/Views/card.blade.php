@@ -49,7 +49,7 @@
                         :model="$item"
                         :manifest="$item->preview"
                         :controls="false"
-                        class="absolute inset-0 h-full w-full bg-black object-cover"
+                        class="absolute inset-0 h-full w-full object-cover"
                         autoplay
                         muted
                         loop />
