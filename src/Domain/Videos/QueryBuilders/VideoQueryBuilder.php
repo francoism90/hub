@@ -115,7 +115,7 @@ class VideoQueryBuilder extends Builder
             ->filter()
             ->unique()
             ->map(fn (Tag|string $item) => ! $item instanceof Tag
-                ? Tag::findByPrefixedIdOrFail($item)
+                ? Tag::findByPrefixedId($item)
                 : $item
             );
 
