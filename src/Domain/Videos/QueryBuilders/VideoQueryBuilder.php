@@ -120,7 +120,9 @@ class VideoQueryBuilder extends Builder
             );
 
         return $this
-            ->inRandomSeedOrder()
-            ->WithAnyTags($items);
+            ->when($items->isNotEmpty(), fn (Builder $query) => $query
+                ->inRandomSeedOrder()
+                ->WithAnyTags($items)
+            );
     }
 }
