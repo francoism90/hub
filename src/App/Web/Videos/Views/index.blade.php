@@ -6,7 +6,7 @@
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
-                @if (filled($search) || filled($tag))
+                @if (filled($search) || filled($this->tagName))
                     <div class="inline-flex flex-nowrap items-center justify-between pb-4 text-sm text-gray-400">
                         <div class="line-clamp-1 pr-4">
                             <span>{{ __('filter by') }}</span>
