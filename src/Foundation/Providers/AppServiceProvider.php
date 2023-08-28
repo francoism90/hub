@@ -4,6 +4,7 @@ namespace Foundation\Providers;
 
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
+use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -37,11 +38,12 @@ class AppServiceProvider extends ServiceProvider
     protected function configureMorphMap(): void
     {
         Relation::enforceMorphMap([
+            'import' => Import::class,
             'media' => Media::class,
+            'playlist' => Playlist::class,
             'tag' => Tag::class,
             'user' => User::class,
             'video' => Video::class,
-            'import' => Import::class,
         ]);
     }
 
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
         PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
 
         PrefixedIds::registerModels([
+            'playlist-' => Playlist::class,
             'tag-' => Tag::class,
             'user-' => User::class,
             'video-' => Video::class,
