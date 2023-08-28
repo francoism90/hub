@@ -4,7 +4,6 @@ namespace App\Web\Playlists\Controllers;
 
 use App\Web\Playlists\Concerns\WithPlaylists;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Domain\Tags\Models\Tag;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -16,20 +15,17 @@ class PlaylistIndexController extends Component
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('Tags'));
+        SEOMeta::setTitle(__('Playlists'));
     }
 
     public function render(): View
     {
-        return view('tags::index');
+        return view('playlists::index');
     }
 
     #[Computed()]
     public function items(): Collection
     {
-        return Tag::query()
-            ->withCount('videos')
-            ->orderByDesc('videos_count')
-            ->get();
+        return collect();
     }
 }

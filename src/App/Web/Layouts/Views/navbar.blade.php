@@ -13,7 +13,7 @@
             {{ __('Tags') }}
         </a>
 
-        <a href="{{ route('playlists.index') }}" class="navbar-item hidden sm:flex">
+        <a href="{{ route('playlists.index') }}" class="{{ $active('playlists.*', 'navbar-item hidden sm:flex') }}">
             {{ __('Playlists') }}
         </a>
 
@@ -41,15 +41,15 @@
 
                     <nav
                         class="flex flex-col flex-nowrap space-y-5 p-10 text-2xl font-bold tracking-widest text-gray-100">
-                        <a href="{{ route('videos.index') }}" class="drawer-item">
-                            {{ __('Recent') }}
+                        <a href="{{ route('videos.index') }}" class="{{ $active('videos.index', 'drawer-item') }}">
+                            {{ __('Videos') }}
                         </a>
 
-                        <a href="{{ route('tags.index') }}" class="drawer-item">
+                        <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'drawer-item') }}">
                             {{ __('Tags') }}
                         </a>
 
-                        <a href="{{ route('tags.index') }}" class="drawer-item">
+                        <a href="{{ route('playlists.index') }}" class="{{ $active('playlists.*', 'drawer-item') }}">
                             {{ __('Playlists') }}
                         </a>
                     </nav>
