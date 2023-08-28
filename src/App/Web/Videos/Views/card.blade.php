@@ -42,16 +42,18 @@
                     crossorigin="use-credentials"
                     loading="lazy" />
 
-                <x-videos::player
-                    x-cloak
-                    x-show="preview"
-                    :model="$item"
-                    :manifest="$item->preview"
-                    :controls="false"
-                    class="absolute inset-0 h-full w-full bg-black object-cover"
-                    autoplay
-                    muted
-                    loop />
+                <template x-if="preview">
+                    <x-videos::player
+                        x-cloak
+                        x-show="preview"
+                        :model="$item"
+                        :manifest="$item->preview"
+                        :controls="false"
+                        class="absolute inset-0 h-full w-full bg-black object-cover"
+                        autoplay
+                        muted
+                        loop />
+                </template>
             </a>
         </div>
     </div>
