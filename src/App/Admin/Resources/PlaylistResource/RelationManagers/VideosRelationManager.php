@@ -4,13 +4,17 @@ namespace App\Admin\Resources\PlaylistResource\RelationManagers;
 
 use Filament\Forms\Components;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\Concerns\Translatable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
+use Livewire\Attributes\Reactive;
 
 class VideosRelationManager extends RelationManager
 {
+    use Translatable;
+
     protected static string $relationship = 'videos';
 
     public function table(Table $table): Table
@@ -39,7 +43,8 @@ class VideosRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
-                    ->preloadRecordSelect(),
+                    ->preloadRecordSelect()
+                    ->recordSelectSearchColumns(['name']),
             ])
             ->actions([
                 Tables\Actions\DetachAction::make(),
