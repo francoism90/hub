@@ -6,6 +6,8 @@ use Domain\Imports\Models\Import;
 use Domain\Imports\Policies\ImportPolicy;
 use Domain\Media\Models\Media;
 use Domain\Media\Policies\MediaPolicy;
+use Domain\Playlists\Models\Playlist;
+use Domain\Playlists\Policies\PlaylistPolicy;
 use Domain\Tags\Models\Tag;
 use Domain\Tags\Policies\TagPolicy;
 use Domain\Users\Models\User;
@@ -23,9 +25,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         User::class => UserPolicy::class,
+        Import::class => ImportPolicy::class,
         Media::class => MediaPolicy::class,
+        Playlist::class => PlaylistPolicy::class,
         Tag::class => TagPolicy::class,
         Video::class => VideoPolicy::class,
-        Import::class => ImportPolicy::class,
     ];
 }

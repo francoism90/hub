@@ -13,7 +13,7 @@
             {{ __('Tags') }}
         </a>
 
-        <a href="{{ route('tags.index') }}" class="navbar-item hidden sm:flex">
+        <a href="{{ route('playlists.index') }}" class="navbar-item hidden sm:flex">
             {{ __('Playlists') }}
         </a>
 
