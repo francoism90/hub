@@ -34,13 +34,18 @@
                     </h1>
                 </header>
 
-                <div
-                    class="grid grid-cols-2 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300 hover:text-gray-100">
-                    <a>Add to Playlist</a>
+                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 rounded-lg py-5 text-center text-sm text-gray-300 hover:text-gray-100">
+                    <a class="btn">
+                        <x-heroicon-o-heart class="h-5 w-5" />
+                    </a>
 
-                    @can('update', $video)
-                        <a href="{{ route('filament.admin.resources.videos.edit', $video) }}">Edit Video</a>
-                    @endcan
+                    <a class="btn">
+                        <x-heroicon-o-heart class="h-5 w-5" />
+                    </a>
+
+                    <a class="btn">
+                        <x-heroicon-o-heart class="h-5 w-5" />
+                    </a>
                 </div>
 
                 @if ($video->tags)
