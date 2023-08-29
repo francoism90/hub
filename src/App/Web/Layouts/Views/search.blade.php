@@ -6,7 +6,11 @@
     </a>
 
     <x-slot:content>
-        <div @keydown.escape="open = false" class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
+        <div
+            @keydown.escape="open = false"
+            @click.away="open = false"
+            class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
+
             <header class="relative flex items-center space-x-4 px-4">
                 <x-heroicon-o-magnifying-glass class="h-6 w-6 text-gray-300" />
 
@@ -24,7 +28,8 @@
                 </button>
             </header>
 
-            <div class="flex max-h-[32rem] flex-col space-y-6 overflow-auto border-t border-gray-700 p-6">
+            <div
+                class="flex max-h-[32rem] flex-col space-y-6 overflow-hidden overflow-y-auto border-t border-gray-700 p-6">
                 @if (blank($search))
                     <div class="py-16 text-center text-gray-300">
                         No recent searches

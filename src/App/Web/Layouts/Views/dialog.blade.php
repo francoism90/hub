@@ -14,7 +14,6 @@
                 x-show="open"
                 x-transition
                 role="dialog"
-                @click.away="open = false"
                 class="modal">
                 {{ $content }}
             </div>
