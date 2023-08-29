@@ -1,1 +1,2 @@
-import './bootstrap';
+/* Vendor */
+import './vendor'

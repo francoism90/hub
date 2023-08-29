@@ -1,0 +1,11 @@
+.modal {
+    @apply z-10 mx-auto flex justify-center overflow-auto;
+
+    &-center {
+        @apply m-auto items-center;
+    }
+
+    &-overlay {
+        @apply fixed inset-0 z-20 h-screen w-screen overflow-hidden bg-black/50 backdrop-blur-sm;
+    }
+}

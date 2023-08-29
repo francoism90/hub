@@ -2,6 +2,9 @@
 
 namespace Domain\Videos\QueryBuilders;
 
+use ArrayAccess;
+use Domain\Shared\Concerns\InteractsWithScout;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
@@ -9,6 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
+    use InteractsWithScout;
+
     public function captions(): self
     {
         return $this->where(fn (Builder $query) => $query
@@ -102,5 +107,22 @@ class VideoQueryBuilder extends Builder
             fn (Builder $query) => $query
                 ->where('id', 0)
         );
+    }
+
+    public function tags(Tag|array|ArrayAccess $tags): self
+    {
+        $items = collect($tags)
+            ->unique()
+            ->map(fn (Tag|string $item) => ! $item instanceof Tag
+                ? Tag::findByPrefixedId($item)
+                : $item
+            )
+            ->filter();
+
+        return $this
+            ->when($items->isNotEmpty(), fn (Builder $query) => $query
+                ->inRandomSeedOrder()
+                ->WithAnyTags($items)
+            );
     }
 }

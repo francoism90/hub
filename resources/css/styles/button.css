@@ -1,0 +1,19 @@
+.btn {
+    @apply line-clamp-1 flex w-full min-w-min items-center justify-center space-x-1;
+
+    &-primary {
+        @apply border-primary-500/50 bg-primary-500;
+    }
+
+    &-outline {
+        @apply border bg-transparent;
+    }
+
+    &-sm {
+        @apply h-6 max-h-[1.5rem] text-sm;
+    }
+
+    &-rounded {
+        @apply rounded-sm;
+    }
+}

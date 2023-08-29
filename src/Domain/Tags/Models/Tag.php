@@ -53,7 +53,7 @@ class Tag extends BaseTag implements HasMedia
      * @var array<string, string>
      */
     protected $casts = [
-        'type' => TagType::class,
+        'type' => TagType::class.':nullable',
     ];
 
     /**

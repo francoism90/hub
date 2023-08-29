@@ -1,0 +1,10 @@
+/* Vendor */
+@import '@/shaka-player/dist/controls';
+
+/* Styles */
+@import './styles.css';
+@import './vendor.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

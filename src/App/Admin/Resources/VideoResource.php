@@ -3,6 +3,7 @@
 namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithFormData;
+use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource\Pages;
 use App\Admin\Resources\VideoResource\RelationManagers;
 use Domain\Videos\Models\Video;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class VideoResource extends Resource
 {
     use InteractsWithFormData;
+    use InteractsWithScout;
     use Translatable;
 
     protected static ?string $model = Video::class;
@@ -36,6 +38,11 @@ class VideoResource extends Resource
         return [
             RelationManagers\MediaRelationManager::class,
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Manage');
     }
 
     public static function getPages(): array

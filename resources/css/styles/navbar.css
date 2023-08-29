@@ -1,0 +1,23 @@
+.navbar {
+    @apply flex items-center justify-between;
+
+    &-item {
+        @apply line-clamp-1 cursor-pointer hover:text-primary-300 focus:text-primary-400 active:text-primary-400;
+
+        &-active {
+            @apply text-primary-400 hover:text-primary-400;
+        }
+    }
+
+    &-brand {
+        @apply flex items-center space-x-4 text-2xl font-medium lowercase;
+    }
+
+    &-logo {
+        @apply h-12 w-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5;
+    }
+
+    &-menu {
+        @apply flex items-center space-x-6;
+    }
+}

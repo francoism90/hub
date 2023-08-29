@@ -1,14 +1,14 @@
 <?php
 
-namespace Support\ModelState;
+namespace App\Admin\Concerns;
 
 use Illuminate\Support\Collection;
 use ReflectionClass;
 use Spatie\ModelStates\State;
 
-class StateOptions
+trait InteractsWithState
 {
-    public function execute(State|string $state): Collection
+    public static function stateOptions(State|string $state): Collection
     {
         $states = call_user_func([$state, 'all']);
 
@@ -16,6 +16,7 @@ class StateOptions
             ->mapWithKeys(function (string $class) {
                 $relector = new ReflectionClass($class);
 
+                /** @var State */
                 $state = $relector->newInstanceWithoutConstructor();
 
                 $label = $relector->hasMethod('label')

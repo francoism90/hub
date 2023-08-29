@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Carbon;
+
 if (! function_exists('human_filesize')) {
     function human_filesize(mixed $size = 0, int $precision = 2): string
     {
@@ -17,5 +19,16 @@ if (! function_exists('human_filesize')) {
         }
 
         return round($size, $precision).$unit[$i];
+    }
+}
+
+if (! function_exists('duration')) {
+    function duration(mixed $value): string
+    {
+        $time = Carbon::parse($value)
+            ->utc()
+            ->toTimeString();
+
+        return preg_replace('/^0(?:0:0?)?/', '', $time);
     }
 }

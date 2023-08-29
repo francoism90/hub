@@ -21,6 +21,11 @@ class ImportResource extends Resource
         ];
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Manage');
+    }
+
     public static function getNavigationLabel(): string
     {
         return __('Import');

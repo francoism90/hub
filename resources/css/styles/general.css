@@ -1,0 +1,16 @@
+body,
+html {
+    @apply relative h-screen min-h-screen bg-gray-950 text-white;
+}
+
+dl {
+    @apply inline-flex flex-wrap items-center;
+
+    dd:after {
+        @apply pr-1 content-['-'];
+    }
+
+    dd:last-child:after {
+        @apply pr-0 content-[];
+    }
+}

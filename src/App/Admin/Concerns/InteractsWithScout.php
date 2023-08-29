@@ -8,16 +8,11 @@ trait InteractsWithScout
 {
     protected function applySearchToTableQuery(Builder $query): Builder
     {
+        $search = $this->getTableSearch();
+
         $this->applyColumnSearchesToTableQuery($query);
 
-        if (filled($search = $this->getTableSearch())) {
-            $models = app($this->getModel())->search($search);
-
-            $query
-                ->whereIn('id', $models->keys())
-                ->orderByRaw("FIELD ('id', {$models->keys()->implode(',')})");
-        }
-
-        return $query;
+        return $query
+            ->when(filled($search), fn (Builder $query) => $query->search($search));
     }
 }

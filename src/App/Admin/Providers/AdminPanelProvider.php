@@ -3,6 +3,7 @@
 namespace App\Admin\Providers;
 
 use App\Admin\Resources\ProfileResource\Pages\EditProfile;
+use Filament\FontProviders\SpatieGoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -28,11 +29,14 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->homeUrl('/')
             ->login()
             ->registration()
             ->passwordReset()
             ->emailVerification()
             ->profile(EditProfile::class)
+            ->font('Inter', provider: SpatieGoogleFontProvider::class)
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Admin/Resources'), for: 'App\\Admin\\Resources')
             ->discoverPages(in: app_path('Admin/Pages'), for: 'App\\Admin\\Pages')
             ->discoverWidgets(in: app_path('Admin/Widgets'), for: 'App\\Admin\\Widgets')
@@ -41,7 +45,12 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en']),
             )
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Purple,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
             ->pages([
                 Pages\Dashboard::class,

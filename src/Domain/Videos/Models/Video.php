@@ -9,6 +9,7 @@ use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
+use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\Events\VideoCreated;
 use Domain\Videos\Events\VideoDeleted;
@@ -36,6 +37,7 @@ use Spatie\Translatable\HasTranslations;
 class Video extends Model implements HasMedia, Viewable
 {
     use InteractsWithMedia;
+    use InteractsWithPlaylists;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithViews;
