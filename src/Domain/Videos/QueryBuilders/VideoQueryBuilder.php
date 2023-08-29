@@ -116,7 +116,7 @@ class VideoQueryBuilder extends Builder
         $user ??= auth()->user();
 
         return $this
-            ->withWhereHas('playlists', fn ($join) => $join
+            ->withWhereHas('playlists', fn ($query) => $query
                 ->where('user_id', $user->getKey())
                 ->where('name', 'history')
                 ->type(PlaylistType::system())
