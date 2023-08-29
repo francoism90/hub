@@ -1,7 +1,9 @@
 <x-layouts::dialog>
-    <x-heroicon-m-magnifying-glass
-        @click="open = true"
-        class="h-6 w-6 cursor-pointer" />
+    <a class="navbar-item">
+        <x-heroicon-m-magnifying-glass
+            @click="open = true"
+            class="h-6 w-6 cursor-pointer" />
+    </a>
 
     <x-slot:content>
         <div @keydown.escape="open = false" class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">

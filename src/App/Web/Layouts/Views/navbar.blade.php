@@ -5,16 +5,8 @@
     </a>
 
     <nav class="navbar-menu">
-        <a href="{{ route('videos.index') }}" class="{{ $active('videos.index', 'navbar-item hidden sm:flex') }}">
-            {{ __('Videos') }}
-        </a>
-
-        <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'navbar-item hidden sm:flex') }}">
-            {{ __('Tags') }}
-        </a>
-
-        <a href="{{ route('playlists.index') }}" class="{{ $active('playlists.*', 'navbar-item hidden sm:flex') }}">
-            {{ __('Playlists') }}
+        <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'navbar-item') }}">
+            <x-heroicon-o-hashtag class="h-6 w-6" />
         </a>
 
         <livewire:layout-search />
