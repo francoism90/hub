@@ -1,4 +1,4 @@
-<article id="video-{{ $item->id }}" class="flex flex-col space-y-1.5 py-8">
+<article id="video-{{ $item->getRouteKey() }}" class="flex flex-col space-y-1.5 py-8">
     <dl class="inline-flex">
         <dt class="sr-only">Published on</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">

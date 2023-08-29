@@ -1,4 +1,5 @@
 <div
+    id="player-{{ $model->getRouteKey() }}"
     x-ref="container"
     x-data="{
         init() {
