@@ -4,6 +4,7 @@ namespace App\Web\Account\Controllers;
 
 use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,13 +26,28 @@ class HistoryController extends Listing
         ]);
     }
 
-    protected function builder(): Paginator
+    protected function getPlaylist()
     {
-        return Video::query()
-            ->with('tags')
+        return Playlist::query()
+            ->history();
+    }
+
+    protected function builder(): mixed
+    {
+        $query = Playlist::query()
             ->history()
-            // ->orderBy('name')
-            // ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
+            ->first();
+
+        if (! $query) {
+            return Video::query()
+                ->where('id', 0)
+                ->paginate(12);
+        }
+
+        return $query
+            ->videos()
+            ->with('tags')
+            ->orderByDesc('videoables.updated_at')
             ->take(12 * 6)
             ->paginate(12);
     }

@@ -21,9 +21,11 @@
                     </div>
                 @endif
 
-                @foreach ($items as $item)
+                @forelse ($items as $item)
                     <x-videos::card :$item />
-                @endforeach
+                @empty
+                    <p>No users</p>
+                @endforelse
 
                 @if ($items->hasPages())
                     <nav

@@ -30,7 +30,7 @@ abstract class Listing extends Component
 
     abstract public function render(): View;
 
-    abstract protected function builder(): Paginator;
+    abstract protected function builder(): mixed;
 
     public function mount(): void
     {

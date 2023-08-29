@@ -110,17 +110,6 @@ class VideoQueryBuilder extends Builder
         );
     }
 
-    public function history(User $user = null): self
-    {
-        /** @var User $user */
-        $user ??= auth()->user();
-
-        return $this
-            ->joinRelationship('playlists');
-            // ->reorder()
-            // ->orderByPowerJoins('views.viewed_at', 'DESC');
-    }
-
     public function tags(Tag|array|ArrayAccess $tags): self
     {
         $items = collect($tags)
