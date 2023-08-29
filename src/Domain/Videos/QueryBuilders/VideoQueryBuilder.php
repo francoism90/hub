@@ -3,6 +3,7 @@
 namespace Domain\Videos\QueryBuilders;
 
 use ArrayAccess;
+use Domain\Playlists\Enums\PlaylistType;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -107,6 +108,19 @@ class VideoQueryBuilder extends Builder
             fn (Builder $query) => $query
                 ->where('id', 0)
         );
+    }
+
+    public function history(User $user = null): self
+    {
+        /** @var User $user */
+        $user ??= auth()->user();
+
+        return $this
+            ->joinRelationship('playlists', fn ($join) => $join
+                ->where('user_id', $user->getKey())
+                ->where('name', 'history')
+                ->type(PlaylistType::system())
+            );
     }
 
     public function tags(Tag|array|ArrayAccess $tags): self

@@ -33,7 +33,7 @@
             @touchstart.passive="preview = true"
             @touchmove.passive="preview = true"
             @touchend.passive="preview = false"
-            class="relative h-64 max-h-[16rem] min-h-[16rem] w-full">
+            class="relative h-56 max-h-[14rem] min-h-[14rem] w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->name }}"
