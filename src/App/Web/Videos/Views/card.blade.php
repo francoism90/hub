@@ -31,8 +31,8 @@
             @mouseover="preview = true"
             @mouseleave="preview = false"
             @touchstart.passive="preview = true"
+            @touchmove.passive="preview = true"
             @touchend.passive="preview = false"
-            @touchcancel.passive="preview = false"
             class="relative h-64 max-h-[16rem] min-h-[16rem] w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
