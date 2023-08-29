@@ -34,17 +34,17 @@
                     </h1>
                 </header>
 
-                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 rounded-lg py-5 text-center text-sm text-gray-300 hover:text-gray-100">
-                    <a class="btn">
+                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300">
+                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
                         <x-heroicon-o-heart class="h-5 w-5" />
                     </a>
 
-                    <a class="btn">
-                        <x-heroicon-o-heart class="h-5 w-5" />
+                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
+                        <x-heroicon-o-clock class="h-5 w-5" />
                     </a>
 
-                    <a class="btn">
-                        <x-heroicon-o-heart class="h-5 w-5" />
+                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
+                        <x-heroicon-o-pencil-square class="h-5 w-5" />
                     </a>
                 </div>
 
