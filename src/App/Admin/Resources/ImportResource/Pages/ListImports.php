@@ -72,7 +72,7 @@ class ListImports extends ListRecords
             ])
             ->filters([
                 SelectFilter::make('state')
-                    ->options(fn () => app(StateOptions::class)->execute(ImportState::class)),
+                    ->options(fn () => static::stateOptions(ImportState::class)),
             ])
             ->actions([
                 $this->importAction(),
