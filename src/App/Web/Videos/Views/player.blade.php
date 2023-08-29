@@ -105,6 +105,7 @@
             player.load('{{ $manifest }}')
         }
     }">
+
     <video
         {{ $attributes }}
         x-ref="video"
