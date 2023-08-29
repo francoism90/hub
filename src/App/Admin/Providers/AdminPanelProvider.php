@@ -43,7 +43,12 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en']),
             )
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Purple,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
             ->pages([
                 Pages\Dashboard::class,
