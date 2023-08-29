@@ -9,12 +9,12 @@ class PlaylistPolicy
 {
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasRole('super-admin');
     }
 
     public function view(User $user, Playlist $model): bool
     {
-        return true;
+        return $model->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function create(User $user): bool
@@ -24,17 +24,17 @@ class PlaylistPolicy
 
     public function update(User $user, Playlist $model): bool
     {
-        return $user->hasRole('super-admin');
+        return $model->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function delete(User $user, Playlist $model): bool
     {
-        return $user->hasRole('super-admin');
+        return $model->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function restore(User $user, Playlist $model): bool
     {
-        return $user->hasRole('super-admin');
+        return $model->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function forceDelete(User $user, Playlist $model): bool
