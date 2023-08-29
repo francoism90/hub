@@ -14,7 +14,7 @@
                 x-show="open"
                 x-transition
                 role="dialog"
-                x-on:click.away="open = false"
+                @click.away="open = false"
                 class="drawer">
                 {{ $content }}
             </div>

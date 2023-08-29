@@ -2,10 +2,10 @@
     @apply flex items-center justify-between;
 
     &-item {
-        @apply cursor-pointer hover:text-primary-300 focus:text-primary-500 active:text-primary-500;
+        @apply line-clamp-1 cursor-pointer hover:text-primary-300 focus:text-primary-400 active:text-primary-400;
 
         &-active {
-            @apply text-primary-500 hover:text-primary-500;
+            @apply text-primary-400 hover:text-primary-400;
         }
     }
 
