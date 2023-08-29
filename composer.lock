@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9662dd1f7e7341febab217df59523588",
+    "content-hash": "1689779ddc29e3f112af553a02004c28",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -1719,6 +1719,44 @@
                 "source": "https://github.com/filamentphp/filament"
             },
             "time": "2023-08-24T15:59:53+00:00"
+        },
+        {
+            "name": "filament/spatie-laravel-google-fonts-plugin",
+            "version": "v3.0.36",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filamentphp/spatie-laravel-google-fonts-plugin.git",
+                "reference": "a1341e78978a8bc47eb5986910f20b9071044fe6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filamentphp/spatie-laravel-google-fonts-plugin/zipball/a1341e78978a8bc47eb5986910f20b9071044fe6",
+                "reference": "a1341e78978a8bc47eb5986910f20b9071044fe6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0",
+                "illuminate/support": "^10.0",
+                "php": "^8.1",
+                "spatie/laravel-google-fonts": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filament\\FontProviders\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Filament support for `spatie/laravel-google-fonts`.",
+            "homepage": "https://github.com/filamentphp/filament",
+            "support": {
+                "issues": "https://github.com/filamentphp/filament/issues",
+                "source": "https://github.com/filamentphp/filament"
+            },
+            "time": "2023-08-21T09:36:35+00:00"
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
