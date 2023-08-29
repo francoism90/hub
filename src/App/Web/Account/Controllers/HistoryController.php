@@ -44,6 +44,7 @@ class HistoryController extends Component
     protected function builder(): Paginator
     {
         return Video::query()
+            ->with('tags')
             ->history()
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
             ->orderByDesc('created_at')
