@@ -18,7 +18,7 @@
             display: none !important;
         }
     </style>
-    @vite('src/App/Web/Resources/Assets/css/app.css')
+    @vite('resources/css/app.css')
     @googlefonts('sans')
     @googlefonts('serif')
     @googlefonts('code')
@@ -28,7 +28,7 @@
 
     {{ $slot }}
 
-    @vite('src/App/Web/Resources/Assets/js/app.js')
+    @vite('resources/js/app.js')
     @stack('scripts')
 
 </body>

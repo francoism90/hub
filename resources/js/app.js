@@ -1,1 +1,2 @@
+/* Vendor */
 import './vendor'

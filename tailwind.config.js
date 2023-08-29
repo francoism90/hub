@@ -3,7 +3,11 @@
 const colors = require('tailwindcss/colors')
 
 export default {
-  content: ['./src/App/**/*.php', './src/App/**/*.blade.php'],
+  content: [
+    './resources/**/*.blade.php',
+    './vendor/filament/**/*.blade.php',
+    './src/App/**/*.blade.php'
+  ],
   theme: {
     extend: {
       fontFamily: {

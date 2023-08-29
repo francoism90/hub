@@ -25,8 +25,8 @@ export default defineConfig({
   plugins: [
     laravel({
       input: [
-        'src/App/Web/Resources/Assets/css/app.css',
-        'src/App/Web/Resources/Assets/js/app.js',
+        'resources/css/app.css',
+        'resources/js/app.js',
       ],
       refresh: [...refreshPaths, 'src/App/**', 'src/Admin/**'],
     }),
