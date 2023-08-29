@@ -3,6 +3,7 @@
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
+use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\Concerns\InteractsWithFilament;
@@ -30,6 +31,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     use InteractsWithCache;
     use InteractsWithFilament;
     use InteractsWithMedia;
+    use InteractsWithPlaylists;
     use InteractsWithVideos;
     use HasApiTokens;
     use HasFactory;

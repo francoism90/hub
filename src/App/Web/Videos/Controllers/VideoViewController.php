@@ -14,6 +14,8 @@ class VideoViewController extends Component
     public function mount(): void
     {
         SEOMeta::setTitle($this->video?->name);
+
+        $this->videoViewed();
     }
 
     public function render(): View

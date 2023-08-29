@@ -116,11 +116,9 @@ class VideoQueryBuilder extends Builder
         $user ??= auth()->user();
 
         return $this
-            ->withWhereHas('playlists', fn ($query) => $query
-                ->where('user_id', $user->getKey())
-                ->where('name', 'history')
-                ->type(PlaylistType::system())
-            );
+            ->joinRelationship('playlists');
+            // ->reorder()
+            // ->orderByPowerJoins('views.viewed_at', 'DESC');
     }
 
     public function tags(Tag|array|ArrayAccess $tags): self
