@@ -35,7 +35,9 @@
                 </div>
 
                 <div class="flex flex-col flex-nowrap space-y-1">
-                    <a href="{{ route('tags.index') }}" class="{{ $active('tags.*', 'navbar-item text-gray-400') }}">
+                    <a
+                        href="{{ route('filament.admin.pages.dashboard') }}"
+                        class="{{ $active('tags.*', 'navbar-item text-gray-400') }}">
                         {{ __('Manage Account') }}
                     </a>
                 </div>
