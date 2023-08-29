@@ -107,8 +107,8 @@
     }">
 
     <video
-        {{ $attributes }}
         x-ref="video"
         crossorigin="allow-credentials"
-        playsinline />
+        playsinline
+        {{ $attributes }} />
 </div>
