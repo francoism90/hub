@@ -11,7 +11,7 @@
 
         <livewire:layout-search />
 
-        <div class="relative" x-data="{ open: true }">
+        <div class="relative" x-data="{ open: false }">
             <a
                 @click="open = true"
                 @click.away="open = false"
