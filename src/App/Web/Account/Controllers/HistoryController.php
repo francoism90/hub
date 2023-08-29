@@ -7,7 +7,6 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 
 class HistoryController extends Listing
@@ -26,13 +25,7 @@ class HistoryController extends Listing
         ]);
     }
 
-    protected function getPlaylist()
-    {
-        return Playlist::query()
-            ->history();
-    }
-
-    protected function builder(): mixed
+    protected function builder(): Paginator
     {
         $query = Playlist::query()
             ->history()
