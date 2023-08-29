@@ -19,7 +19,7 @@
         }
     </style>
     @vite('resources/css/app.css')
-    @googlefonts('sans')
+    @googlefonts()
     @googlefonts('serif')
     @googlefonts('code')
 </head>
