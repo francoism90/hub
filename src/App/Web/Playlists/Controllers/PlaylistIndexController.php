@@ -5,13 +5,12 @@ namespace App\Web\Playlists\Controllers;
 use App\Web\Playlists\Concerns\WithPlaylists;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Playlists\Models\Playlist;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Url;
 
 class PlaylistIndexController extends Component
 {

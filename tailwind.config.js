@@ -3,11 +3,7 @@
 const colors = require('tailwindcss/colors')
 
 export default {
-  content: [
-    './resources/**/*.blade.php',
-    './vendor/filament/**/*.blade.php',
-    './src/App/**/*.blade.php'
-  ],
+  content: ['./resources/**/*.blade.php', './vendor/filament/**/*.blade.php', './src/App/**/*.blade.php'],
   theme: {
     extend: {
       fontFamily: {
@@ -26,8 +22,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

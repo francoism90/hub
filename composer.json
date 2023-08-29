@@ -13,7 +13,7 @@
         "blade-ui-kit/blade-heroicons": "^2.1",
         "cyrildewit/eloquent-viewable": "^7.0.1",
         "filament/filament": "^3.0-stable",
-        "filament/spatie-laravel-google-fonts-plugin": "^3.0",
+        "filament/spatie-laravel-google-fonts-plugin": "^3.0.36",
         "filament/spatie-laravel-media-library-plugin": "^3.0-stable",
         "filament/spatie-laravel-translatable-plugin": "^3.0-stable",
         "guzzlehttp/guzzle": "^7.8.0",

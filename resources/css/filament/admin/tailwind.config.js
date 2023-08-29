@@ -4,11 +4,7 @@ const colors = require('tailwindcss/colors')
 
 export default {
   presets: [preset],
-  content: [
-    './src/Admin/**/*.php',
-    './resources/**/*.blade.php',
-    './vendor/filament/**/*.blade.php',
-  ],
+  content: ['./src/Admin/**/*.php', './resources/**/*.blade.php', './vendor/filament/**/*.blade.php'],
   theme: {
     extend: {
       fontFamily: {
