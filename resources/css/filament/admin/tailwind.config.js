@@ -21,10 +21,6 @@ export default {
         ],
         serif: ['Montserrat, ui-serif'],
       },
-      colors: {
-        primary: colors.pink,
-        gray: colors.gray,
-      },
     },
   },
 }
