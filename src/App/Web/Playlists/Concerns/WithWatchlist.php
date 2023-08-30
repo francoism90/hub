@@ -3,6 +3,8 @@
 namespace App\Web\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
+use Domain\Videos\Models\Video;
+use Illuminate\Database\Eloquent\Model;
 
 trait WithWatchlist
 {
@@ -17,6 +19,15 @@ trait WithWatchlist
             ->playlists()
             ->watchlist()
             ->firstOrFail();
+    }
+
+    protected function isWatchlisted(Video $video): bool
+    {
+        return $this
+            ->getWatchlist()
+            ->videos()
+            ->where('id', $video->getKey())
+            ->exists();
     }
 
     protected function onWatchlisted(): void
