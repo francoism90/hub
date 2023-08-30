@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <aside class="hidden self-start overflow-auto sm:min-w-[18rem] sm:max-w-[18rem] md:flex">
+        <aside class="hidden w-full min-w-[18rem] max-w-[18rem] self-start overflow-auto sm:flex">
             <livewire:filter-tags :$tag :key="time()" />
         </aside>
     </x-layouts::container>
