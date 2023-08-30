@@ -44,7 +44,9 @@
                     </a>
                 </div>
 
-                <button class="btn rounded bg-gray-600/50 py-2 text-sm font-medium">
+                <button
+                    class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
+                    href="{{ route('filament.admin.auth.logout') }}">
                     {{ __('Log Out') }}
                 </button>
             </div>
