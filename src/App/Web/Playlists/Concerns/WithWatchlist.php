@@ -6,7 +6,7 @@ use Domain\Playlists\Models\Playlist;
 
 trait WithWatchlist
 {
-    public function bootWithFavorites(): void
+    public function bootWithWatchlist(): void
     {
         $this->authorize('view', $this->getWatchlist());
     }
