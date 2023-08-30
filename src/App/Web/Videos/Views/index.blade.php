@@ -10,7 +10,7 @@
                     <x-videos::card :$item />
                 @empty
                     <div class="flex items-center justify-center p-8 text-gray-400">
-                        {{ __('No Videos') }}
+                        {{ __('No results found') }}
                     </div>
                 @endforelse
 
