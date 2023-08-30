@@ -31,15 +31,15 @@
                         {{ __('History') }}
                     </a>
 
-                    <a href="{{ route('account.history') }}" class="{{ $active('tags.*', 'navbar-item text-gray-400') }}">
-                        {{ __('Watch Later') }}
+                    <a href="{{ route('account.watchlist') }}" class="{{ $active('account.watchlist', 'navbar-item text-gray-400') }}">
+                        {{ __('Watchlist') }}
                     </a>
                 </div>
 
                 <div class="flex flex-col flex-nowrap space-y-1">
                     <a
                         href="{{ route('filament.admin.pages.dashboard') }}"
-                        class="{{ $active('tags.*', 'navbar-item text-gray-400') }}">
+                        class="navbar-item text-gray-400">
                         {{ __('Manage Account') }}
                     </a>
                 </div>
