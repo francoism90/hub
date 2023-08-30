@@ -27,11 +27,11 @@
                 role="dialog"
                 class="absolute right-0 top-10 z-20 flex min-w-[16rem] max-w-[16rem] flex-col space-y-4 rounded bg-gray-900 px-6 py-4 shadow-md">
                 <div class="flex flex-col flex-nowrap space-y-1">
-                    <a href="{{ route('account.history') }}" class="{{ $active('account.history', 'navbar-item text-gray-400') }}">
+                    <a href="{{ route('profile.history') }}" class="{{ $active('profile.history', 'navbar-item text-gray-400') }}">
                         {{ __('History') }}
                     </a>
 
-                    <a href="{{ route('account.watchlist') }}" class="{{ $active('account.watchlist', 'navbar-item text-gray-400') }}">
+                    <a href="{{ route('profile.watchlist') }}" class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}">
                         {{ __('Watchlist') }}
                     </a>
                 </div>
@@ -40,7 +40,7 @@
                     <a
                         href="{{ route('filament.admin.pages.dashboard') }}"
                         class="navbar-item text-gray-400">
-                        {{ __('Manage Account') }}
+                        {{ __('Manage Profile') }}
                     </a>
                 </div>
 

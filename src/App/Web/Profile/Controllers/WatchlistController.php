@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Web\Account\Controllers;
+namespace App\Web\Profile\Controllers;
 
 use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Playlists\Models\Playlist;
-use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
 
-class HistoryController extends Listing
+class WatchlistController extends Listing
 {
     public function mount(): void
     {
         parent::mount();
 
-        SEOMeta::setTitle(__('History'));
+        SEOMeta::setTitle(__('Watchlist'));
     }
 
     public function render(): View
     {
-        return view('account::history', [
+        return view('profile::watchlist', [
             'items' => $this->builder(),
         ]);
     }
@@ -28,7 +27,7 @@ class HistoryController extends Listing
     protected function builder(): Paginator
     {
         return Playlist::query()
-            ->history()
+            ->watchlist()
             ->first()
             ->videos()
             ->with('tags')
