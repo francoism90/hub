@@ -46,7 +46,7 @@ abstract class Listing extends Component
     }
 
     #[Computed]
-    public function tagType(): mixed
+    public function tagType(): ?string
     {
         $types = $this->tagTypes();
 
@@ -57,6 +57,12 @@ abstract class Listing extends Component
         return $types->contains($this->type)
             ? $this->type
             : $types->first();
+    }
+
+    #[Computed]
+    public function tagName(): mixed
+    {
+        return $this->findTagModel($this->tag)?->name;
     }
 
     public function toggleTags(): void

@@ -5,6 +5,8 @@
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
+            <x-filters::applied />
+
             <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @forelse ($items as $item)
                     <x-videos::card :$item />
