@@ -6,7 +6,7 @@ use Domain\Users\Models\User;
 
 trait WithProfile
 {
-    public function bootWithAuthorization(): void
+    public function bootWithProfile(): void
     {
         $this->authorize('view', $this->getProfile());
     }
