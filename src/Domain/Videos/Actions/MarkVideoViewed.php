@@ -8,11 +8,11 @@ use Domain\Videos\Models\Video;
 
 class MarkVideoViewed
 {
-    public function execute(User $user, Video $video): void
+    public function execute(User $user, Video $video, array $options = []): void
     {
         $model = $this->getModel($user);
 
-        $model->attachVideo($video);
+        $model->attachVideo($video, $options);
     }
 
     protected function getModel(User $user): Playlist
