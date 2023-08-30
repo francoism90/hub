@@ -1,6 +1,6 @@
 <div
-    id="player-{{ $model->getRouteKey() }}"
     x-ref="container"
+    wire:ignore
     x-data="{
         init() {
             const player = new window.shaka.Player($refs.video);
