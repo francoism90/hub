@@ -48,5 +48,6 @@
                     {{ __('Log Out') }}
                 </button>
             </div>
+        </div>
     </nav>
 </header>
