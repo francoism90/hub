@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureSeo();
-        $this->configureComponents();
+        // $this->configureComponents();
         $this->configureViews();
     }
 
@@ -40,74 +40,28 @@ class ViewServiceProvider extends ServiceProvider
             ->files()
             ->name('*.php');
 
-        collect($files)
+        $components = collect($files)
             ->map(fn (SplFileInfo $file) => static::toClass($file->getRealPath()))
             ->filter(fn (string $class) => is_a($class, Component::class, true))
-            ->each(function (string $class) {
-                $domain = static::domain($class);
+            ->mapWithKeys(fn (string $class) => [static::name($class) => $class]);
 
-                $prefix = static::prefix($class);
-
-                $prefix = static::name($class);
-
-                dd($prefix);
-
-                // dd($domain);
-
-                // dd($class);
-
-                $namespace = str($class)
-                    ->after("\\{$domain}\\")
-                    ->before('\\');
-
-                dd($namespace);
-            });
-
-            // ->filter(fn (string $path) =>
-            // ->each(function (string $path) {
-            //     dd($path);
-
-
-                //
-
-                // // e.g. web
-                // $domain = basename(str($path)->beforeLast('/')->lower());
-
-                // // e.g. filters
-                // $key = basename(str($path)->afterLast('/')->lower());
-
-                // $namespace = str("{$path}/Components")
-                //     ->replaceFirst(app_path(), 'App\\')
-                //     ->replace('/', '\\')
-                //     ->trim('\\');
-
-                // Blade::componentNamespace(
-                //     namespace: $namespace,
-                //     prefix: implode('.', [$domain, $key])
-                // );
+        $this->loadViewComponentsAs('', $components->all());
     }
 
     protected function configureViews(): void
     {
-        $domains = File::directories(app_path());
+        $files = (new Finder)
+            ->in(app_path())
+            ->files()
+            ->name('*.blade.php');
 
-        collect($domains)
-            ->flatMap(fn (string $domain) => File::directories($domain))
-            ->filter(fn (string $path) => File::isDirectory("{$path}/Views"))
-            ->each(function (string $path) {
-                // e.g. web
-                $domain = basename(str($path)->beforeLast('/')->lower());
+        $views = collect($files)
+            ->mapWithKeys(fn (SplFileInfo $file) => [$file->getPath() => static::name($file->getPath())]);
+            // ->mapWithKeys(fn (string $class) => [static::name($class) => $class]);
 
-                // e.g. filters
-                $key = basename(str($path)->afterLast('/')->lower());
+        dd($views);
 
-                // dd($path);
-
-                Blade::componentNamespace(
-                    namespace: $path,
-                    prefix: implode('.', [$domain, $key])
-                );
-            });
+        // $this->loadViewsFrom('', $components->all());
     }
 
 

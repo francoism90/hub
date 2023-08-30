@@ -13,6 +13,7 @@ trait WithDomains
         $prefix = static::prefix($class)->slug();
 
         return str($class)
+            ->replace('/', '\\')
             ->afterLast('\\')
             ->slug()
             ->prepend(implode('.', [$domain, $prefix, '']));
@@ -21,6 +22,8 @@ trait WithDomains
     public static function domain(string $class): Stringable
     {
         return str($class)
+            ->replace('/', '\\')
+            ->replace('.', '\\')
             ->after('App\\')
             ->before('\\');
     }
@@ -30,6 +33,7 @@ trait WithDomains
         $domain = static::domain($class);
 
         return str($class)
+            ->replace('/', '\\')
             ->after("App\\{$domain}")
             ->trim('\\')
             ->before('\\');
