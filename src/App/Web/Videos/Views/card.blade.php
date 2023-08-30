@@ -1,4 +1,4 @@
-<article id="video-{{ $item->getRouteKey() }}" class="flex flex-col space-y-1.5 py-8">
+<article id="video-{{ $item->getRouteKey() }}" {{ $attributes->class('flex flex-col space-y-1.5 py-8') }}>
     <dl class="inline-flex">
         <dt class="sr-only">Published on</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
@@ -21,7 +21,7 @@
         </a>
     </h2>
 
-    @if ($item->tags)
+    @if ($item->tags->isNotEmpty())
         <x-videos::tags :items="$item->tags" />
     @endif
 
@@ -33,7 +33,7 @@
             @touchstart.passive="preview = true"
             @touchmove.passive="preview = true"
             @touchend.passive="preview = false"
-            class="relative h-64 max-h-[16rem] min-h-[16rem] w-full">
+            class="relative h-56 max-h-[14rem] min-h-[14rem] w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->name }}"

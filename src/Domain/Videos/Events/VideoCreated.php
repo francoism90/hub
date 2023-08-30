@@ -26,7 +26,7 @@ class VideoCreated implements ShouldBroadcastNow
      */
     public function broadcastAs(): string
     {
-        return 'video.created';
+        return 'created';
     }
 
     /**

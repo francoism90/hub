@@ -16,7 +16,7 @@
 
                 <input
                     type="search"
-                    class="h-12 w-full border-transparent bg-transparent focus:outline-none"
+                    class="input h-12 w-full border-transparent bg-transparent"
                     placeholder="{{ __('Search') }}"
                     autofocus
                     wire:model.live.debounce.250ms="search">

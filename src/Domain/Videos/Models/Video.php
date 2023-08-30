@@ -2,10 +2,8 @@
 
 namespace Domain\Videos\Models;
 
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Database\Factories\VideoFactory;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
-use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
@@ -21,10 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Kirschbaum\PowerJoins\PowerJoins;
 use Laravel\Scout\Searchable;
-use Overtrue\LaravelFavorite\Traits\Favoriteable;
-use Overtrue\LaravelFollow\Traits\Followable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -34,24 +29,20 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 
-class Video extends Model implements HasMedia, Viewable
+class Video extends Model implements HasMedia
 {
-    use InteractsWithMedia;
-    use InteractsWithPlaylists;
-    use InteractsWithRandomSeed;
-    use InteractsWithUser;
-    use InteractsWithViews;
-    use InteractsWithVod;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
-    use Favoriteable;
-    use Followable;
+    use InteractsWithMedia;
+    use InteractsWithPlaylists;
+    use InteractsWithRandomSeed;
+    use InteractsWithUser;
+    use InteractsWithVod;
     use Notifiable;
-    use PowerJoins;
     use Searchable;
     use SoftDeletes;
 

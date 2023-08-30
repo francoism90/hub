@@ -14,9 +14,9 @@ use Spatie\ModelStates\HasStates;
 
 class Import extends Model
 {
-    use InteractsWithUser;
     use HasFactory;
     use HasStates;
+    use InteractsWithUser;
     use Notifiable;
 
     /**

@@ -14,4 +14,34 @@ trait WithVideo
     {
         $this->authorize('view', $this->video);
     }
+
+    protected function getVideoId(): string
+    {
+        return $this->video->getRouteKey();
+    }
+
+    protected function refreshVideo(): void
+    {
+        $this->video->refresh();
+
+        $this->dispatch('$refresh');
+    }
+
+    protected function onVideoDeleted(): void
+    {
+        $this->refreshVideo();
+    }
+
+    protected function onVideoSaved(): void
+    {
+        $this->refreshVideo();
+    }
+
+    protected function getVideoListeners(): array
+    {
+        return [
+            "echo-private:video.{$this->getVideoId()},deleted" => 'onVideoDeleted',
+            "echo-private:video.{$this->getVideoId()},saved" => 'onVideoSaved',
+        ];
+    }
 }

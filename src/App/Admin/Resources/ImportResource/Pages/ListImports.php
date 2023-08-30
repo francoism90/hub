@@ -10,6 +10,7 @@ use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
 use Domain\Imports\States\Finished;
 use Domain\Imports\States\ImportState;
+use Domain\Videos\Actions\CreateVideoByImport;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
@@ -100,7 +101,7 @@ class ListImports extends ListRecords
         return Tables\Actions\Action::make('import')
             ->label(__('Import'))
             ->disabled(fn (Import $record) => $record->state->equals(Finished::class))
-            ->action(fn (Import $record) => static::stateOptions($record));
+            ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
     }
 
     protected function bulkImportAction(): Action

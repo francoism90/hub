@@ -26,7 +26,7 @@ class VideoDeleted implements ShouldBroadcastNow
      */
     public function broadcastAs(): string
     {
-        return 'video.deleted';
+        return 'deleted';
     }
 
     /**

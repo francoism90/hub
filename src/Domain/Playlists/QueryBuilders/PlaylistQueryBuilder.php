@@ -10,19 +10,30 @@ class PlaylistQueryBuilder extends Builder
 {
     use InteractsWithScout;
 
-    public function listable(): self
+    public function system(): self
     {
         return $this
-            ->whereNot('type', PlaylistType::system());
+            ->where('type', PlaylistType::system());
     }
 
-    public function type(PlaylistType|string $type): self
+    public function favorites(): self
     {
-        if (is_string($type)) {
-            $type = PlaylistType::tryFrom($type);
-        }
-
         return $this
-            ->when(filled($type), fn (Builder $query) => $query->where('type', $type));
+            ->system()
+            ->where('name', 'favorites');
+    }
+
+    public function history(): self
+    {
+        return $this
+            ->system()
+            ->where('name', 'history');
+    }
+
+    public function watchlist(): self
+    {
+        return $this
+            ->system()
+            ->where('name', 'watchlist');
     }
 }

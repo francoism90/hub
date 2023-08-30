@@ -3,6 +3,7 @@
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
+use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\Concerns\InteractsWithFilament;
@@ -17,8 +18,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use Overtrue\LaravelFavorite\Traits\Favoriter;
-use Overtrue\LaravelFollow\Traits\Follower;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -27,17 +26,16 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class User extends Authenticatable implements FilamentUser, HasMedia, MustVerifyEmail
 {
-    use InteractsWithCache;
-    use InteractsWithFilament;
-    use InteractsWithMedia;
-    use InteractsWithVideos;
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
-    use Follower;
-    use Favoriter;
+    use InteractsWithCache;
+    use InteractsWithFilament;
+    use InteractsWithMedia;
+    use InteractsWithPlaylists;
+    use InteractsWithVideos;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
