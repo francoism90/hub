@@ -7,7 +7,6 @@ use Domain\Videos\Actions\MarkVideoViewed;
 use Domain\Videos\Actions\MarkVideoWatchlisted;
 use Domain\Videos\Models\Video;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\On;
 
 trait WithVideo
 {
