@@ -47,7 +47,9 @@
                         <x-dynamic-component :component="$this->watchlist" class="h-6 w-6" />
                     </a>
 
-                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
+                    <a
+                        class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                        href="{{ route('filament.admin.resources.videos.edit', $video) }}">
                         <x-heroicon-o-pencil-square class="h-5 w-5" />
                     </a>
                 </div>

@@ -61,7 +61,7 @@ class VideoViewController extends Component
     public function getListeners(): array
     {
         return [
-            // ...$this->getVideoListeners(),
+            ...$this->getVideoListeners(),
         ];
     }
 }
