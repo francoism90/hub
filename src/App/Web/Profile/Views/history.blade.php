@@ -48,7 +48,7 @@
         </div>
 
         <aside class="hidden md:flex">
-            <livewire:video-filters :$tag />
+            <livewire:video-filters :$tag :key="time()" />
         </aside>
     </x-layouts::container>
 

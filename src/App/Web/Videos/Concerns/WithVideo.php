@@ -24,8 +24,6 @@ trait WithVideo
     {
         $this->video->refresh();
 
-        dd('refresh');
-
         $this->dispatch('$refresh');
     }
 
