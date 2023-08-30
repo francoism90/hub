@@ -47,8 +47,8 @@
             </div>
         </div>
 
-        <aside class="hidden md:flex">
-            <livewire:video-filters :$tag :key="time()" />
+        <aside class="hidden self-start overflow-auto sm:min-w-[18rem] sm:max-w-[18rem] md:flex">
+            <livewire:filter-tags :$tag :key="time()" />
         </aside>
     </x-layouts::container>
 
