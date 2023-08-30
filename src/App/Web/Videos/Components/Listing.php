@@ -19,6 +19,9 @@ abstract class Listing extends Component
     public ?string $search = '';
 
     #[Url(history: true)]
+    public ?string $sort = '';
+
+    #[Url(history: true)]
     public ?string $tag = '';
 
     abstract public function render(): View;
@@ -35,6 +38,11 @@ abstract class Listing extends Component
 
         $this->tag = $tag->getRouteKey();
 
+        $this->resetPage();
+    }
+
+    public function updatedSort(): void
+    {
         $this->resetPage();
     }
 

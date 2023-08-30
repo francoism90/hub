@@ -7,14 +7,14 @@ use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Modelable;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class Tags extends Component
 {
     use WithTags;
 
-    #[Modelable]
+    #[Reactive]
     public ?string $tag = '';
 
     public ?string $type = '';
