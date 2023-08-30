@@ -28,16 +28,4 @@ trait WithWatchlist
             ->where('id', $video->getKey())
             ->exists();
     }
-
-    protected function onWatchlisted(): void
-    {
-        $this->emit('refresh');
-    }
-
-    protected function getWatchlistListeners(): array
-    {
-        return [
-            "echo-private:user.{$this->getUserId()},watchlisted" => 'onWatchlisted',
-        ];
-    }
 }

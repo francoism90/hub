@@ -11,8 +11,8 @@ use Livewire\Component;
 
 class VideoViewController extends Component
 {
-    use WithVideo;
     use WithAuthentication;
+    use WithVideo;
     use WithWatchlist;
 
     public function mount(): void
@@ -25,6 +25,15 @@ class VideoViewController extends Component
     public function render(): View
     {
         return view('videos::view');
+    }
+
+    public function toggleWatchlist(): void
+    {
+        $this->isWatchlisted($this->video)
+            ? $this->getWatchlist()->detachVideo($this->video)
+            : $this->getWatchlist()->attachVideo($this->video);
+
+        $this->refreshVideo();
     }
 
     public function getListeners(): array

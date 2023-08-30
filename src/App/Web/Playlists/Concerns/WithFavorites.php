@@ -3,6 +3,7 @@
 namespace App\Web\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
+use Domain\Videos\Models\Video;
 
 trait WithFavorites
 {
@@ -19,15 +20,12 @@ trait WithFavorites
             ->firstOrFail();
     }
 
-    protected function onFavorited(): void
+    protected function isFavorited(Video $video): bool
     {
-        $this->emit('refresh');
-    }
-
-    protected function getFavoritesListeners(): array
-    {
-        return [
-            "echo-private:user.{$this->getUserId()},favorited" => 'onFavorited',
-        ];
+        return $this
+            ->getFavorites()
+            ->videos()
+            ->where('id', $video->getKey())
+            ->exists();
     }
 }
