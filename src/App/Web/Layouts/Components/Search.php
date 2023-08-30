@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    public ?string $search = null;
+    public ?string $query = null;
 
     public function render(): View
     {
@@ -25,13 +25,13 @@ class Search extends Component
     #[Computed]
     public function videos(): Collection
     {
-        if (blank($this->search)) {
+        if (blank($this->query)) {
             return collect();
         }
 
         return Video::query()
             ->with('tags')
-            ->search((string) $this->search)
+            ->search((string) $this->query)
             ->take(5)
             ->get();
     }
@@ -39,12 +39,12 @@ class Search extends Component
     #[Computed]
     public function tags(): Collection
     {
-        if (blank($this->search)) {
+        if (blank($this->query)) {
             return collect();
         }
 
         return Tag::query()
-            ->search((string) $this->search)
+            ->search((string) $this->query)
             ->take(5)
             ->get();
     }

@@ -19,7 +19,7 @@
                     class="input h-12 w-full border-transparent bg-transparent"
                     placeholder="{{ __('Search') }}"
                     autofocus
-                    wire:model.live.debounce.250ms="search">
+                    wire:model.live.debounce.250ms="query">
 
                 <button
                     class="rounded-sm bg-gray-600 px-2 py-1 text-xs text-gray-200"
@@ -30,7 +30,7 @@
 
             <div
                 class="flex max-h-[32rem] flex-col space-y-6 overflow-hidden overflow-y-auto border-t border-gray-700 p-6">
-                @if (blank($search))
+                @if (blank($query))
                     <div class="py-16 text-center text-gray-300">
                         No recent searches
                     </div>
@@ -38,7 +38,7 @@
 
                 @if ($videos->isNotEmpty())
                     <a class="inline-flex items-center space-x-2 text-primary-500"
-                        href="{{ route('videos.index', compact('search')) }}">
+                        href="{{ route('videos.index', ['search' => $this->query]) }}">
                         <h2 class="headline">
                             {{ __('Videos') }}
                         </h2>
