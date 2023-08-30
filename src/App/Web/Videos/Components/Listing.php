@@ -41,11 +41,6 @@ abstract class Listing extends Component
         $this->resetPage();
     }
 
-    public function updatedSort(): void
-    {
-        $this->resetPage();
-    }
-
     public function resetQuery(...$properties): void
     {
         collect($properties)

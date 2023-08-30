@@ -3,8 +3,6 @@
         <x-layouts::navbar />
     </x-layouts::container>
 
-    {{ $sort }}
-
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
@@ -20,7 +18,7 @@
             </div>
         </div>
 
-        <aside class="hidden flex-col space-y-4 self-start overflow-auto sm:flex sm:min-w-[18rem] sm:max-w-[18rem] md:flex">
+        <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col space-y-4 self-start sm:flex">
             <livewire:filter-tags :$tag />
         </aside>
     </x-layouts::container>
