@@ -22,4 +22,11 @@ class VideoViewController extends Component
     {
         return view('videos::view');
     }
+
+    public function getListeners(): array
+    {
+        return [
+            ...$this->getVideoListeners(),
+        ];
+    }
 }
