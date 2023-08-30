@@ -2,6 +2,7 @@
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
@@ -14,6 +15,7 @@ class VideoViewController extends Component
 {
     use WithAuthentication;
     use WithVideo;
+    use WithFavorites;
     use WithWatchlist;
 
     public function mount(): void
@@ -26,11 +28,26 @@ class VideoViewController extends Component
         return view('videos::view');
     }
 
+    public function toggleFavorite(): void
+    {
+        $this->isFavorited($this->video)
+            ? $this->getFavorites()->detachVideo($this->video)
+            : $this->getFavorites()->attachVideo($this->video);
+    }
+
     public function toggleWatchlist(): void
     {
         $this->isWatchlisted($this->video)
             ? $this->getWatchlist()->detachVideo($this->video)
             : $this->getWatchlist()->attachVideo($this->video);
+    }
+
+    #[Computed]
+    public function favorite(): string
+    {
+        return $this->isFavorited($this->video)
+            ? 'heroicon-s-heart'
+            : 'heroicon-o-heart';
     }
 
     #[Computed]

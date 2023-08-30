@@ -35,12 +35,16 @@
                 </header>
 
                 <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300">
-                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
-                        <x-heroicon-o-heart class="h-5 w-5" />
+                    <a
+                        class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                        wire:click="toggleFavorite">
+                        <x-dynamic-component :component="$this->favorite" class="h-6 w-6" />
                     </a>
 
-                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400" wire:click="toggleWatchlist">
-                        <x-dynamic-component :component="$this->watchlist" class="h-5 w-5" />
+                    <a
+                        class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                        wire:click="toggleWatchlist">
+                        <x-dynamic-component :component="$this->watchlist" class="h-6 w-6" />
                     </a>
 
                     <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
@@ -48,7 +52,7 @@
                     </a>
                 </div>
 
-                @if ($video->tags)
+                @if ($video->tags->isNotEmpty())
                     <div class="space-y-1 py-5">
                         <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
                         <x-videos::tags :items="$video->tags" />

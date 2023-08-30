@@ -21,7 +21,7 @@
         </a>
     </h2>
 
-    @if ($item->tags)
+    @if ($item->tags->isNotEmpty())
         <x-videos::tags :items="$item->tags" />
     @endif
 
