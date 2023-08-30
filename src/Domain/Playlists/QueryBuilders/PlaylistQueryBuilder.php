@@ -13,7 +13,7 @@ class PlaylistQueryBuilder extends Builder
     public function system(): self
     {
         return $this
-            ->type(PlaylistType::system());
+            ->where('type', PlaylistType::system());
     }
 
     public function history(): self
