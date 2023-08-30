@@ -53,45 +53,6 @@ class VideoQueryBuilder extends Builder
             ->inRandomSeedOrder();
     }
 
-    public function favorites(User $user = null): self
-    {
-        /** @var User $user */
-        $user ??= auth()->user();
-
-        return $this
-            ->joinRelationship('favorites', fn ($join) => $join
-                ->when($user, fn ($join) => $join->where('favorites.user_id', $user->id))
-            )
-            ->reorder()
-            ->orderByPowerJoins('favorites.created_at', 'DESC');
-    }
-
-    public function following(User $user = null): self
-    {
-        /** @var User $user */
-        $user ??= auth()->user();
-
-        return $this
-            ->joinRelationship('followables', fn ($join) => $join
-                ->when($user, fn ($join) => $join->where('followables.user_id', $user->id))
-            )
-            ->reorder()
-            ->orderByPowerJoins('followables.created_at', 'DESC');
-    }
-
-    public function viewed(User $user = null): self
-    {
-        /** @var User $user */
-        $user ??= auth()->user();
-
-        return $this
-            ->joinRelationship('views', fn ($join) => $join
-                ->when($user, fn ($join) => $join->where('visitor', $user->id))
-            )
-            ->reorder()
-            ->orderByPowerJoins('views.viewed_at', 'DESC');
-    }
-
     public function similar(Video $model): self
     {
         $items = app(GetSimilarVideos::class)->execute($model);
