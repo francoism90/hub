@@ -14,8 +14,8 @@ use Livewire\WithPagination;
 
 class PlaylistIndexController extends Component
 {
-    use WithPlaylists;
     use WithPagination;
+    use WithPlaylists;
 
     #[Url(history: true)]
     public ?string $search = '';

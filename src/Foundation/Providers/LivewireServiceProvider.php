@@ -2,8 +2,8 @@
 
 namespace Foundation\Providers;
 
-use App\Web\Filters\Components\Tags as FilterTags;
 use App\Web\Filters\Components\Sort as FilterSort;
+use App\Web\Filters\Components\Tags as FilterTags;
 use App\Web\Layouts\Components\Search as LayoutSearch;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;

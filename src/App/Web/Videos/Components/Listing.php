@@ -12,8 +12,8 @@ use Livewire\WithPagination;
 
 abstract class Listing extends Component
 {
-    use WithVideos;
     use WithPagination;
+    use WithVideos;
 
     #[Url(history: true)]
     public ?string $search = '';

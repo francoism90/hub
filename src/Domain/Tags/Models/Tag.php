@@ -19,10 +19,10 @@ use Spatie\Tags\Tag as BaseTag;
 
 class Tag extends BaseTag implements HasMedia
 {
-    use InteractsWithMedia;
-    use InteractsWithRandomSeed;
     use HasFactory;
     use HasPrefixedId;
+    use InteractsWithMedia;
+    use InteractsWithRandomSeed;
     use Notifiable;
     use Searchable;
 

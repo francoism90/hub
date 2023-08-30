@@ -26,16 +26,16 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class User extends Authenticatable implements FilamentUser, HasMedia, MustVerifyEmail
 {
-    use InteractsWithCache;
-    use InteractsWithFilament;
-    use InteractsWithMedia;
-    use InteractsWithPlaylists;
-    use InteractsWithVideos;
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
+    use InteractsWithCache;
+    use InteractsWithFilament;
+    use InteractsWithMedia;
+    use InteractsWithPlaylists;
+    use InteractsWithVideos;
     use Notifiable;
     use Searchable;
     use SoftDeletes;

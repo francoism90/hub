@@ -31,17 +31,17 @@ use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
 {
-    use InteractsWithMedia;
-    use InteractsWithPlaylists;
-    use InteractsWithRandomSeed;
-    use InteractsWithUser;
-    use InteractsWithVod;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
+    use InteractsWithMedia;
+    use InteractsWithPlaylists;
+    use InteractsWithRandomSeed;
+    use InteractsWithUser;
+    use InteractsWithVod;
     use Notifiable;
     use Searchable;
     use SoftDeletes;

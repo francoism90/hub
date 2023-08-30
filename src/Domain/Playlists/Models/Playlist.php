@@ -21,13 +21,13 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class Playlist extends Model implements HasMedia
 {
-    use InteractsWithMedia;
-    use InteractsWithRandomSeed;
-    use InteractsWithUser;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
     use HasVideos;
+    use InteractsWithMedia;
+    use InteractsWithRandomSeed;
+    use InteractsWithUser;
     use Notifiable;
     use Searchable;
     use SoftDeletes;

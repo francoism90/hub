@@ -8,7 +8,6 @@ use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
-use Livewire\WithPagination;
 
 class HistoryController extends Listing
 {
