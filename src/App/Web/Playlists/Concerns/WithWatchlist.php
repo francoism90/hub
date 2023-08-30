@@ -4,7 +4,6 @@ namespace App\Web\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
-use Illuminate\Database\Eloquent\Model;
 
 trait WithWatchlist
 {
