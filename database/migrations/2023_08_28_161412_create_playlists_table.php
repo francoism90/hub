@@ -22,10 +22,10 @@ return new class extends Migration
             $table
                 ->text('content')
                 ->nullable();
-            $table->string('state');
             $table
                 ->string('type')
                 ->nullable();
+            $table->string('state');
             $table
                 ->integer('order_column')
                 ->nullable();

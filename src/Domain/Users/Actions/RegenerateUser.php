@@ -10,8 +10,7 @@ class RegenerateUser
     use InteractsWithProgress;
 
     public array $actions = [
-        // CreateColor::class,
-        // CreateAvatar::class,
+        CreatePlaylists::class,
     ];
 
     public function execute(User $model): void
