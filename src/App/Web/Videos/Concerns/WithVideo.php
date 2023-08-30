@@ -24,6 +24,13 @@ trait WithVideo
         return $this->video->getRouteKey();
     }
 
+    protected function refreshVideo(): void
+    {
+        $this->video->refresh();
+
+        $this->emit('$refresh');
+    }
+
     protected function videoViewed(User $user = null, array $options = null): void
     {
         /** @var User */
@@ -46,16 +53,12 @@ trait WithVideo
 
     protected function onVideoDeleted(): void
     {
-        $this->video->refresh();
-
-        $this->emit('$refresh');
+        $this->refreshVideo();
     }
 
     protected function onVideoSaved(): void
     {
-        $this->video->refresh();
-
-        $this->emit('$refresh');
+        $this->refreshVideo();
     }
 
     protected function getVideoListeners(): array
