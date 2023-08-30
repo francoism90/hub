@@ -3,7 +3,6 @@
 namespace Domain\Users\Jobs;
 
 use DateTime;
-use Domain\Users\Actions\RegenerateUser;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -13,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessUser implements ShouldQueue
+class ReleaseUser implements ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -49,9 +48,7 @@ class ProcessUser implements ShouldQueue
 
     public function handle(): void
     {
-        app(RegenerateUser::class)
-            ->onProgress(fn (string $progress) => logger($progress))
-            ->execute($this->model);
+        //
     }
 
     /**

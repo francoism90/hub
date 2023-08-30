@@ -72,7 +72,7 @@ class OptimizeVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            new WithoutOverlapping($this->model->getKey()),
+            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
         ];
     }
 }
