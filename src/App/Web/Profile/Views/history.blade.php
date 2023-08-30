@@ -21,8 +21,6 @@
         <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col space-y-4 self-start sm:flex">
             <x-filters::search />
             <x-filters::sort />
-
-            <livewire:filter-tags :$tag :key="time()" />
         </aside>
     </x-layouts::container>
 
