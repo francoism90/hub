@@ -41,6 +41,11 @@ abstract class Listing extends Component
         $this->resetPage();
     }
 
+    protected function hasSort(string $sort): bool
+    {
+        return filled($this->sort) && $sort === $this->sort;
+    }
+
     public function resetQuery(...$properties): void
     {
         collect($properties)
