@@ -2,18 +2,20 @@
 
 namespace App\Web\Profile\Controllers;
 
+use App\Web\Playlists\Concerns\WithWatchlist;
+use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Domain\Playlists\Models\Playlist;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
 
 class WatchlistController extends Listing
 {
+    use WithAuthentication;
+    use WithWatchlist;
+
     public function mount(): void
     {
-        parent::mount();
-
         SEOMeta::setTitle(__('Watchlist'));
     }
 
@@ -26,9 +28,7 @@ class WatchlistController extends Listing
 
     protected function builder(): Paginator
     {
-        return Playlist::query()
-            ->watchlist()
-            ->first()
+        return $this->getWatchlist()
             ->videos()
             ->with('tags')
             ->orderByDesc('videoables.updated_at')
