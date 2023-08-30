@@ -3,12 +3,18 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Foundation\Concerns\WithDomains;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Component;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 
 class ViewServiceProvider extends ServiceProvider
 {
+    use WithDomains;
+
     public function register(): void
     {
         // ...
@@ -29,28 +35,56 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $domains = File::directories(app_path());
+        $files = (new Finder)
+            ->in(app_path())
+            ->files()
+            ->name('*.php');
 
-        collect($domains)
-            ->flatMap(fn (string $domain) => File::directories($domain))
-            ->filter(fn (string $path) => File::isDirectory("{$path}/Components"))
-            ->each(function (string $path) {
-                // e.g. web
-                $domain = basename(str($path)->beforeLast('/')->lower());
+        collect($files)
+            ->map(fn (SplFileInfo $file) => static::toClass($file->getRealPath()))
+            ->filter(fn (string $class) => is_a($class, Component::class, true))
+            ->each(function (string $class) {
+                $domain = static::domain($class);
 
-                // e.g. filters
-                $key = basename(str($path)->afterLast('/')->lower());
+                $prefix = static::prefix($class);
 
-                $namespace = str("{$path}/Components")
-                    ->replaceFirst(app_path(), 'App\\')
-                    ->replace('/', '\\')
-                    ->trim('\\');
+                $prefix = static::name($class);
 
-                Blade::componentNamespace(
-                    namespace: $namespace,
-                    prefix: implode('.', [$domain, $key])
-                );
+                dd($prefix);
+
+                // dd($domain);
+
+                // dd($class);
+
+                $namespace = str($class)
+                    ->after("\\{$domain}\\")
+                    ->before('\\');
+
+                dd($namespace);
             });
+
+            // ->filter(fn (string $path) =>
+            // ->each(function (string $path) {
+            //     dd($path);
+
+
+                //
+
+                // // e.g. web
+                // $domain = basename(str($path)->beforeLast('/')->lower());
+
+                // // e.g. filters
+                // $key = basename(str($path)->afterLast('/')->lower());
+
+                // $namespace = str("{$path}/Components")
+                //     ->replaceFirst(app_path(), 'App\\')
+                //     ->replace('/', '\\')
+                //     ->trim('\\');
+
+                // Blade::componentNamespace(
+                //     namespace: $namespace,
+                //     prefix: implode('.', [$domain, $key])
+                // );
     }
 
     protected function configureViews(): void
@@ -75,4 +109,6 @@ class ViewServiceProvider extends ServiceProvider
                 );
             });
     }
+
+
 }
