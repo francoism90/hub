@@ -19,7 +19,7 @@
                     class="input h-12 w-full border-transparent bg-transparent"
                     placeholder="{{ __('Search') }}"
                     autofocus
-                    wire:model.live.debounce.250ms="query">
+                    wire:model.live.debounce.500ms="query">
 
                 <button
                     class="rounded-sm bg-gray-600 px-2 py-1 text-xs text-gray-200"

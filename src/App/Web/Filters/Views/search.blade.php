@@ -8,6 +8,6 @@
             class="input"
             type="search"
             autocomplete
-            wire:model.live.debounce.300ms="search" />
+            wire:model.live.debounce.500ms="search" />
     </div>
 </div>
