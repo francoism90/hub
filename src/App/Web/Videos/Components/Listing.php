@@ -41,7 +41,7 @@ abstract class Listing extends Component
     public function resetQuery(...$properties): void
     {
         collect($properties)
-            ->filter(fn (string $property) => in_array($property, ['search', 'tag']))
+            ->filter(fn (string $property) => in_array($property, ['search', 'sort', 'tag']))
             ->map(fn (string $property) => $this->reset($property));
 
         $this->resetPage();
