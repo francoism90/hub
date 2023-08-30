@@ -2,12 +2,10 @@
 
 namespace Domain\Playlists\Models;
 
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
-use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -24,12 +22,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class Playlist extends Model implements HasMedia, Viewable
+class Playlist extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
-    use InteractsWithViews;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;

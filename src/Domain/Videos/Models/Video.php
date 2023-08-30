@@ -2,10 +2,8 @@
 
 namespace Domain\Videos\Models;
 
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Database\Factories\VideoFactory;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
-use Domain\Shared\Concerns\InteractsWithViews;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
@@ -34,13 +32,12 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 
-class Video extends Model implements HasMedia, Viewable
+class Video extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use InteractsWithPlaylists;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
-    use InteractsWithViews;
     use InteractsWithVod;
     use HasFactory;
     use HasPrefixedId;

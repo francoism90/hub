@@ -6,7 +6,6 @@ use App\Api\Http\Requests\VideoUpdateRequest;
 use App\Api\Http\Resources\VideoCollection;
 use App\Api\Http\Resources\VideoResource;
 use App\Api\Queries\VideoIndexQuery;
-use Domain\Users\Actions\MarkModelAsViewed;
 use Domain\Videos\Actions\MarkVideoDeleted;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
@@ -38,8 +37,6 @@ class VideoController extends Controller
 
     public function show(Video $model): VideoResource
     {
-        app(MarkModelAsViewed::class)->execute($model);
-
         return new VideoResource($model
             ->load('media', 'tags')
             ->append(
