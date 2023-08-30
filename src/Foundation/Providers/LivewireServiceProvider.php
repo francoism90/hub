@@ -3,6 +3,7 @@
 namespace Foundation\Providers;
 
 use App\Web\Layouts\Components\Search as LayoutSearch;
+use App\Web\Videos\Components\Filters as VideoFilters;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Support\Livewire\ModelSynth;
@@ -37,5 +38,6 @@ class LivewireServiceProvider extends ServiceProvider
     protected function registerComponents(): void
     {
         Livewire::component('layout-search', LayoutSearch::class);
+        Livewire::component('video-filters', VideoFilters::class);
     }
 }

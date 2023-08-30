@@ -2,8 +2,8 @@
 
 namespace App\Web\Videos\Components;
 
-use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
+use Domain\Tags\Models\Tag;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
@@ -13,7 +13,6 @@ use Livewire\WithPagination;
 abstract class Listing extends Component
 {
     use WithVideos;
-    use WithTags;
     use WithPagination;
 
     #[Url(history: true)]
@@ -25,6 +24,19 @@ abstract class Listing extends Component
     abstract public function render(): View;
 
     abstract protected function builder(): Paginator;
+
+    public function setTag(Tag $tag): void
+    {
+        if ($tag->getRouteKey() === $this->tag) {
+            $this->resetQuery('tag');
+
+            return;
+        }
+
+        $this->tag = $tag->getRouteKey();
+
+        $this->resetPage();
+    }
 
     public function resetQuery(...$properties): void
     {
