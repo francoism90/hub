@@ -2,8 +2,8 @@
 
 namespace App\Web\Videos\Concerns;
 
-use Domain\Playlists\Actions\CreateVideoHistory;
 use Domain\Users\Models\User;
+use Domain\Videos\Actions\MarkVideoViewed;
 use Domain\Videos\Models\Video;
 use Livewire\Attributes\Locked;
 
@@ -23,7 +23,7 @@ trait WithVideo
         $user ??= auth()->user();
 
         if (filled($user)) {
-            app(CreateVideoHistory::class)->execute($user, $this->video);
+            app(MarkVideoViewed::class)->execute($user, $this->video);
         }
     }
 }

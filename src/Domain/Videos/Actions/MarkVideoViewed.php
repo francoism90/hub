@@ -1,13 +1,12 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Videos\Actions;
 
-use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\Models\Playlist;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
-class CreateVideoHistory
+class MarkVideoViewed
 {
     public function execute(User $user, Video $video): void
     {
@@ -18,9 +17,10 @@ class CreateVideoHistory
 
     protected function getModel(User $user): Playlist
     {
-        return $user->playlists()->firstOrCreate([
-            'name' => 'history',
-            'type' => PlaylistType::system()
-        ]);
+        return $user
+            ->playlists()
+            ->system()
+            ->history()
+            ->firstOrFail();
     }
 }
