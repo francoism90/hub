@@ -17,13 +17,13 @@ trait WithVideo
         $this->authorize('view', $this->video);
     }
 
-    protected function videoViewed(User $user = null): void
+    protected function videoViewed(User $user = null, array $options = null): void
     {
         /** @var User */
         $user ??= auth()->user();
 
         if (filled($user)) {
-            app(MarkVideoViewed::class)->execute($user, $this->video);
+            app(MarkVideoViewed::class)->execute($user, $this->video, $options);
         }
     }
 }
