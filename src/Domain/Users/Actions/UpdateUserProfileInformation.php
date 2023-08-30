@@ -4,33 +4,25 @@ namespace Domain\Users\Actions;
 
 use Domain\Users\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Illuminate\Support\Arr;
 
-class UpdateUserProfileInformation implements UpdatesUserProfileInformation
+class UpdateUserProfileInformation
 {
-    public function update(User $user, array $attributes): mixed
+    public function execute(User $user, array $attributes): mixed
     {
-        Validator::make($attributes, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-        ])->validateWithBag('updateProfileInformation');
-
-        if ($attributes['email'] !== $user->email && $user instanceof MustVerifyEmail) {
+        if (array_key_exists('email', $attributes) && ($user->email !== $attributes['email'] && $user instanceof MustVerifyEmail)) {
             return $this->updateVerifiedUser($user, $attributes);
         }
 
-        $user->forceFill([
-            'name' => $attributes['name'],
-            'email' => $attributes['email'],
-        ])->saveOrFail();
+        $user->updateOrFail(
+            Arr::only($attributes, $user->getFillable())
+        );
     }
 
     protected function updateVerifiedUser(User $user, array $attributes): void
     {
         $user->forceFill([
-            'name' => $attributes['name'],
+            'name' => $attributes['name'] ?? $user->name,
             'email' => $attributes['email'],
             'email_verified_at' => null,
         ])->saveOrFail();
