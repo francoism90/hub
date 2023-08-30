@@ -39,7 +39,7 @@
                         <x-heroicon-o-heart class="h-5 w-5" />
                     </a>
 
-                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
+                    <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400" wire:click="toggleWatchlist">
                         <x-dynamic-component :component="$this->watchlist" class="h-5 w-5" />
                     </a>
 
