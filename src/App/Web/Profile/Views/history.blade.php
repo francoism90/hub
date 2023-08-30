@@ -9,7 +9,7 @@
                 @forelse ($items as $item)
                     <x-videos::card :$item />
                 @empty
-                    <p>No Videos</p>
+                    <p>{{ __('No History') }}</p>
                 @endforelse
 
                 <x-layouts::pagination :$items />
