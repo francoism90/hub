@@ -21,4 +21,10 @@ class PlaylistQueryBuilder extends Builder
         return $this
             ->where('name', 'history');
     }
+
+    public function watchlist(): self
+    {
+        return $this
+            ->where('name', 'watchlist');
+    }
 }
