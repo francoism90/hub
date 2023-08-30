@@ -32,7 +32,7 @@ class EditUser extends EditRecord
         return [
             // Custom actions
             Actions\Action::make('regenerate')
-                ->label('Regenerate')
+                ->label(__('Regenerate'))
                 ->visible(static::hasRole('super-admin'))
                 ->action(fn (User $record) => app(RegenerateUser::class)->execute($record)),
 
