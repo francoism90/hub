@@ -4,7 +4,7 @@ namespace App\Web\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
 
-trait WithFavorites
+trait WithWatchlist
 {
     public function bootWithFavorites(): void
     {
