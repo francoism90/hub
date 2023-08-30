@@ -7,6 +7,7 @@ use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class VideoViewController extends Component
@@ -18,8 +19,6 @@ class VideoViewController extends Component
     public function mount(): void
     {
         SEOMeta::setTitle($this->video?->name);
-
-        $this->videoViewed();
     }
 
     public function render(): View
@@ -32,14 +31,20 @@ class VideoViewController extends Component
         $this->isWatchlisted($this->video)
             ? $this->getWatchlist()->detachVideo($this->video)
             : $this->getWatchlist()->attachVideo($this->video);
+    }
 
-        $this->refreshVideo();
+    #[Computed]
+    public function watchlist(): string
+    {
+        return $this->isWatchlisted($this->video)
+            ? 'heroicon-s-clock'
+            : 'heroicon-o-clock';
     }
 
     public function getListeners(): array
     {
         return [
-            ...$this->getVideoListeners(),
+            // ...$this->getVideoListeners(),
         ];
     }
 }

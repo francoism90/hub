@@ -40,7 +40,7 @@
                     </a>
 
                     <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">
-                        <x-heroicon-o-clock class="h-5 w-5" />
+                        <x-dynamic-component :component="$this->watchlist" class="h-5 w-5" />
                     </a>
 
                     <a class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400">

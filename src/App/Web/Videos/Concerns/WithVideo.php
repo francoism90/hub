@@ -24,7 +24,7 @@ trait WithVideo
     {
         $this->video->refresh();
 
-        $this->emit('$refresh');
+        $this->dispatch('$refresh');
     }
 
     protected function onVideoDeleted(): void
