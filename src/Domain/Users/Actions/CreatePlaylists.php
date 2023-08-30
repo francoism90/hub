@@ -12,6 +12,7 @@ class CreatePlaylists
     public function execute(User $user): void
     {
         $items = collect([
+            ['name' => 'favorites', 'type' => PlaylistType::system()],
             ['name' => 'history', 'type' => PlaylistType::system()],
             ['name' => 'watchlist', 'type' => PlaylistType::system()],
         ]);

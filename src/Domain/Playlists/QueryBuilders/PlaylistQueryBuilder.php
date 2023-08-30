@@ -16,15 +16,24 @@ class PlaylistQueryBuilder extends Builder
             ->where('type', PlaylistType::system());
     }
 
+    public function favorites(): self
+    {
+        return $this
+            ->system()
+            ->where('name', 'favorites');
+    }
+
     public function history(): self
     {
         return $this
+            ->system()
             ->where('name', 'history');
     }
 
     public function watchlist(): self
     {
         return $this
+            ->system()
             ->where('name', 'watchlist');
     }
 }
