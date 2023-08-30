@@ -13,6 +13,6 @@ trait WithProfile
 
     protected function getProfile(): ?User
     {
-        return $this->video->getRouteKey();
+        return auth()->user();
     }
 }
