@@ -7,6 +7,7 @@ use Domain\Videos\Actions\MarkVideoViewed;
 use Domain\Videos\Actions\MarkVideoWatchlisted;
 use Domain\Videos\Models\Video;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\On;
 
 trait WithVideo
 {
@@ -16,6 +17,11 @@ trait WithVideo
     public function bootWithVideo(): void
     {
         $this->authorize('view', $this->video);
+    }
+
+    protected function getVideoId(): string
+    {
+        return $this->video->getRouteKey();
     }
 
     protected function videoViewed(User $user = null, array $options = null): void
@@ -36,5 +42,27 @@ trait WithVideo
         if (filled($user)) {
             app(MarkVideoWatchlisted::class)->execute($user, $this->video, $options);
         }
+    }
+
+    protected function onVideoDeleted(): void
+    {
+        $this->video->refresh();
+
+        $this->emit('$refresh');
+    }
+
+    protected function onVideoSaved(): void
+    {
+        $this->video->refresh();
+
+        $this->emit('$refresh');
+    }
+
+    protected function getVideoListeners(): array
+    {
+        return [
+            "echo-private:video.{$this->getVideoId()},deleted" => 'onVideoDeleted',
+            "echo-private:video.{$this->getVideoId()},saved" => 'onVideoSaved',
+        ];
     }
 }

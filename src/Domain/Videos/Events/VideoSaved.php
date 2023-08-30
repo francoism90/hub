@@ -26,7 +26,7 @@ class VideoSaved implements ShouldBroadcastNow
      */
     public function broadcastAs(): string
     {
-        return 'video.saved';
+        return 'saved';
     }
 
     /**
