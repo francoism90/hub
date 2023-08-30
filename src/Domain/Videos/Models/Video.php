@@ -19,10 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Kirschbaum\PowerJoins\PowerJoins;
 use Laravel\Scout\Searchable;
-use Overtrue\LaravelFavorite\Traits\Favoriteable;
-use Overtrue\LaravelFollow\Traits\Followable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -45,10 +42,7 @@ class Video extends Model implements HasMedia
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
-    use Favoriteable;
-    use Followable;
     use Notifiable;
-    use PowerJoins;
     use Searchable;
     use SoftDeletes;
 

@@ -18,8 +18,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use Overtrue\LaravelFavorite\Traits\Favoriter;
-use Overtrue\LaravelFollow\Traits\Follower;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -38,8 +36,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
-    use Follower;
-    use Favoriter;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
