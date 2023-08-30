@@ -19,7 +19,7 @@
         </div>
 
         <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col space-y-4 self-start sm:flex">
-            <livewire:filter-tags :$tag />
+            <x-filters::tags />
         </aside>
     </x-layouts::container>
 

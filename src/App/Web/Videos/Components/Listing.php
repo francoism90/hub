@@ -2,10 +2,13 @@
 
 namespace App\Web\Videos\Components;
 
+use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
+use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +16,7 @@ use Livewire\WithPagination;
 abstract class Listing extends Component
 {
     use WithPagination;
+    use WithTags;
     use WithVideos;
 
     #[Url(history: true)]
@@ -24,9 +28,43 @@ abstract class Listing extends Component
     #[Url(history: true)]
     public ?string $tag = '';
 
+    #[Url(history: true)]
+    public ?string $type = '';
+
     abstract public function render(): View;
 
     abstract protected function builder(): Paginator;
+
+    #[Computed()]
+    public function tags(): TagCollection
+    {
+        return Tag::query()
+            ->type($this->tagType)
+            ->orderBy('name')
+            ->get()
+            ->sortByDesc(fn (Tag $item) => $item->getRouteKey() === $this->tag);
+    }
+
+    #[Computed]
+    public function tagType(): mixed
+    {
+        $types = $this->tagTypes();
+
+        if (blank($this->type) && filled($this->tag) && $tag = $this->findTagModel($this->tag)) {
+            return $tag->type?->value ?? $types->first();
+        }
+
+        return $types->contains($this->type)
+            ? $this->type
+            : $types->first();
+    }
+
+    public function toggleTags(): void
+    {
+        $types = $this->tagTypes();
+
+        $this->type = $types->after($this->type, $types->first());
+    }
 
     public function setTag(Tag $tag): void
     {
@@ -41,11 +79,6 @@ abstract class Listing extends Component
         $this->resetPage();
     }
 
-    protected function hasSort(string $sort): bool
-    {
-        return filled($this->sort) && $sort === $this->sort;
-    }
-
     public function resetQuery(...$properties): void
     {
         collect($properties)
@@ -53,5 +86,10 @@ abstract class Listing extends Component
             ->map(fn (string $property) => $this->reset($property));
 
         $this->resetPage();
+    }
+
+    protected function hasSort(string $sort): bool
+    {
+        return filled($this->sort) && $sort === $this->sort;
     }
 }
