@@ -5,6 +5,8 @@
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
+            <x-filters::applied />
+
             <div class="grid grid-cols-1 divide-y divide-gray-700">
                 @forelse ($items as $item)
                     <x-videos::card :$item />
@@ -18,8 +20,8 @@
             </div>
         </div>
 
-        <aside class="hidden flex-col space-y-4 self-start overflow-auto sm:flex sm:min-w-[18rem] sm:max-w-[18rem] md:flex">
-            <livewire:filter-tags :$tag :key="time()" />
+        <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col space-y-4 self-start sm:flex">
+            <x-filters::tags />
         </aside>
     </x-layouts::container>
 

@@ -5,10 +5,10 @@ namespace App\Web\Filters\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Tags extends Component
+class Search extends Component
 {
     public function render(): View
     {
-        return view('filters::tags');
+        return view('filters::search');
     }
 }
