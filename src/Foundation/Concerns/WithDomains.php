@@ -8,15 +8,22 @@ trait WithDomains
 {
     public static function name(string $class): string
     {
-        $domain = static::domain($class)->slug();
-
-        $prefix = static::prefix($class)->slug();
+        $namespace = static::namespace($class);
 
         return str($class)
             ->replace('/', '\\')
             ->afterLast('\\')
             ->slug()
-            ->prepend(implode('.', [$domain, $prefix, '']));
+            ->prepend("{$namespace}.");
+    }
+
+    public static function namespace(string $class): string
+    {
+        $domain = static::domain($class)->slug();
+
+        $prefix = static::prefix($class)->slug();
+
+        return implode('.', [$domain, $prefix]);
     }
 
     public static function domain(string $class): Stringable

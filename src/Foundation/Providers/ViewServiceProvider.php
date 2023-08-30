@@ -45,6 +45,8 @@ class ViewServiceProvider extends ServiceProvider
             ->filter(fn (string $class) => is_a($class, Component::class, true))
             ->mapWithKeys(fn (string $class) => [static::name($class) => $class]);
 
+        dd($components->all());
+
         $this->loadViewComponentsAs('', $components->all());
     }
 
@@ -56,12 +58,10 @@ class ViewServiceProvider extends ServiceProvider
             ->name('*.blade.php');
 
         $views = collect($files)
-            ->mapWithKeys(fn (SplFileInfo $file) => [$file->getPath() => static::name($file->getPath())]);
-            // ->mapWithKeys(fn (string $class) => [static::name($class) => $class]);
+            ->mapWithKeys(fn (SplFileInfo $file) => [static::namespace($file->getPath()) => $file->getPath()])
+            ->each(fn (string $path, string $namespace) => $this->loadViewsFrom($path, $namespace));
 
         dd($views);
-
-        // $this->loadViewsFrom('', $components->all());
     }
 
 
