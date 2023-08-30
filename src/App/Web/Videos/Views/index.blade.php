@@ -6,21 +6,6 @@
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
         <div class="grow">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
-                @if (filled($search) || filled($this->tagName))
-                    <div class="inline-flex flex-nowrap items-center justify-between pb-4 text-sm text-gray-400">
-                        <div class="line-clamp-1 pr-4">
-                            <span>{{ __('filter by') }}</span>
-                            <span class="lowercase">{{ implode(' + ', array_filter([$search, $this->tagName])) }}</span>
-                        </div>
-
-                        <div>
-                            <a class="cursor-pointer" wire:click="resetQuery('search', 'tag')">
-                                <x-heroicon-o-x-circle class="h-6 w-6" />
-                            </a>
-                        </div>
-                    </div>
-                @endif
-
                 @foreach ($items as $item)
                     <x-videos::card :$item />
                 @endforeach
@@ -60,8 +45,8 @@
             </div>
         </div>
 
-        <aside class="hidden md:flex">
-            <x-videos::filters />
+        <aside class="hidden self-start overflow-auto sm:min-w-[18rem] sm:max-w-[18rem] md:flex">
+            <livewire:filter-tags :$tag :key="time()" />
         </aside>
     </x-layouts::container>
 
