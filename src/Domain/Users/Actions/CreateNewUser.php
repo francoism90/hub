@@ -11,7 +11,9 @@ class CreateNewUser
 {
     public function executue(array $attributes): User
     {
-        $attributes['password'] = Hash::make($attributes['password'] ?? Str::random());
+        $attributes['password'] = Hash::make(
+            $attributes['password'] ?? Str::random()
+        );
 
         return User::firstOrCreate([
             Arr::only($attributes, ['email']),
