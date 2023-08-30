@@ -3,18 +3,11 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Foundation\Concerns\WithDomains;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Component;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    use WithDomains;
-
     public function register(): void
     {
         // ...
@@ -23,7 +16,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureSeo();
-        // $this->configureComponents();
+        $this->configureComponents();
         $this->configureViews();
     }
 
@@ -35,34 +28,25 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $files = (new Finder)
-            ->in(app_path())
-            ->files()
-            ->name('*.php');
+        $items = collect([
+            ['namespace' => 'App\\Web\\Layouts\\Components', 'prefix' => 'layouts'],
+            ['namespace' => 'App\\Web\\Tags\\Components', 'prefix' => 'tags'],
+            ['namespace' => 'App\\Web\\Videos\\Components', 'prefix' => 'videos'],
+            ['namespace' => 'App\\Web\\Playlists\\Components', 'prefix' => 'playlists'],
+        ]);
 
-        $components = collect($files)
-            ->map(fn (SplFileInfo $file) => static::toClass($file->getRealPath()))
-            ->filter(fn (string $class) => is_a($class, Component::class, true))
-            ->mapWithKeys(fn (string $class) => [static::name($class) => $class]);
-
-        dd($components->all());
-
-        $this->loadViewComponentsAs('', $components->all());
+        $items->each(fn (array $item) => Blade::componentNamespace(...$item));
     }
 
     protected function configureViews(): void
     {
-        $files = (new Finder)
-            ->in(app_path())
-            ->files()
-            ->name('*.blade.php');
+        $items = collect([
+            ['path' => app_path('Web/Layouts/Views'), 'namespace' => 'layouts'],
+            ['path' => app_path('Web/Tags/Views'), 'namespace' => 'tags'],
+            ['path' => app_path('Web/Videos/Views'), 'namespace' => 'videos'],
+            ['path' => app_path('Web/Playlists/Views'), 'namespace' => 'playlists'],
+        ]);
 
-        $views = collect($files)
-            ->mapWithKeys(fn (SplFileInfo $file) => [static::namespace($file->getPath()) => $file->getPath()])
-            ->each(fn (string $path, string $namespace) => $this->loadViewsFrom($path, $namespace));
-
-        dd($views);
+        $items->each(fn (array $item) => $this->loadViewsFrom(...$item));
     }
-
-
 }
