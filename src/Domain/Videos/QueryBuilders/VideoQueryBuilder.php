@@ -3,7 +3,6 @@
 namespace Domain\Videos\QueryBuilders;
 
 use ArrayAccess;
-use Domain\Playlists\Enums\PlaylistType;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;

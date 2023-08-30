@@ -3,7 +3,6 @@
 namespace Domain\Users\Jobs;
 
 use DateTime;
-use Domain\Users\Actions\RegenerateUser;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
