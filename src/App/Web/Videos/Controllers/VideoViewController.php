@@ -9,6 +9,7 @@ use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class VideoViewController extends Component
@@ -26,6 +27,12 @@ class VideoViewController extends Component
     public function render(): View
     {
         return view('videos::view');
+    }
+
+    #[On('time-update')]
+    public function updatePostList($time)
+    {
+        logger($time);
     }
 
     public function toggleFavorite(): void
