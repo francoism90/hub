@@ -109,7 +109,7 @@
 
     <video
         x-ref="video"
-        @timeupdate.throttle.1000ms="timeUpdate"
+        @timeupdate.throttle.750ms="timeUpdate"
         crossorigin="allow-credentials"
         playsinline
         {{ $attributes }} />

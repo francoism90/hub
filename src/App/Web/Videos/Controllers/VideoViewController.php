@@ -34,11 +34,15 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
+        $model = $this->getHistory()->videos()->find($this->video);
+
+        if ($model && now()->diffInMilliseconds($model->pivot->updated_at) < 950) {
+            return;
+        }
+
         $this->getHistory()->attachVideo($this->video, [
             'timestamp' => round($time)
         ]);
-
-        logger($time);
     }
 
     public function toggleFavorite(): void
