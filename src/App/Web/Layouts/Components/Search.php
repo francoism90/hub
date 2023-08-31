@@ -15,10 +15,7 @@ class Search extends Component
 
     public function render(): View
     {
-        return view('layouts::search', [
-            'videos' => $this->videos(),
-            'tags' => $this->tags(),
-        ]);
+        return view('layouts::search');
     }
 
     #[Computed]

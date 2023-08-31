@@ -36,7 +36,7 @@
                     </div>
                 @endif
 
-                @if ($videos->isNotEmpty())
+                @if ($this->videos->isNotEmpty())
                     <a class="inline-flex items-center space-x-2 text-primary-500"
                         href="{{ route('videos.index', ['search' => $this->query]) }}">
                         <h2 class="headline">
@@ -47,13 +47,13 @@
                     </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($videos as $video)
-                            <x-videos::item :item="$video" />
+                        @foreach ($this->videos as $this->video)
+                            <x-videos::item :item="$this->video" />
                         @endforeach
                     </div>
                 @endif
 
-                @if ($tags->isNotEmpty())
+                @if ($this->tags->isNotEmpty())
                     <a class="inline-flex items-center space-x-2 text-primary-500">
                         <h2 class="headline">
                             {{ __('Tags') }}
@@ -61,8 +61,8 @@
                     </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($tags as $tag)
-                            <x-tags::item :item="$tag" />
+                        @foreach ($this->tags as $this->tag)
+                            <x-tags::item :item="$this->tag" />
                         @endforeach
                     </div>
                 @endif
