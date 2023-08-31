@@ -9,7 +9,6 @@ use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
 use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Actions\UpdateVideoDetails;
-use Domain\Videos\Models\Video;
 use Filament\Actions;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
@@ -69,7 +68,7 @@ class EditVideo extends EditRecord
         return true;
     }
 
-    protected function handleRecordUpdate(Model $record, array $data): Video
+    protected function handleRecordUpdate(Model $record, array $data): Model
     {
         app(UpdateVideoDetails::class)->execute($record, $data);
 
@@ -84,7 +83,7 @@ class EditVideo extends EditRecord
             Actions\Action::make('regenerate')
                 ->label(__('Regenerate'))
                 ->icon('heroicon-o-document-check')
-                ->action(fn (Video $record) => app(RegenerateVideo::class)->execute($record)),
+                ->action(fn (Model $record) => app(RegenerateVideo::class)->execute($record)),
 
             Actions\DeleteAction::make()
                 ->icon('heroicon-o-trash'),
