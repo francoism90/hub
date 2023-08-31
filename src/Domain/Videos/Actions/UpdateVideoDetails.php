@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\Actions;
 
-use Domain\Tags\Actions\SyncModelTags;
 use Domain\Videos\Jobs\OptimizeVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Arr;
