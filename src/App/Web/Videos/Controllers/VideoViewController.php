@@ -13,9 +13,9 @@ use Livewire\Component;
 
 class VideoViewController extends Component
 {
+    use WithVideo;
     use WithAuthentication;
     use WithFavorites;
-    use WithVideo;
     use WithWatchlist;
 
     public function mount(): void
