@@ -66,13 +66,13 @@ abstract class GeneralForm
             ->suffixAction(
                 Action::make('current_time')
                     ->icon('heroicon-o-camera')
-                    ->action(function (TextInput $component, Video $record) {
+                    ->action(function (TextInput $component, Video $record, mixed $state) {
                         $videoable = static::getHistory()
                             ->videos()
                             ->firstWhere('id', $record->getKey());
 
                         $component->state(
-                            $videoable?->pivot?->options['timestamp'] ?: null
+                            $videoable?->pivot?->options['timestamp'] ?: $state
                         );
                     })
             );
