@@ -7,7 +7,6 @@ use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource\Pages;
 use App\Admin\Resources\VideoResource\RelationManagers;
 use Domain\Videos\Models\Video;
-use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;

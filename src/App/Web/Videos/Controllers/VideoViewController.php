@@ -15,10 +15,10 @@ use Livewire\Component;
 
 class VideoViewController extends Component
 {
-    use WithVideo;
     use WithAuthentication;
     use WithFavorites;
     use WithHistory;
+    use WithVideo;
     use WithWatchlist;
 
     public function mount(): void
@@ -41,7 +41,7 @@ class VideoViewController extends Component
         }
 
         $this->getHistory()->attachVideo($this->video, [
-            'timestamp' => round($time)
+            'timestamp' => round($time),
         ]);
     }
 

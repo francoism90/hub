@@ -7,7 +7,6 @@ use App\Admin\Resources\VideoResource;
 use App\Admin\Resources\VideoResource\Forms\ContentForm;
 use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
-use App\Admin\Resources\VideoResource\Forms\InformationForm;
 use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
@@ -44,7 +43,7 @@ class EditVideo extends EditRecord
                                 ...FeatureForm::make(),
                                 ...ContentForm::make(),
                             ]),
-                ])
+                    ]),
             ]);
     }
 
