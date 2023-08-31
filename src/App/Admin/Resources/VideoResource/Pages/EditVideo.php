@@ -8,6 +8,7 @@ use App\Admin\Resources\VideoResource\Forms\ContentForm;
 use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
 use Domain\Videos\Actions\RegenerateVideo;
+use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
 use Filament\Forms\Components\Tabs;
@@ -15,6 +16,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\EditRecord\Concerns\Translatable;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
 class EditVideo extends EditRecord
 {
@@ -65,6 +67,13 @@ class EditVideo extends EditRecord
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;
+    }
+
+    protected function handleRecordUpdate(Model $record, array $data): Video
+    {
+        app(UpdateVideoDetails::class)->execute($record, $data);
+
+        return $record;
     }
 
     protected function getHeaderActions(): array
