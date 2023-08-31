@@ -3,6 +3,7 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Playlists\Concerns\WithFavorites;
+use App\Web\Playlists\Concerns\WithHistory;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
@@ -17,6 +18,7 @@ class VideoViewController extends Component
     use WithVideo;
     use WithAuthentication;
     use WithFavorites;
+    use WithHistory;
     use WithWatchlist;
 
     public function mount(): void
@@ -30,8 +32,12 @@ class VideoViewController extends Component
     }
 
     #[On('time-update')]
-    public function updatePostList($time)
+    public function updateHistory(float $time = 0): void
     {
+        $this->getHistory()->attachVideo($this->video, [
+            'timestamp' => round($time)
+        ]);
+
         logger($time);
     }
 
