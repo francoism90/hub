@@ -4,10 +4,14 @@ namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\VideoResource;
+use App\Admin\Resources\VideoResource\Forms\ContentForm;
+use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
+use App\Admin\Resources\VideoResource\Forms\InformationForm;
 use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\EditRecord\Concerns\Translatable;
@@ -25,7 +29,22 @@ class EditVideo extends EditRecord
         return $form
             ->columns(1)
             ->schema([
-                ...GeneralForm::make(),
+                Tabs::make()
+                    ->persistTabInQueryString()
+                    ->tabs([
+                        Tabs\Tab::make('details')
+                            ->label(__('Details'))
+                            ->schema([
+                                ...GeneralForm::make(),
+                            ]),
+
+                        Tabs\Tab::make('content')
+                            ->label(__('Content'))
+                            ->schema([
+                                ...FeatureForm::make(),
+                                ...ContentForm::make(),
+                            ]),
+                ])
             ]);
     }
 

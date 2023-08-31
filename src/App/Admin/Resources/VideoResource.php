@@ -25,14 +25,6 @@ class VideoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-play';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
-
     public static function getRelations(): array
     {
         return [
