@@ -4,9 +4,11 @@ namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\VideoResource;
+use App\Admin\Resources\VideoResource\Forms\GeneralForm;
 use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\EditRecord\Concerns\Translatable;
 use Illuminate\Contracts\Support\Htmlable;
@@ -17,6 +19,15 @@ class EditVideo extends EditRecord
     use Translatable;
 
     protected static string $resource = VideoResource::class;
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->columns(1)
+            ->schema([
+                ...GeneralForm::make(),
+            ]);
+    }
 
     public function getTitle(): string|Htmlable
     {
