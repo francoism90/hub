@@ -2,13 +2,17 @@
 
 namespace App\Admin\Resources\VideoResource\Forms;
 
+use App\Admin\Concerns\InteractsWithPlaylists;
 use App\Admin\Concerns\InteractsWithTags;
+use Domain\Videos\Models\Video;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TextInput;
 
 abstract class GeneralForm
 {
+    use InteractsWithPlaylists;
     use InteractsWithTags;
 
     public static function name(): TextInput
@@ -48,6 +52,27 @@ abstract class GeneralForm
             ->format('Y-m-d');
     }
 
+    public static function snapshot(): TextInput
+    {
+        return TextInput::make('snapshot')
+            ->label(__('Snapshot'))
+            ->nullable()
+            ->numeric()
+            ->suffixAction(
+                Action::make('current_time')
+                    ->icon('heroicon-o-camera')
+                    ->action(function (TextInput $component, Video $record) {
+                        $videoable = static::getHistory()
+                            ->videos()
+                            ->firstWhere('id', $record->getKey());
+
+                        $component->state(
+                            $videoable?->pivot?->options['timestamp'] ?: null
+                        );
+                    })
+            );
+    }
+
     public static function id(): Grid
     {
         return Grid::make('episode')
@@ -66,6 +91,7 @@ abstract class GeneralForm
             static::name(),
             static::tags(),
             static::id(),
+            static::snapshot(),
         ];
     }
 }
