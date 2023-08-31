@@ -3,19 +3,22 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Playlists\Concerns\WithFavorites;
+use App\Web\Playlists\Concerns\WithHistory;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class VideoViewController extends Component
 {
-    use WithVideo;
     use WithAuthentication;
     use WithFavorites;
+    use WithHistory;
+    use WithVideo;
     use WithWatchlist;
 
     public function mount(): void
@@ -26,6 +29,20 @@ class VideoViewController extends Component
     public function render(): View
     {
         return view('videos::view');
+    }
+
+    #[On('time-update')]
+    public function updateHistory(float $time = 0): void
+    {
+        $model = $this->getHistory()->videos()->find($this->video);
+
+        if ($model && now()->diffInMilliseconds($model->pivot->updated_at) < 950) {
+            return;
+        }
+
+        $this->getHistory()->attachVideo($this->video, [
+            'timestamp' => round($time),
+        ]);
     }
 
     public function toggleFavorite(): void

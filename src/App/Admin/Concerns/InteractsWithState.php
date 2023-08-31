@@ -8,7 +8,7 @@ use Spatie\ModelStates\State;
 
 trait InteractsWithState
 {
-    public static function stateOptions(State|string $state): Collection
+    protected static function stateOptions(State|string $state): Collection
     {
         $states = call_user_func([$state, 'all']);
 
