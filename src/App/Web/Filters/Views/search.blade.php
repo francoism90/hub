@@ -3,11 +3,9 @@
         <h3 class="headline">{{ __('Search') }}</h3>
     </div>
 
-    <div class="flex flex-col space-y-3">
-        <input
-            class="input"
-            type="search"
-            autocomplete
-            wire:model.live.debounce.500ms="search" />
-    </div>
+    <input
+        class="input"
+        type="search"
+        autocomplete
+        wire:model.live.debounce.500ms="search" />
 </div>
