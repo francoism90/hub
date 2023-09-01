@@ -29,9 +29,41 @@ export default defineConfig({
       refresh: [...refreshPaths, 'src/App/**', 'src/Admin/**'],
     }),
     VitePWA({
-      strategies: 'injectManifest',
-      srcDir: 'resources/service-worker',
+      registerType: 'autoUpdate',
+      injectRegister: 'script',
       outDir: 'public/build',
+      base: '/',
+      buildBase: '/build/',
+      workbox: {
+        navigateFallback: '/',
+        navigateFallbackDenylist: [/\/[api,vod]+\/.*/],
+        maximumFileSizeToCacheInBytes: 4194304,
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2,webmanifest}']
+      },
+      manifest: {
+        name: 'Hub',
+        short_name: 'Hub',
+        description: 'Hub',
+        theme_color: '#39336c',
+        background_color: '#39336c',
+        orientation: 'portrait-primary',
+        id: '/',
+        scope: '/',
+        start_url: 'https://hub.test/',
+        icons: [
+          {
+            src: '/images/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/images/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      },
     })
   ],
   build: {
