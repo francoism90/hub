@@ -32,13 +32,13 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'script',
       outDir: 'public/build',
-      base: '/',
+      base: 'public',
       buildBase: '/build/',
       workbox: {
         navigateFallback: '/',
         navigateFallbackDenylist: [/\/[api,vod]+\/.*/],
         maximumFileSizeToCacheInBytes: 4194304,
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2,webmanifest}']
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}']
       },
       manifest: {
         name: 'Hub',
