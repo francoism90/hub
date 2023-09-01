@@ -55,12 +55,12 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: 'https://hub.test/storage/images/android-chrome-192x192.png',
+            src: '/storage/images/android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'https://hub.test/storage/images/android-chrome-512x512.png',
+            src: '/storage/images/android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
