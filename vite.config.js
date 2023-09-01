@@ -34,7 +34,7 @@ export default defineConfig({
       outDir: 'public',
       base: 'public',
       scope: '/',
-      buildBase: '/build/',
+      buildBase: '/',
       workbox: {
         navigateFallback: '/',
         navigateFallbackDenylist: [/\/[api,vod]+\/.*/],
@@ -52,7 +52,7 @@ export default defineConfig({
         orientation: 'portrait-primary',
         id: '/',
         scope: '/',
-        start_url: '/',
+        start_url: 'https://hub.test/',
         icons: [
           {
             src: '/storage/images/android-chrome-192x192.png',
