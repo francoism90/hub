@@ -53,7 +53,7 @@ export default defineConfig({
         orientation: 'portrait-primary',
         id: '/',
         scope: '/',
-        start_url: 'https://hub.test/',
+        start_url: '/',
         icons: [
           {
             src: '/storage/images/android-chrome-192x192.png',
