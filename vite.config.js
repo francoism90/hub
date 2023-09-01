@@ -29,44 +29,9 @@ export default defineConfig({
       refresh: [...refreshPaths, 'src/App/**', 'src/Admin/**'],
     }),
     VitePWA({
-      registerSW: true,
-      registerType: 'autoUpdate',
-      injectRegister: 'script',
-      srcDir: 'resources',
-      outDir: 'public',
-      base: '/',
-      scope: '/',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
-      workbox: {
-        navigateFallback: '/',
-        maximumFileSizeToCacheInBytes: 4194304,
-        navigateFallbackDenylist: [/\/[api,vod]+\/.*/],
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}']
-      },
-      manifest: {
-        name: 'Hub',
-        short_name: 'Hub',
-        description: 'Hub',
-        theme_color: '#39336c',
-        background_color: '#39336c',
-        orientation: 'portrait-primary',
-        id: '/',
-        scope: '/',
-        start_url: '/',
-        // icons: [
-        //   {
-        //     src: 'images/android-chrome-192x192.png',
-        //     sizes: '192x192',
-        //     type: 'image/png'
-        //   },
-        //   {
-        //     src: 'images/android-chrome-512x512.png',
-        //     sizes: '512x512',
-        //     type: 'image/png',
-        //     purpose: 'any maskable'
-        //   }
-        // ]
-      }
+      strategies: 'injectManifest',
+      srcDir: 'resources/service-worker',
+      outDir: 'public/build',
     })
   ],
   build: {

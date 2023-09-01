@@ -12,7 +12,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ec4899" />
-    <script id="vite-plugin-pwa:register-sw" src="/build/registerSW.js"></script>
+    <link rel="manifest" href="/build/manifest.webmanifest">
+    <script id="vite-plugin-pwa:register-sw" src="/build/sw.js"></script>
     {!! SEOMeta::generate() !!}
     <style>
         [x-cloak] {
