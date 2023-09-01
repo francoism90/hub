@@ -41,7 +41,7 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 4194304,
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
         cleanupOutdatedCaches: true,
-        directoryIndex: '',
+        directoryIndex: null,
       },
       manifest: {
         name: 'Hub',
