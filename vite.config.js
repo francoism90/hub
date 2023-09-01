@@ -31,14 +31,17 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script',
-      outDir: 'public/build',
+      outDir: 'public',
       base: 'public',
+      scope: '/',
       buildBase: '/build/',
       workbox: {
         navigateFallback: '/',
         navigateFallbackDenylist: [/\/[api,vod]+\/.*/],
         maximumFileSizeToCacheInBytes: 4194304,
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}']
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+        cleanupOutdatedCaches: true,
+        directoryIndex: '',
       },
       manifest: {
         name: 'Hub',
@@ -49,7 +52,7 @@ export default defineConfig({
         orientation: 'portrait-primary',
         id: '/',
         scope: '/',
-        start_url: 'https://hub.test/',
+        start_url: '/',
         icons: [
           {
             src: 'https://hub.test/storage/images/android-chrome-192x192.png',
