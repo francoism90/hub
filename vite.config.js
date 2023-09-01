@@ -31,6 +31,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script',
+      manifestFilename: '../manifest.webmanifest',
       outDir: 'public',
       base: 'public',
       scope: '/',
