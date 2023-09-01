@@ -31,14 +31,13 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script',
-      manifestFilename: '../manifest.webmanifest',
-      outDir: 'public',
+      outDir: 'public/build',
       base: 'public',
+      buildBase: '/build/',
       scope: '/',
-      buildBase: '/',
       workbox: {
         navigateFallback: '/',
-        navigateFallbackDenylist: [/\/[api,admin,vod]+\/.*/],
+        navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
         maximumFileSizeToCacheInBytes: 4194304,
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
         cleanupOutdatedCaches: true,
