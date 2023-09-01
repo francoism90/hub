@@ -36,12 +36,12 @@ export default defineConfig({
       buildBase: '/build/',
       scope: '/',
       workbox: {
-        navigateFallback: null,
-        navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
-        maximumFileSizeToCacheInBytes: 4194304,
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
         cleanupOutdatedCaches: true,
         directoryIndex: null,
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+        maximumFileSizeToCacheInBytes: 4194304,
+        navigateFallback: null,
+        navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
       },
       manifest: {
         name: 'Hub',
