@@ -36,7 +36,7 @@ export default defineConfig({
       buildBase: '/build/',
       scope: '/',
       workbox: {
-        navigateFallback: '/',
+        navigateFallback: null,
         navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
         maximumFileSizeToCacheInBytes: 4194304,
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
