@@ -24,7 +24,7 @@ class VideoIndexController extends Listing
             ->inRandomSeedOrder()
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
-            ->take(16 * 6)
-            ->paginate(16);
+            ->take(24 * 6)
+            ->paginate(24);
     }
 }

@@ -32,7 +32,7 @@ class WatchlistController extends Listing
             ->videos()
             ->with('tags')
             ->orderByDesc('videoables.updated_at')
-            ->take(12 * 6)
-            ->paginate(12);
+            ->take(24 * 6)
+            ->paginate(24);
     }
 }

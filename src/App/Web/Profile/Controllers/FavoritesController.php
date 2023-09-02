@@ -37,7 +37,7 @@ class FavoritesController extends Listing
             ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
-            ->take(12 * 6)
-            ->paginate(12);
+            ->take(24 * 6)
+            ->paginate(24);
     }
 }
