@@ -47,8 +47,8 @@
                     </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($this->videos as $this->video)
-                            <x-videos::item :item="$this->video" />
+                        @foreach ($this->videos as $video)
+                            <x-videos::item :item="$video" />
                         @endforeach
                     </div>
                 @endif
@@ -61,8 +61,8 @@
                     </a>
 
                     <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($this->tags as $this->tag)
-                            <x-tags::item :item="$this->tag" />
+                        @foreach ($this->tags as $tag)
+                            <x-tags::item :item="$tag" />
                         @endforeach
                     </div>
                 @endif

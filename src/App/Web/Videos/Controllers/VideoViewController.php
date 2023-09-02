@@ -8,6 +8,8 @@ use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Domain\Videos\Actions\GetSimilarVideos;
+use Illuminate\Support\LazyCollection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -73,6 +75,12 @@ class VideoViewController extends Component
         return $this->isWatchlisted($this->video)
             ? 'heroicon-s-clock'
             : 'heroicon-o-clock';
+    }
+
+    #[Computed]
+    public function similar(): LazyCollection
+    {
+        return app(GetSimilarVideos::class)->execute($this->video);
     }
 
     public function getListeners(): array
