@@ -12,7 +12,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/storage/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/storage/images/favicon-16x16.png">
-    <link rel="mask-icon" href="/storage/images/safari-pinned-tab.svg" color="#030712">
     <script id="vite-plugin-pwa:register-sw" src="/build/registerSW.js"></script>
     {!! SEOMeta::generate() !!}
     <style>
