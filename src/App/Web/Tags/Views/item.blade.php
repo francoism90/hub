@@ -16,7 +16,7 @@
                         </dd>
                     </dl>
 
-                    <h2 class="line-clamp-2 text-sm font-bold capitalize leading-6 tracking-tight">
+                    <h2 class="line-clamp-1 text-sm font-bold capitalize leading-6 tracking-tight">
                         {{ $item->name }}
                     </h2>
                 </div>

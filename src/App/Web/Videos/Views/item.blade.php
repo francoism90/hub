@@ -16,14 +16,14 @@
                 <a href="{{ route('videos.view', $item) }}">
                     <dl>
                         <dt class="sr-only">Published on</dt>
-                        <dd class="hidden text-ellipsis text-sm font-medium leading-4 text-gray-400 sm:block">
+                        <dd class="text-ellipsis text-sm font-medium leading-4 text-gray-400">
                             <time datetime="{{ $item->created_at->format('Y-m-d\TH:i:s.uP') }}">
                                 {{ $item->created_at->format('F d, Y') }}
                             </time>
                         </dd>
                     </dl>
 
-                    <h2 class="line-clamp-2 text-sm font-bold capitalize leading-6 tracking-tight">
+                    <h2 class="line-clamp-1 text-sm font-bold capitalize leading-6 tracking-tight">
                         {{ $item->name }}
                     </h2>
                 </a>
