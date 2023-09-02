@@ -2,7 +2,7 @@
 
 namespace App\Web\Profile\Controllers;
 
-use App\Web\Playlists\Concerns\WithHistory;
+use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -10,14 +10,14 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 
-class HistoryController extends Listing
+class FavoritesController extends Listing
 {
     use WithAuthentication;
-    use WithHistory;
+    use WithFavorites;
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('History'));
+        SEOMeta::setTitle(__('Favorites'));
     }
 
     public function render(): View
@@ -29,7 +29,7 @@ class HistoryController extends Listing
 
     protected function builder(): Paginator
     {
-        return $this->getHistory()
+        return $this->getFavorites()
             ->videos()
             ->with('tags')
             ->orderByDesc('videoables.updated_at')

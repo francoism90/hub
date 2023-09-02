@@ -31,6 +31,10 @@
                         {{ __('History') }}
                     </a>
 
+                    <a href="{{ route('profile.favorites') }}" class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}">
+                        {{ __('Favorites') }}
+                    </a>
+
                     <a href="{{ route('profile.watchlist') }}" class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}">
                         {{ __('Watchlist') }}
                     </a>

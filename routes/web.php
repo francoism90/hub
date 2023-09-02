@@ -1,5 +1,6 @@
 <?php
 
+use App\Web\Profile\Controllers\FavoritesController;
 use App\Web\Profile\Controllers\HistoryController;
 use App\Web\Profile\Controllers\WatchlistController;
 use App\Web\Tags\Controllers\TagIndexController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 // Profile
 Route::name('profile.')->middleware('auth')->group(function () {
     Route::get('/history', HistoryController::class)->name('history');
+    Route::get('/favorites', FavoritesController::class)->name('favorites');
     Route::get('/watchlist', WatchlistController::class)->name('watchlist');
 });
 

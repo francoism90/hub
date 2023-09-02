@@ -21,7 +21,7 @@ class WatchlistController extends Listing
 
     public function render(): View
     {
-        return view('profile::watchlist', [
+        return view('profile::list', [
             'items' => $this->builder(),
         ]);
     }
