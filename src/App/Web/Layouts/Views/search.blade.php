@@ -11,7 +11,7 @@
             @click.away="open = false"
             class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
 
-            <header class="relative flex items-center space-x-4 px-4">
+            <header class="relative flex items-center px-4">
                 <x-heroicon-o-magnifying-glass class="h-6 w-6 text-gray-300" />
 
                 <input
