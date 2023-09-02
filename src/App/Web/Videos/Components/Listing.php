@@ -28,7 +28,6 @@ abstract class Listing extends Component
     #[Url(history: true)]
     public ?string $tag = '';
 
-    #[Url(history: true)]
     public ?string $type = '';
 
     abstract public function render(): View;
