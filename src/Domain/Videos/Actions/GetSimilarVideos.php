@@ -57,7 +57,7 @@ class GetSimilarVideos
             ->whereKeyNot($model)
             ->withAnyTagsOfAnyType($model->tags)
             ->inRandomSeedOrder()
-            ->take(24)
+            ->take(6)
             ->cursor();
     }
 
@@ -66,7 +66,7 @@ class GetSimilarVideos
         return Video::query()
             ->whereKeyNot($model)
             ->inRandomSeedOrder()
-            ->take(24)
+            ->take(6)
             ->cursor();
     }
 }

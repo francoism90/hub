@@ -10,9 +10,9 @@
             class="h-64 max-h-64 w-full bg-black lg:h-[32rem] lg:max-h-[32rem]"
             autoplay />
 
-        <x-layouts::container>
+        <x-layouts::container class="py-1">
             <div class="grid grid-cols-1 divide-y divide-gray-700">
-                <header class="py-5">
+                <header class="py-4">
                     <dl>
                         <dt class="sr-only">Published on</dt>
                         <dd class="text-base font-medium leading-6 text-gray-400">
@@ -34,7 +34,7 @@
                     </h1>
                 </header>
 
-                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-5 text-center text-sm text-gray-300">
+                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-4 text-center text-sm text-gray-300">
                     <a
                         class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                         wire:click="toggleFavorite">
@@ -55,14 +55,24 @@
                 </div>
 
                 @if ($video->tags->isNotEmpty())
-                    <div class="space-y-1 py-5">
+                    <div class="space-y-1 py-4">
                         <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
                         <x-videos::tags :items="$video->tags" />
                     </div>
                 @endif
 
-                <div class="space-y-1 py-5">
+                <div class="space-y-1 py-4">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Similar videos') }}</h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
+                    @forelse ($this->similar as $item)
+                        <x-videos::item :$item />
+                    @empty
+                        <div class="flex items-center justify-center p-8 text-gray-400">
+                            {{ __('No results found') }}
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </x-layouts::container>
