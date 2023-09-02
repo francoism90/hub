@@ -1,6 +1,6 @@
 <article class="rounded bg-gray-700/40 p-4 shadow-md">
-    <a href="{{ route('videos.view', $item) }}">
-        <div class="flex flex-row flex-nowrap items-center space-x-4">
+    <div class="flex flex-row flex-nowrap items-center space-x-4">
+        <a href="{{ route('videos.view', $item) }}">
             <div class="h-16 w-16 flex-none">
                 <img
                     alt="{{ $item->name }}"
@@ -9,9 +9,11 @@
                     crossorigin="use-credentials"
                     loading="lazy" />
             </div>
+        </a>
 
-            <div class="grow">
-                <div class="flex flex-col space-y-1.5">
+        <div class="grow">
+            <div class="flex flex-col space-y-1.5">
+                <a href="{{ route('videos.view', $item) }}">
                     <dl>
                         <dt class="sr-only">Published on</dt>
                         <dd class="hidden text-ellipsis text-sm font-medium leading-4 text-gray-400 sm:block">
@@ -24,12 +26,12 @@
                     <h2 class="line-clamp-2 text-sm font-bold capitalize leading-6 tracking-tight">
                         {{ $item->name }}
                     </h2>
+                </a>
 
-                    @if ($item->tags)
-                        <x-videos::tags :items="$item->tags" />
-                    @endif
-                </div>
+                @if ($item->tags->isNotEmpty())
+                    <x-videos::tags :items="$item->tags" />
+                @endif
             </div>
         </div>
-    </a>
+    </div>
 </article>
