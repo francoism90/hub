@@ -11,4 +11,9 @@ class Tags extends Component
     {
         return view('filters::tags');
     }
+
+    public function title(string $value): string
+    {
+        return str($value)->plural();
+    }
 }

@@ -1,6 +1,6 @@
 <div class="w-full rounded bg-gray-900/70 p-6 shadow-md">
     <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
-        <h3 class="headline">{{ $this->tagType }}</h3>
+        <h3 class="headline">{{ $title($this->tagType) }}</h3>
         <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />
     </div>
 
