@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { readFileSync } from 'fs'
 import { fileURLToPath, URL } from 'url'
+import { VitePWA } from 'vite-plugin-pwa'
 import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 const host = 'hub.test'
@@ -26,6 +27,46 @@ export default defineConfig({
     laravel({
       input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
       refresh: [...refreshPaths, 'src/App/**', 'src/Admin/**'],
+    }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'script',
+      outDir: 'public/build',
+      base: 'public',
+      buildBase: '/build/',
+      scope: '/',
+      workbox: {
+        cleanupOutdatedCaches: true,
+        directoryIndex: null,
+        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+        maximumFileSizeToCacheInBytes: 4194304,
+        navigateFallback: null,
+        navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
+      },
+      manifest: {
+        name: 'Hub',
+        short_name: 'Hub',
+        description: 'Hub',
+        theme_color: '#030712',
+        background_color: '#030712',
+        orientation: 'portrait-primary',
+        id: '/',
+        scope: '/',
+        start_url: '/',
+        icons: [
+          {
+            src: '/storage/images/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/storage/images/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
+      },
     }),
   ],
   build: {

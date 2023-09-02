@@ -6,12 +6,13 @@
     <meta name="application-name" content="{{ config('app.name') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ec4899" />
-    <meta name="msapplication-TileColor" content="#ec4899" />
-    <meta name="theme-color" content="#ec4899" />
+    <meta name="msapplication-TileColor" content="#030712">
+    <meta name="theme-color" content="#030712">
+    <link rel="manifest" href="/build/manifest.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/storage/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/storage/images/favicon-16x16.png">
+    <script id="vite-plugin-pwa:register-sw" src="/build/registerSW.js"></script>
     {!! SEOMeta::generate() !!}
     <style>
         [x-cloak] {
