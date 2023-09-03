@@ -17,6 +17,7 @@ use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ListImports extends ListRecords
 {
@@ -40,9 +41,9 @@ class ListImports extends ListRecords
                     ->searchable()
                     ->sortable(),
 
-                Columns\TextColumn::make('type')
-                    ->label(__('Type'))
-                    ->formatStateUsing(fn (ImportType $state): ?string => $state?->label)
+                Columns\TextColumn::make('size')
+                    ->formatStateUsing(fn (mixed $state) => human_filesize($state))
+                    ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('state')
@@ -86,6 +87,11 @@ class ListImports extends ListRecords
             ->emptyStateActions([
                 //
             ]);
+    }
+
+    public function getTitle(): string|Htmlable
+    {
+        return __('Import Videos');
     }
 
     protected function getHeaderActions(): array
