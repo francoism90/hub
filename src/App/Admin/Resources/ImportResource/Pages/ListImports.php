@@ -4,14 +4,10 @@ namespace App\Admin\Resources\ImportResource\Pages;
 
 use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Resources\ImportResource;
-use Domain\Imports\Actions\BulkImport;
-use Domain\Imports\Actions\SyncImports;
-use Domain\Imports\Enums\ImportType;
-use Domain\Imports\Models\Import;
-use Domain\Imports\States\Finished;
+use App\Admin\Resources\ImportResource\Actions\BulkImportAction;
+use App\Admin\Resources\ImportResource\Actions\ImportAction;
+use App\Admin\Resources\ImportResource\Actions\SyncAction;
 use Domain\Imports\States\ImportState;
-use Domain\Videos\Actions\CreateVideoByImport;
-use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
 use Filament\Tables\Columns;
@@ -77,7 +73,7 @@ class ListImports extends ListRecords
                     ->options(fn () => static::stateOptions(ImportState::class)),
             ])
             ->actions([
-                $this->importAction(),
+                ImportAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -97,32 +93,8 @@ class ListImports extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            $this->bulkImportAction(),
-            $this->syncAction(),
+            BulkImportAction::make(),
+            SyncAction::make(),
         ];
-    }
-
-    protected function importAction(): Tables\Actions\Action
-    {
-        return Tables\Actions\Action::make('import')
-            ->label(__('Import'))
-            ->disabled(fn (Import $record) => $record->state->equals(Finished::class))
-            ->action(fn (Import $record) => app(CreateVideoByImport::class)->execute($record));
-    }
-
-    protected function bulkImportAction(): Action
-    {
-        return Action::make('bulk_import')
-            ->label(__('Bulk Import'))
-            ->icon('heroicon-o-squares-plus')
-            ->action(fn () => app(BulkImport::class)->execute(ImportType::video()));
-    }
-
-    protected function syncAction(): Action
-    {
-        return Action::make('sync')
-            ->label(__('Scan'))
-            ->icon('heroicon-o-arrow-path')
-            ->action(fn () => app(SyncImports::class)->execute(ImportType::video()));
     }
 }
