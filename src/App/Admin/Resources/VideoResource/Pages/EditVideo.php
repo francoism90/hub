@@ -7,6 +7,7 @@ use App\Admin\Resources\VideoResource;
 use App\Admin\Resources\VideoResource\Forms\ContentForm;
 use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
+use App\Admin\Resources\VideoResource\Forms\MediaForm;
 use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Filament\Actions;
@@ -36,6 +37,12 @@ class EditVideo extends EditRecord
                             ->label(__('Details'))
                             ->schema([
                                 ...GeneralForm::make(),
+                            ]),
+
+                        Tabs\Tab::make('assets')
+                            ->label(__('Assets'))
+                            ->schema([
+                                ...MediaForm::make(),
                             ]),
 
                         Tabs\Tab::make('content')

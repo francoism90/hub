@@ -10,6 +10,7 @@ abstract class MediaForm
     {
         return SpatieMediaLibraryFileUpload::make('clips')
             ->label(__('Clips'))
+            ->required()
             ->multiple()
             ->collection('clips')
             ->disk('media')
@@ -24,6 +25,21 @@ abstract class MediaForm
                 'video/webm',
                 'video/x-m4v',
                 'video/x-matroska',
+            ]);
+    }
+
+    public static function captions(): SpatieMediaLibraryFileUpload
+    {
+        return SpatieMediaLibraryFileUpload::make('captions')
+            ->label(__('Captions'))
+            ->multiple()
+            ->collection('captions')
+            ->disk('conversions')
+            ->conversionsDisk('conversions')
+            ->downloadable()
+            ->acceptedFileTypes([
+                'text/plain',
+                'text/vtt',
             ]);
     }
 
@@ -45,27 +61,12 @@ abstract class MediaForm
             ]);
     }
 
-    public static function captions(): SpatieMediaLibraryFileUpload
-    {
-        return SpatieMediaLibraryFileUpload::make('captions')
-            ->label(__('Captions'))
-            ->multiple()
-            ->collection('captions')
-            ->disk('conversions')
-            ->conversionsDisk('conversions')
-            ->downloadable()
-            ->acceptedFileTypes([
-                'text/plain',
-                'text/vtt',
-            ]);
-    }
-
     public static function make(): array
     {
         return [
             static::clips(),
-            static::thumbnail(),
             static::captions(),
+            static::thumbnail(),
         ];
     }
 }
