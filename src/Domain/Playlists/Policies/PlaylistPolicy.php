@@ -12,9 +12,9 @@ class PlaylistPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function view(User $user, Playlist $model): bool
+    public function view(User $user, Playlist $playlist): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $playlist->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function create(User $user): bool
@@ -22,22 +22,22 @@ class PlaylistPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function update(User $user, Playlist $model): bool
+    public function update(User $user, Playlist $playlist): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $playlist->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function delete(User $user, Playlist $model): bool
+    public function delete(User $user, Playlist $playlist): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $playlist->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function restore(User $user, Playlist $model): bool
+    public function restore(User $user, Playlist $playlist): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $playlist->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function forceDelete(User $user, Playlist $model): bool
+    public function forceDelete(User $user, Playlist $playlist): bool
     {
         return $user->hasRole('super-admin');
     }

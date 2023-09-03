@@ -12,7 +12,7 @@ class VideoPolicy
         return true;
     }
 
-    public function view(User $user, Video $model): bool
+    public function view(User $user, Video $video): bool
     {
         return true;
     }
@@ -22,22 +22,22 @@ class VideoPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function update(User $user, Video $model): bool
+    public function update(User $user, Video $video): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $video->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function delete(User $user, Video $model): bool
+    public function delete(User $user, Video $video): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $video->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function restore(User $user, Video $model): bool
+    public function restore(User $user, Video $video): bool
     {
-        return $model->user()->is($user) || $user->hasRole('super-admin');
+        return $video->user()->is($user) || $user->hasRole('super-admin');
     }
 
-    public function forceDelete(User $user, Video $model): bool
+    public function forceDelete(User $user, Video $video): bool
     {
         return $user->hasRole('super-admin');
     }

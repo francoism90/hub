@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Concerns\InteractsWithAuthentication;
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\TagResource\Pages;
 use Domain\Tags\Enums\TagType;
@@ -13,6 +14,7 @@ use Filament\Resources\Resource;
 
 class TagResource extends Resource
 {
+    use InteractsWithAuthentication;
     use InteractsWithFormData;
     use Translatable;
 
@@ -47,6 +49,11 @@ class TagResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return __('Manage');
+    }
+
+    public static function canViewAny(): bool
+    {
+        return static::hasRole('super-admin');
     }
 
     public static function getPages(): array

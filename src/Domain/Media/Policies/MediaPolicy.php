@@ -4,41 +4,40 @@ namespace Domain\Media\Policies;
 
 use Domain\Media\Models\Media;
 use Domain\Users\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class MediaPolicy
 {
-    public function viewAny(User $user): Response|bool
+    public function viewAny(User $user): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function view(User $user, Media $model): Response|bool
+    public function view(User $user, Media $media): bool
     {
         return true;
     }
 
-    public function create(User $user): Response|bool
+    public function create(User $user): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function update(User $user, Media $model): Response|bool
+    public function update(User $user, Media $media): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function delete(User $user, Media $model): Response|bool
+    public function delete(User $user, Media $media): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function restore(User $user, Media $model): Response|bool
+    public function restore(User $user, Media $media): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function forceDelete(User $user, Media $model): Response|bool
+    public function forceDelete(User $user, Media $media): bool
     {
         return $user->hasRole('super-admin');
     }

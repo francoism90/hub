@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Concerns\InteractsWithAuthentication;
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource\Pages;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VideoResource extends Resource
 {
+    use InteractsWithAuthentication;
     use InteractsWithFormData;
     use InteractsWithScout;
     use Translatable;
@@ -43,6 +45,11 @@ class VideoResource extends Resource
             'create' => Pages\CreateVideo::route('/create'),
             'edit' => Pages\EditVideo::route('/{record}'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return static::hasRole('super-admin');
     }
 
     public static function getEloquentQuery(): Builder
