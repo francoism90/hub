@@ -107,7 +107,7 @@ class ListImports extends ListRecords
     protected function bulkImportAction(): Action
     {
         return Action::make('bulk_import')
-            ->label(__('Import'))
+            ->label(__('Bulk Import'))
             ->icon('heroicon-o-squares-plus')
             ->action(fn () => app(BulkImport::class)->execute(ImportType::video()));
     }
