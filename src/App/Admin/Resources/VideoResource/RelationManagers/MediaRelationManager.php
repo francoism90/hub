@@ -39,6 +39,7 @@ class MediaRelationManager extends RelationManager
         return $table
             ->deferLoading()
             ->recordTitleAttribute('name')
+            ->defaultSort('collection_name')
             ->columns([
                 Columns\TextColumn::make('name')
                     ->limit()
@@ -57,6 +58,8 @@ class MediaRelationManager extends RelationManager
                     ->toggleable(isToggledHiddenByDefault: false),
 
                 Columns\TextColumn::make('size')
+                    ->label(__('Size'))
+                    ->sortable()
                     ->formatStateUsing(fn (int $state) => human_filesize($state))
                     ->toggleable(isToggledHiddenByDefault: false),
 
@@ -103,5 +106,10 @@ class MediaRelationManager extends RelationManager
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
             ]);
+    }
+
+    public function isReadOnly(): bool
+    {
+        return true;
     }
 }
