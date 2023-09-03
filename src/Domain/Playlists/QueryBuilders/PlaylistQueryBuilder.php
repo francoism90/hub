@@ -10,6 +10,12 @@ class PlaylistQueryBuilder extends Builder
 {
     use InteractsWithScout;
 
+    public function mixer(): self
+    {
+        return $this
+            ->where('type', PlaylistType::mixer());
+    }
+
     public function system(): self
     {
         return $this
