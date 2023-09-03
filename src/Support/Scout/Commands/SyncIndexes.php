@@ -21,12 +21,16 @@ class SyncIndexes extends Command implements Isolatable
     {
         $this->call('scout:sync-index-settings');
 
-        $classes = collect([
-            \Domain\Users\Models\User::class,
-            \Domain\Tags\Models\Tag::class,
-            \Domain\Videos\Models\Video::class,
-        ]);
+        $driver = config('scout.driver');
 
-        $classes->each(fn (string $class) => $this->call('scout:import', ['model' => $class]));
+        $indexes = (array) config('scout.'.$driver.'.index-settings', []);
+
+        if (count($indexes)) {
+            foreach ($indexes as $name => $settings) {
+                if (class_exists($name)) {
+                    $this->call('scout:import', ['model' => $name]);
+                }
+            }
+        }
     }
 }

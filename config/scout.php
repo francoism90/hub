@@ -1,5 +1,9 @@
 <?php
 
+use Domain\Tags\Models\Tag;
+use Domain\Users\Models\User;
+use Domain\Videos\Models\Video;
+
 return [
 
     /*
@@ -133,7 +137,7 @@ return [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
         'key' => env('MEILISEARCH_KEY', null),
         'index-settings' => [
-            'users' => [
+            User::class => [
                 'filterableAttributes' => [
                     'id',
                     'email',
@@ -156,7 +160,7 @@ return [
                 ],
             ],
 
-            'videos' => [
+            Video::class => [
                 'filterableAttributes' => [
                     'id',
                     'studios',
@@ -243,7 +247,7 @@ return [
                 ],
             ],
 
-            'tags' => [
+            Tag::class => [
                 'filterableAttributes' => [
                     'id',
                     'type',
