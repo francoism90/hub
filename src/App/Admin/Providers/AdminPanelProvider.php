@@ -37,6 +37,7 @@ class AdminPanelProvider extends PanelProvider
             ->profile(EditProfile::class)
             ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->favicon(asset('storage/images/favicon-32x32.png'))
             ->discoverResources(in: app_path('Admin/Resources'), for: 'App\\Admin\\Resources')
             ->discoverPages(in: app_path('Admin/Pages'), for: 'App\\Admin\\Pages')
             ->discoverWidgets(in: app_path('Admin/Widgets'), for: 'App\\Admin\\Widgets')
