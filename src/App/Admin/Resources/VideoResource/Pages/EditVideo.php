@@ -89,8 +89,15 @@ class EditVideo extends EditRecord
 
             Actions\Action::make('regenerate')
                 ->label(__('Regenerate'))
-                ->icon('heroicon-o-document-check')
+                ->color('gray')
+                ->icon('heroicon-o-arrow-path')
                 ->action(fn (Model $record) => app(RegenerateVideo::class)->execute($record)),
+
+            Actions\Action::make('view')
+                ->label(__('View'))
+                ->color('gray')
+                ->icon('heroicon-o-eye')
+                ->url(fn (Model $record) => route('videos.view', $record)),
 
             Actions\DeleteAction::make()
                 ->icon('heroicon-o-trash'),
