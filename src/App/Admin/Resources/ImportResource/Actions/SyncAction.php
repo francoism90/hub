@@ -3,7 +3,6 @@
 namespace App\Admin\Resources\ImportResource\Actions;
 
 use Domain\Imports\Actions\SyncImports;
-use Domain\Imports\Enums\ImportType;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 
@@ -27,9 +26,7 @@ class SyncAction extends Action
         $this->successNotificationTitle(__('Sync Completed'));
 
         $this->action(function (): void {
-            $this->process(fn () => app(SyncImports::class)->execute(
-                ImportType::video()
-            ));
+            $this->process(fn () => app(SyncImports::class)->execute());
 
             $this->success();
         });

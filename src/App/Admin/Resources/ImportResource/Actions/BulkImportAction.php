@@ -3,7 +3,6 @@
 namespace App\Admin\Resources\ImportResource\Actions;
 
 use Domain\Imports\Actions\BulkImport;
-use Domain\Imports\Enums\ImportType;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 
@@ -27,9 +26,7 @@ class BulkImportAction extends Action
         $this->successNotificationTitle(__('Import Completed'));
 
         $this->action(function (): void {
-            $this->process(fn () => app(BulkImport::class)->execute(
-                ImportType::video()
-            ));
+            $this->process(fn () => app(BulkImport::class)->execute());
 
             $this->success();
         });

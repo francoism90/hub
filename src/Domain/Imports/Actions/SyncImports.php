@@ -2,7 +2,6 @@
 
 namespace Domain\Imports\Actions;
 
-use Domain\Imports\Enums\ImportType;
 use Domain\Imports\Models\Import;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Finder\Finder;
@@ -10,23 +9,22 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class SyncImports
 {
-    public function execute(ImportType $type): void
+    public function execute(): void
     {
-        $finder = $this->getImportables($type);
+        $finder = $this->getImportables();
 
-        $this->createModels($finder, $type);
+        $this->createModels($finder);
 
         $this->cleanupModels($finder);
     }
 
-    protected function createModels(Finder $finder, ImportType $type): void
+    protected function createModels(Finder $finder): void
     {
         collect($finder)
             ->each(fn (SplFileInfo $file) => app(CreateImport::class)->execute([
                 'file_name' => $file->getFilename(),
                 'name' => $file->getFilenameWithoutExtension(),
                 'size' => $file->getSize(),
-                'type' => $type,
             ]));
     }
 
@@ -42,14 +40,14 @@ class SyncImports
             ->delete();
     }
 
-    protected function getImportables(ImportType $type): Finder
+    protected function getImportables(): Finder
     {
         return (new Finder)
             ->in(Storage::disk('import')->path(''))
             ->files()
             ->size('>= 1K')
             ->filter(fn (SplFileInfo $file) => str_starts_with(
-                mime_content_type($file->getRealPath()), "{$type->value}/")
+                mime_content_type($file->getRealPath()), 'video/')
             );
     }
 }

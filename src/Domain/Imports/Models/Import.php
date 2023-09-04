@@ -3,7 +3,6 @@
 namespace Domain\Imports\Models;
 
 use Database\Factories\ImportFactory;
-use Domain\Imports\Enums\ImportType;
 use Domain\Imports\QueryBuilders\ImportQueryBuilder;
 use Domain\Imports\States\ImportState;
 use Domain\Users\Concerns\InteractsWithUser;
@@ -51,7 +50,6 @@ class Import extends Model
      */
     protected $casts = [
         'state' => ImportState::class,
-        'type' => ImportType::class,
         'finished_at' => 'datetime',
     ];
 

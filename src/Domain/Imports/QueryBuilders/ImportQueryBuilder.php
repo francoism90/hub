@@ -2,7 +2,6 @@
 
 namespace Domain\Imports\QueryBuilders;
 
-use Domain\Imports\Enums\ImportType;
 use Domain\Imports\States\Failed;
 use Domain\Imports\States\Finished;
 use Domain\Imports\States\Pending;
@@ -10,12 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ImportQueryBuilder extends Builder
 {
-    public function type(ImportType $type): self
-    {
-        return $this
-            ->where('type', $type->value);
-    }
-
     public function pending(): self
     {
         return $this
