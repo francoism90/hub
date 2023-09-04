@@ -2,7 +2,6 @@
 
 namespace Foundation\Console;
 
-use Domain\Videos\Commands\CleanVideos;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Support\Scout\Commands\SyncIndexes;
@@ -11,7 +10,6 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         SyncIndexes::class,
-        CleanVideos::class,
     ];
 
     protected function schedule(Schedule $schedule): void
