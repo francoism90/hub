@@ -3,26 +3,17 @@
 namespace Domain\Imports\Actions;
 
 use Domain\Imports\Models\Import;
+use Domain\Imports\States\Pending;
 use Illuminate\Support\Arr;
 
 class CreateImport
 {
     public function execute(array $attributes): Import
     {
-        $model = Import::query()
-            ->pending()
-            ->where('file_name', $attributes['file_name'])
-            ->first();
+        $attributes['state'] = Pending::class;
 
-        if ($model) {
-            $model->updateOrFail(
-                Arr::only($attributes, ['name', 'size', 'type', 'mime_type'])
-            );
-
-            return $model;
-        }
-
-        return Import::create(
+        return Import::updateOrCreate(
+            Arr::only($attributes, ['file_name', 'state']),
             Arr::only($attributes, app(Import::class)->getFillable())
         );
     }
