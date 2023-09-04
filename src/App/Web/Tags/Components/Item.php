@@ -28,4 +28,11 @@ class Item extends Component
             default => 'heroicon-o-hashtag',
         };
     }
+
+    public function type(): string
+    {
+        return property_exists($this->item->type, 'label')
+            ? $this->item->type->label
+            : $this->item->type;
+    }
 }
