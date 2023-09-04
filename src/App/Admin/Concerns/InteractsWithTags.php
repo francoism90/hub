@@ -17,6 +17,7 @@ trait InteractsWithTags
                 name: 'tags',
                 titleAttribute: 'name',
             )
+            ->searchDebounce(500)
             ->getSearchResultsUsing(fn (string $search): array => static::tagSearch($search))
             ->getOptionLabelFromRecordUsing(fn (Tag $record) => $record->name);
     }
