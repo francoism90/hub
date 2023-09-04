@@ -27,12 +27,12 @@ trait WithVideo
         $this->dispatch('$refresh');
     }
 
-    protected function onVideoDeleted(): void
+    public function onVideoDeleted(): void
     {
         $this->refreshVideo();
     }
 
-    protected function onVideoSaved(): void
+    public function onVideoSaved(): void
     {
         $this->refreshVideo();
     }
@@ -40,8 +40,8 @@ trait WithVideo
     protected function getVideoListeners(): array
     {
         return [
-            "echo-private:video.{$this->getVideoId()},deleted" => 'onVideoDeleted',
-            "echo-private:video.{$this->getVideoId()},saved" => 'onVideoSaved',
+            "echo-private:video.{$this->getVideoId()},.deleted" => 'onVideoDeleted',
+            "echo-private:video.{$this->getVideoId()},.saved" => 'onVideoSaved',
         ];
     }
 }
