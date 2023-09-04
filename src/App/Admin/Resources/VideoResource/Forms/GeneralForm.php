@@ -22,7 +22,20 @@ abstract class GeneralForm
             ->required()
             ->string()
             ->autofocus()
-            ->maxLength(255);
+            ->maxLength(255)
+            ->suffixAction(
+                Action::make('title_case')
+                    ->icon('heroicon-o-language')
+                    ->action(function (TextInput $component, mixed $state) {
+                        $component->state(
+                            str($state)
+                                ->replace('.', ' ')
+                                ->title()
+                                ->trim()
+                                ->value()
+                        );
+                    })
+            );;
     }
 
     public static function season(): TextInput
