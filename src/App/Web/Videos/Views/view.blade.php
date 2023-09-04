@@ -34,7 +34,7 @@
                     </h1>
                 </header>
 
-                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-4 text-center text-sm text-gray-300">
+                <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-3 text-center text-sm text-gray-300">
                     <a
                         class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                         wire:click="toggleFavorite">
@@ -62,17 +62,19 @@
                 @endif
 
                 <div class="space-y-1 py-4">
-                    <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Similar videos') }}</h2>
-                </div>
+                    <h2 class="text-sm uppercase tracking-wide text-gray-400">
+                        {{ __('Similar videos') }}
+                    </h2>
 
-                <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
-                    @forelse ($this->similar as $item)
-                        <x-videos::item :$item />
-                    @empty
-                        <div class="flex items-center justify-center p-8 text-gray-400">
-                            {{ __('No videos found') }}
-                        </div>
-                    @endforelse
+                    <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
+                        @forelse ($this->similar as $item)
+                            <x-videos::item :$item />
+                        @empty
+                            <div class="flex items-center justify-center p-8 text-gray-400">
+                                {{ __('No videos found') }}
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </x-layouts::container>
