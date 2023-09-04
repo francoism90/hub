@@ -34,7 +34,6 @@ class Import extends Model
         'name',
         'mime_type',
         'size',
-        'type',
         'finished_at',
     ];
 
