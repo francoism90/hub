@@ -1,7 +1,7 @@
-<div class="flex flex-wrap gap-x-2.5 gap-y-1">
+<div {{ $attributes->class('flex flex-wrap gap-x-2.5 gap-y-1 text-sm font-medium') }}>
     @foreach ($items as $item)
         <a
-            class="text-sm font-medium uppercase text-primary-500 hover:text-primary-400"
+            class="uppercase text-primary-500 hover:text-primary-400"
             href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
             {{ $item->name }}
         </a>
