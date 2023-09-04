@@ -90,7 +90,7 @@ class EditVideo extends EditRecord
             Actions\Action::make('regenerate')
                 ->label(__('Regenerate'))
                 ->color('gray')
-                ->icon('heroicon-o-arrow-path')
+                ->icon('heroicon-o-document-check')
                 ->action(fn (Model $record) => app(RegenerateVideo::class)->execute($record)),
 
             Actions\Action::make('view')
