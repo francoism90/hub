@@ -61,7 +61,6 @@ abstract class GeneralForm
         return DatePicker::make('released_at')
             ->label(__('Released At'))
             ->nullable()
-            ->native(false)
             ->seconds(false)
             ->placeholder('YYYY-MM-DD')
             ->displayFormat('Y-m-d')
