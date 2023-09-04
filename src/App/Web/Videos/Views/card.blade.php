@@ -25,7 +25,7 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <div class="py-2">
+    <div class="h-56 max-h-[14rem] min-h-[14rem] py-2">
         <div
             x-data="{ preview: false }"
             @mouseover="preview = true"
@@ -33,7 +33,7 @@
             @touchstart.passive="preview = true"
             @touchmove.passive="preview = true"
             @touchend.passive="preview = false"
-            class="relative h-56 max-h-[14rem] min-h-[14rem] w-full">
+            class="relative h-full w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->name }}"
