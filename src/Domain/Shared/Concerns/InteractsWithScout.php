@@ -22,8 +22,7 @@ trait InteractsWithScout
     {
         return $this
             ->getModel()
-            ->search($value)
-            ->take(config('scout.pagination.maxTotalHits', 500));
+            ->search($value);
     }
 
     protected function getTableColumn(): string
