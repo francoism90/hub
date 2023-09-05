@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="msapplication-TileColor" content="#030712">
     <meta name="theme-color" content="#030712">
-    <link rel="manifest" href="/build/manifest.webmanifest">
-    <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/storage/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/storage/images/favicon-16x16.png">
-    <script id="vite-plugin-pwa:register-sw" src="/build/registerSW.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('storage/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('build/manifest.webmanifest') }}">
+    <script id="vite-plugin-pwa:register-sw" src="{{ asset('build/registerSW.js') }}"></script>
     {!! SEOMeta::generate() !!}
     <style>
         [x-cloak] {
