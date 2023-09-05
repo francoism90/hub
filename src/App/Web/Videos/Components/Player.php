@@ -9,7 +9,7 @@ use Illuminate\View\View;
 class Player extends Component
 {
     public function __construct(
-        public Video $model,
+        public Video $video,
         public string $manifest = '',
         public bool $controls = true,
         public float $startsAt = 0,

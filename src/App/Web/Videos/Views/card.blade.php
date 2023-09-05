@@ -53,7 +53,7 @@
                     <x-videos::player
                         x-cloak
                         x-show="preview"
-                        :model="$item"
+                        :video="$item"
                         :manifest="$item->preview"
                         :controls="false"
                         class="absolute inset-0 z-10 h-full w-full object-fill"
