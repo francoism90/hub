@@ -2,7 +2,7 @@
 
 namespace Domain\Shared\Concerns;
 
-use Laravel\Scout\Builder;
+use Illuminate\Support\Collection;
 
 trait InteractsWithScout
 {
@@ -10,19 +10,20 @@ trait InteractsWithScout
     {
         $column = $this->getTableColumn();
 
-        $models = $this->getScoutBuilder($value);
+        $keys = $this->getScoutKeys($value);
 
         return $this
             ->reorder()
-            ->whereIn($column, $models->keys())
-            ->orderByRaw("FIELD ({$column}, ?)", [$models->keys()->implode(',')]);
+            ->whereIn($column, $keys)
+            ->orderByRaw("FIND_IN_SET ({$column}, ?)", [$keys->implode(',')]);
     }
 
-    protected function getScoutBuilder(string $value): Builder
+    protected function getScoutKeys(string $value): Collection
     {
         return $this
             ->getModel()
-            ->search($value);
+            ->search($value)
+            ->keys();
     }
 
     protected function getTableColumn(): string
