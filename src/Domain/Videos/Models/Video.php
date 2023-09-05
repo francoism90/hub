@@ -208,7 +208,7 @@ class Video extends Model implements HasMedia
     public function thumbnail(): Attribute
     {
         return Attribute::make(
-            get: fn () => route('api.videos.thumbnail', $this)
+            get: fn () => route('api.videos.thumbnail', [$this, 'v' => $this->updated_at->timestamp])
         )->shouldCache();
     }
 
