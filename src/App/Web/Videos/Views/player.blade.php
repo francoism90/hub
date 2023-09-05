@@ -103,7 +103,7 @@
             })
             @endif
     
-            player.load('{{ $manifest }}')
+            player.load('{{ $manifest }}', {{ $startsAt }})
         }
     }">
 

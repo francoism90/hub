@@ -62,6 +62,14 @@ class VideoViewController extends Component
     }
 
     #[Computed]
+    public function startsAt(): float
+    {
+        $model = $this->getHistory()->videos()->find($this->video);
+
+        return data_get($model?->pivot->options, 'timestamp', 0);
+    }
+
+    #[Computed]
     public function favorite(): string
     {
         return $this->isFavorited($this->video)
