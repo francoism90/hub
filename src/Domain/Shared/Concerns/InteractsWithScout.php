@@ -23,6 +23,7 @@ trait InteractsWithScout
         return $this
             ->getModel()
             ->search($value)
+            ->whereIn('id', $this->getIds())
             ->keys();
     }
 
@@ -32,5 +33,14 @@ trait InteractsWithScout
             $this->getModel()->getTable(),
             $this->getModel()->getKeyName(),
         ]);
+    }
+
+    protected function getIds(): array
+    {
+        return $this
+            ->get('id')
+            ->pluck('id')
+            ->unique()
+            ->toArray();
     }
 }

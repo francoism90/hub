@@ -10,18 +10,14 @@ trait InteractsWithScout
     {
         $this->applyColumnSearchesToTableQuery($query);
 
-        $search = $this->getTableSearch();
+        $value = $this->getTableSearch();
 
-        if (blank($search)) {
+        if (blank($value)) {
             return $query;
         }
 
-        $keys = $this->getModel()::search($search)->keys();
-
         return $query
-            ->whereIn('id', $keys)
-            ->when(blank($this->getTableSortColumn()), fn (Builder $query) => $query
-                ->orderByRaw('FIND_IN_SET (id, ?)', [$keys->implode(',')])
-            );
+            ->search($value)
+            ->when(filled($this->getTableSortColumn()), fn (Builder $query) => $query->reorder());
     }
 }
