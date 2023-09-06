@@ -49,7 +49,7 @@ class ListVideos extends ListRecords
                 Columns\TextColumn::make('created_at')
                     ->label(__('Created At'))
                     ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: false)
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
 
                 Columns\TextColumn::make('updated_at')
