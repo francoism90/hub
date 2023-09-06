@@ -203,7 +203,7 @@ class Video extends Model implements HasMedia
     public function identifier(): Attribute
     {
         return Attribute::make(
-            get: fn () => implode('-', [$this->season, $this->episode, $this->part])
+            get: fn () => implode('-', array_filter([$this->season, $this->episode, $this->part]))
         )->shouldCache();
     }
 
