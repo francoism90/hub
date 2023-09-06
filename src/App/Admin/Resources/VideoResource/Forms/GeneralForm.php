@@ -35,7 +35,7 @@ abstract class GeneralForm
                                 ->value()
                         );
                     })
-            );;
+            );
     }
 
     public static function season(): TextInput
@@ -90,9 +90,9 @@ abstract class GeneralForm
 
     public static function id(): Grid
     {
-        return Grid::make('episode')
+        return Grid::make('id')
             ->columns(3)
-            ->label(__('Episode'))
+            ->label(__('ID'))
             ->schema([
                 static::season(),
                 static::episode(),
