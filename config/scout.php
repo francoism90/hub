@@ -141,7 +141,6 @@ return [
                 'filterableAttributes' => [
                     'id',
                     'email',
-                    'state',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -163,13 +162,13 @@ return [
             Video::class => [
                 'filterableAttributes' => [
                     'id',
+                    'identifier',
+                    'people',
                     'studios',
                     'genres',
                     'languages',
-                    'people',
                     'adult',
-                    'state',
-                    'status',
+                    'released_at',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -177,13 +176,10 @@ return [
 
                 'searchableAttributes' => [
                     'name',
-                    'titles',
-                    'episode',
-                    'season',
+                    'identifier',
                     'people',
                     'studios',
                     'genres',
-                    'released_at',
                     'content',
                     'summary',
                     'languages',
@@ -191,8 +187,7 @@ return [
 
                 'sortableAttributes' => [
                     'name',
-                    'season',
-                    'episode',
+                    'identifier',
                     'released_at',
                     'created_at',
                     'updated_at',
@@ -243,7 +238,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 10000,
+                    'maxTotalHits' => 1500,
                 ],
             ],
 
@@ -296,7 +291,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 10000,
+                    'maxTotalHits' => 1500,
                 ],
             ],
         ],

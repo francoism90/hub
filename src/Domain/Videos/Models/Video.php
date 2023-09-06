@@ -64,6 +64,7 @@ class Video extends Model implements HasMedia
         'summary',
         'season',
         'episode',
+        'part',
         'adult',
         'snapshot',
         'state',
@@ -199,10 +200,10 @@ class Video extends Model implements HasMedia
         return $models->loadMissing('tags');
     }
 
-    public function publishedAt(): Attribute
+    public function identifier(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->released_at ?: $this->created_at
+            get: fn () => implode('-', [$this->season, $this->episode, $this->part])
         )->shouldCache();
     }
 
@@ -220,21 +221,26 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
+    public function publishedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->released_at ?: $this->created_at
+        )->shouldCache();
+    }
+
     public function toSearchableArray(): array
     {
         return [
             'id' => $this->getScoutKey(),
             'name' => $this->name,
-            'titles' => $this->titles,
-            'season' => $this->season,
-            'episode' => $this->episode,
+            'identifier' => $this->identifier,
             'content' => $this->content,
             'summary' => $this->summary,
             'adult' => $this->adult,
             'studios' => $this->tags->type(TagType::studio())->seo(),
+            'people' => $this->tags->type(TagType::person())->seo(),
             'genres' => $this->tags->type(TagType::genre())->seo(),
             'languages' => $this->tags->type(TagType::language())->seo(),
-            'people' => $this->tags->type(TagType::person())->seo(),
             'released_at' => $this->released_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,

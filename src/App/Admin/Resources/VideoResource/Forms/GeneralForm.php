@@ -60,6 +60,15 @@ abstract class GeneralForm
             ->maxLength(255);
     }
 
+    public static function part(): TextInput
+    {
+        return TextInput::make('part')
+            ->label(__('Part'))
+            ->nullable()
+            ->string()
+            ->maxLength(255);
+    }
+
     public static function released(): DatePicker
     {
         return DatePicker::make('released_at')
@@ -102,20 +111,21 @@ abstract class GeneralForm
     public static function id(): Grid
     {
         return Grid::make('id')
-            ->columns(3)
+            ->columns(4)
             ->label(__('Id'))
             ->schema([
                 static::season(),
                 static::episode(),
+                static::part(),
                 static::released(),
             ]);
     }
 
-    public static function status(): Grid
+    public static function meta(): Grid
     {
-        return Grid::make('status')
+        return Grid::make('meta')
             ->columns(2)
-            ->label(__('Status'))
+            ->label(__('Metadata'))
             ->schema([
                 static::state(),
                 static::snapshot(),
@@ -128,7 +138,7 @@ abstract class GeneralForm
             static::name(),
             static::tags(),
             static::id(),
-            static::status(),
+            static::meta(),
         ];
     }
 }
