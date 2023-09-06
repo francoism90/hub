@@ -21,12 +21,12 @@ trait InteractsWithScout
 
     protected function getScoutKeys(string $value): Collection
     {
-        $ids = $this->getIds();
+        $ids = $this->getWheres()->get('id');
 
         return $this
             ->getModel()
             ->search($value)
-            ->when($ids->isNotEmpty(), fn (Builder $query) => $query->whereIn('id', $ids->toArray()))
+            ->when($ids, fn (Builder $query) => $query->whereIn('id', $ids))
             ->keys();
     }
 
@@ -38,15 +38,9 @@ trait InteractsWithScout
         ]);
     }
 
-    protected function getIds(): Collection
+    protected function getWheres(): Collection
     {
-        if (blank($this->getQuery()->wheres)) {
-            return collect();
-        }
-
-        return $this
-            ->get('id')
-            ->pluck('id')
-            ->unique();
+        return collect($this->getQuery()->wheres)
+            ->mapWithKeys(fn (array $where) => [$where['column'] => $where['values'] ?? null]);
     }
 }

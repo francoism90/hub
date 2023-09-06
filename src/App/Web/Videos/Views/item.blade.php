@@ -33,7 +33,7 @@
 
                         @if ($item->part)
                             <dt class="sr-only">Part</dt>
-                            <dd class="text-base font-medium leading-4 text-gray-400">
+                            <dd class="text-xs font-medium text-gray-400">
                                 {{ $item->part }}
                             </dd>
                         @endif
