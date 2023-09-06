@@ -7,7 +7,7 @@
         <x-videos::player
             :video="$video"
             :manifest="$video->stream"
-            :starts-at="$this->startsAt"
+            :starts-at="$this->starts"
             autoplay />
 
         <x-layouts::container class="py-1">
@@ -16,8 +16,8 @@
                     <dl>
                         <dt class="sr-only">Published on</dt>
                         <dd class="text-base font-medium leading-6 text-gray-400">
-                            <time datetime="{{ $video->created_at->format('Y-m-d\TH:i:s.uP') }}">
-                                {{ $video->created_at->format('F d, Y') }}
+                            <time datetime="{{ $video->published_at->format('Y-m-d\TH:i:s.uP') }}">
+                                {{ $video->published_at->format('F d, Y') }}
                             </time>
                         </dd>
 

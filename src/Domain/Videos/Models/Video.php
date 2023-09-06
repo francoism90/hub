@@ -198,6 +198,13 @@ class Video extends Model implements HasMedia
         return $models->loadMissing('tags');
     }
 
+    public function publishedAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->released_at ?: $this->created_at
+        )->shouldCache();
+    }
+
     public function placeholder(): Attribute
     {
         return Attribute::make(
