@@ -68,7 +68,9 @@ abstract class Listing extends Component
     {
         $types = $this->tagTypes();
 
-        $this->type = $types->after($this->type, $types->first());
+        $type = $types->first();
+
+        $this->type = $types->after($this->type ?: $type, $types->first());
     }
 
     public function setTag(Tag $tag): void
