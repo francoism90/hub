@@ -22,9 +22,16 @@
                         </dd>
 
                         @if ($video->episode || $video->season)
-                            <dt class="sr-only">Episode</dt>
+                            <dt class="sr-only">Identifier</dt>
                             <dd class="text-base font-medium leading-6 text-gray-400">
-                                {{ $video->season }}{{ $video->episode }}
+                                {{ implode('', [$video->season, $video->episode]) }}
+                            </dd>
+                        @endif
+
+                        @if ($video->part)
+                            <dt class="sr-only">Part</dt>
+                            <dd class="text-base font-medium leading-6 text-gray-400">
+                                {{ $video->part }}
                             </dd>
                         @endif
                     </dl>
