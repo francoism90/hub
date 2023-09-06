@@ -2,7 +2,7 @@
     <div class="flex flex-row flex-nowrap items-center space-x-4">
         <a class="flex-none" href="{{ route('videos.view', $item) }}">
             <img
-                alt="{{ $item->name }}"
+                alt="{{ $item->title }}"
                 src="{{ $item->thumbnail }}"
                 class="h-20 w-28 bg-black object-cover text-transparent"
                 crossorigin="use-credentials"
@@ -13,7 +13,7 @@
             <div class="flex flex-col">
                 <a href="{{ route('videos.view', $item) }}">
                     <h2 class="line-clamp-1 text-sm font-semibold capitalize tracking-tight">
-                        {{ $item->name }}
+                        {{ $item->title }}
                     </h2>
 
                     <dl>
@@ -28,13 +28,6 @@
                             <dt class="sr-only">Identifier</dt>
                             <dd class="text-xs font-medium text-gray-400">
                                 {{ implode('', [$item->season, $item->episode]) }}
-                            </dd>
-                        @endif
-
-                        @if ($item->part)
-                            <dt class="sr-only">Part</dt>
-                            <dd class="text-xs font-medium text-gray-400">
-                                {{ $item->part }}
                             </dd>
                         @endif
                     </dl>

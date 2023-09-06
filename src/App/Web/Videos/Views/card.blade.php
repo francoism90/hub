@@ -13,18 +13,11 @@
                 {{ implode('', [$item->season, $item->episode]) }}
             </dd>
         @endif
-
-        @if ($item->part)
-            <dt class="sr-only">Part</dt>
-            <dd class="text-base font-medium leading-4 text-gray-400">
-                {{ $item->part }}
-            </dd>
-        @endif
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
         <a href="{{ route('videos.view', $item) }}">
-            {{ $item->name }}
+            {{ $item->title }}
         </a>
     </h2>
 
@@ -43,7 +36,7 @@
             class="relative h-full w-full">
             <a href="{{ route('videos.view', $item) }}">
                 <img
-                    alt="{{ $item->name }}"
+                    alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
                     class="absolute inset-0 z-0 h-full w-full bg-black object-fill text-transparent"

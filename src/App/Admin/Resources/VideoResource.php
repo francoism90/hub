@@ -20,7 +20,7 @@ class VideoResource extends Resource
 
     protected static ?string $model = Video::class;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?string $navigationIcon = 'heroicon-o-play';
 
