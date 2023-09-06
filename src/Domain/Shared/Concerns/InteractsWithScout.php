@@ -20,10 +20,12 @@ trait InteractsWithScout
 
     protected function getScoutKeys(string $value): Collection
     {
+        $ids = $this->getIds();
+
         return $this
             ->getModel()
             ->search($value)
-            ->whereIn('id', $this->getIds())
+            ->when($ids->isNotEmpty(), fn ($query) => $query->whereIn('id', $ids->toArray()))
             ->keys();
     }
 
@@ -35,12 +37,15 @@ trait InteractsWithScout
         ]);
     }
 
-    protected function getIds(): array
+    protected function getIds(): Collection
     {
+        if (blank($this->getQuery()->wheres)) {
+            return collect();
+        }
+
         return $this
             ->get('id')
             ->pluck('id')
-            ->unique()
-            ->toArray();
+            ->unique();
     }
 }
