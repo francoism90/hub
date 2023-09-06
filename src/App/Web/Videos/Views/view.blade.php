@@ -8,7 +8,6 @@
             :video="$video"
             :manifest="$video->stream"
             :starts-at="$this->startsAt"
-            class="h-64 max-h-64 w-full bg-black lg:h-[32rem] lg:max-h-[32rem]"
             autoplay />
 
         <x-layouts::container class="py-1">

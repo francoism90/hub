@@ -1,13 +1,17 @@
+.shaka-video-container {
+    @apply max-h-64 w-full bg-black lg:max-h-[32rem];
+}
+
 .shaka-video-container * {
     @apply z-0 font-sans;
 }
 
 .shaka-bottom-controls {
-    @apply z-10 flex flex-col p-0;
+    @apply z-10 flex w-full flex-col px-4 py-0;
 }
 
 .shaka-controls-button-panel {
-    @apply order-2 flex h-10 items-center px-2;
+    @apply order-2 flex h-10 items-center;
 }
 
 .shaka-controls-button-panel > * {
