@@ -3,6 +3,7 @@
 namespace Domain\Shared\Concerns;
 
 use Illuminate\Support\Collection;
+use Laravel\Scout\Builder;
 
 trait InteractsWithScout
 {
@@ -25,7 +26,7 @@ trait InteractsWithScout
         return $this
             ->getModel()
             ->search($value)
-            ->when($ids->isNotEmpty(), fn ($query) => $query->whereIn('id', $ids->toArray()))
+            ->when($ids->isNotEmpty(), fn (Builder $query) => $query->whereIn('id', $ids->toArray()))
             ->keys();
     }
 
