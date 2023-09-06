@@ -21,11 +21,23 @@ class EditTag extends EditRecord
         return static::getRecordTitle();
     }
 
+    public function getContentTabLabel(): ?string
+    {
+        return __('General');
+    }
+
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
             Actions\LocaleSwitcher::make(),
-            Actions\DeleteAction::make(),
+
+            Actions\DeleteAction::make()
+                ->icon('heroicon-o-trash'),
         ];
     }
 }

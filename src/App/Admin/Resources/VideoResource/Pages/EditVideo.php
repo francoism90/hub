@@ -65,11 +65,6 @@ class EditVideo extends EditRecord
         return __('General');
     }
 
-    public function getBreadcrumb(): string
-    {
-        return __('Manage');
-    }
-
     public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;

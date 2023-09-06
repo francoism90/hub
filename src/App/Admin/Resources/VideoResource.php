@@ -4,7 +4,6 @@ namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
 use App\Admin\Concerns\InteractsWithFormData;
-use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource\Pages;
 use App\Admin\Resources\VideoResource\RelationManagers;
 use Domain\Videos\Models\Video;
@@ -17,7 +16,6 @@ class VideoResource extends Resource
 {
     use InteractsWithAuthentication;
     use InteractsWithFormData;
-    use InteractsWithScout;
     use Translatable;
 
     protected static ?string $model = Video::class;

@@ -30,12 +30,19 @@ class TagResource extends Resource
             ->columns(1)
             ->schema([
                 Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required()
                     ->maxLength(255),
 
                 Components\Select::make('type')
+                    ->label(__('Type'))
                     ->required()
                     ->options(TagType::toArray()),
+
+                Components\MarkdownEditor::make('description')
+                    ->label(__('Description'))
+                    ->nullable()
+                    ->maxLength(1024),
             ]);
     }
 
