@@ -30,6 +30,13 @@
                                 {{ $item->season }}{{ $item->episode }}
                             </dd>
                         @endif
+
+                        @if ($item->part)
+                            <dt class="sr-only">Part</dt>
+                            <dd class="text-base font-medium leading-4 text-gray-400">
+                                {{ $item->part }}
+                            </dd>
+                        @endif
                     </dl>
                 </a>
 
