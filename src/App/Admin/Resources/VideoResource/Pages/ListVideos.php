@@ -4,12 +4,14 @@ namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource;
+use App\Admin\Resources\VideoResource\Filters\StateFilter;
 use Domain\Videos\States\VideoState;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Concerns\Translatable;
 use Filament\Tables;
 use Filament\Tables\Columns;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class ListVideos extends ListRecords
@@ -59,7 +61,8 @@ class ListVideos extends ListRecords
                     ->sortable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                TrashedFilter::make(),
+                StateFilter::make(),
             ])
             ->actions([
                 //

@@ -21,7 +21,7 @@ class VideoIndexController extends Listing
     {
         return Video::query()
             ->with('tags')
-            ->inRandomSeedOrder()
+            ->recommended()
             ->when(filled($this->tag), fn (Builder $query) => $query->tags((array) $this->tag))
             ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
             ->take(24 * 6)

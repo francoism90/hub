@@ -8,6 +8,7 @@ use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
+use Domain\Videos\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
@@ -50,6 +51,7 @@ class VideoQueryBuilder extends Builder
         // $user ??= auth()->user();
 
         return $this
+            ->whereState('state', Verified::class)
             ->inRandomSeedOrder();
     }
 

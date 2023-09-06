@@ -66,6 +66,7 @@ class Video extends Model implements HasMedia
         'episode',
         'adult',
         'snapshot',
+        'state',
         'released_at',
     ];
 

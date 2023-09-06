@@ -3,16 +3,20 @@
 namespace App\Admin\Resources\VideoResource\Forms;
 
 use App\Admin\Concerns\InteractsWithPlaylists;
+use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Concerns\InteractsWithTags;
 use Domain\Videos\Models\Video;
+use Domain\Videos\States\VideoState;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 
 abstract class GeneralForm
 {
     use InteractsWithPlaylists;
+    use InteractsWithState;
     use InteractsWithTags;
 
     public static function name(): TextInput
@@ -88,15 +92,33 @@ abstract class GeneralForm
             );
     }
 
+    public static function state(): Select
+    {
+        return Select::make('state')
+            ->required()
+            ->options(static::stateOptions(VideoState::class));
+    }
+
     public static function id(): Grid
     {
         return Grid::make('id')
             ->columns(3)
-            ->label(__('ID'))
+            ->label(__('Id'))
             ->schema([
                 static::season(),
                 static::episode(),
                 static::released(),
+            ]);
+    }
+
+    public static function status(): Grid
+    {
+        return Grid::make('status')
+            ->columns(2)
+            ->label(__('Status'))
+            ->schema([
+                static::state(),
+                static::snapshot(),
             ]);
     }
 
@@ -106,7 +128,7 @@ abstract class GeneralForm
             static::name(),
             static::tags(),
             static::id(),
-            static::snapshot(),
+            static::status(),
         ];
     }
 }
