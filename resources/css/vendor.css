@@ -1,5 +1,9 @@
+.shaka-video {
+    @apply max-h-fit w-full;
+}
+
 .shaka-video-container {
-    @apply h-full max-h-64 w-full bg-black lg:max-h-[32rem];
+    @apply h-full max-h-64 min-h-[12rem] bg-black sm:min-h-[16rem] md:min-h-[20rem] lg:max-h-[32rem];
 }
 
 .shaka-video-container * {
