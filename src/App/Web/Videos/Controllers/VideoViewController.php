@@ -36,9 +36,11 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $model = $this->getHistory()->videos()->find($this->video);
+        $this->authorize('update', $model = $this->getHistory());
 
-        if ($model && now()->diffInMilliseconds($model->pivot->updated_at) < 950) {
+        $video = $model->videos()->find($this->video);
+
+        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) < 950) {
             return;
         }
 
@@ -49,16 +51,20 @@ class VideoViewController extends Component
 
     public function toggleFavorite(): void
     {
+        $this->authorize('update', $model = $this->getFavorites());
+
         $this->isFavorited($this->video)
-            ? $this->getFavorites()->detachVideo($this->video)
-            : $this->getFavorites()->attachVideo($this->video);
+            ? $model->detachVideo($this->video)
+            : $model->attachVideo($this->video);
     }
 
     public function toggleWatchlist(): void
     {
+        $this->authorize('update', $model = $this->getWatchlist());
+
         $this->isWatchlisted($this->video)
-            ? $this->getWatchlist()->detachVideo($this->video)
-            : $this->getWatchlist()->attachVideo($this->video);
+            ? $model->detachVideo($this->video)
+            : $model->attachVideo($this->video);
     }
 
     #[Computed]
