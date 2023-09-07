@@ -63,7 +63,7 @@ abstract class GeneralForm
     public static function part(): TextInput
     {
         return TextInput::make('part')
-            ->label(__('Part'))
+            ->label(__('Part / Scene'))
             ->nullable()
             ->string()
             ->maxLength(255);
