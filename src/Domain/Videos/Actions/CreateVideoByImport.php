@@ -7,14 +7,11 @@ use Domain\Imports\Models\Import;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class CreateVideoByImport
 {
     public function execute(Import $import): void
     {
-        throw_if(! Storage::disk('import')->exists($import->path));
-
         DB::transaction(function () use ($import) {
             $model = Video::create(
                 Arr::only($import->toArray(), ['name', 'user_id'])

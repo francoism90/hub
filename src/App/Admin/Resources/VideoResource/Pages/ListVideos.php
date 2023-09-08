@@ -25,6 +25,7 @@ class ListVideos extends ListRecords
     {
         return $table
             ->deferLoading()
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 Columns\TextColumn::make('name')
                     ->label(__('Name'))

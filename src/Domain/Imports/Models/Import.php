@@ -35,6 +35,7 @@ class Import extends Model
         'mime_type',
         'size',
         'finished_at',
+        'state',
     ];
 
     /**
