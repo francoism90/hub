@@ -3,7 +3,6 @@
 namespace Domain\Tags\Models;
 
 use Database\Factories\TagFactory;
-use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
@@ -22,7 +21,6 @@ class Tag extends BaseTag implements HasMedia
     use HasFactory;
     use HasPrefixedId;
     use InteractsWithMedia;
-    use InteractsWithRandomSeed;
     use Notifiable;
     use Searchable;
 

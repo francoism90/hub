@@ -32,7 +32,7 @@ class ExtractVideoSubtitles
 
         // Extract subtitles
         $collect = collect($ffmpeg->getFFProbe()->streams($file))
-            ->filter(fn (Stream $stream) => 'subtitle' === $stream->get('codec_type'))
+            ->filter(fn (Stream $stream) => $stream->get('codec_type') === 'subtitle')
             ->mapWithKeys(fn (Stream $stream) => [
                 $stream->get('index') => $temporaryDirectory->path(
                     "{$stream->get('index')}_{$stream->get('tags.language', 'eng')}.vtt"

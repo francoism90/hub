@@ -7,36 +7,19 @@ use Illuminate\Support\Facades\Cache;
 
 trait InteractsWithRandomSeed
 {
-    public static function bootInteractsWithRandomSeed(): void
+    public function randomSeed(string $key, int $ttl = 60 * 30): Builder
     {
-        self::randomSeed();
+        return $this->inRandomOrder(
+            static::getRandomSeed($key, $ttl)
+        );
     }
 
-    public static function randomSeed(int $ttl = 60 * 10): mixed
+    protected static function getRandomSeed(string $key, int $ttl): mixed
     {
-        if (method_exists(static::class, 'getRandomSeedLifetime')) {
-            $ttl = static::getRandomSeedLifetime();
-        }
-
         return Cache::remember(
-            self::getRandomSeedKey(static::class),
+            sprintf('randomSeed-%s-%s', $key, session()->getId()),
             $ttl,
             fn () => (auth()->id() ?? 0) + time()
-        );
-    }
-
-    public static function getRandomSeedKey(string $class): string
-    {
-        return sprintf('randomSeed-%s-%s',
-            class_basename($class),
-            session()->getId()
-        );
-    }
-
-    public function scopeInRandomSeedOrder(Builder $query): Builder
-    {
-        return $query->inRandomOrder(
-            static::randomSeed()
         );
     }
 }

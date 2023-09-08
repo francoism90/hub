@@ -5,7 +5,6 @@ namespace Domain\Playlists\Models;
 use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
-use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -26,7 +25,6 @@ class Playlist extends Model implements HasMedia
     use HasStates;
     use HasVideos;
     use InteractsWithMedia;
-    use InteractsWithRandomSeed;
     use InteractsWithUser;
     use Notifiable;
     use Searchable;

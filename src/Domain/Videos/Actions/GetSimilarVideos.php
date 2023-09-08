@@ -56,7 +56,7 @@ class GetSimilarVideos
             ->whereHas('tags')
             ->whereKeyNot($model)
             ->withAnyTagsOfAnyType($model->tags)
-            ->inRandomSeedOrder()
+            ->randomSeed(key: 'tagged', ttl: 60 * 10)
             ->take(6)
             ->cursor();
     }
@@ -65,7 +65,7 @@ class GetSimilarVideos
     {
         return Video::query()
             ->whereKeyNot($model)
-            ->inRandomSeedOrder()
+            ->randomSeed(key: 'random', ttl: 60 * 10)
             ->take(6)
             ->cursor();
     }

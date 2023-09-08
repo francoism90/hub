@@ -3,7 +3,6 @@
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
-use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
@@ -39,7 +38,6 @@ class Video extends Model implements HasMedia
     use HasTranslations;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
-    use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithVod;
     use Notifiable;

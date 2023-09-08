@@ -33,7 +33,7 @@ abstract class GeneralForm
                     ->action(function (TextInput $component, mixed $state) {
                         $component->state(
                             str($state)
-                                ->replace(['.', '_'], ' ')
+                                ->replace(['.', '_', '-'], ' ')
                                 ->title()
                                 ->trim()
                                 ->value()

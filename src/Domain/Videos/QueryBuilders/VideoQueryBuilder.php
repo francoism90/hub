@@ -3,6 +3,7 @@
 namespace Domain\Videos\QueryBuilders;
 
 use ArrayAccess;
+use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
+    use InteractsWithRandomSeed;
     use InteractsWithScout;
 
     public function captions(): self
@@ -52,7 +54,7 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->whereState('state', Verified::class)
-            ->inRandomSeedOrder();
+            ->randomSeed(key: 'feed', ttl: 60 * 10);
     }
 
     public function similar(Video $model): self
@@ -75,17 +77,17 @@ class VideoQueryBuilder extends Builder
     public function tags(Tag|array|ArrayAccess $tags): self
     {
         $items = collect($tags)
-            ->unique()
             ->map(fn (Tag|string $item) => ! $item instanceof Tag
                 ? Tag::findByPrefixedId($item)
                 : $item
             )
-            ->filter();
+            ->filter()
+            ->unique();
 
-        return $this
-            ->when($items->isNotEmpty(), fn (Builder $query) => $query
-                ->inRandomSeedOrder()
-                ->WithAnyTags($items)
-            );
+        return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
+            ->reorder()
+            ->WithAnyTags($items)
+            ->randomSeed(key: 'tags', ttl: 60 * 60)
+        );
     }
 }

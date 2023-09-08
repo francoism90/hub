@@ -26,7 +26,7 @@ trait InteractsWithScout
         return $this
             ->getModel()
             ->search($value)
-            ->when($ids, fn (Builder $query) => $query->whereIn('id', $ids))
+            ->when(filled($ids), fn (Builder $query) => $query->whereIn('id', $ids))
             ->keys();
     }
 

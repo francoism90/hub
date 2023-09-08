@@ -11,11 +11,13 @@ class TagFilter implements Filter
     public function __invoke(Builder $query, mixed $value, string $property): void
     {
         $models = collect($value)
-            ->map(fn (string $value) => Tag::findByPrefixedIdOrFail($value));
+            ->map(fn (string $value) => Tag::findByPrefixedId($value))
+            ->unique()
+            ->filter();
 
         $query
-            ->withAllTagsOfAnyType($models)
             ->reorder()
-            ->inRandomSeedOrder();
+            ->withAllTagsOfAnyType($models)
+            ->randomSeed(key: 'tag-type', ttl: 60 * 60);
     }
 }
