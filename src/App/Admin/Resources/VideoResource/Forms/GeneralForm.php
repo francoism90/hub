@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources\VideoResource\Forms;
 
+use App\Admin\Actions\TitleCaseAction;
 use App\Admin\Concerns\InteractsWithPlaylists;
 use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Concerns\InteractsWithTags;
@@ -12,6 +13,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 
 abstract class GeneralForm
 {
@@ -27,19 +29,8 @@ abstract class GeneralForm
             ->string()
             ->autofocus()
             ->maxLength(255)
-            ->suffixAction(
-                Action::make('title_case')
-                    ->icon('heroicon-o-language')
-                    ->action(function (TextInput $component, mixed $state) {
-                        $component->state(
-                            str($state)
-                                ->replace(['.', '_', '-'], ' ')
-                                ->title()
-                                ->trim()
-                                ->value()
-                        );
-                    })
-            );
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('name', trim($state)))
+            ->suffixAction(TitleCaseAction::make());
     }
 
     public static function season(): TextInput
@@ -48,7 +39,8 @@ abstract class GeneralForm
             ->label(__('Season'))
             ->nullable()
             ->string()
-            ->maxLength(255);
+            ->maxLength(255)
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('season', trim($state)));
     }
 
     public static function episode(): TextInput
@@ -57,7 +49,8 @@ abstract class GeneralForm
             ->label(__('Episode'))
             ->nullable()
             ->string()
-            ->maxLength(255);
+            ->maxLength(255)
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('episode', trim($state)));
     }
 
     public static function part(): TextInput
@@ -66,7 +59,8 @@ abstract class GeneralForm
             ->label(__('Part / Scene'))
             ->nullable()
             ->string()
-            ->maxLength(255);
+            ->maxLength(255)
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('part', trim($state)));
     }
 
     public static function released(): DatePicker
