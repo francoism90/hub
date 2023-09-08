@@ -3,6 +3,7 @@
 namespace Domain\Imports\Actions;
 
 use Domain\Imports\Models\Import;
+use Domain\Videos\Actions\CreateVideoByImport;
 
 class BulkImport
 {
