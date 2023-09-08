@@ -23,7 +23,7 @@ class BulkImportAction extends Action
 
         $this->icon('heroicon-o-squares-plus');
 
-        $this->successNotificationTitle(__('Import Completed'));
+        $this->successNotificationTitle(__('Jobs Queued'));
 
         $this->action(function (): void {
             $this->process(fn () => app(BulkImport::class)->execute());

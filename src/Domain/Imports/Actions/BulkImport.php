@@ -3,7 +3,7 @@
 namespace Domain\Imports\Actions;
 
 use Domain\Imports\Models\Import;
-use Domain\Videos\Actions\CreateVideoByImport;
+use Domain\Videos\Jobs\ImportVideo;
 
 class BulkImport
 {
@@ -13,6 +13,6 @@ class BulkImport
 
         Import::query()
             ->pending()
-            ->each(fn (Import $model) => app(CreateVideoByImport::class)->execute($model));
+            ->each(fn (Import $model) => ImportVideo::dispatch($model));
     }
 }
