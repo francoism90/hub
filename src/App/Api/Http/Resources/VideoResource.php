@@ -19,7 +19,7 @@ class VideoResource extends JsonResource
             'season' => $this->season,
             'episode' => $this->episode,
             'adult' => $this->adult,
-            'captions' => $this->closed_captions,
+            'caption' => $this->caption,
             'duration' => $this->duration,
             'preview' => $this->preview,
             'stream' => $this->stream,

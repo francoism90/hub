@@ -32,43 +32,53 @@ trait InteractsWithVod
         );
     }
 
-    protected function closedCaptions(): Attribute
+    public function hasCaptions(): bool
     {
-        return Attribute::make(function () {
-            if ($this->captions()->count()) {
-                return true;
-            }
+        if ($this->captions()->count()) {
+            return true;
+        }
 
-            return $this
-                ->getMedia('clips')
-                ->filter(fn (Media $media) => $media->getCustomProperty('closed_captions', false))
-                ->isNotEmpty();
-        })->shouldCache();
+        return $this
+            ->getMedia('clips')
+            ->filter(fn (Media $media) => $media->getCustomProperty('closed_captions', false))
+            ->isNotEmpty();
+    }
+
+    public function durationInSeconds(): float
+    {
+        $media = $this
+            ->getMedia('clips')
+            ->sortByDesc(fn (Media $media) => $media->getCustomProperty('duration', 0))
+            ->first();
+
+        return $media?->getCustomProperty('duration') ?: 0;
+    }
+
+    protected function caption(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->hasCaptions()
+        )->shouldCache();
     }
 
     protected function duration(): Attribute
     {
-        return Attribute::make(function () {
-            $media = $this
-                ->getMedia('clips')
-                ->sortByDesc(fn (Media $media) => $media->getCustomProperty('duration', 0))
-                ->first();
-
-            return $media?->getCustomProperty('duration') ?: 0;
-        })->shouldCache();
+        return Attribute::make(
+            get: fn () => $this->durationInSeconds()
+        )->shouldCache();
     }
 
     public function preview(): Attribute
     {
         return Attribute::make(
             get: fn () => app(GetManifestUrl::class)->execute($this, 'preview')
-        )->withoutObjectCaching();
+        )->shouldCache();
     }
 
     public function stream(): Attribute
     {
         return Attribute::make(
             get: fn () => app(GetManifestUrl::class)->execute($this, 'stream')
-        )->withoutObjectCaching();
+        )->shouldCache();
     }
 }

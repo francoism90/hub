@@ -44,8 +44,12 @@
                     loading="lazy" />
 
                 <div class="absolute inset-0 z-20 h-full w-full">
-                    <div class="absolute bottom-2 right-2 bg-black/30 px-1 py-0.5 text-xs text-gray-300">
-                        {{ duration($item->duration) }}
+                    <div class="absolute bottom-2 right-2 flex items-center gap-x-1.5 bg-black/30 px-1 py-0.5 text-xs text-gray-300">
+                        @if ($item->caption)
+                            <span>{{ __('CC') }}</span>
+                        @endif
+
+                        <span>{{ duration($item->duration) }}</span>
                     </div>
                 </div>
 
