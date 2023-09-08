@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\QueryBuilders;
 
-use ArrayAccess;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Models\Tag;
@@ -74,7 +73,7 @@ class VideoQueryBuilder extends Builder
         );
     }
 
-    public function tags(Tag|array|ArrayAccess $tags): self
+    public function tagged(mixed $tags = null): self
     {
         $items = collect($tags)
             ->map(fn (Tag|string $item) => ! $item instanceof Tag
@@ -86,7 +85,7 @@ class VideoQueryBuilder extends Builder
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
             ->reorder()
-            ->WithAnyTags($items)
+            ->withAnyTagsOfAnyType($items)
             ->randomSeed(key: 'tags', ttl: 60 * 60)
         );
     }
