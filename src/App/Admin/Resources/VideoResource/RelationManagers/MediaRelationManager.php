@@ -2,8 +2,8 @@
 
 namespace App\Admin\Resources\VideoResource\RelationManagers;
 
+use App\Admin\Resources\MediaResource\Forms\MetaForm;
 use Domain\Media\Models\Media;
-use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -19,18 +19,7 @@ class MediaRelationManager extends RelationManager
         return $form
             ->columns(1)
             ->schema([
-                Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-
-                Components\Select::make('collection_name')
-                    ->required()
-                    ->label(__('Collection'))
-                    ->options($this
-                        ->getOwnerRecord()
-                        ->getRegisteredMediaCollections()
-                        ->pluck('name', 'name')
-                    ),
+                ...MetaForm::make(),
             ]);
     }
 
@@ -38,10 +27,10 @@ class MediaRelationManager extends RelationManager
     {
         return $table
             ->deferLoading()
-            ->recordTitleAttribute('name')
+            ->recordTitleAttribute('file_name')
             ->defaultSort('collection_name')
             ->columns([
-                Columns\TextColumn::make('name')
+                Columns\TextColumn::make('file_name')
                     ->limit()
                     ->searchable()
                     ->sortable(),
@@ -90,9 +79,13 @@ class MediaRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                //
             ])
             ->actions([
+                Tables\Actions\EditAction::make('edit')
+                    ->label(__('Edit'))
+                    ->icon('heroicon-o-document'),
+
                 Tables\Actions\Action::make('download')
                     ->label(__('Download'))
                     ->icon('heroicon-s-arrow-down-circle')
@@ -104,12 +97,7 @@ class MediaRelationManager extends RelationManager
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                //
             ]);
-    }
-
-    public function isReadOnly(): bool
-    {
-        return true;
     }
 }
