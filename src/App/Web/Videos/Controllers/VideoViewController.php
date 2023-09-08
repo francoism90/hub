@@ -40,12 +40,12 @@ class VideoViewController extends Component
 
         $video = $model->videos()->find($this->video);
 
-        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) < 950) {
+        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) <= 750) {
             return;
         }
 
         $this->getHistory()->attachVideo($this->video, [
-            'timestamp' => round($time),
+            'timestamp' => round($time, 2),
         ]);
     }
 

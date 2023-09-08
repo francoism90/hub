@@ -3,12 +3,10 @@
 namespace App\Admin\Resources\VideoResource\Forms;
 
 use App\Admin\Actions\TitleCaseAction;
-use App\Admin\Concerns\InteractsWithPlaylists;
 use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Concerns\InteractsWithTags;
-use Domain\Videos\Models\Video;
+use App\Admin\Resources\VideoResource\Actions\CurrentTimeAction;
 use Domain\Videos\States\VideoState;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
@@ -17,7 +15,6 @@ use Filament\Forms\Set;
 
 abstract class GeneralForm
 {
-    use InteractsWithPlaylists;
     use InteractsWithState;
     use InteractsWithTags;
 
@@ -80,19 +77,7 @@ abstract class GeneralForm
             ->label(__('Snapshot'))
             ->nullable()
             ->numeric()
-            ->suffixAction(
-                Action::make('current_time')
-                    ->icon('heroicon-o-camera')
-                    ->action(function (TextInput $component, Video $record, mixed $state) {
-                        $videoable = static::getHistory()
-                            ->videos()
-                            ->firstWhere('id', $record->getKey());
-
-                        $component->state(
-                            $videoable?->pivot?->options['timestamp'] ?: $state
-                        );
-                    })
-            );
+            ->suffixAction(CurrentTimeAction::make());
     }
 
     public static function state(): Select

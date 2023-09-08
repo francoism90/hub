@@ -7,7 +7,7 @@ use Domain\Users\Models\User;
 
 trait InteractsWithPlaylists
 {
-    protected static function getHistory(User $user = null): Playlist
+    protected static function getHistory(User $user = null): ?Playlist
     {
         /** @var User */
         $user ??= auth()->user();
@@ -15,6 +15,6 @@ trait InteractsWithPlaylists
         return $user
             ->playlists()
             ->history()
-            ->firstOrFail();
+            ->first();
     }
 }

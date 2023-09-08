@@ -3,7 +3,6 @@
 namespace App\Admin\Resources\ImportResource\Actions;
 
 use Domain\Imports\States\Finished;
-use Domain\Videos\Actions\CreateVideoByImport;
 use Domain\Videos\Jobs\ImportVideo;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Tables\Actions\Action;
