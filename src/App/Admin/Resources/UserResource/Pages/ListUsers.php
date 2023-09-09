@@ -75,7 +75,7 @@ class ListUsers extends ListRecords
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                //
             ]);
     }
 
@@ -85,7 +85,7 @@ class ListUsers extends ListRecords
             Actions\CreateAction::make()
                 ->button()
                 ->icon('heroicon-o-plus')
-                ->label(__('Create user')),
+                ->label(__('Create User')),
         ];
     }
 }
