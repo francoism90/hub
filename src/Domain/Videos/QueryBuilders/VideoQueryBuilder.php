@@ -53,7 +53,7 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->whereState('state', Verified::class)
-            ->randomSeed(key: 'feed', ttl: 60 * 10);
+            ->randomSeed(key: 'feed', ttl: now()->addQuarter());
     }
 
     public function similar(Video $model): self
@@ -86,7 +86,7 @@ class VideoQueryBuilder extends Builder
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
             ->reorder()
             ->withAnyTagsOfAnyType($items)
-            ->randomSeed(key: 'tags', ttl: 60 * 60)
+            ->randomSeed(key: 'tags', ttl: now()->addDay())
         );
     }
 }

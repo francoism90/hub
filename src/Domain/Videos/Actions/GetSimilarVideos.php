@@ -64,7 +64,7 @@ class GetSimilarVideos
     {
         return Video::query()
             ->whereKeyNot($model)
-            ->randomSeed(key: 'random', ttl: 60 * 10)
+            ->randomSeed(key: 'random', ttl: now()->addQuarter())
             ->take(6)
             ->cursor();
     }
