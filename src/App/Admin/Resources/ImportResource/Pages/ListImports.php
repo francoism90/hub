@@ -28,18 +28,14 @@ class ListImports extends ListRecords
             ->defaultSort('created_at', 'desc')
             ->columns([
                 Columns\TextColumn::make('file_name')
-                    ->limit()
-                    ->searchable()
-                    ->sortable(),
-
-                Columns\TextColumn::make('name')
+                    ->label(__('Filename'))
                     ->limit()
                     ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('size')
+                    ->label(__('Filesize'))
                     ->formatStateUsing(fn (mixed $state) => human_filesize($state))
-                    ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('state')

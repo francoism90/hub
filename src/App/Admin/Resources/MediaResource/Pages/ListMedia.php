@@ -3,9 +3,9 @@
 namespace App\Admin\Resources\MediaResource\Pages;
 
 use App\Admin\Resources\MediaResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Tables;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
@@ -18,13 +18,19 @@ class ListMedia extends ListRecords
         return $table
             ->deferLoading()
             ->columns([
-                Columns\TextColumn::make('name')
+                Columns\TextColumn::make('file_name')
+                    ->label(__('Filename'))
                     ->limit()
+                    ->sortable(),
+
+                Columns\TextColumn::make('size')
+                    ->label(__('Filesize'))
+                    ->formatStateUsing(fn (mixed $state) => human_filesize($state))
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')
                     ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: false)
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
 
                 Columns\TextColumn::make('updated_at')
@@ -36,22 +42,21 @@ class ListMedia extends ListRecords
                 //
             ])
             ->actions([
-                //
+                EditAction::make(),
+                ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ])
             ->emptyStateActions([
-                // Tables\Actions\CreateAction::make(),
+                //
             ]);
     }
 
     protected function getHeaderActions(): array
     {
         return [
-            // Actions\CreateAction::make(),
+            //
         ];
     }
 }

@@ -3,14 +3,14 @@
 namespace App\Admin\Resources\MediaResource\Pages;
 
 use App\Admin\Resources\MediaResource;
+use Domain\Media\Models\Media;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Database\Eloquent\Model;
 
-class EditMedia extends EditRecord
+class ViewMedia extends ViewRecord
 {
     protected static string $resource = MediaResource::class;
 
@@ -24,13 +24,13 @@ class EditMedia extends EditRecord
         return [
             Actions\ViewAction::make()
                 ->label(__('View Model'))
-                ->visible(fn (Model $record) => $record->model instanceof Video)
-                ->url(fn (Model $record) => route('filament.admin.resources.videos.edit', $record->model)),
+                ->visible(fn (Media $record) => $record->model instanceof Video)
+                ->url(fn (Media $record) => route('filament.admin.resources.videos.edit', $record->model)),
 
             Actions\ViewAction::make()
                 ->label(__('View Model'))
-                ->visible(fn (Model $record) => $record->model instanceof Tag)
-                ->url(fn (Model $record) => route('filament.admin.resources.tags.edit', $record->model)),
+                ->visible(fn (Media $record) => $record->model instanceof Tag)
+                ->url(fn (Media $record) => route('filament.admin.resources.tags.edit', $record->model)),
         ];
     }
 }

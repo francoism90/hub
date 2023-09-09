@@ -2,9 +2,13 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Resources\MediaResource\Forms\GeneralForm;
+use App\Admin\Resources\MediaResource\Forms\MetaForm;
 use App\Admin\Resources\MediaResource\Pages;
 use Domain\Media\Models\Media;
 use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 
 class MediaResource extends Resource
@@ -18,8 +22,10 @@ class MediaResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(1)
             ->schema([
-                //
+                ...GeneralForm::make(),
+                ...MetaForm::make(),
             ]);
     }
 
@@ -28,6 +34,14 @@ class MediaResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\TextEntry::make('name'),
+            ]);
     }
 
     public static function getNavigationGroup(): ?string
@@ -40,7 +54,8 @@ class MediaResource extends Resource
         return [
             'index' => Pages\ListMedia::route('/'),
             'create' => Pages\CreateMedia::route('/create'),
-            'edit' => Pages\EditMedia::route('/{record}'),
+            'view' => Pages\ViewMedia::route('/{record}'),
+            'edit' => Pages\EditMedia::route('/{record}/edit'),
         ];
     }
 }
