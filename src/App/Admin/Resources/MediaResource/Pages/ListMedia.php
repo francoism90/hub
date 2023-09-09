@@ -4,8 +4,7 @@ namespace App\Admin\Resources\MediaResource\Pages;
 
 use App\Admin\Resources\MediaResource;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Actions;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
@@ -42,8 +41,8 @@ class ListMedia extends ListRecords
                 //
             ])
             ->actions([
-                EditAction::make(),
-                ViewAction::make(),
+                Actions\EditAction::make(),
+                Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 //

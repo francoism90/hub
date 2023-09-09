@@ -31,6 +31,8 @@ class EditMedia extends EditRecord
                 ->label(__('View Model'))
                 ->visible(fn (Model $record) => $record->model instanceof Tag)
                 ->url(fn (Model $record) => route('filament.admin.resources.tags.edit', $record->model)),
+
+            Actions\ViewAction::make(),
         ];
     }
 }
