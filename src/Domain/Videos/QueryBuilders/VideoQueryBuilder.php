@@ -53,7 +53,7 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->whereState('state', Verified::class)
-            ->randomSeed(key: 'feed', ttl: now()->addQuarter());
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10));
     }
 
     public function similar(Video $model): self
