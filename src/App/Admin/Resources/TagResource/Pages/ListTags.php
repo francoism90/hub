@@ -4,7 +4,7 @@ namespace App\Admin\Resources\TagResource\Pages;
 
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\TagResource;
-use Domain\Tags\Actions\SetTagsOrder;
+use App\Admin\Resources\TagResource\Actions\SortAction;
 use Domain\Tags\Enums\TagType;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -68,12 +68,7 @@ class ListTags extends ListRecords
         return [
             Actions\LocaleSwitcher::make(),
 
-            Actions\Action::make('sort')
-                ->button()
-                ->icon('heroicon-o-bars-3-bottom-left')
-                ->label(__('Sort tags'))
-                ->requiresConfirmation()
-                ->action(fn () => app(SetTagsOrder::class)->execute()),
+            SortAction::make(),
 
             Actions\CreateAction::make()
                 ->button()
