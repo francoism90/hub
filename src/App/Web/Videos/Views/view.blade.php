@@ -8,6 +8,7 @@
             :video="$video"
             :manifest="$video->stream"
             :starts-at="$this->starts"
+            @timeupdate.throttle.750ms="timeUpdate"
             autoplay />
 
         <x-layouts::container class="py-1">
@@ -61,7 +62,7 @@
                     </div>
                 @endif
 
-                {{-- <div class="space-y-1 py-4">
+                <div class="space-y-1 py-4">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">
                         {{ __('Similar videos') }}
                     </h2>
@@ -75,10 +76,23 @@
                             </div>
                         @endforelse
                     </div>
-                </div> --}}
+                </div>
             </div>
         </x-layouts::container>
     </article>
 
     <x-layouts::footer />
 </div>
+
+@push('scripts')
+    <script>
+        function timeUpdate(e) {
+            const time = e.target.currentTime || 0
+            console.log(time)
+
+            @this.dispatch('time-update', {
+                time
+            })
+        }
+    </script>
+@endpush

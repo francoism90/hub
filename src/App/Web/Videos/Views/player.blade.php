@@ -110,19 +110,6 @@
     <video
         x-ref="video"
         crossorigin="allow-credentials"
-        @timeupdate.throttle.750ms="timeUpdate"
         playsinline
         {{ $attributes }} />
 </div>
-
-@push('scripts')
-    <script>
-        function timeUpdate(e) {
-            const time = e.target.currentTime || 0
-
-            @this.dispatch('time-update', {
-                time
-            })
-        }
-    </script>
-@endpush
