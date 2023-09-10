@@ -34,7 +34,7 @@ abstract class Listing extends Component
 
     abstract protected function builder(): Paginator;
 
-    #[Computed(persist: true, seconds: 60 * 5)]
+    #[Computed]
     public function tags(): TagCollection
     {
         return Tag::query()
