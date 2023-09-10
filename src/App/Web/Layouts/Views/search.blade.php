@@ -33,44 +33,46 @@
                     <x-layouts::queries />
                 @else
                     @error('form.query')
-                        <div class="py-6 text-center text-gray-400">
+                        <div class="px-4 py-6 text-center text-gray-400">
                             {{ $message }}
                         </div>
                     @else
-                        @if ($this->videos->isNotEmpty())
-                            <a
-                                class="inline-flex items-center space-x-2 text-primary-500"
-                                href="{{ route('videos.index', ['search' => $this->form->query]) }}"
-                                wire:navigate>
-                                <h2 class="headline">
-                                    {{ __('Videos') }}
-                                </h2>
+                        <div class="flex flex-col space-y-4 p-4">
+                            @if ($this->videos->isNotEmpty())
+                                <a
+                                    class="inline-flex items-center space-x-2 text-primary-500"
+                                    href="{{ route('videos.index', ['search' => $this->form->query]) }}"
+                                    wire:navigate>
+                                    <h2 class="headline">
+                                        {{ __('Videos') }}
+                                    </h2>
 
-                                <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
-                            </a>
+                                    <x-heroicon-o-magnifying-glass-plus class="h-5 w-5" />
+                                </a>
 
-                            <div class="grid grid-cols-1 gap-y-4">
-                                @foreach ($this->videos as $video)
-                                    <x-videos::item :item="$video" />
-                                @endforeach
-                            </div>
-                        @endif
+                                <div class="grid grid-cols-1 gap-y-4">
+                                    @foreach ($this->videos as $video)
+                                        <x-videos::item :item="$video" />
+                                    @endforeach
+                                </div>
+                            @endif
 
-                        @if ($this->tags->isNotEmpty())
-                            <a
-                                class="inline-flex items-center space-x-2 text-primary-500"
-                                wire:navigate>
-                                <h2 class="headline">
-                                    {{ __('Tags') }}
-                                </h2>
-                            </a>
+                            @if ($this->tags->isNotEmpty())
+                                <a
+                                    class="inline-flex items-center space-x-2 text-primary-500"
+                                    wire:navigate>
+                                    <h2 class="headline">
+                                        {{ __('Tags') }}
+                                    </h2>
+                                </a>
 
-                            <div class="grid grid-cols-1 gap-y-4">
-                                @foreach ($this->tags as $tag)
-                                    <x-tags::item :item="$tag" />
-                                @endforeach
-                            </div>
-                        @endif
+                                <div class="grid grid-cols-1 gap-y-4">
+                                    @foreach ($this->tags as $tag)
+                                        <x-tags::item :item="$tag" />
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
                     @enderror
                 @endempty
             </div>

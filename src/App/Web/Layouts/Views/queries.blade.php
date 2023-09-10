@@ -1,6 +1,6 @@
 <div class="text-slate-400">
     @if ($this->queries->isEmpty())
-        <div class="py-6 text-center text-gray-400">
+        <div class="px-4 py-12 text-center text-gray-400">
             {{ __('No recent searches') }}
         </div>
     @else
