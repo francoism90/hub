@@ -2,44 +2,40 @@
 
 namespace App\Web\Layouts\Components;
 
+use App\Web\Layouts\Forms\SearchForm;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
-#[Lazy]
 class Search extends Component
 {
-    public ?string $query = null;
-
-    public function mount(): void
-    {
-        $this->populateQuery();
-    }
+    public SearchForm $form;
 
     public function render(): View
     {
         return view('layouts::search');
     }
 
-    public function updatedQuery(): void
+    public function updated($name, $value): void
     {
-        $this->storeQuery();
+        $this->validate();
     }
 
     #[Computed]
     public function videos(): Collection
     {
-        if (blank($this->query)) {
+        $query = $this->form->query;
+
+        if (blank($query)) {
             return collect();
         }
 
         return Video::query()
             ->with('tags')
-            ->search((string) $this->query)
+            ->search((string) $query)
             ->take(5)
             ->get();
     }
@@ -47,23 +43,15 @@ class Search extends Component
     #[Computed]
     public function tags(): Collection
     {
-        if (blank($this->query)) {
+        $query = $this->form->query;
+
+        if (blank($query)) {
             return collect();
         }
 
         return Tag::query()
-            ->search((string) $this->query)
+            ->search((string) $query)
             ->take(5)
             ->get();
-    }
-
-    protected function populateQuery(): void
-    {
-        $this->query = session('searchQuery');
-    }
-
-    protected function storeQuery(): void
-    {
-        session(['searchQuery' => $this->query]);
     }
 }

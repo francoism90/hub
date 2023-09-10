@@ -19,7 +19,7 @@
                     class="input h-12 w-full border-transparent bg-transparent"
                     placeholder="{{ __('Search') }}"
                     autofocus
-                    wire:model.live.debounce.300ms="query">
+                    wire:model.live.debounce.300ms="form.query">
 
                 <button
                     class="rounded-sm bg-gray-600 px-2 py-1 text-xs text-gray-200"
@@ -28,48 +28,57 @@
                 </button>
             </header>
 
-            <div
-                class="flex max-h-[32rem] flex-col space-y-6 overflow-hidden overflow-y-auto border-t border-gray-700 p-6">
-                @if (blank($query))
-                    <div class="py-16 text-center text-gray-300">
-                        No recent searches
+            <div class="flex max-h-[32rem] flex-col space-y-6 overflow-hidden overflow-y-auto border-t border-gray-700 p-6">
+                @error('form.query')
+                    <div class="py-6 text-center text-gray-300">
+                        {{ $message }}
                     </div>
-                @endif
+                @else
+                    @if (blank($searchQuery))
+                        <div class="py-6 text-center text-gray-300">
+                            {{ __('No recent searches') }}
+                        </div>
+                    @endif
 
-                @if ($this->videos->isNotEmpty())
-                    <a
-                        class="inline-flex items-center space-x-2 text-primary-500"
-                        href="{{ route('videos.index', ['search' => $this->query]) }}"
-                        wire:navigate>
-                        <h2 class="headline">
-                            {{ __('Videos') }}
-                        </h2>
+                    @if ($this->videos->isNotEmpty())
+                        <a
+                            class="inline-flex items-center space-x-2 text-primary-500"
+                            href="{{ route('videos.index', ['search' => $this->form->query]) }}"
+                            wire:navigate>
+                            <h2 class="headline">
+                                {{ __('Videos') }}
+                            </h2>
 
-                        <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
-                    </a>
+                            <x-heroicon-o-magnifying-glass-plus class="h-6 w-6" />
+                        </a>
 
-                    <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($this->videos as $video)
-                            <x-videos::item :item="$video" />
-                        @endforeach
-                    </div>
-                @endif
+                        @error('form.query')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
 
-                @if ($this->tags->isNotEmpty())
-                    <a
-                        class="inline-flex items-center space-x-2 text-primary-500"
-                        wire:navigate>
-                        <h2 class="headline">
-                            {{ __('Tags') }}
-                        </h2>
-                    </a>
+                        <div class="grid grid-cols-1 gap-y-4">
+                            @foreach ($this->videos as $video)
+                                <x-videos::item :item="$video" />
+                            @endforeach
+                        </div>
+                    @endif
 
-                    <div class="grid grid-cols-1 gap-y-4">
-                        @foreach ($this->tags as $tag)
-                            <x-tags::item :item="$tag" />
-                        @endforeach
-                    </div>
-                @endif
+                    @if ($this->tags->isNotEmpty())
+                        <a
+                            class="inline-flex items-center space-x-2 text-primary-500"
+                            wire:navigate>
+                            <h2 class="headline">
+                                {{ __('Tags') }}
+                            </h2>
+                        </a>
+
+                        <div class="grid grid-cols-1 gap-y-4">
+                            @foreach ($this->tags as $tag)
+                                <x-tags::item :item="$tag" />
+                            @endforeach
+                        </div>
+                    @endif
+                @enderror
             </div>
         </div>
     </x-slot:content>
