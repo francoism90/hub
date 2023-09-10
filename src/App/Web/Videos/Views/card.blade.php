@@ -16,7 +16,7 @@
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
-        <a href="{{ route('videos.view', $item) }}" wire:navigate.hover>
+        <a href="{{ route('videos.view', $item) }}">
             {{ $item->title }}
         </a>
     </h2>
@@ -35,8 +35,7 @@
             @touchend.passive="preview = false"
             class="relative h-full w-full">
             <a
-                href="{{ route('videos.view', $item) }}"
-                wire:navigate.hover>
+                href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"

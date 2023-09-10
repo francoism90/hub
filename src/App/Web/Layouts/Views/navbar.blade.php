@@ -1,8 +1,7 @@
 <header class="navbar">
     <a
         href="/"
-        class="navbar-brand"
-        wire:navigate.hover>
+        class="navbar-brand">
         <x-heroicon-s-play-circle class="navbar-logo" />
         <span>{{ config('app.name') }}</span>
     </a>
@@ -10,8 +9,7 @@
     <nav class="navbar-menu">
         <a
             href="{{ route('tags.index') }}"
-            class="{{ $active('tags.*', 'navbar-item') }}"
-            wire:navigate.hover>
+            class="{{ $active('tags.*', 'navbar-item') }}">
             <x-heroicon-o-hashtag class="h-6 w-6" />
         </a>
 
@@ -35,22 +33,19 @@
                 <div class="flex flex-col flex-nowrap space-y-1">
                     <a
                         href="{{ route('profile.history') }}"
-                        class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
-                        wire:navigate.hover>
+                        class="{{ $active('profile.history', 'navbar-item text-gray-400') }}">
                         {{ __('History') }}
                     </a>
 
                     <a
                         href="{{ route('profile.favorites') }}"
-                        class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}"
-                        wire:navigate.hover>
+                        class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}">
                         {{ __('Favorites') }}
                     </a>
 
                     <a
                         href="{{ route('profile.watchlist') }}"
-                        class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
+                        class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}">
                         {{ __('Watchlist') }}
                     </a>
                 </div>

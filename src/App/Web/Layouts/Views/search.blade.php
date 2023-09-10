@@ -47,8 +47,7 @@
                             @if ($this->videos->isNotEmpty())
                                 <a
                                     class="inline-flex items-center space-x-2 text-primary-500"
-                                    href="{{ route('videos.index', ['search' => $this->form->query]) }}"
-                                    wire:navigate>
+                                    href="{{ route('videos.index', ['search' => $this->form->query]) }}">
                                     <h2 class="headline">
                                         {{ __('Videos') }}
                                     </h2>
@@ -65,8 +64,7 @@
 
                             @if ($this->tags->isNotEmpty())
                                 <a
-                                    class="inline-flex items-center space-x-2 text-primary-500"
-                                    wire:navigate>
+                                    class="inline-flex items-center space-x-2 text-primary-500">
                                     <h2 class="headline">
                                         {{ __('Tags') }}
                                     </h2>

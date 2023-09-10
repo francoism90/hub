@@ -1,7 +1,6 @@
 <article class="rounded bg-gray-700/40 p-4 shadow-md">
     <a
-        href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}"
-        wire:navigate>
+        href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
         <div class="flex flex-row flex-nowrap items-center space-x-4">
             <div class="flex h-16 w-16 items-center justify-center rounded bg-gray-600 px-2 py-1 text-xs text-gray-200">
                 <x-dynamic-component :component="$icon" class="h-5 w-5" />

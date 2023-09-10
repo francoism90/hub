@@ -2,8 +2,7 @@
     @foreach ($items as $item)
         <a
             class="uppercase text-primary-500 hover:text-primary-400"
-            href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}"
-            wire:navigate>
+            href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
             {{ $item->name }}
         </a>
     @endforeach
