@@ -1,6 +1,5 @@
 <div
     x-ref="container"
-    wire:ignore
     x-data="{
         init() {
             const player = new window.shaka.Player($refs.video);
@@ -118,13 +117,13 @@
 @push('scripts')
     <script>
         function timeUpdate(e) {
-            document.addEventListener('livewire:initialized', () => {
-                const time = e.target.currentTime || 0
+            // document.addEventListener('livewire:initialized', () => {
+            const time = e.target.currentTime || 0
 
-                @this.dispatch('time-update', {
-                    time
-                })
-            });
+            @this.dispatch('time-update', {
+                time
+            })
+            // });
         }
     </script>
 @endpush

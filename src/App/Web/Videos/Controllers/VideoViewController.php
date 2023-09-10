@@ -36,6 +36,7 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
+        logger($time);
         $this->authorize('update', $model = $this->getHistory());
 
         $video = $model->videos()->find($this->video);
