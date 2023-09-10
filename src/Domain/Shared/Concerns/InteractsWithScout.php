@@ -7,11 +7,11 @@ use Laravel\Scout\Builder;
 
 trait InteractsWithScout
 {
-    public function search(string $value = '*'): self
+    public function search(string $value = '*', bool $scopes = false): self
     {
         $column = $this->getTableColumn();
 
-        $keys = $this->getScoutKeys($value);
+        $keys = $this->getScoutKeys($value, $scopes);
 
         return $this
             ->reorder()
@@ -19,14 +19,13 @@ trait InteractsWithScout
             ->orderByRaw("FIND_IN_SET ({$column}, ?)", [$keys->implode(',')]);
     }
 
-    protected function getScoutKeys(string $value): Collection
+    protected function getScoutKeys(string $value = '*', bool $scopes = false): Collection
     {
-        $ids = $this->getWheres()->get('id');
-
         return $this
             ->getModel()
             ->search($value)
-            ->when(filled($ids), fn (Builder $query) => $query->whereIn('id', $ids))
+            ->when($scopes, fn (Builder $query) => $query->whereIn('id', $this->getModelKeys()))
+            ->take(500)
             ->keys();
     }
 
@@ -38,10 +37,11 @@ trait InteractsWithScout
         ]);
     }
 
-    protected function getWheres(): Collection
+    protected function getModelKeys(): array
     {
-        return collect($this->getQuery()->wheres)
-            ->filter(fn (array $where) => array_key_exists('column', $where))
-            ->mapWithKeys(fn (array $where) => [$where['column'] => $where['values'] ?? null]);
+        return $this
+            ->get()
+            ->take(500)
+            ->modelKeys();
     }
 }
