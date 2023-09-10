@@ -118,13 +118,11 @@
 @push('scripts')
     <script>
         function timeUpdate(e) {
-            // document.addEventListener('livewire:initialized', () => {
             const time = e.target.currentTime || 0
 
             @this.dispatch('time-update', {
                 time
             })
-            // });
         }
     </script>
 @endpush
