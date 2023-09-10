@@ -7,7 +7,7 @@
             </div>
 
             <div>
-                <a class="btn" wire:click="resetQuery('search', 'sort', 'tag')">
+                <a class="btn" wire:click="resetQuery('search', 'sort', 'tag')" wire:navigate>
                     <x-heroicon-o-x-circle class="h-6 w-6" />
                 </a>
             </div>

@@ -1,6 +1,6 @@
 <article class="rounded bg-gray-700/40 p-4 shadow-md">
     <div class="flex flex-row flex-nowrap items-center space-x-4">
-        <a class="flex-none" href="{{ route('videos.view', $item) }}">
+        <a class="flex-none" href="{{ route('videos.view', $item) }}" wire:navigate>
             <img
                 alt="{{ $item->title }}"
                 src="{{ $item->thumbnail }}"
@@ -11,7 +11,7 @@
 
         <div class="grow">
             <div class="flex flex-col">
-                <a href="{{ route('videos.view', $item) }}">
+                <a href="{{ route('videos.view', $item) }}" wire:navigate>
                     <h2 class="line-clamp-1 text-sm font-semibold capitalize tracking-tight">
                         {{ $item->title }}
                     </h2>
