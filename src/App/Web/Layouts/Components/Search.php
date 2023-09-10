@@ -15,9 +15,19 @@ class Search extends Component
 {
     public ?string $query = null;
 
+    public function mount(): void
+    {
+        $this->populateQuery();
+    }
+
     public function render(): View
     {
         return view('layouts::search');
+    }
+
+    public function updatedQuery(): void
+    {
+        $this->storeQuery();
     }
 
     #[Computed]
@@ -45,5 +55,15 @@ class Search extends Component
             ->search((string) $this->query)
             ->take(5)
             ->get();
+    }
+
+    protected function populateQuery(): void
+    {
+        $this->query = session('searchQuery');
+    }
+
+    protected function storeQuery(): void
+    {
+        session(['searchQuery' => $this->query]);
     }
 }
