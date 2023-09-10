@@ -9,7 +9,8 @@
             @foreach ($this->tags as $item)
                 <a
                     class="{{ $item->getRouteKey() === $this->tag ? 'text-primary-500' : '' }} cursor-pointer text-sm font-medium uppercase text-gray-400 hover:text-primary-500"
-                    wire:click="setTag('{{ $item->getRouteKey() }}')">
+                    wire:click="setTag('{{ $item->getRouteKey() }}')"
+                    wire:navigate>
                     {{ $item->name }}
                 </a>
             @endforeach

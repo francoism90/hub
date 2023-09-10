@@ -34,7 +34,7 @@ abstract class Listing extends Component
 
     abstract protected function builder(): Paginator;
 
-    #[Computed()]
+    #[Computed]
     public function tags(): TagCollection
     {
         return Tag::query()
@@ -95,7 +95,7 @@ abstract class Listing extends Component
         $this->resetPage();
     }
 
-    protected function hasSort(string $sort): bool
+    public function hasSort(string $sort = null): bool
     {
         return filled($this->sort) && $sort === $this->sort;
     }

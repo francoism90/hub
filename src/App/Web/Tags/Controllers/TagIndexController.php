@@ -24,7 +24,7 @@ class TagIndexController extends Component
         return view('tags::index');
     }
 
-    #[Computed()]
+    #[Computed(persist: true, seconds: 60 * 5)]
     public function items(): Collection
     {
         return Tag::query()
