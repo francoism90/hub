@@ -41,6 +41,7 @@ trait InteractsWithScout
     protected function getWheres(): Collection
     {
         return collect($this->getQuery()->wheres)
+            ->filter(fn (array $where) => array_key_exists('column', $where))
             ->mapWithKeys(fn (array $where) => [$where['column'] => $where['values'] ?? null]);
     }
 }
