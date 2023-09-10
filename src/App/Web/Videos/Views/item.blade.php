@@ -1,6 +1,9 @@
 <article class="rounded bg-gray-700/40 p-4 shadow-md">
     <div class="flex flex-row flex-nowrap items-center space-x-4">
-        <a class="flex-none" href="{{ route('videos.view', $item) }}" wire:navigate.hover>
+        <a
+            class="flex-none"
+            href="{{ route('videos.view', $item) }}"
+            wire:navigate.hover>
             <img
                 alt="{{ $item->title }}"
                 src="{{ $item->thumbnail }}"

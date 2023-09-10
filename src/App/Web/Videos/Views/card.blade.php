@@ -34,7 +34,9 @@
             @touchmove.passive="preview = true"
             @touchend.passive="preview = false"
             class="relative h-full w-full">
-            <a href="{{ route('videos.view', $item) }}" wire:navigate.hover>
+            <a
+                href="{{ route('videos.view', $item) }}"
+                wire:navigate.hover>
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"

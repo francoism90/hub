@@ -1,5 +1,8 @@
 <header class="navbar">
-    <a class="navbar-brand" href="/" wire:navigate>
+    <a
+        href="/"
+        class="navbar-brand"
+        wire:navigate.hover>
         <x-heroicon-s-play-circle class="navbar-logo" />
         <span>{{ config('app.name') }}</span>
     </a>
@@ -8,7 +11,7 @@
         <a
             href="{{ route('tags.index') }}"
             class="{{ $active('tags.*', 'navbar-item') }}"
-            wire:navigate>
+            wire:navigate.hover>
             <x-heroicon-o-hashtag class="h-6 w-6" />
         </a>
 
@@ -33,14 +36,14 @@
                     <a
                         href="{{ route('profile.history') }}"
                         class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
+                        wire:navigate.hover>
                         {{ __('History') }}
                     </a>
 
                     <a
                         href="{{ route('profile.favorites') }}"
                         class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
+                        wire:navigate.hover>
                         {{ __('Favorites') }}
                     </a>
 
