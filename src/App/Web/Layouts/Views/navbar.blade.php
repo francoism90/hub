@@ -58,16 +58,14 @@
                 <div class="flex flex-col flex-nowrap space-y-1">
                     <a
                         href="{{ route('filament.admin.pages.dashboard') }}"
-                        class="navbar-item text-gray-400"
-                        wire:navigate>
+                        class="navbar-item text-gray-400">
                         {{ __('Manage Profile') }}
                     </a>
                 </div>
 
                 <button
                     class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
-                    href="{{ route('filament.admin.auth.logout') }}"
-                    wire:navigate>
+                    href="{{ route('filament.admin.auth.logout') }}">
                     {{ __('Log Out') }}
                 </button>
             </div>
