@@ -7,6 +7,6 @@ use Livewire\Form;
 
 class SearchForm extends Form
 {
-    #[Rule('nullable|min:1|max:2')]
+    #[Rule('nullable|min:1|max:32')]
     public ?string $query = null;
 }

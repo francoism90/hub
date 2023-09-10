@@ -9,7 +9,7 @@
         <div
             @keydown.escape="open = false"
             @click.away="open = false"
-            class="m-5 w-full max-w-3xl rounded bg-gray-800 shadow-md sm:mt-14">
+            class="m-5 w-full max-w-3xl rounded-md bg-gray-800 sm:mt-14">
 
             <header class="relative flex items-center px-4">
                 <x-heroicon-o-magnifying-glass class="h-6 w-6 text-gray-300" />
@@ -22,7 +22,7 @@
                     wire:model.live.debounce.300ms="form.query">
 
                 <button
-                    class="rounded-sm bg-gray-600 px-2 py-1 text-xs text-gray-200"
+                    class="rounded-sm bg-gray-600 px-2 py-1 text-xs text-gray-300"
                     @click="open = false">
                     {{ __('ESC') }}
                 </button>
@@ -33,11 +33,17 @@
                     <x-layouts::queries />
                 @else
                     @error('form.query')
-                        <div class="px-4 py-6 text-center text-gray-400">
+                        <div class="px-4 py-9 text-center text-gray-400">
                             {{ $message }}
                         </div>
                     @else
                         <div class="flex flex-col space-y-4 p-4">
+                            @if ($this->videos->isEmpty() && $this->tags->isEmpty())
+                                <div class="px-4 py-9 text-center text-gray-400">
+                                    {{ __('No results found') }}
+                                </div>
+                            @endif
+
                             @if ($this->videos->isNotEmpty())
                                 <a
                                     class="inline-flex items-center space-x-2 text-primary-500"
