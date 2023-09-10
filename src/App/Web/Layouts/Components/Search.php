@@ -7,8 +7,10 @@ use Domain\Videos\Models\Video;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
+#[Lazy]
 class Search extends Component
 {
     public ?string $query = null;

@@ -88,7 +88,6 @@
     <script>
         function timeUpdate(e) {
             const time = e.target.currentTime || 0
-            console.log(time)
 
             @this.dispatch('time-update', {
                 time

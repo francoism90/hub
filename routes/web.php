@@ -18,7 +18,7 @@ Route::name('profile.')->middleware('auth')->group(function () {
 // Videos
 Route::name('videos.')->middleware('auth')->group(function () {
     Route::get('/', VideoIndexController::class)->name('index')->lazy();
-    Route::get('/video/{video}', VideoViewController::class)->name('view');
+    Route::get('/video/{video}', VideoViewController::class)->name('view')->lazy(enabled: false);
 });
 
 // Tags
