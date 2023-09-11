@@ -89,8 +89,11 @@ class ListImports extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            BulkImportAction::make(),
-            SyncAction::make(),
+            BulkImportAction::make()
+                ->color('gray'),
+
+            SyncAction::make()
+                ->color('gray'),
         ];
     }
 }

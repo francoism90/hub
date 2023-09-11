@@ -4,11 +4,11 @@ namespace App\Admin\Resources\VideoResource\Pages;
 
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\VideoResource;
+use App\Admin\Resources\VideoResource\Actions\RegenerateAction;
 use App\Admin\Resources\VideoResource\Forms\ContentForm;
 use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
 use App\Admin\Resources\VideoResource\Forms\MediaForm;
-use Domain\Videos\Actions\RegenerateVideo;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Filament\Actions;
 use Filament\Forms\Components\Tabs;
@@ -82,13 +82,10 @@ class EditVideo extends EditRecord
         return [
             Actions\LocaleSwitcher::make(),
 
-            Actions\Action::make('regenerate')
-                ->label(__('Regenerate'))
-                ->color('gray')
-                ->icon('heroicon-o-document-check')
-                ->action(fn (Model $record) => app(RegenerateVideo::class)->execute($record)),
+            RegenerateAction::make()
+                ->color('gray'),
 
-            Actions\Action::make('view')
+            Actions\ViewAction::make()
                 ->label(__('View'))
                 ->color('gray')
                 ->icon('heroicon-o-eye')

@@ -24,11 +24,13 @@ class EditMedia extends EditRecord
         return [
             Actions\ViewAction::make()
                 ->label(__('View Model'))
+                ->color('gray')
                 ->visible(fn (Model $record) => $record->model instanceof Video)
                 ->url(fn (Model $record) => route('filament.admin.resources.videos.edit', $record->model)),
 
             Actions\ViewAction::make()
                 ->label(__('View Model'))
+                ->color('gray')
                 ->visible(fn (Model $record) => $record->model instanceof Tag)
                 ->url(fn (Model $record) => route('filament.admin.resources.tags.edit', $record->model)),
 

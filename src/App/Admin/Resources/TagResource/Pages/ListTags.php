@@ -68,7 +68,8 @@ class ListTags extends ListRecords
         return [
             Actions\LocaleSwitcher::make(),
 
-            SortAction::make(),
+            SortAction::make()
+                ->color('gray'),
 
             Actions\CreateAction::make()
                 ->button()
