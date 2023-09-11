@@ -40,7 +40,7 @@ abstract class Listing extends Component
     {
         return Tag::query()
             ->type($this->tagType)
-            ->orderBy('name')
+            ->ordered()
             ->get()
             ->sortByDesc(fn (Tag $item) => $item->getRouteKey() === $this->tag);
     }
