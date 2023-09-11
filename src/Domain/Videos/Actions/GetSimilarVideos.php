@@ -53,7 +53,8 @@ class GetSimilarVideos
     protected function tagged(Video $model): LazyCollection
     {
         return Video::query()
-            ->whereHas('tags')
+            ->published()
+            ->withWhereHas('tags')
             ->whereKeyNot($model)
             ->tagged($model->tags)
             ->take(6)
@@ -63,8 +64,9 @@ class GetSimilarVideos
     protected function random(Video $model): LazyCollection
     {
         return Video::query()
+            ->published()
             ->whereKeyNot($model)
-            ->randomSeed(key: 'random', ttl: now()->addQuarter())
+            ->randomSeed(key: 'random', ttl: now()->addMinutes(10))
             ->take(6)
             ->cursor();
     }

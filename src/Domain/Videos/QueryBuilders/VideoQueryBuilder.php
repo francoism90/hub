@@ -46,13 +46,20 @@ class VideoQueryBuilder extends Builder
             ->orderBy('width_avg', $direction);
     }
 
+    public function published(): self
+    {
+        return $this
+            ->whereState('state', Verified::class)
+            ->whereNull('deleted_at');
+    }
+
     public function recommended(User $user = null): self
     {
         /** @var User $user */
         // $user ??= auth()->user();
 
         return $this
-            ->whereState('state', Verified::class)
+            ->published()
             ->randomSeed(key: 'feed', ttl: now()->addMinutes(10));
     }
 
@@ -60,16 +67,10 @@ class VideoQueryBuilder extends Builder
     {
         $items = app(GetSimilarVideos::class)->execute($model);
 
-        $ids = $items->pluck('id')->all();
-        $idsOrder = implode(',', $ids);
-
-        return $this->when($items->isNotEmpty(),
-            fn (Builder $query) => $query
-                ->reorder()
-                ->whereIn('id', $ids)
-                ->orderByRaw("FIELD (id, {$idsOrder})"),
-            fn (Builder $query) => $query
-                ->where('id', 0)
+        return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
+            ->reorder()
+            ->whereIn('id', $items->pluck('id'))
+            ->orderByRaw("FIND_IN_SET (id, ?)", [$items->pluck('id')->implode(',')])
         );
     }
 
