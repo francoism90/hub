@@ -14,7 +14,7 @@ class UserPolicy
 
     public function view(User $user, UserModel $model): bool
     {
-        return $user->is($model);
+        return $user->is($model) || $user->hasRole('super-admin');
     }
 
     public function create(User $user): bool
