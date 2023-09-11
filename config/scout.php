@@ -141,6 +141,7 @@ return [
                 'filterableAttributes' => [
                     'id',
                     'email',
+                    'state',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -154,6 +155,7 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'email',
+                    'state',
                     'created_at',
                     'updated_at',
                 ],
@@ -168,6 +170,7 @@ return [
                     'genres',
                     'languages',
                     'adult',
+                    'state',
                     'released_at',
                     'created_at',
                     'updated_at',
@@ -188,6 +191,7 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'identifier',
+                    'state',
                     'released_at',
                     'created_at',
                     'updated_at',

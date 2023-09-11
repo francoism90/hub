@@ -246,6 +246,7 @@ class Video extends Model implements HasMedia
             'people' => $this->tags->type(TagType::person())->seo(),
             'genres' => $this->tags->type(TagType::genre())->seo(),
             'languages' => $this->tags->type(TagType::language())->seo(),
+            'state' => $this->state,
             'released_at' => $this->released_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,

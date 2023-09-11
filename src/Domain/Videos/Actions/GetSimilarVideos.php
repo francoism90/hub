@@ -3,6 +3,7 @@
 namespace Domain\Videos\Actions;
 
 use Domain\Videos\Models\Video;
+use Domain\Videos\States\Verified;
 use Illuminate\Support\LazyCollection;
 
 class GetSimilarVideos
@@ -39,6 +40,7 @@ class GetSimilarVideos
                 $phrase = (string) $query->take($i)->implode(' ');
 
                 yield Video::search($phrase)
+                    ->where('state', Verified::$name)
                     ->take(6)
                     ->cursor();
             }
