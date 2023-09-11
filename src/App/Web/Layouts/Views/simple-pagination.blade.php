@@ -12,10 +12,6 @@
                 {{ __('Previous') }}
             </button>
 
-            <span class="text-sm text-gray-300">
-                {{ __(':current of :last', ['current' => $items->currentPage(), 'last' => $items->lastPage()]) }}
-            </span>
-
             <button
                 @if ($items->onLastPage()) disabled @endif
                 x-data
