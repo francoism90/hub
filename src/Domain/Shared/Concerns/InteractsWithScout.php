@@ -25,8 +25,13 @@ trait InteractsWithScout
             ->getModel()
             ->search($value)
             ->when($scopes, fn (Builder $query) => $query->whereIn('id', $this->getModelKeys()))
-            ->take(500)
+            ->take($this->getScoutLimit())
             ->keys();
+    }
+
+    protected function getScoutLimit(): int
+    {
+        return $this->getQuery()->limit ?? 500;
     }
 
     protected function getTableColumn(): string
@@ -41,7 +46,7 @@ trait InteractsWithScout
     {
         return $this
             ->get()
-            ->take(500)
+            ->take($this->getScoutLimit())
             ->modelKeys();
     }
 }
