@@ -28,6 +28,7 @@ abstract class Listing extends Component
     #[Url(history: true)]
     public ?string $tag = '';
 
+    #[Url(history: true)]
     public ?string $type = '';
 
     abstract public function render(): View;
@@ -89,7 +90,7 @@ abstract class Listing extends Component
     public function resetQuery(...$properties): void
     {
         collect($properties)
-            ->filter(fn (string $property) => in_array($property, ['search', 'sort', 'tag']))
+            ->filter(fn (string $property) => in_array($property, ['search', 'sort', 'tag', 'type']))
             ->map(fn (string $property) => $this->reset($property));
 
         $this->resetPage();
