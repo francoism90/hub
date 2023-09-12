@@ -1,5 +1,7 @@
 <div class="flex flex-col space-y-8 py-8">
     @empty(filled($this->form->query) && $this->items)
+        <x-search::filters />
+
         <div class="flex w-full items-center justify-center p-8 text-gray-400">
             {{ __('No results match your search criteria') }}
         </div>
