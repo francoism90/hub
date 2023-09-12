@@ -2,7 +2,7 @@
     <div class="flex w-full flex-row">
         <x-layouts::dropdown>
             <button class="btn text-sm font-semibold">
-                <span>{{ $sorter }}</span>
+                <span>{{ $this->sorter }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''" />
@@ -10,12 +10,12 @@
 
             <x-slot:content>
                 <div class="absolute left-0 top-8 w-48 min-w-[12rem] bg-gray-900 py-2">
-                    @foreach ($sorters as $sorter => $label)
+                    @foreach ($this->sorters as $key => $label)
                         <button
-                            class="btn @if ($sorter === $this->sort) btn-gradient @endif justify-start px-4 py-2 text-sm"
-                            wire:click="$set('sort', '{{ $sorter }}')">
+                            class="btn @if ($this->hasSort($key)) btn-gradient @endif justify-start px-4 py-2 text-sm"
+                            wire:click="$set('form.sort', '{{ $key }}')">
                             <span>{{ $label }}</span>
-                            @if ($sorter === $this->sort)
+                            @if ($this->hasSort($key))
                                 <x-heroicon-o-check class="h-4 w-4" />
                             @endif
                         </button>

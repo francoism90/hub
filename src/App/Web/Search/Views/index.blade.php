@@ -6,8 +6,8 @@
     <x-layouts::container>
         <x-search::query />
 
-        @if (filled($search))
-            <x-search::items :$items :$sort />
+        @if (filled($form->query))
+            <x-search::items :$items />
         @endif
     </x-layouts::container>
 

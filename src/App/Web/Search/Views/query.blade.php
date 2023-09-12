@@ -4,5 +4,5 @@
         type="search"
         placeholder="{{ __('Search on title, actor or studio') }}"
         autocomplete
-        wire:model.live.debounce.400ms="search" />
+        wire:model.live.debounce.400ms="form.query" />
 </div>
