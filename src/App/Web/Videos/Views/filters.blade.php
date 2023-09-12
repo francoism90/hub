@@ -1,8 +1,8 @@
 <aside class="flex w-full flex-col space-y-8">
     @if ($showTags)
-        <div class="w-full rounded bg-gray-900 px-6 py-4">
+        <div class="w-full rounded bg-gray-900 p-6">
             <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
-                <h3 class="headline">{{ $this->tagType }}</h3>
+                <h3 class="headline">{{ str($this->tagType)->plural() }}</h3>
                 <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />
             </div>
 
