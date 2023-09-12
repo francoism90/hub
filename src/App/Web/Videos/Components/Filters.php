@@ -12,6 +12,11 @@ class Filters extends Component
         return view('videos::filters');
     }
 
+    public static function showTags(): bool
+    {
+        return ! method_exists(static::class, 'disableTagsFilter');
+    }
+
     public function title(string $value): string
     {
         return str($value)->plural();
