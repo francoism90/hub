@@ -1,0 +1,7 @@
+.dropdown {
+    @apply relative;
+
+    &-content {
+        @apply absolute z-10;
+    }
+}

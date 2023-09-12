@@ -7,7 +7,7 @@
         <x-search::query />
 
         @if (filled($search))
-            <x-search::items :$items />
+            <x-search::items :$items :$sort />
         @endif
     </x-layouts::container>
 
