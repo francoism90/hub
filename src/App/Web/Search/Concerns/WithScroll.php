@@ -2,6 +2,7 @@
 
 namespace App\Web\Search\Concerns;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
 trait WithScroll
@@ -27,6 +28,18 @@ trait WithScroll
         $this->mergeItems(
             $this->builder()->all()
         );
+    }
+
+    #[Computed]
+    public function onFirstPage(): bool
+    {
+        return $this->builder()->onFirstPage();
+    }
+
+    #[Computed]
+    public function onLastPage(): bool
+    {
+        return $this->builder()->onLastPage();
     }
 
     protected function mergeItems(array $values): void

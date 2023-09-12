@@ -37,10 +37,7 @@ class SearchIndexController extends Component
 
     public function render(): View
     {
-        return view('search::index', [
-            'firstPage' => $this->builder()->onFirstPage(),
-            'lastPage' => $this->builder()->onLastPage(),
-        ]);
+        return view('search::index');
     }
 
     public function updated(): void
