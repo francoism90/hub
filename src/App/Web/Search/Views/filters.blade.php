@@ -23,8 +23,8 @@
 
                     <input
                         type="radio"
-                        id="sort-{{ $key }}"
                         class="hidden"
+                        id="sort-{{ $key }}"
                         value="{{ $key }}"
                         wire:model.live="form.sort" />
                 @endforeach
@@ -56,8 +56,8 @@
 
                     <input
                         type="checkbox"
-                        id="feature-{{ $key }}"
                         class="hidden"
+                        id="feature-{{ $key }}"
                         value="{{ $key }}"
                         wire:model.live="form.feature" />
                 @endforeach

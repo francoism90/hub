@@ -16,8 +16,8 @@
 
                     <input
                         type="checkbox"
-                        id="tag-{{ $item->getRouteKey() }}"
                         class="hidden"
+                        id="tag-{{ $item->getRouteKey() }}"
                         value="{{ $item->getRouteKey() }}"
                         wire:model.live="tags" />
                 @endforeach
