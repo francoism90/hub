@@ -6,7 +6,9 @@
     <x-layouts::container>
         <x-search::query />
 
-        <x-search::items :$items />
+        @if (filled($search))
+            <x-search::items :$items />
+        @endif
     </x-layouts::container>
 
     <x-layouts::footer />
