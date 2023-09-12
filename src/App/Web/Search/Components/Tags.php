@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Web\Filters\Components;
+namespace App\Web\Search\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -9,7 +9,7 @@ class Tags extends Component
 {
     public function render(): View
     {
-        return view('filters::tags');
+        return view('search::tags');
     }
 
     public function title(string $value): string

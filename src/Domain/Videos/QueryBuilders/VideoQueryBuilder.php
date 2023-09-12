@@ -4,16 +4,19 @@ namespace Domain\Videos\QueryBuilders;
 
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithScout;
+use Domain\Shared\Concerns\InteractsWithTags;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
     use InteractsWithRandomSeed;
+    use InteractsWithTags;
     use InteractsWithScout;
 
     public function captions(): self
@@ -68,24 +71,16 @@ class VideoQueryBuilder extends Builder
         $items = app(GetSimilarVideos::class)->execute($model);
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
-            ->reorder()
             ->whereIn('id', $items->pluck('id'))
             ->orderByRaw("FIND_IN_SET (id, ?)", [$items->pluck('id')->implode(',')])
         );
     }
 
-    public function tagged(mixed $tags = null): self
+    public function tagged(Arrayable|array|Tag $values = null): self
     {
-        $items = collect($tags)
-            ->map(fn (Tag|string $item) => ! $item instanceof Tag
-                ? Tag::findByPrefixedId($item)
-                : $item
-            )
-            ->filter()
-            ->unique();
+        $items = static::convertToTags($values);
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
-            ->reorder()
             ->withAnyTagsOfAnyType($items)
             ->randomSeed(key: 'tags', ttl: now()->addDay())
         );
