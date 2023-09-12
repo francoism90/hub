@@ -2,6 +2,7 @@
 
 namespace App\Web\Search\Controllers;
 
+use App\Web\Search\Concerns\WithScroll;
 use App\Web\Search\Concerns\WithSorters;
 use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
@@ -17,18 +18,12 @@ use Livewire\WithPagination;
 class SearchIndexController extends Component
 {
     use WithPagination;
+    use WithScroll;
     use WithSorters;
     use WithTags;
     use WithVideos;
 
     public SearchForm $form;
-
-    public array $items = [];
-
-    public function mount(): void
-    {
-        $this->populate();
-    }
 
     public function render(): View
     {
@@ -40,37 +35,20 @@ class SearchIndexController extends Component
 
     public function updated(): void
     {
+        $this->reset('items');
+
+        $this->resetPage();
+
         $this->validate();
-
-        $this->populate();
     }
 
-    public function updatedPage(): void
-    {
-        $this->populate();
-    }
-
-    protected function populate(): void
-    {
-        if (blank($this->form->query)) {
-            $this->reset('items');
-            return;
-        }
-
-        $this->items = array_merge_recursive(
-            $this->items,
-            $this->builder()->all()
-        );
-
-        unset($this->results);
-    }
-
-    protected function builder(): LengthAwarePaginator
+    protected function builder(int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
             ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            ->paginate(8);
+            ->take(12 * 5)
+            ->paginate(perPage: 12, page: $page);
     }
 }
