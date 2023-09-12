@@ -1,21 +1,16 @@
 <div class="flex flex-col space-y-8 py-8">
-    <x-search::filters />
+    @empty(filled($this->form->query) && $this->items)
+        <div class="flex w-full items-center justify-center p-8 text-gray-400">
+            {{ __('No results match your search criteria') }}
+        </div>
+    @else
+        <x-search::filters />
 
-    @if ($this->items)
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             @foreach ($this->items as $item)
                 <x-videos::item :$item />
             @endforeach
         </div>
-    @endif
-
-    @empty($this->items)
-        <div class="flex w-full items-center justify-center p-8 text-gray-400">
-            {{ __('No results match your search criteria') }}
-        </div>
-    @endempty
-
-    @if ($this->items)
         <nav
             role="navigation"
             aria-label="Pagination Navigation"
@@ -30,5 +25,5 @@
                 <x-heroicon-m-chevron-down class="h-4 w-4" />
             </button>
         </nav>
-    @endif
+    @endempty
 </div>
