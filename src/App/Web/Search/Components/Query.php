@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Web\Filters\Components;
+namespace App\Web\Search\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Search extends Component
+class Query extends Component
 {
     public function render(): View
     {
-        return view('filters::search');
+        return view('search::query');
     }
 }

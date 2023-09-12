@@ -10,12 +10,17 @@
     <nav class="navbar-menu">
         <a
             href="{{ route('tags.index') }}"
-            class="{{ $active('tags.*', 'navbar-item') }}"
+            class="{{ $active('tags', 'navbar-item') }}"
             wire:navigate>
             <x-heroicon-o-hashtag class="h-6 w-6" />
         </a>
 
-        <livewire:layout-search />
+        <a
+            href="{{ route('search') }}"
+            class="{{ $active('search', 'navbar-item') }}"
+            wire:navigate>
+            <x-heroicon-o-magnifying-glass class="h-6 w-6" />
+        </a>
 
         <div class="relative" x-data="{ open: false }">
             <a
@@ -31,30 +36,7 @@
                 x-show="open"
                 x-transition
                 role="dialog"
-                class="absolute right-0 top-10 z-20 flex min-w-[16rem] max-w-[16rem] flex-col space-y-4 rounded bg-gray-900 px-6 py-4 shadow-md">
-                <div class="flex flex-col flex-nowrap space-y-1">
-                    <a
-                        href="{{ route('profile.history') }}"
-                        class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
-                        {{ __('History') }}
-                    </a>
-
-                    <a
-                        href="{{ route('profile.favorites') }}"
-                        class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
-                        {{ __('Favorites') }}
-                    </a>
-
-                    <a
-                        href="{{ route('profile.watchlist') }}"
-                        class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}"
-                        wire:navigate>
-                        {{ __('Watchlist') }}
-                    </a>
-                </div>
-
+                class="absolute right-0 top-10 z-20 flex min-w-[16rem] max-w-[16rem] flex-col space-y-4 rounded bg-gray-900 px-6 py-4">
                 <div class="flex flex-col flex-nowrap space-y-1">
                     <a
                         href="{{ route('filament.admin.pages.dashboard') }}"
