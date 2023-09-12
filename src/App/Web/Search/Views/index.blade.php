@@ -3,8 +3,10 @@
         <x-layouts::navbar />
     </x-layouts::container>
 
-    <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
+    <x-layouts::container>
         <x-search::query />
+
+        <x-search::items :$items />
     </x-layouts::container>
 
     <x-layouts::footer />

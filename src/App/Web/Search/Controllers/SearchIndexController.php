@@ -4,8 +4,8 @@ namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Components\Listing;
 use Domain\Videos\Models\Video;
+use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 
 class SearchIndexController extends Listing
@@ -19,12 +19,8 @@ class SearchIndexController extends Listing
 
     protected function builder(): Paginator
     {
-        return Video::query()
-            ->with('tags')
-            ->published()
-            ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search))
-            ->when(filled($this->sort), fn (Builder $query) => $query->sort((array) $this->sort))
-            ->when(filled($this->tag), fn (Builder $query) => $query->tagged((array) $this->tag))
+        return Video::search($this->search)
+            ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
             ->paginate(24);
     }
 }
