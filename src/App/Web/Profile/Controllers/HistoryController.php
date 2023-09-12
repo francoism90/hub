@@ -22,7 +22,7 @@ class HistoryController extends Listing
 
     public function render(): View
     {
-        return view('profile::list', [
+        return view('videos::list', [
             'items' => $this->builder(),
         ]);
     }

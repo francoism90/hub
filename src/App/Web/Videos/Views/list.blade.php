@@ -19,8 +19,7 @@
         </div>
 
         <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col space-y-4 self-start sm:flex">
-            <x-filters::search />
-            <x-filters::sort />
+            <x-videos::filters />
         </aside>
     </x-layouts::container>
 

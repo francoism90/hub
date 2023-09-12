@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Web\Search\Components;
+namespace App\Web\Videos\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Tags extends Component
+class Filters extends Component
 {
     public function render(): View
     {
-        return view('search::tags');
+        return view('videos::filters');
     }
 
     public function title(string $value): string
