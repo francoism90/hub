@@ -170,6 +170,7 @@ return [
                     'genres',
                     'languages',
                     'adult',
+                    'caption',
                     'state',
                     'released_at',
                     'created_at',
@@ -191,6 +192,7 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'identifier',
+                    'duration',
                     'state',
                     'released_at',
                     'created_at',

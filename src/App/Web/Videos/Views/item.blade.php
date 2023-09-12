@@ -1,12 +1,15 @@
-<article class="rounded bg-gray-700/40 p-4 shadow-md">
-    <div class="flex flex-row flex-nowrap items-center space-x-4">
+<article
+    x-data="{ shown: false }"
+    x-intersect.once="shown = true"
+    class="h-20 max-h-[5rem] min-h-[5rem] w-full">
+    <div class="flex flex-row flex-nowrap items-center space-x-4" x-show="shown" x-transition>
         <a
             class="flex-none"
             href="{{ route('videos.view', $item) }}">
             <img
                 alt="{{ $item->title }}"
                 src="{{ $item->thumbnail }}"
-                class="h-20 w-28 bg-black object-cover text-transparent"
+                class="h-20 w-36 bg-black object-cover text-transparent"
                 crossorigin="use-credentials"
                 loading="lazy" />
         </a>
@@ -36,7 +39,7 @@
                 </a>
 
                 @if ($item->tags->isNotEmpty())
-                    <x-videos::tags class="text-xs" :items="$item->tags" />
+                    <x-videos::tags class="line-clamp-1 text-xs" :items="$item->tags" />
                 @endif
             </div>
         </div>

@@ -1,8 +1,16 @@
 .btn {
     @apply line-clamp-1 flex w-full cursor-pointer items-center justify-center space-x-1;
 
+    &-gradient {
+        @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+    }
+
     &-primary {
         @apply border-primary-500/50 bg-primary-500;
+    }
+
+    &-secondary {
+        @apply bg-transparent;
     }
 
     &-outline {

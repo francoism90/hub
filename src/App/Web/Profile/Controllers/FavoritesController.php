@@ -22,7 +22,7 @@ class FavoritesController extends Listing
 
     public function render(): View
     {
-        return view('profile::list', [
+        return view('videos::index', [
             'items' => $this->builder(),
         ]);
     }
@@ -31,13 +31,13 @@ class FavoritesController extends Listing
     {
         return $this->getFavorites()
             ->videos()
-            ->published()
             ->with('tags')
+            ->published()
             ->orderByDesc('videoables.updated_at')
             ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
             ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
-            ->when(filled($this->tag), fn (Builder $query) => $query->tagged((array) $this->tag))
-            ->when(filled($this->search), fn (Builder $query) => $query->search((string) $this->search, true))
+            ->when(filled($this->tags), fn (Builder $query) => $query->tagged($this->tags))
+            ->when(filled($this->search), fn (Builder $query) => $query->search($this->search, true))
             ->take(24 * 6)
             ->paginate(24);
     }

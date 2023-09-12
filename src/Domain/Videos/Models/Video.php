@@ -242,14 +242,16 @@ class Video extends Model implements HasMedia
             'content' => $this->content,
             'summary' => $this->summary,
             'adult' => $this->adult,
+            'duration' => $this->duration,
+            'caption' => $this->caption,
             'studios' => $this->tags->type(TagType::studio())->seo(),
             'people' => $this->tags->type(TagType::person())->seo(),
             'genres' => $this->tags->type(TagType::genre())->seo(),
             'languages' => $this->tags->type(TagType::language())->seo(),
             'state' => $this->state,
             'released_at' => $this->released_at,
-            'created' => $this->created_at,
-            'updated' => $this->updated_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

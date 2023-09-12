@@ -1,6 +1,6 @@
 <nav role="navigation" aria-label="Pagination Navigation">
     @if ($items->hasPages())
-        <div class="flex items-center justify-between py-6">
+        <div {{ $attributes->merge(['class' => 'flex items-center justify-between py-6']) }}>
             <button
                 @if ($items->onFirstPage()) disabled @endif
                 x-data
