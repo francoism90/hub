@@ -8,7 +8,9 @@
         </button>
 
         <x-slot:content>
-            <div @click.away="open = false" class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
+            <div
+                @click.away="open = false"
+                class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
                 @foreach ($this->sorters as $key => $label)
                     <label
                         for="sort-{{ $key }}"
@@ -39,7 +41,9 @@
         </button>
 
         <x-slot:content>
-            <div @click.away="open = false" class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
+            <div
+                @click.away="open = false"
+                class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
                 @foreach ($this->features as $key => $label)
                     <label
                         for="feature-{{ $key }}"
