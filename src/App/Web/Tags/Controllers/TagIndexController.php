@@ -24,12 +24,13 @@ class TagIndexController extends Component
         return view('tags::index');
     }
 
-    #[Computed(persist: true, seconds: 60 * 5)]
+    #[Computed]
     public function items(): Collection
     {
         return Tag::query()
             ->withCount('videos')
-            ->orderByDesc('videos_count')
-            ->get();
+            ->orderBy('name')
+            ->get()
+            ->groupBy(fn (Tag $tag) => str($tag->name)->upper()->substr(0, 1));
     }
 }

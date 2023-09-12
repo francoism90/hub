@@ -4,9 +4,19 @@
     </x-layouts::container>
 
     <x-layouts::container>
-        <div class="flex flex-wrap gap-3 py-6">
-            @foreach ($this->items as $item)
-                <x-tags::card :$item />
+        <div class="flex flex-col space-y-8 py-4">
+            @foreach ($this->items as $group => $tags)
+                <article class="flex flex-col space-y-1">
+                    <h2 class="text-xl">
+                        <span>{{ $group }}</span>
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+                        @foreach ($tags as $item)
+                            <x-tags::card :$item />
+                        @endforeach
+                    </div>
+                </article>
             @endforeach
         </div>
     </x-layouts::container>
