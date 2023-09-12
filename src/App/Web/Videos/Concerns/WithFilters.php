@@ -59,6 +59,11 @@ trait WithFilters
         return in_array($tag->getRouteKey(), $this->tags);
     }
 
+    public function hasSort(string $value): bool
+    {
+        return $this->sort === $value;
+    }
+
     public function resetQuery(...$properties): void
     {
         collect($properties)
