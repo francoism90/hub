@@ -23,19 +23,18 @@ trait WithHistory
         $this->reset('form.query');
     }
 
-    protected function storeQuery(): void
+    protected function storeForm(): void
     {
-        if (blank($this->form->query)) {
-            return;
-        }
-
+        // Store search queries
         $queries = $this->queries()
-            ->prepend($this->form->query)
+            ->prepend($this->form->query ?: null)
             ->filter()
             ->unique()
             ->slice(0, 5);
 
         session()->put('queries', $queries);
+
+        // Store search settings
         session()->put('search', $this->form->toArray());
     }
 }

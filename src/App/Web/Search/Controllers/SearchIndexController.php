@@ -2,6 +2,7 @@
 
 namespace App\Web\Search\Controllers;
 
+use App\Web\Search\Concerns\WithFeatures;
 use App\Web\Search\Concerns\WithHistory;
 use App\Web\Search\Concerns\WithScroll;
 use App\Web\Search\Concerns\WithSorters;
@@ -18,6 +19,7 @@ use Livewire\WithPagination;
 
 class SearchIndexController extends Component
 {
+    use WithFeatures;
     use WithHistory;
     use WithPagination;
     use WithScroll;
@@ -30,8 +32,9 @@ class SearchIndexController extends Component
     public function mount(): void
     {
         if (session()->has('search')) {
-            $this->form->query = session()->get('search.query');
-            $this->form->sort = session()->get('search.sort');
+            $this->form->query = (string) session()->get('search.query');
+            $this->form->feature = (array) session()->get('search.feature');
+            $this->form->sort = (string) session()->get('search.sort');
         }
     }
 
@@ -42,19 +45,20 @@ class SearchIndexController extends Component
 
     public function updated(): void
     {
-        $this->validate();
-
         $this->reset('items');
 
         $this->resetPage();
 
-        $this->storeQuery();
+        $this->validate();
+
+        $this->storeForm();
     }
 
     protected function builder(int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
             ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
+            ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
             ->when($this->hasSort('released'), fn (Builder $query) => $query->orderBy('released_at', 'desc'))
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))

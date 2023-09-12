@@ -243,6 +243,7 @@ class Video extends Model implements HasMedia
             'summary' => $this->summary,
             'adult' => $this->adult,
             'duration' => $this->duration,
+            'caption' => $this->caption,
             'studios' => $this->tags->type(TagType::studio())->seo(),
             'people' => $this->tags->type(TagType::person())->seo(),
             'genres' => $this->tags->type(TagType::genre())->seo(),

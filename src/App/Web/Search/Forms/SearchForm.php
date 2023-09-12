@@ -12,4 +12,7 @@ class SearchForm extends Form
 
     #[Rule('nullable|in:released,longest,shortest')]
     public ?string $sort = null;
+
+    #[Rule('nullable|array|in:caption')]
+    public ?array $feature = null;
 }

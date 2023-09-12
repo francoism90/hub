@@ -170,6 +170,7 @@ return [
                     'genres',
                     'languages',
                     'adult',
+                    'caption',
                     'state',
                     'released_at',
                     'created_at',

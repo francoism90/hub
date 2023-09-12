@@ -19,36 +19,6 @@ class VideoQueryBuilder extends Builder
     use InteractsWithTags;
     use InteractsWithScout;
 
-    public function captions(): self
-    {
-        return $this->where(fn (Builder $query) => $query
-            ->whereRelation('media', 'collection_name', 'captions')
-            ->orWhereRelation('media', 'custom_properties->closed_captions', 1)
-            ->orWhereRelation('media', 'custom_properties->burnin_captions', 1)
-        );
-    }
-
-    public function duration(string $direction = 'DESC'): self
-    {
-        return $this
-            ->whereRelation('media', 'collection_name', 'clips')
-            ->whereRelation('media', 'custom_properties->duration', '>=', 0)
-            ->withAvg('media as duration_avg', 'custom_properties->duration')
-            ->reorder()
-            ->orderBy('duration_avg', $direction);
-    }
-
-    public function quality(string $direction = 'DESC'): self
-    {
-        return $this
-            ->whereRelation('media', 'collection_name', 'clips')
-            ->whereRelation('media', 'custom_properties->width', '>=', 1280)
-            ->whereRelation('media', 'custom_properties->height', '>=', 360)
-            ->withAvg('media as width_avg', 'custom_properties->width')
-            ->reorder()
-            ->orderBy('width_avg', $direction);
-    }
-
     public function published(): self
     {
         return $this

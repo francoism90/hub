@@ -20,16 +20,16 @@ trait WithSorters
     #[Computed]
     public function sorter(): string
     {
-        $sorters = collect($this->sorters);
+        $items = collect($this->sorters);
 
-        return $sorters->first(
+        return $items->first(
             fn (string $value, string $key) => $key === $this->form->sort,
-            fn () => $sorters->first(),
+            fn () => $items->first(),
         );
     }
 
-    public function hasSort(string $sorter): bool
+    public function hasSort(string $value): bool
     {
-        return (string) $this->form->sort === $sorter;
+        return (string) $this->form->sort === $value;
     }
 }
