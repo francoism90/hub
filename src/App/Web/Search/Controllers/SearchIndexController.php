@@ -59,7 +59,10 @@ class SearchIndexController extends Component
         return Video::search($this->form->query ?: '*')
             ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
-            ->when($this->hasSort('released'), fn (Builder $query) => $query->orderBy('released_at', 'desc'))
+            ->when($this->hasSort('released'), fn (Builder $query) => $query
+                ->orderBy('released_at', 'desc')
+                ->orderBy('created_at', 'desc')
+            )
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
             ->take(12 * 5)

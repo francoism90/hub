@@ -250,8 +250,8 @@ class Video extends Model implements HasMedia
             'languages' => $this->tags->type(TagType::language())->seo(),
             'state' => $this->state,
             'released_at' => $this->released_at,
-            'created' => $this->created_at,
-            'updated' => $this->updated_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
