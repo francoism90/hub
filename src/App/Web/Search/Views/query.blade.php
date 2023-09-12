@@ -1,9 +1,15 @@
-<div class="w-full p-4">
+<div class="m-4 flex w-full flex-row flex-nowrap items-center space-x-4 rounded bg-gray-800 px-4">
     <input
-        class="input rounded bg-gray-800 px-4 py-3 text-sm text-gray-300 placeholder:text-gray-500"
+        class="input grow bg-transparent px-0 py-3 text-sm text-gray-300 placeholder:text-gray-500"
         type="search"
         placeholder="{{ __('Search on title, actor or studio') }}"
         autocomplete
         autofocus
         wire:model.live.debounce.400ms="form.query" />
+
+    @if (filled($this->form->query))
+        <a class="cursor-pointer" wire:click="$set('form.query', '')">
+            <x-heroicon-o-x-mark class="h-5 w-5" />
+        </a>
+    @endif
 </div>

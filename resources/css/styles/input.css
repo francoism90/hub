@@ -1,5 +1,5 @@
 .input {
-    @apply w-full !border-0 !border-opacity-0 focus:!border-transparent focus:!ring-0;
+    @apply w-full !border-0 !border-opacity-0 bg-transparent focus:!border-transparent focus:!ring-0;
 }
 
 .radio {
