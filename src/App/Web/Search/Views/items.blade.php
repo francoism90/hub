@@ -1,15 +1,13 @@
 <div class="flex flex-col space-y-8 py-8">
-    @if (filled($this->form->query) && blank($this->items))
-        <x-search::filters />
+    <x-search::filters />
 
+    @if (filled($this->form->query) && blank($this->items))
         <div class="flex w-full items-center justify-center p-8 text-gray-400">
             {{ __('No results match your search criteria') }}
         </div>
     @endif
 
     @if (filled($this->form->query) && filled($this->items))
-        <x-search::filters />
-
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             @foreach ($this->items as $item)
                 <x-videos::item :$item />
