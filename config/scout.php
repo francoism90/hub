@@ -191,6 +191,7 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'identifier',
+                    'duration',
                     'state',
                     'released_at',
                     'created_at',

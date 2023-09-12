@@ -2,37 +2,75 @@
 
 namespace App\Web\Search\Controllers;
 
-use App\Web\Search\Concerns\WithFilters;
+use App\Web\Search\Concerns\WithSorters;
 use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
-use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
+use Laravel\Scout\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class SearchIndexController extends Component
 {
-    use WithFilters;
     use WithPagination;
+    use WithSorters;
     use WithTags;
     use WithVideos;
 
     public SearchForm $form;
 
+    public array $items = [];
+
+    public function mount(): void
+    {
+        $this->populate();
+    }
+
     public function render(): View
     {
         return view('search::index', [
-            'items' => $this->builder(),
+            'firstPage' => $this->builder()->onFirstPage(),
+            'lastPage' => $this->builder()->onLastPage(),
         ]);
     }
 
-    protected function builder(): Paginator
+    public function updated(): void
+    {
+        $this->validate();
+
+        $this->populate();
+    }
+
+    public function updatedPage(): void
+    {
+        $this->populate();
+    }
+
+    protected function populate(): void
+    {
+        if (blank($this->form->query)) {
+            $this->reset('items');
+            return;
+        }
+
+        $this->items = array_merge_recursive(
+            $this->items,
+            $this->builder()->all()
+        );
+
+        unset($this->results);
+    }
+
+    protected function builder(): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
             ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
-            ->paginate(24);
+            ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->paginate(8);
     }
 }

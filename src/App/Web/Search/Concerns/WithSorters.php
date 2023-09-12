@@ -4,7 +4,7 @@ namespace App\Web\Search\Concerns;
 
 use Livewire\Attributes\Computed;
 
-trait WithFilters
+trait WithSorters
 {
     #[Computed]
     public function sorters(): array
@@ -30,6 +30,6 @@ trait WithFilters
 
     public function hasSort(string $sorter): bool
     {
-        return $this->form->sort === $sorter;
+        return (string) $this->form->sort === $sorter;
     }
 }

@@ -27,7 +27,7 @@
     </div>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        @forelse ($items as $item)
+        @forelse ($this->items as $item)
             <x-videos::item :$item />
         @empty
             <div class="flex items-center justify-center p-8 text-gray-400">

@@ -1,5 +1,5 @@
 <div
-    x-data="{ open: true }"
+    x-data="{ open: false }"
     @click="open = ! open"
     {{ $attributes->class('dropdown') }}>
     {{ $slot }}
