@@ -1,4 +1,36 @@
 <aside class="flex w-full flex-col space-y-8">
+    @if ($this->hasProperty('query'))
+        <div class="w-full rounded bg-gray-900 p-6">
+            <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
+                <h3 class="headline">{{ __('Search Videos') }}</h3>
+            </div>
+
+            <input
+                class="input bg-gray-700/25 p-3 text-sm text-gray-300 placeholder:text-gray-500"
+                type="search"
+                placeholder="{{ __('Search') }}"
+                autocomplete
+                wire:model.live.debounce.400ms="query" />
+        </div>
+    @endif
+
+    @if ($this->hasProperty('sort'))
+        <div class="w-full rounded bg-gray-900 p-6">
+            <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
+                <h3 class="headline">{{ __('Sort By') }}</h3>
+            </div>
+
+            <div class="flex flex-col space-y-3">
+                @foreach ($this->sorters as $sortKey => $sortLabel)
+                    <div class="radio">
+                        <input type="radio" id="sort-{{ $sortKey }}" wire:model.live="sort" value="{{ $sortKey }}">
+                        <label for="sort-{{ $sortKey }}">{{ $sortLabel }}</label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     @if ($this->hasProperty('tags'))
         <div class="w-full rounded bg-gray-900 p-6">
             <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">

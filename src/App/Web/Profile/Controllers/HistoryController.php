@@ -11,6 +11,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 
 class HistoryController extends Listing
 {
@@ -29,6 +30,16 @@ class HistoryController extends Listing
         return view('videos::index', [
             'items' => $this->builder(),
         ]);
+    }
+
+    #[Computed]
+    public function sorters(): array
+    {
+        return [
+            '' => __('Date added (newest)'),
+            'oldest' => __('Date added (oldest)'),
+            'published' => __('Date published'),
+        ];
     }
 
     protected function builder(): Paginator
