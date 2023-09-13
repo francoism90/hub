@@ -23,21 +23,21 @@ abstract class GeneralForm
             ->suffixAction(TitleCaseAction::make());
     }
 
-    public static function types(): Select
-    {
-        return Select::make('type')
-            ->label(__('Type'))
-            ->required()
-            ->options(TagType::toArray());
-    }
-
     public static function description(): MarkdownEditor
     {
         return MarkdownEditor::make('description')
             ->label(__('Description'))
             ->nullable()
             ->maxLength(2048)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('name', trim($state)));
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('description', trim($state)));
+    }
+
+    public static function types(): Select
+    {
+        return Select::make('type')
+            ->label(__('Type'))
+            ->required()
+            ->options(TagType::toArray());
     }
 
     public static function make(): array
