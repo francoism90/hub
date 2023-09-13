@@ -16,9 +16,6 @@ trait InteractsWithCache
 
     public static function forgetResponseCache(User $model): void
     {
-        ResponseCache::selectCachedItems()
-            ->usingSuffix($model->getKey())
-            ->forUrls('')
-            ->forget();
+        ResponseCache::clear(['auth', 'user']);
     }
 }

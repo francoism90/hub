@@ -6,6 +6,7 @@ use Database\Factories\VideoFactory;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
+use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\Events\VideoCreated;
@@ -30,16 +31,17 @@ use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
 {
+    use InteractsWithCache;
+    use InteractsWithMedia;
+    use InteractsWithPlaylists;
+    use InteractsWithUser;
+    use InteractsWithVod;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
-    use InteractsWithMedia;
-    use InteractsWithPlaylists;
-    use InteractsWithUser;
-    use InteractsWithVod;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
