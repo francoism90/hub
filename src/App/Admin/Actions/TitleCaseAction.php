@@ -31,7 +31,7 @@ class TitleCaseAction extends Action
             $this->process(function (Component $component, mixed $state) {
                 $component->state(
                     str($state)
-                        ->replace(['.', '_', '-'], ' ')
+                        ->replace(['.', '_'], ' ')
                         ->title()
                         ->trim()
                         ->value()
