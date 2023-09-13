@@ -52,7 +52,7 @@ class FavoritesController extends Listing
             ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
             ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
             ->when($this->hasSearch(), fn (Builder $query) => $query->search($this->query, true))
-            ->take(24 * 10)
-            ->paginate(24);
+            ->take(28 * 10)
+            ->paginate(28);
     }
 }
