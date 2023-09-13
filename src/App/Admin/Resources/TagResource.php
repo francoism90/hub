@@ -4,10 +4,9 @@ namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
 use App\Admin\Concerns\InteractsWithFormData;
+use App\Admin\Resources\TagResource\Forms\GeneralForm;
 use App\Admin\Resources\TagResource\Pages;
-use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -29,20 +28,7 @@ class TagResource extends Resource
         return $form
             ->columns(1)
             ->schema([
-                Components\TextInput::make('name')
-                    ->label(__('Name'))
-                    ->required()
-                    ->maxLength(255),
-
-                Components\Select::make('type')
-                    ->label(__('Type'))
-                    ->required()
-                    ->options(TagType::toArray()),
-
-                Components\MarkdownEditor::make('description')
-                    ->label(__('Description'))
-                    ->nullable()
-                    ->maxLength(1024),
+                ...GeneralForm::make(),
             ]);
     }
 

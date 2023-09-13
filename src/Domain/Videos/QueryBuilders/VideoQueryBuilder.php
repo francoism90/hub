@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 class VideoQueryBuilder extends Builder
 {
     use InteractsWithRandomSeed;
-    use InteractsWithTags;
     use InteractsWithScout;
+    use InteractsWithTags;
 
     public function published(): self
     {
@@ -42,7 +42,7 @@ class VideoQueryBuilder extends Builder
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
             ->whereIn('id', $items->pluck('id'))
-            ->orderByRaw("FIND_IN_SET (id, ?)", [$items->pluck('id')->implode(',')])
+            ->orderByRaw('FIND_IN_SET (id, ?)', [$items->pluck('id')->implode(',')])
         );
     }
 

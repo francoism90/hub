@@ -11,7 +11,7 @@ trait WithSorters
     {
         return [
             '' => __('Relevance'),
-            'released'  => __('Released'),
+            'released' => __('Released'),
             'longest' => __('Longest'),
             'shortest' => __('Shortest'),
         ];

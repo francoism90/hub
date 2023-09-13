@@ -16,9 +16,9 @@ use Livewire\Attributes\Computed;
 class WatchlistController extends Listing
 {
     use WithAuthentication;
-    use WithWatchlist;
     use WithSearch;
     use WithSorters;
+    use WithWatchlist;
 
     public function mount(): void
     {
