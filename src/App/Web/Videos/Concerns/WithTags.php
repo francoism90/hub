@@ -9,10 +9,10 @@ use Livewire\Attributes\Url;
 
 trait WithTags
 {
-    #[Url(history: true)]
+    #[Url(history: true, as: 't')]
     public array $tags = [];
 
-    #[Url(history: true)]
+    #[Url(history: true, as: 'c')]
     public string $type = '';
 
     #[Computed]
