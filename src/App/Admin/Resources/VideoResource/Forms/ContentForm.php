@@ -2,28 +2,24 @@
 
 namespace App\Admin\Resources\VideoResource\Forms;
 
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\MarkdownEditor;
 
 abstract class ContentForm
 {
-    public static function summary(): Textarea
+    public static function summary(): MarkdownEditor
     {
-        return Textarea::make('summary')
+        return MarkdownEditor::make('summary')
             ->label(__('Summary'))
             ->nullable()
-            ->string()
-            ->rows(6)
-            ->cols(20);
+            ->string();
     }
 
-    public static function content(): Textarea
+    public static function content(): MarkdownEditor
     {
-        return Textarea::make('content')
+        return MarkdownEditor::make('content')
             ->label(__('Content'))
             ->nullable()
-            ->string()
-            ->rows(6)
-            ->cols(20);
+            ->string();
     }
 
     public static function make(): array
