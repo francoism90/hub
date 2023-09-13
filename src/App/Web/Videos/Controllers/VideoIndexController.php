@@ -26,7 +26,7 @@ class VideoIndexController extends Listing
             ->with('tags')
             ->recommended()
             ->when($this->hasTags(), fn (Builder $query) => $query->tagged($this->tags))
-            ->take(24 * 8)
+            ->take(24 * 10)
             ->simplePaginate(24);
     }
 }
