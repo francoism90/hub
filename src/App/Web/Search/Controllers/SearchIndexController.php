@@ -65,7 +65,7 @@ class SearchIndexController extends Component
             )
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            ->take(12 * 6)
-            ->paginate(perPage: 12, page: $page);
+            ->take(14 * 10)
+            ->paginate(perPage: 14, page: $page);
     }
 }
