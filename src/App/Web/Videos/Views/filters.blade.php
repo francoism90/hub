@@ -1,4 +1,4 @@
-<aside class="flex w-full flex-col space-y-8">
+<aside class="flex w-full flex-col space-y-8 py-4">
     @if ($this->hasProperty('query'))
         <div class="w-full rounded bg-gray-900 p-6">
             <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
