@@ -58,16 +58,16 @@ class ProcessVideo implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected Video $model,
+        protected Video $video,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(SetVideoMetadata::class)->execute($this->model);
-        app(ExtractVideoSubtitles::class)->execute($this->model);
-        app(CreateVideoPreview::class)->execute($this->model);
+        app(SetVideoMetadata::class)->execute($this->video);
+        app(ExtractVideoSubtitles::class)->execute($this->video);
+        app(CreateVideoPreview::class)->execute($this->video);
     }
 
     /**
@@ -76,7 +76,7 @@ class ProcessVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
+            new WithoutOverlapping($this->video->getKey()),
         ];
     }
 }

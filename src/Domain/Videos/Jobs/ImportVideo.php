@@ -56,14 +56,14 @@ class ImportVideo implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected Import $model,
+        protected Import $video,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(CreateVideoByImport::class)->execute($this->model);
+        app(CreateVideoByImport::class)->execute($this->video);
     }
 
     /**
@@ -72,7 +72,7 @@ class ImportVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
+            new WithoutOverlapping($this->video->getKey()),
         ];
     }
 }

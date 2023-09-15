@@ -56,14 +56,14 @@ class OptimizeVideo implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected Video $model,
+        protected Video $video,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(CreateVideoThumbnail::class)->execute($this->model);
+        app(CreateVideoThumbnail::class)->execute($this->video);
     }
 
     /**
@@ -72,7 +72,7 @@ class OptimizeVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
+            new WithoutOverlapping($this->video->getKey()),
         ];
     }
 }
