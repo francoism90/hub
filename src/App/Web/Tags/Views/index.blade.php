@@ -4,9 +4,9 @@
     </x-layouts::container>
 
     <x-layouts::container>
-        <div class="flex flex-col space-y-8 py-4">
+        <div class="flex flex-col gap-y-8 py-4">
             @foreach ($this->items as $group => $tags)
-                <article class="flex flex-col space-y-1">
+                <article class="flex flex-col gap-y-1">
                     <h2 class="text-xl">
                         <span>{{ $group }}</span>
                     </h2>

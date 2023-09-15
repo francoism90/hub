@@ -30,8 +30,8 @@
             <x-slot:content>
                 <div
                     @click.away="open = false"
-                    class="dropdown-content right-0 top-10 flex min-w-[16rem] max-w-[16rem] flex-col space-y-4 bg-gray-900 px-6 py-4">
-                    <div class="flex flex-col flex-nowrap space-y-1">
+                    class="dropdown-content right-0 top-10 flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 bg-gray-900 px-6 py-4">
+                    <div class="flex flex-col flex-nowrap gap-y-1">
                         <a
                             href="{{ route('profile.history') }}"
                             class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
@@ -54,7 +54,7 @@
                         </a>
                     </div>
 
-                    <div class="flex flex-col flex-nowrap space-y-1">
+                    <div class="flex flex-col flex-nowrap gap-y-1">
                         <a
                             href="{{ route('filament.admin.pages.dashboard') }}"
                             class="navbar-item text-gray-400">

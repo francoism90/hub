@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-8 py-8">
+<div class="flex flex-col gap-y-8 py-8">
     <x-search::filters />
 
     @if (filled($this->form->query) && blank($this->items))
@@ -8,7 +8,7 @@
     @endif
 
     @if (filled($this->form->query) && filled($this->items))
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4">
             @foreach ($this->items as $item)
                 <x-videos::item :$item />
             @endforeach

@@ -1,4 +1,4 @@
-<aside class="flex w-full flex-col space-y-8 py-4">
+<aside class="flex w-full flex-col gap-y-8 py-4">
     @if ($this->hasProperty('query'))
         <div class="w-full rounded bg-gray-900 p-6">
             <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
@@ -20,7 +20,7 @@
                 <h3 class="headline">{{ __('Sort By') }}</h3>
             </div>
 
-            <div class="flex flex-col space-y-3">
+            <div class="flex flex-col gap-y-3">
                 @foreach ($this->sorters as $sortKey => $sortLabel)
                     <div class="radio">
                         <input type="radio" id="sort-{{ $sortKey }}" wire:model.live="sort" value="{{ $sortKey }}">
@@ -38,7 +38,7 @@
                 <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />
             </div>
 
-            <div class="flex h-96 max-h-[24rem] flex-col space-y-1.5 overflow-auto px-4 text-gray-400">
+            <div class="flex h-96 max-h-[24rem] flex-col gap-y-1.5 overflow-auto px-4 text-gray-400">
                 @foreach ($this->tagOptions as $item)
                     <label
                         for="tag-{{ $item->getRouteKey() }}"

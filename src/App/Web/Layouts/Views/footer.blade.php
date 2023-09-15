@@ -1,4 +1,4 @@
-<footer class="flex flex-col items-center space-y-1.5 pb-10 pt-5 text-sm text-gray-400">
+<footer class="flex flex-col items-center gap-y-1.5 pb-10 pt-5 text-sm text-gray-400">
     <div>
         <span>{{ config('app.name') }}</span>
         <span> • </span>

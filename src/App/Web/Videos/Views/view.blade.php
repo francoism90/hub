@@ -56,18 +56,18 @@
                 </div>
 
                 @if ($video->tags->isNotEmpty())
-                    <div class="space-y-1 py-4">
+                    <div class="gap-y-3 py-4">
                         <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
-                        <x-videos::tags :items="$video->tags" />
+                        <x-videos::tags class="pt-2" :items="$video->tags" />
                     </div>
                 @endif
 
-                <div class="space-y-1 py-4">
+                <div class="gap-y-3 py-4">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">
                         {{ __('Similar videos') }}
                     </h2>
 
-                    <div class="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
+                    <div class="grid grid-cols-1 gap-4 py-4">
                         @forelse ($this->similar as $item)
                             <x-videos::item :$item />
                         @empty
