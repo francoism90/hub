@@ -12,6 +12,16 @@ trait WithScroll
 
     public function mountWithScroll(): void
     {
+        $this->populate();
+    }
+
+    public function updatedPage(): void
+    {
+        $this->populate();
+    }
+
+    protected function populate(): void
+    {
         if (blank($this->items)) {
             $range = range(1, $this->builder()->currentPage());
 
@@ -21,13 +31,6 @@ trait WithScroll
                 );
             }
         }
-    }
-
-    public function updatedPage(): void
-    {
-        $this->mergeItems(
-            $this->builder()->all()
-        );
     }
 
     #[Computed]

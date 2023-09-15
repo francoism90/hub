@@ -47,9 +47,9 @@ class SearchIndexController extends Component
     {
         $this->reset('items');
 
-        $this->resetPage();
-
         $this->validate();
+
+        $this->resetPage();
 
         $this->storeForm();
     }
