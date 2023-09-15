@@ -65,9 +65,15 @@ class ProcessVideo implements ShouldQueue
 
     public function handle(): void
     {
-        app(SetVideoMetadata::class)->execute($this->video);
-        app(ExtractVideoSubtitles::class)->execute($this->video);
-        app(CreateVideoPreview::class)->execute($this->video);
+        $actions = [
+            SetVideoMetadata::class,
+            ExtractVideoSubtitles::class,
+            CreateVideoPreview::class,
+        ];
+
+        foreach ($actions as $action) {
+            app($action)->exectute($this->video);
+        }
     }
 
     /**
