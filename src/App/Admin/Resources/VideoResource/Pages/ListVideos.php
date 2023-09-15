@@ -33,6 +33,12 @@ class ListVideos extends ListRecords
                     ->searchable()
                     ->sortable(),
 
+                Columns\TextColumn::make('episode')
+                    ->label(__('Episode'))
+                    ->limit()
+                    ->searchable()
+                    ->sortable(['season', 'episode', 'part']),
+
                 Columns\TextColumn::make('state')
                     ->label(__('State'))
                     ->formatStateUsing(fn (VideoState $state) => $state->label())

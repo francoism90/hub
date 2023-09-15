@@ -10,7 +10,7 @@
         @if ($item->episode || $item->season)
             <dt class="sr-only">Identifier</dt>
             <dd class="text-base font-medium leading-4 text-gray-400">
-                {{ implode('', [$item->season, $item->episode]) }}
+                {{ $item->identifier }}
             </dd>
         @endif
     </dl>
