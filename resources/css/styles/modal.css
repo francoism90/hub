@@ -6,6 +6,6 @@
     }
 
     &-overlay {
-        @apply fixed inset-0 z-20 h-screen w-screen overflow-hidden bg-black/50 backdrop-blur-sm;
+        @apply pointer-events-none fixed inset-0 z-20 h-screen w-screen overflow-hidden bg-black/50 backdrop-blur-sm;
     }
 }

@@ -1,5 +1,11 @@
 .btn {
-    @apply line-clamp-1 inline-flex w-full cursor-pointer items-center justify-center gap-1;
+    @apply inline-flex w-full cursor-pointer select-none flex-wrap items-center justify-center gap-1 border-transparent;
+
+    &-disabled,
+    &[disabled],
+    &:disabled {
+        @apply pointer-events-none;
+    }
 
     &-gradient {
         @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
@@ -24,4 +30,14 @@
     &-rounded {
         @apply rounded-sm;
     }
+}
+
+/* radio input and checkbox as button */
+.btn:is(input[type='checkbox']),
+.btn:is(input[type='radio']) {
+    @apply w-auto appearance-none;
+}
+.btn:is(input[type='checkbox']):after,
+.btn:is(input[type='radio']):after {
+    @apply content-[attr(aria-label)];
 }
