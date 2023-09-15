@@ -25,7 +25,7 @@
                         @if ($video->episode || $video->season)
                             <dt class="sr-only">Identifier</dt>
                             <dd class="text-base font-medium leading-6 text-gray-400">
-                                {{ $item->identifier }}
+                                {{ $video->identifier }}
                             </dd>
                         @endif
                     </dl>
