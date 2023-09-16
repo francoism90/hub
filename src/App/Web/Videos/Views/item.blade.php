@@ -60,6 +60,13 @@
                                 {{ $item->identifier }}
                             </dd>
                         @endif
+
+                        @if ($item->caption)
+                            <dt class="sr-only">Captions</dt>
+                            <dd class="text-xs font-medium text-gray-400">
+                                {{ __('CC') }}
+                            </dd>
+                        @endif
                     </dl>
                 </a>
 
