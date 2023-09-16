@@ -190,14 +190,9 @@ class Video extends Model implements HasMedia
         return 'videos';
     }
 
-    protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
-    {
-        return $query->with('tags');
-    }
-
     public function makeSearchableUsing(VideoCollection $models): VideoCollection
     {
-        return $models->loadMissing('tags');
+        return $models->loadMissing('media', 'tags');
     }
 
     public function identifier(): Attribute
@@ -255,5 +250,10 @@ class Video extends Model implements HasMedia
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
+    }
+
+    protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
+    {
+        return $query->with('media', 'tags');
     }
 }

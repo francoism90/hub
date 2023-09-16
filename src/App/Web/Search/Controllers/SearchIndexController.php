@@ -57,7 +57,7 @@ class SearchIndexController extends Component
     protected function builder(int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
-            ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
+            ->query(fn (VideoQueryBuilder $query) => $query->with('media', 'tags'))
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))

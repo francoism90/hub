@@ -46,7 +46,7 @@ class FavoritesController extends Listing
     {
         return $this->getFavorites()
             ->videos()
-            ->with('tags')
+            ->with('media', 'tags')
             ->published()
             ->orderByDesc('videoables.updated_at')
             ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
