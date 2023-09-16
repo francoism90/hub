@@ -26,9 +26,10 @@
                             <x-videos::player
                                 x-cloak
                                 x-show="preview"
-                                :video="$item"
+                                :$item
                                 :manifest="$item->preview"
                                 :controls="false"
+                                :rate="1.05"
                                 class="absolute inset-0 z-10 h-full w-full object-fill"
                                 autoplay
                                 muted

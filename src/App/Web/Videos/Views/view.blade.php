@@ -5,7 +5,7 @@
 
     <article>
         <x-videos::player
-            :video="$video"
+            :item="$video"
             :manifest="$video->stream"
             :starts-at="$this->starts"
             @timeupdate.throttle.750ms="timeUpdate"

@@ -103,7 +103,11 @@
             })
             @endif
     
+            // Load manifest
             player.load('{{ $manifest }}', {{ $startsAt }})
+    
+            // Apply playback rate
+            $refs.video.defaultPlaybackRate = {{ $rate }};
         }
     }">
 
