@@ -1,13 +1,13 @@
-<div
-    x-data="{ open: false }"
-    @click="open = ! open"
-    {{ $attributes->class('dropdown') }}>
-    {{ $slot }}
-
+<div x-data="{ open: false }">
     <div
-        x-cloak
-        x-show="open"
-        role="dialog">
-        {{ $content }}
+        x-on:click="open = ! open"
+        {{ $attributes->class('dropdown') }}>
+        {{ $slot }}
+
+        <div
+            x-cloak
+            x-show="open">
+            {{ $content }}
+        </div>
     </div>
 </div>

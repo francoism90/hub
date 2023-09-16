@@ -2,6 +2,10 @@
     @apply relative;
 
     &-content {
-        @apply absolute z-10;
+        @apply absolute z-[999];
     }
+}
+
+.dropdown > *:focus {
+    @apply outline-none;
 }

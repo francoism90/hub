@@ -29,7 +29,7 @@
 
             <x-slot:content>
                 <div
-                    @click.away="open = false"
+                    x-on:click.away="open = false"
                     class="dropdown-content right-0 top-10 flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 bg-gray-900 px-6 py-4">
                     <div class="flex flex-col flex-nowrap gap-y-1">
                         <a

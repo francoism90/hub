@@ -13,8 +13,8 @@
                 x-cloak
                 x-show="open"
                 x-transition
+                x-on:click.away="open = false"
                 role="dialog"
-                @click.away="open = false"
                 class="drawer">
                 {{ $content }}
             </div>
