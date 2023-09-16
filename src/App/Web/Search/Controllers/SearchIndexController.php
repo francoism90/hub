@@ -10,7 +10,6 @@ use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
 use Domain\Videos\Models\Video;
-use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
@@ -57,7 +56,6 @@ class SearchIndexController extends Component
     protected function builder(int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
-            ->query(fn (VideoQueryBuilder $query) => $query->with('media', 'tags'))
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
             ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))

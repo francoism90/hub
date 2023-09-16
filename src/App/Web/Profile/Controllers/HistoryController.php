@@ -46,7 +46,6 @@ class HistoryController extends Listing
     {
         return $this->getHistory()
             ->videos()
-            ->with('media', 'tags')
             ->published()
             ->orderByDesc('videoables.updated_at')
             ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))

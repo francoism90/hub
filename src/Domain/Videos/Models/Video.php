@@ -50,7 +50,8 @@ class Video extends Model implements HasMedia
      * @var array<int, string>
      */
     protected $with = [
-        //
+        'media',
+        'tags',
     ];
 
     /**
@@ -192,7 +193,7 @@ class Video extends Model implements HasMedia
 
     public function makeSearchableUsing(VideoCollection $models): VideoCollection
     {
-        return $models->loadMissing('media', 'tags');
+        return $models->loadMissing($this->with);
     }
 
     public function identifier(): Attribute
@@ -254,6 +255,6 @@ class Video extends Model implements HasMedia
 
     protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
     {
-        return $query->with('media', 'tags');
+        return $query->with($this->with);
     }
 }

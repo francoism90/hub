@@ -23,7 +23,6 @@ class VideoIndexController extends Listing
     protected function builder(): Paginator
     {
         return Video::query()
-            ->with('media', 'tags')
             ->recommended()
             ->when($this->hasTags(), fn (Builder $query) => $query->tagged($this->tags))
             ->take(28 * 10)
