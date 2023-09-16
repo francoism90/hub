@@ -18,14 +18,14 @@ trait InteractsWithTags
                 titleAttribute: 'name',
             )
             ->searchDebounce(300)
-            ->getSearchResultsUsing(fn (string $search): array => static::tagSearch($search))
+            ->getSearchResultsUsing(fn (string $search): array => static::getTagResults($search))
             ->getOptionLabelFromRecordUsing(fn (Tag $record) => $record->name);
     }
 
-    protected static function tagSearch(string $query = '*'): array
+    protected static function getTagResults(string $query = '*', int $limit = 10): array
     {
         return Tag::search($query)
-            ->take(10)
+            ->take($limit)
             ->get()
             ->pluck('name', 'id')
             ->toArray();

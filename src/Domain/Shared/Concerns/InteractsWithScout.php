@@ -31,7 +31,7 @@ trait InteractsWithScout
 
     protected function getScoutLimit(): int
     {
-        return $this->getQuery()->limit ?? 500;
+        return $this->getQuery()->limit ?? 1500;
     }
 
     protected function getTableColumn(): string
