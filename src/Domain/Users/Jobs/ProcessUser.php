@@ -2,7 +2,6 @@
 
 namespace Domain\Users\Jobs;
 
-use DateTime;
 use Domain\Users\Actions\RegenerateUser;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
@@ -64,7 +63,7 @@ class ProcessUser implements ShouldQueue
         ];
     }
 
-    public function retryUntil(): DateTime
+    public function retryUntil(): \DateTime
     {
         return now()->addHour();
     }

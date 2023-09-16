@@ -30,18 +30,11 @@ class ProcessVideo implements ShouldQueue
     public $maxExceptions = 1;
 
     /**
-     * The number of times the job may be attempted.
-     *
-     * @var int
-     */
-    public $tries = 5;
-
-    /**
      * The number of seconds the job can run before timing out.
      *
      * @var int
      */
-    public $timeout = 60 * 30;
+    public $timeout = 60 * 60;
 
     /**
      * Indicate if the job should be marked as failed on timeout.
@@ -84,5 +77,10 @@ class ProcessVideo implements ShouldQueue
         return [
             new WithoutOverlapping($this->video->getKey()),
         ];
+    }
+
+    public function retryUntil(): \DateTime
+    {
+        return now()->addHour();
     }
 }
