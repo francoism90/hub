@@ -72,7 +72,7 @@ class ProcessVideo implements ShouldQueue
         ];
 
         foreach ($actions as $action) {
-            app($action)->exectute($this->video);
+            app($action)->execute($this->video);
         }
     }
 
