@@ -28,12 +28,12 @@
     <div class="h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
         <div
             x-data="{ preview: false }"
-            @mouseover="preview = true"
-            @mouseleave="preview = false"
-            @touchstart.passive="preview = true"
-            @touchmove.passive="preview = true"
-            @touchend.passive="preview = false"
-            class="relative h-full w-full">
+            x-on:mouseover="preview = true"
+            x-on:mouseleave="preview = false"
+            x-on:touchstart.passive="preview = true"
+            x-on:touchmove.passive="preview = true"
+            x-on:touchend.passive="preview = false"
+            class="relative h-full w-full flex-shrink-0">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
