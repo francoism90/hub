@@ -1,42 +1,40 @@
 <article
     x-data="{ shown: false }"
     x-intersect.once="shown = true"
-    class="h-20 max-h-[5rem] min-h-[5rem] w-full">
+    class="h-24 max-h-[6rem] min-h-[6rem] w-full">
     <div class="flex flex-row flex-nowrap items-center space-x-4" x-show="shown" x-transition>
-        <div class="flex-none">
-            <div class="h-20 w-36 bg-black object-cover text-transparent">
-                <div
-                    x-data="{ preview: false }"
-                    @mouseover="preview = true"
-                    @mouseleave="preview = false"
-                    @touchstart.passive="preview = true"
-                    @touchmove.passive="preview = true"
-                    @touchend.passive="preview = false"
-                    class="relative h-full w-full">
-                    <a href="{{ route('videos.view', $item) }}">
-                        <img
-                            alt="{{ $item->title }}"
-                            src="{{ $item->thumbnail }}"
-                            srcset="{{ $item->placeholder }}"
-                            class="relative h-full w-full bg-black object-fill text-transparent"
-                            crossorigin="use-credentials"
-                            loading="lazy" />
+        <div class="h-20 w-36 bg-black object-cover text-transparent">
+            <div
+                x-data="{ preview: false }"
+                @mouseover="preview = true"
+                @mouseleave="preview = false"
+                @touchstart.passive="preview = true"
+                @touchmove.passive="preview = true"
+                @touchend.passive="preview = false"
+                class="relative h-full w-full">
+                <a href="{{ route('videos.view', $item) }}">
+                    <img
+                        alt="{{ $item->title }}"
+                        src="{{ $item->thumbnail }}"
+                        srcset="{{ $item->placeholder }}"
+                        class="relative h-full w-full bg-black object-fill text-transparent"
+                        crossorigin="use-credentials"
+                        loading="lazy" />
 
-                        <template x-if="preview">
-                            <x-videos::player
-                                x-cloak
-                                x-show="preview"
-                                :$item
-                                :manifest="$item->preview"
-                                :controls="false"
-                                :rate="1.05"
-                                class="absolute inset-0 z-10 h-full w-full object-fill"
-                                autoplay
-                                muted
-                                loop />
-                        </template>
-                    </a>
-                </div>
+                    <template x-if="preview">
+                        <x-videos::player
+                            x-cloak
+                            x-show="preview"
+                            :$item
+                            :manifest="$item->preview"
+                            :controls="false"
+                            :rate="1.05"
+                            class="absolute inset-0 z-10 h-full w-full object-fill"
+                            autoplay
+                            muted
+                            loop />
+                    </template>
+                </a>
             </div>
         </div>
 
