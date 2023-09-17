@@ -1,6 +1,4 @@
 <div class="flex flex-col gap-y-8 py-8">
-    <x-search::filters />
-
     @if (filled($this->form->query) && blank($this->items))
         <div class="flex w-full items-center justify-center p-8 text-gray-400">
             {{ __('No results match your search criteria') }}
@@ -13,6 +11,7 @@
                 <x-videos::item :$item />
             @endforeach
         </div>
+
         <nav
             role="navigation"
             aria-label="Pagination Navigation"

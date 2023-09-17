@@ -2,7 +2,7 @@
     x-data="{ shown: false }"
     x-intersect.once="shown = true"
     class="h-24 max-h-[6rem] min-h-[6rem] w-full">
-    <div class="flex flex-row flex-nowrap items-center space-x-4" x-show="shown" x-transition>
+    <div class="flex flex-row flex-nowrap items-center gap-x-4" x-show="shown" x-transition>
         <div class="h-20 w-36 bg-black object-cover text-transparent">
             <div
                 x-data="{ preview: false }"

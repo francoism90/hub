@@ -2,7 +2,7 @@
     @apply relative;
 
     &-content {
-        @apply absolute z-[999];
+        @apply absolute z-50;
     }
 }
 

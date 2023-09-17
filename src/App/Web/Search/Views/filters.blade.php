@@ -1,4 +1,4 @@
-<div class="flex w-full flex-row flex-nowrap space-x-6">
+<div class="flex w-full flex-row flex-nowrap gap-x-6">
     @if (filled($this->form->query))
         <x-layouts::dropdown>
             <button class="btn text-sm font-semibold">
@@ -11,7 +11,7 @@
             <x-slot:content>
                 <div
                     x-on:click.away="open = false"
-                    class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
+                    class="dropdown-content left-0 top-8 w-44 min-w-[11rem] max-w-[11rem] bg-gray-900 py-2">
                     @foreach ($this->sorters as $key => $label)
                         <label
                             for="sort-{{ $key }}"
@@ -44,7 +44,7 @@
             <x-slot:content>
                 <div
                     x-on:click.away="open = false"
-                    class="absolute left-0 top-8 w-44 min-w-[11rem] bg-gray-900 py-2">
+                    class="dropdown-content left-0 top-8 w-44 min-w-[11rem] max-w-[11rem] bg-gray-900 py-2">
                     @foreach ($this->features as $key => $label)
                         <label
                             for="feature-{{ $key }}"
