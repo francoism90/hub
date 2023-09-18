@@ -2,6 +2,8 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Concerns\InteractsWithAuthentication;
+use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\UserResource\Pages;
 use Domain\Users\Models\User;
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
+    use InteractsWithAuthentication;
+    use InteractsWithFormData;
     use InteractsWithScout;
 
     protected static ?string $model = User::class;
@@ -58,11 +62,6 @@ class UserResource extends Resource
         ];
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return __('Manage');
-    }
-
     public static function getPages(): array
     {
         return [
@@ -70,6 +69,16 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return static::hasRole('super-admin');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('Manage');
     }
 
     public static function getEloquentQuery(): Builder

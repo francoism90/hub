@@ -2,6 +2,8 @@
 
 namespace App\Admin\Resources;
 
+use App\Admin\Concerns\InteractsWithAuthentication;
+use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\MediaResource\Forms\GeneralForm;
 use App\Admin\Resources\MediaResource\Forms\MetaForm;
 use App\Admin\Resources\MediaResource\Pages;
@@ -13,6 +15,9 @@ use Filament\Resources\Resource;
 
 class MediaResource extends Resource
 {
+    use InteractsWithAuthentication;
+    use InteractsWithFormData;
+
     protected static ?string $model = Media::class;
 
     protected static ?string $recordTitleAttribute = 'name';
@@ -27,6 +32,16 @@ class MediaResource extends Resource
                 ...GeneralForm::make(),
                 ...MetaForm::make(),
             ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListMedia::route('/'),
+            'create' => Pages\CreateMedia::route('/create'),
+            'view' => Pages\ViewMedia::route('/{record}'),
+            'edit' => Pages\EditMedia::route('/{record}/edit'),
+        ];
     }
 
     public static function getRelations(): array
@@ -44,18 +59,13 @@ class MediaResource extends Resource
             ]);
     }
 
-    public static function getNavigationGroup(): ?string
+    public static function canViewAny(): bool
     {
-        return __('Manage');
+        return static::hasRole('super-admin');
     }
 
-    public static function getPages(): array
+    public static function getNavigationGroup(): string
     {
-        return [
-            'index' => Pages\ListMedia::route('/'),
-            'create' => Pages\CreateMedia::route('/create'),
-            'view' => Pages\ViewMedia::route('/{record}'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
-        ];
+        return __('Manage');
     }
 }

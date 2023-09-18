@@ -32,23 +32,6 @@ class TagResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return __('Manage');
-    }
-
-    public static function canViewAny(): bool
-    {
-        return static::hasRole('super-admin');
-    }
-
     public static function getPages(): array
     {
         return [
@@ -56,5 +39,22 @@ class TagResource extends Resource
             'create' => Pages\CreateTag::route('/create'),
             'edit' => Pages\EditTag::route('/{record}'),
         ];
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('Manage');
+    }
+
+    public static function canViewAny(): bool
+    {
+        return static::hasRole('super-admin');
     }
 }

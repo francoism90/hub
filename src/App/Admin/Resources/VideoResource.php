@@ -20,21 +20,9 @@ class VideoResource extends Resource
 
     protected static ?string $model = Video::class;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?string $navigationIcon = 'heroicon-o-play';
-
-    public static function getRelations(): array
-    {
-        return [
-            RelationManagers\MediaRelationManager::class,
-        ];
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return __('Manage');
-    }
 
     public static function getPages(): array
     {
@@ -45,9 +33,26 @@ class VideoResource extends Resource
         ];
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\MediaRelationManager::class,
+        ];
+    }
+
     public static function canViewAny(): bool
     {
         return static::hasRole('super-admin');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('Manage');
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'season', 'episode', 'part'];
     }
 
     public static function getEloquentQuery(): Builder

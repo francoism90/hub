@@ -15,7 +15,7 @@ trait InteractsWithFormData
     protected function prepareFormDataBeforeFill(array $data): array
     {
         $data = collect($data)
-            ->reject(fn (mixed $value, string $key) => in_array($key, ['prefixed_id']))
+            ->reject(fn (mixed $value, string $key) => in_array($key, ['prefixed_id', 'uuid']))
             ->map(function (mixed $value, string $key) {
                 if ($key === 'id') {
                     return $this->getRecord()?->getRouteKey() ?? $value;
