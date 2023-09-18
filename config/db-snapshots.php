@@ -40,6 +40,7 @@ return [
         'notifications',
         'password_reset_tokens',
         'personal_access_tokens',
+        'sessions',
         'telescope_entries',
         'telescope_entries_tags',
         'telescope_monitoring',

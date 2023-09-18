@@ -51,7 +51,7 @@ class Kernel extends ConsoleKernel
             ->runInBackground();
 
         $schedule
-            ->command('snapshot:cleanup --keep=7')
+            ->command('snapshot:cleanup --keep=10')
             ->withoutOverlapping(1440)
             ->dailyAt('04:00')
             ->runInBackground();
