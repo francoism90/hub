@@ -74,7 +74,7 @@ class ListTags extends ListRecords
             Actions\CreateAction::make()
                 ->button()
                 ->icon('heroicon-o-plus')
-                ->label(__('Create Tag')),
+                ->label(__('Create tag')),
         ];
     }
 }

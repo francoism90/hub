@@ -3,7 +3,6 @@
 namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
-use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\TagResource\Forms\GeneralForm;
 use App\Admin\Resources\TagResource\Pages;
 use Domain\Tags\Models\Tag;
@@ -14,7 +13,6 @@ use Filament\Resources\Resource;
 class TagResource extends Resource
 {
     use InteractsWithAuthentication;
-    use InteractsWithFormData;
     use Translatable;
 
     protected static ?string $model = Tag::class;

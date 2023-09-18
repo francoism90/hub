@@ -19,7 +19,7 @@ class BulkImportAction extends Action
     {
         parent::setUp();
 
-        $this->label(__('Bulk Import'));
+        $this->label(__('Bulk import'));
 
         $this->icon('heroicon-o-squares-plus');
 

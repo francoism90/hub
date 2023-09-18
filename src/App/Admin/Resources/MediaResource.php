@@ -3,7 +3,6 @@
 namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
-use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\MediaResource\Forms\GeneralForm;
 use App\Admin\Resources\MediaResource\Forms\MetaForm;
 use App\Admin\Resources\MediaResource\Pages;
@@ -16,7 +15,6 @@ use Filament\Resources\Resource;
 class MediaResource extends Resource
 {
     use InteractsWithAuthentication;
-    use InteractsWithFormData;
 
     protected static ?string $model = Media::class;
 

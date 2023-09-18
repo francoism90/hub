@@ -85,7 +85,7 @@ class ListUsers extends ListRecords
             Actions\CreateAction::make()
                 ->button()
                 ->icon('heroicon-o-plus')
-                ->label(__('Create User')),
+                ->label(__('Create user')),
         ];
     }
 }

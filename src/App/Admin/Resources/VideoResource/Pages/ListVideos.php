@@ -94,7 +94,7 @@ class ListVideos extends ListRecords
             Actions\CreateAction::make()
                 ->button()
                 ->icon('heroicon-o-plus')
-                ->label(__('Create Video')),
+                ->label(__('Create video')),
         ];
     }
 }

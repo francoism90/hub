@@ -19,7 +19,7 @@ class SortAction extends Action
     {
         parent::setUp();
 
-        $this->label(__('Sort Tags'));
+        $this->label(__('Sort tags'));
 
         $this->icon('heroicon-o-bars-3-bottom-left');
 

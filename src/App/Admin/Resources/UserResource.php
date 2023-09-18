@@ -3,7 +3,6 @@
 namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
-use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\UserResource\Pages;
 use Domain\Users\Models\User;
@@ -17,7 +16,6 @@ use Illuminate\Support\Facades\Hash;
 class UserResource extends Resource
 {
     use InteractsWithAuthentication;
-    use InteractsWithFormData;
     use InteractsWithScout;
 
     protected static ?string $model = User::class;

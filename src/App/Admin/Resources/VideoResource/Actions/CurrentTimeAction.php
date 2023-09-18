@@ -24,7 +24,7 @@ class CurrentTimeAction extends Action
 
         $this->icon('heroicon-o-camera');
 
-        $this->label(__('Current Time'));
+        $this->label(__('Current time'));
 
         $this->hiddenLabel();
 

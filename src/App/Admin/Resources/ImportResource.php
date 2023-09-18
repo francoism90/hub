@@ -3,7 +3,6 @@
 namespace App\Admin\Resources;
 
 use App\Admin\Concerns\InteractsWithAuthentication;
-use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\ImportResource\Pages;
 use Domain\Imports\Models\Import;
 use Filament\Resources\Resource;
@@ -11,7 +10,6 @@ use Filament\Resources\Resource;
 class ImportResource extends Resource
 {
     use InteractsWithAuthentication;
-    use InteractsWithFormData;
 
     protected static ?string $model = Import::class;
 

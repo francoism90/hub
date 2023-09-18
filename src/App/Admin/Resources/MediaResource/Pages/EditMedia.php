@@ -2,6 +2,7 @@
 
 namespace App\Admin\Resources\MediaResource\Pages;
 
+use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\MediaResource;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class EditMedia extends EditRecord
 {
+    use InteractsWithFormData;
+
     protected static string $resource = MediaResource::class;
 
     public function getTitle(): string|Htmlable

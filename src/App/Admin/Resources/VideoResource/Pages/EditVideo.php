@@ -74,7 +74,7 @@ class EditVideo extends EditRecord
     {
         app(UpdateVideoDetails::class)->execute($record, $data);
 
-        return $record;
+        return $record->refresh();
     }
 
     protected function getHeaderActions(): array
