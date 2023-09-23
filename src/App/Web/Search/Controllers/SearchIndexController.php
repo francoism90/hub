@@ -9,6 +9,7 @@ use App\Web\Search\Concerns\WithSorters;
 use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
@@ -30,6 +31,8 @@ class SearchIndexController extends Component
 
     public function mount(): void
     {
+        SEOMeta::setTitle(__('Search'));
+
         if (session()->has('search')) {
             $this->form->query = (string) session()->get('search.query');
             $this->form->feature = (array) session()->get('search.feature');

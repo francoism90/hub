@@ -1,6 +1,6 @@
 <div
-    x-ref="container"
     wire:ignore
+    x-ref="container"
     x-data="{
         init() {
             const player = new window.shaka.Player($refs.video);
