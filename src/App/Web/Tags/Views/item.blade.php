@@ -1,4 +1,6 @@
-<article class="rounded bg-gray-700/40 p-4 shadow-md">
+<article
+    wire:key="{{ $item->getRouteKey() }}"
+    class="rounded bg-gray-700/40 p-4 shadow-md">
     <a
         href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
         <div class="flex flex-row flex-nowrap items-center gap-x-4">

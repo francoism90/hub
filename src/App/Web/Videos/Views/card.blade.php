@@ -1,4 +1,6 @@
-<article id="video-{{ $item->getRouteKey() }}" {{ $attributes->class('flex flex-col gap-y-1.5 py-8') }}>
+<article
+    wire:key="{{ $item->getRouteKey() }}"
+    {{ $attributes->class('flex flex-col gap-y-1.5 py-8') }}>
     <dl class="inline-flex">
         <dt class="sr-only">Published on</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">

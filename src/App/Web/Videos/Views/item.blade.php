@@ -1,4 +1,5 @@
 <article
+    wire:key="{{ $item->getRouteKey() }}"
     x-data="{ shown: false }"
     x-intersect.once="shown = true"
     class="h-24 max-h-[6rem] min-h-[6rem] w-full">
