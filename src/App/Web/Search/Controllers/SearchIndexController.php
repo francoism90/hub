@@ -66,7 +66,7 @@ class SearchIndexController extends Component
                 ->orderBy('released_at', 'desc')
                 ->orderBy('created_at', 'desc')
             )
-            ->take(12 * 12)
+            ->take(12 * 16)
             ->paginate(perPage: 12, page: $page);
     }
 }
