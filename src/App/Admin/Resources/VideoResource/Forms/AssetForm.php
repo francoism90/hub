@@ -4,7 +4,7 @@ namespace App\Admin\Resources\VideoResource\Forms;
 
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
-abstract class MediaForm
+abstract class AssetForm
 {
     public static function clips(): SpatieMediaLibraryFileUpload
     {
@@ -61,12 +61,33 @@ abstract class MediaForm
             ]);
     }
 
+    public static function previews(): SpatieMediaLibraryFileUpload
+    {
+        return SpatieMediaLibraryFileUpload::make('previews')
+            ->label(__('Preview'))
+            ->collection('previews')
+            ->disk('conversions')
+            ->conversionsDisk('conversions')
+            ->downloadable()
+            ->acceptedFileTypes([
+                'video/av1',
+                'video/mp4',
+                'video/mp4v-es',
+                'video/ogg',
+                'video/quicktime',
+                'video/webm',
+                'video/x-m4v',
+                'video/x-matroska',
+            ]);
+    }
+
     public static function make(): array
     {
         return [
             static::clips(),
             static::captions(),
             static::thumbnail(),
+            static::previews(),
         ];
     }
 }

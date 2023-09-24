@@ -5,10 +5,10 @@ namespace App\Admin\Resources\VideoResource\Pages;
 use App\Admin\Concerns\InteractsWithFormData;
 use App\Admin\Resources\VideoResource;
 use App\Admin\Resources\VideoResource\Actions\RegenerateAction;
+use App\Admin\Resources\VideoResource\Forms\AssetForm;
 use App\Admin\Resources\VideoResource\Forms\ContentForm;
 use App\Admin\Resources\VideoResource\Forms\FeatureForm;
 use App\Admin\Resources\VideoResource\Forms\GeneralForm;
-use App\Admin\Resources\VideoResource\Forms\MediaForm;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Filament\Actions;
 use Filament\Forms\Components\Tabs;
@@ -42,7 +42,7 @@ class EditVideo extends EditRecord
                         Tabs\Tab::make('assets')
                             ->label(__('Assets'))
                             ->schema([
-                                ...MediaForm::make(),
+                                ...AssetForm::make(),
                             ]),
 
                         Tabs\Tab::make('content')

@@ -151,8 +151,17 @@ class Video extends Model implements HasMedia
             ]);
 
         $this
+            ->addMediaCollection('captions')
+            ->useDisk('conversions')
+            ->acceptsMimeTypes([
+                'text/plain',
+                'text/vtt',
+            ]);
+
+        $this
             ->addMediaCollection('previews')
             ->useDisk('conversions')
+            ->singleFile()
             ->acceptsMimeTypes([
                 'video/av1',
                 'video/mp4',
@@ -162,14 +171,6 @@ class Video extends Model implements HasMedia
                 'video/webm',
                 'video/x-m4v',
                 'video/x-matroska',
-            ]);
-
-        $this
-            ->addMediaCollection('captions')
-            ->useDisk('conversions')
-            ->acceptsMimeTypes([
-                'text/plain',
-                'text/vtt',
             ]);
 
         $this
