@@ -40,7 +40,7 @@ class VideoViewController extends Component
 
         $video = $model->videos()->find($this->video);
 
-        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) <= 750) {
+        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) < 750) {
             return;
         }
 
