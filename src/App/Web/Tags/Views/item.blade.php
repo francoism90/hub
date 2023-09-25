@@ -5,7 +5,7 @@
         href="{{ route('videos.index', ['tag' => $item->getRouteKey()]) }}">
         <div class="flex flex-row flex-nowrap items-center gap-x-4">
             <div class="flex h-16 w-16 items-center justify-center rounded bg-gray-600 px-2 py-1 text-xs text-gray-200">
-                <x-dynamic-component :component="$icon" class="h-5 w-5" />
+                <x-icon :name="$icon" class="h-5 w-5" />
             </div>
 
             <div class="grow">
