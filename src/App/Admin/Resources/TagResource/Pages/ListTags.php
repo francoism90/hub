@@ -12,6 +12,7 @@ use Filament\Resources\Pages\ListRecords\Concerns\Translatable;
 use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListTags extends ListRecords
 {
@@ -26,6 +27,7 @@ class ListTags extends ListRecords
             ->deferLoading()
             ->reorderable('order_column')
             ->defaultSort('order_column')
+            ->modifyQueryUsing(fn (Builder $query) => $query->withCount('videos'))
             ->columns([
                 Columns\TextColumn::make('name')
                     ->label(__('Name'))
@@ -35,6 +37,10 @@ class ListTags extends ListRecords
                 Columns\TextColumn::make('type')
                     ->label(__('Type'))
                     ->formatStateUsing(fn (TagType $state): ?string => $state?->label)
+                    ->sortable(),
+
+                Columns\TextColumn::make('videos_count')
+                    ->label(__('Usage'))
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')
