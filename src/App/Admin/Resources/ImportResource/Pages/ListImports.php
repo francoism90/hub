@@ -84,7 +84,7 @@ class ListImports extends ListRecords
 
     public function getTitle(): string|Htmlable
     {
-        return __('Import Videos');
+        return __('Sync');
     }
 
     protected function getHeaderActions(): array
