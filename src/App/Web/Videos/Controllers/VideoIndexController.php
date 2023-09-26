@@ -25,7 +25,7 @@ class VideoIndexController extends Listing
         return Video::query()
             ->recommended()
             ->when($this->hasTags(), fn (Builder $query) => $query->tagged($this->tags))
-            ->take(32 * 16)
+            ->take(32 * 24)
             ->simplePaginate(32);
     }
 }
