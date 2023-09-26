@@ -2,7 +2,7 @@
     wire:key="{{ $item->getRouteKey() }}"
     {{ $attributes->class('flex flex-col gap-y-1.5 py-8') }}>
     <dl class="inline-flex">
-        <dt class="sr-only">Published on</dt>
+        <dt class="sr-only">{{ __('Published on') }}</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
             <time datetime="{{ $item->published_at->format('Y-m-d\TH:i:s.uP') }}">
                 {{ $item->published_at->format('F d, Y') }}
@@ -10,7 +10,7 @@
         </dd>
 
         @if ($item->episode || $item->season)
-            <dt class="sr-only">Identifier</dt>
+            <dt class="sr-only">{{ __('ID') }}</dt>
             <dd class="text-base font-medium leading-4 text-gray-400">
                 {{ $item->identifier }}
             </dd>

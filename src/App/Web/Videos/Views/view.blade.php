@@ -15,7 +15,7 @@
             <div class="grid grid-cols-1 divide-y divide-gray-700">
                 <header class="py-4">
                     <dl>
-                        <dt class="sr-only">Published on</dt>
+                        <dt class="sr-only">{{ __('Published on') }}</dt>
                         <dd class="text-base font-medium leading-6 text-gray-400">
                             <time datetime="{{ $video->published_at->format('Y-m-d\TH:i:s.uP') }}">
                                 {{ $video->published_at->format('F d, Y') }}
@@ -23,7 +23,7 @@
                         </dd>
 
                         @if ($video->episode || $video->season)
-                            <dt class="sr-only">Identifier</dt>
+                            <dt class="sr-only">{{ __('ID') }}</dt>
                             <dd class="text-base font-medium leading-6 text-gray-400">
                                 {{ $video->identifier }}
                             </dd>

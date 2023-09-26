@@ -44,7 +44,7 @@
                 </h2>
 
                 <dl>
-                    <dt class="sr-only">Duration</dt>
+                    <dt class="sr-only">{{ __('Time') }}</dt>
                     <dd class="text-ellipsis text-xs font-medium text-gray-400">
                         <time>
                             {{ duration($item->duration) }}
@@ -52,14 +52,14 @@
                     </dd>
 
                     @if ($item->episode || $item->season)
-                        <dt class="sr-only">Identifier</dt>
+                        <dt class="sr-only">{{ __('ID') }}</dt>
                         <dd class="text-xs font-medium text-gray-400">
                             {{ $item->identifier }}
                         </dd>
                     @endif
 
                     @if ($item->caption)
-                        <dt class="sr-only">Captions</dt>
+                        <dt class="sr-only">{{ __('CC') }}</dt>
                         <dd class="text-xs font-medium text-gray-400">
                             {{ __('CC') }}
                         </dd>
