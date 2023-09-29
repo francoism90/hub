@@ -10,7 +10,6 @@ abstract class AssetForm
     {
         return SpatieMediaLibraryFileUpload::make('clips')
             ->label(__('Clips'))
-            ->required()
             ->multiple()
             ->collection('clips')
             ->disk('media')
