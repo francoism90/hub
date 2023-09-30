@@ -2,7 +2,7 @@
     wire:key="{{ $item->getRouteKey() }}"
     x-data="{ shown: false }"
     x-intersect.once="shown = true"
-    class="h-24 max-h-[6rem] min-h-[6rem] w-full">
+    class="h-20 max-h-[5rem] min-h-[5rem] w-full">
     <div class="flex flex-row flex-nowrap items-center gap-x-4" x-show="shown" x-transition>
         <div
             x-data="{ preview: false }"
@@ -37,7 +37,7 @@
             </a>
         </div>
 
-        <div class="flex flex-col">
+        <div class="flex grow flex-col">
             <a href="{{ route('videos.view', $item) }}">
                 <h2 class="line-clamp-1 text-sm font-semibold capitalize tracking-tight">
                     {{ $item->title }}
