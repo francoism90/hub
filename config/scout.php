@@ -184,9 +184,11 @@ return [
                     'people',
                     'studios',
                     'genres',
+                    'languages',
                     'content',
                     'summary',
                     'languages',
+                    'released_at',
                 ],
 
                 'sortableAttributes' => [
