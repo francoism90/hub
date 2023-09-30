@@ -33,8 +33,8 @@ class ListVideos extends ListRecords
                     ->searchable()
                     ->sortable(),
 
-                Columns\TextColumn::make('episode')
-                    ->label(__('Episode'))
+                Columns\TextColumn::make('identifier')
+                    ->label(__('ID'))
                     ->limit()
                     ->searchable()
                     ->sortable(['season', 'episode', 'part']),
