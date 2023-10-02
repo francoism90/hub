@@ -18,7 +18,10 @@
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
-        <a href="{{ route('videos.view', $item) }}">
+        <a
+            href="{{ route('videos.view', $item) }}"
+            aria-label="{{ $item->title }}"
+            title="{{ $item->title }}">
             {{ $item->title }}
         </a>
     </h2>

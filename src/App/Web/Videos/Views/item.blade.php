@@ -39,7 +39,10 @@
 
         <div class="flex grow flex-col">
             <a href="{{ route('videos.view', $item) }}">
-                <h2 class="line-clamp-1 text-sm font-semibold capitalize tracking-tight">
+                <h2
+                    class="line-clamp-1 text-sm font-semibold capitalize tracking-tight"
+                    aria-label="{{ $item->title }}"
+                    title="{{ $item->title }}">
                     {{ $item->title }}
                 </h2>
 
