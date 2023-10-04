@@ -6,7 +6,7 @@
     @endif
 
     @if (filled($this->form->query) && filled($this->items))
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-4" wire:poll.15s>
             @foreach ($this->items as $item)
                 <x-videos::item :$item />
             @endforeach
