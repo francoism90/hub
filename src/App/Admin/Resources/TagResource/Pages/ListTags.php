@@ -25,6 +25,7 @@ class ListTags extends ListRecords
     {
         return $table
             ->deferLoading()
+            ->poll('10s')
             ->reorderable('order_column')
             ->defaultSort('order_column')
             ->modifyQueryUsing(fn (Builder $query) => $query->withCount('videos'))
