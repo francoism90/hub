@@ -3,11 +3,23 @@
     x-ref="container"
     x-data="{
         init() {
+            // Create instance
             const player = new window.shaka.Player($refs.video);
     
+            // Configure CORS
             player
                 .getNetworkingEngine()
                 .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true))
+    
+            // Configure settings
+            player.configure({
+                preferredAudioLanguage: 'en',
+                preferredTextLanguage: 'en',
+                streaming: {
+                    ignoreTextStreamFailures: true,
+                    alwaysStreamText: true
+                }
+            })
     
             @if($controls)
             // Create controls
