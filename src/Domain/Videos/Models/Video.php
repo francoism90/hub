@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -42,6 +44,7 @@ class Video extends Model implements HasMedia
     use InteractsWithPlaylists;
     use InteractsWithUser;
     use InteractsWithVod;
+    use LogsActivity;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
@@ -195,6 +198,14 @@ class Video extends Model implements HasMedia
     public function makeSearchableUsing(VideoCollection $models): VideoCollection
     {
         return $models->loadMissing($this->with);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 
     public function identifier(): Attribute

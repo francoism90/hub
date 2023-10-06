@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
@@ -21,6 +23,7 @@ class Tag extends BaseTag implements HasMedia
     use HasFactory;
     use HasPrefixedId;
     use InteractsWithMedia;
+    use LogsActivity;
     use Notifiable;
     use Searchable;
 
@@ -106,13 +109,21 @@ class Tag extends BaseTag implements HasMedia
         return 'tags';
     }
 
-    protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
+    public function getActivitylogOptions(): LogOptions
     {
-        return $query->with($this->with);
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 
     public function makeSearchableUsing(TagCollection $models): TagCollection
     {
         return $models->loadMissing($this->with);
+    }
+
+    protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
+    {
+        return $query->with($this->with);
     }
 }

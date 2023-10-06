@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -25,6 +27,7 @@ class Playlist extends Model implements HasMedia
     use HasVideos;
     use InteractsWithMedia;
     use InteractsWithUser;
+    use LogsActivity;
     use Notifiable;
     use Searchable;
     use SoftDeletes;
@@ -82,8 +85,18 @@ class Playlist extends Model implements HasMedia
         return [
             'id' => $this->getScoutKey(),
             'name' => $this->name,
+            'content' => $this->content,
+            'type' => $this->type,
             'created' => $this->created_at,
             'updated' => $this->updated_at,
         ];
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 }

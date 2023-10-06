@@ -2,7 +2,6 @@
 
 namespace Domain\Playlists\Actions;
 
-use Domain\Playlists\Actions\CreatePlaylist;
 use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\States\Verified;
 use Domain\Users\Models\User;
