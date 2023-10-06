@@ -45,6 +45,12 @@ class Kernel extends ConsoleKernel
             ->runInBackground();
 
         $schedule
+            ->command('activitylog:clean')
+            ->withoutOverlapping(1440)
+            ->dailyAt('02:30')
+            ->runInBackground();
+
+        $schedule
             ->command('snapshot:create')
             ->withoutOverlapping(1440)
             ->dailyAt('03:30')
