@@ -3,6 +3,7 @@
 namespace Foundation\Providers;
 
 use Domain\Media\Models\Media;
+use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -41,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureModelBinding(): void
     {
         Route::bind('media', fn (string $value) => Media::findByUuidOrFail($value));
+        Route::bind('playlist', fn (string $value) => Playlist::findByPrefixedIdOrFail($value));
         Route::bind('tag', fn (string $value) => Tag::findByPrefixedIdOrFail($value));
         Route::bind('user', fn (string $value) => User::findByPrefixedIdOrFail($value));
         Route::bind('video', fn (string $value) => Video::findByPrefixedIdOrFail($value));
