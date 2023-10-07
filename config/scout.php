@@ -181,6 +181,7 @@ return [
                 'searchableAttributes' => [
                     'name',
                     'identifier',
+                    'released_at',
                     'people',
                     'studios',
                     'genres',
@@ -188,7 +189,6 @@ return [
                     'content',
                     'summary',
                     'languages',
-                    'released_at',
                 ],
 
                 'sortableAttributes' => [
