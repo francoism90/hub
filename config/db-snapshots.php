@@ -36,7 +36,6 @@ return [
      * Default: `null`
      */
     'exclude' => [
-        'failed_jobs',
         'notifications',
         'password_reset_tokens',
         'personal_access_tokens',
@@ -44,6 +43,5 @@ return [
         'telescope_entries',
         'telescope_entries_tags',
         'telescope_monitoring',
-        'views',
     ],
 ];
