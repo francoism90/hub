@@ -4,7 +4,7 @@
     </x-layouts::container>
 
     <x-layouts::container class="flex flex-row flex-nowrap sm:space-x-24">
-        <div class="grid grow grid-cols-1 divide-y divide-gray-700" wire:poll.keep-alive.15s>
+        <div class="grid grow grid-cols-1 divide-y divide-gray-700" wire:poll.keep-alive.10s>
             @forelse ($items as $item)
                 <x-videos::card :$item />
             @empty
