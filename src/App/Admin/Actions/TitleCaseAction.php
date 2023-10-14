@@ -36,7 +36,7 @@ class TitleCaseAction extends Action
                 $component->state(
                     str($state)
                         ->replace(['.', '_', '-'], ' ')
-                        ->replace('/\s\s+/g', ' ')
+                        ->squish()
                         ->title()
                         ->trim()
                         ->value()
