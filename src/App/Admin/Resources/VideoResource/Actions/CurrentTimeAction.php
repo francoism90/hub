@@ -28,11 +28,13 @@ class CurrentTimeAction extends Action
 
         $this->hiddenLabel();
 
+        $this->disabled(fn () => ! static::getHistory());
+
         $this->action(function (): void {
             $this->process(function (Component $component, Model $record, mixed $state = null) {
                 $videoable = static::getHistory()
-                    ?->videos()
-                    ?->firstWhere('id', $record->getKey());
+                    ->videos()
+                    ->firstWhere('id', $record->getKey());
 
                 $component->state(
                     $videoable?->pivot?->options['timestamp'] ?: $state
