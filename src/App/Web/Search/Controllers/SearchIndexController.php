@@ -33,11 +33,7 @@ class SearchIndexController extends Component
     {
         SEOMeta::setTitle(__('Search'));
 
-        if (session()->has('search')) {
-            $this->form->query = (string) session()->get('search.query');
-            $this->form->feature = (array) session()->get('search.feature');
-            $this->form->sort = (string) session()->get('search.sort');
-        }
+        $this->form->populate();
     }
 
     public function render(): View
@@ -45,7 +41,7 @@ class SearchIndexController extends Component
         return view('search::index');
     }
 
-    public function updated(): void
+    public function updatedForm(): void
     {
         $this->reset('items');
 
@@ -53,7 +49,9 @@ class SearchIndexController extends Component
 
         $this->resetPage();
 
-        $this->storeForm();
+        $this->form->store();
+
+        $this->storeQueries();
     }
 
     protected function builder(int $page = null): LengthAwarePaginator
