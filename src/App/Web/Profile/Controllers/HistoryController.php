@@ -27,22 +27,11 @@ class HistoryController extends Listing
 
     public function render(): View
     {
-        return view('videos::index', [
-            'items' => $this->builder(),
-        ]);
+        return view('videos::index');
     }
 
     #[Computed]
-    public function sorters(): array
-    {
-        return [
-            '' => __('Date added (newest)'),
-            'oldest' => __('Date added (oldest)'),
-            'published' => __('Date published'),
-        ];
-    }
-
-    protected function builder(): Paginator
+    public function items(): Paginator
     {
         return $this->getHistory()
             ->videos()
@@ -53,5 +42,15 @@ class HistoryController extends Listing
             ->when($this->hasSearch(), fn (Builder $query) => $query->search($this->query, true))
             ->take(32 * 32)
             ->paginate(32);
+    }
+
+    #[Computed]
+    public function sorters(): array
+    {
+        return [
+            '' => __('Date added (newest)'),
+            'oldest' => __('Date added (oldest)'),
+            'published' => __('Date published'),
+        ];
     }
 }

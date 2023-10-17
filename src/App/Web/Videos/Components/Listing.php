@@ -19,5 +19,5 @@ abstract class Listing extends Component
 
     abstract public function render(): View;
 
-    abstract protected function builder(): Paginator;
+    abstract public function items(): Paginator;
 }
