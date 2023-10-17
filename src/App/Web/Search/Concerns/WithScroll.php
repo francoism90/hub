@@ -2,6 +2,7 @@
 
 namespace App\Web\Search\Concerns;
 
+use Illuminate\Support\Sleep;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
@@ -13,12 +14,14 @@ trait WithScroll
     public function mountWithScroll(): void
     {
         if (blank($this->items)) {
-            $range = range(1, $this->builder()->currentPage());
+            $range = range(1, min(25, $this->items()->currentPage()));
 
             foreach ($range as $page) {
                 $this->mergeItems(
-                    $this->builder($page)->all()
+                    $this->items($page)->all()
                 );
+
+                Sleep::for(100)->milliseconds();
             }
         }
     }
@@ -26,23 +29,23 @@ trait WithScroll
     public function updatedPage(): void
     {
         $this->mergeItems(
-            $this->builder()->all()
+            $this->items()->all()
         );
     }
 
     #[Computed]
     public function onFirstPage(): bool
     {
-        return $this->builder()->onFirstPage();
+        return $this->items()->onFirstPage();
     }
 
     #[Computed]
     public function onLastPage(): bool
     {
-        return $this->builder()->onLastPage();
+        return $this->items()->onLastPage();
     }
 
-    protected function mergeItems(array $values): void
+    protected function mergeItems(array $values = []): void
     {
         $this->items = array_merge_recursive(
             $this->items,

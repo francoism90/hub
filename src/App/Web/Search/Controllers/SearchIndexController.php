@@ -14,6 +14,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -54,7 +55,8 @@ class SearchIndexController extends Component
         $this->storeQueries();
     }
 
-    protected function builder(int $page = null): LengthAwarePaginator
+    #[Computed]
+    public function items(int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
