@@ -2,8 +2,6 @@
 
 namespace App\Web\Search\Forms;
 
-use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
