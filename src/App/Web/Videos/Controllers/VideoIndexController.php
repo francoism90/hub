@@ -8,6 +8,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 
 class VideoIndexController extends Listing
 {
@@ -15,12 +16,11 @@ class VideoIndexController extends Listing
 
     public function render(): View
     {
-        return view('videos::index', [
-            'items' => $this->builder(),
-        ]);
+        return view('videos::index');
     }
 
-    protected function builder(): Paginator
+    #[Computed]
+    public function items(): Paginator
     {
         return Video::query()
             ->recommended()
