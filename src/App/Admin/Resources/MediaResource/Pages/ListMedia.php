@@ -26,7 +26,7 @@ class ListMedia extends ListRecords
 
                 Columns\TextColumn::make('size')
                     ->label(__('Filesize'))
-                    ->formatStateUsing(fn (mixed $state) => human_filesize($state))
+                    ->formatStateUsing(fn (mixed $state): string => human_filesize($state))
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')

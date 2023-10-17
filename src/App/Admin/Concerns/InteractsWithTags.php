@@ -19,7 +19,7 @@ trait InteractsWithTags
             )
             ->searchDebounce(300)
             ->getSearchResultsUsing(fn (string $search): array => static::getTagResults($search))
-            ->getOptionLabelFromRecordUsing(fn (Tag $record) => $record->name);
+            ->getOptionLabelFromRecordUsing(fn (Tag $record): mixed => $record->name);
     }
 
     protected static function getTagResults(string $query = '*', int $limit = 10): array

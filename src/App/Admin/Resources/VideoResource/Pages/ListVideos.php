@@ -5,6 +5,7 @@ namespace App\Admin\Resources\VideoResource\Pages;
 use App\Admin\Concerns\InteractsWithScout;
 use App\Admin\Resources\VideoResource;
 use App\Admin\Resources\VideoResource\Filters\StateFilter;
+use App\Admin\Resources\VideoResource\Filters\UntaggedFilter;
 use Domain\Videos\States\VideoState;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class ListVideos extends ListRecords
 {
@@ -71,9 +73,14 @@ class ListVideos extends ListRecords
             ->filters([
                 TrashedFilter::make(),
                 StateFilter::make(),
+                UntaggedFilter::make(),
             ])
             ->actions([
-                //
+                Tables\Actions\Action::make('open')
+                    ->label(__('View'))
+                    ->color('gray')
+                    ->icon('heroicon-o-eye')
+                    ->url(fn (Model $record) => route('videos.view', $record)),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
