@@ -25,7 +25,7 @@ class GetSimilarVideos
             ->headline()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array($word, ['and', 'a', 'or']))
-            ->take(8)
+            ->take(7)
             ->merge([
                 $model->season,
                 $model->episode,
@@ -49,6 +49,7 @@ class GetSimilarVideos
         return $items
             ->flatten()
             ->reject(fn (Video $item) => $item->is($model))
+            ->take(16)
             ->unique();
     }
 
