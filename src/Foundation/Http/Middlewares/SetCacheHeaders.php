@@ -8,15 +8,6 @@ use Illuminate\Support\Carbon;
 
 class SetCacheHeaders extends Middlewares
 {
-    /**
-     * Add cache related HTTP headers.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|array  $options
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \InvalidArgumentException
-     */
     public function handle($request, Closure $next, $options = [])
     {
         $response = $next($request);
@@ -45,20 +36,5 @@ class SetCacheHeaders extends Middlewares
         $response->isNotModified($request);
 
         return $response;
-    }
-
-    /**
-     * Parse the given header options.
-     *
-     * @param  string  $options
-     * @return array
-     */
-    protected function parseOptions($options)
-    {
-        return collect(explode(';', rtrim($options, ';')))->mapWithKeys(function ($option) {
-            $data = explode('=', $option, 2);
-
-            return [$data[0] => $data[1] ?? true];
-        })->all();
     }
 }

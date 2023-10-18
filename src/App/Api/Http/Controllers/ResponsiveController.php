@@ -12,7 +12,10 @@ class ResponsiveController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:sanctum', 'cache.headers']);
+        $this->middleware([
+            'auth:sanctum',
+            'cache.headers:public;max_age=86400;etag',
+        ]);
     }
 
     public function __invoke(Media $model, string $conversion = null): StreamedResponse

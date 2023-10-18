@@ -59,7 +59,7 @@ class Kernel extends HttpKernel
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'auth' => \Foundation\Http\Middlewares\Authenticate::class,
         'cache' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'cache.headers' => \Foundation\Http\Middlewares\SetCacheHeaders::class,
         'cache.invalid' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Foundation\Http\Middlewares\RedirectIfAuthenticated::class,

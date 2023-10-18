@@ -11,7 +11,10 @@ class ThumbnailController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:sanctum', 'cache.headers']);
+        $this->middleware([
+            'auth:sanctum',
+            'cache.headers:public;max_age=86400;etag',
+        ]);
     }
 
     public function __invoke(Model $model, Request $request): StreamedResponse
