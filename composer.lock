@@ -3803,16 +3803,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.13.0",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "a6dfb1194a2946fcdc1f38219445234f65b35c96"
+                "reference": "b6a5854368533df0295c5761a0253656a2e52d9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/a6dfb1194a2946fcdc1f38219445234f65b35c96",
-                "reference": "a6dfb1194a2946fcdc1f38219445234f65b35c96",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/b6a5854368533df0295c5761a0253656a2e52d9e",
+                "reference": "b6a5854368533df0295c5761a0253656a2e52d9e",
                 "shasum": ""
             },
             "require": {
@@ -3843,7 +3843,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.13.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.14.0"
             },
             "funding": [
                 {
@@ -3855,7 +3855,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-05T12:09:49+00:00"
+            "time": "2023-10-17T14:13:20+00:00"
         },
         {
             "name": "league/uri",
@@ -7027,16 +7027,16 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "7.13.0",
+            "version": "7.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "56ebda102ef4552aa6bb1ad65e9b2a32e3915f30"
+                "reference": "448d0a9e7a4151938e3cfaf1235d69d899f13ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/56ebda102ef4552aa6bb1ad65e9b2a32e3915f30",
-                "reference": "56ebda102ef4552aa6bb1ad65e9b2a32e3915f30",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/448d0a9e7a4151938e3cfaf1235d69d899f13ba7",
+                "reference": "448d0a9e7a4151938e3cfaf1235d69d899f13ba7",
                 "shasum": ""
             },
             "require": {
@@ -7048,9 +7048,7 @@
                 "amphp/parallel-functions": "^1.1.0",
                 "mockery/mockery": "^1.6.2",
                 "orchestra/testbench": "^8.5.9",
-                "pestphp/pest": "dev-develop as 2.99",
-                "pestphp/pest-plugin-drift": "2.x-dev",
-                "pestphp/pest-plugin-type-coverage": "2.x-dev",
+                "pestphp/pest": "^2.0",
                 "phpunit/phpunit": "10.2.2",
                 "spatie/laravel-ray": "^1.32.5",
                 "symfony/stopwatch": "^6.3"
@@ -7096,7 +7094,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.13.0"
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.13.1"
             },
             "funding": [
                 {
@@ -7104,7 +7102,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-30T17:46:10+00:00"
+            "time": "2023-10-17T15:12:13+00:00"
         },
         {
             "name": "spatie/laravel-db-snapshots",
@@ -14040,5 +14038,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
