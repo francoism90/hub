@@ -17,7 +17,7 @@
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="h-full w-full bg-black object-fill text-transparent"
+                    class="h-full w-full bg-black object-fill"
                     crossorigin="use-credentials"
                     loading="lazy" />
 

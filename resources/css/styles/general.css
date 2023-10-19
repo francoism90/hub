@@ -3,6 +3,15 @@ html {
     @apply relative h-screen min-h-screen bg-gray-950 text-white;
 }
 
+img {
+    @apply text-transparent;
+
+    &::before,
+    &::after {
+        @apply text-transparent;
+    }
+}
+
 dl {
     @apply inline-flex flex-wrap items-center;
 

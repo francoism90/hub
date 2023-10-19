@@ -30,7 +30,7 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <div class="aspect-video h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
+    <div class="h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
         <div
             x-data="{ preview: false }"
             x-on:mouseover="preview = true"
@@ -38,13 +38,13 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative h-full w-full flex-shrink-0">
+            class="relative aspect-video h-full w-full flex-shrink-0">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="absolute inset-0 z-0 h-full w-full bg-black object-fill text-transparent"
+                    class="absolute inset-0 z-0 h-full w-full bg-black object-fill"
                     crossorigin="use-credentials"
                     loading="lazy" />
 
