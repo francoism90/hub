@@ -39,13 +39,13 @@
                     <a
                         class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                         wire:click="toggleFavorite">
-                        <x-icon :name="$this->favorite" class="h-6 w-6" />
+                        <x-icon :name="$this->favorited" class="h-6 w-6" />
                     </a>
 
                     <a
                         class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                         wire:click="toggleWatchlist">
-                        <x-icon :name="$this->watchlist" class="h-6 w-6" />
+                        <x-icon :name="$this->watchlisted" class="h-6 w-6" />
                     </a>
 
                     <a

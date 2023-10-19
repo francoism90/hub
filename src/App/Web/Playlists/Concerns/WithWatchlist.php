@@ -20,7 +20,7 @@ trait WithWatchlist
 
         return $user
             ->playlists()
-            ->history()
+            ->watchlist()
             ->firstOrFail();
     }
 
