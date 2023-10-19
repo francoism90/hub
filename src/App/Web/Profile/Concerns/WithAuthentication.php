@@ -8,16 +8,16 @@ trait WithAuthentication
 {
     public function bootWithAuthentication(): void
     {
-        $this->authorize('view', $this->getUser());
+        $this->authorize('view', static::user());
     }
 
-    protected function getUser(): ?User
+    protected static function user(): ?User
     {
         return auth()->user();
     }
 
-    protected function getUserId(): ?string
+    protected static function userId(): ?string
     {
-        return $this->getUser()?->getRouteKey();
+        return static::user()?->getRouteKey();
     }
 }

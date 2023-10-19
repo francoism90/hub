@@ -6,6 +6,7 @@ use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Playlists\Concerns\WithHistory;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
+use App\Web\Shared\Concerns\WithRateLimiting;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Actions\GetSimilarVideos;
@@ -21,6 +22,7 @@ class VideoViewController extends Component
     use WithFavorites;
     use WithHistory;
     use WithVideo;
+    use WithRateLimiting;
     use WithWatchlist;
 
     public function mount(): void
@@ -36,13 +38,9 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $this->authorize('update', $model = $this->getHistory());
+        $this->rateLimit(10);
 
-        $video = $model->videos()->find($this->video);
-
-        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) < 750) {
-            return;
-        }
+        $this->authorize('update', $this->getHistory());
 
         $this->getHistory()->attachVideo($this->video, [
             'timestamp' => round($time, 2),
