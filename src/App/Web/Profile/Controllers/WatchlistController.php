@@ -33,7 +33,7 @@ class WatchlistController extends Listing
     #[Computed]
     public function items(): Paginator
     {
-        return $this->getWatchlist()
+        return static::watchlist()
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')

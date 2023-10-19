@@ -36,22 +36,16 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $this->authorize('update', $model = $this->getHistory());
+        $this->authorize('update', static::history());
 
-        $video = $model->videos()->find($this->video);
-
-        if ($video && now()->diffInMilliseconds($video->pivot->updated_at) < 750) {
-            return;
-        }
-
-        $this->getHistory()->attachVideo($this->video, [
+        static::history()->attachVideo($this->video, [
             'timestamp' => round($time, 2),
         ]);
     }
 
     public function toggleFavorite(): void
     {
-        $this->authorize('update', $model = $this->getFavorites());
+        $this->authorize('update', $model = static::favorites());
 
         $this->isFavorited($this->video)
             ? $model->detachVideo($this->video)
@@ -60,7 +54,7 @@ class VideoViewController extends Component
 
     public function toggleWatchlist(): void
     {
-        $this->authorize('update', $model = $this->getWatchlist());
+        $this->authorize('update', $model = static::watchlist());
 
         $this->isWatchlisted($this->video)
             ? $model->detachVideo($this->video)
@@ -68,7 +62,7 @@ class VideoViewController extends Component
     }
 
     #[Computed]
-    public function favorite(): string
+    public function favorited(): string
     {
         return $this->isFavorited($this->video)
             ? 'heroicon-s-heart'
@@ -76,7 +70,7 @@ class VideoViewController extends Component
     }
 
     #[Computed]
-    public function watchlist(): string
+    public function watchlisted(): string
     {
         return $this->isWatchlisted($this->video)
             ? 'heroicon-s-clock'
@@ -86,7 +80,9 @@ class VideoViewController extends Component
     #[Computed]
     public function starts(): float
     {
-        $model = $this->getHistory()->videos()->find($this->video);
+        $model = static::history()
+            ->videos()
+            ->find($this->video);
 
         return data_get($model?->pivot->options, 'timestamp', 0);
     }

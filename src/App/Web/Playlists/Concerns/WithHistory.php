@@ -3,27 +3,30 @@
 namespace App\Web\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
+use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
 trait WithHistory
 {
     public function bootWithHistory(): void
     {
-        $this->authorize('view', $this->getHistory());
+        $this->authorize('view', static::history());
     }
 
-    protected function getHistory(): Playlist
+    protected static function history(?User $user = null): Playlist
     {
-        return $this->getUser()
+        /** @var User */
+        $user ??= auth()->user();
+
+        return $user
             ->playlists()
             ->history()
             ->firstOrFail();
     }
 
-    protected function isWatched(Video $video): bool
+    protected static function isWatched(Video $video, ?User $user = null): bool
     {
-        return $this
-            ->getHistory()
+        return static::history($user)
             ->videos()
             ->where('id', $video->getKey())
             ->exists();
