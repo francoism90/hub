@@ -33,7 +33,7 @@ class HistoryController extends Listing
     #[Computed]
     public function items(): Paginator
     {
-        return $this->getHistory()
+        return static::history()
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')

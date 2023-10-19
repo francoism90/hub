@@ -33,7 +33,7 @@ class FavoritesController extends Listing
     #[Computed]
     public function items(): Paginator
     {
-        return $this->getFavorites()
+        return static::favorites()
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
