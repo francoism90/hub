@@ -22,7 +22,6 @@ class VideoViewController extends Component
     use WithFavorites;
     use WithHistory;
     use WithVideo;
-    use WithRateLimiting;
     use WithWatchlist;
 
     public function mount(): void
@@ -38,8 +37,6 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $this->rateLimit(10);
-
         $this->authorize('update', static::history());
 
         static::history()->attachVideo($this->video, [

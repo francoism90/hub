@@ -12,7 +12,9 @@ trait WithRateLimiting
 
         $key = $this->getRateLimitKey($method);
 
-        throw_if(RateLimiter::tooManyAttempts($key, $maxAttempts));
+        logger($key);
+
+        // throw_if(RateLimiter::tooManyAttempts($key, $maxAttempts));
 
         $this->hitRateLimiter($method, $decaySeconds);
     }

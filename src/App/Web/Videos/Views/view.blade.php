@@ -8,7 +8,7 @@
             :item="$video"
             :manifest="$video->stream"
             :starts-at="$this->starts"
-            @timeupdate.throttle.600ms="timeUpdate"
+            @timeupdate.throttle.750ms="timeUpdate"
             autoplay />
 
         <x-layouts::container class="py-1">
