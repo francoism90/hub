@@ -30,7 +30,7 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <div class="h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
+    <div class="aspect-video h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
         <div
             x-data="{ preview: false }"
             x-on:mouseover="preview = true"

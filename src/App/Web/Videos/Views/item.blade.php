@@ -11,7 +11,7 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative h-20 w-40 flex-shrink-0">
+            class="relative aspect-video h-20 w-40 flex-shrink-0">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"

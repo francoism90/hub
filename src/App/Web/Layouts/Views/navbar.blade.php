@@ -27,7 +27,7 @@
         </a>
 
         <x-layouts::dropdown>
-            <a @mouseover="open = true" class="navbar-item">
+            <a class="navbar-item">
                 <x-heroicon-o-user-circle class="h-6 w-6" />
             </a>
 
