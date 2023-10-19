@@ -6,7 +6,6 @@ use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Playlists\Concerns\WithHistory;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
-use App\Web\Shared\Concerns\WithRateLimiting;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Actions\GetSimilarVideos;
