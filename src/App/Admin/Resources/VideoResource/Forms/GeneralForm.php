@@ -37,7 +37,8 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('season', trim($state)));
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('season', trim($state)))
+            ->suffixAction(TitleCaseAction::make());
     }
 
     public static function episode(): TextInput
@@ -47,7 +48,8 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('episode', trim($state)));
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('episode', trim($state)))
+            ->suffixAction(TitleCaseAction::make());
     }
 
     public static function part(): TextInput
@@ -57,7 +59,8 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('part', trim($state)));
+            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('part', trim($state)))
+            ->suffixAction(TitleCaseAction::make());
     }
 
     public static function released(): DatePicker
