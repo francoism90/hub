@@ -13,7 +13,7 @@ trait WithFavorites
         $this->authorize('view', static::favorites());
     }
 
-    protected static function favorites(?User $user = null): Playlist
+    protected static function favorites(User $user = null): Playlist
     {
         /** @var User */
         $user ??= auth()->user();
@@ -24,7 +24,7 @@ trait WithFavorites
             ->firstOrFail();
     }
 
-    protected static function isFavorited(Video $video, ?User $user = null): bool
+    protected static function isFavorited(Video $video, User $user = null): bool
     {
         return static::favorites($user)
             ->videos()

@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -45,7 +44,6 @@ class Video extends Model implements HasMedia
     use InteractsWithUser;
     use InteractsWithVod;
     use LogsActivity;
-    use Notifiable;
     use Searchable;
     use SoftDeletes;
 

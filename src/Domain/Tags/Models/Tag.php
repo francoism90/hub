@@ -5,11 +5,13 @@ namespace Domain\Tags\Models;
 use Database\Factories\TagFactory;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
+use Domain\Tags\Events\TagCreated;
+use Domain\Tags\Events\TagDeleted;
+use Domain\Tags\Events\TagSaved;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -24,7 +26,6 @@ class Tag extends BaseTag implements HasMedia
     use HasPrefixedId;
     use InteractsWithMedia;
     use LogsActivity;
-    use Notifiable;
     use Searchable;
 
     /**
@@ -64,6 +65,15 @@ class Tag extends BaseTag implements HasMedia
         'name',
         'slug',
         'description',
+    ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $dispatchesEvents = [
+        'created' => TagCreated::class,
+        'saved' => TagSaved::class,
+        'deleted' => TagDeleted::class,
     ];
 
     protected static function newFactory(): TagFactory

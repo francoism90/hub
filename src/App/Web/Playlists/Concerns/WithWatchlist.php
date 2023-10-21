@@ -13,7 +13,7 @@ trait WithWatchlist
         $this->authorize('view', static::watchlist());
     }
 
-    protected static function watchlist(?User $user = null): Playlist
+    protected static function watchlist(User $user = null): Playlist
     {
         /** @var User */
         $user ??= auth()->user();
@@ -24,7 +24,7 @@ trait WithWatchlist
             ->firstOrFail();
     }
 
-    protected static function isWatchlisted(Video $video, ?User $user = null): bool
+    protected static function isWatchlisted(Video $video, User $user = null): bool
     {
         return static::watchlist($user)
             ->videos()
