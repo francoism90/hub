@@ -46,6 +46,13 @@ class Media extends BaseMedia
         'responsive_images' => 'array',
     ];
 
+    /**
+     * @var array<int, string>
+     */
+    protected $touches = [
+        'model',
+    ];
+
     public function newEloquentBuilder($query): MediaQueryBuilder
     {
         return new MediaQueryBuilder($query);
