@@ -2,7 +2,8 @@
 
 namespace Foundation\Providers;
 
-use Filament\Forms\Components;
+use Filament\Forms\Components\Field;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Set;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,15 +22,15 @@ class FilamentServiceProvider extends ServiceProvider
 
     protected function configureMacros(): void
     {
-        Components\Field::macro('trim', fn (): static => $this
-            ->afterStateUpdated(fn (Components\TextInput $component, mixed $state, Set $set) => $set($component->getName(), trim($state)))
-            ->dehydrateStateUsing(fn (mixed $state): mixed => trim($state))
+        Field::macro('trim', fn (): static => $this
+            ->afterStateUpdated(fn (TextInput $component, mixed $state, Set $set) => is_string($state) ? $set($component->getName(), trim($state)) : $state)
+            ->dehydrateStateUsing(fn (mixed $state): mixed => is_string($state) ? trim($state) : $state)
         );
     }
 
     protected function configureFields(): void
     {
-        Components\TextInput::configureUsing(function (Components\TextInput $component): void {
+        TextInput::configureUsing(function (TextInput $component): void {
             $component->trim();
         });
     }
