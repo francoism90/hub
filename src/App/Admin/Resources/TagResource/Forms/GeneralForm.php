@@ -7,7 +7,6 @@ use Domain\Tags\Enums\TagType;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Set;
 
 abstract class GeneralForm
 {
@@ -19,7 +18,6 @@ abstract class GeneralForm
             ->string()
             ->autofocus()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('name', trim($state)))
             ->suffixAction(TitleCaseAction::make());
     }
 
@@ -28,8 +26,7 @@ abstract class GeneralForm
         return MarkdownEditor::make('description')
             ->label(__('Description'))
             ->nullable()
-            ->maxLength(2048)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('description', trim($state)));
+            ->maxLength(2048);
     }
 
     public static function types(): Select

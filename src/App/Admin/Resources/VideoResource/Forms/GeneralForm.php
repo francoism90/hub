@@ -11,7 +11,6 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Set;
 
 abstract class GeneralForm
 {
@@ -26,7 +25,6 @@ abstract class GeneralForm
             ->string()
             ->autofocus()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('name', trim($state)))
             ->suffixAction(TitleCaseAction::make());
     }
 
@@ -37,7 +35,6 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('season', trim($state)))
             ->suffixAction(TitleCaseAction::make());
     }
 
@@ -48,7 +45,6 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('episode', trim($state)))
             ->suffixAction(TitleCaseAction::make());
     }
 
@@ -59,7 +55,6 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->afterStateUpdated(fn (Set $set, mixed $state) => $set('part', trim($state)))
             ->suffixAction(TitleCaseAction::make());
     }
 
