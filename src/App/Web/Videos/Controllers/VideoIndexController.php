@@ -3,7 +3,6 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Components\Listing;
-use App\Web\Videos\Concerns\WithTags;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,8 +11,6 @@ use Livewire\Attributes\Computed;
 
 class VideoIndexController extends Listing
 {
-    use WithTags;
-
     public function render(): View
     {
         return view('videos::index');
