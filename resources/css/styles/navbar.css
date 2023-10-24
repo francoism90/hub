@@ -1,5 +1,5 @@
 .navbar {
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between py-6;
 
     &-item {
         @apply line-clamp-1 cursor-pointer hover:text-primary-300 focus:text-primary-400 active:text-primary-400;

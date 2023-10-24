@@ -1,5 +1,5 @@
 <div>
-    <x-layouts::container class="py-10">
+    <x-layouts::container>
         <x-layouts::navbar />
     </x-layouts::container>
 
