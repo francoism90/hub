@@ -21,7 +21,7 @@
         "prettier-plugin-tailwindcss": "^0.5.6",
         "pusher-js": "^8.3.0",
         "shaka-player": "^4.5.0",
-        "tailwindcss": "^3.3.4",
+        "tailwindcss": "^3.3.5",
         "vite": "^4.5.0",
         "vite-plugin-pwa": "^0.16.5"
     }
