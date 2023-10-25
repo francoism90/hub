@@ -25,7 +25,7 @@
         "laravel/telescope": "^4.16.4",
         "laravel/tinker": "^2.8.2",
         "livewire/livewire": "^3.0.10",
-        "meilisearch/meilisearch-php": "^1.4.0",
+        "meilisearch/meilisearch-php": "^1.4.1",
         "php-ffmpeg/php-ffmpeg": "^1.1",
         "pusher/pusher-php-server": "^7.2.3",
         "spatie/laravel-activitylog": "^4.7.3",
