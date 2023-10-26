@@ -6,6 +6,7 @@ use App\Admin\Actions\TitleCaseAction;
 use App\Admin\Concerns\InteractsWithState;
 use App\Admin\Concerns\InteractsWithTags;
 use App\Admin\Resources\VideoResource\Actions\CurrentTimeAction;
+use Domain\Tags\Models\Tag;
 use Domain\Videos\States\VideoState;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
@@ -15,7 +16,9 @@ use Filament\Forms\Components\TextInput;
 abstract class GeneralForm
 {
     use InteractsWithState;
-    use InteractsWithTags;
+    use InteractsWithTags {
+        InteractsWithTags::tags as tagsInput;
+    }
 
     public static function name(): TextInput
     {
@@ -26,6 +29,18 @@ abstract class GeneralForm
             ->autofocus()
             ->maxLength(255)
             ->suffixAction(TitleCaseAction::make());
+    }
+
+    public static function tags(): Select
+    {
+        return static::tagsInput()
+            ->options(Tag::query()
+                ->withCount('videos')
+                ->orderByDesc('videos_count')
+                ->take(10)
+                ->pluck('name', 'id')
+                ->toArray()
+            );
     }
 
     public static function season(): TextInput
