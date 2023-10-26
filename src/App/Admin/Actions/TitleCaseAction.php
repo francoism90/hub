@@ -25,7 +25,7 @@ class TitleCaseAction extends Action
 
         $this->hiddenLabel();
 
-        $this->disabled(fn (mixed $state): bool => blank($state));
+        $this->disabled(fn (mixed $state): bool => blank($state) || ! is_string($state));
 
         $this->action(function (): void {
             $this->process(function (Component $component, mixed $state) {
