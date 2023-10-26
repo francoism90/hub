@@ -27,8 +27,7 @@ class GetSimilarVideos
             ->reject(fn (string $word) => in_array($word, ['and', 'a', 'or']))
             ->take(7)
             ->merge([
-                $model->season,
-                $model->episode,
+                $model->identifier,
                 $model->released_at,
             ])
             ->filter()
@@ -49,7 +48,7 @@ class GetSimilarVideos
         return $items
             ->flatten()
             ->reject(fn (Video $item) => $item->is($model))
-            ->take(16)
+            ->take(12)
             ->unique();
     }
 

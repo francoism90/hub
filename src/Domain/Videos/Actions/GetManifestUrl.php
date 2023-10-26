@@ -11,7 +11,10 @@ class GetManifestUrl
         $route = trim(route('api.videos.manifest', compact('type', 'video'), false), '/');
 
         return implode('/', [
-            config('settings.vod_url'), config('settings.vod_path'), $route, 'manifest.mpd',
+            config('settings.vod_url'),
+            config('settings.vod_path'),
+            $route,
+            'manifest.mpd',
         ]);
     }
 }
