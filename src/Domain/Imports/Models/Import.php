@@ -8,6 +8,7 @@ use Domain\Imports\States\ImportState;
 use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\ModelStates\HasStates;
 
@@ -17,6 +18,7 @@ class Import extends Model
     use HasStates;
     use InteractsWithUser;
     use Notifiable;
+    use Prunable;
 
     /**
      * @var array<int, string>
@@ -68,5 +70,11 @@ class Import extends Model
     public function newEloquentBuilder($query): ImportQueryBuilder
     {
         return new ImportQueryBuilder($query);
+    }
+
+    public function prunable(): ImportQueryBuilder
+    {
+        return $this
+            ->whereDate('created_at', '<=', now()->subMonths(3));
     }
 }
