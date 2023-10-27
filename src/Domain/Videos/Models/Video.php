@@ -85,7 +85,7 @@ class Video extends Model implements HasMedia
      */
     protected $casts = [
         'state' => VideoState::class,
-        'snapshot' => 'float',
+        'snapshot' => 'decimal:2',
         'released_at' => 'date:Y-m-d',
     ];
 
