@@ -4,7 +4,7 @@ namespace App\Admin\Resources\VideoResource\Forms;
 
 use App\Admin\Actions\TitleCaseAction;
 use App\Admin\Concerns\InteractsWithState;
-use App\Admin\Concerns\InteractsWithTags;
+use App\Admin\Forms\Components\TagInput;
 use App\Admin\Resources\VideoResource\Actions\CurrentTimeAction;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\States\VideoState;
@@ -16,9 +16,6 @@ use Filament\Forms\Components\TextInput;
 abstract class GeneralForm
 {
     use InteractsWithState;
-    use InteractsWithTags {
-        InteractsWithTags::tags as tagsInput;
-    }
 
     public static function name(): TextInput
     {
@@ -33,7 +30,7 @@ abstract class GeneralForm
 
     public static function tags(): Select
     {
-        return static::tagsInput()
+        return TagInput::make('tags')
             ->options(Tag::query()
                 ->withCount('videos')
                 ->orderByDesc('videos_count')
