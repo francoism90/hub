@@ -3,9 +3,9 @@
 use Illuminate\Support\Carbon;
 
 if (! function_exists('human_filesize')) {
-    function human_filesize(mixed $size = 0, int $precision = 2): string
+    function human_filesize(mixed $size, int $precision = 2): string
     {
-        $size = floatval($size);
+        $size = floatval($size ?: 0);
 
         $unit = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 

@@ -20,7 +20,7 @@ class GenerateResponsiveImagesJob extends BaseGenerateResponsiveImagesJob
      *
      * @var int
      */
-    public $timeout = 60 * 20;
+    public $timeout = 60 * 30;
 
     /**
      * Indicate if the job should be marked as failed on timeout.

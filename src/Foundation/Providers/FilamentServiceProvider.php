@@ -23,7 +23,7 @@ class FilamentServiceProvider extends ServiceProvider
     protected function configureMacros(): void
     {
         Field::macro('squish', function () {
-            $value = fn (mixed $state) => filled($state) && is_string($state)
+            $value = fn (mixed $state) => is_string($state) && filled($state)
                 ? str($state)->squish()->value()
                 : $state;
 
