@@ -12,6 +12,7 @@ use Domain\Users\States\UserState;
 use Domain\Videos\Concerns\InteractsWithVideos;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -132,5 +133,12 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
             ->logAll()
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMediaUrl('avatar')
+        )->shouldCache();
     }
 }

@@ -3,13 +3,14 @@
 namespace Support\MediaLibrary\UrlGenerator;
 
 use DateTimeInterface;
+use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\Support\UrlGenerator\BaseUrlGenerator;
 
 class DefaultUrlGenerator extends BaseUrlGenerator
 {
     public function getUrl(): string
     {
-        return route('api.media.download', [
+        return URL::signedRoute('api.media.asset', [
             'media' => $this->media,
             'version' => $this->media?->updated_at?->timestamp,
         ]);
@@ -17,7 +18,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
 
     public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
     {
-        return route('api.media.download', $expiration, [
+        return URL::temporarySignedRoute('api.media.asset', $expiration, [
             'media' => $this->media,
             'version' => $this->media?->updated_at?->timestamp,
         ]);
