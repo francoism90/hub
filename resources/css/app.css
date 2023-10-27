@@ -1,5 +1,5 @@
 /* Vendor */
-@import '@/shaka-player/dist/controls';
+@import '~/shaka-player/dist/controls';
 
 /* Styles */
 @import './styles.css';

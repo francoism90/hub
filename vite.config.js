@@ -19,8 +19,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '~': fileURLToPath(new URL('./vendor', import.meta.url)),
-      '@': fileURLToPath(new URL('./node_modules', import.meta.url)),
+      '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
+      '!': fileURLToPath(new URL('./vendor', import.meta.url)),
     },
   },
   plugins: [

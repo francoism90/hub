@@ -1,11 +1,10 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
-    x-data="{ shown: false }"
+    x-data="{ shown: false, preview: false }"
     x-intersect.once="shown = true"
     class="h-20 max-h-[5rem] min-h-[5rem] w-full">
     <div class="flex flex-row flex-nowrap items-center gap-x-4" x-show="shown" x-transition>
         <div
-            x-data="{ preview: false }"
             x-on:mouseover="preview = true"
             x-on:mouseleave="preview = false"
             x-on:touchstart.passive="preview = true"
@@ -23,8 +22,6 @@
 
                 <template x-if="preview">
                     <x-videos::player
-                        x-cloak
-                        x-show="preview"
                         :$item
                         :manifest="$item->preview"
                         :controls="false"

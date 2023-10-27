@@ -1,5 +1,6 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
+    x-data="{ preview: false }"
     {{ $attributes->class('flex flex-col gap-y-1.5 py-8') }}>
     <dl class="inline-flex">
         <dt class="sr-only">{{ __('Published on') }}</dt>
@@ -32,7 +33,6 @@
 
     <div class="h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
         <div
-            x-data="{ preview: false }"
             x-on:mouseover="preview = true"
             x-on:mouseleave="preview = false"
             x-on:touchstart.passive="preview = true"
@@ -60,8 +60,6 @@
 
                 <template x-if="preview">
                     <x-videos::player
-                        x-cloak
-                        x-show="preview"
                         :$item
                         :manifest="$item->preview"
                         :controls="false"
