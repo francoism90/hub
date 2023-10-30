@@ -32,17 +32,9 @@ class ListUsers extends ListRecords
                     ->limit(),
 
                 Columns\TextColumn::make('state')
-                    ->formatStateUsing(fn (UserState $state) => $state->label())
-                    ->icon(fn (UserState $state): string => match ($state->getValue()) {
-                        'pending' => 'heroicon-o-minus-circle',
-                        'verified' => 'heroicon-o-check-circle',
-                        default => 'heroicon-o-x-circle',
-                    })
-                    ->color(fn (UserState $state): string => match ($state->getValue()) {
-                        'pending' => 'gray',
-                        'verified' => 'success',
-                        default => 'warning',
-                    })
+                    ->formatStateUsing(fn (UserState $state): string => $state->label())
+                    ->icon(fn (UserState $state): string => $state->icon())
+                    ->color(fn (UserState $state): string => $state->color())
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->sortable(),
 

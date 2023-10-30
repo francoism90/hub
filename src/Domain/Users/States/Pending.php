@@ -11,8 +11,13 @@ class Pending extends UserState
         return __('Pending');
     }
 
+    public function icon(): string
+    {
+        return 'heroicon-o-x-circle';
+    }
+
     public function color(): string
     {
-        return 'orange';
+        return 'gray';
     }
 }

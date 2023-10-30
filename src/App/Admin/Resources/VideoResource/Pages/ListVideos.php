@@ -44,17 +44,9 @@ class ListVideos extends ListRecords
 
                 Columns\TextColumn::make('state')
                     ->label(__('State'))
-                    ->formatStateUsing(fn (VideoState $state) => $state->label())
-                    ->icon(fn (VideoState $state): string => match ($state->getValue()) {
-                        'pending' => 'heroicon-o-minus-circle',
-                        'verified' => 'heroicon-o-check-circle',
-                        default => 'heroicon-o-x-circle',
-                    })
-                    ->color(fn (VideoState $state): string => match ($state->getValue()) {
-                        'pending' => 'gray',
-                        'verified' => 'success',
-                        default => 'warning',
-                    })
+                    ->formatStateUsing(fn (VideoState $state): string => $state->label())
+                    ->icon(fn (VideoState $state): string => $state->icon())
+                    ->color(fn (VideoState $state): string => $state->color())
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->sortable(),
 

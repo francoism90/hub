@@ -11,8 +11,13 @@ class Verified extends UserState
         return __('Verified');
     }
 
+    public function icon(): string
+    {
+        return 'heroicon-o-check-circle';
+    }
+
     public function color(): string
     {
-        return 'green';
+        return 'primary';
     }
 }

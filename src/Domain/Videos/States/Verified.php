@@ -11,8 +11,13 @@ class Verified extends VideoState
         return __('Verified');
     }
 
+    public function icon(): string
+    {
+        return 'heroicon-o-minus-circle';
+    }
+
     public function color(): string
     {
-        return 'green';
+        return 'primary';
     }
 }

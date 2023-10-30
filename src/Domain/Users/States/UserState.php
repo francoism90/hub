@@ -11,6 +11,8 @@ abstract class UserState extends State
 
     abstract public function color(): string;
 
+    abstract public function icon(): string;
+
     public static function config(): StateConfig
     {
         return parent::config()
