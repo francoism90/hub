@@ -7,9 +7,9 @@ use Spatie\ModelStates\StateConfig;
 
 abstract class PlaylistState extends State
 {
-    abstract public function color(): string;
-
     abstract public function label(): string;
+
+    abstract public function color(): string;
 
     public static function config(): StateConfig
     {

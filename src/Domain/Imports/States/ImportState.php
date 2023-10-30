@@ -7,9 +7,11 @@ use Spatie\ModelStates\StateConfig;
 
 abstract class ImportState extends State
 {
+    abstract public function label(): string;
+
     abstract public function color(): string;
 
-    abstract public function label(): string;
+    abstract public function icon(): string;
 
     public static function config(): StateConfig
     {

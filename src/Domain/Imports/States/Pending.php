@@ -11,8 +11,13 @@ class Pending extends ImportState
         return __('Pending');
     }
 
+    public function icon(): string
+    {
+        return 'heroicon-o-minus-circle';
+    }
+
     public function color(): string
     {
-        return 'orange';
+        return 'gray';
     }
 }

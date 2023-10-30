@@ -13,7 +13,7 @@ class Pending extends VideoState
 
     public function icon(): string
     {
-        return 'heroicon-o-x-circle';
+        return 'heroicon-o-minus-circle';
     }
 
     public function color(): string

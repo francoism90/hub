@@ -11,8 +11,13 @@ class Finished extends ImportState
         return __('Finished');
     }
 
+    public function icon(): string
+    {
+        return 'heroicon-o-check-circle';
+    }
+
     public function color(): string
     {
-        return 'green';
+        return 'primary';
     }
 }

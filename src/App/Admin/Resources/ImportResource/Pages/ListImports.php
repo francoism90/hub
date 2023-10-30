@@ -40,17 +40,9 @@ class ListImports extends ListRecords
                     ->sortable(),
 
                 Columns\TextColumn::make('state')
-                    ->formatStateUsing(fn (ImportState $state) => $state->label())
-                    ->icon(fn (ImportState $state): string => match ($state->getValue()) {
-                        'pending' => 'heroicon-o-minus-circle',
-                        'finished' => 'heroicon-o-check-circle',
-                        default => 'heroicon-o-x-circle',
-                    })
-                    ->color(fn (ImportState $state): string => match ($state->getValue()) {
-                        'pending' => 'gray',
-                        'finished' => 'success',
-                        default => 'warning',
-                    })
+                    ->formatStateUsing(fn (ImportState $state): string => $state->label())
+                    ->icon(fn (ImportState $state): string => $state->icon())
+                    ->color(fn (ImportState $state): string => $state->color())
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')
