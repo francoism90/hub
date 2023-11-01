@@ -2,7 +2,7 @@
 
 namespace Foundation\Console;
 
-use Domain\Imports\Commands\PruneImports;
+use Domain\Imports\Models\Import;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Support\Scout\Commands\SyncIndexes;
@@ -11,7 +11,6 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         SyncIndexes::class,
-        PruneImports::class,
     ];
 
     protected function schedule(Schedule $schedule): void
@@ -62,6 +61,14 @@ class Kernel extends ConsoleKernel
             ->command('snapshot:cleanup --keep=10')
             ->withoutOverlapping(1440)
             ->dailyAt('04:00')
+            ->runInBackground();
+
+        $schedule
+            ->command('model:prune', [
+                '--model' => [Import::class],
+            ])
+            ->withoutOverlapping(1440)
+            ->dailyAt('04:30')
             ->runInBackground();
     }
 
