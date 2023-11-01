@@ -80,7 +80,6 @@ return [
         'verify_csrf_token' => Foundation\Http\Middlewares\VerifyCsrfToken::class,
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Sanctum Prefix

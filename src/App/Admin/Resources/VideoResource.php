@@ -9,7 +9,6 @@ use Domain\Videos\Models\Video;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VideoResource extends Resource
 {
@@ -50,14 +49,18 @@ class VideoResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'season', 'episode', 'part'];
+        return [
+            'name',
+            'season',
+            'episode',
+            'part',
+            'released_at',
+        ];
     }
 
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
+            ->with('media', 'tags');
     }
 }
