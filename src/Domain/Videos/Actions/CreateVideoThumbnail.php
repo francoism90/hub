@@ -11,6 +11,10 @@ class CreateVideoThumbnail
 {
     public function execute(Video $model): void
     {
+        if (! $model->hasMedia('clips')) {
+            return;
+        }
+
         $temporaryDirectory = (new TemporaryDirectory)->create();
 
         $ffmpeg = FFMpeg::create([

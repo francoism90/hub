@@ -12,7 +12,7 @@ class ExtractVideoSubtitles
 {
     public function execute(Video $model): void
     {
-        if ($model->hasMedia('captions')) {
+        if (! $model->hasMedia('clips') || $model->hasMedia('captions')) {
             return;
         }
 
