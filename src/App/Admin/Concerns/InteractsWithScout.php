@@ -12,7 +12,7 @@ trait InteractsWithScout
 
         $value = $this->getTableSearch();
 
-        if (blank($value)) {
+        if (blank($value) || ! is_string($value)) {
             return $query;
         }
 
