@@ -2,7 +2,6 @@
 
 namespace Support\Livewire\Synthesizers;
 
-
 use Livewire\Mechanisms\HandleComponents\Synthesizers\Synth;
 use Spatie\Enum\Laravel\Enum;
 
@@ -10,20 +9,20 @@ class EnumSynth extends Synth
 {
     public static $key = 'enm';
 
-    static function match($target)
+    public static function match($target)
     {
         return $target instanceof Enum;
     }
 
-    function dehydrate($target)
+    public function dehydrate($target)
     {
         return [
             $target->value,
-            ['class' => get_class($target)]
+            ['class' => get_class($target)],
         ];
     }
 
-    function hydrate($value, $meta)
+    public function hydrate($value, $meta)
     {
         if (blank($value)) {
             return null;
