@@ -2,8 +2,7 @@
 
 namespace App\Admin\Concerns;
 
-use Spatie\Enum\Laravel\Enum;
-use Spatie\ModelStates\State;
+use Spatie\PrefixedIds\PrefixedIds;
 
 trait InteractsWithFormData
 {
@@ -12,30 +11,30 @@ trait InteractsWithFormData
         return $this->prepareFormDataBeforeFill($data);
     }
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        return $this->prepareFormDataBeforeSave($data);
+    }
+
     protected function prepareFormDataBeforeFill(array $data): array
     {
-        $data = collect($data)
-            ->reject(fn (mixed $value, string $key): bool => in_array($key, ['prefixed_id', 'uuid']))
-            ->map(function (mixed $value, string $key) {
-                if ($key === 'id') {
-                    return $this->getRecord()?->getRouteKey() ?? $value;
-                }
+        $record = $this->getRecord();
 
-                if ($key === 'user_id') {
-                    return $this->getRecord()->user?->getRouteKey() ?? $value;
-                }
+        unset($data['prefixed_id']);
 
-                if ($value instanceof State) {
-                    return $value->getValue();
-                }
+        if (array_key_exists('id', $data)) {
+            $data['id'] = $record->getRouteKey();
+        }
 
-                if ($value instanceof Enum) {
-                    return (string) $value;
-                }
+        return $data;
+    }
 
-                return $value;
-            });
+    protected function prepareFormDataBeforeSave(array $data): array
+    {
+        if (array_key_exists('id', $data) && PrefixedIds::getModelClass($data['id'])) {
+            $data['id'] = PrefixedIds::findOrFail($data['id']);
+        }
 
-        return $data->toArray();
+        return $data;
     }
 }
