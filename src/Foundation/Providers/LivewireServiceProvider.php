@@ -4,7 +4,9 @@ namespace Foundation\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Support\Livewire\ModelSynth;
+use Support\Livewire\Synthesizers\EnumSynth;
+use Support\Livewire\Synthesizers\ModelSynth;
+use Support\Livewire\Synthesizers\StateSynth;
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,8 @@ class LivewireServiceProvider extends ServiceProvider
     protected function configureSynthesizers(): void
     {
         Livewire::propertySynthesizer(ModelSynth::class);
+        Livewire::propertySynthesizer(EnumSynth::class);
+        Livewire::propertySynthesizer(StateSynth::class);
     }
 
     protected function configureMiddlewares(): void

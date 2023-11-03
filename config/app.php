@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-        App\Admin\Providers\AdminPanelProvider::class,
+        App\Filament\Providers\AdminPanelProvider::class,
 
         /*
          * Application Service Providers...
