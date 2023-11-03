@@ -19,7 +19,6 @@
             display: none !important;
         }
     </style>
-    @livewireStyles
     @vite('resources/css/app.css')
     @googlefonts()
     @googlefonts('serif')
@@ -32,8 +31,6 @@
 
     @vite('resources/js/app.js')
     @stack('scripts')
-
-    @livewireScriptConfig
 
 </body>
 
