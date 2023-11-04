@@ -5,11 +5,11 @@ namespace App\Web\Layouts\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Navbar extends Component
+class Header extends Component
 {
     public function render(): View
     {
-        return view('layouts::navbar');
+        return view('layouts::header');
     }
 
     public function active(string $name, string $class = null): string

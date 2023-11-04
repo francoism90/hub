@@ -27,7 +27,11 @@
 
 <body class="antialiased">
 
+    <x-layouts::header />
+
     {{ $slot }}
+
+    <x-layouts::footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
