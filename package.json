@@ -8,7 +8,7 @@
         "format-blade": "npx prettier src/**/*.blade.php --write"
     },
     "devDependencies": {
-        "@shufo/prettier-plugin-blade": "^1.13.3",
+        "@shufo/prettier-plugin-blade": "^1.13.4",
         "@tailwindcss/forms": "^0.5.6",
         "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
@@ -23,6 +23,6 @@
         "shaka-player": "^4.5.0",
         "tailwindcss": "^3.3.5",
         "vite": "^4.5.0",
-        "vite-plugin-pwa": "^0.16.6"
+        "vite-plugin-pwa": "^0.16.7"
     }
 }
