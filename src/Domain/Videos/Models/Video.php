@@ -234,7 +234,14 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function publishedAt(): Attribute
+    public function released(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->released_at?->toDateString()
+        )->shouldCache();
+    }
+
+    public function published(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->released_at ?: $this->created_at
@@ -247,6 +254,7 @@ class Video extends Model implements HasMedia
             'id' => $this->getScoutKey(),
             'name' => $this->name,
             'identifier' => $this->identifier,
+            'released' => $this->released,
             'content' => $this->content,
             'summary' => $this->summary,
             'adult' => $this->adult,
@@ -257,7 +265,6 @@ class Video extends Model implements HasMedia
             'genres' => $this->tags->type(TagType::genre())->seo(),
             'languages' => $this->tags->type(TagType::language())->seo(),
             'state' => $this->state,
-            'released_at' => $this->released_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

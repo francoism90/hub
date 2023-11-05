@@ -5,8 +5,8 @@
     <dl class="inline-flex">
         <dt class="sr-only">{{ __('Published on') }}</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
-            <time datetime="{{ $item->published_at->format('Y-m-d\TH:i:s.uP') }}">
-                {{ $item->published_at->format('F d, Y') }}
+            <time datetime="{{ $item->published->format('Y-m-d\TH:i:s.uP') }}">
+                {{ $item->published->format('F d, Y') }}
             </time>
         </dd>
 

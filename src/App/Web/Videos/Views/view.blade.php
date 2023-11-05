@@ -12,8 +12,8 @@
                 <dl>
                     <dt class="sr-only">{{ __('Published on') }}</dt>
                     <dd class="text-base font-medium leading-6 text-gray-400">
-                        <time datetime="{{ $video->published_at->format('Y-m-d\TH:i:s.uP') }}">
-                            {{ $video->published_at->format('F d, Y') }}
+                        <time datetime="{{ $video->published->format('Y-m-d\TH:i:s.uP') }}">
+                            {{ $video->published->format('F d, Y') }}
                         </time>
                     </dd>
 
