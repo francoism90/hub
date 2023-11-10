@@ -40,6 +40,13 @@ class ListTags extends ListRecords
                     ->formatStateUsing(fn (TagType $state): ?string => $state?->label)
                     ->sortable(),
 
+                Columns\TextColumn::make('description')
+                    ->label(__('Description'))
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->limit()
+                    ->wrap()
+                    ->sortable(),
+
                 Columns\TextColumn::make('videos_count')
                     ->label(__('Usage'))
                     ->sortable(),
