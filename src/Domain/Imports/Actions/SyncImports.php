@@ -46,7 +46,7 @@ class SyncImports
             ->in(Storage::disk('import')->path(''))
             ->files()
             ->size('>= 1K')
-            ->filter(fn (SplFileInfo $file) => str_starts_with(
+            ->filter(fn (SplFileInfo $file) => $file->isWritable() && str_starts_with(
                 mime_content_type($file->getRealPath()), 'video/')
             );
     }
