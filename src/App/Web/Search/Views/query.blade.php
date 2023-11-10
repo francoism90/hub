@@ -6,7 +6,7 @@
             placeholder="{{ __('Search on title, actor or studio') }}"
             autocomplete
             autofocus
-            wire:model.live.debounce.400ms="form.query" />
+            wire:model.live.debounce.300ms="form.query" />
 
         @if (filled($this->form->query))
             <a class="cursor-pointer" wire:click="$set('form.query', '')">

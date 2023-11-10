@@ -10,7 +10,7 @@
                 type="search"
                 placeholder="{{ __('Search') }}"
                 autocomplete
-                wire:model.live.debounce.400ms="query" />
+                wire:model.live.debounce.300ms="query" />
         </div>
     @endif
 
