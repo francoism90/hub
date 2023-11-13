@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite --host",
         "build": "vite build",
-        "test": "vitest",
+        "test": "vitest run",
         "coverage": "vitest run --coverage",
         "format": "npx prettier . --write",
         "format-blade": "npx prettier src/**/*.blade.php --write"
