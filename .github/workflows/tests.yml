@@ -42,7 +42,7 @@ jobs:
 
       - name: Prepare Application
         run: |
-          cp .env.example .env
+          cp .env.ci .env
           php artisan key:generate
           npm run test
 
