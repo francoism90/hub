@@ -7,13 +7,13 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin'
 export default defineConfig(({ command, mode, ssrBuild }) => {
   let host = 'hub.test'
 
-  let https = {
-    cert: readFileSync('/run/secrets/cert.pem'),
-    key: readFileSync('/run/secrets/key.pem'),
-  }
+  let https = false
 
-  if (mode === 'production') {
-    https = false
+  if (mode === 'development') {
+    https = {
+      cert: readFileSync('/run/secrets/cert.pem'),
+      key: readFileSync('/run/secrets/key.pem'),
+    }
   }
 
   return {
@@ -22,6 +22,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       https,
       port: 5173,
       strictPort: true,
+      hmr: { host }
     },
     resolve: {
       alias: {
