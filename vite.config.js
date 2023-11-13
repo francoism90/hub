@@ -6,7 +6,6 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 export default defineConfig(({ command, mode, ssrBuild }) => {
   let host = 'hub.test'
-
   let https = false
 
   if (mode === 'development') {
