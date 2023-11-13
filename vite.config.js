@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     key: readFileSync('/run/secrets/key.pem'),
   }
 
-  if (process.env.NODE_ENV === 'production') {
+  if (mode === 'production') {
     https = false
   }
 
