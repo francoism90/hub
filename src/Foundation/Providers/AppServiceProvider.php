@@ -47,11 +47,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function configureJsonResource(): void
-    {
-        JsonResource::withoutWrapping();
-    }
-
     protected function configurePrefixedIds(): void
     {
         PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
@@ -62,5 +57,10 @@ class AppServiceProvider extends ServiceProvider
             'user-' => User::class,
             'video-' => Video::class,
         ]);
+    }
+
+    protected function configureJsonResource(): void
+    {
+        JsonResource::withoutWrapping();
     }
 }
