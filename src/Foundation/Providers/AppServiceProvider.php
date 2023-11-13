@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureStrictness();
         $this->configureMorphMap();
-        $this->configureJsonResource();
         $this->configurePrefixedIds();
+        $this->configureJsonResource();
     }
 
     protected function configureStrictness(): void
