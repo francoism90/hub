@@ -44,7 +44,9 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-          npm run test
+          npm run build
 
       - name: Execute tests
-        run: ./vendor/bin/pest
+        run: |
+          npm run test
+          ./vendor/bin/pest
