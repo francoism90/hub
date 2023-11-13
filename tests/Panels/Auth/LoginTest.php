@@ -1,9 +1,9 @@
 <?php
 
-use App\Filament\Pages\Auth\Login;
-use App\Filament\Pages\Dashboard;
 use Domain\Users\Models\User;
 use Filament\Facades\Filament;
+use Filament\Pages\Auth\Login;
+use Filament\Pages\Dashboard;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Filament\Pages\Auth\Register;
 use Domain\Users\Models\User;
 use Filament\Facades\Filament;
+use Filament\Pages\Auth\Register;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
