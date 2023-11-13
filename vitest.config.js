@@ -1,8 +1,14 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import { fileURLToPath, URL } from 'url'
 import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 export default defineConfig({
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
+  test: {
+    includeSource: ['src/**/*.{js,ts}']
+  },
   server: {
     hmr: undefined,
     https: false
