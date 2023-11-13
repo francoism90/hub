@@ -52,7 +52,7 @@ it('requires request signature', function () {
     $user = User::factory()->make();
     $token = Password::createToken($user);
 
-    $this->get(route('filament.workspace.auth.password-reset.reset', [
+    $this->get(route('filament.admin.auth.password-reset.reset', [
         'email' => $user->getEmailForPasswordReset(),
         'token' => $token,
     ]))->assertForbidden();
