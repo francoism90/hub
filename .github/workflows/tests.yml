@@ -12,10 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         php: [8.2]
-        laravel: [10.*]
         dependency-version: [prefer-stable]
-        include:
-          - laravel: 10.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
@@ -40,8 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+          composer install --no-interaction --prefer-dist
           npm ci
 
       - name: Prepare Application
