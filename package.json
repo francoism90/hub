@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.13.4",
-        "@tailwindcss/forms": "^0.5.6",
+        "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.1",
@@ -19,7 +19,7 @@
         "laravel-vite-plugin": "^0.8.1",
         "postcss": "^8.4.31",
         "postcss-import": "^15.1.0",
-        "prettier": "^3.0.3",
+        "prettier": "^3.1.0",
         "prettier-plugin-tailwindcss": "^0.5.7",
         "pusher-js": "^8.3.0",
         "shaka-player": "^4.5.0",
