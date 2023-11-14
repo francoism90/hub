@@ -50,6 +50,8 @@
         "laravel/sail": "^1.26.0",
         "mockery/mockery": "^1.6.6",
         "nunomaduro/collision": "^7.10.0",
+        "pestphp/pest": "^2.24.3",
+        "pestphp/pest-plugin-laravel": "^2.2",
         "phpunit/phpunit": "^10.4.2",
         "spatie/laravel-ignition": "^2.3.1"
     },
@@ -76,12 +78,14 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan filament:upgrade",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models --nowrite"
         ],
-        "post-update-cmd": [],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],

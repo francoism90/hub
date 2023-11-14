@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureStrictness();
         $this->configureMorphMap();
-        $this->configureJsonResource();
         $this->configurePrefixedIds();
+        $this->configureJsonResource();
     }
 
     protected function configureStrictness(): void
@@ -47,11 +47,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function configureJsonResource(): void
-    {
-        JsonResource::withoutWrapping();
-    }
-
     protected function configurePrefixedIds(): void
     {
         PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
@@ -62,5 +57,10 @@ class AppServiceProvider extends ServiceProvider
             'user-' => User::class,
             'video-' => Video::class,
         ]);
+    }
+
+    protected function configureJsonResource(): void
+    {
+        JsonResource::withoutWrapping();
     }
 }

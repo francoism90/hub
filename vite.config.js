@@ -4,43 +4,53 @@ import { fileURLToPath, URL } from 'url'
 import { VitePWA } from 'vite-plugin-pwa'
 import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
-const host = 'hub.test'
+export default defineConfig(({ command, mode, ssrBuild }) => {
+  let host = 'hub.test'
+  let https = false
 
-export default defineConfig({
-  server: {
-    host,
-    port: 5173,
-    strictPort: true,
-    hmr: { host },
-    https: {
+  if (mode === 'development') {
+    https = {
       cert: readFileSync('/run/secrets/cert.pem'),
       key: readFileSync('/run/secrets/key.pem'),
+    }
+  }
+
+  return {
+    server: {
+      host,
+      https,
+      port: 5173,
+      strictPort: true,
+      hmr: { host }
     },
-  },
-  resolve: {
-    alias: {
-      '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
-      '!': fileURLToPath(new URL('./vendor', import.meta.url)),
+    resolve: {
+      alias: {
+        '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
+        '!': fileURLToPath(new URL('./vendor', import.meta.url)),
+      },
     },
-  },
-  plugins: [
-    laravel({
-      input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
-      refresh: [...refreshPaths, 'src/**'],
-    }),
-    VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'script',
-      outDir: 'public/build',
-      base: 'public',
-      buildBase: '/build/',
-      scope: '/',
-      workbox: {
-        cleanupOutdatedCaches: true,
-        directoryIndex: null,
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
-        maximumFileSizeToCacheInBytes: 4194304,
-        navigateFallback: null,
+    plugins: [
+      laravel({
+        input: [
+          'resources/css/app.css',
+          'resources/js/app.js',
+          'resources/css/filament/admin/theme.css',
+        ],
+        refresh: [...refreshPaths, 'resources/**', 'src/**'],
+      }),
+      VitePWA({
+        registerType: 'autoUpdate',
+        injectRegister: 'script',
+        outDir: 'public/build',
+        base: 'public',
+        buildBase: '/build/',
+        scope: '/',
+        workbox: {
+          cleanupOutdatedCaches: true,
+          directoryIndex: null,
+          globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+          maximumFileSizeToCacheInBytes: 4194304,
+          navigateFallback: null,
         navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
       },
       manifest: {
@@ -80,5 +90,6 @@ export default defineConfig({
         },
       },
     },
-  },
+  }
+}
 })
