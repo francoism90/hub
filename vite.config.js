@@ -21,7 +21,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       https,
       port: 5173,
       strictPort: true,
-      hmr: { host }
+      hmr: { host },
     },
     resolve: {
       alias: {
@@ -31,11 +31,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     },
     plugins: [
       laravel({
-        input: [
-          'resources/css/app.css',
-          'resources/js/app.js',
-          'resources/css/filament/admin/theme.css',
-        ],
+        input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
         refresh: [...refreshPaths, 'resources/**', 'src/**'],
       }),
       VitePWA({
@@ -51,45 +47,45 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
           globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
-        navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
-      },
-      manifest: {
-        name: 'Hub',
-        short_name: 'Hub',
-        description: 'Hub',
-        theme_color: '#030712',
-        background_color: '#030712',
-        orientation: 'portrait-primary',
-        id: '/',
-        scope: '/',
-        start_url: '/',
-        icons: [
-          {
-            src: '/storage/images/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
+          navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
+        },
+        manifest: {
+          name: 'Hub',
+          short_name: 'Hub',
+          description: 'Hub',
+          theme_color: '#030712',
+          background_color: '#030712',
+          orientation: 'portrait-primary',
+          id: '/',
+          scope: '/',
+          start_url: '/',
+          icons: [
+            {
+              src: '/storage/images/android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+            {
+              src: '/storage/images/android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable',
+            },
+          ],
+        },
+      }),
+    ],
+    build: {
+      chunkSizeWarningLimit: 1024,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
+            utils: ['axios'],
+            ws: ['laravel-echo', 'pusher-js'],
           },
-          {
-            src: '/storage/images/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
-    }),
-  ],
-  build: {
-    chunkSizeWarningLimit: 1024,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
-          utils: ['axios'],
-          ws: ['laravel-echo', 'pusher-js'],
         },
       },
     },
   }
-}
 })

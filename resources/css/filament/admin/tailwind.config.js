@@ -2,11 +2,7 @@ import preset from '../../../../vendor/filament/filament/tailwind.config.preset'
 
 export default {
   presets: [preset],
-  content: [
-    './src/Filament/**/*.php',
-    './resources/**/*.blade.php',
-    './vendor/filament/**/*.blade.php'
-  ],
+  content: ['./src/Filament/**/*.php', './resources/**/*.blade.php', './vendor/filament/**/*.blade.php'],
   theme: {
     extend: {
       fontFamily: {
