@@ -1,7 +1,7 @@
-/** @type {import('tailwindcss').Config} */
 
 const colors = require('tailwindcss/colors')
 
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./resources/**/*.blade.php', './vendor/filament/**/*.blade.php', './src/App/**/*.blade.php'],
   theme: {
