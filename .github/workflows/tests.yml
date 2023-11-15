@@ -32,7 +32,7 @@ jobs:
           coverage: none
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
 
       - name: Install dependencies
         run: |
