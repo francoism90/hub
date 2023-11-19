@@ -1,7 +1,7 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
     x-data="{ preview: false }"
-    {{ $attributes->class('flex flex-col gap-y-1.5 py-8') }}>
+    {{ $attributes->class('flex flex-col gap-y-1.5 py-7') }}>
     <dl class="inline-flex">
         <dt class="sr-only">{{ __('Published on') }}</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">

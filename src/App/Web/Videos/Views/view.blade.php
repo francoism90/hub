@@ -8,7 +8,7 @@
 
     <x-layouts::container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
-            <header class="py-4">
+            <header class="py-3.5">
                 <dl>
                     <dt class="sr-only">{{ __('Published on') }}</dt>
                     <dd class="text-base font-medium leading-6 text-gray-400">
@@ -30,7 +30,7 @@
                 </h1>
             </header>
 
-            <div class="grid grid-cols-3 gap-4 divide-x divide-gray-700 py-3 text-center text-sm text-gray-300">
+            <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 py-3 text-center text-sm text-gray-300">
                 <a
                     class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite">
@@ -51,18 +51,18 @@
             </div>
 
             @if ($video->tags->isNotEmpty())
-                <div class="gap-y-3 py-4">
+                <div class="gap-y-3 py-3.5">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
                     <x-videos::tags class="pt-2" :items="$video->tags" />
                 </div>
             @endif
 
-            <div class="gap-y-3 py-4">
+            <div class="py-3.5">
                 <h2 class="text-sm uppercase tracking-wide text-gray-400">
                     {{ __('Similar videos') }}
                 </h2>
 
-                <div class="grid grid-cols-1 gap-4 py-4">
+                <div class="grid grow grid-cols-1 gap-3.5 py-3.5 sm:grid-cols-2" wire:poll.keep-alive.10s>
                     @forelse ($this->similar as $item)
                         <x-videos::item :$item />
                     @empty

@@ -1,5 +1,5 @@
 <x-layouts::container>
-    <div class="flex flex-col gap-y-8 py-4" wire:poll.keep-alive.10s>
+    <div class="flex flex-col gap-y-7 py-3.5" wire:poll.keep-alive.10s>
         @foreach ($this->items as $group => $tags)
             <article class="flex flex-col gap-y-1">
                 <h2 class="text-xl">

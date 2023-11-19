@@ -2,21 +2,21 @@
     wire:key="{{ $item->getRouteKey() }}"
     x-data="{ shown: false, preview: false }"
     x-intersect.once="shown = true"
-    class="h-20 max-h-[5rem] min-h-[5rem] w-full">
-    <div class="flex flex-row flex-nowrap items-center gap-x-4" x-show="shown" x-transition>
+    class="w-full">
+    <div class="flex flex-col flex-nowrap gap-x-4 rounded border border-gray-700/30 bg-gray-900/75" x-show="shown" x-transition>
         <div
             x-on:mouseover="preview = true"
             x-on:mouseleave="preview = false"
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-20 w-40 flex-shrink-0">
+            class="relative aspect-video h-44 max-h-[11rem] min-h-[11rem] w-full border-b border-gray-700/30">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="h-full w-full bg-black object-fill"
+                    class="h-full w-full rounded-t bg-black object-fill"
                     crossorigin="use-credentials"
                     loading="lazy" />
 
@@ -26,7 +26,7 @@
                         :manifest="$item->preview"
                         :controls="false"
                         :rate="1.05"
-                        class="absolute inset-0 z-10 h-full w-full object-fill"
+                        class="absolute inset-0 z-10 h-full w-full rounded-t object-fill"
                         autoplay
                         muted
                         loop />
@@ -34,10 +34,10 @@
             </a>
         </div>
 
-        <div class="flex grow flex-col">
+        <div class="flex flex-col p-3.5">
             <a href="{{ route('videos.view', $item) }}">
                 <h2
-                    class="line-clamp-1 text-sm font-semibold capitalize tracking-tight"
+                    class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
                     title="{{ $item->title }}">
                     {{ $item->title }}

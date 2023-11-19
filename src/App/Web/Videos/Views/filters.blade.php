@@ -1,12 +1,12 @@
-<aside class="flex w-full flex-col gap-y-8 py-4">
+<aside class="flex w-full flex-col gap-y-7 py-3.5">
     @if ($this->hasProperty('query'))
-        <div class="w-full rounded bg-gray-900 p-6">
-            <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
-                <h3 class="headline">{{ __('Search Videos') }}</h3>
+        <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-3.5">
+            <div class="flex cursor-pointer items-center justify-between pb-3.5" wire:click="toggleTags">
+                <h3 class="headline text-sm">{{ __('Search Videos') }}</h3>
             </div>
 
             <input
-                class="input bg-gray-700/25 p-3 text-sm text-gray-300 placeholder:text-gray-500"
+                class="input rounded bg-gray-700/25 p-2.5 text-sm text-gray-300 placeholder:text-gray-500"
                 type="search"
                 placeholder="{{ __('Search') }}"
                 autocomplete
@@ -15,9 +15,9 @@
     @endif
 
     @if ($this->hasProperty('sort'))
-        <div class="w-full rounded bg-gray-900 p-6">
-            <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
-                <h3 class="headline">{{ __('Sort By') }}</h3>
+        <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-3.5">
+            <div class="flex cursor-pointer items-center justify-between pb-3.5" wire:click="toggleTags">
+                <h3 class="headline text-sm">{{ __('Sort By') }}</h3>
             </div>
 
             <div class="flex flex-col gap-y-3">
@@ -32,13 +32,13 @@
     @endif
 
     @if ($this->hasProperty('tags'))
-        <div class="w-full rounded bg-gray-900 p-6">
-            <div class="flex cursor-pointer items-center justify-between pb-4" wire:click="toggleTags">
-                <h3 class="headline">{{ str($this->tagType)->plural() }}</h3>
-                <x-heroicon-o-chevron-double-right class="h-5 w-5 text-gray-400" />
+        <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-3.5">
+            <div class="flex cursor-pointer items-center justify-between pb-3.5" wire:click="toggleTags">
+                <h3 class="headline text-sm">{{ str($this->tagType)->plural() }}</h3>
+                <x-heroicon-o-chevron-double-right class="h-4 w-4 text-gray-100" />
             </div>
 
-            <div class="flex h-96 max-h-[24rem] flex-col gap-y-1.5 overflow-auto px-4 text-gray-400">
+            <div class="flex h-96 max-h-[24rem] flex-col gap-y-1.5 overflow-auto px-3.5 text-gray-400">
                 @foreach ($this->tagOptions as $item)
                     <label
                         for="tag-{{ $item->getRouteKey() }}"

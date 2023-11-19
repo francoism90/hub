@@ -6,7 +6,7 @@
     @endif
 
     @if (filled($this->form->query) && filled($this->items))
-        <div class="grid grid-cols-1 gap-4" wire:poll.keep-alive.10s>
+        <div class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2" wire:poll.keep-alive.10s>
             @foreach ($this->items as $item)
                 <x-videos::item :$item />
             @endforeach
@@ -15,7 +15,7 @@
         <nav
             role="navigation"
             aria-label="Pagination Navigation"
-            class="flex w-full items-center justify-center py-4">
+            class="flex w-full items-center justify-center py-3.5">
             <button
                 @if ($this->onLastPage) disabled @endif
                 class="btn w-auto rounded bg-gray-800 px-2.5 py-1 text-sm text-gray-300 disabled:opacity-50"
