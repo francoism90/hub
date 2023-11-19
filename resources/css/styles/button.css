@@ -1,5 +1,5 @@
 .btn {
-    @apply inline-flex w-full cursor-pointer select-none flex-wrap items-center justify-center gap-1 border-transparent;
+    @apply inline-flex w-full shrink-0 cursor-pointer select-none flex-wrap items-center justify-center gap-1 border-transparent;
 
     &-disabled,
     &[disabled],
@@ -37,6 +37,7 @@
 .btn:is(input[type='radio']) {
     @apply w-auto appearance-none;
 }
+
 .btn:is(input[type='checkbox']):after,
 .btn:is(input[type='radio']):after {
     @apply content-[attr(aria-label)];
