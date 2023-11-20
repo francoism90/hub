@@ -78,6 +78,16 @@ class VideoViewController extends Component
     }
 
     #[Computed]
+    public function starts(): float
+    {
+        $model = static::history()
+            ->videos()
+            ->find($this->video);
+
+        return data_get($model?->pivot->options, 'timestamp', 0);
+    }
+
+    #[Computed]
     public function similar(): LazyCollection
     {
         return app(GetSimilarVideos::class)->execute($this->video);

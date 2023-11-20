@@ -1,21 +1,19 @@
 <div
-    x-data="player({ controls: @entangle('controls') })"
+    x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})"
     x-ref="container">
 
     <video
         x-ref="video"
         crossorigin="allow-credentials"
-        playsinline />
+        playsinline
+        {{ $attributes }} />
 </div>
 
 @script
     <script>
-        Alpine.data('player', ({
-            controls = false
-        }) => ({
+        Alpine.data('player', (options) => ({
             instance: null,
             ready: false,
-            controls,
 
             async init() {
                 // Create instance
@@ -40,17 +38,15 @@
                 });
 
                 // Configure ui
-                this.ui()
+                if (options.controls) {
+                    this.ui()
+                }
 
                 // Load manifest
-                await this.instance.load('{{ $this->manifest }}', {{ $this->starts }});
+                await this.instance.load(options.manifest, options.startsAt);
             },
 
             ui() {
-                if (!this.controls) {
-                    return;
-                }
-
                 const ui = new shaka.ui.Overlay(this.instance, this.$refs.container, this.$refs.video);
 
                 const replay = (video, step) => {

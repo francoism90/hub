@@ -1,6 +1,10 @@
 <article>
-    <livewire:player :$video />
-    {{--
+    <x-videos::player
+        :item="$video"
+        :manifest="$video->stream"
+        :starts-at="$this->starts"
+        autoplay />
+
     <x-layouts::container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
@@ -68,5 +72,5 @@
                 </div>
             </div>
         </div>
-    </x-layouts::container> --}}
+    </x-layouts::container>
 </article>

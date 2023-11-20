@@ -40,6 +40,6 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function registerComponents(): void
     {
-        Livewire::component('player', Player::class);
+        //
     }
 }
