@@ -2,19 +2,16 @@
 
 namespace App\Filament\Forms\Components;
 
-use Closure;
 use Domain\Tags\Models\Tag;
 use Filament\Forms\Components\Select;
 
 class TagInput extends Select
 {
-    protected int|Closure|null $limit;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->limit(10);
+        $this->maxItems(10);
 
         $this->label(__('Tags'));
 
@@ -34,13 +31,6 @@ class TagInput extends Select
         $this->getOptionLabelFromRecordUsing(fn (Tag $record): mixed => $record->name);
     }
 
-    public function limit(int|Closure|null $limit): static
-    {
-        $this->limit = $limit;
-
-        return $this;
-    }
-
     public function getSearchResults(string $search = ''): array
     {
         if (! is_string($search) || blank($search)) {
@@ -48,14 +38,9 @@ class TagInput extends Select
         }
 
         return Tag::search($search)
-            ->take($this->getLimit())
+            ->take($this->getMaxItems())
             ->get()
             ->pluck('name', 'id')
             ->toArray();
-    }
-
-    public function getLimit(): ?int
-    {
-        return $this->evaluate($this->limit);
     }
 }
