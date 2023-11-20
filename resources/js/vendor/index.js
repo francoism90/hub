@@ -1,3 +1,3 @@
-export * from './axios'
-export * from './echo'
-export * from './shaka'
+import './axios';
+import './echo';
+import './shaka';

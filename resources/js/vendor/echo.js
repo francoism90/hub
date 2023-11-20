@@ -4,11 +4,11 @@
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
 
-import Pusher from 'pusher-js'
+import Pusher from 'pusher-js';
 
-window.Pusher = Pusher
+window.Pusher = Pusher;
 
 window.Echo = new Echo({
   broadcaster: 'pusher',
@@ -20,4 +20,4 @@ window.Echo = new Echo({
   authEndpoint: '/api/v1/broadcasting/auth',
   disableStats: true,
   encrypted: true,
-})
+});

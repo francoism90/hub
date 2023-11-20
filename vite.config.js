@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite'
-import { readFileSync } from 'fs'
-import { fileURLToPath, URL } from 'url'
-import { VitePWA } from 'vite-plugin-pwa'
-import laravel, { refreshPaths } from 'laravel-vite-plugin'
+import { defineConfig } from 'vite';
+import { readFileSync } from 'fs';
+import { fileURLToPath, URL } from 'url';
+import { VitePWA } from 'vite-plugin-pwa';
+import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
-export default defineConfig(({ command, mode, ssrBuild }) => {
-  let host = 'hub.test'
-  let https = false
+export default defineConfig(({ mode }) => {
+  const host = 'hub.test';
+  let https = false;
 
   if (mode === 'development') {
     https = {
       cert: readFileSync('/run/secrets/cert.pem'),
       key: readFileSync('/run/secrets/key.pem'),
-    }
+    };
   }
 
   return {
@@ -87,5 +87,5 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         },
       },
     },
-  }
-})
+  };
+});

@@ -1,2 +1,2 @@
 // Vendor
-import './vendor'
+import './vendor';
