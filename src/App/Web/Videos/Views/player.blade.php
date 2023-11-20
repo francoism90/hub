@@ -12,7 +12,7 @@
 @script
     <script>
         Alpine.data('player', (options) => ({
-            instance: null,
+            instance: undefined,
             ready: false,
 
             async init() {
