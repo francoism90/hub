@@ -136,12 +136,14 @@
                         played: 'rgba(236, 72, 153, 1)',
                     },
                 });
-            }
+            },
 
-            // destroy() {
-            //     // Detach the handler, avoiding memory and side-effect leakage
-            //     // clearInterval(this.timer);
-            // },
+            async destroy() {
+                if (this.$refs.video) {
+                    await this.$refs.video.pause()
+                }
+
+            },
         }))
     </script>
 @endscript
