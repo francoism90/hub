@@ -1,138 +1,151 @@
 <div
-    wire:ignore
-    x-ref="container"
-    x-data="{
-        async init() {
-            if (!$refs.video || !$refs.container) {
-                return;
-            }
-    
-            // Create instance
-            const player = new window.shaka.Player();
-    
-            // Configure elements
-            await player.attach($refs.video);
-    
-            // Configure CORS
-            player
-                .getNetworkingEngine()
-                .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
-    
-            // Configure settings
-            player.configure({
-                preferredAudioLanguage: 'en',
-                preferredTextLanguage: 'en',
-                streaming: {
-                    ignoreTextStreamFailures: true,
-                    alwaysStreamText: true,
-                },
-            });
-    
-            @if($controls)
-            // Create controls
-            const replay = (video, step) => {
-                const el = document.createElement('button');
-    
-                el.classList.add('material-icons-round', 'shaka-tooltip');
-                el.textContent = 'replay_10';
-    
-                el.addEventListener('click', () => {
-                    if (!video?.duration || video?.duration < step) {
-                        return;
-                    }
-    
-                    video.currentTime - step < video.duration ?
-                        (video.currentTime -= step) :
-                        (video.currentTime = video.duration - step);
-                });
-    
-                return el;
-            };
-    
-            const forward = (video, step) => {
-                const el = document.createElement('button');
-    
-                el.classList.add('material-icons-round', 'shaka-tooltip');
-                el.textContent = 'forward_10';
-    
-                el.addEventListener('click', () => {
-                    if (!video?.duration || video?.duration < step) {
-                        return;
-                    }
-    
-                    video.currentTime + step < video.duration ?
-                        (video.currentTime += step) :
-                        (video.currentTime = video.duration - step);
-                });
-    
-                return el;
-            };
-    
-            // Setup UI
-            const ui = new shaka.ui.Overlay(player, $refs.container, $refs.video);
-    
-            ui.replay = class extends window.shaka.ui.Element {
-                constructor(parent, controls) {
-                    super(parent, controls);
-                    parent.appendChild(replay($refs.video, 10));
-                }
-            };
-    
-            ui.replay.Factory = class {
-                create(rootElement, controls) {
-                    return new ui.replay(rootElement, controls);
-                }
-            };
-    
-            ui.forward = class extends shaka.ui.Element {
-                constructor(parent, controls) {
-                    super(parent, controls);
-                    parent.appendChild(forward($refs.video, 10));
-                }
-            };
-    
-            ui.forward.Factory = class {
-                create(rootElement, controls) {
-                    return new ui.forward(rootElement, controls);
-                }
-            };
-    
-            window.shaka.ui.Controls.registerElement('replay', new ui.replay.Factory());
-            window.shaka.ui.Controls.registerElement('forward', new ui.forward.Factory());
-    
-            // Configure UI
-            ui.configure({
-                addBigPlayButton: false,
-                singleClickForPlayAndPause: false,
-                keyboardSeekDistance: 10,
-                controlPanelElements: [
-                    'play_pause',
-                    'replay',
-                    'forward',
-                    'time_and_duration',
-                    'spacer',
-                    'fullscreen',
-                    'overflow_menu',
-                ],
-                seekBarColors: {
-                    base: 'rgba(255, 255, 255, 0.3)',
-                    buffered: 'rgba(255, 255, 255, 0.54)',
-                    played: 'rgba(236, 72, 153, 1)',
-                },
-            });
-            @endif
-    
-            // Load manifest
-            await player.load('{{ $manifest }}', {{ $startsAt }});
-    
-            // Apply playback rate
-            $refs.video.defaultPlaybackRate = {{ $rate }};
-        }
-    }">
+    x-data="player({ controls: @entangle('controls') })"
+    x-ref="container">
 
     <video
         x-ref="video"
         crossorigin="allow-credentials"
-        playsinline
-        {{ $attributes }} />
+        playsinline />
 </div>
+
+@script
+    <script>
+        Alpine.data('player', ({
+            controls = false
+        }) => ({
+            instance: null,
+            ready: false,
+            controls,
+
+            async init() {
+                // Create instance
+                this.instance = new window.shaka.Player()
+
+                // // Configure elements
+                await this.instance.attach(this.$refs.video);
+
+                // Configure CORS
+                this.instance
+                    .getNetworkingEngine()
+                    .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+
+                // Configure settings
+                this.instance.configure({
+                    preferredAudioLanguage: 'en',
+                    preferredTextLanguage: 'en',
+                    streaming: {
+                        ignoreTextStreamFailures: true,
+                        alwaysStreamText: true,
+                    },
+                });
+
+                // Configure ui
+                this.ui()
+
+                // Load manifest
+                await this.instance.load('{{ $this->manifest }}', {{ $this->starts }});
+            },
+
+            ui() {
+                if (!this.controls) {
+                    return;
+                }
+
+                const ui = new shaka.ui.Overlay(this.instance, this.$refs.container, this.$refs.video);
+
+                const replay = (video, step) => {
+                    const el = document.createElement('button');
+
+                    el.classList.add('material-icons-round', 'shaka-tooltip');
+                    el.textContent = 'replay_10';
+
+                    el.addEventListener('click', () => {
+                        if (!video?.duration || video?.duration < step) {
+                            return;
+                        }
+
+                        video.currentTime - step < video.duration ?
+                            (video.currentTime -= step) :
+                            (video.currentTime = video.duration - step);
+                    });
+
+                    return el;
+                };
+
+                const forward = (video, step) => {
+                    const el = document.createElement('button');
+
+                    el.classList.add('material-icons-round', 'shaka-tooltip');
+                    el.textContent = 'forward_10';
+
+                    el.addEventListener('click', () => {
+                        if (!video?.duration || video?.duration < step) {
+                            return;
+                        }
+
+                        video.currentTime + step < video.duration ?
+                            (video.currentTime += step) :
+                            (video.currentTime = video.duration - step);
+                    });
+
+                    return el;
+                };
+
+                ui.replay = class extends window.shaka.ui.Element {
+                    constructor(parent, controls) {
+                        super(parent, controls);
+                        parent.appendChild(replay(this.video, 10));
+                    }
+                };
+
+                ui.replay.Factory = class {
+                    create(rootElement, controls) {
+                        return new ui.replay(rootElement, controls);
+                    }
+                };
+
+                ui.forward = class extends shaka.ui.Element {
+                    constructor(parent, controls) {
+                        super(parent, controls);
+                        parent.appendChild(forward(this.video, 10));
+                    }
+                };
+
+                ui.forward.Factory = class {
+                    create(rootElement, controls) {
+                        return new ui.forward(rootElement, controls);
+                    }
+                };
+
+                window.shaka.ui.Controls.registerElement('replay', new ui.replay.Factory());
+                window.shaka.ui.Controls.registerElement('forward', new ui.forward.Factory());
+
+                // Configure UI
+                ui.configure({
+                    addBigPlayButton: false,
+                    singleClickForPlayAndPause: false,
+                    keyboardSeekDistance: 10,
+                    controlPanelElements: [
+                        'play_pause',
+                        'replay',
+                        'forward',
+                        'time_and_duration',
+                        'spacer',
+                        'fullscreen',
+                        'overflow_menu',
+                    ],
+                    seekBarColors: {
+                        base: 'rgba(255, 255, 255, 0.3)',
+                        buffered: 'rgba(255, 255, 255, 0.54)',
+                        played: 'rgba(236, 72, 153, 1)',
+                    },
+                });
+            }
+
+            // destroy() {
+            //     // Detach the handler, avoiding memory and side-effect leakage
+            //     // clearInterval(this.timer);
+            // },
+        }))
+    </script>
+@endscript

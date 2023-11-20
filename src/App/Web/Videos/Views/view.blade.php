@@ -1,11 +1,6 @@
 <article>
-    <x-videos::player
-        :item="$video"
-        :manifest="$video->stream"
-        :starts-at="$this->starts"
-        @timeupdate.throttle.750ms="timeUpdate"
-        autoplay />
-
+    <livewire:player :$video />
+    {{--
     <x-layouts::container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
@@ -73,17 +68,5 @@
                 </div>
             </div>
         </div>
-    </x-layouts::container>
+    </x-layouts::container> --}}
 </article>
-
-@push('scripts')
-    <script>
-        function timeUpdate(e) {
-            const time = e.target.currentTime || 0
-
-            @this.dispatch('time-update', {
-                time
-            })
-        }
-    </script>
-@endpush
