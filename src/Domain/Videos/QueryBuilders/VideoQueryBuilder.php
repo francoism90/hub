@@ -33,7 +33,7 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->published()
-            ->randomSeed(key: 'feed', ttl: now()->addMinutes(15));
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes(20));
     }
 
     public function similar(Video $model): self
