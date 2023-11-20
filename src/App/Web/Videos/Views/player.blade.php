@@ -1,12 +1,14 @@
 <div
-    x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})"
-    x-ref="container">
+    x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})">
+    <div x-ref="container">
 
-    <video
-        x-ref="video"
-        crossorigin="allow-credentials"
-        playsinline
-        {{ $attributes }} />
+        <video
+            x-ref="video"
+            x-show="ready"
+            crossorigin="allow-credentials"
+            playsinline
+            {{ $attributes }} />
+    </div>
 </div>
 
 @script
@@ -44,6 +46,9 @@
 
                 // Load manifest
                 await this.instance.load(options.manifest, options.startsAt);
+
+                // Set ready
+                this.ready = true
             },
 
             ui() {
@@ -123,8 +128,8 @@
                     keyboardSeekDistance: 10,
                     controlPanelElements: [
                         'play_pause',
-                        'replay',
-                        'forward',
+                        // 'replay',
+                        // 'forward',
                         'time_and_duration',
                         'spacer',
                         'fullscreen',
@@ -140,9 +145,8 @@
 
             async destroy() {
                 if (this.$refs.video) {
-                    await this.$refs.video.pause()
+                    this.$refs.video.pause()
                 }
-
             },
         }))
     </script>
