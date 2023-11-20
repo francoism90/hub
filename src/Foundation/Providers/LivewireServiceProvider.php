@@ -2,7 +2,6 @@
 
 namespace Foundation\Providers;
 
-use App\Web\Videos\Components\Player;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Support\Livewire\Synthesizers\EnumSynth;

@@ -3,6 +3,7 @@
         :item="$video"
         :manifest="$video->stream"
         :starts-at="$this->starts"
+        @timeupdate.throttle.750ms="timeUpdate"
         autoplay />
 
     <x-layouts::container class="py-1">
@@ -74,3 +75,15 @@
         </div>
     </x-layouts::container>
 </article>
+
+@push('scripts')
+    <script>
+        window.timeUpdate = function(e) {
+            const time = e.target?.currentTime || 0
+
+            @this.dispatch('time-update', {
+                time
+            })
+        }
+    </script>
+@endpush
