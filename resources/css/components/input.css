@@ -1,0 +1,13 @@
+@layer components {
+    .input {
+        @apply w-full !border-0 !border-opacity-0 bg-transparent focus:!border-transparent focus:!ring-0;
+    }
+
+    .radio {
+        @apply inline-flex cursor-pointer items-center space-x-3 text-sm font-medium text-gray-400 hover:text-primary-500;
+
+        label {
+            @apply w-full;
+        }
+    }
+}

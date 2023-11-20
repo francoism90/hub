@@ -1,0 +1,13 @@
+@layer components {
+    .dropdown {
+        @apply relative;
+
+        &-content {
+            @apply absolute z-50;
+        }
+    }
+
+    .dropdown > *:focus {
+        @apply outline-none;
+    }
+}

@@ -1,3 +1,7 @@
+/* Assets */
+@import '~/shaka-player/dist/controls';
+
+/* Overrules */
 .shaka-video {
     @apply max-h-fit w-full;
 }

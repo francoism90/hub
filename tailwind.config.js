@@ -7,7 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          'Inter, ui-sans-serif, system-ui',
+          'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont',
           {
             fontFeatureSettings: '"calt", "case", "ccmp", "cv11", "ss01"',
             fontVariationSettings: '"opsz" 32',
