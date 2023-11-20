@@ -1,14 +1,12 @@
 <div
-    x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})">
-    <div x-ref="container">
-
-        <video
-            x-ref="video"
-            x-show="ready"
-            crossorigin="allow-credentials"
-            playsinline
-            {{ $attributes }} />
-    </div>
+    wire:ignore
+    x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})"
+    x-ref="container">
+    <video
+        x-ref="video"
+        crossorigin="allow-credentials"
+        playsinline
+        {{ $attributes }} />
 </div>
 
 @script
@@ -126,10 +124,11 @@
                     addBigPlayButton: false,
                     singleClickForPlayAndPause: false,
                     keyboardSeekDistance: 10,
+                    fadeDelay: 3,
                     controlPanelElements: [
                         'play_pause',
-                        // 'replay',
-                        // 'forward',
+                        'replay',
+                        'forward',
                         'time_and_duration',
                         'spacer',
                         'fullscreen',
