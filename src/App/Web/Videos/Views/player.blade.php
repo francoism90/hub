@@ -4,6 +4,7 @@
     x-ref="container">
     <video
         x-ref="video"
+        x-show="ready"
         crossorigin="allow-credentials"
         playsinline
         {{ $attributes }} />
@@ -19,7 +20,7 @@
                 // Create instance
                 this.instance = new window.shaka.Player()
 
-                // // Configure elements
+                // Configure elements
                 await this.instance.attach(this.$refs.video);
 
                 // Configure CORS
@@ -50,8 +51,10 @@
             },
 
             ui() {
+                // Create overlay
                 const ui = new shaka.ui.Overlay(this.instance, this.$refs.container, this.$refs.video);
 
+                // Custom buttons
                 const replay = (video, step) => {
                     const el = document.createElement('button');
 
