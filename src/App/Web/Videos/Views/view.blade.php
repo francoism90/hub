@@ -78,8 +78,8 @@
 
 @push('scripts')
     <script>
-        function timeUpdate(e) {
-            const time = e.target.currentTime || 0
+        window.timeUpdate = function(e) {
+            const time = e.target?.currentTime || 0
 
             @this.dispatch('time-update', {
                 time
