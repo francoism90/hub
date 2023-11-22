@@ -14,6 +14,7 @@ use Filament\Tables\Columns;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Number;
 
 class ListImports extends ListRecords
 {
@@ -36,7 +37,7 @@ class ListImports extends ListRecords
 
                 Columns\TextColumn::make('size')
                     ->label(__('Filesize'))
-                    ->formatStateUsing(fn (mixed $state) => human_filesize($state))
+                    ->formatStateUsing(fn (mixed $state) => Number::fileSize($state, precision: 2))
                     ->sortable(),
 
                 Columns\TextColumn::make('state')

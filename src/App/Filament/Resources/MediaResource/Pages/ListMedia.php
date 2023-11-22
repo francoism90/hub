@@ -7,6 +7,7 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
+use Illuminate\Support\Number;
 
 class ListMedia extends ListRecords
 {
@@ -26,7 +27,7 @@ class ListMedia extends ListRecords
 
                 Columns\TextColumn::make('size')
                     ->label(__('Filesize'))
-                    ->formatStateUsing(fn (mixed $state): string => human_filesize($state))
+                    ->formatStateUsing(fn (mixed $state): string => Number::fileSize($state, precision: 2))
                     ->sortable(),
 
                 Columns\TextColumn::make('created_at')

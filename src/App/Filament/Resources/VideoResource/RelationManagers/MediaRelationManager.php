@@ -9,6 +9,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
+use Illuminate\Support\Number;
 
 class MediaRelationManager extends RelationManager
 {
@@ -49,7 +50,7 @@ class MediaRelationManager extends RelationManager
                 Columns\TextColumn::make('size')
                     ->label(__('Size'))
                     ->sortable()
-                    ->formatStateUsing(fn (int $state) => human_filesize($state))
+                    ->formatStateUsing(fn (int $state) => Number::fileSize($state, precision: 2))
                     ->toggleable(isToggledHiddenByDefault: false),
 
                 Columns\TextColumn::make('file_name')

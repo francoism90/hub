@@ -2,26 +2,6 @@
 
 use Illuminate\Support\Carbon;
 
-if (! function_exists('human_filesize')) {
-    function human_filesize(mixed $size, int $precision = 2): string
-    {
-        $size = floatval($size ?: 0);
-
-        $unit = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-        $step = 1024;
-
-        $i = 0;
-
-        while (($size / $step) > 0.9) {
-            $size = $size / $step;
-            $i++;
-        }
-
-        return round($size, $precision).$unit[$i];
-    }
-}
-
 if (! function_exists('duration')) {
     function duration(mixed $value): string
     {
