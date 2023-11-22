@@ -146,8 +146,8 @@
             },
 
             async destroy() {
-                if (this.$refs.video) {
-                    this.$refs.video.pause()
+                if (this.$refs.video?.playing) {
+                    await this.$refs.video.pause()
                 }
             },
         }))
