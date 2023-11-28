@@ -6,6 +6,7 @@ import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
 export default defineConfig(({ mode }) => {
   const host = 'hub.test';
+
   let https = false;
 
   if (mode === 'development') {
@@ -47,7 +48,7 @@ export default defineConfig(({ mode }) => {
           globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
-          navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
+          navigateFallbackDenylist: [/\/[api,admin,livewire,ws,vod]+\/.*/],
         },
         manifest: {
           name: 'Hub',
