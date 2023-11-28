@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
           globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
-          navigateFallbackDenylist: [/\/[api,admin,livewire,ws,vod]+\/.*/],
+          navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
         },
         manifest: {
           name: 'Hub',
