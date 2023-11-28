@@ -3,8 +3,8 @@
 use Domain\Users\Models\User;
 use Filament\Facades\Filament;
 use Filament\Notifications\Auth\VerifyEmail;
-use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 
