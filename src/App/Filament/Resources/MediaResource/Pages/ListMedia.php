@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\MediaResource\Pages;
 
 use App\Filament\Resources\MediaResource;
+use Domain\Media\Models\Media;
+use Domain\Videos\Models\Video;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions;
 use Filament\Tables\Columns;
@@ -23,6 +25,7 @@ class ListMedia extends ListRecords
                 Columns\TextColumn::make('file_name')
                     ->label(__('Filename'))
                     ->limit()
+                    ->searchable()
                     ->sortable(),
 
                 Columns\TextColumn::make('size')
@@ -44,8 +47,14 @@ class ListMedia extends ListRecords
                 //
             ])
             ->actions([
-                Actions\EditAction::make(),
-                Actions\ViewAction::make(),
+                Actions\ViewAction::make()
+                    ->label(__('View'))
+                    ->color('gray')
+                    ->icon('heroicon-o-eye')
+                    ->url(fn (Media $record) => match(get_class($record->model)) {
+                        Video::class => route('videos.view', $record->model),
+                        default => null,
+                    }),
             ])
             ->bulkActions([
                 //
