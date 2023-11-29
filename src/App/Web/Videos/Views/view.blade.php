@@ -1,10 +1,12 @@
 <article>
-    <x-videos::player
-        :item="$video"
-        :manifest="$video->stream"
-        :starts-at="$this->starts"
-        @timeupdate.throttle.750ms="timeUpdate"
-        autoplay />
+    <div class="h-64 max-h-64 bg-black sm:h-80 sm:max-h-80 lg:h-[36rem] lg:max-h-[36rem]">
+        <x-videos::player
+            :item="$video"
+            :manifest="$video->stream"
+            :starts-at="$this->starts"
+            @timeupdate.throttle.750ms="timeUpdate"
+            autoplay />
+    </div>
 
     <x-layouts::container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">

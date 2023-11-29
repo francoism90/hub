@@ -10,13 +10,13 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-44 max-h-[11rem] min-h-[11rem] w-full border-b border-gray-700/30">
+            class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="h-full w-full rounded-t bg-black object-fill"
+                    class="h-full w-full rounded-t object-fill"
                     crossorigin="use-credentials"
                     loading="lazy" />
 

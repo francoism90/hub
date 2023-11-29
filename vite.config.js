@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => {
       }),
       VitePWA({
         registerType: 'autoUpdate',
-        injectRegister: 'script',
+        injectRegister: 'script-defer',
         outDir: 'public/build',
         base: 'public',
         buildBase: '/build/',

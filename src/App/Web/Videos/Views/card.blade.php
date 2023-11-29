@@ -31,20 +31,20 @@
         <x-videos::tags :items="$item->tags" />
     @endif
 
-    <div class="h-60 max-h-[14rem] min-h-[14rem] py-2 sm:h-64 sm:max-h-[16rem] sm:min-h-[16rem]">
+    <div class="h-60 max-h-60 py-2 sm:h-64 sm:max-h-64">
         <div
             x-on:mouseover="preview = true"
             x-on:mouseleave="preview = false"
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-full w-full flex-shrink-0">
+            class="relative aspect-video h-full w-full flex-shrink-0 bg-black">
             <a href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="absolute inset-0 z-0 h-full w-full bg-black object-fill"
+                    class="absolute inset-0 z-0 h-full w-full object-fill"
                     crossorigin="use-credentials"
                     loading="lazy" />
 

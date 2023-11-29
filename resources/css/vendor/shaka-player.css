@@ -2,12 +2,9 @@
 @import '~/shaka-player/dist/controls';
 
 /* Overrules */
-.shaka-video {
-    @apply max-h-fit w-full;
-}
-
+.shaka-video,
 .shaka-video-container {
-    @apply h-full max-h-64 min-h-[12rem] bg-black sm:min-h-[16rem] md:min-h-[20rem] lg:max-h-[34rem];
+    @apply aspect-video h-full w-full;
 }
 
 .shaka-video-container * {
