@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Number;
 
 class ListMedia extends ListRecords
@@ -21,6 +22,7 @@ class ListMedia extends ListRecords
             ->deferLoading()
             ->poll('10s')
             ->defaultSort('created_at', 'desc')
+            ->modifyQueryUsing(fn (Builder $query) => $query->has('model'))
             ->columns([
                 Columns\TextColumn::make('file_name')
                     ->label(__('Filename'))
@@ -51,7 +53,6 @@ class ListMedia extends ListRecords
                     ->label(__('View'))
                     ->color('gray')
                     ->icon('heroicon-o-eye')
-                    ->visible(fn (Media $record) => $record->model)
                     ->url(fn (Media $record) => match(get_class($record->model)) {
                         Video::class => route('videos.view', $record->model),
                         default => null,
