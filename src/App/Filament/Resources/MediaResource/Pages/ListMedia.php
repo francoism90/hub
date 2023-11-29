@@ -51,6 +51,7 @@ class ListMedia extends ListRecords
                     ->label(__('View'))
                     ->color('gray')
                     ->icon('heroicon-o-eye')
+                    ->visible(fn (Media $record) => $record->model)
                     ->url(fn (Media $record) => match(get_class($record->model)) {
                         Video::class => route('videos.view', $record->model),
                         default => null,
