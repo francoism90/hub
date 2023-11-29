@@ -22,7 +22,7 @@ class ListMedia extends ListRecords
             ->deferLoading()
             ->poll('10s')
             ->defaultSort('created_at', 'desc')
-            ->modifyQueryUsing(fn (Builder $query) => $query->has('model'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->withWhereHas('model'))
             ->columns([
                 Columns\TextColumn::make('file_name')
                     ->label(__('Filename'))
