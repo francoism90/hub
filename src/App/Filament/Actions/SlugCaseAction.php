@@ -6,13 +6,13 @@ use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
 
-class TitleCaseAction extends Action
+class SlugCaseAction extends Action
 {
     use CanCustomizeProcess;
 
     public static function getDefaultName(): ?string
     {
-        return 'title_case';
+        return 'slug_case';
     }
 
     protected function setUp(): void
@@ -21,7 +21,7 @@ class TitleCaseAction extends Action
 
         $this->icon('heroicon-o-language');
 
-        $this->label(__('Title Case'));
+        $this->label(__('Slug Case'));
 
         $this->hiddenLabel();
 
@@ -32,7 +32,8 @@ class TitleCaseAction extends Action
                 $component->state(
                     str((string) $state)
                         ->replace('.', ' ')
-                        ->headline()
+                        ->slug()
+                        ->upper()
                         ->squish()
                         ->value()
                 );

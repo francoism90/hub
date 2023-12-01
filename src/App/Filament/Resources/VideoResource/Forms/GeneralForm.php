@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\VideoResource\Forms;
 
+use App\Filament\Actions\SlugCaseAction;
 use App\Filament\Actions\TitleCaseAction;
 use App\Filament\Concerns\InteractsWithState;
 use App\Filament\Forms\Components\TagInput;
@@ -47,7 +48,7 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->suffixAction(TitleCaseAction::make());
+            ->suffixAction(SlugCaseAction::make());
     }
 
     public static function episode(): TextInput
@@ -57,7 +58,7 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->suffixAction(TitleCaseAction::make());
+            ->suffixAction(SlugCaseAction::make());
     }
 
     public static function part(): TextInput
@@ -67,7 +68,7 @@ abstract class GeneralForm
             ->nullable()
             ->string()
             ->maxLength(255)
-            ->suffixAction(TitleCaseAction::make());
+            ->suffixAction(SlugCaseAction::make());
     }
 
     public static function released(): DatePicker
