@@ -102,8 +102,16 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     {
         $this
             ->addMediaCollection('avatar')
-            ->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/svg'])
-            ->singleFile();
+            ->useDisk('conversions')
+            ->singleFile()
+            ->withResponsiveImages()
+            ->acceptsMimeTypes([
+                'image/avif',
+                'image/jpg',
+                'image/jpeg',
+                'image/png',
+                'image/webp',
+            ]);
     }
 
     public function receivesBroadcastNotificationsOn(): string

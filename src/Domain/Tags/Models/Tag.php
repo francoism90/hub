@@ -107,10 +107,13 @@ class Tag extends BaseTag implements HasMedia
             ->addMediaCollection('thumbnail')
             ->useDisk('conversions')
             ->singleFile()
+            ->withResponsiveImages()
             ->acceptsMimeTypes([
+                'image/avif',
                 'image/jpg',
                 'image/jpeg',
                 'image/png',
+                'image/webp',
             ]);
     }
 
