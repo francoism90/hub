@@ -78,14 +78,18 @@
     </x-layouts::container>
 </article>
 
-@push('scripts')
+@script
     <script>
         window.timeUpdate = function(e) {
-            const time = e.target?.currentTime || 0
+            const time = e?.target?.currentTime
 
-            @this.dispatch('time-update', {
+            if (!time) {
+                return;
+            }
+
+            Livewire.dispatch('time-update', {
                 time
             })
         }
     </script>
-@endpush
+@endscript
