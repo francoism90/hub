@@ -36,9 +36,9 @@ class VideoViewController extends Component
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        throw_unless($time >= 0 && $time <= ceil($this->video->duration));
-
         $this->authorize('update', static::history());
+
+        throw_unless($time >= 0 && $time <= ceil($this->video->duration));
 
         static::history()->attachVideo($this->video, [
             'timestamp' => round($time, 2),
