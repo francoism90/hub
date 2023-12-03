@@ -22,7 +22,8 @@
         <a
             href="{{ route('videos.view', $item) }}"
             aria-label="{{ $item->title }}"
-            title="{{ $item->title }}">
+            title="{{ $item->title }}"
+            wire:navigate>
             {{ $item->title }}
         </a>
     </h2>
@@ -39,7 +40,7 @@
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
             class="relative aspect-video h-full w-full flex-shrink-0 bg-black">
-            <a href="{{ route('videos.view', $item) }}">
+            <a href="{{ route('videos.view', $item) }}" wire:navigate>
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"

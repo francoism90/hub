@@ -11,7 +11,7 @@
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
             class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black">
-            <a href="{{ route('videos.view', $item) }}">
+            <a href="{{ route('videos.view', $item) }}" wire:navigate>
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -35,7 +35,7 @@
         </div>
 
         <div class="flex flex-col p-3.5">
-            <a href="{{ route('videos.view', $item) }}">
+            <a href="{{ route('videos.view', $item) }}" wire:navigate>
                 <h2
                     class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
