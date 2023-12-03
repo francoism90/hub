@@ -8,8 +8,6 @@ use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Domain\Videos\Actions\GetSimilarVideos;
-use Illuminate\Support\LazyCollection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -87,12 +85,6 @@ class VideoViewController extends Component
             ->find($this->video);
 
         return data_get($model?->pivot->options, 'timestamp', 0);
-    }
-
-    #[Computed]
-    public function similar(): LazyCollection
-    {
-        return app(GetSimilarVideos::class)->execute($this->video);
     }
 
     public function getListeners(): array
