@@ -20,7 +20,7 @@ class LivewireServiceProvider extends ServiceProvider
     {
         $this->configureSynthesizers();
         $this->configureMiddlewares();
-        $this->registerComponents();
+        $this->configureComponents();
     }
 
     protected function configureSynthesizers(): void
@@ -38,7 +38,7 @@ class LivewireServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function registerComponents(): void
+    protected function configureComponents(): void
     {
         Livewire::component('video-similar', Similar::class);
     }
