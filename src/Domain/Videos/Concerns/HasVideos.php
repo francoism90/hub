@@ -18,12 +18,12 @@ trait HasVideos
             ->withTimestamps();
     }
 
-    public function attachVideo(Video $model, array $options = null): static
+    public function attachVideo(Video $model, ?array $options = null): static
     {
         return $this->attachVideos([$model], $options);
     }
 
-    public function attachVideos(array|ArrayAccess|Video $videos, array $options = null): static
+    public function attachVideos(array|ArrayAccess|Video $videos, ?array $options = null): static
     {
         $videos = static::convertToVideos($videos);
 

@@ -26,7 +26,7 @@ class VideoQueryBuilder extends Builder
             ->whereNull('deleted_at');
     }
 
-    public function recommended(User $user = null): self
+    public function recommended(?User $user = null): self
     {
         /** @var User $user */
         // $user ??= auth()->user();
@@ -46,7 +46,7 @@ class VideoQueryBuilder extends Builder
         );
     }
 
-    public function tagged(Arrayable|array|Tag $values = null): self
+    public function tagged(Arrayable|array|Tag|null $values = null): self
     {
         $items = static::convertToTags($values);
 

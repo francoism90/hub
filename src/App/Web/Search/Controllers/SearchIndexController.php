@@ -56,7 +56,7 @@ class SearchIndexController extends Component
     }
 
     #[Computed]
-    public function items(int $page = null): LengthAwarePaginator
+    public function items(?int $page = null): LengthAwarePaginator
     {
         return Video::search($this->form->query ?: '*')
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))

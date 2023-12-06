@@ -12,7 +12,7 @@ class Header extends Component
         return view('layouts::header');
     }
 
-    public function active(string $name, string $class = null): string
+    public function active(string $name, ?string $class = null): string
     {
         return request()->routeIs($name)
             ? implode(' ', [$class, 'navbar-item-active'])

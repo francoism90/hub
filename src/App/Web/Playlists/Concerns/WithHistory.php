@@ -13,7 +13,7 @@ trait WithHistory
         $this->authorize('view', static::history());
     }
 
-    protected static function history(User $user = null): Playlist
+    protected static function history(?User $user = null): Playlist
     {
         /** @var User */
         $user ??= auth()->user();
@@ -24,7 +24,7 @@ trait WithHistory
             ->firstOrFail();
     }
 
-    protected static function isWatched(Video $video, User $user = null): bool
+    protected static function isWatched(Video $video, ?User $user = null): bool
     {
         return static::history($user)
             ->videos()

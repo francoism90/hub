@@ -18,7 +18,7 @@ class ResponsiveController extends Controller
         ]);
     }
 
-    public function __invoke(Media $model, string $conversion = null): StreamedResponse
+    public function __invoke(Media $model, ?string $conversion = null): StreamedResponse
     {
         $this->authorize('view', $model);
 

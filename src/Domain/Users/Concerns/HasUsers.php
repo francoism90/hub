@@ -18,12 +18,12 @@ trait HasUsers
             ->withTimestamps();
     }
 
-    public function attachUser(User $model, array $options = null): static
+    public function attachUser(User $model, ?array $options = null): static
     {
         return $this->attachUsers([$model], $options);
     }
 
-    public function attachUsers(array|ArrayAccess|User $users, array $options = null): static
+    public function attachUsers(array|ArrayAccess|User $users, ?array $options = null): static
     {
         $users = static::convertToUsers($users);
 

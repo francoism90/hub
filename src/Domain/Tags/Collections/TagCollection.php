@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function type(TagType $type = null): mixed
+    public function type(?TagType $type = null): mixed
     {
         return $this->filter(
             fn (Tag $item) => $item->type->equals($type)

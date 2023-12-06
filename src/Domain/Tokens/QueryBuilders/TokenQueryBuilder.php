@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 
 class TokenQueryBuilder extends Builder
 {
-    public function active(ArrayAccess|array $name = null): self
+    public function active(ArrayAccess|array|null $name = null): self
     {
         return $this
             ->withWhereHas('tokens', fn (Builder $query) => $query

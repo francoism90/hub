@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\RateLimiter;
 
 trait WithRateLimiting
 {
-    protected function rateLimit(int $maxAttempts, float $decaySeconds = 60, string $method = null): void
+    protected function rateLimit(int $maxAttempts, float $decaySeconds = 60, ?string $method = null): void
     {
         $method ??= debug_backtrace()[1]['function'];
 
@@ -17,7 +17,7 @@ trait WithRateLimiting
         $this->hitRateLimiter($method, $decaySeconds);
     }
 
-    protected function clearRateLimiter(string $method = null): void
+    protected function clearRateLimiter(?string $method = null): void
     {
         $method ??= debug_backtrace()[1]['function'];
 

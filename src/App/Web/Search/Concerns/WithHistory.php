@@ -16,7 +16,7 @@ trait WithHistory
             ->slice(0, 5);
     }
 
-    public function removeQuery(string $query = null): void
+    public function removeQuery(?string $query = null): void
     {
         session()->put('queries', $this->queries()->reject($query));
 

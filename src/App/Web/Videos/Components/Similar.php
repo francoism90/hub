@@ -20,7 +20,7 @@ class Similar extends Component
         return view('videos::similar');
     }
 
-    #[Computed()]
+    #[Computed]
     public function items(): LazyCollection
     {
         return app(GetSimilarVideos::class)->execute($this->video);

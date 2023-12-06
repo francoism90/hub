@@ -7,7 +7,7 @@ use Domain\Users\Models\User;
 
 trait InteractsWithPlaylists
 {
-    protected static function history(User $user = null): ?Playlist
+    protected static function history(?User $user = null): ?Playlist
     {
         /** @var User */
         $user ??= auth()->user();

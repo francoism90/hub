@@ -8,7 +8,7 @@ use Domain\Videos\Models\Video;
 
 class MarkVideoViewed
 {
-    public function execute(User $user, Video $video, array $options = null): void
+    public function execute(User $user, Video $video, ?array $options = null): void
     {
         $model = $this->getModel($user);
 
