@@ -2805,16 +2805,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.34.2",
+            "version": "v10.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c581caa233e380610b34cc491490bfa147a3b62b"
+                "reference": "91ec2d92d2f6007e9084fe06438b99c91845da69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c581caa233e380610b34cc491490bfa147a3b62b",
-                "reference": "c581caa233e380610b34cc491490bfa147a3b62b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/91ec2d92d2f6007e9084fe06438b99c91845da69",
+                "reference": "91ec2d92d2f6007e9084fe06438b99c91845da69",
                 "shasum": ""
             },
             "require": {
@@ -2847,7 +2847,7 @@
                 "symfony/console": "^6.2",
                 "symfony/error-handler": "^6.2",
                 "symfony/finder": "^6.2",
-                "symfony/http-foundation": "^6.3",
+                "symfony/http-foundation": "^6.4",
                 "symfony/http-kernel": "^6.2",
                 "symfony/mailer": "^6.2",
                 "symfony/mime": "^6.2",
@@ -3003,7 +3003,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-11-28T19:06:27+00:00"
+            "time": "2023-12-05T14:50:33+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -3208,16 +3208,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v10.6.0",
+            "version": "v10.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "f9bc115d253de8d3f3f2c201651174f6a5f1a357"
+                "reference": "fc9bc0c2061eb54b31d9dba0999755177a8f1a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/f9bc115d253de8d3f3f2c201651174f6a5f1a357",
-                "reference": "f9bc115d253de8d3f3f2c201651174f6a5f1a357",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/fc9bc0c2061eb54b31d9dba0999755177a8f1a0e",
+                "reference": "fc9bc0c2061eb54b31d9dba0999755177a8f1a0e",
                 "shasum": ""
             },
             "require": {
@@ -3279,7 +3279,7 @@
                 "issues": "https://github.com/laravel/scout/issues",
                 "source": "https://github.com/laravel/scout"
             },
-            "time": "2023-11-28T15:58:23+00:00"
+            "time": "2023-12-05T19:44:31+00:00"
         },
         {
             "name": "laravel/serializable-closure",
