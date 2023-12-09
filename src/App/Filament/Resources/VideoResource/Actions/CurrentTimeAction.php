@@ -28,8 +28,6 @@ class CurrentTimeAction extends Action
 
         $this->hiddenLabel();
 
-        $this->disabled(fn () => ! static::history());
-
         $this->action(function (): void {
             $this->process(function (Component $component, Model $record, mixed $state = null) {
                 $videoable = static::history()

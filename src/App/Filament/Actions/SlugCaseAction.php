@@ -25,10 +25,12 @@ class SlugCaseAction extends Action
 
         $this->hiddenLabel();
 
-        $this->disabled(fn (mixed $state): bool => blank($state) || ! is_string($state));
-
         $this->action(function (): void {
             $this->process(function (Component $component, mixed $state) {
+                if (blank($state) || ! is_string($state)) {
+                    return $state;
+                }
+
                 $component->state(
                     str((string) $state)
                         ->replace('.', ' ')
