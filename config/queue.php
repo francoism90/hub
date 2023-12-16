@@ -38,7 +38,7 @@ return [
             'driver' => 'database',
             'table' => 'jobs',
             'queue' => 'default',
-            'retry_after' => 90,
+            'retry_after' => 60 * 60 * 24,
             'after_commit' => true,
         ],
 
@@ -66,7 +66,7 @@ return [
             'driver' => 'redis',
             'connection' => 'default',
             'queue' => env('REDIS_QUEUE', 'default'),
-            'retry_after' => 90,
+            'retry_after' => 60 * 60 * 24,
             'block_for' => null,
             'after_commit' => true,
         ],
