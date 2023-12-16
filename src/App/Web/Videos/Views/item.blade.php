@@ -1,9 +1,7 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
-    x-data="{ shown: false, preview: false }"
-    x-intersect.once="shown = true"
-    class="w-full">
-    <div class="flex flex-col flex-nowrap gap-x-4 rounded border border-gray-700/30 bg-gray-900/75" x-show="shown" x-transition>
+    x-data="{ preview: false }">
+    <div class="flex flex-col flex-nowrap gap-x-4 rounded border border-gray-700/30 bg-gray-900/75">
         <div
             x-on:mouseover="preview = true"
             x-on:mouseleave="preview = false"
