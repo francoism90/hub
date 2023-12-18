@@ -27,7 +27,7 @@
         "pusher-js": "^8.3.0",
         "shaka-player": "^4.7.1",
         "tailwindcss": "^3.3.7",
-        "vite": "^4.5.1",
+        "vite": "^5.0.10",
         "vite-plugin-pwa": "^0.17.4",
         "vitest": "^1.0.4"
     }
