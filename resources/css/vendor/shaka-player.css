@@ -8,7 +8,7 @@
 }
 
 .shaka-video-container * {
-    @apply z-0 font-sans;
+    @apply z-0 font-sans text-base;
 }
 
 .shaka-bottom-controls {

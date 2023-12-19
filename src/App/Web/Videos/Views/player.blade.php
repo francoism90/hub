@@ -18,7 +18,7 @@
 
             async init() {
                 // Create instance
-                this.instance = new window.shaka.Player()
+                this.instance = new window.shaka.Player();
 
                 // Configure elements
                 await this.instance.attach(this.$refs.video);
@@ -40,14 +40,14 @@
 
                 // Configure ui
                 if (options.controls) {
-                    this.ui()
+                    this.ui();
                 }
 
                 // Load manifest
                 await this.instance.load(options.manifest, options.startsAt);
 
                 // Set ready
-                this.ready = true
+                this.ready = true;
             },
 
             ui() {
@@ -58,6 +58,8 @@
                 const replay = (video, step) => {
                     const el = document.createElement('button');
 
+                    el.type = 'button';
+                    el.ariaLabel = 'Replay';
                     el.classList.add('material-icons-round', 'shaka-tooltip');
                     el.textContent = 'replay_10';
 
@@ -66,9 +68,9 @@
                             return;
                         }
 
-                        video.currentTime - step < video.duration ?
-                            (video.currentTime -= step) :
-                            (video.currentTime = video.duration - step);
+                        video.currentTime - step < video.duration
+                            ? (video.currentTime -= step)
+                            : (video.currentTime = video.duration - step);
                     });
 
                     return el;
@@ -77,6 +79,8 @@
                 const forward = (video, step) => {
                     const el = document.createElement('button');
 
+                    el.type = 'button';
+                    el.ariaLabel = 'Forward';
                     el.classList.add('material-icons-round', 'shaka-tooltip');
                     el.textContent = 'forward_10';
 
@@ -85,9 +89,9 @@
                             return;
                         }
 
-                        video.currentTime + step < video.duration ?
-                            (video.currentTime += step) :
-                            (video.currentTime = video.duration - step);
+                        video.currentTime + step < video.duration
+                            ? (video.currentTime += step)
+                            : (video.currentTime = video.duration - step);
                     });
 
                     return el;
@@ -147,9 +151,9 @@
 
             async destroy() {
                 if (this.$refs.video?.playing) {
-                    await this.$refs.video.pause()
+                    await this.$refs.video.pause();
                 }
             },
-        }))
+        }));
     </script>
 @endscript
