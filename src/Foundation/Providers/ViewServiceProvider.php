@@ -8,11 +8,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        // ...
-    }
-
     public function boot(): void
     {
         $this->configureSeo();
@@ -49,6 +44,13 @@ class ViewServiceProvider extends ServiceProvider
             ['path' => app_path('Web/Videos/Views'), 'namespace' => 'videos'],
         ]);
 
-        $items->each(fn (array $item) => $this->loadViewsFrom(...$item));
+        $items->each(function (array $item) {
+            $this->loadViewsFrom(...$item);
+
+            Blade::anonymousComponentNamespace(
+                directory: $item['path'],
+                prefix: $item['namespace'],
+            );
+        });
     }
 }
