@@ -1757,7 +1757,7 @@
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v3.1.26",
+            "version": "v3.1.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
@@ -2721,16 +2721,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.38.1",
+            "version": "v10.38.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ced4689f495213e9d23995b36098f12a802cc15b"
+                "reference": "43da808391da3540d44a8dfeb4e46da4ad8f5723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ced4689f495213e9d23995b36098f12a802cc15b",
-                "reference": "ced4689f495213e9d23995b36098f12a802cc15b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/43da808391da3540d44a8dfeb4e46da4ad8f5723",
+                "reference": "43da808391da3540d44a8dfeb4e46da4ad8f5723",
                 "shasum": ""
             },
             "require": {
@@ -2922,7 +2922,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-12-20T14:52:12+00:00"
+            "time": "2023-12-22T14:39:10+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -6767,16 +6767,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "dda7c3efffa598fee64359956d0b07d27513ef0d"
+                "reference": "cf72c685905a5ac08130a3e4afe5ec2e68ca3d0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/dda7c3efffa598fee64359956d0b07d27513ef0d",
-                "reference": "dda7c3efffa598fee64359956d0b07d27513ef0d",
+                "url": "https://api.github.com/repos/spatie/image/zipball/cf72c685905a5ac08130a3e4afe5ec2e68ca3d0a",
+                "reference": "cf72c685905a5ac08130a3e4afe5ec2e68ca3d0a",
                 "shasum": ""
             },
             "require": {
@@ -6823,7 +6823,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.3.0"
+                "source": "https://github.com/spatie/image/tree/3.3.1"
             },
             "funding": [
                 {
@@ -6835,7 +6835,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-21T08:13:03+00:00"
+            "time": "2023-12-22T15:15:17+00:00"
         },
         {
             "name": "spatie/image-optimizer",
