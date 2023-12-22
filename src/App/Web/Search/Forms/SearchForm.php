@@ -33,4 +33,12 @@ class SearchForm extends Form
     {
         session()->put('search', $this->all());
     }
+
+    public function sanitizeQuery(): string
+    {
+        return str($this->query)
+            ->headline()
+            ->squish()
+            ->value();
+    }
 }
