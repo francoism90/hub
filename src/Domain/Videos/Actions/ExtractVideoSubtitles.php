@@ -16,7 +16,8 @@ class ExtractVideoSubtitles
             return;
         }
 
-        $temporaryDirectory = (new TemporaryDirectory)->create();
+        $temporaryDirectory = TemporaryDirectory::create()
+            ->deleteWhenDestroyed();
 
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),

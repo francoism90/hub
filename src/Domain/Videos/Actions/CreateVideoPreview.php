@@ -19,7 +19,8 @@ class CreateVideoPreview
             return;
         }
 
-        $temporaryDirectory = (new TemporaryDirectory)->create();
+        $temporaryDirectory = TemporaryDirectory::create()
+            ->deleteWhenDestroyed();
 
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),
@@ -75,7 +76,7 @@ class CreateVideoPreview
     protected function getSegments(float $duration, int $count = 14): Collection
     {
         $collect = collect(range(0, $duration, $duration / $count))
-            ->map(fn (float $segment) => floor($segment))
+            ->map(fn (float $segment) => round($segment, 2))
             ->unique()
             ->take($count);
 
