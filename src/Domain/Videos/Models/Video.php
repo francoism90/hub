@@ -77,7 +77,7 @@ class Video extends Model implements HasMedia
      * @var array<int, string>
      */
     protected $hidden = [
-        //
+        'user_id',
     ];
 
     /**

@@ -33,7 +33,7 @@ class Media extends BaseMedia
      * @var array<int, string>
      */
     protected $hidden = [
-        //
+        'user_id',
     ];
 
     /**
