@@ -55,13 +55,6 @@ class Import extends Model
         'finished_at' => 'datetime',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $dispatchesEvents = [
-        //
-    ];
-
     protected static function newFactory(): ImportFactory
     {
         return ImportFactory::new();
