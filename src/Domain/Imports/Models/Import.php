@@ -74,7 +74,6 @@ class Import extends Model
 
     public function prunable(): ImportQueryBuilder
     {
-        return $this
-            ->whereDate('created_at', '<=', now()->subMonths(3));
+        return static::where('created_at', '<=', now()->subMonth());
     }
 }
