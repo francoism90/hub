@@ -19,7 +19,7 @@
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-plugin-import": "^2.29.1",
         "laravel-echo": "^1.15.3",
-        "laravel-vite-plugin": "^1.0.0",
+        "laravel-vite-plugin": "^1.0.1",
         "postcss": "^8.4.32",
         "postcss-import": "^15.1.0",
         "prettier": "^3.1.1",
