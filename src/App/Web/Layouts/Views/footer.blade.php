@@ -7,7 +7,8 @@
         <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/francoism90/hub">
+            href="https://github.com/francoism90/hub"
+        >
             Source
         </a>
     </div>

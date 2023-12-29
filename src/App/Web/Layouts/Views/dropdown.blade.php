@@ -2,12 +2,14 @@
     <div
         x-ref="dropdown"
         x-on:click="open = ! open"
-        {{ $attributes->class('dropdown') }}>
+        {{ $attributes->class('dropdown') }}
+    >
         {{ $slot }}
 
         <div
             x-cloak
-            x-show="open">
+            x-show="open"
+        >
             {{ $content }}
         </div>
     </div>

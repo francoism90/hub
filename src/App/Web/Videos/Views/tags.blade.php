@@ -5,7 +5,8 @@
             href="{{ route('videos.index', ['t[]' => $item->getRouteKey()]) }}"
             aria-label="{{ $item->name }}"
             title="{{ $item->name }}"
-            wire:navigate>
+            wire:navigate
+        >
             {{ $item->name }}
         </a>
     @endforeach

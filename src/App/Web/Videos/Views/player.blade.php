@@ -1,13 +1,15 @@
 <div
     wire:ignore
     x-data="player({{ Js::from(compact('manifest', 'controls', 'startsAt', 'rate')) }})"
-    x-ref="container">
+    x-ref="container"
+>
     <video
         x-ref="video"
         x-show="ready"
         crossorigin="allow-credentials"
         playsinline
-        {{ $attributes }} />
+        {{ $attributes }}
+    />
 </div>
 
 @script
@@ -68,9 +70,9 @@
                             return;
                         }
 
-                        video.currentTime - step < video.duration
-                            ? (video.currentTime -= step)
-                            : (video.currentTime = video.duration - step);
+                        video.currentTime - step < video.duration ?
+                            (video.currentTime -= step) :
+                            (video.currentTime = video.duration - step);
                     });
 
                     return el;
@@ -89,9 +91,9 @@
                             return;
                         }
 
-                        video.currentTime + step < video.duration
-                            ? (video.currentTime += step)
-                            : (video.currentTime = video.duration - step);
+                        video.currentTime + step < video.duration ?
+                            (video.currentTime += step) :
+                            (video.currentTime = video.duration - step);
                     });
 
                     return el;

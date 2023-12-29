@@ -1,6 +1,6 @@
 export default {
   trailingComma: 'es5',
-  semi: false,
+  semi: true,
   singleQuote: true,
   printWidth: 180,
   plugins: ['@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss'],
@@ -10,8 +10,9 @@ export default {
       options: {
         parser: 'blade',
         printWidth: 180,
-        wrapAttributes: 'preserve',
+        wrapAttributes: 'force-expand-multiline',
         sortTailwindcssClasses: true,
+        sortHtmlAttributes: 'vuejs',
         indentInnerHtml: false,
       },
     },

@@ -1,4 +1,7 @@
-<nav role="navigation" aria-label="Pagination Navigation">
+<nav
+    role="navigation"
+    aria-label="Pagination Navigation"
+>
     @if ($items->hasPages())
         <div {{ $attributes->merge(['class' => 'flex items-center justify-between py-6']) }}>
             <button
@@ -8,7 +11,8 @@
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
                 wire:click="previousPage"
                 wire:loading.attr="disabled"
-                rel="prev">
+                rel="prev"
+            >
                 {{ __('Previous') }}
             </button>
 
@@ -23,7 +27,8 @@
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
                 wire:click="nextPage"
                 wire:loading.attr="disabled"
-                rel="next">
+                rel="next"
+            >
                 {{ __('Next') }}
             </button>
         </div>

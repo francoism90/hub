@@ -5,7 +5,8 @@
             :manifest="$video->stream"
             :starts-at="$this->starts"
             @timeupdate.throttle.750ms="timeUpdate"
-            autoplay />
+            autoplay
+        />
     </div>
 
     <x-layouts::container class="py-1">
@@ -35,19 +36,28 @@
             <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 py-3 text-center text-sm text-gray-300">
                 <a
                     class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
-                    wire:click="toggleFavorite">
-                    <x-icon :name="$this->favorited" class="h-6 w-6" />
+                    wire:click="toggleFavorite"
+                >
+                    <x-icon
+                        :name="$this->favorited"
+                        class="h-6 w-6"
+                    />
                 </a>
 
                 <a
                     class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
-                    wire:click="toggleWatchlist">
-                    <x-icon :name="$this->watchlisted" class="h-6 w-6" />
+                    wire:click="toggleWatchlist"
+                >
+                    <x-icon
+                        :name="$this->watchlisted"
+                        class="h-6 w-6"
+                    />
                 </a>
 
                 <a
                     class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
-                    href="{{ route('filament.admin.resources.videos.edit', $video) }}">
+                    href="{{ route('filament.admin.resources.videos.edit', $video) }}"
+                >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
                 </a>
             </div>
@@ -55,7 +65,10 @@
             @if ($video->tags->isNotEmpty())
                 <div class="gap-y-3 py-3.5">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
-                    <x-videos::tags class="pt-2" :items="$video->tags" />
+                    <x-videos::tags
+                        class="pt-2"
+                        :items="$video->tags"
+                    />
                 </div>
             @endif
 

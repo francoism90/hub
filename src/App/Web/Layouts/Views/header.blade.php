@@ -3,7 +3,8 @@
         <a
             href="/"
             class="navbar-brand"
-            wire:navigate>
+            wire:navigate
+        >
             <x-heroicon-s-play-circle class="navbar-logo" />
             <span>{{ config('app.name') }}</span>
         </a>
@@ -14,7 +15,8 @@
                 class="{{ $active('tags', 'navbar-item') }}"
                 aria-label="{{ __('Tags') }}"
                 title="{{ __('Tags') }}"
-                wire:navigate>
+                wire:navigate
+            >
                 <x-heroicon-o-hashtag class="h-6 w-6" />
             </a>
 
@@ -23,7 +25,8 @@
                 class="{{ $active('search', 'navbar-item') }}"
                 aria-label="{{ __('Search') }}"
                 title="{{ __('Search') }}"
-                wire:navigate>
+                wire:navigate
+            >
                 <x-heroicon-o-magnifying-glass class="h-6 w-6" />
             </a>
 
@@ -36,26 +39,30 @@
                     <div
                         x-anchor.bottom-end.offset.20="$refs.dropdown"
                         x-on:click.away="open = false"
-                        class="dropdown-content flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4">
+                        class="dropdown-content flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
+                    >
                         <div class="flex flex-col flex-nowrap gap-y-1">
                             <a
                                 href="{{ route('profile.history') }}"
                                 class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
-                                wire:navigate>
+                                wire:navigate
+                            >
                                 {{ __('History') }}
                             </a>
 
                             <a
                                 href="{{ route('profile.favorites') }}"
                                 class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}"
-                                wire:navigate>
+                                wire:navigate
+                            >
                                 {{ __('Favorites') }}
                             </a>
 
                             <a
                                 href="{{ route('profile.watchlist') }}"
                                 class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}"
-                                wire:navigate>
+                                wire:navigate
+                            >
                                 {{ __('Watchlist') }}
                             </a>
                         </div>
@@ -63,14 +70,16 @@
                         <div class="flex flex-col flex-nowrap gap-y-1">
                             <a
                                 href="{{ route('filament.admin.pages.dashboard') }}"
-                                class="navbar-item text-gray-400">
+                                class="navbar-item text-gray-400"
+                            >
                                 {{ __('Manage Profile') }}
                             </a>
                         </div>
 
                         <button
                             class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
-                            href="{{ route('filament.admin.auth.logout') }}">
+                            href="{{ route('filament.admin.auth.logout') }}"
+                        >
                             {{ __('Log Out') }}
                         </button>
                     </div>

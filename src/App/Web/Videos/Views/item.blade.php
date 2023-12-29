@@ -1,6 +1,7 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
-    x-data="{ preview: false }">
+    x-data="{ preview: false }"
+>
     <div class="flex flex-col flex-nowrap gap-x-4 rounded border border-gray-700/30 bg-gray-900/75">
         <div
             x-on:mouseover="preview = true"
@@ -8,15 +9,20 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black">
-            <a href="{{ route('videos.view', $item) }}" wire:navigate>
+            class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
+        >
+            <a
+                href="{{ route('videos.view', $item) }}"
+                wire:navigate
+            >
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
                     class="h-full w-full rounded-t object-fill"
                     crossorigin="use-credentials"
-                    loading="lazy" />
+                    loading="lazy"
+                />
 
                 <template x-if="preview">
                     <x-videos::player
@@ -27,17 +33,22 @@
                         class="absolute inset-0 z-10 h-full w-full rounded-t object-fill"
                         autoplay
                         muted
-                        loop />
+                        loop
+                    />
                 </template>
             </a>
         </div>
 
         <div class="flex flex-col p-3.5">
-            <a href="{{ route('videos.view', $item) }}" wire:navigate>
+            <a
+                href="{{ route('videos.view', $item) }}"
+                wire:navigate
+            >
                 <h2
                     class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
-                    title="{{ $item->title }}">
+                    title="{{ $item->title }}"
+                >
                     {{ $item->title }}
                 </h2>
 
@@ -66,7 +77,10 @@
             </a>
 
             @if ($item->tags->isNotEmpty())
-                <x-videos::tags class="line-clamp-1 text-xs" :items="$item->tags" />
+                <x-videos::tags
+                    class="line-clamp-1 text-xs"
+                    :items="$item->tags"
+                />
             @endif
         </div>
     </div>

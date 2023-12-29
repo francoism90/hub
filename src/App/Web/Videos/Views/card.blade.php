@@ -1,7 +1,8 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
     x-data="{ preview: false }"
-    {{ $attributes->class('flex flex-col gap-y-1.5 py-7') }}>
+    {{ $attributes->class('flex flex-col gap-y-1.5 py-7') }}
+>
     <dl class="inline-flex">
         <dt class="sr-only">{{ __('Published on') }}</dt>
         <dd class="text-base font-medium leading-4 text-gray-400">
@@ -23,7 +24,8 @@
             href="{{ route('videos.view', $item) }}"
             aria-label="{{ $item->title }}"
             title="{{ $item->title }}"
-            wire:navigate>
+            wire:navigate
+        >
             {{ $item->title }}
         </a>
     </h2>
@@ -39,15 +41,20 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-full w-full flex-shrink-0 bg-black">
-            <a href="{{ route('videos.view', $item) }}" wire:navigate>
+            class="relative aspect-video h-full w-full flex-shrink-0 bg-black"
+        >
+            <a
+                href="{{ route('videos.view', $item) }}"
+                wire:navigate
+            >
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
                     class="absolute inset-0 z-0 h-full w-full object-fill"
                     crossorigin="use-credentials"
-                    loading="lazy" />
+                    loading="lazy"
+                />
 
                 <div class="absolute inset-0 z-20 h-full w-full">
                     <div class="absolute bottom-2 right-2 flex items-center gap-x-1.5 bg-black/30 px-1 py-0.5 text-xs font-medium text-gray-300">
@@ -68,7 +75,8 @@
                         class="absolute inset-0 z-10 h-full w-full object-fill"
                         autoplay
                         muted
-                        loop />
+                        loop
+                    />
                 </template>
             </a>
         </div>
