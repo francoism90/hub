@@ -17,7 +17,7 @@ class WatchlistController extends Listing
     use WithAuthentication;
     use WithWatchlist;
 
-    protected static ?string $model = Video::class;
+    protected static string $model = Video::class;
 
     public function mount(): void
     {

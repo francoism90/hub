@@ -19,7 +19,7 @@ class FavoritesController extends Listing
     use WithAuthentication;
     use WithFavorites;
 
-    protected static ?string $model = Video::class;
+    protected static string $model = Video::class;
 
     public function mount(): void
     {

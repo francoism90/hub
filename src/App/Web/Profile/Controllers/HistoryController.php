@@ -19,7 +19,7 @@ class HistoryController extends Listing
     use WithAuthentication;
     use WithHistory;
 
-    protected static ?string $model = Video::class;
+    protected static string $model = Video::class;
 
     public function mount(): void
     {

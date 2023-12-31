@@ -24,7 +24,7 @@ class SearchIndexController extends QueryBuilder
     use WithSorters;
     use WithTags;
 
-    protected static ?string $model = Video::class;
+    protected static string $model = Video::class;
 
     public SearchForm $form;
 
