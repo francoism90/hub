@@ -3,11 +3,9 @@
 namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Concerns\WithFeatures;
-use App\Web\Search\Concerns\WithHistory;
 use App\Web\Search\Concerns\WithSorters;
 use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
-use App\Web\Videos\Concerns\WithVideos;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\QueryBuilder\Components\QueryBuilder;

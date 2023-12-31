@@ -5,8 +5,6 @@ namespace App\Web\Profile\Controllers;
 use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Components\Listing;
-use App\Web\Videos\Concerns\WithSearch;
-use App\Web\Videos\Concerns\WithSorters;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
