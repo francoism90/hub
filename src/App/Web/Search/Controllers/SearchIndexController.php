@@ -16,17 +16,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
 
 class SearchIndexController extends QueryBuilder
 {
     use WithFeatures;
-    use WithHistory;
-    use WithPagination;
     use WithScroll;
     use WithSorters;
     use WithTags;
-    use WithVideos;
 
     protected static ?string $model = Video::class;
 
@@ -35,8 +31,6 @@ class SearchIndexController extends QueryBuilder
     public function mount(): void
     {
         SEOMeta::setTitle(__('Search'));
-
-        $this->form->populate();
     }
 
     public function render(): View
@@ -46,27 +40,20 @@ class SearchIndexController extends QueryBuilder
 
     public function updatedForm(): void
     {
-        $this->reset('items');
-
         $this->validate();
 
-        $this->resetPage();
-
-        $this->form->store();
-
-        $this->storeQueries();
+        $this->resetScroll();
     }
 
     #[Computed]
     public function builder(?int $page = null): LengthAwarePaginator
     {
-        $query = $this->form->sanitizeQuery() ?: '';
-
-        return Video::search($query)
+        return Video::search($this->form->getSearch())
+            ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
             ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
-            ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            ->when($this->hasSort('released'), fn (Builder $query) => $query
+            ->when($this->form->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->form->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->when($this->form->hasSort('released'), fn (Builder $query) => $query
                 ->orderBy('released_at', 'desc')
                 ->orderBy('created_at', 'desc')
             )

@@ -1,11 +1,11 @@
 <div class="flex flex-col gap-y-8">
-    @if (filled($this->form->query) && blank($this->items))
+    @if (filled($this->form->hasSearch()) && ! $this->hasItems())
         <div class="flex w-full items-center justify-center p-8 text-gray-400">
             {{ __('No results match your search criteria') }}
         </div>
     @endif
 
-    @if (filled($this->form->query) && filled($this->items))
+    @if (filled($this->form->hasSearch()) && $this->hasItems())
         <div
             class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2"
             wire:poll.keep-alive.10s

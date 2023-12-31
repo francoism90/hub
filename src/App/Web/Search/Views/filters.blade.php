@@ -1,5 +1,5 @@
 <div class="flex w-full flex-row flex-nowrap gap-x-6">
-    @if (filled($this->form->query))
+    @if (filled($this->form->search))
         <x-layouts::dropdown>
             <button class="btn text-sm font-semibold">
                 <span>{{ $this->sorter }}</span>
@@ -18,10 +18,10 @@
                     @foreach ($this->sorters as $key => $label)
                         <label
                             for="sort-{{ $key }}"
-                            class="btn @if ($this->hasSort($key)) btn-gradient @endif justify-start px-4 py-2 text-sm"
+                            class="btn @if ($this->form->hasSort($key)) btn-gradient @endif justify-start px-4 py-2 text-sm"
                         >
                             <span>{{ $label }}</span>
-                            @if ($this->hasSort($key))
+                            @if ($this->form->hasSort($key))
                                 <x-heroicon-o-check class="h-4 w-4" />
                             @endif
                         </label>

@@ -27,9 +27,4 @@ trait WithSorters
             fn () => $items->first(),
         );
     }
-
-    public function hasSort(string $value): bool
-    {
-        return (string) $this->form->sort === $value;
-    }
 }

@@ -18,8 +18,6 @@ class FavoritesController extends Listing
 {
     use WithAuthentication;
     use WithFavorites;
-    use WithSearch;
-    use WithSorters;
 
     protected static ?string $model = Video::class;
 
@@ -40,9 +38,9 @@ class FavoritesController extends Listing
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
-            ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
-            ->when($this->hasSearch(), fn (Builder $query) => $query->search($this->query, true))
+            ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
+            ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
+            ->when($this->form->hasSearch(), fn (Builder $query) => $query->search($this->form->getSearch(), true))
             ->take(32 * 32)
             ->paginate(32);
     }

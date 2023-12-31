@@ -5,8 +5,6 @@ namespace App\Web\Profile\Controllers;
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Components\Listing;
-use App\Web\Videos\Concerns\WithSearch;
-use App\Web\Videos\Concerns\WithSorters;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -17,8 +15,6 @@ use Livewire\Attributes\Computed;
 class WatchlistController extends Listing
 {
     use WithAuthentication;
-    use WithSearch;
-    use WithSorters;
     use WithWatchlist;
 
     protected static ?string $model = Video::class;
@@ -40,9 +36,9 @@ class WatchlistController extends Listing
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
-            ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
-            ->when($this->hasSearch(), fn (Builder $query) => $query->search($this->query, true))
+            ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
+            ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
+            ->when($this->form->hasSearch(), fn (Builder $query) => $query->search($this->form->getSearch(), true))
             ->take(32 * 32)
             ->paginate(32);
     }
