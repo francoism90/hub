@@ -4,20 +4,12 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithFilters;
-use App\Web\Videos\Concerns\WithVideos;
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\View\View;
-use Livewire\Component;
+use Foxws\LivewireUse\QueryBuilder\Components\QueryBuilder;
 use Livewire\WithPagination;
 
-abstract class Listing extends Component
+abstract class Listing extends QueryBuilder
 {
     use WithFilters;
     use WithPagination;
     use WithTags;
-    use WithVideos;
-
-    abstract public function render(): View;
-
-    abstract public function items(): Paginator;
 }

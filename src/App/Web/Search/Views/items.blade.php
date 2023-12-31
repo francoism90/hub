@@ -21,7 +21,7 @@
             class="flex w-full items-center justify-center py-3.5"
         >
             <button
-                @if ($this->onLastPage) disabled @endif
+                @if ($this->onLastPage()) disabled @endif
                 class="btn w-auto rounded bg-gray-800 px-2.5 py-1 text-sm text-gray-300 disabled:opacity-50"
                 wire:click="nextPage"
                 wire:loading.attr="disabled"

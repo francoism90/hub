@@ -11,10 +11,11 @@
         "php": "^8.2",
         "artesaos/seotools": "^1.2",
         "blade-ui-kit/blade-heroicons": "^2.2.1",
-        "filament/filament": "^3.1.31",
-        "filament/spatie-laravel-google-fonts-plugin": "^3.1.31",
-        "filament/spatie-laravel-media-library-plugin": "^3.1.31",
-        "filament/spatie-laravel-translatable-plugin": "^3.1.31",
+        "filament/filament": "^3.1.32",
+        "filament/spatie-laravel-google-fonts-plugin": "^3.1.32",
+        "filament/spatie-laravel-media-library-plugin": "^3.1.32",
+        "filament/spatie-laravel-translatable-plugin": "^3.1.32",
+        "foxws/livewire-use": "dev-main",
         "guzzlehttp/guzzle": "^7.8.1",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/fortify": "^1.19.1",
@@ -78,12 +79,12 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan filament:upgrade",
-            "@php artisan icons:cache",
-            "@php artisan google-fonts:fetch"
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan google-fonts:fetch",
+            "@php artisan icons:cache",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models --nowrite"
@@ -109,6 +110,12 @@
             "php-http/discovery": true
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:foxws/livewire-use.git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

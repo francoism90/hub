@@ -4,21 +4,21 @@ namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Concerns\WithFeatures;
 use App\Web\Search\Concerns\WithHistory;
-use App\Web\Search\Concerns\WithScroll;
 use App\Web\Search\Concerns\WithSorters;
 use App\Web\Search\Forms\SearchForm;
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithVideos;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\QueryBuilder\Components\QueryBuilder;
+use Foxws\LivewireUse\QueryBuilder\Concerns\WithScroll;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
 use Livewire\WithPagination;
 
-class SearchIndexController extends Component
+class SearchIndexController extends QueryBuilder
 {
     use WithFeatures;
     use WithHistory;
@@ -27,6 +27,8 @@ class SearchIndexController extends Component
     use WithSorters;
     use WithTags;
     use WithVideos;
+
+    protected static ?string $model = Video::class;
 
     public SearchForm $form;
 
@@ -56,7 +58,7 @@ class SearchIndexController extends Component
     }
 
     #[Computed]
-    public function items(?int $page = null): LengthAwarePaginator
+    public function builder(?int $page = null): LengthAwarePaginator
     {
         $query = $this->form->sanitizeQuery() ?: '';
 

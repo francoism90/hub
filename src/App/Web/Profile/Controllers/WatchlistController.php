@@ -8,6 +8,7 @@ use App\Web\Videos\Components\Listing;
 use App\Web\Videos\Concerns\WithSearch;
 use App\Web\Videos\Concerns\WithSorters;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Domain\Videos\Models\Video;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
@@ -20,6 +21,8 @@ class WatchlistController extends Listing
     use WithSorters;
     use WithWatchlist;
 
+    protected static ?string $model = Video::class;
+
     public function mount(): void
     {
         SEOMeta::setTitle(__('Watchlist'));
@@ -31,7 +34,7 @@ class WatchlistController extends Listing
     }
 
     #[Computed]
-    public function items(): Paginator
+    public function builder(): Paginator
     {
         return static::watchlist()
             ->videos()

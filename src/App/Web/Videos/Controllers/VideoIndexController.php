@@ -5,6 +5,7 @@ namespace App\Web\Videos\Controllers;
 use App\Web\Videos\Components\Listing;
 use App\Web\Videos\Concerns\WithTags;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\QueryBuilder\Concerns\WithModel;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
@@ -14,13 +15,15 @@ class VideoIndexController extends Listing
 {
     use WithTags;
 
+    protected static ?string $model = Video::class;
+
     public function render(): View
     {
         return view('videos::index');
     }
 
     #[Computed]
-    public function items(): Paginator
+    public function builder(): Paginator
     {
         return Video::query()
             ->recommended()
