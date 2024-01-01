@@ -3,11 +3,11 @@
 namespace Foundation\Providers;
 
 use App\Web\Videos\Components\Similar;
+use Foxws\LivewireUse\Support\Synthesizers\ModelSynth;
 use Foxws\LivewireUse\Support\Synthesizers\SpatieEnumSynth;
 use Foxws\LivewireUse\Support\Synthesizers\SpatieStateSynth;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Support\Livewire\Synthesizers\ModelSynth;
 
 class LivewireServiceProvider extends ServiceProvider
 {
