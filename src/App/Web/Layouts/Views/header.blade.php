@@ -55,17 +55,13 @@
                                 </section>
 
                                 <section class="flex flex-col flex-nowrap gap-y-1">
-                                    <x-ui-link href="{{ route('filament.admin.pages.dashboard') }}">
+                                    <x-ui-link
+                                        class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
+                                        href="{{ route('filament.admin.pages.dashboard') }}"
+                                    >
                                         {{ __('Manage Profile') }}
                                     </x-ui-link>
                                 </section>
-
-                                <x-ui-button
-                                    class="rounded bg-gray-600/50 py-2 text-sm font-medium"
-                                    href="{{ route('filament.admin.auth.logout') }}"
-                                >
-                                    {{ __('Log Out') }}
-                                </x-ui-button>
                             </div>
                         </x-slot:content>
                     </x-ui-dropdown>
