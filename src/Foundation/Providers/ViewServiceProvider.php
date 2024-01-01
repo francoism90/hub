@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
         SEOMeta::setRobots('noindex,nofollow');
     }
 
-    protected function configureComponents(): static
+    protected function configureComponents(): void
     {
         $components = ComponentScout::create()->get();
 
@@ -33,12 +33,8 @@ class ViewServiceProvider extends ServiceProvider
                     ->kebab()
                     ->prepend(static::getComponentPrefix($class));
 
-                logger($name->value());
-
                 Blade::component($class->getFcqn(), $name->value());
             });
-
-        return $this;
     }
 
     protected static function getComponentPrefix(DiscoveredClass $class): Stringable
