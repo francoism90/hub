@@ -1,4 +1,4 @@
-<x-layouts::container>
+<x-ui-container>
     <div
         class="flex flex-col gap-y-7 py-3.5"
         wire:poll.keep-alive.10s
@@ -17,4 +17,4 @@
             </article>
         @endforeach
     </div>
-</x-layouts::container>
+</x-ui-container>

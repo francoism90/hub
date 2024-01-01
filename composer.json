@@ -113,7 +113,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url":  "git@github.com:foxws/livewire-use.git"
+            "url": "git@github.com:foxws/livewire-use.git"
         }
     ],
     "minimum-stability": "dev",

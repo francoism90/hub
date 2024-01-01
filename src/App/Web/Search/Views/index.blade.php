@@ -1,5 +1,5 @@
-<x-layouts::container class="flex flex-col gap-y-4 p-4">
-    <div class="flex m-4 w-full flex-row flex-nowrap items-center gap-x-4 rounded bg-gray-800 px-4">
+<x-ui-container class="flex flex-col gap-y-4 p-4">
+    <div class="m-4 flex w-full flex-row flex-nowrap items-center gap-x-4 rounded bg-gray-800 px-4">
         <x-forms-text-input
             class="input bg-transparent px-0 text-sm text-gray-300 placeholder:text-gray-500"
             type="search"
@@ -20,4 +20,4 @@
 
     <x-search::filters />
     <x-search::items />
-</x-layouts::container>
+</x-ui-container>

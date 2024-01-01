@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-y-8">
-    @if (filled($this->form->hasSearch()) && ! $this->hasItems())
+    @if (filled($this->form->hasSearch()) && !$this->hasItems())
         <div class="flex w-full items-center justify-center p-8 text-gray-400">
             {{ __('No results match your search criteria') }}
         </div>
