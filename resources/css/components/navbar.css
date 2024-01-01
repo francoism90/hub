@@ -11,7 +11,7 @@
         }
 
         &-menu {
-            @apply space-x-6;
+            @apply items-center space-x-6;
         }
     }
 }
