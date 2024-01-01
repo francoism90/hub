@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Web\Layouts\Components;
+namespace App\Web\Ui\Components;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -17,7 +17,7 @@ class Pagination extends Component
     public function render(): View
     {
         return $this->items instanceof LengthAwarePaginator
-            ? view('layouts::pagination')
-            : view('layouts::simple-pagination');
+            ? view('layout.pagination')
+            : view('layout.simple-pagination');
     }
 }

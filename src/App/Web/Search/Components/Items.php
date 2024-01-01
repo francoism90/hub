@@ -9,6 +9,6 @@ class Items extends Component
 {
     public function render(): View
     {
-        return view('search::items');
+        return view('search.items');
     }
 }

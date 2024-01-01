@@ -8,7 +8,7 @@
 
     <div class="grid grow grid-cols-1 gap-3.5 py-3.5 sm:grid-cols-2">
         @forelse ($this->items as $item)
-            <x-videos::item :$item />
+            <x-videos-item :$item />
         @empty
             <div class="flex items-center justify-center p-8 text-gray-400">
                 {{ __('No videos found') }}

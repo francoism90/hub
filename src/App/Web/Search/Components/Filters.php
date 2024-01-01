@@ -9,6 +9,6 @@ class Filters extends Component
 {
     public function render(): View
     {
-        return view('search::filters');
+        return view('search.filters');
     }
 }

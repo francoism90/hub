@@ -38,7 +38,7 @@ class VideoQueryBuilder extends Builder
 
     public function similar(Video $model): self
     {
-        $items = app(GetSimilarVideos::class)->execute($model);
+        $items = app(GetSimilarvideos::class)->execute($model);
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
             ->whereIn('id', $items->pluck('id'))

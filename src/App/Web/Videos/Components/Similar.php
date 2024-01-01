@@ -17,12 +17,12 @@ class Similar extends Component
 
     public function render(): View
     {
-        return view('videos::similar');
+        return view('videos.similar');
     }
 
     #[Computed]
     public function items(): LazyCollection
     {
-        return app(GetSimilarVideos::class)->execute($this->video);
+        return app(GetSimilarvideos::class)->execute($this->video);
     }
 }

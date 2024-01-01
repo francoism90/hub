@@ -31,7 +31,7 @@
     </h2>
 
     @if ($item->tags->isNotEmpty())
-        <x-videos::tags :items="$item->tags" />
+        <x-videos-tags :items="$item->tags" />
     @endif
 
     <div class="h-60 max-h-60 py-2 sm:h-64 sm:max-h-64">
@@ -67,7 +67,7 @@
                 </div>
 
                 <template x-if="preview">
-                    <x-videos::player
+                    <x-videos-player
                         :$item
                         :manifest="$item->preview"
                         :controls="false"

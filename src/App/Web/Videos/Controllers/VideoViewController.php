@@ -28,7 +28,7 @@ class VideoViewController extends Component
 
     public function render(): View
     {
-        return view('videos::view');
+        return view('videos.view');
     }
 
     #[On('time-update')]

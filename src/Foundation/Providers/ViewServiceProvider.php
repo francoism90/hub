@@ -5,6 +5,9 @@ namespace Foundation\Providers;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Stringable;
+use Spatie\StructureDiscoverer\Data\DiscoveredClass;
+use Support\Discover\ComponentScout;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -12,7 +15,6 @@ class ViewServiceProvider extends ServiceProvider
     {
         $this->configureSeo();
         $this->configureComponents();
-        $this->configureViews();
     }
 
     protected function configureSeo(): void
@@ -21,36 +23,30 @@ class ViewServiceProvider extends ServiceProvider
         SEOMeta::setRobots('noindex,nofollow');
     }
 
-    protected function configureComponents(): void
+    protected function configureComponents(): static
     {
-        $items = collect([
-            ['namespace' => 'App\\Web\\Layouts\\Components', 'prefix' => 'layouts'],
-            ['namespace' => 'App\\Web\\Search\\Components', 'prefix' => 'search'],
-            ['namespace' => 'App\\Web\\Profile\\Components', 'prefix' => 'profile'],
-            ['namespace' => 'App\\Web\\Tags\\Components', 'prefix' => 'tags'],
-            ['namespace' => 'App\\Web\\Videos\\Components', 'prefix' => 'videos'],
-        ]);
+        $components = ComponentScout::create()->get();
 
-        $items->each(fn (array $item) => Blade::componentNamespace(...$item));
+        collect($components)
+            ->each(function (DiscoveredClass $class) {
+                $name = str($class->name)
+                    ->kebab()
+                    ->prepend(static::getComponentPrefix($class));
+
+                logger($name->value());
+
+                Blade::component($class->getFcqn(), $name->value());
+            });
+
+        return $this;
     }
 
-    protected function configureViews(): void
+    protected static function getComponentPrefix(DiscoveredClass $class): Stringable
     {
-        $items = collect([
-            ['path' => app_path('Web/Layouts/Views'), 'namespace' => 'layouts'],
-            ['path' => app_path('Web/Search/Views'), 'namespace' => 'search'],
-            ['path' => app_path('Web/Profile/Views'), 'namespace' => 'profile'],
-            ['path' => app_path('Web/Tags/Views'), 'namespace' => 'tags'],
-            ['path' => app_path('Web/Videos/Views'), 'namespace' => 'videos'],
-        ]);
-
-        $items->each(function (array $item) {
-            $this->loadViewsFrom(...$item);
-
-            Blade::anonymousComponentNamespace(
-                directory: $item['path'],
-                prefix: $item['namespace'],
-            );
-        });
+        return str($class->namespace)
+            ->after('App\\Web\\')
+            ->match('/(.*)\\\\/')
+            ->kebab()
+            ->finish('-');
     }
 }

@@ -15,6 +15,6 @@ class Item extends Component
 
     public function render(): View
     {
-        return view('videos::item');
+        return view('videos.item');
     }
 }

@@ -18,6 +18,6 @@
         </x-forms-text-input>
     </div>
 
-    <x-search::filters />
-    <x-search::items />
+    <x-search-filters />
+    <x-search-items />
 </x-ui-container>

@@ -11,7 +11,7 @@
 
                 <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($tags as $item)
-                        <x-tags::card :$item />
+                        <x-tags-card :$item />
                     @endforeach
                 </div>
             </article>

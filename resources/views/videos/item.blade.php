@@ -25,7 +25,7 @@
                 />
 
                 <template x-if="preview">
-                    <x-videos::player
+                    <x-videos-player
                         :$item
                         :manifest="$item->preview"
                         :controls="false"
@@ -77,7 +77,7 @@
             </a>
 
             @if ($item->tags->isNotEmpty())
-                <x-videos::tags
+                <x-videos-tags
                     class="line-clamp-1 text-xs"
                     :items="$item->tags"
                 />

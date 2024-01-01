@@ -26,7 +26,7 @@ class WatchlistController extends Listing
 
     public function render(): View
     {
-        return view('videos::index');
+        return view('videos.index');
     }
 
     #[Computed]

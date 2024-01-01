@@ -1,6 +1,6 @@
 <article>
     <div class="h-64 max-h-64 bg-black sm:h-80 sm:max-h-80 lg:h-[36rem] lg:max-h-[36rem]">
-        <x-videos::player
+        <x-videos-player
             :item="$video"
             :manifest="$video->stream"
             :starts-at="$this->starts"
@@ -65,7 +65,7 @@
             @if ($video->tags->isNotEmpty())
                 <div class="gap-y-3 py-3.5">
                     <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
-                    <x-videos::tags
+                    <x-videos-tags
                         class="pt-2"
                         :items="$video->tags"
                     />

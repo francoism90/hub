@@ -33,7 +33,7 @@ class SearchIndexController extends QueryBuilder
 
     public function render(): View
     {
-        return view('search::index');
+        return view('search.index');
     }
 
     public function updatedForm(): void

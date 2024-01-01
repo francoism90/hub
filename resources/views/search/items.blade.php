@@ -11,7 +11,7 @@
             wire:poll.keep-alive.10s
         >
             @foreach ($this->items as $item)
-                <x-videos::item :$item />
+                <x-videos-item :$item />
             @endforeach
         </div>
 

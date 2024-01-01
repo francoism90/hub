@@ -16,7 +16,7 @@ class Item extends Component
 
     public function render(): View
     {
-        return view('tags::item');
+        return view('tags.item');
     }
 
     public function icon(): string

@@ -15,6 +15,6 @@ class Tags extends Component
 
     public function render(): View
     {
-        return view('videos::tags');
+        return view('videos.tags');
     }
 }

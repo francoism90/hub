@@ -21,7 +21,7 @@ class TagIndexController extends Component
 
     public function render(): View
     {
-        return view('tags::index');
+        return view('tags.index');
     }
 
     #[Computed(cache: true, key: 'tags', seconds: 60 * 10)]

@@ -65,11 +65,11 @@
 
 <body class="antialiased">
 
-    <x-layouts::header />
+    <x-header />
 
     {{ $slot }}
 
-    <x-layouts::footer />
+    <x-footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
