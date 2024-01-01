@@ -1,6 +1,6 @@
 <div class="flex w-full flex-row flex-nowrap gap-x-6">
     @if (filled($this->form->search))
-        <x-layouts-dropdown>
+        <x-ui-dropdown>
             <button class="btn text-sm font-semibold">
                 <span>{{ $this->sorter }}</span>
                 <x-heroicon-m-chevron-down
@@ -36,9 +36,9 @@
                     @endforeach
                 </div>
             </x-slot:content>
-        </x-layouts-dropdown>
+        </x-ui-dropdown>
 
-        <x-layouts-dropdown>
+        <x-ui-dropdown>
             <button class="btn text-sm font-semibold">
                 <span>{{ __('Features') }}</span>
                 <x-heroicon-m-chevron-down
@@ -74,6 +74,6 @@
                     @endforeach
                 </div>
             </x-slot:content>
-        </x-layouts-dropdown>
+        </x-ui-dropdown>
     @endif
 </div>

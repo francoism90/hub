@@ -14,22 +14,20 @@
 
             <x-slot:end>
                 <nav class="navbar-menu">
-                    <a
+                    <x-ui-link
                         href="{{ route('tags.index') }}"
                         class="{{ $active('tags', 'navbar-item') }}"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
-                        wire:navigate
                     >
                         <x-heroicon-o-hashtag class="h-6 w-6" />
-                    </a>
+                    </x-ui-button>
 
                     <a
                         href="{{ route('search') }}"
                         class="{{ $active('search', 'navbar-item') }}"
                         aria-label="{{ __('Search') }}"
                         title="{{ __('Search') }}"
-                        wire:navigate
                     >
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
                     </a>
