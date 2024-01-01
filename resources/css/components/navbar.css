@@ -3,7 +3,7 @@
         @apply py-6;
 
         &-brand {
-            @apply space-x-4 text-2xl font-medium lowercase;
+            @apply space-x-4 text-2xl font-medium lowercase hover:text-primary-100;
         }
 
         &-logo {
