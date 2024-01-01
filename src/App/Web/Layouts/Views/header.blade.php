@@ -15,7 +15,7 @@
             <x-slot:end>
                 <nav class="navbar-menu">
                     <x-ui-link
-                        href="{{ route('tags.index') }}"
+                        route="tags.index"
                         class="{{ $active('tags', 'navbar-item') }}"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
@@ -31,9 +31,8 @@
                     >
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
                     </a>
-                </nav>
 
-                <x-ui-dropdown>
+                    <x-ui-dropdown>
                     <a class="navbar-item">
                         <x-heroicon-o-user-circle class="h-6 w-6" />
                     </a>
@@ -42,7 +41,7 @@
                         <div
                             x-anchor.bottom-end.offset.20="$refs.dropdown"
                             x-on:click.away="open = false"
-                            class="dropdown-content flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
+                            class="flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
                         >
                             <div class="flex flex-col flex-nowrap gap-y-1">
                                 <a
@@ -88,6 +87,7 @@
                         </div>
                     </x-slot:content>
                 </x-ui-dropdown>
+                </nav>
             </x-slot:end>
         </x-ui-navbar>
     </x-ui-container>
