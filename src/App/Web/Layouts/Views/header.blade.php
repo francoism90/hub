@@ -20,7 +20,7 @@
                         title="{{ __('Tags') }}"
                     >
                         <x-heroicon-o-hashtag class="h-6 w-6" />
-                    </x-ui-button>
+                    </x-ui-link>
 
                     <x-ui-link
                         route="search"
@@ -28,7 +28,7 @@
                         title="{{ __('Search') }}"
                     >
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
-                    </x-ui-button>
+                    </x-ui-link>
 
                     <x-ui-dropdown>
                         <x-ui-button class="navbar-item">
@@ -40,47 +40,32 @@
                                 x-anchor.bottom-end.offset.20="$refs.dropdown"
                                 class="flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
                             >
-                                <div class="flex flex-col flex-nowrap gap-y-1">
-                                    <a
-                                        href="{{ route('profile.history') }}"
-                                        class="{{ $active('profile.history', 'navbar-item text-gray-400') }}"
-                                        wire:navigate
-                                    >
+                                <section class="flex flex-col flex-nowrap gap-y-1">
+                                    <x-ui-link route="profile.history">
                                         {{ __('History') }}
-                                    </a>
+                                    </x-ui-link>
 
-                                    <a
-                                        href="{{ route('profile.favorites') }}"
-                                        class="{{ $active('profile.favorites', 'navbar-item text-gray-400') }}"
-                                        wire:navigate
-                                    >
+                                    <x-ui-link route="profile.favorites">
                                         {{ __('Favorites') }}
-                                    </a>
+                                    </x-ui-link>
 
-                                    <a
-                                        href="{{ route('profile.watchlist') }}"
-                                        class="{{ $active('profile.watchlist', 'navbar-item text-gray-400') }}"
-                                        wire:navigate
-                                    >
+                                    <x-ui-link route="profile.watchlist">
                                         {{ __('Watchlist') }}
-                                    </a>
-                                </div>
+                                    </x-ui-link>
+                                </section>
 
-                                <div class="flex flex-col flex-nowrap gap-y-1">
-                                    <a
-                                        href="{{ route('filament.admin.pages.dashboard') }}"
-                                        class="navbar-item text-gray-400"
-                                    >
+                                <section class="flex flex-col flex-nowrap gap-y-1">
+                                    <x-ui-link href="{{ route('filament.admin.pages.dashboard') }}">
                                         {{ __('Manage Profile') }}
-                                    </a>
-                                </div>
+                                    </x-ui-link>
+                                </section>
 
-                                <button
-                                    class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
+                                <x-ui-button
+                                    class="rounded bg-gray-600/50 py-2 text-sm font-medium"
                                     href="{{ route('filament.admin.auth.logout') }}"
                                 >
                                     {{ __('Log Out') }}
-                                </button>
+                                </x-ui-button>
                             </div>
                         </x-slot:content>
                     </x-ui-dropdown>
