@@ -3,20 +3,19 @@
 namespace App\Web\Tags\Controllers;
 
 use App\Web\Tags\Concerns\WithTags;
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Tags\Models\Tag;
+use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
 
-class TagIndexController extends Component
+class TagIndexController extends Page
 {
     use WithTags;
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('Tags'));
+        $this->seo()->setTitle(__('Tags'));
     }
 
     public function render(): View
