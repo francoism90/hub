@@ -1,4 +1,4 @@
-<x-ui-header>
+<header>
     <x-ui-container>
         <x-ui-navbar>
             <x-slot:start>
@@ -69,4 +69,4 @@
             </x-slot:end>
         </x-ui-navbar>
     </x-ui-container>
-</x-ui-header>
+</header>
