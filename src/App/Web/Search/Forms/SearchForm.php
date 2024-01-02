@@ -2,8 +2,8 @@
 
 namespace App\Web\Search\Forms;
 
-use Foxws\LivewireUse\QueryBuilder\Concerns\WithSearch;
-use Foxws\LivewireUse\QueryBuilder\Concerns\WithSorts;
+use Foxws\LivewireUse\Forms\Concerns\WithSearch;
+use Foxws\LivewireUse\Forms\Concerns\WithSorts;
 use Foxws\LivewireUse\QueryBuilder\Forms\QueryBuilderForm;
 use Livewire\Attributes\Validate;
 
