@@ -38,7 +38,7 @@ class SearchIndexController extends QueryBuilder
 
     public function updatedForm(): void
     {
-        $this->validate();
+        $this->form->validate();
 
         $this->resetScroll();
     }
