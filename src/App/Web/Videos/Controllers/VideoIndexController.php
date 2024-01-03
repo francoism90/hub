@@ -27,6 +27,7 @@ class VideoIndexController extends Page
     public function items(): LengthAwarePaginator
     {
         return $this->getQuery()
+            ->recommended()
             ->paginate(12);
     }
 }
