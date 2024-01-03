@@ -43,11 +43,7 @@ class VideoIndexController extends Page
 
         $this->form->fill($query);
 
-        rescue(
-            fn () => $this->form->submit(),
-            fn () => $this->form->reset(),
-            report: false
-        );
+        $this->form->submit();
     }
 
     #[Computed]
