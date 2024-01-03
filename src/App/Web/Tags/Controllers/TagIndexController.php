@@ -2,16 +2,18 @@
 
 namespace App\Web\Tags\Controllers;
 
-use App\Web\Tags\Concerns\WithTags;
 use Domain\Tags\Models\Tag;
 use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
 class TagIndexController extends Page
 {
-    use WithTags;
+    use WithQueryBuilder;
+
+    protected static string $model = Tag::class;
 
     public function mount(): void
     {
@@ -26,7 +28,7 @@ class TagIndexController extends Page
     #[Computed(cache: true, key: 'tags', seconds: 60 * 10)]
     public function items(): Collection
     {
-        return Tag::query()
+        return $this->getQuery()
             ->withCount('videos')
             ->orderBy('name')
             ->get()
