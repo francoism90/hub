@@ -2,7 +2,7 @@
     @foreach ($items as $item)
         <x-ui-link
             class="font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            href="{{ route('home', ['t' => $item->getRouteKey()]) }}"
+            href="{{ route('home', ['t[]' => $item->getRouteKey()]) }}"
             aria-label="{{ $item->name }}"
             title="{{ $item->name }}"
         >
