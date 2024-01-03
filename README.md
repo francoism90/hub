@@ -8,8 +8,8 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 Please browse the following repositiories to learn more:
 
-- [Hub](https://github.com/francoism90/hub) - Podman/Docker instance
-- [Api](https://github.com/francoism90/hub-api) - Laravel App + API
+- [Hub](https://github.com/francoism90/hub) - Laravel App + API
+- [Podman](https://github.com/francoism90/hub-podman) - Podman/Docker instance
 
 ## Stack
 
@@ -20,4 +20,4 @@ Please browse the following repositiories to learn more:
 
 ## Installation
 
-Please see <https://github.com/francoism90/hub> for details.
+Please see <https://github.com/francoism90/hub-podman> for details.
