@@ -11,7 +11,7 @@
             x-on:touchend.passive="preview = false"
             class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
         >
-            <a
+            <x-ui-link
                 href="{{ route('videos.view', $item) }}"
                 wire:navigate
             >
