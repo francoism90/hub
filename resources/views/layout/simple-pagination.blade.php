@@ -2,10 +2,10 @@
     role="navigation"
     aria-label="Pagination Navigation"
 >
-    @if ($items->hasPages())
+    @if ($this->items->hasPages())
         <div class="flex items-center justify-between py-6">
             <button
-                @if ($items->onFirstPage()) disabled @endif
+                @if ($this->items->onFirstPage()) disabled @endif
                 x-data
                 x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
@@ -17,7 +17,7 @@
             </button>
 
             <button
-                @if ($items->onLastPage()) disabled @endif
+                @if ($this->items->onLastPage()) disabled @endif
                 x-data
                 x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"

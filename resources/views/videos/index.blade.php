@@ -11,7 +11,7 @@
             </div>
         @endforelse
 
-        {{-- <x-ui-pagination :items="$this->builder" /> --}}
+        <x-ui-simple-pagination />
     </div>
 
     <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col gap-y-4 self-start sm:flex">
