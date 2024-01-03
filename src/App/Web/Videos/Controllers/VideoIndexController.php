@@ -3,9 +3,12 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
+use App\Web\Videos\States\SortState;
+use App\Web\Videos\States\TagsState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
+use Foxws\LivewireUse\Views\Concerns\WithState;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
@@ -15,10 +18,16 @@ use Livewire\WithPagination;
 
 class VideoIndexController extends Page
 {
+    use WithState;
     use WithPagination;
     use WithQueryBuilder;
 
     protected static string $model = Video::class;
+
+    protected static array $states = [
+        TagsState::class,
+        // SortState::class,
+    ];
 
     #[Url(as: 'q', history: true, except: '')]
     public ?string $search = null;
@@ -38,6 +47,8 @@ class VideoIndexController extends Page
         $query = array_filter(
             $this->only('search', 'tag')
         );
+
+        $this->all();
 
         $this->form->fill($query);
 

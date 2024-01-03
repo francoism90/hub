@@ -16,7 +16,9 @@
 
     <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col gap-y-4 self-start sm:flex">
         <div class="flex w-full flex-col gap-y-7 py-3.5">
-
+             @foreach ($this->state->tags as $item)
+                    {{ $item->name }}
+                @endforeach
         </div>
     </aside>
 </x-ui-container>
