@@ -3,6 +3,7 @@
 namespace App\Web\Profile\Controllers;
 
 use App\Web\Playlists\Concerns\WithWatchlist;
+use App\Web\Videos\Controllers\VideoIndexController;
 use App\Web\Videos\Forms\PlaylistForm;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
@@ -13,30 +14,16 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class WatchlistController extends Page
+class WatchlistController extends VideoIndexController
 {
-    use WithPagination;
-    use WithQueryBuilder;
     use WithWatchlist;
 
     protected static string $model = Video::class;
-
-    public PlaylistForm $form;
 
     public function mount(): void
     {
         $this->seo()->setTitle(__('Watchlist'));
         $this->seo()->setDescription(__('Your Watchlist'));
-    }
-
-    public function render(): View
-    {
-        return view('videos.index');
-    }
-
-    public function updatedForm(): void
-    {
-        $this->form->submit();
     }
 
     #[Computed]
@@ -49,6 +36,7 @@ class WatchlistController extends Page
             ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
             ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
             ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value, true))
+            ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged($value))
             ->take(32 * 32)
             ->paginate(32);
     }
