@@ -4,7 +4,7 @@ namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Concerns\WithFeatures;
 use App\Web\Search\Concerns\WithSorters;
-use App\Web\Search\Forms\SearchForm;
+use App\Web\Search\Forms\QueryForm;
 use App\Web\Tags\Concerns\WithTags;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
@@ -24,7 +24,7 @@ class SearchIndexController extends QueryBuilder
 
     protected static string $model = Video::class;
 
-    public SearchForm $form;
+    public QueryForm $form;
 
     public function mount(): void
     {
@@ -38,8 +38,6 @@ class SearchIndexController extends QueryBuilder
 
     public function updatedForm(): void
     {
-        $this->form->submit();
-
         $this->resetScroll();
     }
 

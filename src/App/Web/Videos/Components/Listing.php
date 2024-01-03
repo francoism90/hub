@@ -2,7 +2,7 @@
 
 namespace App\Web\Videos\Components;
 
-use App\Web\Search\Forms\SearchForm;
+use App\Web\Search\Forms\QueryForm;
 use App\Web\Tags\Concerns\WithTags;
 use App\Web\Videos\Concerns\WithFilters;
 use Foxws\LivewireUse\QueryBuilder\Components\QueryBuilder;
@@ -14,5 +14,5 @@ abstract class Listing extends QueryBuilder
     use WithPagination;
     use WithTags;
 
-    public SearchForm $form;
+    public QueryForm $form;
 }
