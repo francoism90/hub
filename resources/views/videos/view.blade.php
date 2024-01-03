@@ -72,7 +72,7 @@
                 </div>
             @endif
 
-            <livewire:video-similar :$video />
+            <livewire:videos-similar :$video />
         </div>
     </x-ui-container>
 </article>
