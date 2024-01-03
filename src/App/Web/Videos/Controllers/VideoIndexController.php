@@ -18,13 +18,13 @@ class VideoIndexController extends Page
     use WithPagination;
     use WithQueryBuilder;
 
+    protected static string $model = Video::class;
+
     #[Url(as: 'q', history: true, except: '')]
     public ?string $search = null;
 
     #[Url(as: 't', history: true, except: '')]
     public ?string $tag = null;
-
-    protected static string $model = Video::class;
 
     public QueryForm $form;
 
