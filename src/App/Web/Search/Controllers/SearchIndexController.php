@@ -40,12 +40,13 @@ class SearchIndexController extends Page
     }
 
     #[Computed]
-    public function builder(): LengthAwarePaginator
+    public function items(): LengthAwarePaginator
     {
         $value = $this->form->getSearch();
 
         return $this->getScout($value)
             ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
+            ->when($this->form->getTag(), fn (Builder $query, string $value = '') => $query->tagged((array) $value))
             // ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
             // ->when($this->form->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             // ->when($this->form->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))

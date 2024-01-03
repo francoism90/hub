@@ -21,5 +21,16 @@
     </div>
 
     {{-- <x-search-filters /> --}}
-    <x-search-items />
+    <div class="flex flex-col gap-y-8">
+        <div
+            class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2"
+            wire:poll.keep-alive.10s
+        >
+            @foreach ($this->items as $item)
+                <x-videos-item :$item />
+            @endforeach
+        </div>
+
+        <x-ui-pagination />
+    </div>
 </x-ui-container>
