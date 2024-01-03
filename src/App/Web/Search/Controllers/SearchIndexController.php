@@ -8,17 +8,17 @@ use App\Web\Search\Forms\QueryForm;
 use App\Web\Tags\Concerns\WithTags;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
-use Foxws\LivewireUse\QueryBuilder\Components\QueryBuilder;
-use Foxws\LivewireUse\QueryBuilder\Concerns\WithScroll;
+use Foxws\LivewireUse\Models\Components\QueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
+use Livewire\WithPagination;
 
 class SearchIndexController extends QueryBuilder
 {
     use WithFeatures;
-    use WithScroll;
+    use WithPagination;
     use WithSorters;
     use WithTags;
 
@@ -38,7 +38,7 @@ class SearchIndexController extends QueryBuilder
 
     public function updatedForm(): void
     {
-        $this->resetScroll();
+        $this->form->submit();
     }
 
     #[Computed]
