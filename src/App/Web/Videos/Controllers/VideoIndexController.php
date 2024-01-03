@@ -10,6 +10,7 @@ use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
@@ -63,12 +64,12 @@ class VideoIndexController extends Page
     }
 
     #[Computed]
-    public function items(): LengthAwarePaginator
+    public function items(): Paginator
     {
         return $this->getQuery()
             ->recommended()
             ->when($this->form->getSearch(), fn (Builder $query, string $value = '') => $query->search($value))
             ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged($value))
-            ->paginate(16);
+            ->simplePaginate(16);
     }
 }
