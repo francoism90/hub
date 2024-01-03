@@ -12,4 +12,6 @@ class QueryForm extends Form
     use WithSearch;
     use WithSorts;
     use WithTag;
+
+    protected static bool $recoverable = true;
 }
