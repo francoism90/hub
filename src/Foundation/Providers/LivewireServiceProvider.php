@@ -8,8 +8,8 @@ use Foxws\LivewireUse\Support\Synthesizers\SpatieEnumSynth;
 use Foxws\LivewireUse\Support\Synthesizers\SpatieStateSynth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
-use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 use Livewire\Livewire;
+use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class LivewireServiceProvider extends ServiceProvider
 {
