@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function type(TagType|string $value = null): mixed
+    public function type(TagType|string|null $value = null): mixed
     {
         if (is_string($value)) {
             $value = TagType::tryFrom($value);

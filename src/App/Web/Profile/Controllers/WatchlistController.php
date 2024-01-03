@@ -4,15 +4,10 @@ namespace App\Web\Profile\Controllers;
 
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Videos\Controllers\VideoIndexController;
-use App\Web\Videos\Forms\PlaylistForm;
 use Domain\Videos\Models\Video;
-use Foxws\LivewireUse\Views\Components\Page;
-use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
 
 class WatchlistController extends VideoIndexController
 {
