@@ -9,13 +9,14 @@ use App\Web\Tags\Concerns\WithTags;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Models\Components\QueryBuilder;
+use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class SearchIndexController extends QueryBuilder
+class SearchIndexController extends Page
 {
     use WithFeatures;
     use WithPagination;

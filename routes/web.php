@@ -6,7 +6,6 @@ use App\Web\Profile\Controllers\HistoryController;
 use App\Web\Profile\Controllers\WatchlistController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagIndexController;
-use App\Web\Videos\Controllers\VideoIndexController;
 use App\Web\Videos\Controllers\VideoViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +24,6 @@ Route::name('profile.')->middleware('auth')->group(function () {
 
 // Videos
 Route::name('videos.')->middleware('auth')->group(function () {
-    Route::get('/video', VideoIndexController::class)->name('index');
     Route::get('/video/{video}', VideoViewController::class)->name('view');
 });
 

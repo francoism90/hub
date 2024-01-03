@@ -7,12 +7,13 @@ use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
-class HistoryController extends Listing
+class HistoryController extends Page
 {
     use WithAuthentication;
     use WithHistory;

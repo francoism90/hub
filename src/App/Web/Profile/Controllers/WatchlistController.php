@@ -4,15 +4,15 @@ namespace App\Web\Profile\Controllers;
 
 use App\Web\Playlists\Concerns\WithWatchlist;
 use App\Web\Profile\Concerns\WithAuthentication;
-use App\Web\Videos\Components\Listing;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
-class WatchlistController extends Listing
+class WatchlistController extends Page
 {
     use WithAuthentication;
     use WithWatchlist;
