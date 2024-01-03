@@ -9,7 +9,6 @@ use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
