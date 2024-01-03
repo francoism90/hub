@@ -25,7 +25,6 @@
             <div class="flex flex-col gap-y-2 overflow-y-scroll max-h-80">
                 @foreach ($tags as $item)
                     <label
-                        {{-- href="{{ route('home', ['t' => $item->getRouteKey()]) }}" --}}
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
                             'link text-sm font-medium uppercase',
@@ -37,6 +36,8 @@
 
                     <input
                         type="radio"
+                        class="hidden"
+                        id="tag-{{ $item->getRouteKey() }}"
                         value="{{ $item->getRouteKey() }}"
                         wire:model.live="form.tag"
                     />

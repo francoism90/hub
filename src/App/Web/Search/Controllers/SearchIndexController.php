@@ -33,7 +33,7 @@ class SearchIndexController extends Page
         return view('search.index');
     }
 
-    public function updatedForm(): void
+    public function updated(): void
     {
         $this->form->submit();
     }

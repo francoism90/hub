@@ -51,9 +51,11 @@ class VideoIndexController extends Page
         $this->form->submit();
     }
 
-    public function updatedForm(): void
+    public function updated(): void
     {
         $this->reset('search', 'tag');
+
+        $this->resetPage();
 
         $this->form->submit();
     }
