@@ -42,8 +42,7 @@
         "spatie/laravel-query-builder": "^5.6",
         "spatie/laravel-responsecache": "^7.4.10",
         "spatie/laravel-sluggable": "^3.5.0",
-        "spatie/laravel-tags": "^4.5.1",
-        "spatie/php-structure-discoverer": "^2.0"
+        "spatie/laravel-tags": "^4.5.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
