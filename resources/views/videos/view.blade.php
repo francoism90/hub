@@ -80,15 +80,13 @@
 @script
     <script>
         window.timeUpdate = function(e) {
-            const time = e?.target?.currentTime
+            const time = e?.target?.currentTime || 0
 
-            if (!time) {
-                return;
+            if (time > 0) {
+                Livewire.dispatch('time-update', {
+                    time
+                })
             }
-
-            Livewire.dispatch('time-update', {
-                time
-            })
         }
     </script>
 @endscript
