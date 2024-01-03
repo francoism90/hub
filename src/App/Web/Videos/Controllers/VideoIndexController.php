@@ -53,6 +53,6 @@ class VideoIndexController extends Page
             ->recommended()
             ->when($this->getFormValue('search'), fn (Builder $query, string $value = '') => $query->search($value))
             ->when($this->getFormValue('tag'), fn (Builder $query, string $value = '') => $query->tagged((array) $value))
-            ->paginate(12);
+            ->paginate(16);
     }
 }
