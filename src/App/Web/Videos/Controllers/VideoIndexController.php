@@ -4,7 +4,6 @@ namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
-use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -24,7 +23,7 @@ class VideoIndexController extends Page
         return view('videos.index');
     }
 
-    #[Computed(cache: true, key: 'recommended')]
+    #[Computed]
     public function items(): LengthAwarePaginator
     {
         return $this->getQuery()
