@@ -1,5 +1,4 @@
 <x-ui-link
-    wire:key="{{ $item->getRouteKey() }}"
     class="cursor-pointer text-sm font-medium uppercase"
     href="{{ route('home', ['t' => $item->getRouteKey()]) }}"
 >
