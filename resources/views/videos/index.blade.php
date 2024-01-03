@@ -1,5 +1,5 @@
 @php
-    $tags = $this->state->tags->sortByDesc(fn ($item) => $this->form->isTag($item));
+    $tags = $this->state->tags->sortByDesc(fn ($item) => $this->form->hasTag($item));
 @endphp
 
 <x-ui-container class="flex flex-nowrap sm:space-x-24">
@@ -18,7 +18,7 @@
         {{ $this->items->links('pagination.default') }}
     </div>
 
-    <aside class="hidden w-full min-w-64 max-w-64 flex-col gap-y-4 self-start sm:flex">
+    <aside class="hidden w-full min-w-72 max-w-72 flex-col gap-y-4 self-start sm:flex">
         <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-4">
             <h3 class="headline text-sm pb-3.5">{{ __('Tags') }}</h3>
 
@@ -28,18 +28,18 @@
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
                             'link text-sm font-medium uppercase',
-                            'link-active' => $this->form->isTag($item->getRouteKey()),
+                            'link-active' => $this->form->hasTag($item->getRouteKey()),
                         ])
                     >
                         {{ $item->name }}
                     </label>
 
                     <input
-                        type="radio"
+                        type="checkbox"
                         class="hidden"
                         id="tag-{{ $item->getRouteKey() }}"
                         value="{{ $item->getRouteKey() }}"
-                        wire:model.live="form.tag"
+                        wire:model.live="form.tags"
                     />
                 @endforeach
             </div>

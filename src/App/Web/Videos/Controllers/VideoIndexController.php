@@ -31,7 +31,7 @@ class VideoIndexController extends Page
     public ?string $search = null;
 
     #[Url(as: 't', history: true, except: '')]
-    public ?string $tag = null;
+    public ?array $tags = null;
 
     public QueryForm $form;
 
@@ -43,8 +43,10 @@ class VideoIndexController extends Page
     public function mount(): void
     {
         $query = array_filter(
-            $this->only('search', 'tag')
+            $this->only('search', 'tags')
         );
+
+        $this->form->restore();
 
         $this->form->fill($query);
 
@@ -53,7 +55,7 @@ class VideoIndexController extends Page
 
     public function updated(): void
     {
-        $this->reset('search', 'tag');
+        $this->reset('search', 'tags');
 
         $this->resetPage();
 
@@ -66,7 +68,7 @@ class VideoIndexController extends Page
         return $this->getQuery()
             ->recommended()
             ->when($this->form->getSearch(), fn (Builder $query, string $value = '') => $query->search($value))
-            ->when($this->form->getTag(), fn (Builder $query, string $value = '') => $query->tagged((array) $value))
+            ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged($value))
             ->paginate(16);
     }
 }
