@@ -27,7 +27,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         $components = ComponentScout::create()
             ->path(app_path('Web'))
-            ->prefix('web')
+            ->prefix('web-components')
             ->get();
 
         collect($components)

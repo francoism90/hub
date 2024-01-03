@@ -2,11 +2,13 @@
 
 namespace Foundation\Providers;
 
-use App\Web\Videos\Components\Similar;
+use Foxws\LivewireUse\Support\Discover\LivewireScout;
 use Foxws\LivewireUse\Support\Synthesizers\ModelSynth;
 use Foxws\LivewireUse\Support\Synthesizers\SpatieEnumSynth;
 use Foxws\LivewireUse\Support\Synthesizers\SpatieStateSynth;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Stringable;
+use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 use Livewire\Livewire;
 
 class LivewireServiceProvider extends ServiceProvider
@@ -40,6 +42,27 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        Livewire::component('video-similar', Similar::class);
+        $components = LivewireScout::create()
+            ->path(app_path('Web'))
+            ->prefix('web-livewire')
+            ->get();
+
+        collect($components)
+            ->each(function (DiscoveredClass $class) {
+                $name = str($class->name)
+                    ->kebab()
+                    ->prepend(static::getComponentPrefix($class));
+
+                Livewire::component($name->value(), $class->getFcqn());
+            });
+    }
+
+    protected static function getComponentPrefix(DiscoveredClass $class): Stringable
+    {
+        return str($class->namespace)
+            ->after('App\\Web\\')
+            ->match('/(.*)\\\\/')
+            ->kebab()
+            ->finish('-');
     }
 }
