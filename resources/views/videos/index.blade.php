@@ -24,8 +24,8 @@
 
             <div class="flex flex-col gap-y-2 overflow-y-scroll max-h-80">
                 @foreach ($tags as $item)
-                    <x-ui-link
-                        href="{{ route('home', ['t' => $item->getRouteKey()]) }}"
+                    <label
+                        {{-- href="{{ route('home', ['t' => $item->getRouteKey()]) }}" --}}
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
                             'link text-sm font-medium uppercase',
@@ -33,7 +33,13 @@
                         ])
                     >
                         {{ $item->name }}
-                    </x-ui-link>
+                    </label>
+
+                    <input
+                        type="radio"
+                        value="{{ $item->getRouteKey() }}"
+                        wire:model.live="form.tag"
+                    />
                 @endforeach
             </div>
         </div>

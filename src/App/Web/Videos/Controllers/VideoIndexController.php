@@ -40,13 +40,20 @@ class VideoIndexController extends Page
         return view('videos.index');
     }
 
-    public function boot(): void
+    public function mount(): void
     {
         $query = array_filter(
             $this->only('search', 'tag')
         );
 
         $this->form->fill($query);
+
+        $this->form->submit();
+    }
+
+    public function updatedForm(): void
+    {
+        $this->reset('search', 'tag');
 
         $this->form->submit();
     }
