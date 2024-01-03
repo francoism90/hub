@@ -15,7 +15,7 @@
             </div>
         @endforelse
 
-        {{ $this->items->links('pagination.default') }}
+        {{ $this->items->links('pagination.simple') }}
     </div>
 
     <aside class="hidden w-full min-w-72 max-w-72 flex-col gap-y-4 self-start sm:flex">
