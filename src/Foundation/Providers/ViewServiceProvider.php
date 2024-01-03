@@ -3,11 +3,11 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Foxws\LivewireUse\Support\Discover\ComponentScout;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
 use Spatie\StructureDiscoverer\Data\DiscoveredClass;
-use Support\Discover\ComponentScout;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,10 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $components = ComponentScout::create()->get();
+        $components = ComponentScout::create()
+            ->path(app_path('Web'))
+            ->prefix('web')
+            ->get();
 
         collect($components)
             ->each(function (DiscoveredClass $class) {
