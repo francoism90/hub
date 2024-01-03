@@ -11,7 +11,7 @@
             </div>
         @endforelse
 
-        <x-ui-simple-pagination />
+        {{ $this->items->links('pagination.default') }}
     </div>
 
     <aside class="hidden w-full min-w-[18rem] max-w-[18rem] flex-col gap-y-4 self-start sm:flex">

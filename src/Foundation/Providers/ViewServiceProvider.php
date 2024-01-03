@@ -44,9 +44,9 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configurePaginators(): void
     {
-        Paginator::defaultView('ui-pagination');
+        Paginator::defaultView('pagination.default');
 
-        Paginator::defaultSimpleView('ui-simple-pagination');
+        Paginator::defaultSimpleView('pagination.simple');
     }
 
     protected static function getComponentPrefix(DiscoveredClass $class): Stringable
