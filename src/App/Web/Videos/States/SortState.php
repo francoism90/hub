@@ -6,5 +6,13 @@ use Foxws\LivewireUse\Views\Support\State;
 
 class SortState extends State
 {
-    public $sort = 'bar';
+    public function sorters(): array
+    {
+        return [
+            '' => __('Default'),
+            'longest' => __('Longest'),
+            'shortest' => __('Shortest'),
+            'released' => __('Released'),
+        ];
+    }
 }

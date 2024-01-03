@@ -3,11 +3,11 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
+use App\Web\Videos\States\SortState;
 use App\Web\Videos\States\TagState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
-use Foxws\LivewireUse\Views\Concerns\WithState;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
@@ -19,11 +19,11 @@ class VideoIndexController extends Page
 {
     use WithPagination;
     use WithQueryBuilder;
-    use WithState;
 
     protected static string $model = Video::class;
 
     protected static array $states = [
+        SortState::class,
         TagState::class,
     ];
 
