@@ -11,10 +11,7 @@
             x-on:touchend.passive="preview = false"
             class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
         >
-            <x-ui-link
-                href="{{ route('videos.view', $item) }}"
-                wire:navigate
-            >
+            <x-ui-link href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -36,14 +33,11 @@
                         loop
                     />
                 </template>
-            </a>
+            </x-ui-link>
         </div>
 
         <div class="flex flex-col p-3.5">
-            <a
-                href="{{ route('videos.view', $item) }}"
-                wire:navigate
-            >
+            <x-ui-link href="{{ route('videos.view', $item) }}">
                 <h2
                     class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
@@ -74,7 +68,7 @@
                         </dd>
                     @endif
                 </dl>
-            </a>
+            </x-ui-link>
 
             @if ($item->tags->isNotEmpty())
                 <x-videos-tags

@@ -5,7 +5,6 @@
             href="{{ route('home', ['t' => $item->getRouteKey()]) }}"
             aria-label="{{ $item->name }}"
             title="{{ $item->name }}"
-            wire:navigate
         >
             {{ $item->name }}
         </x-ui-link>

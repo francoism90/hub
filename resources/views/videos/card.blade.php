@@ -20,14 +20,13 @@
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
-        <a
+        <x-ui-link
             href="{{ route('videos.view', $item) }}"
             aria-label="{{ $item->title }}"
             title="{{ $item->title }}"
-            wire:navigate
         >
             {{ $item->title }}
-        </a>
+        </x-ui-link>
     </h2>
 
     @if ($item->tags->isNotEmpty())
@@ -43,10 +42,7 @@
             x-on:touchend.passive="preview = false"
             class="relative aspect-video h-full w-full flex-shrink-0 bg-black"
         >
-            <a
-                href="{{ route('videos.view', $item) }}"
-                wire:navigate
-            >
+            <x-ui-link href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -78,7 +74,7 @@
                         loop
                     />
                 </template>
-            </a>
+            </x-ui-link>
         </div>
     </div>
 </article>

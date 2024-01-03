@@ -5,7 +5,6 @@
                 <x-ui-link
                     href="/"
                     class="navbar-brand"
-                    wire:navigate
                 >
                     <x-heroicon-s-play-circle class="navbar-logo" />
                     <span>{{ config('app.name') }}</span>
@@ -58,6 +57,7 @@
                                     <x-ui-link
                                         class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
                                         href="{{ route('filament.admin.pages.dashboard') }}"
+                                        external
                                     >
                                         {{ __('Manage Profile') }}
                                     </x-ui-link>
