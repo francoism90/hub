@@ -20,6 +20,6 @@
         </div>
     </div>
 
-    <x-search-filters />
+    {{-- <x-search-filters /> --}}
     <x-search-items />
 </x-ui-container>
