@@ -5,7 +5,6 @@ namespace App\Web\Videos\Controllers;
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
-use Foxws\LivewireUse\Views\Concerns\WithForms;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -16,7 +15,6 @@ use Livewire\WithPagination;
 
 class VideoIndexController extends Page
 {
-    use WithForms;
     use WithPagination;
     use WithQueryBuilder;
 

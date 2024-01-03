@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 
 class SearchIndexController extends Page
 {
-    use WithForms;
     use WithPagination;
     use WithQueryBuilder;
 
@@ -43,13 +42,10 @@ class SearchIndexController extends Page
     #[Computed]
     public function builder(): LengthAwarePaginator
     {
-        /** @var Builder */
         $value = $this->form->getSearch();
 
-        return $this
-            ->getModel()
-            ->search($value)
-            // ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
+        return $this->getScout($value)
+            ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
             // ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
             // ->when($this->form->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             // ->when($this->form->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
