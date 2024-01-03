@@ -4,6 +4,7 @@ namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Foxws\LivewireUse\Support\Discover\ComponentScout;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
@@ -15,6 +16,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         $this->configureSeo();
         $this->configureComponents();
+        $this->configurePaginators();
     }
 
     protected function configureSeo(): void
@@ -38,6 +40,13 @@ class ViewServiceProvider extends ServiceProvider
 
                 Blade::component($class->getFcqn(), $name->value());
             });
+    }
+
+    protected function configurePaginators(): void
+    {
+        Paginator::defaultView('ui-pagination');
+
+        Paginator::defaultSimpleView('ui-simple-pagination');
     }
 
     protected static function getComponentPrefix(DiscoveredClass $class): Stringable

@@ -2,10 +2,10 @@
     role="navigation"
     aria-label="Pagination Navigation"
 >
-    @if ($this->items->hasPages())
-        <div {{ $attributes->merge(['class' => 'flex items-center justify-between py-6']) }}>
+    @if ($paginator->hasPages())
+        <div class="flex items-center justify-between py-6">
             <button
-                @if ($this->items->onFirstPage()) disabled @endif
+                @if ($paginator->onFirstPage()) disabled @endif
                 x-data
                 x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
@@ -17,11 +17,11 @@
             </button>
 
             <span class="text-sm text-gray-300">
-                {{ __(':current of :last', ['current' => $this->items->currentPage(), 'last' => $this->items->lastPage()]) }}
+                {{ __(':current of :last', ['current' => $paginator->currentPage(), 'last' => $paginator->lastPage()]) }}
             </span>
 
             <button
-                @if ($this->items->onLastPage()) disabled @endif
+                @if ($paginator->onLastPage()) disabled @endif
                 x-data
                 x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"

@@ -21,6 +21,7 @@
     </div>
 
     {{-- <x-search-filters /> --}}
+
     <div class="flex flex-col gap-y-8">
         <div
             class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2"
@@ -31,6 +32,6 @@
             @endforeach
         </div>
 
-        <x-ui-pagination />
+        {{ $this->items->links('pagination.default') }}
     </div>
 </x-ui-container>
