@@ -11,8 +11,8 @@ return [
     |
     */
 
-    'vod_url' => env('VOD_URL'),
+    'url' => env('VOD_URL'),
 
-    'vod_path' => env('VOD_PATH', 'dash'),
+    'path' => env('VOD_PATH', 'dash'),
 
 ];
