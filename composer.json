@@ -34,7 +34,6 @@
         "spatie/laravel-db-snapshots": "^2.5.2",
         "spatie/laravel-enum": "^3.0.2",
         "spatie/laravel-google-fonts": "^1.2.3",
-        "spatie/laravel-json-api-paginate": "^1.13.0",
         "spatie/laravel-medialibrary": "^11.0.3",
         "spatie/laravel-model-states": "^2.6.0",
         "spatie/laravel-permission": "^6.3",
