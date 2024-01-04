@@ -2,7 +2,7 @@
 
 namespace App\Web\Videos\States;
 
-use Foxws\LivewireUse\Views\Support\State;
+use Foxws\LivewireUse\Support\StateObjects\State;
 
 class SortState extends State
 {

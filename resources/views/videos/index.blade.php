@@ -1,12 +1,9 @@
 @php
-    // $tags = $this->state->tags->sortByDesc(fn ($item) => $this->form->hasTag($item));
+    $tags = $tag->ordered()->sortByDesc(fn ($item) => $this->form->hasTag($item));
 @endphp
 
 <x-ui-container class="flex flex-nowrap sm:space-x-24">
-    {{-- @dd($foo) --}}
-
-    {{ $foo->foo }}
-    {{-- <div
+    <div
         class="flex-col grow divide-y divide-gray-700"
         wire:poll.keep-alive.10s
     >
@@ -46,6 +43,6 @@
                     />
                 @endforeach
             </div>
-        </div> --}}
+        </div>
     </aside>
 </x-ui-container>

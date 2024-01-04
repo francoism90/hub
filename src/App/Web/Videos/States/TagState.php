@@ -9,16 +9,14 @@ use Illuminate\Support\Collection;
 
 class TagState extends State
 {
-    public $foo = 'bar';
-
-    public function tags(): Collection
+    public function ordered(): Collection
     {
         return Tag::query()
             ->ordered()
             ->get();
     }
 
-    public function tagTypes(): array
+    public function types(): array
     {
         return TagType::toArray();
     }
