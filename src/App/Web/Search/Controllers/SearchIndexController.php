@@ -2,73 +2,60 @@
 
 namespace App\Web\Search\Controllers;
 
-use App\Web\Search\Concerns\WithFeatures;
-use App\Web\Search\Concerns\WithHistory;
-use App\Web\Search\Concerns\WithScroll;
-use App\Web\Search\Concerns\WithSorters;
-use App\Web\Search\Forms\SearchForm;
-use App\Web\Tags\Concerns\WithTags;
-use App\Web\Videos\Concerns\WithVideos;
-use Artesaos\SEOTools\Facades\SEOMeta;
+use App\Web\Search\Forms\QueryForm;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
 use Livewire\WithPagination;
 
-class SearchIndexController extends Component
+class SearchIndexController extends Page
 {
-    use WithFeatures;
-    use WithHistory;
     use WithPagination;
-    use WithScroll;
-    use WithSorters;
-    use WithTags;
-    use WithVideos;
+    use WithQueryBuilder;
 
-    public SearchForm $form;
+    protected static string $model = Video::class;
+
+    public QueryForm $form;
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('Search'));
+        $this->seo()->setTitle(__('Search'));
 
-        $this->form->populate();
+        $this->form->restore();
     }
 
     public function render(): View
     {
-        return view('search::index');
+        return view('search.index');
     }
 
-    public function updatedForm(): void
+    public function updated(): void
     {
-        $this->reset('items');
-
-        $this->validate();
-
         $this->resetPage();
 
-        $this->form->store();
-
-        $this->storeQueries();
+        $this->form->submit();
     }
 
     #[Computed]
-    public function items(?int $page = null): LengthAwarePaginator
+    public function items(): LengthAwarePaginator
     {
-        $query = $this->form->sanitizeQuery() ?: '';
+        $value = $this->form->getSearch();
 
-        return Video::search($query)
-            ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
-            ->when($this->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            ->when($this->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            ->when($this->hasSort('released'), fn (Builder $query) => $query
-                ->orderBy('released_at', 'desc')
+        return $this->getScout($value)
+            ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
+            ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged((array) $value))
+            ->when($this->form->hasFeatures('caption'), fn (Builder $query) => $query->where('caption', true))
+            ->when($this->form->isSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->form->isSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->when($this->form->isSort('released'), fn (Builder $query) => $query
+                ->orderBy('released', 'desc')
                 ->orderBy('created_at', 'desc')
             )
-            ->take(12 * 48)
-            ->paginate(perPage: 12, page: $page);
+            ->take(16 * 48)
+            ->paginate(16);
     }
 }

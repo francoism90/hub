@@ -3,31 +3,22 @@
 namespace App\Web\Profile\Controllers;
 
 use App\Web\Playlists\Concerns\WithWatchlist;
-use App\Web\Profile\Concerns\WithAuthentication;
-use App\Web\Videos\Components\Listing;
-use App\Web\Videos\Concerns\WithSearch;
-use App\Web\Videos\Concerns\WithSorters;
-use Artesaos\SEOTools\Facades\SEOMeta;
-use Illuminate\Contracts\Pagination\Paginator;
+use App\Web\Videos\Controllers\VideoIndexController;
+use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\View\View;
+use Illuminate\Pagination\Paginator;
 use Livewire\Attributes\Computed;
 
-class WatchlistController extends Listing
+class WatchlistController extends VideoIndexController
 {
-    use WithAuthentication;
-    use WithSearch;
-    use WithSorters;
     use WithWatchlist;
+
+    protected static string $model = Video::class;
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('Watchlist'));
-    }
-
-    public function render(): View
-    {
-        return view('videos::index');
+        $this->seo()->setTitle(__('Watchlist'));
+        $this->seo()->setDescription(__('Your Watchlist'));
     }
 
     #[Computed]
@@ -37,20 +28,11 @@ class WatchlistController extends Listing
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->when($this->hasSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
-            ->when($this->hasSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
-            ->when($this->hasSearch(), fn (Builder $query) => $query->search($this->query, true))
+            ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
+            ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
+            ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value, true))
+            ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged($value))
             ->take(32 * 32)
-            ->paginate(32);
-    }
-
-    #[Computed]
-    public function sorters(): array
-    {
-        return [
-            '' => __('Date added (newest)'),
-            'oldest' => __('Date added (oldest)'),
-            'published' => __('Date published'),
-        ];
+            ->simplePaginate(32);
     }
 }

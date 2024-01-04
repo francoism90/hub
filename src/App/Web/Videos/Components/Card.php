@@ -15,6 +15,6 @@ class Card extends Component
 
     public function render(): View
     {
-        return view('videos::card');
+        return view('videos.card');
     }
 }

@@ -2,10 +2,8 @@
 
 namespace App\Api\Http\Controllers;
 
-use App\Api\Http\Resources\UserCollection;
 use App\Api\Http\Resources\UserResource;
 use Domain\Users\Models\User;
-use Domain\Users\QueryBuilders\UserIndexQuery;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -19,11 +17,9 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
     }
 
-    public function index(UserIndexQuery $query): UserCollection
+    public function index(Request $request)
     {
-        return new UserCollection(
-            $query->jsonPaginate()
-        );
+        //
     }
 
     public function store(Request $request)

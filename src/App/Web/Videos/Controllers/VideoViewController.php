@@ -5,17 +5,14 @@ namespace App\Web\Videos\Controllers;
 use App\Web\Playlists\Concerns\WithFavorites;
 use App\Web\Playlists\Concerns\WithHistory;
 use App\Web\Playlists\Concerns\WithWatchlist;
-use App\Web\Profile\Concerns\WithAuthentication;
 use App\Web\Videos\Concerns\WithVideo;
-use Artesaos\SEOTools\Facades\SEOMeta;
+use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
-use Livewire\Component;
 
-class VideoViewController extends Component
+class VideoViewController extends Page
 {
-    use WithAuthentication;
     use WithFavorites;
     use WithHistory;
     use WithVideo;
@@ -23,18 +20,18 @@ class VideoViewController extends Component
 
     public function mount(): void
     {
-        SEOMeta::setTitle((string) $this->video?->name);
+        $this->seo()->setTitle((string) $this->video?->name);
     }
 
     public function render(): View
     {
-        return view('videos::view');
+        return view('videos.view');
     }
 
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $this->authorize('update', static::history());
+        $this->canUpdate(static::history());
 
         throw_unless($time >= 0 && $time <= ceil($this->video->duration));
 
@@ -45,7 +42,7 @@ class VideoViewController extends Component
 
     public function toggleFavorite(): void
     {
-        $this->authorize('update', $model = static::favorites());
+        $this->canUpdate($model = static::favorites());
 
         $this->isFavorited($this->video)
             ? $model->detachVideo($this->video)
@@ -54,7 +51,7 @@ class VideoViewController extends Component
 
     public function toggleWatchlist(): void
     {
-        $this->authorize('update', $model = static::watchlist());
+        $this->canUpdate($model = static::watchlist());
 
         $this->isWatchlisted($this->video)
             ? $model->detachVideo($this->video)
@@ -84,7 +81,7 @@ class VideoViewController extends Component
             ->videos()
             ->find($this->video);
 
-        return data_get($model?->pivot->options, 'timestamp', 0);
+        return data_get($model?->pivot?->options, 'timestamp', 0);
     }
 
     public function getListeners(): array

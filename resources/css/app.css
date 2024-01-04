@@ -1,3 +1,6 @@
+/* Vendor */
+@import '../../vendor/foxws/livewire-use/resources/css/theme.css';
+
 /* Styles */
 @import 'base/_all.css';
 @import 'components/_all.css';

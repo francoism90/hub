@@ -19,6 +19,6 @@ class Player extends Component
 
     public function render(): View
     {
-        return view('videos::player');
+        return view('videos.player');
     }
 }

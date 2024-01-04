@@ -1,17 +1,9 @@
 @layer components {
     .navbar {
-        @apply flex items-center justify-between py-6;
-
-        &-item {
-            @apply line-clamp-1 cursor-pointer hover:text-primary-300 focus:text-primary-400 active:text-primary-400;
-
-            &-active {
-                @apply !text-primary-400 hover:!text-primary-400;
-            }
-        }
+        @apply py-6;
 
         &-brand {
-            @apply flex items-center space-x-4 text-2xl font-medium lowercase;
+            @apply space-x-4 text-2xl font-medium lowercase hover:text-primary-100;
         }
 
         &-logo {
@@ -19,7 +11,7 @@
         }
 
         &-menu {
-            @apply flex items-center space-x-6;
+            @apply items-center space-x-6;
         }
     }
 }

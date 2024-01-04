@@ -2,32 +2,33 @@
 
 namespace App\Web\Tags\Controllers;
 
-use App\Web\Tags\Concerns\WithTags;
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Domain\Tags\Models\Tag;
+use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
 
-class TagIndexController extends Component
+class TagIndexController extends Page
 {
-    use WithTags;
+    use WithQueryBuilder;
+
+    protected static string $model = Tag::class;
 
     public function mount(): void
     {
-        SEOMeta::setTitle(__('Tags'));
+        $this->seo()->setTitle(__('Tags'));
     }
 
     public function render(): View
     {
-        return view('tags::index');
+        return view('tags.index');
     }
 
     #[Computed(cache: true, key: 'tags', seconds: 60 * 10)]
     public function items(): Collection
     {
-        return Tag::query()
+        return $this->getQuery()
             ->withCount('videos')
             ->orderBy('name')
             ->get()

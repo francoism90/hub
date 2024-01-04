@@ -17,8 +17,10 @@ trait InteractsWithRandomSeed
 
     protected static function getRandomSeed(string $key, Carbon|int $ttl): mixed
     {
+        $id = auth()->id() ?: session()->getId();
+
         return Cache::remember(
-            sprintf('randomSeed-%s-%s', $key, session()->getId()),
+            sprintf('randomSeed-%s-%s', $id, $key),
             $ttl,
             fn () => (auth()->id() ?? 0) + time()
         );
