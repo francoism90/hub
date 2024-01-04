@@ -22,10 +22,12 @@ class VideoIndexController extends Page
 
     protected static string $model = Video::class;
 
-    protected static array $states = [
-        SortState::class,
-        TagState::class,
-    ];
+    public TagState $foo;
+
+    // protected static array $states = [
+    //     SortState::class,
+    //     TagState::class,
+    // ];
 
     #[Url(as: 'q', history: true, except: '')]
     public ?string $search = null;
