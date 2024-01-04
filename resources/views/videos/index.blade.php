@@ -24,7 +24,7 @@
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
                             'link text-sm font-medium uppercase',
-                            'link-active' => $this->form->hasTag($item)),
+                            'link-active' => $this->form->hasTag($item),
                         ])
                     >
                         {{ $item->name }}

@@ -30,8 +30,6 @@ class VideoIndexController extends Page
 
     public QueryForm $form;
 
-    public SortState $sort;
-
     public TagState $tag;
 
     public function render(): View
