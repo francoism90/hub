@@ -3,9 +3,7 @@
 namespace Foundation\Providers;
 
 use Foxws\LivewireUse\Support\Discover\LivewireScout;
-use Foxws\LivewireUse\Support\Synthesizers\ModelSynth;
-use Foxws\LivewireUse\Support\Synthesizers\SpatieEnumSynth;
-use Foxws\LivewireUse\Support\Synthesizers\SpatieStateSynth;
+use Foxws\LivewireUse\Support\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
 use Livewire\Livewire;
@@ -28,8 +26,6 @@ class LivewireServiceProvider extends ServiceProvider
     protected function configureSynthesizers(): void
     {
         Livewire::propertySynthesizer(ModelSynth::class);
-        Livewire::propertySynthesizer(SpatieEnumSynth::class);
-        Livewire::propertySynthesizer(SpatieStateSynth::class);
     }
 
     protected function configureMiddlewares(): void
