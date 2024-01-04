@@ -77,12 +77,12 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan filament:upgrade"
+            "@php artisan filament:upgrade",
+            "@php artisan google-fonts:fetch",
+            "@php artisan icons:cache"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan google-fonts:fetch",
-            "@php artisan icons:cache",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models --nowrite"
