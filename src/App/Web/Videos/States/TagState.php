@@ -5,15 +5,15 @@ namespace App\Web\Videos\States;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\LivewireUse\Support\StateObjects\State;
-use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 
 class TagState extends State
 {
-    public function ordered(): Collection
+    public function ordered(): LazyCollection
     {
         return Tag::query()
             ->ordered()
-            ->get();
+            ->cursor();
     }
 
     public function types(): array
