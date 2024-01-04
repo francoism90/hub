@@ -1,5 +1,5 @@
 @php
-    $tags = $tag->ordered()->sortByDesc(fn ($item) => $this->form->hasTag($item));
+    $tags = $tag->ordered($this->form->tags);
 @endphp
 
 <x-ui-container class="flex flex-nowrap sm:space-x-24">

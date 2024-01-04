@@ -9,11 +9,14 @@ use Illuminate\Support\LazyCollection;
 
 class TagState extends State
 {
-    public function ordered(): LazyCollection
+    public function ordered(?array $items = null): LazyCollection
     {
         return Tag::query()
             ->ordered()
-            ->cursor();
+            ->cursor()
+            ->when($items, fn (LazyCollection $collection) => $collection
+                ->sortByDesc(fn (Tag $item) => in_array($item->getRouteKey(), $items))
+            );
     }
 
     public function types(): array
