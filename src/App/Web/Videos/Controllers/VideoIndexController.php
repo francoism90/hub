@@ -3,7 +3,6 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\States\SortState;
 use App\Web\Videos\States\TagState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
