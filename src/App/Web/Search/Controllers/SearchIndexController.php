@@ -36,6 +36,8 @@ class SearchIndexController extends Page
     public function updated(): void
     {
         $this->form->submit();
+
+        $this->resetPage();
     }
 
     #[Computed]
@@ -46,13 +48,13 @@ class SearchIndexController extends Page
         return $this->getScout($value)
             ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
             ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged((array) $value))
-            // ->when($this->hasFeature('caption'), fn (Builder $query) => $query->where('caption', true))
-            // ->when($this->form->hasSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            // ->when($this->form->hasSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            // ->when($this->form->hasSort('released'), fn (Builder $query) => $query
-                // ->orderBy('released_at', 'desc')
-                // ->orderBy('created_at', 'desc')
-            // )
+            ->when($this->form->hasFeatures('caption'), fn (Builder $query) => $query->where('caption', true))
+            ->when($this->form->isSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->form->isSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->when($this->form->isSort('released'), fn (Builder $query) => $query
+                ->orderBy('released', 'desc')
+                ->orderBy('created_at', 'desc')
+            )
             ->take(16 * 48)
             ->paginate(16);
     }

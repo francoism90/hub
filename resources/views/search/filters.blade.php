@@ -1,8 +1,8 @@
 <div class="flex w-full flex-row flex-nowrap gap-x-6">
-    @if (filled($this->form->search))
+    @if ($this->form->hasSearch())
         <x-ui-dropdown>
             <button class="btn text-sm font-semibold">
-                <span>{{ $this->sorter }}</span>
+                <span>{{ __('Sort') }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''"
@@ -15,22 +15,25 @@
                     x-on:click.away="open = false"
                     class="dropdown-content w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
                 >
-                    @foreach ($this->sorters as $key => $label)
+                    @foreach ($sorters as $item => $label)
                         <label
-                            for="sort-{{ $key }}"
-                            class="btn @if ($this->form->hasSort($key)) btn-gradient @endif justify-start px-4 py-2 text-sm"
+                            for="sort-{{ $item }}"
+                            @class([
+                                'btn justify-start px-4 py-2 text-sm',
+                                'btn-gradient' => $this->form->isSort($item),
+                            ])
                         >
                             <span>{{ $label }}</span>
-                            @if ($this->form->hasSort($key))
+                            @if ($this->form->isSort($item))
                                 <x-heroicon-o-check class="h-4 w-4" />
                             @endif
                         </label>
 
                         <input
-                            id="sort-{{ $key }}"
+                            id="sort-{{ $item }}"
                             type="radio"
                             class="hidden"
-                            value="{{ $key }}"
+                            value="{{ $item }}"
                             wire:model.live="form.sort"
                         />
                     @endforeach
@@ -53,23 +56,26 @@
                     x-on:click.away="open = false"
                     class="dropdown-content w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
                 >
-                    @foreach ($this->features as $key => $label)
+                    @foreach ($features as $item => $label)
                         <label
-                            for="feature-{{ $key }}"
-                            class="btn @if ($this->hasFeature($key)) btn-gradient @endif justify-start px-4 py-2 text-sm"
+                            for="feature-{{ $item }}"
+                            @class([
+                                'btn justify-start px-4 py-2 text-sm',
+                                'btn-gradient' => $this->form->hasFeatures($item),
+                            ])
                         >
                             <span>{{ $label }}</span>
-                            @if ($this->hasFeature($key))
+                            @if ($this->form->hasFeatures($item))
                                 <x-heroicon-o-check class="h-4 w-4" />
                             @endif
                         </label>
 
                         <input
-                            id="feature-{{ $key }}"
+                            id="feature-{{ $item }}"
                             type="checkbox"
                             class="hidden"
-                            value="{{ $key }}"
-                            wire:model.live="form.feature"
+                            value="{{ $item }}"
+                            wire:model.live="form.features"
                         />
                     @endforeach
                 </div>
