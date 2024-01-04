@@ -1,7 +1,3 @@
-@php
-    $tags = $tag->ordered($this->form->tags);
-@endphp
-
 <x-ui-container class="flex flex-nowrap sm:space-x-24">
     <div
         class="flex-col grow divide-y divide-gray-700"
@@ -23,7 +19,7 @@
             <h3 class="headline text-sm pb-3.5">{{ __('Tags') }}</h3>
 
             <div class="flex flex-col gap-y-2 overflow-y-scroll max-h-80">
-                @foreach ($tags as $item)
+                @foreach ($tag->ordered($this->form->tags) as $item)
                     <label
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
