@@ -7,7 +7,6 @@ use Domain\Tags\Models\Tag;
 use Foxws\LivewireUse\Support\StateObjects\State;
 use Illuminate\Support\LazyCollection;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Locked;
 
 class TagState extends State
 {
