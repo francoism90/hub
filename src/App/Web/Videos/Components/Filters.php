@@ -4,8 +4,8 @@ namespace App\Web\Videos\Components;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Foxws\LivewireUse\Views\Components\Component;
 use Illuminate\Support\LazyCollection;
+use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class Filters extends Component

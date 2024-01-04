@@ -15,7 +15,7 @@
         "filament/spatie-laravel-google-fonts-plugin": "^3.1.33",
         "filament/spatie-laravel-media-library-plugin": "^3.1.33",
         "filament/spatie-laravel-translatable-plugin": "^3.1.33",
-        "foxws/livewire-use": "dev-3.x-dev",
+        "foxws/livewire-use": "^0.0.1",
         "guzzlehttp/guzzle": "^7.8.1",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/fortify": "^1.19.1",
@@ -108,12 +108,6 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:foxws/livewire-use.git"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
