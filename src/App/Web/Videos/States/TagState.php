@@ -11,6 +11,8 @@ class TagState extends State
 {
     public function ordered(?array $items = null): LazyCollection
     {
+        $this->canViewAny(Tag::class);
+
         return Tag::query()
             ->ordered()
             ->cursor()
