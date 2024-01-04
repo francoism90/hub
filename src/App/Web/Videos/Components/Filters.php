@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Web\Videos\States;
+namespace App\Web\Videos\Components;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Foxws\LivewireUse\Support\StateObjects\State;
+use Foxws\LivewireUse\Views\Components\Component;
 use Illuminate\Support\LazyCollection;
+use Illuminate\View\View;
 
-class TagState extends State
+class Filters extends Component
 {
+    public function render(): View
+    {
+        return view('videos.filters');
+    }
+
     public function ordered(?array $items = null): LazyCollection
     {
-        $this->canViewAny(Tag::class);
-
         return Tag::query()
             ->ordered()
             ->cursor()

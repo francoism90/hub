@@ -3,7 +3,6 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\States\TagState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Views\Components\Page;
 use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
@@ -28,8 +27,6 @@ class VideoIndexController extends Page
     public ?array $tags = null;
 
     public QueryForm $form;
-
-    public TagState $tag;
 
     public function render(): View
     {
