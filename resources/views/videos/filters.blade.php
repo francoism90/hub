@@ -1,4 +1,4 @@
-<aside class="hidden w-full min-w-72 max-w-72 flex-col gap-y-4 self-start sm:flex">
+<aside class="hidden w-72 min-w-72 max-w-72 flex-col gap-y-4 self-start sm:flex">
     <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-4">
         <h3 class="headline text-sm pb-3.5">{{ __('Tags') }}</h3>
 

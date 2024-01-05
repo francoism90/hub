@@ -1,6 +1,6 @@
 <x-ui-container class="flex flex-nowrap sm:space-x-24">
     <div
-        class="flex-col grow divide-y divide-gray-700"
+        class="flex-col grow overflow-hidden divide-y divide-gray-700"
         wire:poll.keep-alive.10s
     >
         @forelse ($this->items as $item)
