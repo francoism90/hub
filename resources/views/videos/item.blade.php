@@ -9,7 +9,7 @@
             x-on:touchstart.passive="preview = true"
             x-on:touchmove.passive="preview = true"
             x-on:touchend.passive="preview = false"
-            class="relative aspect-video h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
+            class="relative h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
         >
             <x-ui-link href="{{ route('videos.view', $item) }}">
                 <img

@@ -1,7 +1,7 @@
 @layer base {
     body,
     html {
-        @apply relative h-screen min-h-screen bg-gray-950 text-white;
+        @apply relative h-screen min-h-screen overflow-x-hidden bg-gray-950 text-white;
     }
 
     img {
