@@ -4,7 +4,7 @@ namespace Domain\Videos\QueryBuilders;
 
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithScout;
-use Domain\Shared\Concerns\InteractsWithTags;
+use Domain\Tags\Concerns\InteractsWithTags;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;

@@ -31,7 +31,7 @@ class WatchlistController extends VideoIndexController
             ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
             ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
             ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value, true))
-            ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged($value))
+            ->when($this->form->getTags(), fn (Builder $query, array $value) => $query->tagged($value))
             ->take(32 * 32)
             ->simplePaginate(32);
     }

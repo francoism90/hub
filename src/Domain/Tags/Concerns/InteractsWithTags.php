@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Shared\Concerns;
+namespace Domain\Tags\Concerns;
 
 use Domain\Tags\Models\Tag;
 use Illuminate\Contracts\Support\Arrayable;
