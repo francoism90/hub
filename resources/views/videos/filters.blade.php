@@ -2,7 +2,7 @@
     <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-4">
         <h3 class="headline text-sm pb-3.5">{{ __('Tags') }}</h3>
 
-        <div class="flex flex-col gap-y-2 overflow-y-scroll max-h-80">
+        <div class="flex flex-col gap-y-2 overflow-y-scroll max-h-96">
             @foreach ($ordered($this->form->tags) as $item)
                 <label
                     for="tag-{{ $item->getRouteKey() }}"
