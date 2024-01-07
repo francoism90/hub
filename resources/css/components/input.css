@@ -1,21 +1,5 @@
 @layer components {
     .input {
         @apply bg-gray-800 text-gray-300 placeholder:text-gray-500;
-
-        &-group {
-            @apply flex flex-1 items-center;
-        }
-
-        &-prepend {
-            @apply rounded-l-none;
-        }
-
-        &-append {
-            @apply rounded-r-none;
-        }
-
-        &-ghost {
-            @apply border-0 border-opacity-0 bg-transparent;
-        }
     }
 }
