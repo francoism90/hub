@@ -7,13 +7,11 @@ use App\Web\Profile\Controllers\WatchlistController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagIndexController;
 use App\Web\Videos\Controllers\VideoViewController;
-use Foxws\LivewireUse\Auth\Controllers\LoginController;
+use Foxws\LivewireUse\Facades\LivewireUse;
 use Illuminate\Support\Facades\Route;
 
 // Auth
-Route::name('auth.')->group(function () {
-    Route::get('/login', LoginController::class)->name('login');
-});
+LivewireUse::routes();
 
 // App
 Route::middleware('auth')->group(function () {
