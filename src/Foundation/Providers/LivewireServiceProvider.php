@@ -3,7 +3,7 @@
 namespace Foundation\Providers;
 
 use Foxws\LivewireUse\Support\Discover\LivewireScout;
-use Foxws\LivewireUse\Support\Models\ModelSynth;
+use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Stringable;
 use Livewire\Livewire;
