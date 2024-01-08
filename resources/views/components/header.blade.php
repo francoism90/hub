@@ -53,13 +53,19 @@
                                     </x-ui-link>
                                 </section>
 
-                                <section class="flex flex-col flex-nowrap gap-y-1">
+                                <section class="flex flex-col flex-nowrap gap-y-3">
                                     <x-ui-link
-                                        class="btn rounded bg-gray-600/50 py-2 text-sm font-medium"
                                         href="{{ route('filament.admin.pages.dashboard') }}"
                                         external
                                     >
                                         {{ __('Manage Profile') }}
+                                    </x-ui-link>
+
+                                    <x-ui-link
+                                        route="auth.logout"
+                                        class="btn bg-gray-600/50"
+                                    >
+                                        {{ __('Log Out') }}
                                     </x-ui-link>
                                 </section>
                             </div>
