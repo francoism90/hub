@@ -63,7 +63,7 @@
 
                                     <x-ui-link
                                         route="auth.logout"
-                                        class="btn bg-gray-600/50"
+                                        class="btn bg-gray-600/50 rounded"
                                     >
                                         {{ __('Log Out') }}
                                     </x-ui-link>
