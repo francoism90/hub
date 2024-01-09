@@ -34,9 +34,9 @@ class VideoIndexController extends Page
             $this->only('search', 'tags')
         );
 
-        $this->form->restore();
-
         $this->form->fill($query);
+
+        $this->form->restore();
 
         $this->form->submit();
     }
