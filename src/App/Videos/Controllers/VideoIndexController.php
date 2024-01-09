@@ -28,11 +28,6 @@ class VideoIndexController extends Page
 
     public QueryForm $form;
 
-    public function render(): View
-    {
-        return view('videos.index');
-    }
-
     public function mount(): void
     {
         $query = array_filter(
@@ -44,6 +39,11 @@ class VideoIndexController extends Page
         $this->form->fill($query);
 
         $this->form->submit();
+    }
+
+    public function render(): View
+    {
+        return view('videos.index');
     }
 
     public function updated(): void
