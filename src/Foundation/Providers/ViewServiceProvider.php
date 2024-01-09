@@ -47,6 +47,4 @@ class ViewServiceProvider extends ServiceProvider
 
         Paginator::defaultSimpleView('pagination.simple');
     }
-
-
 }
