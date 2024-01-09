@@ -19,7 +19,7 @@
                         <label
                             for="sort-{{ $item }}"
                             @class([
-                                'btn justify-start px-4 py-2 text-sm',
+                                'btn justify-start px-4 py-2 text-sm rounded-none',
                                 'btn-gradient' => $this->form->isSort($item),
                             ])
                         >
