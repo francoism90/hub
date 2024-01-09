@@ -39,8 +39,8 @@ class LivewireServiceProvider extends ServiceProvider
     protected function configureComponents(): void
     {
         $components = LivewireScout::create()
-            ->path(app_path('Web'))
-            ->prefix('web-livewire')
+            ->path(app_path())
+            ->prefix('livewire-components')
             ->get();
 
         collect($components)
@@ -56,7 +56,7 @@ class LivewireServiceProvider extends ServiceProvider
     protected static function getComponentPrefix(DiscoveredClass $class): Stringable
     {
         return str($class->namespace)
-            ->after('App\\Web\\')
+            ->after('App\\')
             ->match('/(.*)\\\\/')
             ->kebab()
             ->finish('-');

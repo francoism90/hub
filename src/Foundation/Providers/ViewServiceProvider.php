@@ -28,8 +28,8 @@ class ViewServiceProvider extends ServiceProvider
     protected function configureComponents(): void
     {
         $components = ComponentScout::create()
-            ->path(app_path('Web'))
-            ->prefix('web-components')
+            ->path(app_path())
+            ->prefix('components')
             ->get();
 
         collect($components)
@@ -52,7 +52,7 @@ class ViewServiceProvider extends ServiceProvider
     protected static function getComponentPrefix(DiscoveredClass $class): Stringable
     {
         return str($class->namespace)
-            ->after('App\\Web\\')
+            ->after('App\\')
             ->match('/(.*)\\\\/')
             ->kebab()
             ->finish('-');

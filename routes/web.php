@@ -1,12 +1,12 @@
 <?php
 
-use App\Web\Home\Controllers\HomeController;
-use App\Web\Profile\Controllers\FavoritesController;
-use App\Web\Profile\Controllers\HistoryController;
-use App\Web\Profile\Controllers\WatchlistController;
-use App\Web\Search\Controllers\SearchIndexController;
-use App\Web\Tags\Controllers\TagIndexController;
-use App\Web\Videos\Controllers\VideoViewController;
+use App\Home\Controllers\HomeController;
+use App\Profile\Controllers\FavoritesController;
+use App\Profile\Controllers\HistoryController;
+use App\Profile\Controllers\WatchlistController;
+use App\Search\Controllers\SearchIndexController;
+use App\Tags\Controllers\TagIndexController;
+use App\Videos\Controllers\VideoViewController;
 use Foxws\LivewireUse\Facades\LivewireUse;
 use Illuminate\Support\Facades\Route;
 
