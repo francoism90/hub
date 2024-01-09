@@ -5,7 +5,6 @@ namespace Foundation\Providers;
 use Foxws\LivewireUse\Support\Discover\LivewireScout;
 use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Stringable;
 use Livewire\Livewire;
 use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
@@ -47,18 +46,9 @@ class LivewireServiceProvider extends ServiceProvider
             ->each(function (DiscoveredClass $class) {
                 $name = str($class->name)
                     ->kebab()
-                    ->prepend(static::getComponentPrefix($class));
+                    ->prepend(LivewireScout::componentPrefix($class));
 
                 Livewire::component($name->value(), $class->getFcqn());
             });
-    }
-
-    protected static function getComponentPrefix(DiscoveredClass $class): Stringable
-    {
-        return str($class->namespace)
-            ->after('App\\')
-            ->match('/(.*)\\\\/')
-            ->kebab()
-            ->finish('-');
     }
 }

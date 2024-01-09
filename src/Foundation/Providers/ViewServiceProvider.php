@@ -7,7 +7,6 @@ use Foxws\LivewireUse\Support\Discover\ComponentScout;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Stringable;
 use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class ViewServiceProvider extends ServiceProvider
@@ -36,7 +35,7 @@ class ViewServiceProvider extends ServiceProvider
             ->each(function (DiscoveredClass $class) {
                 $name = str($class->name)
                     ->kebab()
-                    ->prepend(static::getComponentPrefix($class));
+                    ->prepend(ComponentScout::componentPrefix($class));
 
                 Blade::component($class->getFcqn(), $name->value());
             });
@@ -49,12 +48,5 @@ class ViewServiceProvider extends ServiceProvider
         Paginator::defaultSimpleView('pagination.simple');
     }
 
-    protected static function getComponentPrefix(DiscoveredClass $class): Stringable
-    {
-        return str($class->namespace)
-            ->after('App\\')
-            ->match('/(.*)\\\\/')
-            ->kebab()
-            ->finish('-');
-    }
+
 }
