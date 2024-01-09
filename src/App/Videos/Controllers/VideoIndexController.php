@@ -21,10 +21,10 @@ class VideoIndexController extends Page
     protected static string $model = Video::class;
 
     #[Url(as: 'q', history: true, except: '')]
-    public ?string $search = null;
+    public string $search = '';
 
-    #[Url(as: 't', history: true, except: '')]
-    public ?array $tags = null;
+    #[Url(as: 't', history: true, except: [])]
+    public array $tags = [];
 
     public QueryForm $form;
 
@@ -34,9 +34,9 @@ class VideoIndexController extends Page
             $this->only('search', 'tags')
         );
 
-        $this->form->fill($query);
-
         $this->form->restore();
+
+        $this->form->fill($query);
 
         $this->form->submit();
     }
@@ -53,6 +53,13 @@ class VideoIndexController extends Page
         $this->resetPage();
 
         $this->form->submit();
+    }
+
+    public function clear(): void
+    {
+        $this->form->clear();
+
+        $this->redirect(route('home'), true);
     }
 
     #[Computed]
