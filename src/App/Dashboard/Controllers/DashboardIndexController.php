@@ -4,7 +4,9 @@ namespace App\Dashboard\Controllers;
 
 use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\View\View;
+use Livewire\Attributes\Layout;
 
+#[Layout('components.layouts.dashboard')]
 class DashboardIndexController extends Page
 {
     public function mount(): void
