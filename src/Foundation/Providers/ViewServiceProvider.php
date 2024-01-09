@@ -3,11 +3,9 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Foxws\LivewireUse\Support\Discover\ComponentScout;
+use Foxws\LivewireUse\Facades\LivewireUse;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -26,19 +24,10 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $components = ComponentScout::create()
-            ->path(app_path())
-            ->prefix('components')
-            ->get();
-
-        collect($components)
-            ->each(function (DiscoveredClass $class) {
-                $name = str($class->name)
-                    ->kebab()
-                    ->prepend(ComponentScout::componentPrefix($class));
-
-                Blade::component($class->getFcqn(), $name->value());
-            });
+        LivewireUse::registerComponents(
+            path: app_path(),
+            prefix: 'components'
+        );
     }
 
     protected function configurePaginators(): void

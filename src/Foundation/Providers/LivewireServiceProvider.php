@@ -2,11 +2,10 @@
 
 namespace Foundation\Providers;
 
-use Foxws\LivewireUse\Support\Discover\LivewireScout;
+use Foxws\LivewireUse\Facades\LivewireUse;
 use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -37,18 +36,9 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $components = LivewireScout::create()
-            ->path(app_path())
-            ->prefix('livewire-components')
-            ->get();
-
-        collect($components)
-            ->each(function (DiscoveredClass $class) {
-                $name = str($class->name)
-                    ->kebab()
-                    ->prepend(LivewireScout::componentPrefix($class));
-
-                Livewire::component($name->value(), $class->getFcqn());
-            });
+        LivewireUse::registerLivewireComponents(
+            path: app_path(),
+            prefix: 'livewire-components'
+        );
     }
 }
