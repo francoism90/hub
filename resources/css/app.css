@@ -1,5 +1,5 @@
 /* Vendor */
-@import '../../vendor/foxws/livewire-use/resources/css/theme.css';
+@import '../../vendor/foxws/livewire-use/resources/css/app.css';
 
 /* Styles */
 @import 'base/_all.css';
