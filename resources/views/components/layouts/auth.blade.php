@@ -3,29 +3,13 @@
     class="scroll-smooth"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
-
 <head>
     <meta charset="utf-8" />
-    <meta
-        name="application-name"
-        content="{{ config('app.name') }}"
-    >
-    <meta
-        name="csrf-token"
-        content="{{ csrf_token() }}"
-    >
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-    <meta
-        name="msapplication-TileColor"
-        content="#030712"
-    >
-    <meta
-        name="theme-color"
-        content="#030712"
-    >
+    <meta name="application-name" content="{{ config('app.name') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-TileColor" content="#030712">
+    <meta name="theme-color" content="#030712">
     {!! SEOMeta::generate() !!}
     <link
         rel="apple-touch-icon"
