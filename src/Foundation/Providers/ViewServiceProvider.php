@@ -3,12 +3,9 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Foxws\LivewireUse\Support\Discover\ComponentScout;
+use Foxws\LivewireUse\Facades\LivewireUse;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Stringable;
-use Spatie\StructureDiscoverer\Data\DiscoveredClass;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -27,19 +24,10 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        $components = ComponentScout::create()
-            ->path(app_path('Web'))
-            ->prefix('web-components')
-            ->get();
-
-        collect($components)
-            ->each(function (DiscoveredClass $class) {
-                $name = str($class->name)
-                    ->kebab()
-                    ->prepend(static::getComponentPrefix($class));
-
-                Blade::component($class->getFcqn(), $name->value());
-            });
+        LivewireUse::registerComponents(
+            path: app_path(),
+            prefix: 'components'
+        );
     }
 
     protected function configurePaginators(): void
@@ -47,14 +35,5 @@ class ViewServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination.default');
 
         Paginator::defaultSimpleView('pagination.simple');
-    }
-
-    protected static function getComponentPrefix(DiscoveredClass $class): Stringable
-    {
-        return str($class->namespace)
-            ->after('App\\Web\\')
-            ->match('/(.*)\\\\/')
-            ->kebab()
-            ->finish('-');
     }
 }

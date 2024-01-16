@@ -1,5 +1,7 @@
 @layer components {
-    .button {
+    .btn {
+        @apply gap-1.5 border-transparent py-2.5 text-sm font-medium;
+
         &-gradient {
             @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
         }
@@ -8,20 +10,8 @@
             @apply border-primary-500/50 bg-primary-500;
         }
 
-        &-secondary {
-            @apply bg-transparent;
-        }
-
-        &-outline {
-            @apply border bg-transparent;
-        }
-
         &-sm {
-            @apply h-6 max-h-[1.5rem] text-sm;
-        }
-
-        &-rounded {
-            @apply rounded-sm;
+            @apply h-6 max-h-6 text-sm;
         }
     }
 }
