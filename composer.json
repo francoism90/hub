@@ -42,13 +42,13 @@
         "spatie/laravel-tags": "^4.5.2"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.13",
+        "barryvdh/laravel-ide-helper": "^2.14",
         "fakerphp/faker": "^1.23.1",
         "laravel/pint": "^1.13.10",
         "laravel/sail": "^1.27.3",
         "mockery/mockery": "^1.6.7",
         "nunomaduro/collision": "^7.10.0",
-        "pestphp/pest": "^2.33.2",
+        "pestphp/pest": "^2.33.4",
         "pestphp/pest-plugin-laravel": "^2.2",
         "phpunit/phpunit": "^10.5.9",
         "spatie/laravel-ignition": "^2.4.1"
