@@ -67,7 +67,7 @@ class ListVideos extends ListRecords
                 UntaggedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\Action::make('open')
+                Tables\Actions\ViewAction::make('open')
                     ->label(__('View'))
                     ->color('gray')
                     ->icon('heroicon-o-eye')

@@ -19,6 +19,8 @@ class StateFilter extends SelectFilter
     {
         parent::setUp();
 
-        $this->options(static::stateOptions(VideoState::class));
+        $this->options(
+            static::stateOptions(VideoState::class)
+        );
     }
 }

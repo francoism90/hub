@@ -23,7 +23,7 @@ trait InteractsWithState
                     ? $state->label()
                     : $state->getValue();
 
-                return [$state->getValue() => $label];
+                return [$state->getMorphClass() => $label];
             });
     }
 }

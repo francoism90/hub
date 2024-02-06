@@ -62,7 +62,8 @@ class ListImports extends ListRecords
                     ->options(fn () => static::stateOptions(ImportState::class)),
             ])
             ->actions([
-                ImportAction::make(),
+                ImportAction::make()
+                    ->icon('heroicon-o-plus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
