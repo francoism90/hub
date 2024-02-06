@@ -20,7 +20,8 @@ class ListUsers extends ListRecords
     public function table(Table $table): Table
     {
         return $table
-            ->deferLoading()
+            ->poll()
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 Columns\TextColumn::make('name')
                     ->searchable()

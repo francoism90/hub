@@ -55,7 +55,7 @@ class SearchIndexController extends Page
                 ->orderBy('released', 'desc')
                 ->orderBy('created_at', 'desc')
             )
-            ->take(24 * 52)
-            ->paginate(24);
+            ->take(32 * 52)
+            ->paginate(32);
     }
 }

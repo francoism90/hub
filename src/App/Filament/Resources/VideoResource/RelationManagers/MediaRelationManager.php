@@ -27,7 +27,7 @@ class MediaRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->deferLoading()
+            ->poll()
             ->recordTitleAttribute('file_name')
             ->defaultSort('collection_name')
             ->columns([

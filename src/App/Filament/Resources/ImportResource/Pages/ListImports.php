@@ -25,8 +25,7 @@ class ListImports extends ListRecords
     public function table(Table $table): Table
     {
         return $table
-            ->deferLoading()
-            ->poll('10s')
+            ->poll()
             ->defaultSort('created_at', 'desc')
             ->columns([
                 Columns\TextColumn::make('file_name')

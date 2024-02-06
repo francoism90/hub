@@ -19,8 +19,7 @@ class ListMedia extends ListRecords
     public function table(Table $table): Table
     {
         return $table
-            ->deferLoading()
-            ->poll('10s')
+            ->poll()
             ->defaultSort('created_at', 'desc')
             ->modifyQueryUsing(fn (Builder $query) => $query->withWhereHas('model'))
             ->columns([
