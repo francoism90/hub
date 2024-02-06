@@ -142,3 +142,13 @@
 .shaka-captions-off {
     @apply text-gray-300;
 }
+
+.shaka-play-button {
+    &[icon='play'] {
+        @apply bg-none;
+    }
+
+    &[icon='pause'] {
+        @apply bg-none;
+    }
+}
