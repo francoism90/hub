@@ -1,7 +1,3 @@
-/* Assets */
-@import '~/shaka-player/dist/controls';
-
-/* Overrules */
 .shaka-video,
 .shaka-video-container {
     @apply aspect-video h-full w-full;
