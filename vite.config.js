@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
+        '@': fileURLToPath(new URL('./', import.meta.url)),
         '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
         '!': fileURLToPath(new URL('./vendor', import.meta.url)),
       },

@@ -2,7 +2,7 @@
     <div>
         <span>{{ config('app.name') }}</span>
         <span> • </span>
-        <span>© 2023</span>
+        <span>© 2024</span>
         <span> • </span>
         <a
             target="_blank"
