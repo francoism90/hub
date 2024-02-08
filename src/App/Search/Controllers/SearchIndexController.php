@@ -46,7 +46,7 @@ class SearchIndexController extends Page
         $value = $this->form->getSearch();
 
         return $this->getScout($value)
-            ->when(! $this->form->hasSearch(), fn (Builder $query) => $query->whereIn('id', [0]))
+            ->when(blank($value), fn (Builder $query) => $query->whereIn('id', [0]))
             ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged((array) $value))
             ->when($this->form->hasFeatures('caption'), fn (Builder $query) => $query->where('caption', true))
             ->when($this->form->isSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
@@ -55,7 +55,6 @@ class SearchIndexController extends Page
                 ->orderBy('released', 'desc')
                 ->orderBy('created_at', 'desc')
             )
-            ->take(32 * 52)
             ->paginate(32);
     }
 }

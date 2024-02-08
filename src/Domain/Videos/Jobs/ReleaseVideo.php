@@ -2,7 +2,7 @@
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\MarkVideoReleased;
+use Domain\Videos\Actions\MarkVideoVerified;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -56,7 +56,7 @@ class ReleaseVideo implements ShouldQueue
 
     public function handle(): void
     {
-        app(MarkVideoReleased::class)->execute($this->video);
+        app(MarkVideoVerified::class)->execute($this->video);
     }
 
     /**

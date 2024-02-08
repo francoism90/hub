@@ -187,7 +187,6 @@ return [
                     'languages',
                     'content',
                     'summary',
-                    'languages',
                 ],
 
                 'sortableAttributes' => [
@@ -222,6 +221,7 @@ return [
                     '_',
                     '-',
                     '|',
+                    '/',
                     '(',
                     ')',
                     '[',
@@ -236,7 +236,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 5000,
+                    'maxTotalHits' => 10000,
                 ],
             ],
 
@@ -275,6 +275,7 @@ return [
                     '9' => ['09'],
                     '&' => ['and'],
                     '@' => ['at'],
+                    '#' => ['hash', 'hashtag'],
                 ],
 
                 'stopWords' => [
@@ -284,6 +285,7 @@ return [
                     '_',
                     '-',
                     '|',
+                    '/',
                     '(',
                     ')',
                     '[',
@@ -298,7 +300,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 5000,
+                    'maxTotalHits' => 10000,
                 ],
             ],
         ],

@@ -26,10 +26,10 @@ class GetSimilarVideos
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array($word, ['and', 'a', 'or']))
             ->take(7)
-            ->merge([
+            ->merge(array_filter([
                 $model->identifier,
                 $model->released_at,
-            ])
+            ]))
             ->filter()
             ->unique();
 
@@ -40,7 +40,7 @@ class GetSimilarVideos
 
                 yield Video::search($phrase)
                     ->where('state', Verified::$name)
-                    ->take(6)
+                    ->take(7)
                     ->cursor();
             }
         });

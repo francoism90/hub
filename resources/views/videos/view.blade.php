@@ -33,7 +33,7 @@
                 </h1>
             </header>
 
-            <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 py-3 text-center text-sm text-gray-300">
+            <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 text-center text-sm text-gray-300">
                 <a
                     class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite"

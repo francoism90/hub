@@ -5,7 +5,7 @@ namespace Domain\Videos\Actions;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
 
-class MarkVideoReleased
+class MarkVideoVerified
 {
     public function execute(Video $model): void
     {
