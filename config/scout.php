@@ -236,7 +236,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 1500,
+                    'maxTotalHits' => 5000,
                 ],
             ],
 
@@ -298,7 +298,7 @@ return [
                 ],
 
                 'pagination' => [
-                    'maxTotalHits' => 1500,
+                    'maxTotalHits' => 5000,
                 ],
             ],
         ],
