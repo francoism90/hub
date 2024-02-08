@@ -8,7 +8,7 @@
                     <label
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
-                            'link text-sm font-medium uppercase',
+                            'link text-sm uppercase',
                             'link-active' => $this->form->hasTags($item),
                         ])
                     >
