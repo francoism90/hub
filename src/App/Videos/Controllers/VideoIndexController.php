@@ -4,8 +4,8 @@ namespace App\Videos\Controllers;
 
 use App\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
-use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
@@ -21,10 +21,10 @@ class VideoIndexController extends Page
     protected static string $model = Video::class;
 
     #[Url(as: 'q', history: true, except: '')]
-    public string $search = '';
+    public ?string $search = null;
 
     #[Url(as: 't', history: true, except: [])]
-    public array $tags = [];
+    public ?array $tags = [];
 
     public QueryForm $form;
 

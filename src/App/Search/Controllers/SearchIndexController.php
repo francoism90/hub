@@ -4,8 +4,8 @@ namespace App\Search\Controllers;
 
 use App\Search\Forms\QueryForm;
 use Domain\Videos\Models\Video;
+use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
-use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;

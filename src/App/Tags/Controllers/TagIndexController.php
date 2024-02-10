@@ -3,8 +3,8 @@
 namespace App\Tags\Controllers;
 
 use Domain\Tags\Models\Tag;
+use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
-use Foxws\LivewireUse\Views\Concerns\WithQueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
