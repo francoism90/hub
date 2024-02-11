@@ -1,4 +1,4 @@
-<div class="flex w-full flex-row flex-nowrap gap-x-6">
+<div class="flex w-full py-1.5 flex-row flex-nowrap gap-x-6">
     @if ($this->form->hasSearch())
         <x-ui-dropdown>
             <button class="btn text-sm font-semibold">
@@ -11,7 +11,7 @@
 
             <x-slot:content>
                 <div
-                    x-anchor.bottom-start.offset.10="$refs.dropdown"
+                    x-anchor.bottom-start="$refs.dropdown"
                     x-on:click.away="open = false"
                     class="dropdown-content w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
                 >
@@ -52,7 +52,7 @@
 
             <x-slot:content>
                 <div
-                    x-anchor.bottom-start.offset.10="$refs.dropdown"
+                    x-anchor.bottom-start="$refs.dropdown"
                     x-on:click.away="open = false"
                     class="dropdown-content w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
                 >

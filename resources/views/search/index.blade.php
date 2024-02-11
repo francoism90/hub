@@ -1,5 +1,5 @@
 <x-ui-container class="flex flex-col gap-y-4">
-    <div class="p-4">
+    <div class="pt-4">
         <div class="flex w-full flex-row flex-nowrap items-center gap-x-4 rounded bg-gray-800 px-4">
             <x-forms-input
                 class="input-ghost px-0 text-sm"
@@ -18,9 +18,9 @@
                 </x-slot:append>
             </x-forms-input>
         </div>
-    </div>
 
-    <x-search-filters />
+        <x-search-filters />
+    </div>
 
     <div class="flex flex-col gap-y-8">
         <div
