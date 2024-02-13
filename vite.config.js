@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
-          globPatterns: ['**/*.{css,js,html,svg,jpg,png,ico,txt,woff,woff2}'],
+          globPatterns: ['**/*.{js,css,html,svg,jpg,png,ico,txt,woff,woff2}'],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
           navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],
