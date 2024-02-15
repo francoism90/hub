@@ -29,8 +29,11 @@
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
                     </x-ui-link>
 
-                    <x-ui-dropdown>
-                        <x-ui-button class="navbar-item">
+                    <x-ui-dropdown id="account">
+                        <x-ui-button
+                            class="navbar-item"
+                            title="{{ __('Account') }}"
+                        >
                             <x-heroicon-o-user-circle class="h-6 w-6" />
                         </x-ui-button>
 

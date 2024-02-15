@@ -1,6 +1,6 @@
 <div class="flex w-full py-1.5 flex-row flex-nowrap gap-x-6">
     @if ($this->form->hasSearch())
-        <x-ui-dropdown>
+        <x-ui-dropdown id="sort">
             <button class="btn text-sm font-semibold">
                 <span>{{ __('Sort') }}</span>
                 <x-heroicon-m-chevron-down
@@ -41,7 +41,7 @@
             </x-slot:content>
         </x-ui-dropdown>
 
-        <x-ui-dropdown>
+        <x-ui-dropdown id="feature">
             <button class="btn text-sm font-semibold">
                 <span>{{ __('Features') }}</span>
                 <x-heroicon-m-chevron-down
