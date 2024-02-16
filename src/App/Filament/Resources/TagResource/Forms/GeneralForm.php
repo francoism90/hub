@@ -10,6 +10,15 @@ use Filament\Forms\Components\TextInput;
 
 abstract class GeneralForm
 {
+    public static function make(): array
+    {
+        return [
+            static::name(),
+            static::types(),
+            static::description(),
+        ];
+    }
+
     public static function name(): TextInput
     {
         return TextInput::make('name')
@@ -35,14 +44,5 @@ abstract class GeneralForm
             ->label(__('Type'))
             ->required()
             ->options(TagType::toArray());
-    }
-
-    public static function make(): array
-    {
-        return [
-            static::name(),
-            static::types(),
-            static::description(),
-        ];
     }
 }

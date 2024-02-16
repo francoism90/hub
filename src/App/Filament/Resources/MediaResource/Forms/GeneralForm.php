@@ -9,10 +9,18 @@ use Filament\Forms\Components\TextInput;
 
 abstract class GeneralForm
 {
+    public static function make(): array
+    {
+        return [
+            static::model(),
+            static::name(),
+        ];
+    }
+
     public static function model(): MorphToSelect
     {
         return MorphToSelect::make('model')
-            ->label(__('Parent'))
+            ->label(__('Relation'))
             ->searchable()
             ->types([
                 MorphToSelect\Type::make(Video::class)
@@ -29,13 +37,5 @@ abstract class GeneralForm
             ->label(__('Filename'))
             ->required()
             ->disabled();
-    }
-
-    public static function make(): array
-    {
-        return [
-            static::model(),
-            static::name(),
-        ];
     }
 }

@@ -6,6 +6,14 @@ use Filament\Forms\Components\KeyValue;
 
 abstract class MetaForm
 {
+    public static function make(): array
+    {
+        return [
+            static::properties(),
+            static::manipulations(),
+        ];
+    }
+
     public static function properties(): KeyValue
     {
         return KeyValue::make('custom_properties')
@@ -18,13 +26,5 @@ abstract class MetaForm
         return KeyValue::make('manipulations')
             ->label(__('Manipulations'))
             ->nullable();
-    }
-
-    public static function make(): array
-    {
-        return [
-            static::properties(),
-            static::manipulations(),
-        ];
     }
 }

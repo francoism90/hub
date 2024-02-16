@@ -6,6 +6,14 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 abstract class AssetForm
 {
+    public static function make(): array
+    {
+        return [
+            static::thumbnail(),
+            static::captions(),
+        ];
+    }
+
     public static function clips(): SpatieMediaLibraryFileUpload
     {
         return SpatieMediaLibraryFileUpload::make('clips')
@@ -15,6 +23,7 @@ abstract class AssetForm
             ->disk('media')
             ->conversionsDisk('conversions')
             ->downloadable()
+            ->previewable(false)
             ->acceptedFileTypes([
                 'video/av1',
                 'video/mp4',
@@ -68,6 +77,7 @@ abstract class AssetForm
             ->disk('conversions')
             ->conversionsDisk('conversions')
             ->downloadable()
+            ->previewable(false)
             ->acceptedFileTypes([
                 'video/av1',
                 'video/mp4',
@@ -78,15 +88,5 @@ abstract class AssetForm
                 'video/x-m4v',
                 'video/x-matroska',
             ]);
-    }
-
-    public static function make(): array
-    {
-        return [
-            static::clips(),
-            static::captions(),
-            static::thumbnail(),
-            static::previews(),
-        ];
     }
 }

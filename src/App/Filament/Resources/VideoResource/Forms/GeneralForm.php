@@ -18,6 +18,16 @@ abstract class GeneralForm
 {
     use InteractsWithState;
 
+    public static function make(): array
+    {
+        return [
+            static::name(),
+            static::tags(),
+            static::id(),
+            static::meta(),
+        ];
+    }
+
     public static function name(): TextInput
     {
         return TextInput::make('name')
@@ -120,15 +130,5 @@ abstract class GeneralForm
                 static::state(),
                 static::snapshot(),
             ]);
-    }
-
-    public static function make(): array
-    {
-        return [
-            static::name(),
-            static::tags(),
-            static::id(),
-            static::meta(),
-        ];
     }
 }
