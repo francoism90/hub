@@ -62,11 +62,18 @@
                     @endif
 
                     @if ($item->caption)
-                        <dt class="sr-only">{{ __('CC') }}</dt>
+                        <dt class="sr-only">{{ __('Captions') }}</dt>
                         <dd class="text-xs font-medium text-gray-400">
                             {{ __('CC') }}
                         </dd>
                     @endif
+
+                    <dt class="sr-only">{{ __('Published on') }}</dt>
+                    <dd class="text-ellipsis text-xs font-medium text-gray-400">
+                        <time datetime="{{ $item->published->format('Y-m-d\TH:i:s.uP') }}">
+                            {{ $item->published->format('M d, Y') }}
+                        </time>
+                    </dd>
                 </dl>
             </x-ui-link>
 
