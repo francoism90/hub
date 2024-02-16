@@ -6,6 +6,7 @@ use App\Filament\Concerns\InteractsWithPlaylists;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
+use Filament\Forms\Set;
 use Illuminate\Database\Eloquent\Model;
 
 class CurrentTimeAction extends Action
@@ -29,14 +30,12 @@ class CurrentTimeAction extends Action
         $this->hiddenLabel();
 
         $this->action(function (): void {
-            $this->process(function (Component $component, Model $record, mixed $state = null) {
+            $this->process(function (Component $component, Model $record, Set $set, mixed $state = null) {
                 $videoable = static::history()
                     ->videos()
                     ->firstWhere('id', $record->getKey());
 
-                $component->state(
-                    $videoable?->pivot?->options['timestamp'] ?: $state
-                );
+                $set($component, $videoable?->pivot?->options['timestamp'] ?: $state);
             });
 
             $this->success();

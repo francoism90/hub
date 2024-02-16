@@ -5,6 +5,7 @@ namespace App\Filament\Actions;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
+use Filament\Forms\Set;
 
 class SlugCaseAction extends Action
 {
@@ -26,22 +27,25 @@ class SlugCaseAction extends Action
         $this->hiddenLabel();
 
         $this->action(function (): void {
-            $this->process(function (Component $component, mixed $state) {
+            $this->process(function (Component $component, Set $set, mixed $state) {
                 if (blank($state) || ! is_string($state)) {
                     return $state;
                 }
 
-                $component->state(
-                    str((string) $state)
-                        ->replace('.', ' ')
-                        ->slug()
-                        ->upper()
-                        ->squish()
-                        ->value()
-                );
+                $set($component, $this->convert($state));
             });
 
             $this->success();
         });
+    }
+
+    protected function convert(?string $state = null): string
+    {
+        return str($state)
+            ->replace('.', ' ')
+            ->slug()
+            ->upper()
+            ->squish()
+            ->value();
     }
 }

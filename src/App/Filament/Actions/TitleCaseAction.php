@@ -5,6 +5,7 @@ namespace App\Filament\Actions;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
+use Filament\Forms\Set;
 
 class TitleCaseAction extends Action
 {
@@ -26,21 +27,23 @@ class TitleCaseAction extends Action
         $this->hiddenLabel();
 
         $this->action(function (): void {
-            $this->process(function (Component $component, mixed $state) {
+            $this->process(function (Component $component, Set $set, mixed $state) {
                 if (blank($state) || ! is_string($state)) {
                     return $state;
                 }
 
-                $component->state(
-                    str((string) $state)
-                        ->replace('.', ' ')
-                        ->headline()
-                        ->squish()
-                        ->value()
-                );
+                $set($component, $this->convert($state));
             });
 
             $this->success();
         });
+    }
+
+    protected function convert(?string $state = null): string
+    {
+        return str($state)
+            ->headline()
+            ->squish()
+            ->value();
     }
 }
