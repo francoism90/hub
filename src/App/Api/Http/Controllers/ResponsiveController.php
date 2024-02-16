@@ -14,7 +14,7 @@ class ResponsiveController extends Controller
     {
         $this->middleware([
             'auth:sanctum',
-            'cache.headers:public;max_age=86400;etag',
+            'cache.headers:public;max_age=604800;etag',
         ]);
     }
 

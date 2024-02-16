@@ -14,7 +14,7 @@ class AssetController extends Controller
     {
         $this->middleware([
             'signed',
-            'cache.headers:public;max_age=86400;etag',
+            'cache.headers:public;max_age=604800;etag',
         ]);
     }
 
