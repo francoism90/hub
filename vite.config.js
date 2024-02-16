@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
 export default defineConfig(({ mode }) => {
-  const host = 'hub.test';
+  const host = 'hub.lan';
 
   let https = false;
 
