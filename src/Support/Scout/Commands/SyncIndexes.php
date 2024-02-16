@@ -10,7 +10,7 @@ class SyncIndexes extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'scout:sync';
+    protected $signature = 'scout:sync {--delete}';
 
     /**
      * @var string
@@ -19,6 +19,10 @@ class SyncIndexes extends Command implements Isolatable
 
     public function handle(): void
     {
+        if ($this->option('delete')) {
+            $this->call('scout:delete-all-index');
+        }
+
         $this->call('scout:sync-index-settings');
 
         $driver = config('scout.driver');

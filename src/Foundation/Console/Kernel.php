@@ -3,6 +3,9 @@
 namespace Foundation\Console;
 
 use Domain\Imports\Models\Import;
+use Foundation\Console\Commands\AppInstall;
+use Foundation\Console\Commands\AppOptimize;
+use Foundation\Console\Commands\AppUpdate;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Support\Scout\Commands\SyncIndexes;
@@ -10,6 +13,9 @@ use Support\Scout\Commands\SyncIndexes;
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
+        AppInstall::class,
+        AppUpdate::class,
+        AppOptimize::class,
         SyncIndexes::class,
     ];
 
