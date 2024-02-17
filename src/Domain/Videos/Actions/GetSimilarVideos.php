@@ -25,7 +25,7 @@ class GetSimilarVideos
             ->headline()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array($word, ['and', 'a', 'or']))
-            ->take(7)
+            ->take(8)
             ->merge(array_filter([
                 $model->identifier,
                 $model->released_at,
@@ -40,7 +40,7 @@ class GetSimilarVideos
 
                 yield Video::search($phrase)
                     ->where('state', Verified::$name)
-                    ->take(7)
+                    ->take(8)
                     ->cursor();
             }
         });
@@ -48,7 +48,7 @@ class GetSimilarVideos
         return $items
             ->flatten()
             ->reject(fn (Video $item) => $item->is($model))
-            ->take(12)
+            ->take(16)
             ->unique();
     }
 
@@ -59,7 +59,7 @@ class GetSimilarVideos
             ->withWhereHas('tags')
             ->whereKeyNot($model)
             ->tagged($model->tags)
-            ->take(6)
+            ->take(8)
             ->cursor();
     }
 
@@ -69,7 +69,7 @@ class GetSimilarVideos
             ->published()
             ->whereKeyNot($model)
             ->randomSeed(key: 'random', ttl: now()->addMinutes(20))
-            ->take(6)
+            ->take(8)
             ->cursor();
     }
 }
