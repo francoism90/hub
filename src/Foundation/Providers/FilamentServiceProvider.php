@@ -23,20 +23,18 @@ class FilamentServiceProvider extends ServiceProvider
     protected function configureMacros(): void
     {
         Field::macro('squish', function () {
-            $value = fn (mixed $state) => is_string($state) && filled($state)
-                ? str($state)->squish()->value()
+            $sanitize = fn (?string $state): ?string => filled($state)
+                ? str($state)->squish()
                 : $state;
 
             return $this
-                ->afterStateUpdated(fn (TextInput $component, mixed $state, Set $set) => $set($component->getName(), $value($state)))
-                ->dehydrateStateUsing(fn (mixed $state): mixed => $value($state));
+                ->afterStateUpdated(fn (TextInput $component, Set $set, ?string $state) => $set($component->getStatePath(false), $sanitize($state)))
+                ->dehydrateStateUsing(fn (?string $state): ?string => $sanitize($state));
         });
     }
 
     protected function configureFields(): void
     {
-        TextInput::configureUsing(function (TextInput $component): void {
-            $component->squish();
-        });
+        TextInput::configureUsing(fn (TextInput $component) => $component->squish());
     }
 }
