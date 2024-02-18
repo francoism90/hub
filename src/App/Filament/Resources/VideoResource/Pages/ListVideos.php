@@ -7,12 +7,11 @@ use App\Filament\Resources\VideoResource;
 use App\Filament\Resources\VideoResource\Filters\AdultFilter;
 use App\Filament\Resources\VideoResource\Filters\StateFilter;
 use App\Filament\Resources\VideoResource\Filters\UntaggedFilter;
-use Domain\Videos\States\VideoState;
+use App\Filament\Resources\VideoResource\Tables\GeneralListing;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Concerns\Translatable;
 use Filament\Tables;
-use Filament\Tables\Columns;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -30,37 +29,7 @@ class ListVideos extends ListRecords
             ->poll()
             ->defaultSort('created_at', 'desc')
             ->columns([
-                Columns\TextColumn::make('name')
-                    ->label(__('Name'))
-                    ->limit()
-                    ->searchable()
-                    ->sortable(),
-
-                Columns\TextColumn::make('identifier')
-                    ->label(__('ID'))
-                    ->limit()
-                    ->searchable()
-                    ->sortable(['season', 'episode', 'part']),
-
-                Columns\TextColumn::make('state')
-                    ->label(__('State'))
-                    ->formatStateUsing(fn (VideoState $state): string => $state->label())
-                    ->icon(fn (VideoState $state): string => $state->icon())
-                    ->color(fn (VideoState $state): string => $state->color())
-                    ->toggleable(isToggledHiddenByDefault: false)
-                    ->sortable(),
-
-                Columns\TextColumn::make('created_at')
-                    ->label(__('Created At'))
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-
-                Columns\TextColumn::make('updated_at')
-                    ->label(__('Updated At'))
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
+                ...GeneralListing::make(),
             ])
             ->filters([
                 TrashedFilter::make(),
@@ -69,7 +38,7 @@ class ListVideos extends ListRecords
                 UntaggedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make('open')
+                Tables\Actions\ViewAction::make('show')
                     ->label(__('View'))
                     ->color('gray')
                     ->icon('heroicon-o-eye')

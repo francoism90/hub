@@ -37,14 +37,10 @@ class VideoResource extends Resource
         ];
     }
 
-    public static function canViewAny(): bool
+    public static function getEloquentQuery(): Builder
     {
-        return static::hasRole('super-admin');
-    }
-
-    public static function getNavigationGroup(): string
-    {
-        return __('Manage');
+        return parent::getEloquentQuery()
+            ->with('media', 'tags');
     }
 
     public static function getGloballySearchableAttributes(): array
@@ -58,9 +54,13 @@ class VideoResource extends Resource
         ];
     }
 
-    public static function getEloquentQuery(): Builder
+    public static function getNavigationGroup(): string
     {
-        return parent::getEloquentQuery()
-            ->with('media', 'tags');
+        return __('Manage');
+    }
+
+    public static function canAccess(): bool
+    {
+        return static::isAdmin();
     }
 }

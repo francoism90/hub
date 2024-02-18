@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\InteractsWithAuthentication;
 use App\Filament\Resources\TagResource\Forms\GeneralForm;
 use App\Filament\Resources\TagResource\Pages;
+use App\Filament\Resources\TagResource\RelationManagers\VideosRelationManager;
 use Domain\Tags\Models\Tag;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
@@ -42,7 +43,7 @@ class TagResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            VideosRelationManager::class,
         ];
     }
 
@@ -51,8 +52,8 @@ class TagResource extends Resource
         return __('Manage');
     }
 
-    public static function canViewAny(): bool
+    public static function canAccess(): bool
     {
-        return static::hasRole('super-admin');
+        return static::isAdmin();
     }
 }

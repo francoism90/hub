@@ -8,8 +8,6 @@ use App\Filament\Resources\MediaResource\Forms\MetaForm;
 use App\Filament\Resources\MediaResource\Pages;
 use Domain\Media\Models\Media;
 use Filament\Forms\Form;
-use Filament\Infolists;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 
 class MediaResource extends Resource
@@ -37,8 +35,7 @@ class MediaResource extends Resource
         return [
             'index' => Pages\ListMedia::route('/'),
             'create' => Pages\CreateMedia::route('/create'),
-            'view' => Pages\ViewMedia::route('/{record}'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
+            'edit' => Pages\EditMedia::route('/{record}'),
         ];
     }
 
@@ -47,19 +44,6 @@ class MediaResource extends Resource
         return [
             //
         ];
-    }
-
-    public static function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
-            ->schema([
-                Infolists\Components\TextEntry::make('name'),
-            ]);
-    }
-
-    public static function canViewAny(): bool
-    {
-        return static::hasRole('super-admin');
     }
 
     public static function getNavigationGroup(): string

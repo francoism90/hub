@@ -37,7 +37,8 @@ class EditMedia extends EditRecord
                 ->visible(fn (Model $record) => $record->model instanceof Tag)
                 ->url(fn (Model $record) => route('filament.admin.resources.tags.edit', $record->model)),
 
-            Actions\ViewAction::make(),
+            Actions\DeleteAction::make()
+                ->icon('heroicon-o-trash'),
         ];
     }
 }

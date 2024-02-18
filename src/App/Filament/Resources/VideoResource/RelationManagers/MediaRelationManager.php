@@ -3,13 +3,12 @@
 namespace App\Filament\Resources\VideoResource\RelationManagers;
 
 use App\Filament\Resources\MediaResource\Forms\MetaForm;
+use App\Filament\Resources\MediaResource\Tables\GeneralListing;
 use Domain\Media\Models\Media;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Columns;
 use Filament\Tables\Table;
-use Illuminate\Support\Number;
 
 class MediaRelationManager extends RelationManager
 {
@@ -31,50 +30,7 @@ class MediaRelationManager extends RelationManager
             ->recordTitleAttribute('file_name')
             ->defaultSort('collection_name')
             ->columns([
-                Columns\TextColumn::make('file_name')
-                    ->limit()
-                    ->searchable()
-                    ->sortable(),
-
-                Columns\TextColumn::make('collection_name')
-                    ->label(__('Collection'))
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: false),
-
-                Columns\TextColumn::make('disk')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: false),
-
-                Columns\TextColumn::make('size')
-                    ->label(__('Size'))
-                    ->sortable()
-                    ->formatStateUsing(fn (int $state) => Number::fileSize($state, precision: 2))
-                    ->toggleable(isToggledHiddenByDefault: false),
-
-                Columns\TextColumn::make('file_name')
-                    ->label(__('Filename'))
-                    ->limit()
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                Columns\TextColumn::make('mime_type')
-                    ->label(__('Mime Type'))
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-
-                Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-
-                Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
+                ...GeneralListing::make(),
             ])
             ->filters([
                 //

@@ -21,7 +21,7 @@ class ImportResource extends Resource
     {
         return [
             'index' => Pages\ListImports::route('/'),
-            'edit' => Pages\EditImport::route('/{record}/edit'),
+            'edit' => Pages\EditImport::route('/{record}'),
         ];
     }
 
@@ -32,11 +32,6 @@ class ImportResource extends Resource
         ];
     }
 
-    public static function canViewAny(): bool
-    {
-        return static::hasRole('super-admin');
-    }
-
     public static function getNavigationGroup(): string
     {
         return __('Manage');
@@ -45,5 +40,10 @@ class ImportResource extends Resource
     public static function getNavigationLabel(): string
     {
         return __('Import');
+    }
+
+    public static function canAccess(): bool
+    {
+        return static::isAdmin();
     }
 }

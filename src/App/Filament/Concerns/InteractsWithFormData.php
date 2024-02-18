@@ -32,7 +32,7 @@ trait InteractsWithFormData
     protected function prepareFormDataBeforeSave(array $data): array
     {
         if (array_key_exists('id', $data) && PrefixedIds::getModelClass($data['id'])) {
-            $data['id'] = PrefixedIds::findOrFail($data['id']);
+            $data['id'] = PrefixedIds::findOrFail($data['id'])->getKey();
         }
 
         return $data;
