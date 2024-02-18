@@ -11,6 +11,7 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Pages\ListRecords\Concerns\Translatable;
 use Filament\Tables;
 use Filament\Tables\Columns;
+use Filament\Tables\Filters;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -61,7 +62,10 @@ class ListTags extends ListRecords
                     ->sortable(),
             ])
             ->filters([
-                //
+                Filters\SelectFilter::make('type')
+                    ->options(TagType::toArray()),
+
+                Filters\TernaryFilter::make('adult'),
             ])
             ->actions([
                 //

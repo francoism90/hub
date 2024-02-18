@@ -4,6 +4,7 @@ namespace App\Filament\Resources\VideoResource\Pages;
 
 use App\Filament\Concerns\InteractsWithScout;
 use App\Filament\Resources\VideoResource;
+use App\Filament\Resources\VideoResource\Filters\AdultFilter;
 use App\Filament\Resources\VideoResource\Filters\StateFilter;
 use App\Filament\Resources\VideoResource\Filters\UntaggedFilter;
 use Domain\Videos\States\VideoState;
@@ -64,6 +65,7 @@ class ListVideos extends ListRecords
             ->filters([
                 TrashedFilter::make(),
                 StateFilter::make(),
+                AdultFilter::make(),
                 UntaggedFilter::make(),
             ])
             ->actions([
