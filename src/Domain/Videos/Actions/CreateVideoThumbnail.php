@@ -34,7 +34,7 @@ class CreateVideoThumbnail
 
         $duration = $ffmpeg->getFFProbe()->format($file)->get('duration');
 
-        $quantity = round($model->snapshot ?: $duration / 2, 2);
+        $quantity = round($model->snapshot ?: ($duration / 2), 1);
 
         $video
             ->filters()
