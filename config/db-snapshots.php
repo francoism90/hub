@@ -21,7 +21,7 @@ return [
     /*
      * Create dump files that are gzipped
      */
-    'compress' => false,
+    'compress' => true,
 
     /*
      * Only these tables will be included in the snapshot. Set to `null` to include all tables.
