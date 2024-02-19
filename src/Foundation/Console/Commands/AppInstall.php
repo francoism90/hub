@@ -21,12 +21,12 @@ class AppInstall extends Command implements Isolatable
     {
         throw_if(! $this->option('force') && ! $this->confirm('Are you sure to install the application?'));
 
-        // Create symlinks
-        $this->call('storage:link');
-
         // Clear cache
         $this->call('cache:clear');
         $this->call('optimize:clear');
+
+        // Create symlinks
+        $this->call('storage:link');
 
         // Delete indexes
         $this->call('scout:delete-all-indexes');
