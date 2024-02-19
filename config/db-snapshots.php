@@ -36,7 +36,6 @@ return [
      * Default: `null`
      */
     'exclude' => [
-        'notifications',
         'password_reset_tokens',
         'personal_access_tokens',
         'sessions',
