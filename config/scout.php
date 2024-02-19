@@ -140,7 +140,6 @@ return [
             User::class => [
                 'filterableAttributes' => [
                     'id',
-                    'email',
                     'state',
                     'created_at',
                     'updated_at',
