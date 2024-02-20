@@ -9,6 +9,8 @@ use Livewire\Attributes\Layout;
 #[Layout('components.layouts.dashboard')]
 class DashboardIndexController extends Page
 {
+    public bool $showDrawer = false;
+
     public function mount(): void
     {
         $this->seo()->setTitle(__('Dashboard'));
