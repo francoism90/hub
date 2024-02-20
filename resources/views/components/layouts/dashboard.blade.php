@@ -49,11 +49,11 @@
 
 <body class="antialiased">
 
-    {{-- <x-app.header /> --}}
+    <x-app.header />
 
     {{ $slot }}
 
-    {{-- <x-app.footer /> --}}
+    <x-app.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')

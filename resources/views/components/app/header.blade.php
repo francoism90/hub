@@ -29,7 +29,7 @@
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
                     </x-ui-link>
 
-                    <x-ui-dropdown id="account" wire:model="showDrawer">
+                    <x-ui-dropdown id="account">
                         <x-slot:actions>
                             <x-ui-button
                                 class="navbar-item"
