@@ -3,7 +3,6 @@
 namespace App\Search\Controllers;
 
 use App\Search\Forms\QueryForm;
-use App\Search\States\SearchState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
