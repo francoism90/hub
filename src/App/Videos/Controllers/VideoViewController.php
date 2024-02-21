@@ -81,7 +81,7 @@ class VideoViewController extends Page
             ->videos()
             ->find($this->video);
 
-        return data_get($model?->pivot?->options, 'timestamp', 0);
+        return data_get($model?->pivot?->options ?: [], 'timestamp', 0);
     }
 
     public function getListeners(): array
