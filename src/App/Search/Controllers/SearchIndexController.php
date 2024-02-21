@@ -20,8 +20,6 @@ class SearchIndexController extends Page
 
     public QueryForm $form;
 
-    public SearchState $state;
-
     public function mount(): void
     {
         $this->seo()->setTitle(__('Search'));
