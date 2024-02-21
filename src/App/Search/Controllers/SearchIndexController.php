@@ -49,11 +49,11 @@ class SearchIndexController extends Page
             ->when($this->form->getTags(), fn (Builder $query, array $value = []) => $query->tagged((array) $value))
             ->when($this->form->hasFeatures('caption'), fn (Builder $query) => $query->where('caption', true))
             ->when($this->form->isSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            // ->when($this->form->isSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            // ->when($this->form->isSort('released'), fn (Builder $query) => $query
-            //     ->orderBy('released', 'desc')
-            //     ->orderBy('created_at', 'desc')
-            // )
+            ->when($this->form->isSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->when($this->form->isSort('released'), fn (Builder $query) => $query
+                ->orderBy('released', 'desc')
+                ->orderBy('created_at', 'desc')
+            )
             ->paginate(32);
     }
 
