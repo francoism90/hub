@@ -251,14 +251,14 @@ class Video extends Model implements HasMedia
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->getScoutKey(),
+            'id' => (int) $this->getScoutKey(),
             'name' => $this->name,
             'identifier' => $this->identifier,
             'content' => $this->content,
             'summary' => $this->summary,
-            'adult' => $this->adult,
-            'duration' => $this->duration,
-            'caption' => $this->caption,
+            'adult' => (bool) $this->adult,
+            'duration' => (float) $this->duration,
+            'caption' => (bool) $this->caption,
             'released' => $this->released,
             'studios' => $this->tags->type(TagType::studio())->seo(),
             'people' => $this->tags->type(TagType::person())->seo(),

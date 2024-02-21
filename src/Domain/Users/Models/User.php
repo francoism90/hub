@@ -127,7 +127,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->getScoutKey(),
+            'id' => (int) $this->getScoutKey(),
             'name' => $this->name,
             'email' => $this->email,
             'created' => $this->created_at,

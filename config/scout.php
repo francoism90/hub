@@ -158,6 +158,15 @@ return [
                     'created_at',
                     'updated_at',
                 ],
+
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'exactness',
+                    'proximity',
+                ],
             ],
 
             Video::class => [
@@ -227,6 +236,15 @@ return [
                     ']',
                 ],
 
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'exactness',
+                    'proximity',
+                ],
+
                 'typoTolerance' => [
                     'minWordSizeForTypos' => [
                         'oneTypo' => 3,
@@ -289,6 +307,15 @@ return [
                     ')',
                     '[',
                     ']',
+                ],
+
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'exactness',
+                    'proximity',
                 ],
 
                 'typoTolerance' => [
