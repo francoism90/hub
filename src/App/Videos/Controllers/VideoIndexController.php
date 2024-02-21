@@ -4,7 +4,6 @@ namespace App\Videos\Controllers;
 
 use App\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
-use Foxws\LivewireUse\Auth\Concerns\WithAuthentication;
 use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +15,6 @@ use Livewire\WithPagination;
 
 class VideoIndexController extends Page
 {
-    use WithAuthentication;
     use WithPagination;
     use WithQueryBuilder;
 
@@ -86,11 +84,11 @@ class VideoIndexController extends Page
 
     public function getListeners(): array
     {
-        $userId = static::getAuthKey();
+        $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$userId},.video.deleted" => 'refresh',
-            "echo-private:user.{$userId},.video.updated" => 'refresh',
+            "echo-private:user.{$id},.video.deleted" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
         ];
     }
 }
