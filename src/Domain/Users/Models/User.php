@@ -11,7 +11,9 @@ use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
 use Domain\Videos\Concerns\InteractsWithVideos;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -29,6 +31,7 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class User extends Authenticatable implements FilamentUser, HasMedia, MustVerifyEmail
 {
+    use BroadcastsEvents;
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
@@ -112,6 +115,39 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
                 'image/png',
                 'image/webp',
             ]);
+    }
+
+    /**
+     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     */
+    public function broadcastOn(string $event): array
+    {
+        return [
+            new PrivateChannel('user.'.$this->getRouteKey()),
+        ];
+    }
+
+    public function broadcastAs(string $event): ?string
+    {
+        return str($event)
+            ->prepend('user.')
+            ->trim('.')
+            ->value();
+    }
+
+    public function broadcastWith(string $event): array
+    {
+        return ['id' => $this->getRouteKey()];
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
+    }
+
+    public function broadcastAfterCommit(): bool
+    {
+        return true;
     }
 
     public function receivesBroadcastNotificationsOn(): string

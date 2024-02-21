@@ -8,6 +8,6 @@ class UserChannel
 {
     public function join(User $user, User $model): bool
     {
-        return $user->hasRole('super-admin') ?? $user->is($model);
+        return $user->is($model) ?? $user->hasRole('super-admin');
     }
 }

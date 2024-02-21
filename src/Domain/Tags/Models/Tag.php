@@ -7,6 +7,8 @@ use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
 use Domain\Videos\Models\Video;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
@@ -19,6 +21,7 @@ use Spatie\Tags\Tag as BaseTag;
 
 class Tag extends BaseTag implements HasMedia
 {
+    use BroadcastsEvents;
     use HasFactory;
     use HasPrefixedId;
     use InteractsWithMedia;
@@ -105,17 +108,50 @@ class Tag extends BaseTag implements HasMedia
             ]);
     }
 
-    public function searchableAs(): string
-    {
-        return 'tags';
-    }
-
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
             ->logAll()
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     */
+    public function broadcastOn(string $event): array
+    {
+        return [
+            new PrivateChannel('tag.'.$this->getRouteKey()),
+        ];
+    }
+
+    public function broadcastAs(string $event): ?string
+    {
+        return str($event)
+            ->prepend('tag.')
+            ->trim('.')
+            ->value();
+    }
+
+    public function broadcastWith(string $event): array
+    {
+        return ['id' => $this->getRouteKey()];
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
+    }
+
+    public function broadcastAfterCommit(): bool
+    {
+        return true;
+    }
+
+    public function searchableAs(): string
+    {
+        return 'tags';
     }
 
     public function makeSearchableUsing(TagCollection $models): TagCollection

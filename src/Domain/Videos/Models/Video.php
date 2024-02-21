@@ -179,14 +179,12 @@ class Video extends Model implements HasMedia
             ]);
     }
 
-    public function searchableAs(): string
+    public function getActivitylogOptions(): LogOptions
     {
-        return 'videos';
-    }
-
-    public function makeSearchableUsing(VideoCollection $models): VideoCollection
-    {
-        return $models->loadMissing($this->with);
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
     }
 
     /**
@@ -213,12 +211,24 @@ class Video extends Model implements HasMedia
         return ['id' => $this->getRouteKey()];
     }
 
-    public function getActivitylogOptions(): LogOptions
+    public function broadcastQueue(): string
     {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
+        return 'broadcasts';
+    }
+
+    public function broadcastAfterCommit(): bool
+    {
+        return true;
+    }
+
+    public function searchableAs(): string
+    {
+        return 'videos';
+    }
+
+    public function makeSearchableUsing(VideoCollection $models): VideoCollection
+    {
+        return $models->loadMissing($this->with);
     }
 
     public function identifier(): Attribute
