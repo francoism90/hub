@@ -13,8 +13,6 @@ class WatchlistController extends VideoIndexController
 {
     use WithWatchlist;
 
-    protected static string $model = Video::class;
-
     public function mount(): void
     {
         $this->seo()->setTitle(__('Watchlist'));

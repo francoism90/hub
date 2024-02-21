@@ -12,16 +12,6 @@ class Filters extends Component
         return view('search.filters');
     }
 
-    public function sorters(): array
-    {
-        return [
-            '' => __('Relevance'),
-            'longest' => __('Longest'),
-            'shortest' => __('Shortest'),
-            'released' => __('Released'),
-        ];
-    }
-
     public function features(): array
     {
         return [

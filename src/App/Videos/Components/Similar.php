@@ -18,8 +18,6 @@ class Similar extends Component
     use WithQueryBuilder;
     use WithVideo;
 
-    protected static string $model = Video::class;
-
     public function render(): View
     {
         return view('videos.similar');
@@ -29,5 +27,10 @@ class Similar extends Component
     public function items(): LazyCollection
     {
         return app(GetSimilarvideos::class)->execute($this->video);
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
     }
 }

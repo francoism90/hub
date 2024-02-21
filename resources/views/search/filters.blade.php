@@ -1,4 +1,6 @@
 <div class="flex w-full py-1.5 flex-row flex-nowrap gap-x-6">
+    {{-- @dd($this->state->sorters()) --}}
+{{--
     @if ($this->form->hasSearch())
         <x-ui-dropdown id="sort">
             <button class="btn text-sm font-semibold">
@@ -81,5 +83,5 @@
                 </div>
             </x-slot:content>
         </x-ui-dropdown>
-    @endif
+    @endif --}}
 </div>

@@ -18,8 +18,6 @@ class VideoIndexController extends Page
     use WithPagination;
     use WithQueryBuilder;
 
-    protected static string $model = Video::class;
-
     #[Url(as: 'q', history: true, except: '')]
     public ?string $search = null;
 
@@ -70,5 +68,10 @@ class VideoIndexController extends Page
             ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value))
             ->when($this->form->getTags(), fn (Builder $query, array $value) => $query->tagged($value))
             ->simplePaginate(32);
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Search\Controllers;
 
 use App\Search\Forms\QueryForm;
+use App\Search\States\SearchState;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
@@ -17,9 +18,9 @@ class SearchIndexController extends Page
     use WithPagination;
     use WithQueryBuilder;
 
-    protected static string $model = Video::class;
-
     public QueryForm $form;
+
+    public SearchState $state;
 
     public function mount(): void
     {
@@ -56,5 +57,10 @@ class SearchIndexController extends Page
                 ->orderBy('created_at', 'desc')
             )
             ->paginate(32);
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
     }
 }
