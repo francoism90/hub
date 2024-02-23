@@ -11,7 +11,7 @@
             </time>
         </dd>
 
-        @if ($item->episode || $item->season)
+        @if ($item->identifier)
             <dt class="sr-only">{{ __('ID') }}</dt>
             <dd class="text-base font-medium leading-4 text-gray-400">
                 {{ $item->identifier }}
