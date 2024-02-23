@@ -9,11 +9,10 @@ use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
-use Domain\Videos\Events\VideoCreated;
-use Domain\Videos\Events\VideoDeleted;
-use Domain\Videos\Events\VideoSaved;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Domain\Videos\States\VideoState;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +31,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
 {
+    use BroadcastsEvents;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
@@ -98,15 +98,6 @@ class Video extends Model implements HasMedia
         'titles',
         'content',
         'summary',
-    ];
-
-    /**
-     * @var array<string, string>
-     */
-    protected $dispatchesEvents = [
-        'created' => VideoCreated::class,
-        'saved' => VideoSaved::class,
-        'deleted' => VideoDeleted::class,
     ];
 
     protected static function newFactory(): VideoFactory
@@ -188,6 +179,48 @@ class Video extends Model implements HasMedia
             ]);
     }
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     */
+    public function broadcastOn(string $event): array
+    {
+        return [
+            new PrivateChannel('user.'.$this->user->getRouteKey()),
+            new PrivateChannel('video.'.$this->getRouteKey()),
+        ];
+    }
+
+    public function broadcastAs(string $event): ?string
+    {
+        return str($event)
+            ->prepend('video.')
+            ->trim('.')
+            ->value();
+    }
+
+    public function broadcastWith(string $event): array
+    {
+        return ['id' => $this->getRouteKey()];
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
+    }
+
+    public function broadcastAfterCommit(): bool
+    {
+        return true;
+    }
+
     public function searchableAs(): string
     {
         return 'videos';
@@ -196,14 +229,6 @@ class Video extends Model implements HasMedia
     public function makeSearchableUsing(VideoCollection $models): VideoCollection
     {
         return $models->loadMissing($this->with);
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     public function identifier(): Attribute
@@ -251,14 +276,14 @@ class Video extends Model implements HasMedia
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->getScoutKey(),
+            'id' => (int) $this->getScoutKey(),
             'name' => $this->name,
             'identifier' => $this->identifier,
             'content' => $this->content,
             'summary' => $this->summary,
-            'adult' => $this->adult,
-            'duration' => $this->duration,
-            'caption' => $this->caption,
+            'adult' => (bool) $this->adult,
+            'duration' => (float) $this->duration,
+            'caption' => (bool) $this->caption,
             'released' => $this->released,
             'studios' => $this->tags->type(TagType::studio())->seo(),
             'people' => $this->tags->type(TagType::person())->seo(),

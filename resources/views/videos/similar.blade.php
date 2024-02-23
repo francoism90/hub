@@ -1,6 +1,6 @@
 <div
+    wire:poll.keep-alive.2400s
     class="py-3.5"
-    wire:poll.visible.10s
 >
     <h2 class="text-sm uppercase tracking-wide text-gray-400">
         {{ __('Similar videos') }}

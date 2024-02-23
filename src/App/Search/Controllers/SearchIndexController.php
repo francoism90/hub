@@ -17,8 +17,6 @@ class SearchIndexController extends Page
     use WithPagination;
     use WithQueryBuilder;
 
-    protected static string $model = Video::class;
-
     public QueryForm $form;
 
     public function mount(): void
@@ -40,6 +38,13 @@ class SearchIndexController extends Page
         $this->form->submit();
     }
 
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
     #[Computed]
     public function items(): LengthAwarePaginator
     {
@@ -56,5 +61,20 @@ class SearchIndexController extends Page
                 ->orderBy('created_at', 'desc')
             )
             ->paginate(32);
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
+    }
+
+    public function getListeners(): array
+    {
+        $id = static::getAuthKey();
+
+        return [
+            "echo-private:user.{$id},.video.deleted" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
+        ];
     }
 }

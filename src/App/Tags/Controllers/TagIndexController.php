@@ -13,8 +13,6 @@ class TagIndexController extends Page
 {
     use WithQueryBuilder;
 
-    protected static string $model = Tag::class;
-
     public function mount(): void
     {
         $this->seo()->setTitle(__('Tags'));
@@ -25,7 +23,7 @@ class TagIndexController extends Page
         return view('tags.index');
     }
 
-    #[Computed(cache: true, key: 'tags', seconds: 60 * 10)]
+    #[Computed(cache: true, seconds: 60 * 10)]
     public function items(): Collection
     {
         return $this->getQuery()
@@ -33,5 +31,10 @@ class TagIndexController extends Page
             ->orderBy('name')
             ->get()
             ->groupBy(fn (Tag $tag) => str($tag->name)->upper()->substr(0, 1));
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Tag::class;
     }
 }

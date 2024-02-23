@@ -4,7 +4,6 @@ namespace App\Profile\Controllers;
 
 use App\Playlists\Concerns\WithWatchlist;
 use App\Videos\Controllers\VideoIndexController;
-use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Livewire\Attributes\Computed;
@@ -12,8 +11,6 @@ use Livewire\Attributes\Computed;
 class WatchlistController extends VideoIndexController
 {
     use WithWatchlist;
-
-    protected static string $model = Video::class;
 
     public function mount(): void
     {

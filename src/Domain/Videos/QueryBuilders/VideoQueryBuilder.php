@@ -22,8 +22,7 @@ class VideoQueryBuilder extends Builder
     public function published(): self
     {
         return $this
-            ->whereState('state', Verified::class)
-            ->whereNull('deleted_at');
+            ->whereState('state', Verified::class);
     }
 
     public function recommended(?User $user = null): self

@@ -1,7 +1,7 @@
 <x-ui-container class="flex flex-nowrap sm:space-x-24">
     <div
         class="flex-col grow overflow-hidden divide-y divide-gray-700"
-        wire:poll.keep-alive.10s
+        wire:poll.keep-alive.2400s
     >
         @if ($form->filled('search', 'tags'))
             <x-ui-button class="btn-ghost text-gray-400 p-1.5 m-1.5" wire:click="clear">

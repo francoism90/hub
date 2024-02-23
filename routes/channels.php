@@ -1,5 +1,6 @@
 <?php
 
+use Foundation\Broadcasting\TagChannel;
 use Foundation\Broadcasting\UserChannel;
 use Foundation\Broadcasting\VideoChannel;
 use Illuminate\Support\Facades\Broadcast;
@@ -16,4 +17,5 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('user.{user}', UserChannel::class);
+Broadcast::channel('tag.{video}', TagChannel::class);
 Broadcast::channel('video.{video}', VideoChannel::class);

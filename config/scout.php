@@ -227,6 +227,15 @@ return [
                     ']',
                 ],
 
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'proximity',
+                    'exactness',
+                ],
+
                 'typoTolerance' => [
                     'minWordSizeForTypos' => [
                         'oneTypo' => 3,
@@ -289,6 +298,15 @@ return [
                     ')',
                     '[',
                     ']',
+                ],
+
+                'rankingRules' => [
+                    'sort',
+                    'words',
+                    'typo',
+                    'attribute',
+                    'proximity',
+                    'exactness',
                 ],
 
                 'typoTolerance' => [

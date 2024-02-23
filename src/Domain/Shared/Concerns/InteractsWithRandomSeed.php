@@ -4,7 +4,6 @@ namespace Domain\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 
 trait InteractsWithRandomSeed
 {
@@ -19,10 +18,10 @@ trait InteractsWithRandomSeed
     {
         $id = auth()->id() ?: session()->getId();
 
-        return Cache::remember(
+        return cache()->remember(
             sprintf('randomSeed-%s-%s', $id, $key),
             $ttl,
-            fn () => (auth()->id() ?? 0) + time()
+            fn () => time()
         );
     }
 }
