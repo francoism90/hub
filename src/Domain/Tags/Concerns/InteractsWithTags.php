@@ -14,6 +14,7 @@ trait InteractsWithTags
         $items = static::convertToTags($values);
 
         return $this->when($items->isNotEmpty(), fn (Builder $query) => $query
+            ->randomSeed(key: 'taggables', ttl: now()->addDay())
             ->withWhereHas('tags', fn ($query) => $query
                 ->whereIn('tags.id', $items->pluck('id'))
             )

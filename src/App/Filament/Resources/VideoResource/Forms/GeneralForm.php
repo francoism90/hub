@@ -4,7 +4,6 @@ namespace App\Filament\Resources\VideoResource\Forms;
 
 use App\Filament\Actions\HeadlineCaseAction;
 use App\Filament\Actions\IdentifierCaseAction;
-use App\Filament\Actions\SlugCaseAction;
 use App\Filament\Actions\TitleCaseAction;
 use App\Filament\Concerns\InteractsWithState;
 use App\Filament\Forms\Components\TagInput;

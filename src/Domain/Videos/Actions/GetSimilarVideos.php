@@ -22,6 +22,7 @@ class GetSimilarVideos
     {
         $query = str($model->name)
             ->headline()
+            ->lower()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array($word, ['and', 'a', 'or']))
             ->take(7)

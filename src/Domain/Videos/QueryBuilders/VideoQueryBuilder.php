@@ -29,7 +29,6 @@ class VideoQueryBuilder extends Builder
         // $user ??= auth()->user();
 
         return $this
-            ->published()
             ->randomSeed(key: 'feed', ttl: now()->addMinutes(20));
     }
 
