@@ -52,9 +52,9 @@ class GetSimilarVideos
     {
         return Video::query()
             ->published()
-            ->withWhereHas('tags')
-            ->whereKeyNot($model)
             ->tagged($model->tags)
+            ->whereKeyNot($model)
+            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(20))
             ->take(8)
             ->cursor();
     }

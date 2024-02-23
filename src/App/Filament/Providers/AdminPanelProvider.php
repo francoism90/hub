@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->homeUrl('/')
+            ->spa()
             ->login()
             ->registration()
             ->passwordReset()
