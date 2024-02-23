@@ -23,7 +23,7 @@ trait InteractsWithTags
     protected static function convertToTags(Arrayable|array|Tag|null $values = null): Collection
     {
         return collect($values)
-            ->map(fn (Tag|string $item) => ! $item instanceof Tag
+            ->map(fn (mixed $item): ?Tag => ! $item instanceof Tag
                 ? Tag::findByPrefixedId($item)
                 : $item
             )
