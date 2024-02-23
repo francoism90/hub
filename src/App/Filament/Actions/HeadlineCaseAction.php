@@ -7,22 +7,22 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Set;
 
-class SlugCaseAction extends Action
+class HeadlineCaseAction extends Action
 {
     use CanCustomizeProcess;
 
     public static function getDefaultName(): ?string
     {
-        return 'slug_case';
+        return 'headline_case';
     }
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->icon('heroicon-o-language');
+        $this->icon('heroicon-o-sun');
 
-        $this->label(__('Slug Case'));
+        $this->label(__('Headline Case'));
 
         $this->hiddenLabel();
 
@@ -43,9 +43,9 @@ class SlugCaseAction extends Action
     {
         return str($state)
             ->replace(['.', '_'], ' ')
-            ->slug()
-            ->upper()
+            ->headline()
             ->squish()
+            ->trim('-')
             ->value();
     }
 }

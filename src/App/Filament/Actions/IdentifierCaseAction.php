@@ -7,13 +7,13 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Set;
 
-class TitleCaseAction extends Action
+class IdentifierCaseAction extends Action
 {
     use CanCustomizeProcess;
 
     public static function getDefaultName(): ?string
     {
-        return 'title_case';
+        return 'id_case';
     }
 
     protected function setUp(): void
@@ -22,7 +22,7 @@ class TitleCaseAction extends Action
 
         $this->icon('heroicon-o-language');
 
-        $this->label(__('Title Case'));
+        $this->label(__('Identifier Case'));
 
         $this->hiddenLabel();
 
@@ -43,7 +43,8 @@ class TitleCaseAction extends Action
     {
         return str($state)
             ->replace(['.', '_'], ' ')
-            ->title()
+            ->slug()
+            ->upper()
             ->squish()
             ->trim('-')
             ->value();
