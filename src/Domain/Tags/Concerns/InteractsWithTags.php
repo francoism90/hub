@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 trait InteractsWithTags
 {
-    public function tagged(Arrayable|array|Tag|null $values = null): self
+    public function tagged(Arrayable|array|Tag|null $values = null): Builder
     {
         $items = static::convertToTags($values);
 

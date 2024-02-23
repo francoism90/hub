@@ -9,9 +9,9 @@ trait InteractsWithRandomSeed
 {
     public function randomSeed(string $key, Carbon|int $ttl = 60 * 60): Builder
     {
-        return $this->inRandomOrder(
-            static::getRandomSeed($key, $ttl)
-        );
+        return $this
+            ->reorder()
+            ->inRandomOrder(static::getRandomSeed($key, $ttl));
     }
 
     protected static function getRandomSeed(string $key, Carbon|int $ttl): mixed
