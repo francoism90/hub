@@ -42,7 +42,7 @@ class SlugCaseAction extends Action
     protected function convert(?string $state = null): string
     {
         return str($state)
-            ->replace('.', ' ')
+            ->replace(['.', '_'], ' ')
             ->slug()
             ->upper()
             ->squish()

@@ -42,8 +42,8 @@ class TitleCaseAction extends Action
     protected function convert(?string $state = null): string
     {
         return str($state)
-            ->replace('.', ' ')
-            ->headline()
+            ->replace(['.', '_'], ' ')
+            ->title()
             ->squish()
             ->value();
     }
