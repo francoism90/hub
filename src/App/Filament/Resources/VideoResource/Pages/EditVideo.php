@@ -89,7 +89,7 @@ class EditVideo extends EditRecord
                 ->label(__('View'))
                 ->color('gray')
                 ->icon('heroicon-o-eye')
-                ->url(fn (Model $record) => route('videos.view', $record)),
+                ->url(fn (Model $record) => route('videos.view', $record), true),
 
             Actions\DeleteAction::make()
                 ->icon('heroicon-o-trash'),

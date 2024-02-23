@@ -4,6 +4,8 @@ namespace App\Filament\Resources\MediaResource\Pages;
 
 use App\Filament\Concerns\InteractsWithFormData;
 use App\Filament\Resources\MediaResource;
+use App\Filament\Resources\TagResource\Pages\EditTag;
+use App\Filament\Resources\VideoResource\Pages\EditVideo;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Filament\Actions;
@@ -29,13 +31,13 @@ class EditMedia extends EditRecord
                 ->label(__('View Model'))
                 ->color('gray')
                 ->visible(fn (Model $record) => $record->model instanceof Video)
-                ->url(fn (Model $record) => route('filament.admin.resources.videos.edit', $record->model)),
+                ->url(fn (Model $record) => EditVideo::getUrl([$record->model])),
 
             Actions\ViewAction::make()
                 ->label(__('View Model'))
                 ->color('gray')
                 ->visible(fn (Model $record) => $record->model instanceof Tag)
-                ->url(fn (Model $record) => route('filament.admin.resources.tags.edit', $record->model)),
+                ->url(fn (Model $record) => EditTag::getUrl([$record->model])),
 
             Actions\DeleteAction::make()
                 ->icon('heroicon-o-trash'),

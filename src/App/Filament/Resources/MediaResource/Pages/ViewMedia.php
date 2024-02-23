@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\MediaResource\Pages;
 
 use App\Filament\Resources\MediaResource;
+use App\Filament\Resources\TagResource\Pages\EditTag;
+use App\Filament\Resources\VideoResource\Pages\EditVideo;
 use Domain\Media\Models\Media;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
@@ -25,12 +27,12 @@ class ViewMedia extends ViewRecord
             Actions\ViewAction::make()
                 ->label(__('View Model'))
                 ->visible(fn (Media $record) => $record->model instanceof Video)
-                ->url(fn (Media $record) => route('filament.admin.resources.videos.edit', $record->model)),
+                ->url(fn (Media $record) => EditVideo::getUrl([$record->model])),
 
             Actions\ViewAction::make()
                 ->label(__('View Model'))
                 ->visible(fn (Media $record) => $record->model instanceof Tag)
-                ->url(fn (Media $record) => route('filament.admin.resources.tags.edit', $record->model)),
+                ->url(fn (Media $record) => EditTag::getUrl([$record->model])),
 
             Actions\EditAction::make(),
         ];
