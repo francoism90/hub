@@ -47,7 +47,5 @@ class CreateVideoThumbnail
         $model
             ->addMedia($path)
             ->toMediaCollection('thumbnail');
-
-        $temporaryDirectory->delete();
     }
 }

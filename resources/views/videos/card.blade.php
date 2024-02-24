@@ -1,7 +1,7 @@
 <article
     wire:key="{{ $item->getRouteKey() }}"
     x-data="{ preview: false }"
-    {{ $attributes->class('flex flex-col gap-y-1.5 py-7') }}
+    {{ $attributes->class('flex flex-col gap-y-1.5 py-7 max-w-lg') }}
 >
     <dl class="inline-flex">
         <dt class="sr-only">{{ __('Published on') }}</dt>
@@ -47,7 +47,7 @@
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
                     srcset="{{ $item->placeholder }}"
-                    class="absolute inset-0 z-0 h-full w-full object-fill"
+                    class="absolute inset-0 z-0 h-full max-h-64 w-full max-w-lg object-fill"
                     crossorigin="use-credentials"
                     loading="lazy"
                 />

@@ -58,7 +58,5 @@ class ExtractVideoSubtitles
                 ->toMediaCollection('captions')
             );
         }
-
-        $temporaryDirectory->delete();
     }
 }

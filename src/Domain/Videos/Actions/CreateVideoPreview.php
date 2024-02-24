@@ -69,8 +69,6 @@ class CreateVideoPreview
         $model
             ->addMedia($path)
             ->toMediaCollection('previews');
-
-        $temporaryDirectory->delete();
     }
 
     protected function getSegments(float $duration, int $count = 14): Collection
