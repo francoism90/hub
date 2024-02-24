@@ -19,10 +19,10 @@ class VideoIndexController extends Page
     use WithQueryBuilder;
 
     #[Url(as: 'q', history: true, except: '')]
-    public ?string $search = '';
+    public string $search = '';
 
     #[Url(as: 't', history: true, except: [])]
-    public ?array $tags = [];
+    public array $tags = [];
 
     public QueryForm $form;
 

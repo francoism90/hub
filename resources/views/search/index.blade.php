@@ -7,11 +7,11 @@
                 placeholder="{{ __('Search on title, actor or studio') }}"
                 autocomplete
                 autofocus
-                wire:model.live.debounce.300ms="form.search"
+                wire:model.live.debounce.300ms="search"
             >
                 <x-slot:append>
                     @if ($this->form->hasSearch())
-                        <button wire:click.prevent="$set('form.search', '')">
+                        <button wire:click.prevent="$set('search', '')">
                             <x-heroicon-o-x-mark class="h-5 w-5" />
                         </button>
                     @endif
