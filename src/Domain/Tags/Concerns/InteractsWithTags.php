@@ -25,7 +25,7 @@ trait InteractsWithTags
     {
         return collect($values)
             ->map(fn (mixed $item): ?Tag => ! $item instanceof Tag
-                ? Tag::findByPrefixedId($item)
+                ? Tag::findByPrefixedId((string) $item)
                 : $item
             )
             ->filter()

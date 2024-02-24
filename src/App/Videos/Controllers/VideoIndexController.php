@@ -19,7 +19,7 @@ class VideoIndexController extends Page
     use WithQueryBuilder;
 
     #[Url(as: 'q', history: true, except: '')]
-    public ?string $search = null;
+    public ?string $search = '';
 
     #[Url(as: 't', history: true, except: [])]
     public ?array $tags = [];
@@ -28,15 +28,7 @@ class VideoIndexController extends Page
 
     public function mount(): void
     {
-        $query = array_filter(
-            $this->only('search', 'tags')
-        );
-
-        $this->form->restore();
-
-        $this->form->fill($query);
-
-        $this->form->submit();
+        $this->populate();
     }
 
     public function render(): View
@@ -46,9 +38,20 @@ class VideoIndexController extends Page
 
     public function updated(): void
     {
-        $this->reset('search', 'tags');
+        $this->populate();
 
         $this->resetPage();
+    }
+
+    public function populate(): void
+    {
+        $this->form->fill(
+            $this->only('search', 'tags')
+        );
+
+        if ($this->form->fails()) {
+            $this->clear();
+        }
 
         $this->form->submit();
     }
@@ -57,7 +60,7 @@ class VideoIndexController extends Page
     {
         $this->form->clear();
 
-        $this->redirect(route('home'), true);
+        $this->redirectRoute('home', navigate: true);
     }
 
     public function refresh(): void

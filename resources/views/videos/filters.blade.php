@@ -20,7 +20,7 @@
                         class="hidden"
                         id="tag-{{ $item->getRouteKey() }}"
                         value="{{ $item->getRouteKey() }}"
-                        wire:model.live="form.tags"
+                        wire:model.live="tags"
                     />
                 @endforeach
             </div>
