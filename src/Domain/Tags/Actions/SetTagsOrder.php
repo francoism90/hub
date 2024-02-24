@@ -22,6 +22,9 @@ class SetTagsOrder
         Tag::setNewOrder(
             $items->pluck('id')->all()
         );
+
+        // Remove caches
+        cache()->forget('tags');
     }
 
     protected function getTags(TagType $value): LazyCollection
