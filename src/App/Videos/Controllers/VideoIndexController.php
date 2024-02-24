@@ -60,7 +60,7 @@ class VideoIndexController extends Page
     {
         $this->form->clear();
 
-        $this->redirectRoute('home', navigate: true);
+        $this->redirect(static::class, navigate: true);
     }
 
     public function refresh(): void
