@@ -29,6 +29,7 @@ class SetTagsOrder
         return Tag::query()
             ->type($value)
             ->orderBy('name')
-            ->cursor();
+            ->cursor()
+            ->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
     }
 }

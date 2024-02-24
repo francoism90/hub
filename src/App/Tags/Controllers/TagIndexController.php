@@ -28,8 +28,9 @@ class TagIndexController extends Page
     {
         return $this->getQuery()
             ->withCount('videos')
-            ->orderBy('name')
+            ->ordered()
             ->get()
+            ->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)
             ->groupBy(fn (Tag $tag) => str($tag->name)->upper()->substr(0, 1));
     }
 
