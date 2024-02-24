@@ -30,6 +30,6 @@ class SetTagsOrder
             ->type($value)
             ->orderBy('name')
             ->cursor()
-            ->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE);
+            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
     }
 }
