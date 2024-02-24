@@ -40,6 +40,8 @@ class VideoIndexController extends Page
     {
         $this->populate();
 
+        $this->refresh();
+
         $this->resetPage();
     }
 
