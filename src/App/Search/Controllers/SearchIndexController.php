@@ -65,7 +65,7 @@ class SearchIndexController extends Page
     {
         $this->form->clear();
 
-        $this->redirectRoute('search', navigate: true);
+        $this->redirect(static::class, navigate: true);
     }
 
     public function refresh(): void
