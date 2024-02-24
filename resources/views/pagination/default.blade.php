@@ -3,7 +3,7 @@ if (! isset($scrollTo)) {
     $scrollTo = 'body';
 }
 
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
+$scrollIntoView = ($scrollTo !== false)
     ? <<<JS
        (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
     JS
@@ -19,7 +19,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             <button
                 @if ($paginator->onFirstPage()) disabled @endif
                 wire:click="previousPage"
-                x-on:click="{{ $scrollIntoViewJsSnippet }}"
+                x-on:click="{{ $scrollIntoView }}"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
                 wire:loading.attr="disabled"
                 rel="prev"
@@ -34,7 +34,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             <button
                 @if ($paginator->onLastPage()) disabled @endif
                 wire:click="nextPage"
-                x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                x-on:click="{{ $scrollIntoView }}"
                 class="cursor-pointer text-gray-300 disabled:opacity-50"
                 wire:loading.attr="disabled"
                 rel="next"
