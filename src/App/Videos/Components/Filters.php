@@ -19,7 +19,7 @@ class Filters extends Component
     {
         return Tag::query()
             ->ordered()
-            ->lazyById()
+            ->lazy()
             ->when($items, fn (LazyCollection $collection) => $collection
                 ->sortByDesc(fn (Tag $item) => in_array($item->getRouteKey(), $items))
             );
