@@ -164,10 +164,7 @@ return [
                 'filterableAttributes' => [
                     'id',
                     'identifier',
-                    'people',
-                    'studios',
-                    'genres',
-                    'languages',
+                    'tags',
                     'adult',
                     'caption',
                     'state',
