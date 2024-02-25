@@ -192,7 +192,7 @@ return [
             'maxTime' => 0,
             'maxJobs' => 0,
             'memory' => 128,
-            'tries' => 1,
+            'tries' => 3,
             'timeout' => 60 * 60,
             'nice' => 0,
         ],
@@ -206,9 +206,9 @@ return [
             'maxTime' => 0,
             'maxJobs' => 0,
             'memory' => 128,
-            'tries' => 1,
+            'tries' => 3,
             'timeout' => 60 * 60,
-            'nice' => 5,
+            'nice' => 3,
         ],
 
         'supervisor-3' => [

@@ -21,29 +21,26 @@ class ImportVideo implements ShouldQueue
     use SerializesModels;
 
     /**
-     * The maximum number of unhandled exceptions to allow before failing.
-     *
      * @var int
      */
     public $maxExceptions = 1;
 
     /**
-     * The number of seconds the job can run before timing out.
-     *
      * @var int
      */
-    public $timeout = 60 * 60 * 3;
+    public $timeout = 60 * 60 * 2;
 
     /**
-     * Indicate if the job should be marked as failed on timeout.
-     *
+     * @var int
+     */
+    public $backoff = 30;
+
+    /**
      * @var bool
      */
     public $failOnTimeout = true;
 
     /**
-     * Delete the job if its models no longer exist.
-     *
      * @var bool
      */
     public $deleteWhenMissingModels = true;
