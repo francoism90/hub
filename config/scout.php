@@ -231,15 +231,15 @@ return [
                     'sort',
                     'words',
                     'typo',
-                    'attribute',
                     'proximity',
+                    'attribute',
                     'exactness',
                 ],
 
                 'typoTolerance' => [
                     'minWordSizeForTypos' => [
                         'oneTypo' => 3,
-                        'twoTypos' => 4,
+                        'twoTypos' => 5,
                     ],
                 ],
 
@@ -304,15 +304,15 @@ return [
                     'sort',
                     'words',
                     'typo',
-                    'attribute',
                     'proximity',
+                    'attribute',
                     'exactness',
                 ],
 
                 'typoTolerance' => [
                     'minWordSizeForTypos' => [
                         'oneTypo' => 3,
-                        'twoTypos' => 4,
+                        'twoTypos' => 5,
                     ],
                 ],
 
