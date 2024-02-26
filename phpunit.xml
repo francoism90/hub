@@ -11,6 +11,7 @@
     </testsuites>
     <source>
         <include>
+            <directory>app</directory>
             <directory>src</directory>
         </include>
     </source>
@@ -19,8 +20,7 @@
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="BROADCAST_DRIVER" value="log"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="DB_DATABASE" value="test"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>

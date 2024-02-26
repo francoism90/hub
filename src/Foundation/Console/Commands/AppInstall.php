@@ -15,7 +15,7 @@ class AppInstall extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $description = 'Installs the application';
+    protected $description = 'Installs application';
 
     public function handle(): void
     {

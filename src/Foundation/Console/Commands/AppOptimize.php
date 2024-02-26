@@ -15,7 +15,7 @@ class AppOptimize extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $description = 'Optimizes the application';
+    protected $description = 'Optimizes application';
 
     public function handle(): void
     {

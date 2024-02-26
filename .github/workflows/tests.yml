@@ -1,4 +1,4 @@
-name: tests
+name: Run tests
 
 on:
   push:
@@ -7,12 +7,16 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     strategy:
-      fail-fast: true
       matrix:
         php: [8.2, 8.3]
-
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
     name: PHP ${{ matrix.php }}
 
     steps:
@@ -34,9 +38,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
 
+      - name: Setup MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS test;'
+
       - name: Install dependencies
         run: |
-          composer install --prefer-dist --no-interaction --no-progress
+          composer install -n --prefer-dist
           npm ci
 
       - name: Prepare Application

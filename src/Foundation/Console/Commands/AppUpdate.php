@@ -15,7 +15,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $description = 'Updates the application';
+    protected $description = 'Updates application';
 
     public function handle(): void
     {
@@ -27,7 +27,21 @@ class AppUpdate extends Command implements Isolatable
         // Run migrations
         $this->call('migrate', ['--seed']);
 
-        // Sync Scout
+        // Sync indexes
         $this->call('scout:sync');
+
+        // Generate ide-helpers
+        $this->generateIdeHelpers();
+    }
+
+    protected function generateIdeHelpers(): void
+    {
+        if (! app()->environment('local')) {
+            return;
+        }
+
+        $this->call('ide-helper:generate');
+        $this->call('ide-helper:meta');
+        $this->call('ide-helper:models --nowrite');
     }
 }
