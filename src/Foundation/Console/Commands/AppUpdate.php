@@ -42,6 +42,6 @@ class AppUpdate extends Command implements Isolatable
 
         $this->call('ide-helper:generate');
         $this->call('ide-helper:meta');
-        $this->call('ide-helper:models', ['--nowrite']);
+        $this->call('ide-helper:models', ['--nowrite' => 'yes']);
     }
 }
