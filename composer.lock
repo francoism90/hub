@@ -8840,26 +8840,26 @@
         },
         {
             "name": "spatie/laravel-sluggable",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sluggable.git",
-                "reference": "041af2533fe2206715e9a4a9cad2cab6cb796655"
+                "reference": "a44afe6f317959bcfdadcec3148486859fd5c1f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/041af2533fe2206715e9a4a9cad2cab6cb796655",
-                "reference": "041af2533fe2206715e9a4a9cad2cab6cb796655",
+                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/a44afe6f317959bcfdadcec3148486859fd5c1f5",
+                "reference": "a44afe6f317959bcfdadcec3148486859fd5c1f5",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "^8.0|^9.0|^10.0",
-                "illuminate/support": "^8.0|^9.0|^10.0",
+                "illuminate/database": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
                 "php": "^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.23|^7.0|^8.0",
-                "pestphp/pest": "^1.20",
+                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.20|^2.0",
                 "spatie/laravel-translatable": "^5.0|^6.0"
             },
             "type": "library",
@@ -8887,7 +8887,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-sluggable/tree/3.5.0"
+                "source": "https://github.com/spatie/laravel-sluggable/tree/3.6.0"
             },
             "funding": [
                 {
@@ -8895,7 +8895,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-29T09:42:35+00:00"
+            "time": "2024-02-26T08:33:29+00:00"
         },
         {
             "name": "spatie/laravel-tags",
