@@ -18,14 +18,14 @@ class VideoViewController extends Page
     use WithVideo;
     use WithWatchlist;
 
-    public function mount(): void
-    {
-        $this->seo()->setTitle((string) $this->video?->name);
-    }
-
     public function render(): View
     {
         return view('videos.view');
+    }
+
+    public function getTitle(): string
+    {
+        return (string) $this->video?->name;
     }
 
     #[On('time-update')]

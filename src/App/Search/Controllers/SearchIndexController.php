@@ -31,8 +31,6 @@ class SearchIndexController extends Page
 
     public function mount(): void
     {
-        $this->seo()->setTitle(__('Search'));
-
         $this->populate();
     }
 
@@ -73,6 +71,11 @@ class SearchIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    public function getTitle(): string
+    {
+        return __('Search');
     }
 
     #[Computed]

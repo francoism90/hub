@@ -13,14 +13,14 @@ class TagIndexController extends Page
 {
     use WithQueryBuilder;
 
-    public function mount(): void
-    {
-        $this->seo()->setTitle(__('Tags'));
-    }
-
     public function render(): View
     {
         return view('tags.index');
+    }
+
+    public function getTitle(): string
+    {
+        return __('Tags');
     }
 
     #[Computed(cache: true, key: 'tags', seconds: 60 * 60 * 4)]
