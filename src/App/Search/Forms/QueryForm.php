@@ -12,4 +12,6 @@ class QueryForm extends Form
     use WithFeatures;
     use WithSearch;
     use WithSorts;
+
+    protected static bool $store = true;
 }

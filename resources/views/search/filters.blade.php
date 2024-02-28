@@ -23,7 +23,7 @@
                     type="radio"
                     class="hidden"
                     value="{{ $item }}"
-                    wire:model.live="sort"
+                    wire:model.live="form.sort"
                 />
             @endforeach
         </div>
@@ -65,7 +65,7 @@
                     type="checkbox"
                     class="hidden"
                     value="{{ $item }}"
-                    wire:model.live="features"
+                    wire:model.live="form.features"
                 />
             @endforeach
         </div>
