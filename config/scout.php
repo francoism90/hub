@@ -297,15 +297,6 @@ return [
                     ']',
                 ],
 
-                'rankingRules' => [
-                    'sort',
-                    'words',
-                    'typo',
-                    'proximity',
-                    'attribute',
-                    'exactness',
-                ],
-
                 'typoTolerance' => [
                     'minWordSizeForTypos' => [
                         'oneTypo' => 3,

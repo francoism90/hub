@@ -40,6 +40,7 @@ class Tag extends BaseTag implements HasMedia
      */
     protected $fillable = [
         'name',
+        'description',
         'type',
         'adult',
     ];
@@ -157,6 +158,19 @@ class Tag extends BaseTag implements HasMedia
     public function makeSearchableUsing(TagCollection $models): TagCollection
     {
         return $models->loadMissing($this->with);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (int) $this->getScoutKey(),
+            'name' => (string) $this->name,
+            'description' => (string) $this->description,
+            'type' => (string) $this->type,
+            'adult' => (bool) $this->adult,
+            'created_at' => (int) $this->created_at->getTimestamp(),
+            'updated_at' => (int) $this->updated_at->getTimestamp(),
+        ];
     }
 
     protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
