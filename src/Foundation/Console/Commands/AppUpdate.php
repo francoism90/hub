@@ -24,6 +24,9 @@ class AppUpdate extends Command implements Isolatable
         // Optimize app
         $this->call('app:optimize');
 
+        // Fetch assets
+        $this->call('google-fonts:fetch');
+
         // Run migrations
         $this->call('migrate', ['--seed']);
 

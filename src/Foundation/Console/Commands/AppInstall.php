@@ -32,6 +32,6 @@ class AppInstall extends Command implements Isolatable
         $this->call('scout:delete-all-indexes');
 
         // Perform update
-        $this->call('app:update');
+        $this->call('app:update', ['--force' => 'yes']);
     }
 }

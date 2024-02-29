@@ -33,7 +33,6 @@ class AppOptimize extends Command implements Isolatable
         $this->call('event:cache');
 
         // Optimize assets
-        $this->call('google-fonts:fetch');
         $this->call('icons:cache');
 
         // Optimize cache
