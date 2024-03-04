@@ -6,9 +6,10 @@ export default {
   plugins: ['@prettier/plugin-php', 'prettier-plugin-tailwindcss'],
   overrides: [
     {
-      files: ['*.php', '*.blade.php'],
+      files: ['*.blade.php'],
       options: {
         parser: 'php',
+        phpVersion: '8.1',
         printWidth: 180,
         singleQuote: true,
       },
