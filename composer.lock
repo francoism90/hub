@@ -8472,16 +8472,16 @@
         },
         {
             "name": "spatie/laravel-model-states",
-            "version": "2.6.2",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-model-states.git",
-                "reference": "dc7883f88506064155428b023d428b8447dcc865"
+                "reference": "d3f7be00453a6d5474e0d14a31e4dc6f388792f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/dc7883f88506064155428b023d428b8447dcc865",
-                "reference": "dc7883f88506064155428b023d428b8447dcc865",
+                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/d3f7be00453a6d5474e0d14a31e4dc6f388792f0",
+                "reference": "d3f7be00453a6d5474e0d14a31e4dc6f388792f0",
                 "shasum": ""
             },
             "require": {
@@ -8531,7 +8531,7 @@
                 "state"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-model-states/tree/2.6.2"
+                "source": "https://github.com/spatie/laravel-model-states/tree/2.7.0"
             },
             "funding": [
                 {
@@ -8543,7 +8543,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-15T10:16:56+00:00"
+            "time": "2024-03-01T12:55:29+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
