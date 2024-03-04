@@ -1,13 +1,44 @@
 @layer components {
     .btn {
-        @apply gap-1.5 rounded border-transparent py-2.5 text-sm font-medium;
+        &-disabled,
+        &[disabled],
+        &:disabled {
+            @apply pointer-events-none;
+        }
 
         &-gradient {
             @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
         }
 
-        &-sm {
-            @apply h-6 max-h-6 text-sm;
+        &-primary {
+            @apply border-primary-500/50 bg-primary-500;
         }
+
+        &-secondary {
+            @apply bg-gray-700;
+        }
+
+        &-outline {
+            @apply border bg-transparent;
+        }
+
+        &-ghost {
+            @apply bg-transparent;
+        }
+
+        &-rounded {
+            @apply rounded-lg;
+        }
+    }
+
+    /* radio input and checkbox as button */
+    .btn:is(input[type='checkbox']),
+    .btn:is(input[type='radio']) {
+        @apply w-auto appearance-none;
+    }
+
+    .btn:is(input[type='checkbox']):after,
+    .btn:is(input[type='radio']):after {
+        @apply content-[attr(aria-label)];
     }
 }
