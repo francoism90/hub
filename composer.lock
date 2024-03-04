@@ -8899,21 +8899,21 @@
         },
         {
             "name": "spatie/laravel-tags",
-            "version": "4.6.0",
+            "version": "4.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-tags.git",
-                "reference": "ddcc82e1149c4720c0eaa02d171f50a1cdd1cb46"
+                "reference": "73944e8bd7a341269c03959fe063d8714adbe5a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/ddcc82e1149c4720c0eaa02d171f50a1cdd1cb46",
-                "reference": "ddcc82e1149c4720c0eaa02d171f50a1cdd1cb46",
+                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/73944e8bd7a341269c03959fe063d8714adbe5a6",
+                "reference": "73944e8bd7a341269c03959fe063d8714adbe5a6",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.67|^9.0|^10.0|^11.0",
-                "nesbot/carbon": "^2.63",
+                "nesbot/carbon": "^2.63|^3.0",
                 "php": "^8.0",
                 "spatie/eloquent-sortable": "^3.10|^4.0",
                 "spatie/laravel-package-tools": "^1.4",
@@ -8957,7 +8957,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-tags/issues",
-                "source": "https://github.com/spatie/laravel-tags/tree/4.6.0"
+                "source": "https://github.com/spatie/laravel-tags/tree/4.6.1"
             },
             "funding": [
                 {
@@ -8965,20 +8965,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-21T12:13:18+00:00"
+            "time": "2024-03-01T12:44:53+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.6.1",
+            "version": "6.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "1437edfc264788ba20138f865ffd6e76dc3d0672"
+                "reference": "529b4e89ad0b0982d9c635696260661d1cf2612c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/1437edfc264788ba20138f865ffd6e76dc3d0672",
-                "reference": "1437edfc264788ba20138f865ffd6e76dc3d0672",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/529b4e89ad0b0982d9c635696260661d1cf2612c",
+                "reference": "529b4e89ad0b0982d9c635696260661d1cf2612c",
                 "shasum": ""
             },
             "require": {
@@ -9039,7 +9039,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-translatable/issues",
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.6.1"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.6.2"
             },
             "funding": [
                 {
@@ -9047,7 +9047,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-26T08:37:34+00:00"
+            "time": "2024-03-01T10:24:53+00:00"
         },
         {
             "name": "spatie/php-structure-discoverer",
