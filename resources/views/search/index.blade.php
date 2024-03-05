@@ -1,5 +1,5 @@
 <x-ui-container class="flex flex-col gap-y-4">
-    <div class="py-2">
+    <div class="py-4">
         <x-forms-input
             class:base="rounded bg-gray-800 border-0 w-full text-sm px-2 py-1.5"
             type="search"
