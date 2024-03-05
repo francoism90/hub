@@ -56,7 +56,7 @@
 
                 <x-ui-button
                     class="hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
-                    href="{{ route('filament.admin.resources.videos.edit', $video) }}"
+                    wire:click="edit"
                 >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
                 </x-ui-button>
