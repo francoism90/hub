@@ -34,32 +34,32 @@
             </header>
 
             <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 text-center text-sm text-gray-300">
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                <x-ui-button
+                    class="hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite"
                 >
                     <x-icon
                         :name="$this->favorited"
                         class="h-6 w-6"
                     />
-                </a>
+                </x-ui-button>
 
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                <x-ui-button
+                    class="hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleWatchlist"
                 >
                     <x-icon
                         :name="$this->watchlisted"
                         class="h-6 w-6"
                     />
-                </a>
+                </x-ui-button>
 
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                <x-ui-button
+                    class="hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     href="{{ route('filament.admin.resources.videos.edit', $video) }}"
                 >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
-                </a>
+                </x-ui-button>
             </div>
 
             @if ($video->tags->isNotEmpty())
@@ -82,7 +82,7 @@
         window.timeUpdate = function(e) {
             const time = e?.target?.currentTime
 
-            if (!time) {
+            if (!time || time < 0) {
                 return;
             }
 
