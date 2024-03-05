@@ -1,5 +1,0 @@
-@layer components {
-    .input {
-        @apply bg-gray-800 text-gray-300 placeholder:text-gray-500;
-    }
-}
