@@ -1,23 +1,21 @@
 <x-ui-container class="flex flex-col gap-y-4">
-    <div class="pt-4">
-        <div class="flex w-full flex-row flex-nowrap items-center gap-x-4 rounded bg-gray-800 px-4">
-            <x-forms-input
-                class="input-ghost px-0 text-sm"
-                type="search"
-                placeholder="{{ __('Search on title, actor or studio') }}"
-                autocomplete
-                autofocus
-                wire:model.live.debounce.300ms="form.search"
-            >
-                <x-slot:append>
-                    @if ($this->form->hasSearch())
-                        <button wire:click.prevent="$set('form.search', '')">
-                            <x-heroicon-o-x-mark class="h-5 w-5" />
-                        </button>
-                    @endif
-                </x-slot:append>
-            </x-forms-input>
-        </div>
+    <div class="py-1">
+        <x-forms-input
+            class:base="rounded bg-gray-800 border-0 w-full text-sm px-2 py-1.5"
+            type="search"
+            placeholder="{{ __('Search on title, actor or studio') }}"
+            autocomplete
+            autofocus
+            wire:model.live.debounce.300ms="form.search"
+        >
+            <x-slot:append>
+                @if ($this->form->hasSearch())
+                    <button wire:click.prevent="$set('form.search', '')">
+                        <x-heroicon-o-x-mark class="h-5 w-5" />
+                    </button>
+                @endif
+            </x-slot:append>
+        </x-forms-input>
 
         @if ($this->form->hasSearch())
             <x-search-filters />
