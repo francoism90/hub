@@ -4,15 +4,16 @@
             <x-slot:start>
                 <x-ui-link
                     href="/"
-                    class="navbar-brand"
+                    class:layer="inline-flex items-center space-x-4 text-2xl font-medium lowercase hover:text-primary-100"
+                    class:active="text-inherit"
                 >
-                    <x-heroicon-s-play-circle class="navbar-logo" />
+                    <x-heroicon-s-play-circle class="h-12 w-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5" />
                     <span>{{ config('app.name') }}</span>
                 </x-ui-link>
             </x-slot:start>
 
             <x-slot:end>
-                <nav class="navbar-menu">
+                <nav class="inline-flex items-center space-x-4">
                     <x-ui-link
                         route="tags.index"
                         aria-label="{{ __('Tags') }}"
