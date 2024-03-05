@@ -66,9 +66,9 @@
                                     {{ __('Manage Profile') }}
                                 </x-ui-link>
 
-                                <x-ui-link
+                                <x-ui-button
                                     route="auth.logout"
-                                    class="btn rounded bg-gray-600/50"
+                                    class="bg-gray-600/50"
                                 >
                                     {{ __('Log Out') }}
                                 </x-ui-link>
