@@ -82,7 +82,7 @@
         window.timeUpdate = function(e) {
             const time = e?.target?.currentTime
 
-            if (!time || time < 0) {
+            if (!time || time < 0 || time === Infinity) {
                 return;
             }
 
