@@ -62,12 +62,6 @@
                                 >
                                     {{ __('Manage Profile') }}
                                 </x-livewire-use::actions-link>
-
-                                <x-livewire-use::actions-button
-                                    class="bg-gray-600/50"
-                                >
-                                    {{ __('Log Out') }}
-                                </x-livewire-use::actions-button>
                             </section>
                         </div>
                     </x-livewire-use::actions-dropdown>
