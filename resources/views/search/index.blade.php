@@ -1,5 +1,13 @@
-<x-ui-container class="flex flex-col gap-y-4">
-    <div class="py-4">
+<x-livewire-use::container class="flex flex-col gap-y-4">
+    start
+    <x-livewire-use::form>
+        <x-livewire-use::actions.button label="hoi" />
+
+        <x-livewire-use::form.input id="name" />
+
+    </x-livewire-use::form>
+
+    {{-- <div class="py-4">
         <x-forms-input
             class:base="rounded bg-gray-800 border-0 w-full text-sm px-2 py-1.5"
             type="search"
@@ -33,5 +41,5 @@
         </div>
 
         {{ $this->items->links('pagination.default') }}
-    </div>
-</x-ui-container>
+    </div> --}}
+</x-livewire-use::container>
