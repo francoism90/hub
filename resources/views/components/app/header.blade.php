@@ -4,7 +4,7 @@
             <x-livewire-use::navbar.start>
                 <x-livewire-use::actions.link
                     href="/"
-                    class:base="inline-flex items-center gap-x-4 text-2xl font-medium lowercase hover:text-primary-100"
+                    class:layer="inline-flex items-center gap-x-4 text-2xl font-medium lowercase hover:text-primary-100"
                     class:active="text-inherit"
                 >
                     <x-heroicon-s-play-circle class="h-12 w-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5" />
