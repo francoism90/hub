@@ -11,9 +11,9 @@
             />
 
             @if ($this->form->hasSearch())
-                <x-livewire-use::actions.button wire:click.prevent="$set('form.search', '')">
+                <x-livewire-use::actions-button wire:click.prevent="$set('form.search', '')">
                     <x-heroicon-o-x-mark class="h-5 w-5" />
-                </x-livewire-use::actions.button>
+                </x-livewire-use::actions-button>
             @endif
         </x-livewire-use::layout.join>
 

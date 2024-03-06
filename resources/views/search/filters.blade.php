@@ -1,13 +1,13 @@
 <x-livewire-use::layout.join class="gap-x-6">
     <x-livewire-use::actions-dropdown>
         <x-slot:actions>
-            <x-livewire-use::actions.button class="text-sm font-semibold">
+            <x-livewire-use::actions-button class="text-sm font-semibold">
                 <span>{{ __('Sort') }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''"
                 />
-            </x-livewire-use::actions.button>
+            </x-livewire-use::actions-button>
         </x-slot:actions>
 
         <div
@@ -42,13 +42,13 @@
 
     <x-livewire-use::actions-dropdown>
         <x-slot:actions>
-            <x-livewire-use::actions.button class="text-sm font-semibold">
+            <x-livewire-use::actions-button class="text-sm font-semibold">
                 <span>{{ __('Features') }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''"
                 />
-            </x-livewire-use::actions.button>
+            </x-livewire-use::actions-button>
         </x-slot:actions>
 
         <div

@@ -20,13 +20,13 @@
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
-        <x-livewire-use::actions.link
+        <x-livewire-use::actions-link
             href="{{ route('videos.view', $item) }}"
             aria-label="{{ $item->title }}"
             title="{{ $item->title }}"
         >
             {{ $item->title }}
-        </x-livewire-use::actions.link>
+        </x-livewire-use::actions-link>
     </h2>
 
     @if ($item->tags->isNotEmpty())
@@ -42,7 +42,7 @@
             x-on:touchend.passive="preview = false"
             class="relative h-full w-full bg-black"
         >
-            <x-livewire-use::actions.link href="{{ route('videos.view', $item) }}">
+            <x-livewire-use::actions-link href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -74,7 +74,7 @@
                         loop
                     />
                 </template>
-            </x-livewire-use::actions.link>
+            </x-livewire-use::actions-link>
         </div>
     </div>
 </article>
