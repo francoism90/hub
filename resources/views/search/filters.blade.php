@@ -15,7 +15,7 @@
             class="w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
         >
             @foreach ($sorters as $item => $label)
-                <x-livewire-use::form.label
+                <x-livewire-use::forms-label
                     for="sort-{{ $item }}"
                     @class([
                         'py-2 px-4 text-sm',
@@ -27,7 +27,7 @@
                     @if ($this->form->isSort($item))
                         <x-heroicon-o-check class="h-4 w-4" />
                     @endif
-                </x-livewire-use::form.label>
+                </x-livewire-use::forms-label>
 
                 <input
                     id="sort-{{ $item }}"
@@ -56,7 +56,7 @@
             class="w-44 min-w-[11rem] max-w-[11rem] rounded bg-gray-900 py-2"
         >
             @foreach ($features as $item => $label)
-                <x-livewire-use::form.label
+                <x-livewire-use::forms-label
                     for="feature-{{ $item }}"
                     @class([
                         'py-2 px-4 text-sm',
@@ -68,7 +68,7 @@
                     @if ($this->form->hasFeatures($item))
                         <x-heroicon-o-check class="h-4 w-4" />
                     @endif
-                </x-livewire-use::form.label>
+                </x-livewire-use::forms-label>
 
                 <input
                     id="feature-{{ $item }}"

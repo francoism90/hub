@@ -1,7 +1,7 @@
 <x-livewire-use::layout-container class="pt-4">
-    <x-livewire-use::form>
+    <form class="flex flex-col gap-y-2">
         <x-livewire-use::layout-join class="flex-nowrap gap-x-4 rounded bg-gray-800 px-3">
-            <x-livewire-use::form.input
+            <x-livewire-use::forms-input
                 class="bg-transparent border-0 py-2.5 px-0"
                 type="search"
                 placeholder="{{ __('Search on title, actor or studio') }}"
@@ -20,7 +20,7 @@
         @if ($this->form->hasSearch())
             <x-app::search-filters />
         @endif
-    </x-livewire-use::form>
+    </form>
 
     <div class="flex flex-col pt-4 gap-y-8">
         <div
