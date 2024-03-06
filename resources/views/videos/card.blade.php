@@ -1,5 +1,5 @@
 <article
-    wire:key="{{ $item->getRouteKey() }}"
+    wire:key="{{ $hash() }}"
     x-data="{ preview: false }"
     {{ $attributes->class('flex flex-col gap-y-1.5 py-7 max-w-lg') }}
 >
@@ -20,17 +20,17 @@
     </dl>
 
     <h2 class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight">
-        <x-ui-link
+        <x-livewire-use::actions.link
             href="{{ route('videos.view', $item) }}"
             aria-label="{{ $item->title }}"
             title="{{ $item->title }}"
         >
             {{ $item->title }}
-        </x-ui-link>
+        </x-livewire-use::actions.link>
     </h2>
 
     @if ($item->tags->isNotEmpty())
-        <x-videos-tags :items="$item->tags" />
+        <x-app::videos-tags :items="$item->tags" />
     @endif
 
     <div class="h-60 max-h-60 py-2 sm:h-64 sm:max-h-64">
@@ -42,7 +42,7 @@
             x-on:touchend.passive="preview = false"
             class="relative h-full w-full bg-black"
         >
-            <x-ui-link href="{{ route('videos.view', $item) }}">
+            <x-livewire-use::actions.link href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -63,7 +63,7 @@
                 </div>
 
                 <template x-if="preview">
-                    <x-videos-player
+                    <x-app::videos-player
                         :$item
                         :manifest="$item->preview"
                         :controls="false"
@@ -74,7 +74,7 @@
                         loop
                     />
                 </template>
-            </x-ui-link>
+            </x-livewire-use::actions.link>
         </div>
     </div>
 </article>

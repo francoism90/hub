@@ -15,7 +15,7 @@
             <x-livewire-use::navbar.end>
                 <x-livewire-use::layout.join class="gap-x-4">
                     <x-livewire-use::actions.link
-                        route="tags.index"
+                        href="{{ route ('tags.index') }}"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
                     >
@@ -48,7 +48,7 @@
                                     {{ __('Favorites') }}
                                 </x-livewire-use::actions.link>
 
-                                <x-livewire-use::actions.link href="{{ route('profile.history') }}">
+                                <x-livewire-use::actions.link href="{{ route('profile.watchlist') }}">
                                     {{ __('Watchlist') }}
                                 </x-livewire-use::actions.link>
                             </section>
@@ -72,5 +72,5 @@
                 </x-livewire-use::layout.join>
             </x-livewire-use::navbar.end>
         </x-livewire-use::navigation.navbar>
-    </x-ui-container>
+    </x-livewire-use::container>
 </header>

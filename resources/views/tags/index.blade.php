@@ -1,4 +1,4 @@
-<x-ui-container>
+<x-livewire-use::container>
     <div
         class="flex flex-col gap-y-7 py-3.5"
         wire:poll.keep-alive.2400s
@@ -17,4 +17,4 @@
             </article>
         @endforeach
     </div>
-</x-ui-container>
+</x-livewire-use::container>
