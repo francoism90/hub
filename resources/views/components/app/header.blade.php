@@ -1,7 +1,7 @@
 <header>
     <x-livewire-use::container>
-        <x-livewire-use::navigation.navbar>
-            <x-slot:start>
+        <x-livewire-use::navbar>
+            <x-livewire-use::navbar.start>
                 <x-livewire-use::actions.link
                     href="/"
                     class:base="inline-flex items-center gap-x-4 text-2xl font-medium lowercase hover:text-primary-100"
@@ -10,9 +10,9 @@
                     <x-heroicon-s-play-circle class="h-12 w-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5" />
                     <span>{{ config('app.name') }}</span>
                 </x-livewire-use::actions.link>
-            </x-slot:start>
+            </x-livewire-use::navbar.start>
 
-            <x-slot:end>
+            <x-livewire-use::navbar.end>
                 <x-livewire-use::layout.join class="gap-x-4">
                     <x-livewire-use::actions.link
                         route="tags.index"
@@ -62,7 +62,6 @@
                                 </x-livewire-use::actions.link>
 
                                 <x-livewire-use::actions.button
-                                    href="{{ route('auth.logout') }}"
                                     class="bg-gray-600/50"
                                 >
                                     {{ __('Log Out') }}
@@ -71,7 +70,7 @@
                         </x-livewire-use::dropdown.content>
                     </x-livewire-use::dropdown>
                 </x-livewire-use::layout.join>
-            </x-slot:end>
+            </x-livewire-use::navbar.end>
         </x-livewire-use::navigation.navbar>
     </x-ui-container>
 </header>
