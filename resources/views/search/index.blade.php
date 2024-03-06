@@ -1,6 +1,6 @@
-<x-livewire-use::container class="pt-4">
+<x-livewire-use::layout-container class="pt-4">
     <x-livewire-use::form>
-        <x-livewire-use::layout.join class="flex-nowrap gap-x-4 rounded bg-gray-800 px-3">
+        <x-livewire-use::layout-join class="flex-nowrap gap-x-4 rounded bg-gray-800 px-3">
             <x-livewire-use::form.input
                 class="bg-transparent border-0 py-2.5 px-0"
                 type="search"
@@ -15,7 +15,7 @@
                     <x-heroicon-o-x-mark class="h-5 w-5" />
                 </x-livewire-use::actions-button>
             @endif
-        </x-livewire-use::layout.join>
+        </x-livewire-use::layout-join>
 
         @if ($this->form->hasSearch())
             <x-app::search-filters />
@@ -34,4 +34,4 @@
 
         {{ $this->items->links('pagination.default') }}
     </div>
-</x-livewire-use::container>
+</x-livewire-use::layout-container>

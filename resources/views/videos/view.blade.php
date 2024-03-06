@@ -9,7 +9,7 @@
         />
     </div>
 
-    <x-livewire-use::container class="py-1">
+    <x-livewire-use::layout-container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
                 <dl>
@@ -74,7 +74,7 @@
 
             <livewire:app::videos-similar :$video />
         </div>
-    </x-livewire-use::container>
+    </x-livewire-use::layout-container>
 </article>
 
 @script

@@ -1,4 +1,4 @@
-<x-livewire-use::layout.join class="gap-x-6">
+<x-livewire-use::layout-join class="gap-x-6">
     <x-livewire-use::actions-dropdown>
         <x-slot:actions>
             <x-livewire-use::actions-button class="text-sm font-semibold">
@@ -80,4 +80,4 @@
             @endforeach
         </div>
     </x-livewire-use::actions-dropdown>
-</x-livewire-use::layout.join>
+</x-livewire-use::layout-join>

@@ -1,4 +1,4 @@
-<x-livewire-use::container class="flex flex-nowrap sm:space-x-24">
+<x-livewire-use::layout-container class="flex flex-nowrap sm:space-x-24">
     <div
         class="grow flex-col divide-y divide-gray-700 overflow-hidden"
         wire:poll.keep-alive.2400s
@@ -25,4 +25,4 @@
     </div>
 
     <x-app::videos-filters />
-</x-livewire-use::container>
+</x-livewire-use::layout-container>
