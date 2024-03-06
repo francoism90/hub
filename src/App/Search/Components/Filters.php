@@ -15,7 +15,7 @@ class Filters extends Component
     public function sorters(): array
     {
         return [
-            '' => __('Relevance'),
+            'foo' => __('Relevance'),
             'longest' => __('Longest'),
             'shortest' => __('Shortest'),
             'released' => __('Released'),
