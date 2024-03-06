@@ -30,12 +30,14 @@
                         <x-heroicon-o-magnifying-glass class="h-6 w-6" />
                     </x-livewire-use::actions.link>
 
-                    <x-livewire-use::dropdown>
-                        <x-livewire-use::actions.button>
-                            <x-heroicon-o-user-circle class="h-6 w-6" />
-                        </x-livewire-use::actions.button>
+                    <x-livewire-use::actions-dropdown>
+                        <x-slot:actions>
+                            <x-livewire-use::actions.button class:layer="block">
+                                <x-heroicon-o-user-circle class="h-6 w-6" />
+                            </x-livewire-use::actions.button>
+                        </x-slot:actions>
 
-                        <x-livewire-use::dropdown.content
+                        <div
                             x-anchor.bottom-end.offset.5="$refs.dropdown"
                             class="flex min-w-[16rem] max-w-[16rem] flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
                         >
@@ -67,8 +69,8 @@
                                     {{ __('Log Out') }}
                                 </x-livewire-use::actions.button>
                             </section>
-                        </x-livewire-use::dropdown.content>
-                    </x-livewire-use::dropdown>
+                        </div>
+                    </x-livewire-use::actions-dropdown>
                 </x-livewire-use::layout.join>
             </x-livewire-use::navbar.end>
         </x-livewire-use::navigation.navbar>
