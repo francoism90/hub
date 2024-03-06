@@ -18,9 +18,7 @@
         </x-livewire-use::layout.join>
 
         @if ($this->form->hasSearch())
-            <div class="w-full">
-                <x-app::search-filters />
-            </div>
+            <x-app::search-filters />
         @endif
     </x-livewire-use::form>
 
