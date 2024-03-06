@@ -2,10 +2,10 @@
 
 namespace App\Search\Forms;
 
-use Foxws\LivewireUse\Forms\Components\Form;
 use Foxws\LivewireUse\Forms\Concerns\WithFeatures;
 use Foxws\LivewireUse\Forms\Concerns\WithSearch;
 use Foxws\LivewireUse\Forms\Concerns\WithSorts;
+use Foxws\LivewireUse\Forms\Support\Form;
 
 class QueryForm extends Form
 {
