@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a7d9b165c27ac91d0e2778e652b84c8",
+    "content-hash": "c0c20f4bdeb7355393670613f96c92ab",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2859,16 +2859,16 @@
         },
         {
             "name": "foxws/livewire-use",
-            "version": "v0.0.15",
+            "version": "v0.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/livewire-use.git",
-                "reference": "2b09e5bd930aa5f441530b454ead5e8c4ab34a07"
+                "reference": "6d93e87f028fea8d99f5ace1e799a27a4ba1e2ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/livewire-use/zipball/2b09e5bd930aa5f441530b454ead5e8c4ab34a07",
-                "reference": "2b09e5bd930aa5f441530b454ead5e8c4ab34a07",
+                "url": "https://api.github.com/repos/foxws/livewire-use/zipball/6d93e87f028fea8d99f5ace1e799a27a4ba1e2ec",
+                "reference": "6d93e87f028fea8d99f5ace1e799a27a4ba1e2ec",
                 "shasum": ""
             },
             "require": {
@@ -2932,7 +2932,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/livewire-use/issues",
-                "source": "https://github.com/foxws/livewire-use/tree/v0.0.15"
+                "source": "https://github.com/foxws/livewire-use/tree/v0.0.16"
             },
             "funding": [
                 {
@@ -2940,7 +2940,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-07T20:05:40+00:00"
+            "time": "2024-03-07T20:43:24+00:00"
         },
         {
             "name": "fruitcake/php-cors",
