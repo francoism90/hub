@@ -1,9 +1,4 @@
 @layer base {
-    body,
-    html {
-        @apply relative h-screen min-h-screen bg-gray-950 text-white;
-    }
-
     img {
         @apply text-transparent;
 

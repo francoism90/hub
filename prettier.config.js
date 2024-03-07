@@ -12,7 +12,6 @@ export default {
         printWidth: 180,
         wrapAttributes: 'force-expand-multiline',
         sortTailwindcssClasses: true,
-        sortHtmlAttributes: 'vuejs',
         indentInnerHtml: false,
       },
     },

@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         LivewireUse::registerComponents(
             path: app_path(),
-            prefix: 'components'
+            prefix: 'app'
         );
     }
 

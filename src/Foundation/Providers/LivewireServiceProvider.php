@@ -38,7 +38,7 @@ class LivewireServiceProvider extends ServiceProvider
     {
         LivewireUse::registerLivewireComponents(
             path: app_path(),
-            prefix: 'livewire-components'
+            prefix: 'app'
         );
     }
 }

@@ -1,6 +1,6 @@
 <article>
     <div class="h-64 max-h-64 bg-black sm:h-80 sm:max-h-80 lg:h-[36rem] lg:max-h-[36rem]">
-        <x-videos-player
+        <x-app::videos-player
             :item="$video"
             :manifest="$video->stream"
             :starts-at="$this->starts"
@@ -9,7 +9,7 @@
         />
     </div>
 
-    <x-ui-container class="py-1">
+    <x-livewire-use::layout-container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
                 <dl>
@@ -34,47 +34,47 @@
             </header>
 
             <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 text-center text-sm text-gray-300">
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                <x-livewire-use::actions-button
+                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite"
                 >
                     <x-icon
                         :name="$this->favorited"
                         class="h-6 w-6"
                     />
-                </a>
+                </x-livewire-use::actions-button>
 
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                <x-livewire-use::actions-button
+                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleWatchlist"
                 >
                     <x-icon
                         :name="$this->watchlisted"
                         class="h-6 w-6"
                     />
-                </a>
+                </x-livewire-use::actions-button>
 
-                <a
-                    class="btn hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
-                    href="{{ route('filament.admin.resources.videos.edit', $video) }}"
+                <x-livewire-use::actions-button
+                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                    wire:click="edit"
                 >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
-                </a>
+                </x-livewire-use::actions-button>
             </div>
 
             @if ($video->tags->isNotEmpty())
                 <div class="gap-y-3 py-3.5">
-                    <h2 class="text-sm uppercase tracking-wide text-gray-400">{{ __('Tags') }}</h2>
-                    <x-videos-tags
-                        class="pt-2"
-                        :items="$video->tags"
-                    />
+                    <h2 class="text-sm uppercase tracking-wide text-gray-400">
+                        {{ __('Tags') }}
+                    </h2>
+
+                    <x-app::videos-tags class="pt-2" :items="$video->tags" />
                 </div>
             @endif
 
-            <livewire:videos-similar :$video />
+            <livewire:app::videos-similar :$video />
         </div>
-    </x-ui-container>
+    </x-livewire-use::layout-container>
 </article>
 
 @script
@@ -82,7 +82,7 @@
         window.timeUpdate = function(e) {
             const time = e?.target?.currentTime
 
-            if (!time) {
+            if (!time || time < 0 || time === Infinity) {
                 return;
             }
 

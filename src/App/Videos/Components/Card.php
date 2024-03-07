@@ -3,7 +3,7 @@
 namespace App\Videos\Components;
 
 use Domain\Videos\Models\Video;
-use Illuminate\View\Component;
+use Foxws\LivewireUse\Views\Components\Component;
 use Illuminate\View\View;
 
 class Card extends Component

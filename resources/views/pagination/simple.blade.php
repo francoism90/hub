@@ -15,7 +15,7 @@ $scrollIntoView = ($scrollTo !== false)
     aria-label="Pagination Navigation"
 >
     @if ($paginator->hasPages())
-        <div class="flex items-center justify-between py-6" x-data>
+        <div class="flex items-center justify-between" x-data>
             <button
                 @if ($paginator->onFirstPage()) disabled @endif
                 wire:click="previousPage"

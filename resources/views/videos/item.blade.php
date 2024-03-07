@@ -11,7 +11,7 @@
             x-on:touchend.passive="preview = false"
             class="relative h-44 max-h-44 w-full border-b border-gray-700/30 bg-black"
         >
-            <x-ui-link href="{{ route('videos.view', $item) }}">
+            <x-livewire-use::actions-link href="{{ route('videos.view', $item) }}">
                 <img
                     alt="{{ $item->title }}"
                     src="{{ $item->thumbnail }}"
@@ -22,7 +22,7 @@
                 />
 
                 <template x-if="preview">
-                    <x-videos-player
+                    <x-app::videos-player
                         :$item
                         :manifest="$item->preview"
                         :controls="false"
@@ -33,11 +33,11 @@
                         loop
                     />
                 </template>
-            </x-ui-link>
+            </x-livewire-use::actions-link>
         </div>
 
         <div class="flex flex-col p-3.5">
-            <x-ui-link href="{{ route('videos.view', $item) }}">
+            <x-livewire-use::actions-link href="{{ route('videos.view', $item) }}">
                 <h2
                     class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
@@ -75,10 +75,10 @@
                         </time>
                     </dd>
                 </dl>
-            </x-ui-link>
+            </x-livewire-use::actions-link>
 
             @if ($item->tags->isNotEmpty())
-                <x-videos-tags
+                <x-app::videos-tags
                     class="line-clamp-1 text-xs"
                     :items="$item->tags"
                 />

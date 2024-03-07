@@ -1,17 +1,25 @@
 @layer components {
     .btn {
-        @apply gap-1.5 rounded border-transparent py-2.5 text-sm font-medium;
-
-        &-gradient {
-            @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+        &-disabled,
+        &[disabled],
+        &:disabled {
+            @apply pointer-events-none;
         }
 
-        &-primary {
-            @apply border-primary-500/50 bg-primary-500;
+        &-secondary {
+            @apply bg-gray-700;
         }
 
-        &-sm {
-            @apply h-6 max-h-6 text-sm;
+        &-outline {
+            @apply border bg-transparent;
+        }
+
+        &-ghost {
+            @apply bg-transparent;
+        }
+
+        &-rounded {
+            @apply rounded-lg;
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Videos\Controllers;
 
+use App\Filament\Resources\VideoResource\Pages\EditVideo;
 use App\Playlists\Concerns\WithFavorites;
 use App\Playlists\Concerns\WithHistory;
 use App\Playlists\Concerns\WithWatchlist;
@@ -56,6 +57,11 @@ class VideoViewController extends Page
         $this->isWatchlisted($this->video)
             ? $model->detachVideo($this->video)
             : $model->attachVideo($this->video);
+    }
+
+    public function edit(): void
+    {
+        $this->redirect(EditVideo::getUrl([$this->video]));
     }
 
     #[Computed]

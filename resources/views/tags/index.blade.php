@@ -1,4 +1,4 @@
-<x-ui-container>
+<x-livewire-use::layout-container>
     <div
         class="flex flex-col gap-y-7 py-3.5"
         wire:poll.keep-alive.2400s
@@ -11,10 +11,10 @@
 
                 <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($tags as $item)
-                        <x-tags-item :$item />
+                        <x-app::tags-item :$item />
                     @endforeach
                 </div>
             </article>
         @endforeach
     </div>
-</x-ui-container>
+</x-livewire-use::layout-container>
