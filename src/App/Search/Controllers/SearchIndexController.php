@@ -31,6 +31,11 @@ class SearchIndexController extends Page
 
     public function updated(): void
     {
+        $this->submit();
+    }
+
+    public function submit(): void
+    {
         $this->form->submit();
 
         $this->resetPage();
