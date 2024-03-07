@@ -11,11 +11,11 @@ trait InteractsWithVod
 {
     public function clips(): MediaCollection
     {
-        return $this->getMedia('clips')->sortByDesc(
-            ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->height', 'desc'],
-            ['custom_properties->width', 'desc'],
-        );
+        return $this->getMedia('clips')->sortByDesc([
+            'custom_properties->bitrate',
+            'custom_properties->height',
+            'custom_properties->width',
+        ], SORT_DESC);
     }
 
     public function captions(): MediaCollection
@@ -25,11 +25,11 @@ trait InteractsWithVod
 
     public function previews(): MediaCollection
     {
-        return $this->getMedia('previews')->sortByDesc(
-            ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->height', 'desc'],
-            ['custom_properties->width', 'desc'],
-        );
+        return $this->getMedia('previews')->sortByDesc([
+            'custom_properties->bitrate',
+            'custom_properties->height',
+            'custom_properties->width',
+        ], SORT_DESC);
     }
 
     public function hasCaptions(): bool
