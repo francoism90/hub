@@ -2585,7 +2585,7 @@
         },
         {
             "name": "filament/spatie-laravel-google-fonts-plugin",
-            "version": "v3.2.45",
+            "version": "v3.2.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-google-fonts-plugin.git",
@@ -4624,16 +4624,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.24.0",
+            "version": "3.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b25a361508c407563b34fac6f64a8a17a8819675"
+                "reference": "4c44347133618cccd9b3df1729647a1577b4ad99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b25a361508c407563b34fac6f64a8a17a8819675",
-                "reference": "b25a361508c407563b34fac6f64a8a17a8819675",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4c44347133618cccd9b3df1729647a1577b4ad99",
+                "reference": "4c44347133618cccd9b3df1729647a1577b4ad99",
                 "shasum": ""
             },
             "require": {
@@ -4661,7 +4661,7 @@
                 "friendsofphp/php-cs-fixer": "^3.5",
                 "google/cloud-storage": "^1.23",
                 "microsoft/azure-storage-blob": "^1.1",
-                "phpseclib/phpseclib": "^3.0.34",
+                "phpseclib/phpseclib": "^3.0.36",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5.11|^10.0",
                 "sabre/dav": "^4.6.0"
@@ -4698,7 +4698,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.24.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.25.0"
             },
             "funding": [
                 {
@@ -4710,7 +4710,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-04T12:10:17+00:00"
+            "time": "2024-03-09T17:06:45+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -8283,32 +8283,32 @@
         },
         {
             "name": "spatie/laravel-google-fonts",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-google-fonts.git",
-                "reference": "9dc9abe6e747b793d0b7414376d5679e5ab4cf15"
+                "reference": "dbeb790d2cf6801322f88b81d6da9c1e4499c017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-google-fonts/zipball/9dc9abe6e747b793d0b7414376d5679e5ab4cf15",
-                "reference": "9dc9abe6e747b793d0b7414376d5679e5ab4cf15",
+                "url": "https://api.github.com/repos/spatie/laravel-google-fonts/zipball/dbeb790d2cf6801322f88b81d6da9c1e4499c017",
+                "reference": "dbeb790d2cf6801322f88b81d6da9c1e4499c017",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.3|^7.2",
-                "illuminate/contracts": "^8.37|^9.0|^10.0",
+                "illuminate/contracts": "^8.37|^9.0|^10.0|^11.0",
                 "php": "^8.0",
                 "spatie/laravel-package-tools": "^1.7.0"
             },
             "require-dev": {
-                "brianium/paratest": "^6.3",
-                "nunomaduro/collision": "^5.4|^6.0",
-                "orchestra/testbench": "^6.17|^7.0|^8.0",
-                "pestphp/pest": "^1.22",
+                "brianium/paratest": "^6.3|^7.4",
+                "nunomaduro/collision": "^5.4|^6.0|^8.0",
+                "orchestra/testbench": "^6.17|^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.22|^2.34",
                 "spatie/laravel-ray": "^1.17",
-                "spatie/pest-plugin-snapshots": "^1.1",
-                "spatie/phpunit-snapshot-assertions": "^4.2"
+                "spatie/pest-plugin-snapshots": "^1.1|^2.1",
+                "spatie/phpunit-snapshot-assertions": "^4.2|^5.1"
             },
             "type": "library",
             "extra": {
@@ -8353,7 +8353,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-google-fonts/issues",
-                "source": "https://github.com/spatie/laravel-google-fonts/tree/1.3.1"
+                "source": "https://github.com/spatie/laravel-google-fonts/tree/1.4.0"
             },
             "funding": [
                 {
@@ -8361,7 +8361,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-06T11:00:55+00:00"
+            "time": "2024-03-08T15:17:54+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
