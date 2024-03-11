@@ -4624,16 +4624,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.24.0",
+            "version": "3.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b25a361508c407563b34fac6f64a8a17a8819675"
+                "reference": "4c44347133618cccd9b3df1729647a1577b4ad99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b25a361508c407563b34fac6f64a8a17a8819675",
-                "reference": "b25a361508c407563b34fac6f64a8a17a8819675",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4c44347133618cccd9b3df1729647a1577b4ad99",
+                "reference": "4c44347133618cccd9b3df1729647a1577b4ad99",
                 "shasum": ""
             },
             "require": {
@@ -4661,7 +4661,7 @@
                 "friendsofphp/php-cs-fixer": "^3.5",
                 "google/cloud-storage": "^1.23",
                 "microsoft/azure-storage-blob": "^1.1",
-                "phpseclib/phpseclib": "^3.0.34",
+                "phpseclib/phpseclib": "^3.0.36",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5.11|^10.0",
                 "sabre/dav": "^4.6.0"
@@ -4698,7 +4698,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.24.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.25.0"
             },
             "funding": [
                 {
@@ -4710,7 +4710,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-04T12:10:17+00:00"
+            "time": "2024-03-09T17:06:45+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -8038,31 +8038,31 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "7.13.1",
+            "version": "7.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "448d0a9e7a4151938e3cfaf1235d69d899f13ba7"
+                "reference": "defd9f18f89d575f95924b6dd7019689fa40678d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/448d0a9e7a4151938e3cfaf1235d69d899f13ba7",
-                "reference": "448d0a9e7a4151938e3cfaf1235d69d899f13ba7",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/defd9f18f89d575f95924b6dd7019689fa40678d",
+                "reference": "defd9f18f89d575f95924b6dd7019689fa40678d",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^10.0",
+                "illuminate/support": "^10.0|^11.0",
                 "php": "^8.2"
             },
             "require-dev": {
-                "amphp/parallel": "^1.4.3",
-                "amphp/parallel-functions": "^1.1.0",
+                "amphp/parallel": "^1.4.3|^2.2",
+                "amphp/parallel-functions": "^1.1.0|^2.0",
                 "mockery/mockery": "^1.6.2",
-                "orchestra/testbench": "^8.5.9",
+                "orchestra/testbench": "^8.5.9|^9.0",
                 "pestphp/pest": "^2.0",
-                "phpunit/phpunit": "10.2.2",
+                "phpunit/phpunit": "10.2.2|^10.5",
                 "spatie/laravel-ray": "^1.32.5",
-                "symfony/stopwatch": "^6.3"
+                "symfony/stopwatch": "^6.3|^7.0"
             },
             "suggest": {
                 "amphp/parallel-functions": "Required when using the parallel*-macros."
@@ -8105,7 +8105,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.13.1"
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.14.0"
             },
             "funding": [
                 {
@@ -8113,7 +8113,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-17T15:12:13+00:00"
+            "time": "2024-03-08T11:51:32+00:00"
         },
         {
             "name": "spatie/laravel-db-snapshots",
