@@ -21,7 +21,7 @@
             </div>
         @endforelse
 
-        <div class="py-4">
+        <div class="max-w-lg py-4">
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
