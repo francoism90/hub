@@ -166,7 +166,7 @@ class Tag extends BaseTag implements HasMedia
             'id' => (int) $this->getScoutKey(),
             'name' => (string) $this->name,
             'description' => (string) $this->description,
-            'type' => (string) $this->type,
+            'type' => (string) $this->type->value,
             'adult' => (bool) $this->adult,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
