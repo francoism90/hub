@@ -19,7 +19,7 @@ class TagQueryBuilder extends Builder
             : $value;
 
         return $this->when(filled($type), fn (Builder $query) => $query
-            ->where('type', $type->value)
+            ->where('type', $type)
         );
     }
 }

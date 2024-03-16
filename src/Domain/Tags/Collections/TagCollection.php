@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function type(TagType|string|null $value = null): mixed
+    public function type(TagType|string|null $type = null): mixed
     {
-        if (is_string($value)) {
-            $value = TagType::tryFrom($value);
+        if (is_string($type)) {
+            $type = TagType::tryFrom($type);
         }
 
         return $this->filter(
-            fn (Tag $item) => $item->type instanceof $value
+            fn (Tag $item) => $item->type === $type->value
         );
     }
 
