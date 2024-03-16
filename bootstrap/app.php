@@ -29,7 +29,14 @@ $app = Application::configure(basePath: $basePath)
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    })
+    ->withCommands([
+        \Foundation\Console\Commands\AppInstall::class,
+        \Foundation\Console\Commands\AppUpdate::class,
+        \Foundation\Console\Commands\AppOptimize::class,
+        \Support\Scout\Commands\SyncIndexes::class,
+    ])
+    ->create();
 
 $app->useAppPath($basePath.'/src/App');
 
