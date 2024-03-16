@@ -118,7 +118,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     /**
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn($event): array
     {
         return [
             new PrivateChannel('user.'.$this->getRouteKey()),
