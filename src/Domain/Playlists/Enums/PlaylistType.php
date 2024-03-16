@@ -10,8 +10,8 @@ enum PlaylistType: string
     public function label(): string
     {
         return match($this) {
-            PlaylistType::System => __('System'),
-            PlaylistType::Mixer => __('Mixer'),
+            self::System => __('System'),
+            self::Mixer => __('Mixer'),
         };
     }
 }

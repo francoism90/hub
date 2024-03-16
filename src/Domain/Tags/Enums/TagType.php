@@ -12,10 +12,10 @@ enum TagType: string
     public function label(): string
     {
         return match($this) {
-            TagType::Genre => __('Genre'),
-            TagType::Studio => __('Studio'),
-            TagType::Person => __('Person'),
-            TagType::Language => __('Language'),
+            self::Genre => __('Genre'),
+            self::Studio => __('Studio'),
+            self::Person => __('Person'),
+            self::Language => __('Language'),
         };
     }
 }
