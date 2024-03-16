@@ -15,7 +15,7 @@ class TagCollection extends Collection
         }
 
         return $this->filter(
-            fn (Tag $item) => $item->type->equals($value)
+            fn (Tag $item) => $item->type instanceof $value
         );
     }
 
