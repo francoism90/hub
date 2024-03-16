@@ -43,6 +43,6 @@ abstract class GeneralForm
         return Select::make('type')
             ->label(__('Type'))
             ->required()
-            ->options(TagType::toArray());
+            ->options(TagType::cases());
     }
 }

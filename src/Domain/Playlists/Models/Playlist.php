@@ -57,13 +57,13 @@ class Playlist extends Model implements HasMedia
         'user_id',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'state' => PlaylistState::class,
-        'type' => PlaylistType::class.':nullable',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'state' => PlaylistState::class,
+            'type' => PlaylistType::class,
+        ];
+    }
 
     public function newEloquentBuilder($query): PlaylistQueryBuilder
     {

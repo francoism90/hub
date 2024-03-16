@@ -22,9 +22,9 @@ class Item extends Component
     public function icon(): string
     {
         return match ($this->item->type) {
-            TagType::person() => 'heroicon-o-user',
-            TagType::studio() => 'heroicon-o-film',
-            TagType::language() => 'heroicon-o-language',
+            TagType::Person => 'heroicon-o-user',
+            TagType::Studio => 'heroicon-o-film',
+            TagType::Language => 'heroicon-o-language',
             default => 'heroicon-o-hashtag',
         };
     }

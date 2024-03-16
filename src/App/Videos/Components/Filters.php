@@ -27,6 +27,6 @@ class Filters extends Component
 
     public function types(): array
     {
-        return TagType::toArray();
+        return TagType::cases();
     }
 }

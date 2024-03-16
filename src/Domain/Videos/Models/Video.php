@@ -81,15 +81,6 @@ class Video extends Model implements HasMedia
     ];
 
     /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'state' => VideoState::class,
-        'snapshot' => 'decimal:2',
-        'released_at' => 'date:Y-m-d',
-    ];
-
-    /**
      * @var array<int, string>
      */
     protected $translatable = [
@@ -103,6 +94,15 @@ class Video extends Model implements HasMedia
     protected static function newFactory(): VideoFactory
     {
         return VideoFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'state' => VideoState::class,
+            'snapshot' => 'decimal:2',
+            'released_at' => 'date:Y-m-d',
+        ];
     }
 
     public function newEloquentBuilder($query): VideoQueryBuilder
@@ -285,10 +285,10 @@ class Video extends Model implements HasMedia
             'caption' => (bool) $this->caption,
             'released' => (string) $this->released,
             'adult' => (bool) $this->adult,
-            'studios' => (string) $this->tags->type(TagType::studio())->seo(),
-            'people' => (string) $this->tags->type(TagType::person())->seo(),
-            'genres' => (string) $this->tags->type(TagType::genre())->seo(),
-            'languages' => (string) $this->tags->type(TagType::language())->seo(),
+            'studios' => (string) $this->tags->type(TagType::Studio)->seo(),
+            'people' => (string) $this->tags->type(TagType::Person)->seo(),
+            'genres' => (string) $this->tags->type(TagType::Genre)->seo(),
+            'languages' => (string) $this->tags->type(TagType::Language)->seo(),
             'tags' => (array) $this->tags->modelKeys(),
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),

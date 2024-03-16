@@ -63,7 +63,7 @@ class ListTags extends ListRecords
             ])
             ->filters([
                 Filters\SelectFilter::make('type')
-                    ->options(TagType::toArray()),
+                    ->options(TagType::cases()),
 
                 Filters\TernaryFilter::make('adult'),
             ])

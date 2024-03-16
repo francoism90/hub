@@ -67,18 +67,18 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
         'two_factor_confirmed_at',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'state' => UserState::class,
-    ];
-
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'state' => UserState::class,
+        ];
     }
 
     public function newEloquentBuilder($query): UserQueryBuilder

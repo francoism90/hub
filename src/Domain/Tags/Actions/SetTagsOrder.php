@@ -13,10 +13,10 @@ class SetTagsOrder
         $items = collect();
 
         $items = $items->merge([
-            ...$this->getTags(TagType::studio()),
-            ...$this->getTags(TagType::person()),
-            ...$this->getTags(TagType::language()),
-            ...$this->getTags(TagType::genre()),
+            ...$this->getTags(TagType::Studio),
+            ...$this->getTags(TagType::Person),
+            ...$this->getTags(TagType::Language),
+            ...$this->getTags(TagType::Genre),
         ]);
 
         Tag::setNewOrder(

@@ -53,13 +53,6 @@ class Tag extends BaseTag implements HasMedia
     ];
 
     /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'type' => TagType::class.':nullable',
-    ];
-
-    /**
      * @var array<int, string>
      */
     public array $translatable = [
@@ -71,6 +64,13 @@ class Tag extends BaseTag implements HasMedia
     protected static function newFactory(): TagFactory
     {
         return TagFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'type' => TagType::class,
+        ];
     }
 
     public function newEloquentBuilder($query): TagQueryBuilder

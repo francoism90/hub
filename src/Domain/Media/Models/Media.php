@@ -36,15 +36,15 @@ class Media extends BaseMedia
         'user_id',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'manipulations' => 'json',
-        'custom_properties' => 'json',
-        'generated_conversions' => 'array',
-        'responsive_images' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'manipulations' => 'json',
+            'custom_properties' => 'json',
+            'generated_conversions' => 'array',
+            'responsive_images' => 'array',
+        ];
+    }
 
     public function newEloquentBuilder($query): MediaQueryBuilder
     {

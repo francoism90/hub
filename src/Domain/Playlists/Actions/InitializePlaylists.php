@@ -11,9 +11,9 @@ class InitializePlaylists
     public function execute(User $user): void
     {
         $items = collect([
-            ['name' => 'favorites', 'type' => PlaylistType::system()],
-            ['name' => 'history', 'type' => PlaylistType::system()],
-            ['name' => 'watchlist', 'type' => PlaylistType::system()],
+            ['name' => 'favorites', 'type' => PlaylistType::System],
+            ['name' => 'history', 'type' => PlaylistType::System],
+            ['name' => 'watchlist', 'type' => PlaylistType::System],
         ]);
 
         $items->each(function (array $item) use ($user) {
