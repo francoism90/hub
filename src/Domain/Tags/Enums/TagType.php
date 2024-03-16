@@ -11,7 +11,7 @@ enum TagType: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::Genre => __('Genre'),
             self::Studio => __('Studio'),
             self::Person => __('Person'),

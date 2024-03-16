@@ -5,9 +5,10 @@ namespace App\Api\Http\Controllers;
 use App\Api\Http\Resources\UserResource;
 use Domain\Users\Models\User;
 use Foundation\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -31,6 +32,8 @@ class UserController extends Controller implements HasMiddleware
 
     public function show(User $model): UserResource
     {
+        Gate::authorize('view', $model);
+
         return new UserResource($model);
     }
 

@@ -9,7 +9,7 @@ enum PlaylistType: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::System => __('System'),
             self::Mixer => __('Mixer'),
         };
