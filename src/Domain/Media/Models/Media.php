@@ -36,13 +36,6 @@ class Media extends BaseMedia
         'user_id',
     ];
 
-    /**
-     * @var array<int, string>
-     */
-    protected $touches = [
-        'model',
-    ];
-
     protected function casts(): array
     {
         return [
