@@ -186,9 +186,9 @@ class Video extends Model implements HasMedia
     }
 
     /**
-     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(string $event): array
+    public function broadcastOn(): array
     {
         return [
             new PrivateChannel('user.'.$this->user->getRouteKey()),
