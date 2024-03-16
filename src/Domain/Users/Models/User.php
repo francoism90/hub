@@ -5,7 +5,6 @@ namespace Domain\Users\Models;
 use Database\Factories\UserFactory;
 use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Collections\UserCollection;
-use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\Concerns\InteractsWithFilament;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
@@ -37,7 +36,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
-    use InteractsWithCache;
     use InteractsWithFilament;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
