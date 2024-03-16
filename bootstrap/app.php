@@ -9,11 +9,12 @@ $basePath = $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__);
 $app = Application::configure(basePath: $basePath)
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->redirectGuestsTo('/login');
+        $middleware->statefulApi();
 
         $middleware->alias([
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
@@ -25,6 +26,8 @@ $app = Application::configure(basePath: $basePath)
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         ]);
+
+        $middleware->redirectGuestsTo('/login');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

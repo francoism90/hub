@@ -5,16 +5,18 @@ namespace App\Api\Http\Controllers;
 use App\Api\Http\Resources\UserResource;
 use Domain\Users\Models\User;
 use Foundation\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth:sanctum');
-        $this->middleware('precognitive')->only(['store', 'update']);
-
-        $this->authorizeResource(User::class, 'user');
+        return [
+            new Middleware('auth:sanctum'),
+            new Middleware('precognitive', only: ['store', 'update']),
+        ];
     }
 
     public function index(Request $request)

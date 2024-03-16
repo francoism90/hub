@@ -3,13 +3,17 @@
 namespace App\Api\Http\Controllers;
 
 use Foundation\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\JsonResponse;
 
-class HomeController extends Controller
+class HomeController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('cache:600,api');
+        return [
+            new Middleware('cache:600,api'),
+        ];
     }
 
     public function __invoke(): JsonResponse
