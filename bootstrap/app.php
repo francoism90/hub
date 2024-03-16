@@ -12,8 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
-            'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
             'cache' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
             'cache.invalid' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
