@@ -23,7 +23,6 @@ class AppOptimize extends Command implements Isolatable
 
         // Clear cache
         $this->call('permission:cache-reset');
-        $this->call('responsecache:clear');
         $this->call('structure-scouts:clear');
 
         // Optimize application
