@@ -47,8 +47,8 @@ Schedule::command(DbCleanupCommand::class, ['--keep=15'])
     ->runInBackground();
 
 Schedule::command(ModelPruneCommand::class, [
-        '--model' => [Import::class],
-    ])
+    '--model' => [Import::class],
+])
     ->withoutOverlapping(1440)
     ->dailyAt('04:30')
     ->runInBackground();
