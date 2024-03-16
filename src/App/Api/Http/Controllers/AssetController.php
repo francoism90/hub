@@ -5,22 +5,25 @@ namespace App\Api\Http\Controllers;
 use Domain\Media\Models\Media;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class AssetController extends Controller
+class AssetController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware([
-            'signed',
-            'cache.headers:public;max_age=604800;etag',
-        ]);
+        return [
+            new Middleware('signed'),
+            new Middleware('cache.headers:public;max_age=604800;etag'),
+        ];
     }
 
     public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
     {
-        $this->authorize('view', $media);
+        Gate::authorize('view', $media);
 
         if (in_array($media->collection_name, ['clips', 'previews'])) {
             return response()->download($media->getPath());
