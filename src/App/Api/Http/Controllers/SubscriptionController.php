@@ -13,7 +13,6 @@ class SubscriptionController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            new Middleware('cache:600,vod'),
         ];
     }
 
