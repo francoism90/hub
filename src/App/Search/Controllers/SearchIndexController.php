@@ -43,6 +43,8 @@ class SearchIndexController extends Page
 
     public function clear(): void
     {
+        $this->form->forget();
+
         $this->form->clear();
     }
 
