@@ -19,12 +19,12 @@
                     for="sort-{{ $item }}"
                     @class([
                         'py-2 px-4 text-sm',
-                        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->isSort($item),
+                        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->is('sort', $item),
                     ])
                 >
                     {{ $label }}
 
-                    @if ($this->form->isSort($item))
+                    @if ($this->form->is('sort', $item))
                         <x-heroicon-o-check class="h-4 w-4" />
                     @endif
                 </x-livewire-use::forms-label>
@@ -60,12 +60,12 @@
                     for="feature-{{ $item }}"
                     @class([
                         'py-2 px-4 text-sm',
-                        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->hasFeatures($item),
+                        'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->contains('features', $item),
                     ])
                 >
                     {{ $label }}
 
-                    @if ($this->form->hasFeatures($item))
+                    @if ($this->form->contains('features', $item))
                         <x-heroicon-o-check class="h-4 w-4" />
                     @endif
                 </x-livewire-use::forms-label>

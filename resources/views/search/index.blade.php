@@ -10,14 +10,14 @@
                 wire:model.live.debounce.300ms="form.search"
             />
 
-            @if ($this->form->hasSearch())
+            @if ($this->form->filled('search'))
                 <x-livewire-use::actions-button wire:click.prevent="$set('form.search', '')">
                     <x-heroicon-o-x-mark class="h-5 w-5" />
                 </x-livewire-use::actions-button>
             @endif
         </x-livewire-use::layout-join>
 
-        @if ($this->form->hasSearch())
+        @if ($this->form->filled('search'))
             <x-app::search-filters />
         @endif
     </x-livewire-use::forms-schema>

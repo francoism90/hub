@@ -78,8 +78,7 @@ class VideoIndexController extends Page
         return $this->getQuery()
             ->published()
             ->when($this->form->blank('search', 'tags'), fn (Builder $query) => $query->recommended())
-            ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value))
-            ->when($this->form->getTags(), fn (Builder $query, array $value) => $query->tagged($value))
+            ->when($this->form->get('tags'), fn (Builder $query, array $value) => $query->tagged($value))
             ->simplePaginate(32);
     }
 

@@ -2,16 +2,9 @@
 
 namespace App\Search\Forms;
 
-use Foxws\LivewireUse\Forms\Concerns\WithFeatures;
-use Foxws\LivewireUse\Forms\Concerns\WithSearch;
-use Foxws\LivewireUse\Forms\Concerns\WithSorts;
-use Foxws\LivewireUse\Forms\Support\Form;
+use App\Videos\Forms\QueryForm as BaseQueryForm;
 
-class QueryForm extends Form
+class QueryForm extends BaseQueryForm
 {
-    use WithFeatures;
-    use WithSearch;
-    use WithSorts;
-
     protected static bool $store = true;
 }

@@ -65,10 +65,10 @@ class SearchIndexController extends Page
 
         return $this->getScout($value)
             ->when(blank($value), fn (Builder $query) => $query->whereIn('id', [0]))
-            ->when($this->form->hasFeatures('caption'), fn (Builder $query) => $query->where('caption', true))
-            ->when($this->form->isSort('longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            ->when($this->form->isSort('shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            ->when($this->form->isSort('released'), fn (Builder $query) => $query
+            ->when($this->form->contains('features', 'caption'), fn (Builder $query) => $query->where('caption', true))
+            ->when($this->form->is('sort', 'longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->form->is('sort', 'shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
+            ->when($this->form->is('sort', 'released'), fn (Builder $query) => $query
                 ->orderBy('released', 'desc')
                 ->orderBy('created_at', 'desc')
             )
