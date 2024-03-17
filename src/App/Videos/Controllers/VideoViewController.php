@@ -32,11 +32,11 @@ class VideoViewController extends Page
     #[On('time-update')]
     public function updateHistory(float $time = 0): void
     {
-        $this->canUpdate(static::history());
+        $this->canUpdate($model = static::history());
 
         throw_unless($time >= 0 && $time <= ceil($this->video->duration));
 
-        static::history()->attachVideo($this->video, [
+        $model->attachVideo($this->video, [
             'timestamp' => round($time, 2),
         ]);
     }
