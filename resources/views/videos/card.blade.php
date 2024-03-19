@@ -1,5 +1,5 @@
 <article
-    wire:key="{{ $item->getRouteKey() }}"
+    wire:key="card-{{ $item->getRouteKey() }}"
     x-data="{ preview: false }"
     {{ $attributes->class('flex flex-col gap-y-1.5 py-7 w-full max-w-lg') }}
 >

@@ -1,5 +1,5 @@
 <x-livewire-use::actions-link
-    wire:key="{{ $item->getRouteKey() }}"
+    wire:key="item-{{ $item->getRouteKey() }}"
     class="block cursor-pointer text-sm font-medium uppercase"
     href="{{ route('home', ['t[]' => $item->getRouteKey()]) }}"
 >

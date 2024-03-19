@@ -1,5 +1,5 @@
 <article
-    wire:key="{{ $item->getRouteKey() }}"
+    wire:key="item-{{ $item->getRouteKey() }}"
     x-data="{ preview: false }"
 >
     <div class="flex flex-col flex-nowrap gap-x-4 rounded border border-gray-700/30 bg-gray-900/75">
