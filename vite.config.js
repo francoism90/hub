@@ -82,7 +82,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            player: ['shaka-player'],
+            player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
             utils: ['axios'],
             ws: ['laravel-echo', 'pusher-js'],
           },
