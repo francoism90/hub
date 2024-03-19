@@ -3,7 +3,9 @@
 namespace Foundation\Providers;
 
 use Foxws\LivewireUse\Facades\LivewireUse;
+use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,13 @@ class LivewireServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureSynthesizers();
         $this->configureComponents();
+    }
+
+    protected function configureSynthesizers(): void
+    {
+        Livewire::propertySynthesizer(ModelSynth::class);
     }
 
     protected function configureComponents(): void
