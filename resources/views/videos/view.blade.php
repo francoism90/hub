@@ -64,11 +64,11 @@
 
             @if ($video->tags->isNotEmpty())
                 <div class="gap-y-3 py-3.5">
-                    <h2 class="text-sm uppercase tracking-wide text-gray-400">
+                    <h2 class="pb-2 text-sm uppercase tracking-wide text-gray-400">
                         {{ __('Tags') }}
                     </h2>
 
-                    <x-app::videos-tags class="pt-2" :items="$video->tags" />
+                    <x-app::videos-tags :items="$video->tags" />
                 </div>
             @endif
 

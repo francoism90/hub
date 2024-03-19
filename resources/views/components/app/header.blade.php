@@ -15,7 +15,7 @@
             <x-slot:end>
                 <x-livewire-use::layout-join class="gap-x-4">
                     <x-livewire-use::actions-link
-                        href="{{ route ('tags.index') }}"
+                        href="{{ route('tags.index') }}"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
                     >

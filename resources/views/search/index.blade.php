@@ -2,7 +2,7 @@
     <x-livewire-use::forms-schema class:layout="flex flex-col gap-y-2">
         <x-livewire-use::layout-join class="flex-nowrap gap-x-4 rounded bg-gray-800 px-3">
             <x-livewire-use::forms-input
-                class="bg-transparent border-0 py-2.5 px-0"
+                class="border-0 bg-transparent px-0 py-2.5"
                 type="search"
                 placeholder="{{ __('Search on title, actor or studio') }}"
                 autocomplete
@@ -22,7 +22,7 @@
         @endif
     </x-livewire-use::forms-schema>
 
-    <div class="flex flex-col pt-4 gap-y-8">
+    <div class="flex flex-col gap-y-8 pt-4">
         <div
             class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2"
             wire:poll.keep-alive.2400s
