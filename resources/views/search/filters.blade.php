@@ -18,7 +18,7 @@
                 <div
                     wire:key="sort-{{ $item }}"
                     @class([
-                        'py-2 px-4 text-sm',
+                        'py-2 px-4 text-sm cursor-pointer',
                         'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->is('sort', $item),
                     ])
                 >
@@ -61,7 +61,7 @@
                 <div
                     wire:key="feature-{{ $item }}"
                     @class([
-                        'py-2 px-4 text-sm',
+                        'py-2 px-4 text-sm cursor-pointer',
                         'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->contains('features', $item),
                     ])
                 >

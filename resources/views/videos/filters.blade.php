@@ -10,13 +10,13 @@
                     <div
                         wire:key="filter-{{ $item->getRouteKey() }}"
                         @class([
-                            'uppercase text-sm hover:text-primary-400 cursor-pointer',
+                            'uppercase text-sm hover:text-primary-400',
                             'text-primary-400 hover:text-primary-300' => $this->form->contains('tags', $item->getRouteKey()),
                         ])
                     >
-                        <label for="filter-{{ $item->getRouteKey() }}">
+                        <x-livewire-use::forms-label for="filter-{{ $item->getRouteKey() }}">
                             {{ $item->name }}
-                        </label>
+                        </x-livewire-use::forms-label>
 
                         <input
                             id="filter-{{ $item->getRouteKey() }}"
