@@ -9,7 +9,7 @@
                         for="tag-{{ $item->getRouteKey() }}"
                         @class([
                             'uppercase text-sm hover:text-primary-400 cursor-pointer',
-                            'text-primary-400 hover:text-primary-300' => $this->form->hasTags($item),
+                            'text-primary-400 hover:text-primary-300' => $this->form->contains('tags', $item->getRouteKey()),
                         ])
                     >
                         {{ $item->name }}

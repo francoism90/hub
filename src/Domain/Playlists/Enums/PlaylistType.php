@@ -2,23 +2,16 @@
 
 namespace Domain\Playlists\Enums;
 
-use Spatie\Enum\Laravel\Enum;
-
-/**
- * @method static self system()
- * @method static self mixer()
- * @method static self private()
- * @method static self public()
- */
-class PlaylistType extends Enum
+enum PlaylistType: string
 {
-    protected static function labels(): array
+    case System = 'system';
+    case Mixer = 'mixer';
+
+    public function label(): string
     {
-        return [
-            'system' => __('System'),
-            'mixer' => __('Mixer'),
-            'private' => __('Private'),
-            'public' => __('Public'),
-        ];
+        return match ($this) {
+            self::System => __('System'),
+            self::Mixer => __('Mixer'),
+        };
     }
 }

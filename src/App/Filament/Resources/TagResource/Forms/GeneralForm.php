@@ -43,6 +43,8 @@ abstract class GeneralForm
         return Select::make('type')
             ->label(__('Type'))
             ->required()
-            ->options(TagType::toArray());
+            ->options(fn () => collect(TagType::cases())->mapWithKeys(fn (TagType $item) => [
+                $item->value => $item->label(),
+            ]));
     }
 }

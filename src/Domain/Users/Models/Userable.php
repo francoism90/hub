@@ -12,10 +12,10 @@ class Userable extends MorphPivot
      */
     protected $primaryKey = 'user_id';
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'options' => AsArrayObject::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'options' => AsArrayObject::class,
+        ];
+    }
 }

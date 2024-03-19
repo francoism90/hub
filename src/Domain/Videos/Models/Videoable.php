@@ -12,10 +12,10 @@ class Videoable extends MorphPivot
      */
     protected $primaryKey = 'video_id';
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'options' => AsArrayObject::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'options' => AsArrayObject::class,
+        ];
+    }
 }

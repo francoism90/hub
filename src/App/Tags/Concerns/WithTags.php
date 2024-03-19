@@ -15,7 +15,7 @@ trait WithTags
 
     protected function tagTypes(): Collection
     {
-        return collect(TagType::toValues());
+        return collect(TagType::cases());
     }
 
     protected function findTagType(string $value): ?TagType

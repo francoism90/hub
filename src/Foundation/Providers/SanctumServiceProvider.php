@@ -15,6 +15,6 @@ class SanctumServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Sanctum::personalAccessTokenModel(Token::class);
+        Sanctum::usePersonalAccessTokenModel(Token::class);
     }
 }

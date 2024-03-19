@@ -53,13 +53,6 @@ class Tag extends BaseTag implements HasMedia
     ];
 
     /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'type' => TagType::class.':nullable',
-    ];
-
-    /**
      * @var array<int, string>
      */
     public array $translatable = [
@@ -71,6 +64,13 @@ class Tag extends BaseTag implements HasMedia
     protected static function newFactory(): TagFactory
     {
         return TagFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'type' => TagType::class,
+        ];
     }
 
     public function newEloquentBuilder($query): TagQueryBuilder
@@ -118,9 +118,9 @@ class Tag extends BaseTag implements HasMedia
     }
 
     /**
-     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(string $event): array
+    public function broadcastOn($event): array
     {
         return [
             new PrivateChannel('tag.'.$this->getRouteKey()),
@@ -166,7 +166,7 @@ class Tag extends BaseTag implements HasMedia
             'id' => (int) $this->getScoutKey(),
             'name' => (string) $this->name,
             'description' => (string) $this->description,
-            'type' => (string) $this->type,
+            'type' => (string) $this->type->value,
             'adult' => (bool) $this->adult,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),

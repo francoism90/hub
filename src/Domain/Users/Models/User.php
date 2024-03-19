@@ -5,7 +5,6 @@ namespace Domain\Users\Models;
 use Database\Factories\UserFactory;
 use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Collections\UserCollection;
-use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\Concerns\InteractsWithFilament;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
@@ -37,7 +36,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
-    use InteractsWithCache;
     use InteractsWithFilament;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
@@ -67,18 +65,18 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
         'two_factor_confirmed_at',
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'state' => UserState::class,
-    ];
-
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'state' => UserState::class,
+        ];
     }
 
     public function newEloquentBuilder($query): UserQueryBuilder
@@ -118,9 +116,9 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     }
 
     /**
-     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(string $event): array
+    public function broadcastOn($event): array
     {
         return [
             new PrivateChannel('user.'.$this->getRouteKey()),

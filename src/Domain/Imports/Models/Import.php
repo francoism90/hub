@@ -47,17 +47,17 @@ class Import extends Model
         //
     ];
 
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'state' => ImportState::class,
-        'finished_at' => 'datetime',
-    ];
-
     protected static function newFactory(): ImportFactory
     {
         return ImportFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'state' => ImportState::class,
+            'finished_at' => 'datetime',
+        ];
     }
 
     public function newEloquentBuilder($query): ImportQueryBuilder

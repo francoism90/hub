@@ -6,7 +6,6 @@ use Database\Factories\VideoFactory;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
-use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
@@ -38,7 +37,6 @@ class Video extends Model implements HasMedia
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
-    use InteractsWithCache;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
     use InteractsWithUser;
@@ -81,15 +79,6 @@ class Video extends Model implements HasMedia
     ];
 
     /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'state' => VideoState::class,
-        'snapshot' => 'decimal:2',
-        'released_at' => 'date:Y-m-d',
-    ];
-
-    /**
      * @var array<int, string>
      */
     protected $translatable = [
@@ -103,6 +92,15 @@ class Video extends Model implements HasMedia
     protected static function newFactory(): VideoFactory
     {
         return VideoFactory::new();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'state' => VideoState::class,
+            'snapshot' => 'decimal:2',
+            'released_at' => 'date:Y-m-d',
+        ];
     }
 
     public function newEloquentBuilder($query): VideoQueryBuilder
@@ -188,9 +186,9 @@ class Video extends Model implements HasMedia
     }
 
     /**
-     * @return array<int, \Illuminate\Broadcasting\Channel|\Illuminate\Database\Eloquent\Model>
+     * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(string $event): array
+    public function broadcastOn($event): array
     {
         return [
             new PrivateChannel('user.'.$this->user->getRouteKey()),
@@ -285,10 +283,10 @@ class Video extends Model implements HasMedia
             'caption' => (bool) $this->caption,
             'released' => (string) $this->released,
             'adult' => (bool) $this->adult,
-            'studios' => (string) $this->tags->type(TagType::studio())->seo(),
-            'people' => (string) $this->tags->type(TagType::person())->seo(),
-            'genres' => (string) $this->tags->type(TagType::genre())->seo(),
-            'languages' => (string) $this->tags->type(TagType::language())->seo(),
+            'studios' => (string) $this->tags()->type(TagType::Studio)->get()->seo(),
+            'people' => (string) $this->tags()->type(TagType::Person)->get()->seo(),
+            'genres' => (string) $this->tags()->type(TagType::Genre)->get()->seo(),
+            'languages' => (string) $this->tags()->type(TagType::Language)->get()->seo(),
             'tags' => (array) $this->tags->modelKeys(),
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),

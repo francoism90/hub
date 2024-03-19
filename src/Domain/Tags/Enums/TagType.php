@@ -2,23 +2,20 @@
 
 namespace Domain\Tags\Enums;
 
-use Spatie\Enum\Laravel\Enum;
-
-/**
- * @method static self genre()
- * @method static self studio()
- * @method static self person()
- * @method static self language()
- */
-class TagType extends Enum
+enum TagType: string
 {
-    protected static function labels(): array
+    case Genre = 'genre';
+    case Studio = 'studio';
+    case Person = 'person';
+    case Language = 'language';
+
+    public function label(): string
     {
-        return [
-            'genre' => __('Genre'),
-            'studio' => __('Studio'),
-            'person' => __('Person'),
-            'language' => __('Language'),
-        ];
+        return match ($this) {
+            self::Genre => __('Genre'),
+            self::Studio => __('Studio'),
+            self::Person => __('Person'),
+            self::Language => __('Language'),
+        };
     }
 }

@@ -15,7 +15,7 @@ trait WithPlaylists
 
     protected function playlistTypes(): Collection
     {
-        return collect(PlaylistType::toValues());
+        return collect(PlaylistType::cases());
     }
 
     protected function findPlaylistType(string $value): ?PlaylistType

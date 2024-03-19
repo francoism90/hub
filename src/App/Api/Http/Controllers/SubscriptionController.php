@@ -4,12 +4,16 @@ namespace App\Api\Http\Controllers;
 
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SubscriptionController extends Controller
+class SubscriptionController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['auth:sanctum', 'cache:600,vod']);
+        return [
+            new Middleware('auth:sanctum'),
+        ];
     }
 
     public function __invoke(): JsonResponse

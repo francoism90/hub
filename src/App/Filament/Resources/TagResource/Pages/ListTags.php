@@ -37,7 +37,7 @@ class ListTags extends ListRecords
 
                 Columns\TextColumn::make('type')
                     ->label(__('Type'))
-                    ->formatStateUsing(fn (TagType $state): ?string => $state?->label)
+                    ->formatStateUsing(fn (TagType $state): string => $state->label())
                     ->sortable(),
 
                 Columns\TextColumn::make('description')
@@ -63,7 +63,9 @@ class ListTags extends ListRecords
             ])
             ->filters([
                 Filters\SelectFilter::make('type')
-                    ->options(TagType::toArray()),
+                    ->options(fn () => collect(TagType::cases())->mapWithKeys(fn (TagType $item) => [
+                        $item->value => $item->label(),
+                    ])),
 
                 Filters\TernaryFilter::make('adult'),
             ])

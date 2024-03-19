@@ -25,10 +25,10 @@ class FavoritesController extends VideoIndexController
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->when($this->form->isSort('oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
-            ->when($this->form->isSort('published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
-            ->when($this->form->getSearch(), fn (Builder $query, string $value) => $query->search($value, true))
-            ->when($this->form->getTags(), fn (Builder $query, array $value) => $query->tagged($value))
+            ->when($this->form->is('sort', 'oldest'), fn (Builder $query) => $query->reorder()->orderBy('videoables.updated_at'))
+            ->when($this->form->is('sort', 'published'), fn (Builder $query) => $query->reorder()->orderByDesc('created_at'))
+            ->when($this->form->get('search'), fn (Builder $query, string $value) => $query->search($value, true))
+            ->when($this->form->get('tags'), fn (Builder $query, array $value) => $query->tagged($value))
             ->take(32 * 32)
             ->simplePaginate(32);
     }

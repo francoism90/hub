@@ -6,15 +6,18 @@ use App\Api\Http\Resources\UserResource;
 use Domain\Users\Models\User;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth:sanctum');
-        $this->middleware('precognitive')->only(['store', 'update']);
-
-        $this->authorizeResource(User::class, 'user');
+        return [
+            new Middleware('auth:sanctum'),
+            new Middleware('precognitive', only: ['store', 'update']),
+        ];
     }
 
     public function index(Request $request)
@@ -29,6 +32,8 @@ class UserController extends Controller
 
     public function show(User $model): UserResource
     {
+        Gate::authorize('view', $model);
+
         return new UserResource($model);
     }
 

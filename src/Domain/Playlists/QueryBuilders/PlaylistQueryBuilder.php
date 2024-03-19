@@ -13,13 +13,13 @@ class PlaylistQueryBuilder extends Builder
     public function mixer(): self
     {
         return $this
-            ->where('type', PlaylistType::mixer());
+            ->where('type', PlaylistType::Mixer);
     }
 
     public function system(): self
     {
         return $this
-            ->where('type', PlaylistType::system());
+            ->where('type', PlaylistType::System);
     }
 
     public function favorites(): self
