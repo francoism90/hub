@@ -4,7 +4,10 @@
         wire:poll.keep-alive.2400s
     >
         @foreach ($this->items as $group => $tags)
-            <article class="flex flex-col gap-y-1">
+            <article
+                wire:key="group-{{ $group }}"
+                class="flex flex-col gap-y-1"
+            >
                 <h2 class="text-xl">
                     <span>{{ $group }}</span>
                 </h2>
