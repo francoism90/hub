@@ -8972,16 +8972,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "11.4.5",
+            "version": "11.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "b27eb3f233cf802b1f2620fdfc34b4b13926c6d7"
+                "reference": "a6002b04b4a2e3227b3d5996ad78f8d73302db24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/b27eb3f233cf802b1f2620fdfc34b4b13926c6d7",
-                "reference": "b27eb3f233cf802b1f2620fdfc34b4b13926c6d7",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a6002b04b4a2e3227b3d5996ad78f8d73302db24",
+                "reference": "a6002b04b4a2e3227b3d5996ad78f8d73302db24",
                 "shasum": ""
             },
             "require": {
@@ -9064,7 +9064,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.4.5"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.4.6"
             },
             "funding": [
                 {
@@ -9076,7 +9076,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-04T09:34:47+00:00"
+            "time": "2024-03-19T14:17:05+00:00"
         },
         {
             "name": "spatie/laravel-model-states",
@@ -13482,16 +13482,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.6.9",
+            "version": "1.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06"
+                "reference": "47065d1be1fa05def58dc14c03cf831d3884ef0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06",
-                "reference": "0cc058854b3195ba21dc6b1f7b1f60f4ef3a9c06",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/47065d1be1fa05def58dc14c03cf831d3884ef0b",
+                "reference": "47065d1be1fa05def58dc14c03cf831d3884ef0b",
                 "shasum": ""
             },
             "require": {
@@ -13503,8 +13503,8 @@
                 "phpunit/phpunit": "<8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.6.10",
-                "symplify/easy-coding-standard": "^12.0.8"
+                "phpunit/phpunit": "^8.5 || ^9.6.17",
+                "symplify/easy-coding-standard": "^12.1.14"
             },
             "type": "library",
             "autoload": {
@@ -13561,7 +13561,7 @@
                 "security": "https://github.com/mockery/mockery/security/advisories",
                 "source": "https://github.com/mockery/mockery"
             },
-            "time": "2023-12-10T02:24:34+00:00"
+            "time": "2024-03-19T16:15:45+00:00"
         },
         {
             "name": "myclabs/deep-copy",
