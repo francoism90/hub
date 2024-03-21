@@ -25,10 +25,6 @@ class AssetController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $media);
 
-        if (in_array($media->collection_name, ['clips', 'previews'])) {
-            return response()->download($media->getPath());
-        }
-
         return $media->toResponse($request);
     }
 }
