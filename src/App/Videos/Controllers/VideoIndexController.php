@@ -62,6 +62,8 @@ class VideoIndexController extends Page
     {
         $this->form->clear();
 
+        $this->getModel()::forgetRandomSeed('feed');
+
         $this->redirect(static::class, navigate: true);
     }
 

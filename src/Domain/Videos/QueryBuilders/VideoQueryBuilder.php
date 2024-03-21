@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\QueryBuilders;
 
-use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Concerns\InteractsWithTags;
 use Domain\Users\Models\User;
@@ -13,7 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
-    use InteractsWithRandomSeed;
     use InteractsWithScout;
     use InteractsWithTags;
 
