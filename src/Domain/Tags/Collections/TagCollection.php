@@ -50,4 +50,14 @@ class TagCollection extends Collection
             ->unique()
             ->implode(', ');
     }
+
+    public function related(): mixed
+    {
+        return $this->flatMap(fn (Tag $item) => $item
+            ->relatables()
+            ->orderByDesc('score')
+            ->orderByDesc('boost')
+            ->get()
+        );
+    }
 }
