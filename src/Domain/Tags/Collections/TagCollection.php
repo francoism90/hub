@@ -2,7 +2,6 @@
 
 namespace Domain\Tags\Collections;
 
-use Domain\Relates\Models\Relatable;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Collection;
@@ -50,15 +49,5 @@ class TagCollection extends Collection
             ->filter()
             ->unique()
             ->implode(', ');
-    }
-
-    public function related(): mixed
-    {
-        return $this->flatMap(fn (Tag $item) => $item
-            ->relatables()
-            ->scores()
-            ->get()
-            ->relates()
-        );
     }
 }

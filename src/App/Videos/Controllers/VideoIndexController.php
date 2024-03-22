@@ -3,6 +3,7 @@
 namespace App\Videos\Controllers;
 
 use App\Videos\Forms\QueryForm;
+use Domain\Videos\Actions\GenerateScoutModel;
 use Domain\Videos\Models\Video;
 use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
@@ -28,6 +29,10 @@ class VideoIndexController extends Page
 
     public function mount(): void
     {
+        app(GenerateScoutModel::class)->execute(
+            Video::findByPrefixedId('video-rd4GtWvyTy')
+        );
+
         $this->populate();
     }
 

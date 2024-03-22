@@ -7,6 +7,7 @@ use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
+use Domain\Videos\Concerns\HasTags;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
@@ -26,7 +27,6 @@ use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
@@ -285,11 +285,9 @@ class Video extends Model implements HasMedia
             'caption' => (bool) $this->caption,
             'released' => (string) $this->released,
             'adult' => (bool) $this->adult,
-            'studios' => (string) $this->tags()->type(TagType::Studio)->get()->seo(),
-            'people' => (string) $this->tags()->type(TagType::Person)->get()->seo(),
-            'genres' => (string) $this->tags()->type(TagType::Genre)->get()->seo(),
-            'languages' => (string) $this->tags()->type(TagType::Language)->get()->seo(),
-            'tags' => (array) $this->tags->modelKeys(),
+            'tags' => (string) $this->getTagsBySeo(),
+            'relatables' => (string) $this->getRelatedTagsBySeo(),
+            'tagged' => (array) $this->tags->modelKeys(),
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
