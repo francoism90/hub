@@ -10,6 +10,7 @@ class RelatedQueryBuilder extends Builder
     {
         return $this
             ->orderByDesc('score')
-            ->orderByDesc('boost');
+            ->orderByDesc('boost')
+            ->latest();
     }
 }
