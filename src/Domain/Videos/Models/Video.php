@@ -4,7 +4,6 @@ namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
-use Domain\Tags\Enums\TagType;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Concerns\HasTags;

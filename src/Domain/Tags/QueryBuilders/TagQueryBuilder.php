@@ -2,10 +2,8 @@
 
 namespace Domain\Tags\QueryBuilders;
 
-use ArrayAccess;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Enums\TagType;
-use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 
 class TagQueryBuilder extends Builder
