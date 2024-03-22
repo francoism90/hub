@@ -2,6 +2,7 @@
 
 namespace Domain\Tags\Collections;
 
+use Domain\Relates\Models\Relatable;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Collection;
@@ -55,9 +56,9 @@ class TagCollection extends Collection
     {
         return $this->flatMap(fn (Tag $item) => $item
             ->relatables()
-            ->orderByDesc('score')
-            ->orderByDesc('boost')
+            ->scores()
             ->get()
+            ->relates()
         );
     }
 }

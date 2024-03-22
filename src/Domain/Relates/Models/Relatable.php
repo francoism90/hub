@@ -2,10 +2,14 @@
 
 namespace Domain\Relates\Models;
 
+use Domain\Relates\Collections\RelatedCollection;
+use Domain\Relates\QueryBuilders\RelatedQueryBuilder;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
+use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Relatable extends Model
@@ -45,6 +49,16 @@ class Relatable extends Model
             'boost' => 'decimal:2',
             'options' => AsArrayObject::class,
         ];
+    }
+
+    public function newEloquentBuilder($query): RelatedQueryBuilder
+    {
+        return new RelatedQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): RelatedCollection
+    {
+        return new RelatedCollection($models);
     }
 
     public function model(): MorphTo
