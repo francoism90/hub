@@ -24,14 +24,26 @@ class TagQueryBuilder extends Builder
         );
     }
 
-    public function related(Arrayable|array|Tag|null $values = null): self
+    public function withRelated(): self
     {
-        $keys = collect();
+        // $keys = collect();
 
-        $tags = TagCollection::make($values)->convert();
+        // $tags = TagCollection::make($values)->convert();
 
-        $tags->each(fn (Tag $item) => $keys->push(...$item->relatables->pluck('relate_id')->toArray()));
+        // $tags->each(fn (Tag $item) => $keys->push(...$item->relatables->pluck('relate_id')->toArray()));
 
-        return $this->when($keys, fn (Builder $query) => $query->whereIn('id', $keys));
+        return $this
+            ->whereIn('id', [4,10]);
     }
+
+    // public function related(Arrayable|array|Tag|null $values = null): self
+    // {
+    //     $keys = collect();
+
+    //     $tags = TagCollection::make($values)->convert();
+
+    //     $tags->each(fn (Tag $item) => $keys->push(...$item->relatables->pluck('relate_id')->toArray()));
+
+    //     return $this->when($keys, fn (Builder $query) => $query->whereIn('id', $keys));
+    // }
 }
