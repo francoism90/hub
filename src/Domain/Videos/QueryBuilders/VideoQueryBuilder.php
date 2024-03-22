@@ -43,7 +43,7 @@ class VideoQueryBuilder extends Builder
 
     public function tagged(Arrayable|array|Tag|null $values = null): Builder
     {
-       $items = TagCollection::make($values)->convert();
+        $items = TagCollection::make($values)->convert();
 
         return $this->whereHas('tags', fn (Builder $query) => $query
             ->whereIn('id', $items->modelKeys())
