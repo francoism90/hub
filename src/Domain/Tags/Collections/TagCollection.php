@@ -4,7 +4,6 @@ namespace Domain\Tags\Collections;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
