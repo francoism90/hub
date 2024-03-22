@@ -25,6 +25,8 @@ class Relatable extends Model
      */
     protected $fillable = [
         'user_id',
+        'score',
+        'boost',
         'options',
     ];
 
