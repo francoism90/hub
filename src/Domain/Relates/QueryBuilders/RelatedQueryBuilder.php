@@ -9,7 +9,6 @@ class RelatedQueryBuilder extends Builder
     public function scores(): self
     {
         return $this
-            ->withWhereHas('relate')
             ->orderByDesc('score')
             ->orderByDesc('boost');
     }
