@@ -7,6 +7,7 @@ use Domain\Media\Models\Media;
 use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
+use Domain\Videos\Models\Relatable;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
             'import' => Import::class,
             'media' => Media::class,
             'playlist' => Playlist::class,
+            'relatable' => Relatable::class,
             'tag' => Tag::class,
             'user' => User::class,
             'video' => Video::class,

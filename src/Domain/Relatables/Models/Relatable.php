@@ -24,7 +24,6 @@ class Relatable extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'score',
         'boost',
         'options',
@@ -34,7 +33,7 @@ class Relatable extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'user_id',
+        //
     ];
 
     protected function casts(): array
