@@ -3,7 +3,6 @@
 namespace Domain\Videos\Models;
 
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
-use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -12,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Relatable extends Model
 {
     use InteractsWithRandomSeed;
-    use InteractsWithUser;
     use SoftDeletes;
 
     /**
