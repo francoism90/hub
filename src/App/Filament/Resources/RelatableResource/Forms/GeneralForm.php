@@ -34,7 +34,7 @@ abstract class GeneralForm
             ->label(__('Score'))
             ->numeric()
             ->nullable()
-            ->step(0.1)
+            ->step(0.01)
             ->maxLength(10);
     }
 
@@ -44,7 +44,7 @@ abstract class GeneralForm
             ->label(__('Boost'))
             ->numeric()
             ->nullable()
-            ->step(0.1)
+            ->step(0.01)
             ->maxLength(10);
     }
 }
