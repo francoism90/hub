@@ -22,7 +22,7 @@ class RelatablesRelationManager extends RelationManager
         return $form
             ->columns(1)
             ->schema([
-                ...GeneralForm::make()
+                ...GeneralForm::make(),
             ]);
     }
 
