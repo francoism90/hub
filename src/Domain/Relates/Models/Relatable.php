@@ -24,6 +24,8 @@ class Relatable extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'relate_type',
+        'relate_id',
         'score',
         'boost',
         'options',
@@ -39,8 +41,8 @@ class Relatable extends Model
     protected function casts(): array
     {
         return [
-            'score' => 'float',
-            'boost' => 'float',
+            'score' => 'decimal:2',
+            'boost' => 'decimal:2',
             'options' => AsArrayObject::class,
         ];
     }
