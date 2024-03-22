@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Videos\Concerns;
+namespace Domain\Relates\Concerns;
 
-use Domain\Videos\Models\Relatable;
+use Domain\Relates\Models\Relatable;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasRelated

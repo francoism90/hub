@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Videos\Models;
+namespace Domain\Relates\Models;
 
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
