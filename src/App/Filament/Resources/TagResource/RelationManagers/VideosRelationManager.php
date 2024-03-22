@@ -25,7 +25,8 @@ class VideosRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->poll()
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 ...GeneralListing::make(),
             ])

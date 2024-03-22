@@ -29,7 +29,8 @@ class RelatablesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('title')
+            ->poll()
+            ->defaultSort('score', 'desc')
             ->columns([
                 ...GeneralListing::make(),
             ])
