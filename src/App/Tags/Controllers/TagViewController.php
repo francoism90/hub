@@ -29,7 +29,7 @@ class TagViewController extends Page
     public function items(): Paginator
     {
         return $this->getQuery()
-            ->firstWhere('prefixed_id', $this->getTagId())
+            ->find($this->getTagKey())
             ->videos()
             ->simplePaginate(32);
     }

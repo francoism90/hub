@@ -15,6 +15,11 @@ trait WithTag
         $this->authorize('view', $this->tag);
     }
 
+    protected function getTagKey(): int
+    {
+        return $this->tag->getKey();
+    }
+
     protected function getTagId(): string
     {
         return $this->tag->getRouteKey();
