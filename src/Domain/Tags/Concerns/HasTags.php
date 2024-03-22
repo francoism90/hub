@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Videos\Concerns;
+namespace Domain\Tags\Concerns;
 
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;

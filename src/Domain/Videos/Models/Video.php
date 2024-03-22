@@ -4,9 +4,9 @@ namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
+use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
-use Domain\Videos\Concerns\HasTags;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
