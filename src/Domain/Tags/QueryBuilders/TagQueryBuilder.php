@@ -22,13 +22,4 @@ class TagQueryBuilder extends Builder
             ->where('type', $type)
         );
     }
-
-    public function related(): mixed
-    {
-        return $this
-            ->relatables()
-            ->orderByDesc('score')
-            ->orderByDesc('boost')
-            ->select('id', 'score', 'boost');
-    }
 }
