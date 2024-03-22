@@ -4,10 +4,22 @@ namespace Domain\Tags\Collections;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
+    public function convert(): self
+    {
+        return $this
+            ->transform(fn (mixed $item): ?Tag => $item instanceof Tag
+                ? $item
+                : Tag::findByPrefixedId((string) $item)
+            )
+            ->filter()
+            ->unique();
+    }
+
     public function type(TagType|string|null $type = null): mixed
     {
         if (is_string($type)) {

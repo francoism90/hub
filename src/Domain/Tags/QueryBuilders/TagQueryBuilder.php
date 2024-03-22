@@ -3,7 +3,10 @@
 namespace Domain\Tags\QueryBuilders;
 
 use Domain\Shared\Concerns\InteractsWithScout;
+use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
+use Domain\Tags\Models\Tag;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 
 class TagQueryBuilder extends Builder
@@ -18,6 +21,19 @@ class TagQueryBuilder extends Builder
 
         return $this->when(filled($type), fn (Builder $query) => $query
             ->where('type', $type)
+        );
+    }
+
+    public function withRelated(Arrayable|array|Tag|null $values = null): self
+    {
+        $tags = TagCollection::make($values)->convert();
+
+        $keys = collect($tags->modelKeys());
+
+        $tags->each(fn (Tag $item) => $keys->push(...$item->relatables->pluck('relate_id')->toArray()));
+
+        return $this->when($keys, fn (Builder $query) => $query
+            ->whereIn('id', $keys)
         );
     }
 }

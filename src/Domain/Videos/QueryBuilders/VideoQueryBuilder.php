@@ -3,17 +3,18 @@
 namespace Domain\Videos\QueryBuilders;
 
 use Domain\Shared\Concerns\InteractsWithScout;
-use Domain\Tags\Concerns\InteractsWithTags;
+use Domain\Tags\Collections\TagCollection;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
     use InteractsWithScout;
-    use InteractsWithTags;
 
     public function published(): self
     {
@@ -38,5 +39,12 @@ class VideoQueryBuilder extends Builder
             ->whereIn('id', $items->pluck('id'))
             ->orderByRaw('FIND_IN_SET (id, ?)', [$items->pluck('id')->implode(',')])
         );
+    }
+
+    public function tagged(Arrayable|array|Tag|null $values = null): Builder
+    {
+        return $this->when($values, fn (Builder $query) => $query
+            ->whereHas('tags', fn (Builder $query) => $query->withRelated($values)
+        ));
     }
 }
