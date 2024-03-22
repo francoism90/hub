@@ -6,8 +6,6 @@ use App\Filament\Resources\RelatableResource\Forms\GeneralForm;
 use App\Filament\Resources\RelatableResource\Tables\GeneralListing;
 use App\Filament\Resources\TagResource\Pages\EditTag;
 use Domain\Relates\Models\Relatable;
-use Domain\Tags\Models\Tag;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -22,8 +20,9 @@ class RelatablesRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         return $form
+            ->columns(1)
             ->schema([
-                ...GeneralForm::make(),
+                ...GeneralForm::make()
             ]);
     }
 
@@ -35,7 +34,7 @@ class RelatablesRelationManager extends RelationManager
                 ...GeneralListing::make(),
             ])
             ->filters([
-                //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
@@ -43,13 +42,25 @@ class RelatablesRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ForceDeleteAction::make(),
+                Tables\Actions\RestoreAction::make(),
                 Tables\Actions\ViewAction::make()
                     ->url(fn (Relatable $record): string => EditTag::getUrl([$record->relate])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
+            ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
             ]);
     }
 }
