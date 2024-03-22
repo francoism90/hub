@@ -43,8 +43,8 @@ class VideoQueryBuilder extends Builder
 
     public function tagged(Arrayable|array|Tag|null $values = null): Builder
     {
-        return $this->when($values, fn (Builder $query) => $query
-            ->whereHas('tags', fn (Builder $query) => $query->withRelated($values)
-        ));
+        return $this->whereHas('tags', fn (Builder $query) => $query
+            ->withRelated($values)
+        );
     }
 }
