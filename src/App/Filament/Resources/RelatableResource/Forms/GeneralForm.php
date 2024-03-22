@@ -22,9 +22,17 @@ abstract class GeneralForm
         return MorphToSelect::make('relate')
             ->label(__('Relates To'))
             ->required()
+            ->searchable()
+            ->searchDebounce(200)
+            ->preload()
             ->types([
                 MorphToSelect\Type::make(Tag::class)
-                    ->titleAttribute('name'),
+                    ->titleAttribute('name')
+                    ->getSearchResultsUsing(fn (string $search): array => Tag::search($search)
+                        ->take(10)
+                        ->get()
+                        ->pluck('name', 'id')
+                        ->toArray()),
             ]);
     }
 
