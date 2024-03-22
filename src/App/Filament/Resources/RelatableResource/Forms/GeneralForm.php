@@ -32,19 +32,21 @@ abstract class GeneralForm
     {
         return TextInput::make('score')
             ->label(__('Score'))
+            ->required()
             ->numeric()
-            ->nullable()
             ->step(0.01)
-            ->maxLength(10);
+            ->default(1.00)
+            ->maxValue(10);
     }
 
     public static function boost(): TextInput
     {
         return TextInput::make('boost')
             ->label(__('Boost'))
+            ->required()
             ->numeric()
-            ->nullable()
             ->step(0.01)
-            ->maxLength(10);
+            ->default(0.00)
+            ->maxValue(10);
     }
 }
