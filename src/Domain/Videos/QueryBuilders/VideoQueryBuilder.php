@@ -49,7 +49,7 @@ class VideoQueryBuilder extends Builder
             ->randomSeed(key: 'tagged', ttl: now()->addDay())
             ->whereHas('tags', fn (Builder $query) => $query
                 ->whereIn('id', $items->modelKeys()
-            )
-        );
+                )
+            );
     }
 }
