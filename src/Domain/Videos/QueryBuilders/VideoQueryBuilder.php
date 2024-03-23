@@ -28,7 +28,7 @@ class VideoQueryBuilder extends Builder
         // $user ??= auth()->user();
 
         return $this
-            ->randomSeed(key: 'feed', ttl: now()->addHours(4));
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10));
     }
 
     public function similar(Video $model): self
