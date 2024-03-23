@@ -7,6 +7,8 @@ use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +23,7 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class Playlist extends Model implements HasMedia
 {
+    use BroadcastsEvents;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
@@ -98,5 +101,39 @@ class Playlist extends Model implements HasMedia
             ->logAll()
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastOn($event): array
+    {
+        return [
+            new PrivateChannel('user.'.$this->user->getRouteKey()),
+            new PrivateChannel('playlist.'.$this->getRouteKey()),
+        ];
+    }
+
+    public function broadcastAs(string $event): ?string
+    {
+        return str($event)
+            ->prepend('playlist.')
+            ->trim('.')
+            ->value();
+    }
+
+    public function broadcastWith(string $event): array
+    {
+        return ['id' => $this->getRouteKey()];
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
+    }
+
+    public function broadcastAfterCommit(): bool
+    {
+        return true;
     }
 }
