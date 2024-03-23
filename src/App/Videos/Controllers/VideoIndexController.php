@@ -26,9 +26,9 @@ class VideoIndexController extends Page
 
     public function updated(): void
     {
-        $this->form->submit();
-
         $this->refresh();
+
+        $this->form->submit();
 
         $this->resetPage();
     }
@@ -36,6 +36,8 @@ class VideoIndexController extends Page
     public function clear(): void
     {
         $this->getModel()::forgetRandomSeed('feed');
+
+        $this->refresh();
 
         $this->form->clear();
     }
@@ -47,7 +49,7 @@ class VideoIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 7200)]
     public function items(): Paginator
     {
         return $this->getQuery()

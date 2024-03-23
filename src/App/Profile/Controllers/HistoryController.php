@@ -18,7 +18,7 @@ class HistoryController extends VideoIndexController
         $this->seo()->setDescription(__('Your Watchlist'));
     }
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 7200)]
     public function items(): Paginator
     {
         return static::history()
