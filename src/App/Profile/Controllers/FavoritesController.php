@@ -32,4 +32,14 @@ class FavoritesController extends VideoIndexController
             ->take(32 * 32)
             ->simplePaginate(32);
     }
+
+    public function getListeners(): array
+    {
+        $id = static::favorites()->getRouteKey();
+
+        return [
+            "echo-private:playlist.{$id},.playlist.deleted" => 'refresh',
+            "echo-private:playlist.{$id},.playlist.updated" => 'refresh',
+        ];
+    }
 }
