@@ -45,8 +45,11 @@ class VideoQueryBuilder extends Builder
     {
         $items = TagCollection::make($values)->convert();
 
-        return $this->whereHas('tags', fn (Builder $query) => $query
-            ->whereIn('id', $items->modelKeys())
+        return $this
+            ->randomSeed(key: 'tagged', ttl: now()->addDay())
+            ->whereHas('tags', fn (Builder $query) => $query
+                ->whereIn('id', $items->modelKeys()
+            )
         );
     }
 }
