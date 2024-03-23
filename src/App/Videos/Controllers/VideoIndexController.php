@@ -35,8 +35,6 @@ class VideoIndexController extends Page
 
     public function clear(): void
     {
-        $this->getModel()::forgetRandomSeed('feed');
-
         $this->refresh();
 
         $this->form->clear();
@@ -44,6 +42,8 @@ class VideoIndexController extends Page
 
     public function refresh(): void
     {
+        $this->getModel()::forgetRandomSeed('feed');
+
         unset($this->items);
 
         $this->dispatch('$refresh');
