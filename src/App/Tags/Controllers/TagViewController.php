@@ -25,7 +25,7 @@ class TagViewController extends Page
         return (string) $this->tag?->name;
     }
 
-    #[Computed(persist: true, seconds: 7200)]
+    #[Computed(persist: true, seconds: 300)]
     public function items(): Paginator
     {
         return $this->getQuery()

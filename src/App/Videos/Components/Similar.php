@@ -24,7 +24,7 @@ class Similar extends Component
         return view('videos.similar');
     }
 
-    #[Computed(persist: true, seconds: 60 * 15)]
+    #[Computed(persist: true, seconds: 300)]
     public function items(): Collection
     {
         return app(GetSimilarvideos::class)->execute($this->video);
