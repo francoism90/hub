@@ -5,6 +5,7 @@ namespace Foundation\Providers;
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
 use Domain\Playlists\Models\Playlist;
+use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -41,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
             'import' => Import::class,
             'media' => Media::class,
             'playlist' => Playlist::class,
+            'relatable' => Relatable::class,
             'tag' => Tag::class,
             'user' => User::class,
             'video' => Video::class,

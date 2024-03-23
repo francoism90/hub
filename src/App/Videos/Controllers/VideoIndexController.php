@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 class VideoIndexController extends Page
@@ -18,18 +17,7 @@ class VideoIndexController extends Page
     use WithPagination;
     use WithQueryBuilder;
 
-    #[Url(as: 'q', history: true, except: '')]
-    public string $search = '';
-
-    #[Url(as: 't', history: true, except: [])]
-    public array $tags = [];
-
     public QueryForm $form;
-
-    public function mount(): void
-    {
-        $this->populate();
-    }
 
     public function render(): View
     {
@@ -38,33 +26,20 @@ class VideoIndexController extends Page
 
     public function updated(): void
     {
-        $this->populate();
-
         $this->refresh();
+
+        $this->form->submit();
 
         $this->resetPage();
     }
 
-    public function populate(): void
-    {
-        $this->form->fill(
-            $this->only('search', 'tags')
-        );
-
-        if ($this->form->fails()) {
-            $this->clear();
-        }
-
-        $this->form->submit();
-    }
-
     public function clear(): void
     {
-        $this->form->clear();
-
         $this->getModel()::forgetRandomSeed('feed');
 
-        $this->redirect(static::class, navigate: true);
+        $this->refresh();
+
+        $this->form->clear();
     }
 
     public function refresh(): void
@@ -74,7 +49,7 @@ class VideoIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 7200)]
     public function items(): Paginator
     {
         return $this->getQuery()

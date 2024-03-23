@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\InteractsWithAuthentication;
 use App\Filament\Resources\TagResource\Forms\GeneralForm;
 use App\Filament\Resources\TagResource\Pages;
+use App\Filament\Resources\TagResource\RelationManagers\RelatablesRelationManager;
 use App\Filament\Resources\TagResource\RelationManagers\VideosRelationManager;
 use Domain\Tags\Models\Tag;
 use Filament\Forms\Form;
@@ -43,6 +44,7 @@ class TagResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelatablesRelationManager::class,
             VideosRelationManager::class,
         ];
     }

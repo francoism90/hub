@@ -18,7 +18,7 @@ class WatchlistController extends VideoIndexController
         $this->seo()->setDescription(__('Your Watchlist'));
     }
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 7200)]
     public function items(): Paginator
     {
         return static::watchlist()
@@ -31,5 +31,15 @@ class WatchlistController extends VideoIndexController
             ->when($this->form->get('tags'), fn (Builder $query, array $value) => $query->tagged($value))
             ->take(32 * 32)
             ->simplePaginate(32);
+    }
+
+    public function getListeners(): array
+    {
+        $id = static::watchlist()->getRouteKey();
+
+        return [
+            "echo-private:playlist.{$id},.playlist.deleted" => 'refresh',
+            "echo-private:playlist.{$id},.playlist.updated" => 'refresh',
+        ];
     }
 }

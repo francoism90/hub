@@ -3,7 +3,7 @@
         <x-livewire-use::actions-link
             wire:key="query-{{ $item->getRouteKey() }}"
             class="font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            href="{{ route('home', ['t[]' => $item->getRouteKey()]) }}"
+            href="{{ route('tags.view', $item) }}"
             aria-label="{{ $item->name }}"
             title="{{ $item->name }}"
         >

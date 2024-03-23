@@ -15,6 +15,11 @@ trait WithVideo
         $this->authorize('view', $this->video);
     }
 
+    protected function getVideoKey(): int
+    {
+        return $this->video->getKey();
+    }
+
     protected function getVideoId(): string
     {
         return $this->video->getRouteKey();

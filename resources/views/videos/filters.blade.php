@@ -11,7 +11,9 @@
                         wire:key="filter-{{ $item->getRouteKey() }}"
                         @class([
                             'uppercase text-sm hover:text-primary-400',
-                            'text-primary-400 hover:text-primary-300' => $this->form->contains('tags', $item->getRouteKey()),
+                            'text-primary-400 hover:text-primary-300' => $this->form->contains(
+                                'tags',
+                                $item->getRouteKey()),
                         ])
                     >
                         <x-livewire-use::forms-label for="filter-{{ $item->getRouteKey() }}">
@@ -23,7 +25,7 @@
                             type="checkbox"
                             class="hidden"
                             value="{{ $item->getRouteKey() }}"
-                            wire:model.live="tags"
+                            wire:model.live="form.tags"
                         />
                     </div>
                 @endforeach

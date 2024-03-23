@@ -9,7 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('videoables', function (Blueprint $table) {
-            $table->foreignId('video_id')->constrained()->cascadeOnDelete();
+            $table
+                ->foreignId('video_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->morphs('videoable');
             $table->json('options')->nullable();
             $table->timestamps();
