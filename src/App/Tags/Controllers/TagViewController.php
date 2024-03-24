@@ -3,6 +3,7 @@
 namespace App\Tags\Controllers;
 
 use App\Tags\Concerns\WithTag;
+use Domain\Relates\Collections\RelatedCollection;
 use Domain\Tags\Models\Tag;
 use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\LivewireUse\Views\Components\Page;
@@ -32,6 +33,16 @@ class TagViewController extends Page
             ->findOrFail($this->getTagKey())
             ->videos()
             ->simplePaginate(32);
+    }
+
+    #[Computed]
+    public function relatables(): RelatedCollection
+    {
+        return $this->getQuery()
+            ->findOrFail($this->getTagKey())
+            ->relatables()
+            ->get()
+            ->relates();
     }
 
     protected static function getModelClass(): ?string

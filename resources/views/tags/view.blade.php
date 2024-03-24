@@ -15,4 +15,6 @@
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
+
+    <x-app::tags-filters />
 </x-livewire-use::layout-container>
