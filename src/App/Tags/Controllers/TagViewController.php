@@ -46,7 +46,7 @@ class TagViewController extends Page
             ->relatables()
             ->get()
             ->relates()
-            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
+            ->sortByDesc(['score', 'boost', 'created_at']);
     }
 
     protected static function getModelClass(): ?string
