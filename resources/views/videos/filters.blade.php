@@ -1,6 +1,12 @@
-<aside class="hidden w-72 min-w-72 max-w-72 flex-col gap-y-4 self-start sm:flex">
+<aside {{ $attributes
+    ->cssClass([
+        'layer' => 'hidden w-72 min-w-72 max-w-72 flex-col gap-y-6 self-start sm:flex',
+        'block' => 'w-full rounded border border-gray-700/10 bg-gray-900/75 p-4',
+    ])
+    ->classMerge(['layer'])
+}}>
     @can('viewAny', Domain\Tags\Models\Tag::class)
-        <div class="w-full rounded border border-gray-700/10 bg-gray-900/75 p-4">
+        <div {{ $attributes->classFor('block')}}>
             <h3 class="pb-3.5 text-sm font-medium uppercase text-primary-500">
                 {{ __('Tags') }}
             </h3>

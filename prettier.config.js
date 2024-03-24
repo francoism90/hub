@@ -10,8 +10,9 @@ export default {
       options: {
         parser: 'blade',
         printWidth: 180,
-        wrapAttributes: 'force-expand-multiline',
+        wrapAttributes: 'preserve-aligned',
         sortTailwindcssClasses: true,
+        sortHtmlAttributes: 'vuejs',
         indentInnerHtml: false,
       },
     },
