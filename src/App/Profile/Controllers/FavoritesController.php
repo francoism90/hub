@@ -18,7 +18,7 @@ class FavoritesController extends VideoIndexController
         $this->seo()->setDescription(__('Your Favorites'));
     }
 
-    #[Computed(persist: true, seconds: 300)]
+    #[Computed]
     public function items(): Paginator
     {
         return static::favorites()

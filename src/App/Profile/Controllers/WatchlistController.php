@@ -18,7 +18,7 @@ class WatchlistController extends VideoIndexController
         $this->seo()->setDescription(__('Your Watchlist'));
     }
 
-    #[Computed(persist: true, seconds: 300)]
+    #[Computed]
     public function items(): Paginator
     {
         return static::watchlist()

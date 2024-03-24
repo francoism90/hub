@@ -49,7 +49,7 @@ class VideoIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    #[Computed(persist: true, seconds: 300)]
+    #[Computed]
     public function items(): Paginator
     {
         return $this->getQuery()
