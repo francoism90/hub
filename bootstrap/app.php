@@ -21,6 +21,7 @@ $app = Application::configure(basePath: $basePath)
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
             'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'cacheable' => \Foundation\Http\Middlewares\SetCacheHeaders::class,
             'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

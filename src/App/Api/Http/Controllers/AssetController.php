@@ -17,7 +17,7 @@ class AssetController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('signed'),
-            new Middleware('cache.headers:public;max_age=604800;etag'),
+            new Middleware('cacheable:public;max_age=604800;etag'),
         ];
     }
 

@@ -18,6 +18,7 @@ class ManifestController extends Controller implements HasMiddleware
         return [
             new Middleware('private'),
             new Middleware('auth:sanctum'),
+            new Middleware('cacheable:public;max_age=300;etag'),
         ];
     }
 
