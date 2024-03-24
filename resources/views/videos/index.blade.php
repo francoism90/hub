@@ -5,7 +5,7 @@
     >
         @if ($form->filled('search', 'tags'))
             <x-livewire-use::actions-button
-                class="btn-ghost m-1.5 p-1.5 text-gray-400"
+                class:layer="inline-flex shrink-0 cursor-pointer gap-1.5 py-1.5 select-none items-center w-full text-gray-400"
                 wire:click="clear"
             >
                 <x-heroicon-o-magnifying-glass-minus class="h-5" />

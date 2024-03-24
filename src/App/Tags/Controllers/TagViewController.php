@@ -10,9 +10,11 @@ use Foxws\LivewireUse\Views\Components\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\WithPagination;
 
 class TagViewController extends Page
 {
+    use WithPagination;
     use WithQueryBuilder;
     use WithTag;
 
@@ -32,6 +34,7 @@ class TagViewController extends Page
         return $this->getQuery()
             ->findOrFail($this->getTagKey())
             ->videos()
+            ->randomSeed(key: 'tag', ttl: now()->addDay())
             ->simplePaginate(32);
     }
 
@@ -42,7 +45,8 @@ class TagViewController extends Page
             ->findOrFail($this->getTagKey())
             ->relatables()
             ->get()
-            ->relates();
+            ->relates()
+            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
     }
 
     protected static function getModelClass(): ?string
