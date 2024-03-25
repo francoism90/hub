@@ -2,6 +2,7 @@
 
 namespace Domain\Videos\Actions;
 
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
 use Illuminate\Support\Collection;
@@ -50,11 +51,19 @@ class GetSimilarVideos
 
     protected static function tagged(Video $model): LazyCollection
     {
+        $relatables = collect($model->tags)
+            ->flatMap(fn (Tag $tag) => $tag->relates)
+            ->pluck('prefixed_id')
+            ->all();
+
         return Video::query()
             ->published()
-            ->tagged($model->tags)
+            ->tagged([
+                ...$model->tags,
+                ...$relatables,
+            ])
             ->whereKeyNot($model)
-            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(20))
+            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(10))
             ->take(8)
             ->cursor();
     }
@@ -64,7 +73,7 @@ class GetSimilarVideos
         return Video::query()
             ->published()
             ->whereKeyNot($model)
-            ->randomSeed(key: 'random', ttl: now()->addMinutes(20))
+            ->randomSeed(key: 'random', ttl: now()->addMinutes(10))
             ->take(8)
             ->cursor();
     }
