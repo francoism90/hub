@@ -41,7 +41,7 @@ class TagCollection extends Collection
         );
     }
 
-    public function seo(): mixed
+    public function translated(): mixed
     {
         return $this
             ->translations()

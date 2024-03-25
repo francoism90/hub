@@ -43,10 +43,7 @@ class TagViewController extends Page
     {
         return $this->getQuery()
             ->findOrFail($this->getTagKey())
-            ->relatables()
-            ->get()
-            ->relates()
-            ->sortByDesc(['score', 'boost', 'created_at']);
+            ->relates;
     }
 
     protected static function getModelClass(): ?string
