@@ -11,7 +11,7 @@
             <x-app::videos-item :$item />
         @empty
             <div class="flex items-center justify-center p-8 text-gray-400">
-                {{ __('No videos found') }}
+                {{ __('No related videos found') }}
             </div>
         @endforelse
     </div>

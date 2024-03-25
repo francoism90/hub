@@ -3,17 +3,12 @@ export default {
   semi: true,
   singleQuote: true,
   printWidth: 180,
-  plugins: ['@shufo/prettier-plugin-blade', 'prettier-plugin-tailwindcss'],
+  plugins: ['prettier-plugin-tailwindcss'],
   overrides: [
     {
       files: ['*.blade.php'],
       options: {
-        parser: 'blade',
-        printWidth: 180,
-        wrapAttributes: 'preserve-aligned',
-        sortTailwindcssClasses: true,
-        sortHtmlAttributes: 'vuejs',
-        indentInnerHtml: false,
+        parser: 'html',
       },
     },
   ],

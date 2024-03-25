@@ -15,7 +15,6 @@ class GetSimilarVideos
         return collect()->merge([
             ...static::phrases($model),
             ...static::tagged($model),
-            ...static::random($model),
         ]);
     }
 
@@ -64,16 +63,6 @@ class GetSimilarVideos
             ])
             ->whereKeyNot($model)
             ->randomSeed(key: 'tagged', ttl: now()->addMinutes(10))
-            ->take(8)
-            ->cursor();
-    }
-
-    protected static function random(Video $model): LazyCollection
-    {
-        return Video::query()
-            ->published()
-            ->whereKeyNot($model)
-            ->randomSeed(key: 'random', ttl: now()->addMinutes(10))
             ->take(8)
             ->cursor();
     }
