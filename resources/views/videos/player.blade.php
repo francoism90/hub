@@ -61,9 +61,9 @@
                     const el = document.createElement('button');
 
                     el.type = 'button';
-                    el.ariaLabel = 'Replay';
-                    el.classList.add('material-icons-round', 'shaka-tooltip');
                     el.textContent = 'replay_10';
+                    el.classList.add('material-icons-round', 'shaka-tooltip');
+                    el.setAttribute('aria-label', "{{ __('Replay') }}");
 
                     el.addEventListener('click', () => {
                         if (!video?.duration || video?.duration < step) {
@@ -82,9 +82,9 @@
                     const el = document.createElement('button');
 
                     el.type = 'button';
-                    el.ariaLabel = 'Forward';
                     el.classList.add('material-icons-round', 'shaka-tooltip');
                     el.textContent = 'forward_10';
+                    el.setAttribute('aria-label', "{{ __('Forward') }}");
 
                     el.addEventListener('click', () => {
                         if (!video?.duration || video?.duration < step) {
