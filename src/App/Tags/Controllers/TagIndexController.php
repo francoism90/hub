@@ -23,7 +23,7 @@ class TagIndexController extends Page
         return __('Tags');
     }
 
-    #[Computed(cache: true, key: 'tags', seconds: 60 * 60 * 4)]
+    #[Computed(cache: true, key: 'tags', seconds: 2700)]
     public function items(): Collection
     {
         return $this->getQuery()
