@@ -38,13 +38,6 @@ class Playlist extends Model implements HasMedia
     /**
      * @var array<int, string>
      */
-    protected $with = [
-        //
-    ];
-
-    /**
-     * @var array<int, string>
-     */
     protected $fillable = [
         'user_id',
         'name',

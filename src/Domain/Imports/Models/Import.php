@@ -23,13 +23,6 @@ class Import extends Model
     /**
      * @var array<int, string>
      */
-    protected $with = [
-        //
-    ];
-
-    /**
-     * @var array<int, string>
-     */
     protected $fillable = [
         'user_id',
         'file_name',
@@ -38,13 +31,6 @@ class Import extends Model
         'size',
         'finished_at',
         'state',
-    ];
-
-    /**
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        //
     ];
 
     protected static function newFactory(): ImportFactory

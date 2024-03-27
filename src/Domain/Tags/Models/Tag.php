@@ -36,25 +36,11 @@ class Tag extends BaseTag implements HasMedia
     /**
      * @var array<int, string>
      */
-    protected $with = [
-        //
-    ];
-
-    /**
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'description',
         'type',
         'adult',
-    ];
-
-    /**
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        //
     ];
 
     /**

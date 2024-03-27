@@ -18,13 +18,6 @@ class Relatable extends Model
     /**
      * @var array<int, string>
      */
-    protected $with = [
-        'relate',
-    ];
-
-    /**
-     * @var array<int, string>
-     */
     protected $fillable = [
         'relate_type',
         'relate_id',
