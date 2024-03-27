@@ -10,6 +10,7 @@ class RelatedCollection extends Collection
     public function relates(): self
     {
         return $this
+            ->loadMissing('relate')
             ->transform(fn (Relatable $relatable) => $relatable->relate);
     }
 }
