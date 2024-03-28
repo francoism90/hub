@@ -24,6 +24,11 @@ class VideoIndexController extends Page
         return view('videos.index');
     }
 
+    public function mount(): void
+    {
+        $this->form->restore();
+    }
+
     public function updated(): void
     {
         $this->getModel()::forgetRandomSeed('feed');
@@ -54,8 +59,10 @@ class VideoIndexController extends Page
     {
         return $this->getQuery()
             ->published()
-            ->when($this->form->blank('search', 'tags'), fn (Builder $query) => $query->recommended())
-            ->when($this->form->get('tags'), fn (Builder $query, array $value) => $query->tagged($value))
+            ->when($this->form->blank('search'), fn (Builder $query) => $query->recommended())
+            ->when($this->form->is('search', 'feed:recent'), fn (Builder $query) => $query->recent())
+            ->when($this->form->is('search', 'feed:watched'), fn (Builder $query) => $query->watched())
+            ->when($this->form->is('search', 'feed:unwatched'), fn (Builder $query) => $query->unwatched())
             ->simplePaginate(32);
     }
 

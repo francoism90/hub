@@ -2,15 +2,16 @@
 
 namespace Domain\Videos\QueryBuilders;
 
+use Domain\Playlists\Enums\PlaylistType;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
-use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
+use Domain\Users\Models\User;
 
 class VideoQueryBuilder extends Builder
 {
@@ -22,13 +23,45 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
-    public function recommended(?User $user = null): self
+    public function recommended(): self
     {
-        /** @var User $user */
-        // $user ??= auth()->user();
-
         return $this
             ->randomSeed(key: 'feed', ttl: now()->addMinutes(10));
+    }
+
+    public function recent(): self
+    {
+        return $this
+            ->orderByDesc('released_at')
+            ->orderByDesc('created_at');
+    }
+
+    public function watched(): self
+    {
+        /** @var User */
+        $user = auth()->user();
+
+        return $this
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
+            ->whereHas('playlists', fn (Builder $query) => $query
+                ->history()
+                ->where('user_id', $user->getKey())
+                ->has('videos')
+            );
+    }
+
+    public function unwatched(): self
+    {
+        /** @var User */
+        $user = auth()->user();
+
+        return $this
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
+            ->whereHas('playlists', fn (Builder $query) => $query
+                ->history()
+                ->where('user_id', $user->getKey())
+                ->doesntHave('videos')
+            );
     }
 
     public function similar(Video $model): self

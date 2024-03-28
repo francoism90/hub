@@ -1,18 +1,12 @@
-<x-livewire-use::layout-container class="flex flex-nowrap sm:space-x-24">
+<x-livewire-use::layout-container class="flex flex-col flex-nowrap gap-y-2">
+    <livewire:app::videos-filters wire:model.live="form.search" />
+
+    Search: {{ $form->get('search') }}
+
     <div
-        class="grid gap-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"
+        class="grid gap-y-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"
         wire:poll.keep-alive.2400s
     >
-        @if ($form->filled('search', 'tags'))
-            <x-livewire-use::actions-button
-                class:layer="inline-flex shrink-0 cursor-pointer gap-1.5 py-1.5 select-none items-center w-full text-gray-400"
-                wire:click="clear"
-            >
-                <x-heroicon-o-magnifying-glass-minus class="h-5" />
-                <span>{{ __('Reset Filters') }}</span>
-            </x-livewire-use::actions-button>
-        @endif
-
         @forelse ($this->items as $item)
             <x-app::videos-card :$item />
         @empty

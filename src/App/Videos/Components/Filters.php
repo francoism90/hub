@@ -2,31 +2,35 @@
 
 namespace App\Videos\Components;
 
-use Domain\Tags\Enums\TagType;
-use Domain\Tags\Models\Tag;
-use Illuminate\Support\LazyCollection;
-use Illuminate\View\Component;
+use App\Videos\Enums\FeedType;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
 
 class Filters extends Component
 {
+    #[Modelable]
+    public string $value = '';
+
     public function render(): View
     {
         return view('videos.filters');
     }
 
-    public function ordered(?array $items = null): LazyCollection
+    #[Computed]
+    public function items(): Collection
     {
-        return Tag::query()
-            ->ordered()
-            ->lazy()
-            ->when($items, fn (LazyCollection $collection) => $collection
-                ->sortByDesc(fn (Tag $item) => in_array($item->getRouteKey(), $items))
-            );
+        return collect()->merge([
+            ...static::feeds(),
+            // ...static::tagged($model),
+        ]);
     }
 
-    public function types(): array
+    protected static function feeds(): Collection
     {
-        return TagType::cases();
+        return collect(FeedType::cases())
+            ->flatMap(fn (FeedType $type) => ['feed:'.$type->value => $type->label()]);
     }
 }
