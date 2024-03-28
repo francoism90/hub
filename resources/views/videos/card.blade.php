@@ -5,7 +5,7 @@
 >
     <div class="flex flex-wrap flex-grow md:flex-nowrap gap-6">
         <x-livewire-use::actions-link
-            class="grow h-64 w-full md:w-96 md:max-w-96"
+            class="grow h-64 w-full md:w-96 md:max-w-96 aspect-video"
             href="{{ route('videos.view', $item) }}"
         >
             <figure
