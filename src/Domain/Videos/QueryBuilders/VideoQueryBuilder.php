@@ -43,7 +43,7 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
-            ->whereHas('playlists', fn (Builder $query) => $query
+            ->withWhereHas('playlists', fn ($query) => $query
                 ->history()
                 ->where('user_id', $user->getKey())
                 ->has('videos')
@@ -57,10 +57,10 @@ class VideoQueryBuilder extends Builder
 
         return $this
             ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
-            ->whereHas('playlists', fn (Builder $query) => $query
+            ->withWhereHas('playlists', fn ($query) => $query
                 ->history()
                 ->where('user_id', $user->getKey())
-                ->doesntHave('videos')
+                ->doesntHave('videos', 'or')
             );
     }
 
