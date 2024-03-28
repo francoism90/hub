@@ -26,7 +26,7 @@ class VideoQueryBuilder extends Builder
     public function recommended(): self
     {
         return $this
-            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10));
+            ->randomSeed(key: 'videos-recommended', ttl: now()->addMinutes(10));
     }
 
     public function recent(): self

@@ -60,9 +60,10 @@ class VideoIndexController extends Page
         return $this->getQuery()
             ->published()
             ->when($this->form->blank('search'), fn (Builder $query) => $query->recommended())
-            ->when($this->form->is('search', 'feed:recent'), fn (Builder $query) => $query->recent())
-            ->when($this->form->is('search', 'feed:watched'), fn (Builder $query) => $query->watched())
-            ->when($this->form->is('search', 'feed:unwatched'), fn (Builder $query) => $query->unwatched())
+            ->when($this->form->is('search', 'filter:recent'), fn (Builder $query) => $query->recent())
+            ->when($this->form->is('search', 'filter:watched'), fn (Builder $query) => $query->watched())
+            ->when($this->form->is('search', 'filter:unwatched'), fn (Builder $query) => $query->unwatched())
+            ->when($this->form->hasTags(), fn (Builder $query) => $query->tagged($this->form->getTags()))
             ->simplePaginate(32);
     }
 

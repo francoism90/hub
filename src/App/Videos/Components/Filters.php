@@ -2,7 +2,9 @@
 
 namespace App\Videos\Components;
 
-use App\Videos\Enums\FeedType;
+use Domain\Tags\Models\Tag;
+use Domain\Videos\Enums\FilterType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -23,14 +25,25 @@ class Filters extends Component
     public function items(): Collection
     {
         return collect()->merge([
-            ...static::feeds(),
-            // ...static::tagged($model),
+            ...$this->filters(),
+            ...$this->tags(),
         ]);
     }
 
-    protected static function feeds(): Collection
+    protected function filters(): Collection
     {
-        return collect(FeedType::cases())
-            ->flatMap(fn (FeedType $type) => ['feed:'.$type->value => $type->label()]);
+        return collect(FilterType::cases())
+            ->flatMap(fn (FilterType $type) => ['filter:'.$type->value => $type->label()]);
+    }
+
+    protected function tags(): Collection
+    {
+        return Tag::query()
+            ->recommended()
+            ->take(10)
+            ->where('prefixed_id', str($this->value)->after('tag:'))
+            ->orWhere(fn (Builder $query) => $query->whereNotNull('name'))
+            ->get()
+            ->flatMap(fn (Tag $tag) => ['tag:'.$tag->getRouteKey() => (string) $tag->name]);
     }
 }

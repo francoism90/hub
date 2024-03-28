@@ -1,14 +1,14 @@
-<div class="flex w-full h-10 overflow-hidden overflow-x-auto gap-3">
+<div class="flex flex-row h-8 max-h-8 w-full overflow-y-hidden overflow-x-scroll">
     @foreach ($this->items as $key => $item)
-        <x-livewire-use::forms-label
+        <button
             wire:key="search-{{ $key }}"
             wire:click.prevent="$set('value', '{{ $key == $value ? '' : $key }}')"
             @class([
-                "h-8 py-0 px-3 gap-x-4 rounded border border-gray-700/30 bg-gray-900/75 text-sm",
+                "flex-shrink-0 h-8 py-0 px-3 gap-x-4 rounded border border-gray-700/30 bg-gray-900/75 text-sm",
                 'bg-white/15' => $key == $value,
             ])
         >
             {{ $item }}
-        </x-livewire-use::forms-label>
+        </button>
     @endforeach
 </div>

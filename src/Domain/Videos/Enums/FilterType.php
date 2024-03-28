@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Videos\Enums;
+namespace Domain\Videos\Enums;
 
-enum FeedType: string
+enum FilterType: string
 {
     case Recent = 'recent';
     case Watched = 'watched';
