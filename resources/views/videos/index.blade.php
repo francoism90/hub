@@ -1,6 +1,6 @@
 <x-livewire-use::layout-container class="flex flex-nowrap sm:space-x-24">
     <div
-        class="grow flex-col gap-y-4 divide-y divide-gray-700 overflow-hidden"
+        class="grid gap-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"
         wire:poll.keep-alive.2400s
     >
         @if ($form->filled('search', 'tags'))
@@ -21,7 +21,7 @@
             </div>
         @endforelse
 
-        <div class="max-w-lg py-4">
+        <div class="py-4">
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
