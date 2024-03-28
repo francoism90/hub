@@ -41,7 +41,7 @@ class VideoQueryBuilder extends Builder
         $user = auth()->user();
 
         return $this
-            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
+            ->randomSeed(key: 'videos-feed', ttl: now()->addMinutes(10))
             ->withWhereHas('playlists', fn ($query) => $query
                 ->history()
                 ->where('user_id', $user->getKey())
@@ -55,7 +55,7 @@ class VideoQueryBuilder extends Builder
         $user = auth()->user();
 
         return $this
-            ->randomSeed(key: 'feed', ttl: now()->addMinutes(10))
+            ->randomSeed(key: 'videos-feed', ttl: now()->addMinutes(10))
             ->withWhereHas('playlists', fn ($query) => $query
                 ->history()
                 ->where('user_id', $user->getKey())
