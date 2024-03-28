@@ -25,6 +25,4 @@
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
-
-    <x-app::videos-filters />
 </x-livewire-use::layout-container>
