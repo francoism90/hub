@@ -23,4 +23,12 @@ class QueryForm extends Form
 
     #[Validate('nullable|array|in:caption|max:5')]
     public array $features = [];
+
+    public function getSearch(): string
+    {
+        return str($this->get('search', ''))
+            ->headline()
+            ->squish()
+            ->value();
+    }
 }
