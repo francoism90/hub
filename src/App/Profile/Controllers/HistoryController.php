@@ -11,8 +11,8 @@ use Livewire\WithPagination;
 
 class HistoryController extends Page
 {
-    use WithPagination;
     use WithHistory;
+    use WithPagination;
 
     public function mount(): void
     {

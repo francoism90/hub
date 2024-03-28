@@ -4,7 +4,6 @@ namespace App\Profile\Controllers;
 
 use App\Playlists\Concerns\WithFavorites;
 use Foxws\LivewireUse\Views\Components\Page;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -12,8 +11,8 @@ use Livewire\WithPagination;
 
 class FavoritesController extends Page
 {
-    use WithPagination;
     use WithFavorites;
+    use WithPagination;
 
     public function mount(): void
     {

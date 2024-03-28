@@ -2,16 +2,15 @@
 
 namespace Domain\Videos\QueryBuilders;
 
-use Domain\Playlists\Enums\PlaylistType;
 use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
+use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
-use Domain\Users\Models\User;
 
 class VideoQueryBuilder extends Builder
 {

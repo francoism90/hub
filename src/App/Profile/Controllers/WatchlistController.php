@@ -4,7 +4,6 @@ namespace App\Profile\Controllers;
 
 use App\Playlists\Concerns\WithWatchlist;
 use App\Videos\Controllers\VideoIndexController;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
