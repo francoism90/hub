@@ -63,7 +63,7 @@ class VideoIndexController extends Page
             ->published()
             ->when($search, fn (Builder $query, string $value) => $query->search($value))
             ->when($this->form->blank('search'), fn (Builder $query) => $query->recommended())
-            ->when($this->form->filter('recent'), fn (Builder $query) => $query->recent())
+            ->when($this->form->filter('newest'), fn (Builder $query) => $query->newest())
             ->when($this->form->filter('watched'), fn (Builder $query) => $query->watched())
             ->when($this->form->filter('unwatched'), fn (Builder $query) => $query->unwatched())
             ->simplePaginate(32);

@@ -28,11 +28,11 @@ class VideoQueryBuilder extends Builder
             ->randomSeed(key: 'videos', ttl: now()->addMinutes(10));
     }
 
-    public function recent(): self
+    public function newest(): self
     {
         return $this
-            ->orderByDesc('released_at')
-            ->orderByDesc('created_at');
+            ->orderByDesc('created_at')
+            ->orderByDesc('released_at');
     }
 
     public function watched(): self
