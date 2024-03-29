@@ -13,7 +13,7 @@ class TagQueryBuilder extends Builder
     public function recommended(): self
     {
         return $this
-            ->randomSeed(key: 'tags-recommended', ttl: now()->addMinutes(10));
+            ->randomSeed(key: 'tags', ttl: now()->addMinutes(10));
     }
 
     public function type(TagType|string $value): self
