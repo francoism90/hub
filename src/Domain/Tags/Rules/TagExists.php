@@ -13,8 +13,6 @@ class TagExists implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $value = str($value)->replaceFirst('tag:', '');
-
         if (! Tag::findByPrefixedId($value)->exists()) {
             $fail(__('The given tag does not exists.'));
         }
