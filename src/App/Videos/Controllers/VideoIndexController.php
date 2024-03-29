@@ -19,6 +19,11 @@ class VideoIndexController extends Page
 
     public QueryForm $form;
 
+    public function mount(): void
+    {
+        $this->form->restore();
+    }
+
     public function render(): View
     {
         return view('videos.index');
@@ -26,20 +31,20 @@ class VideoIndexController extends Page
 
     public function updated(): void
     {
-        $this->getModel()::forgetRandomSeed('feed');
-
-        $this->refresh();
+        $this->getModel()::forgetRandomSeed('videos');
 
         $this->form->submit();
+
+        $this->refresh();
 
         $this->resetPage();
     }
 
     public function clear(): void
     {
-        $this->refresh();
-
         $this->form->clear();
+
+        $this->refresh();
     }
 
     public function refresh(): void
@@ -52,10 +57,15 @@ class VideoIndexController extends Page
     #[Computed]
     public function items(): Paginator
     {
+        $search = $this->form->query();
+
         return $this->getQuery()
             ->published()
-            ->when($this->form->blank('search', 'tags'), fn (Builder $query) => $query->recommended())
-            ->when($this->form->get('tags'), fn (Builder $query, array $value) => $query->tagged($value))
+            ->when($search, fn (Builder $query, string $value) => $query->search($value))
+            ->when($this->form->blank('search'), fn (Builder $query) => $query->recommended())
+            ->when($this->form->filter('recent'), fn (Builder $query) => $query->recent())
+            ->when($this->form->filter('watched'), fn (Builder $query) => $query->watched())
+            ->when($this->form->filter('unwatched'), fn (Builder $query) => $query->unwatched())
             ->simplePaginate(32);
     }
 

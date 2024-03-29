@@ -1,5 +1,5 @@
 <x-livewire-use::layout-container class="flex flex-col flex-nowrap gap-y-2">
-    <livewire:app::videos-filters wire:model.live="form.search" />
+    {{-- <livewire:app::playlists-filters wire:model.live="form.search" /> --}}
 
     <div
         class="grid gap-y-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"

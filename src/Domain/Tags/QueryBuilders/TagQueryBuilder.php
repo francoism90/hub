@@ -10,6 +10,12 @@ class TagQueryBuilder extends Builder
 {
     use InteractsWithScout;
 
+    public function recommended(): self
+    {
+        return $this
+            ->randomSeed(key: 'tags', ttl: now()->addMinutes(10));
+    }
+
     public function type(TagType|string $value): self
     {
         $type = ! $value instanceof TagType

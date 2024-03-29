@@ -2,31 +2,45 @@
 
 namespace App\Videos\Components;
 
-use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Illuminate\Support\LazyCollection;
-use Illuminate\View\Component;
+use Domain\Videos\Enums\FilterType;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
 
 class Filters extends Component
 {
+    #[Modelable]
+    public string $value = '';
+
     public function render(): View
     {
         return view('videos.filters');
     }
 
-    public function ordered(?array $items = null): LazyCollection
+    #[Computed]
+    public function items(): Collection
     {
-        return Tag::query()
-            ->ordered()
-            ->lazy()
-            ->when($items, fn (LazyCollection $collection) => $collection
-                ->sortByDesc(fn (Tag $item) => in_array($item->getRouteKey(), $items))
-            );
+        return collect()->merge([
+            ...$this->filters(),
+            ...$this->tags(),
+        ])->unique();
     }
 
-    public function types(): array
+    protected function filters(): Collection
     {
-        return TagType::cases();
+        return collect(FilterType::cases())
+            ->flatMap(fn (FilterType $type) => ['filter:'.$type->value => $type->label()]);
+    }
+
+    protected function tags(): Collection
+    {
+        return Tag::query()
+            ->recommended()
+            ->take(10)
+            ->get()
+            ->flatMap(fn (Tag $tag) => [(string) $tag->name => (string) $tag->name]);
     }
 }
