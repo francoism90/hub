@@ -7,14 +7,14 @@ use Illuminate\Support\Carbon;
 
 trait InteractsWithRandomSeed
 {
-    public function scopeRandomSeed(Builder $query, string $key, Carbon|int $ttl = 60 * 60): Builder
+    public function scopeRandomSeed(Builder $query, string $key, Carbon|int $ttl = 300): Builder
     {
         return $query
             ->reorder()
             ->inRandomOrder(static::getRandomSeed($key, $ttl));
     }
 
-    protected static function getRandomSeed(string $key, Carbon|int $ttl): mixed
+    protected static function getRandomSeed(string $key, Carbon|int $ttl = 300): mixed
     {
         return cache()->remember(
             static::getRandomSeedKey($key),

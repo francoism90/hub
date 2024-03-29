@@ -25,7 +25,7 @@ class VideoQueryBuilder extends Builder
     public function recommended(): self
     {
         return $this
-            ->randomSeed(key: 'videos-recommended', ttl: now()->addMinutes(10));
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes(10));
     }
 
     public function recent(): self
@@ -55,7 +55,7 @@ class VideoQueryBuilder extends Builder
         $user = auth()->user();
 
         return $this
-            ->randomSeed(key: 'videos-feed', ttl: now()->addMinutes(10))
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes(10))
             ->withWhereHas('playlists', fn ($query) => $query
                 ->history()
                 ->where('user_id', $user->getKey())

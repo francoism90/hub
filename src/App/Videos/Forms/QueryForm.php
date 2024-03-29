@@ -2,10 +2,8 @@
 
 namespace App\Videos\Forms;
 
-use Domain\Tags\Rules\TagExists;
 use Domain\Videos\Rules\FilterExists;
 use Foxws\LivewireUse\Forms\Support\Form;
-use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
@@ -15,14 +13,24 @@ class QueryForm extends Form
     #[Validate]
     public string $search = '';
 
-    public function hasTags(): bool
+    public function query(): string
     {
-        return $this->startsWith('search', 'tag:');
+        return str($this->get('search', ''))
+            ->headline()
+            ->squish()
+            ->value();
     }
 
-    public function getTags(): array
+    public function filters(): array
     {
-        return (array) $this->after('search', 'tag:');
+        return str($this->get('search', ''))
+            ->matchAll('/filter:(\w*)/')
+            ->all();
+    }
+
+    public function filter(string $needle): bool
+    {
+        return in_array($needle, $this->filters());
     }
 
     public function rules(): array
@@ -31,14 +39,7 @@ class QueryForm extends Form
             'search' => [
                 'nullable',
                 'max:255',
-                Rule::when(
-                    fn ($input) => str($input->get('search'))->startsWith('tag:'),
-                    ['nullable', 'string', new TagExists],
-                ),
-                Rule::when(
-                    fn ($input) => str($input->get('search'))->startsWith('feed:'),
-                    ['nullable', 'string', new FilterExists],
-                ),
+                new FilterExists,
             ],
         ];
     }

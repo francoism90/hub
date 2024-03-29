@@ -27,7 +27,7 @@ class Filters extends Component
         return collect()->merge([
             ...$this->filters(),
             ...$this->tags(),
-        ]);
+        ])->unique();
     }
 
     protected function filters(): Collection
@@ -41,9 +41,7 @@ class Filters extends Component
         return Tag::query()
             ->recommended()
             ->take(10)
-            ->where('prefixed_id', str($this->value)->after('tag:'))
-            ->orWhere(fn (Builder $query) => $query->whereNotNull('name'))
             ->get()
-            ->flatMap(fn (Tag $tag) => ['tag:'.$tag->getRouteKey() => (string) $tag->name]);
+            ->flatMap(fn (Tag $tag) => [(string) $tag->name => (string) $tag->name]);
     }
 }

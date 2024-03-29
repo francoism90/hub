@@ -13,10 +13,13 @@ class FilterExists implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $value = str($value)->replaceFirst('filter:', '');
+        $types = is_array($value) ? implode(' ', $value) : $value;
 
-        if (! FilterType::tryFrom($value)) {
-            $fail(__('The given filter does not exists.'));
-        }
+        $types = str($value)->matchAll('/filter:(\w*)/');
+
+        $types->each(fn (string $str) => ! FilterType::tryFrom($str)
+            ? $fail(__('The given filter does not exists.'))
+            : null
+        );
     }
 }
