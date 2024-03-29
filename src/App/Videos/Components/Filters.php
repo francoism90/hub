@@ -4,7 +4,6 @@ namespace App\Videos\Components;
 
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Enums\FilterType;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
