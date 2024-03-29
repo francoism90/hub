@@ -20,13 +20,13 @@ class Filters extends Component
         return view('videos.filters');
     }
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 300)]
     public function items(): Collection
     {
         return collect()->merge([
             ...$this->filters(),
             ...$this->tags(),
-        ])->unique();
+        ]);
     }
 
     protected function filters(): Collection
