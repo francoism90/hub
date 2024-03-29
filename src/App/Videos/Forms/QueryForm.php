@@ -16,7 +16,7 @@ class QueryForm extends Form
     public function query(): string
     {
         return str($this->get('search', ''))
-            ->headline()
+            ->replaceMatches('/filter:(\w*)/', '')
             ->squish()
             ->value();
     }
