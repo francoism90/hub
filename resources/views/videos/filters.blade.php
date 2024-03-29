@@ -1,4 +1,4 @@
-<div class="flex flex-row h-8 max-h-8 w-full overflow-y-hidden overflow-x-scroll">
+<div class="flex flex-row h-8 max-h-8 gap-x-2 w-full overflow-y-hidden overflow-x-scroll">
     @foreach ($this->items as $key => $item)
         <button
             wire:key="search-{{ $key }}"
