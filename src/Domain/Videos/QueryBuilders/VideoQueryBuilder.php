@@ -49,20 +49,6 @@ class VideoQueryBuilder extends Builder
             );
     }
 
-    public function unwatched(): self
-    {
-        /** @var User */
-        $user = auth()->user();
-
-        return $this
-            ->randomSeed(key: 'videos', ttl: now()->addMinutes(10))
-            ->withWhereHas('playlists', fn ($query) => $query
-                ->history()
-                ->where('user_id', $user->getKey())
-                ->doesntHave('videos', 'or')
-            );
-    }
-
     public function similar(Video $model): self
     {
         $items = app(GetSimilarVideos::class)->execute($model);
