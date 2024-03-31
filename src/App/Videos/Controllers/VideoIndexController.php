@@ -57,14 +57,11 @@ class VideoIndexController extends Page
     #[Computed]
     public function items(): Paginator
     {
-        $search = $this->form->query();
-
         return $this->getQuery()
             ->published()
-            ->when($search, fn (Builder $query, string $value) => $query->search($value))
+            ->when($this->form->query(), fn (Builder $query, string $value) => $query->search($value))
             ->when($this->form->blank('search'), fn (Builder $query) => $query->recommended())
             ->when($this->form->filter('newest'), fn (Builder $query) => $query->newest())
-            ->when($this->form->filter('watched'), fn (Builder $query) => $query->watched())
             ->simplePaginate(32);
     }
 

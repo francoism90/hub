@@ -30,7 +30,6 @@ class WatchlistController extends VideoIndexController
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->take(32 * 32)
             ->simplePaginate(32);
     }
 
