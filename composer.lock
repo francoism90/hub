@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae7549071a7fe499c4bdbede8448b94a",
+    "content-hash": "4ae5638e4a49d5e5c11576e908a57965",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2976,16 +2976,16 @@
         },
         {
             "name": "foxws/livewire-use",
-            "version": "v0.0.20",
+            "version": "v0.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/livewire-use.git",
-                "reference": "0b9c33e0c80d26e41a6cbb1647517fc4b62f3cf2"
+                "reference": "1d85f77f4e5d9296eb5963afbebc375f588b9702"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/livewire-use/zipball/0b9c33e0c80d26e41a6cbb1647517fc4b62f3cf2",
-                "reference": "0b9c33e0c80d26e41a6cbb1647517fc4b62f3cf2",
+                "url": "https://api.github.com/repos/foxws/livewire-use/zipball/1d85f77f4e5d9296eb5963afbebc375f588b9702",
+                "reference": "1d85f77f4e5d9296eb5963afbebc375f588b9702",
                 "shasum": ""
             },
             "require": {
@@ -3047,7 +3047,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/livewire-use/issues",
-                "source": "https://github.com/foxws/livewire-use/tree/v0.0.20"
+                "source": "https://github.com/foxws/livewire-use/tree/v0.0.21"
             },
             "funding": [
                 {
@@ -3055,7 +3055,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-29T10:21:29+00:00"
+            "time": "2024-04-01T14:36:30+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -8329,16 +8329,16 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "3.4.2",
+            "version": "3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "59beef7ad612ca7463dfddb64de6e038eb59e0d7"
+                "reference": "c566852826f3e9dceea27eef5173bad93b83e61c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/59beef7ad612ca7463dfddb64de6e038eb59e0d7",
-                "reference": "59beef7ad612ca7463dfddb64de6e038eb59e0d7",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/c566852826f3e9dceea27eef5173bad93b83e61c",
+                "reference": "c566852826f3e9dceea27eef5173bad93b83e61c",
                 "shasum": ""
             },
             "require": {
@@ -8376,7 +8376,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/db-dumper/tree/3.4.2"
+                "source": "https://github.com/spatie/db-dumper/tree/3.4.3"
             },
             "funding": [
                 {
@@ -8388,7 +8388,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-25T11:42:15+00:00"
+            "time": "2024-04-01T07:37:06+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",
