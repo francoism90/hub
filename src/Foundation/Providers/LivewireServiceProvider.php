@@ -3,10 +3,11 @@
 namespace Foundation\Providers;
 
 use Foxws\LivewireUse\Facades\LivewireUse;
-use Foxws\LivewireUse\Support\Livewire\Models\EloquentModelSynth;
+use Foxws\LivewireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
+use Foxws\LivewireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
+use Foxws\LivewireUse\Support\Livewire\Models\CollectionSynth;
 use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
 
 class LivewireServiceProvider extends ServiceProvider
 {
@@ -23,8 +24,12 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function configureSynthesizers(): void
     {
-        Livewire::propertySynthesizer(ModelSynth::class);
-        Livewire::propertySynthesizer(EloquentModelSynth::class);
+        app('livewire')->propertySynthesizer([
+            ModelSynth::class,
+            CollectionSynth::class,
+            EloquentModelSynth::class,
+            EloquentCollectionSynth::class
+        ]);
     }
 
     protected function configureComponents(): void
