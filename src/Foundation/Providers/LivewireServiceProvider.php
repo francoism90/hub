@@ -28,7 +28,7 @@ class LivewireServiceProvider extends ServiceProvider
             ModelSynth::class,
             CollectionSynth::class,
             EloquentModelSynth::class,
-            EloquentCollectionSynth::class
+            EloquentCollectionSynth::class,
         ]);
     }
 
