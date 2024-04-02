@@ -2702,7 +2702,7 @@
         },
         {
             "name": "filament/spatie-laravel-google-fonts-plugin",
-            "version": "v3.2.61",
+            "version": "v3.2.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-google-fonts-plugin.git",
