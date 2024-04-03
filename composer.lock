@@ -3781,16 +3781,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.1.1",
+            "version": "v11.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1437cea6d2b04cbc83743fbb208e1a01efccd9ec"
+                "reference": "a1750156b671f37cba702380107e2d22161c31e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1437cea6d2b04cbc83743fbb208e1a01efccd9ec",
-                "reference": "1437cea6d2b04cbc83743fbb208e1a01efccd9ec",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a1750156b671f37cba702380107e2d22161c31e3",
+                "reference": "a1750156b671f37cba702380107e2d22161c31e3",
                 "shasum": ""
             },
             "require": {
@@ -3982,7 +3982,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-28T15:07:18+00:00"
+            "time": "2024-04-02T14:01:33+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -8822,16 +8822,16 @@
         },
         {
             "name": "spatie/laravel-db-snapshots",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-db-snapshots.git",
-                "reference": "d19dab6ec9527bc3127eb9c00ad4495eca798c7d"
+                "reference": "a5f72ca8a39c38238edd30d9f71749082da024d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-db-snapshots/zipball/d19dab6ec9527bc3127eb9c00ad4495eca798c7d",
-                "reference": "d19dab6ec9527bc3127eb9c00ad4495eca798c7d",
+                "url": "https://api.github.com/repos/spatie/laravel-db-snapshots/zipball/a5f72ca8a39c38238edd30d9f71749082da024d6",
+                "reference": "a5f72ca8a39c38238edd30d9f71749082da024d6",
                 "shasum": ""
             },
             "require": {
@@ -8880,7 +8880,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-db-snapshots/tree/2.6.0"
+                "source": "https://github.com/spatie/laravel-db-snapshots/tree/2.6.1"
             },
             "funding": [
                 {
@@ -8892,7 +8892,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-08T12:16:34+00:00"
+            "time": "2024-04-02T06:54:13+00:00"
         },
         {
             "name": "spatie/laravel-google-fonts",
