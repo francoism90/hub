@@ -4,11 +4,11 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots.
+See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots.
 
 ## Prerequisites
 
-> NOTE: Docker/WSLv2 should work, but has been untested.
+> **NOTE:**: Docker/WSLv2 should work, but has been untested.
 
 - Linux (Ubuntu, Fedora, Arch)
 - [Podman](https://podman.io/) with SELinux support
@@ -87,15 +87,15 @@ Copy the generated files or place your own certificate, into the `~/Code/hub/doc
 
 Hub comes with it's own Laravel Sail utility clone: `pco` (`bin/pco`).
 
-> **TIP:** You may want to add the following alias `alias pco='[ -f pco ] && sh pco || sh bin/pco'` to your `~/.zshrc`
+It is designed to work exclusively with Podman Compose.
 
-> **NOTE:** It is designed to work exclusively with Podman Compose.
+> **TIP:** You may want to add the following alias `alias pco='[ -f pco ] && sh pco || sh bin/pco'` to your `~/.zshrc`
 
 Build Hub using:
 
 ```bash
-hub pull
-hub build --no-cache
+pco pull
+pco build --no-cache
 ```
 
 You may need to alter permissions when using SELinux:
@@ -107,13 +107,13 @@ chcon -Rt container_file_t ~/Code/hub/storage
 To start Hub:
 
 ```bash
-hub up -d
-hub composer i
-hub npm i
-hub a key:generate
-hub a storage:link
-hub a npm run build
-hub a app:install
+pco up -d
+pco composer i
+pco npm i
+pco a key:generate
+pco a storage:link
+pco a npm run build
+pco a app:install
 ```
 
 The Hub instance should be available at <https://hub.lan>.
@@ -150,7 +150,7 @@ One may use the same Laravel Sail syntax, to enter and perform Laravel operation
 pco artisan make:controller TestController
 pco a make:controller TestController
 pco a migrate
-hub npm run dev
+pco npm run dev
 pco npm run build
 pco shell
 pco help
