@@ -8,7 +8,7 @@ See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots
 
 ## Prerequisites
 
-> **NOTE:**: Docker/WSLv2 should work, but has been untested.
+> **NOTE:** Docker/WSLv2 should work, but has been untested.
 
 - Linux (Ubuntu, Fedora, Arch)
 - [Podman](https://podman.io/) with SELinux support
@@ -30,17 +30,11 @@ cd ~/Code
 git https://github.com/francoism90/hub.git
 ```
 
-Configure the Hub services:
+Configure Hub:
 
 ```bash
 cp .env.example .env
 vi .env
-```
-
-If you only want to access Hub on your local machine, add the following `hosts` entry:
-
-```md
-127.0.0.1 hub.lan ws.hub.lan
 ```
 
 The following DNS-records should be added of the machine running the instance if you want to expose it on your LAN, e.g.:
@@ -49,13 +43,19 @@ The following DNS-records should be added of the machine running the instance if
 192.168.1.100 hub.lan ws.hub.lan
 ```
 
+If you only want to access Hub on your local machine, add the following `hosts` entry:
+
+```md
+127.0.0.1 hub.lan ws.hub.lan
+```
+
 ### Create certificate
 
 To protect and use the hub instance, it is required to create a certificate.
 
 > **NOTE:** This is not required when using your own domain and issuer.
 
-Create a script to manage your local certificate, e.g. `cert.sh`:
+Create a script to manage your local certificate, e.g. `~/Code/certs/cert.sh`:
 
 ```bash
 #!/bin/sh
@@ -126,25 +126,34 @@ The following administrator links are available:
 
 ### Cheat sheet
 
-To build Hub:
+Build Hub:
 
 ```bash
-pco build --no-cache
+pco build
 ```
 
-To start Hub:
+Update Hub:
+
+```bash
+pco composer i
+pco npm i
+pco a npm run build
+pco a app:update
+```
+
+Starting Hub:
 
 ```bash
 pco up -d
 ```
 
-To stop Hub:
+Stopping Hub:
 
 ```bash
 pco down
 ```
 
-One may use the same Laravel Sail syntax, to enter and perform Laravel operations:
+You may use the same Laravel Sail commands to enter and perform Laravel operations:
 
 ```bash
 pco artisan make:controller TestController
@@ -163,3 +172,5 @@ sudo mount --bind /mnt/data/videos/media ~/Code/hub/storage/app/media -o x-gvfs-
 podman system migrate
 pco up -d
 ```
+
+Make sure `/mnt/data/videos/media` also contains a `.gitigore` file.
