@@ -24,7 +24,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureModelBinding();
         $this->configureRateLimiting();
-        $this->configureRoutes();
     }
 
     protected function configureModelBinding(): void
@@ -40,22 +39,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(1000)->by($request->user()?->getKey() ?: $request->ip());
-        });
-    }
-
-    protected function configureRoutes(): void
-    {
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-
-            Route::middleware('web')
-                ->prefix('dashboard')
-                ->group(base_path('routes/dashboard.php'));
         });
     }
 }
