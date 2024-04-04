@@ -58,28 +58,28 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root' => '/data/media',
+            'root' => storage_path('app/media'),
             'visibility' => 'private',
             'throw' => true,
         ],
 
         'conversions' => [
             'driver' => 'local',
-            'root' => '/data/conversions',
+            'root' => storage_path('app/conversions'),
             'visibility' => 'private',
             'throw' => true,
         ],
 
         'import' => [
             'driver' => 'local',
-            'root' => '/data/import',
+            'root' => storage_path('app/import'),
             'visibility' => 'private',
             'throw' => true,
         ],
 
         'snapshots' => [
             'driver' => 'local',
-            'root' => '/data/snapshots',
+            'root' => database_path('snapshots'),
             'visibility' => 'private',
             'throw' => true,
         ],
