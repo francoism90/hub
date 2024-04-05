@@ -34,9 +34,16 @@ class SearchIndexController extends Page
         $this->submit();
     }
 
+    public function getTitle(): string
+    {
+        return __('Search');
+    }
+
     public function submit(): void
     {
         $this->form->submit();
+
+        $this->refresh();
 
         $this->resetPage();
     }
@@ -53,11 +60,6 @@ class SearchIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
-    }
-
-    public function getTitle(): string
-    {
-        return __('Search');
     }
 
     #[Computed]

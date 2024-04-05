@@ -46,6 +46,20 @@ class TagViewController extends Page
             ->relates;
     }
 
+    public function onTagDeleted(): void
+    {
+        unset($this->items);
+
+        $this->refreshTag();
+    }
+
+    public function onTagUpdated(): void
+    {
+        unset($this->items);
+
+        $this->refreshTag();
+    }
+
     protected static function getModelClass(): ?string
     {
         return Tag::class;
