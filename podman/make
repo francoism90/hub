@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Build images
+
+podman build \
+    -t foxws-nginx \
+    --env=../../.env \
+    --file=build/nginx/Dockerfile
+
+podman build \
+    -t foxws-app \
+    --env=../../.env \
+    --file=build/app/Dockerfile
