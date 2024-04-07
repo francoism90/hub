@@ -10,7 +10,13 @@ To build the images:
 
 ## Usage
 
-Install `~/.config/containers`.
+Install to `~/.config/containers`.
+
+### Networking
+
+```bash
+podman network create systemd-hub
+```
 
 ## Workarounds
 

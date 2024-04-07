@@ -3,11 +3,11 @@
 # Build images
 
 podman build \
-    -t foxws-nginx \
+    -t hub-nginx \
     --env=../../.env \
     --file=build/nginx/Dockerfile
 
 podman build \
-    -t foxws-app \
+    -t hub-app \
     --env=../../.env \
     --file=build/app/Dockerfile
