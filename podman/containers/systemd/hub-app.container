@@ -3,6 +3,7 @@ Description=App container
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/app.env
+TimeoutStartSec=900
 Restart=unless-stopped
 
 [Container]
