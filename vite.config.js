@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
 
   if (mode === 'development') {
     https = {
-      cert: readFileSync('/run/secrets/cert.pem'),
-      key: readFileSync('/run/secrets/key.pem'),
+      cert: readFileSync('/etc/certs/cert.pem'),
+      key: readFileSync('/etc/certs/key.pem'),
     };
   }
 
@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
     server: {
       host,
       https,
-      port: 5173,
+      port: 5174,
       strictPort: true,
       hmr: { host },
     },
