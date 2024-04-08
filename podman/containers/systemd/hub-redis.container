@@ -1,0 +1,14 @@
+[Unit]
+Description=Redis container
+
+[Service]
+Restart=unless-stopped
+
+[Container]
+Image=redis:latest
+Volume=hub-redis:/data:rw,Z,U
+Network=hub.network
+PublishPort=6380:6379
+
+[Install]
+WantedBy=multi-user.target default.target

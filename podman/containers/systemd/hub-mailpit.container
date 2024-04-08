@@ -1,0 +1,19 @@
+[Unit]
+Description=Mailpit container
+
+[Service]
+Restart=unless-stopped
+
+[Container]
+Image=axllent/mailpit:latest
+Volume=hub-mailpit:/data:rw,Z,U
+Environment=MP_MAX_MESSAGES=5000
+Environment=MP_DATA_FILE=/data/mailpit.db
+Environment=MP_SMTP_AUTH_ACCEPT_ANY=1
+Environment=MP_SMTP_AUTH_ALLOW_INSECURE=1
+Network=hub.network
+PublishPort=8026:8025
+PublishPort=1026:1025
+
+[Install]
+WantedBy=multi-user.target default.target

@@ -1,0 +1,21 @@
+[Unit]
+Description=Proxy container
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
+Restart=unless-stopped
+
+[Container]
+Image=docker.io/library/traefik:latest
+Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z
+Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,z
+Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,z
+Volume=./traefik/certs:/etc/certs:ro,z
+SecurityLabelType=container_runtime_t
+Network=podman
+PublishPort=80:80
+PublishPort=443:443
+PublishPort=8080:8080
+
+[Install]
+WantedBy=multi-user.target default.target

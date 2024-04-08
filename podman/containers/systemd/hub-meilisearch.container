@@ -1,0 +1,15 @@
+[Unit]
+Description=Meilisearch container
+
+[Service]
+Restart=unless-stopped
+
+[Container]
+Image=getmeili/meilisearch:latest
+Volume=hub-meilisearch:/meili_data:rw,Z,U
+EnvironmentFile=%h/.config/containers/systemd/hub/meilisearch.env
+Network=hub.network
+PublishPort=7701:7700
+
+[Install]
+WantedBy=multi-user.target default.target

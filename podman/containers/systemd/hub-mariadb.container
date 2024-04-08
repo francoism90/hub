@@ -1,0 +1,15 @@
+[Unit]
+Description=MariaDB container
+
+[Service]
+Restart=unless-stopped
+
+[Container]
+Image=mariadb:latest
+Volume=hub-mariadb:/var/lib/mysql:rw,Z,U
+EnvironmentFile=%h/.config/containers/systemd/hub/mariadb.env
+Network=hub.network
+PublishPort=3307:3306
+
+[Install]
+WantedBy=multi-user.target default.target

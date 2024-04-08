@@ -15,6 +15,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Spatie\PrefixedIds\PrefixedIds;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,10 +26,17 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureUrlScheme();
         $this->configureStrictness();
         $this->configureMorphMap();
         $this->configurePrefixedIds();
         $this->configureJsonResource();
+    }
+
+    protected function configureUrlScheme(): void
+    {
+        URL::forceRootUrl(config('app.url'));
+        URL::forceScheme('https');
     }
 
     protected function configureStrictness(): void
