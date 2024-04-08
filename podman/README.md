@@ -32,6 +32,13 @@ It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/
 
 Adjust the configuration files in `~/.config/containers/systemd/traefik`, and make sure `podman.socket` is enabled (`systemctl --user enable podman.socket --now`).
 
+To import certificates, it is recommended to use [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
+
+```bash
+podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
+podman secret create tlskey ~/.config/containers/systemd/traefik/certs/key.pem
+```
+
 > **TIP:** Checkout [mkcert](https://github.com/FiloSottile/mkcert) for using TLS locally.
 
 ### Networking
