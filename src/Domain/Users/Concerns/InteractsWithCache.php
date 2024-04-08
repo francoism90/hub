@@ -14,7 +14,7 @@ trait InteractsWithCache
         static::deleted(fn (User $model) => $this->forgetResponseCache($model));
     }
 
-    public static function forgetResponseCache(User $model): void
+    public function forgetResponseCache(User $model): void
     {
         ResponseCache::clear(['user-'.$model->getKey()]);
     }
