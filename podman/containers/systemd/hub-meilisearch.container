@@ -2,10 +2,10 @@
 Description=Meilisearch container
 
 [Service]
-Restart=unless-stopped
+Restart=always
 
 [Container]
-Image=getmeili/meilisearch:latest
+Image=docker.io/getmeili/meilisearch:latest
 Volume=hub-meilisearch:/meili_data:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/hub/meilisearch.env
 Network=hub.network

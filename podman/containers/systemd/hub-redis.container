@@ -2,10 +2,10 @@
 Description=Redis container
 
 [Service]
-Restart=unless-stopped
+Restart=always
 
 [Container]
-Image=redis:latest
+Image=docker.io/library/redis:latest
 Volume=hub-redis:/data:rw,Z,U
 Network=hub.network
 PublishPort=6380:6379

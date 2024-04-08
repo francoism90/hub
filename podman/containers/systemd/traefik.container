@@ -3,7 +3,7 @@ Description=Proxy container
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
-Restart=unless-stopped
+Restart=always
 
 [Container]
 Image=docker.io/library/traefik:latest

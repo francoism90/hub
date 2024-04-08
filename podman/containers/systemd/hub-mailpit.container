@@ -2,10 +2,10 @@
 Description=Mailpit container
 
 [Service]
-Restart=unless-stopped
+Restart=always
 
 [Container]
-Image=axllent/mailpit:latest
+Image=docker.io/axllent/mailpit:latest
 Volume=hub-mailpit:/data:rw,Z,U
 Environment=MP_MAX_MESSAGES=5000
 Environment=MP_DATA_FILE=/data/mailpit.db

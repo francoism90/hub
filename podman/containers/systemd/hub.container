@@ -5,7 +5,7 @@ After=hub-redis.service hub-mariadb.service hub-meilisearch.service hub-mailpit.
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/app.env
-Restart=unless-stopped
+Restart=always
 
 [Container]
 Image=localhost/hub-nginx

@@ -2,10 +2,10 @@
 Description=MariaDB container
 
 [Service]
-Restart=unless-stopped
+Restart=always
 
 [Container]
-Image=mariadb:latest
+Image=docker.io/library/mariadb:latest
 Volume=hub-mariadb:/var/lib/mysql:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/hub/mariadb.env
 Network=hub.network
