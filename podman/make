@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Build images
+
+podman build \
+    -t hub-nginx \
+    --env=../../.env \
+    --file=build/nginx/Dockerfile
+
+podman build \
+    -t hub-app \
+    --env=../../.env \
+    --file=build/app/Dockerfile

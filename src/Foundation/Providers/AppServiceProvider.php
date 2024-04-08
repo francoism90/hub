@@ -12,6 +12,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Spatie\PrefixedIds\PrefixedIds;
@@ -25,10 +26,17 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->configureUrlScheme();
         $this->configureStrictness();
         $this->configureMorphMap();
         $this->configurePrefixedIds();
         $this->configureJsonResource();
+    }
+
+    protected function configureUrlScheme(): void
+    {
+        URL::forceRootUrl(config('app.url'));
+        URL::forceScheme('https');
     }
 
     protected function configureStrictness(): void

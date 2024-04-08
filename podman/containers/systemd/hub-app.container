@@ -1,0 +1,20 @@
+[Unit]
+Description=App container
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/hub/app.env
+TimeoutStartSec=900
+Restart=always
+
+[Container]
+Image=localhost/hub-app
+Volume=${APP_PATH}:/app:rw,z,U
+User=${APP_UID}
+Group=${APP_GID}
+UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
+Network=hub.network
+ExposeHostPort=9000
+PublishPort=5174:5173
+
+[Install]
+WantedBy=multi-user.target default.target

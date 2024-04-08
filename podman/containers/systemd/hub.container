@@ -1,0 +1,26 @@
+[Unit]
+Description=Hub container
+Requires=hub-redis.service hub-mariadb.service hub-meilisearch.service hub-mailpit.service hub-app.service
+After=hub-redis.service hub-mariadb.service hub-meilisearch.service hub-mailpit.service hub-app.service
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/hub/app.env
+Restart=always
+
+[Container]
+Image=localhost/hub-nginx
+Volume=${APP_PATH}:/app:ro,z
+User=${APP_UID}
+Group=${APP_GID}
+UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
+HostName=hub.lan
+Network=hub.network
+PublishPort=8001:8080
+Label=traefik.enable=true
+Label=traefik.http.routers.hub.entrypoints=websecure
+Label=traefik.http.routers.hub.tls=true
+Label=traefik.http.routers.hub.rule=Host'(`hub.lan`,`ws.hub.lan`)'
+Label=traefik.http.services.hub.loadbalancer.server.port="8080"
+
+[Install]
+WantedBy=multi-user.target default.target

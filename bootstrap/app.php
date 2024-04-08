@@ -15,8 +15,8 @@ $app = Application::configure(basePath: $basePath)
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: ['127.0.0.1']);
         $middleware->statefulApi();
-
         $middleware->redirectGuestsTo('/login');
 
         $middleware->alias([
