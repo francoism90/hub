@@ -12,10 +12,10 @@ use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Spatie\PrefixedIds\PrefixedIds;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
