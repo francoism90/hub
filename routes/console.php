@@ -2,6 +2,7 @@
 
 use Domain\Imports\Models\Import;
 use Illuminate\Auth\Console\ClearResetsCommand;
+use Illuminate\Cache\Console\PruneStaleTagsCommand;
 use Illuminate\Database\Console\PruneCommand as ModelPruneCommand;
 use Illuminate\Support\Facades\Schedule;
 use Laravel\Horizon\Console\SnapshotCommand;
@@ -10,6 +11,11 @@ use Laravel\Telescope\Console\PruneCommand;
 use Spatie\Activitylog\CleanActivitylogCommand;
 use Spatie\DbSnapshots\Commands\Cleanup as DbCleanupCommand;
 use Spatie\DbSnapshots\Commands\Create as DbSnapshotCommand;
+
+Schedule::command(PruneStaleTagsCommand::class)
+    ->withoutOverlapping(600)
+    ->hourly()
+    ->runInBackground();
 
 Schedule::command(ClearResetsCommand::class)
     ->withoutOverlapping(600)

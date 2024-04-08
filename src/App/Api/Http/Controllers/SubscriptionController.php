@@ -13,13 +13,13 @@ class SubscriptionController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            new Middleware('cache.headers:private;max_age=300;etag'),
+            new Middleware('response_cache:600,user-'.auth()->id()),
         ];
     }
 
     public function __invoke(): JsonResponse
     {
-        // TODO: check subscription
+        // TODO: actually check subscription
 
         return response()->json(['success' => true]);
     }

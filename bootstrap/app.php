@@ -24,6 +24,7 @@ $app = Application::configure(basePath: $basePath)
             'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
+            'response_cache' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         ]);
