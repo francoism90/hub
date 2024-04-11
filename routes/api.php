@@ -1,6 +1,7 @@
 <?php
 
 use App\Api\Http\Controllers\AssetController;
+use App\Api\Http\Controllers\DownloadController;
 use App\Api\Http\Controllers\HomeController;
 use App\Api\Http\Controllers\ManifestController;
 use App\Api\Http\Controllers\ResponsiveController;
@@ -25,6 +26,7 @@ Route::name('api.')->prefix('v1')->group(function () {
     // Media
     Route::name('media.')->prefix('media')->group(function () {
         Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
+        Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
         Route::get('/responsive/{media}/{conversion?}', ResponsiveController::class)->name('responsive');
     });
 
