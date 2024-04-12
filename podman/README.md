@@ -53,6 +53,7 @@ To apply container changes:
 
 ```bash
 systemctl --user daemon-reload
+systemctl --user restart hub-app hub
 ```
 
 To start Hub:

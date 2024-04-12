@@ -6,7 +6,9 @@ api:
   insecure: true
 
 providers:
-  docker: {}
+  docker:
+    network: systemd-hub
+    exposedByDefault: false
   file:
     filename: /etc/traefik/dynamic.yml
 

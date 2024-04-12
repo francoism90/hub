@@ -65,7 +65,7 @@ Enter the `systemd-hub-app` container, and execute the followings commands:
 $ podman exec -it systemd-hub-app sh
 php artisan key:generate
 php artisan storage:link
-npm run build
+yarn install && yarn run build
 php artisan app:install
 ```
 

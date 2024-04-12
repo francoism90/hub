@@ -48,8 +48,7 @@ jobs:
           cp .env.ci .env
           composer install -n --prefer-dist
           php artisan key:generate
-          npm ci
-          npm run build
+          yarn install && yarn build
 
       - name: Execute tests
         run: |

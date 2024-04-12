@@ -12,8 +12,8 @@ Environment=MP_DATA_FILE=/data/mailpit.db
 Environment=MP_SMTP_AUTH_ACCEPT_ANY=1
 Environment=MP_SMTP_AUTH_ALLOW_INSECURE=1
 Network=hub.network
-PublishPort=8026:8025
-PublishPort=1026:1025
+PublishPort=8025:8025
+PublishPort=1025:1025
 
 [Install]
 WantedBy=multi-user.target default.target

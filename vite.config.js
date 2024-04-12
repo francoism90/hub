@@ -5,8 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import laravel, { refreshPaths } from 'laravel-vite-plugin';
 
 export default defineConfig(({ mode }) => {
-  const host = 'hub.lan';
-
   let https = false;
 
   if (mode === 'development') {
@@ -18,11 +16,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      host,
+      host: 'hub.lan',
       https,
-      port: 5174,
+      port: 5173,
       strictPort: true,
-      hmr: { host },
+      hmr: { host: 'hub.lan' },
     },
     resolve: {
       alias: {
@@ -82,9 +80,9 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
             utils: ['axios'],
             ws: ['laravel-echo', 'pusher-js'],
+            player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
           },
         },
       },

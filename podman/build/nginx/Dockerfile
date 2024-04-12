@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:mainline-alpine
+FROM docker.io/nginxinc/nginx-unprivileged:mainline-alpine
 
 ARG UID=1000
 ARG GID=$UID

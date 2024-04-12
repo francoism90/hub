@@ -1,4 +1,4 @@
-FROM php:8.3.4-fpm-alpine
+FROM docker.io/php:8.3.6-fpm-alpine
 
 ARG UID=1000
 ARG GID=$UID
@@ -24,6 +24,7 @@ RUN apk add --no-cache --virtual .run-deps \
     jpegoptim \
     mariadb-client \
     npm \
+    yarn \
     optipng \
     pngquant \
     supervisor \

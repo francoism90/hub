@@ -14,7 +14,7 @@
         "@fontsource/material-icons-round": "^5.0.11",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.12",
-        "@typescript-eslint/parser": "^7.5.0",
+        "@typescript-eslint/parser": "^7.6.0",
         "autoprefixer": "^10.4.19",
         "axios": "^1.6.8",
         "cssnano": "^6.1.2",
@@ -22,7 +22,7 @@
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-tailwindcss": "^3.15.1",
-        "laravel-echo": "^1.16.0",
+        "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0.2",
         "less": "^4.2.0",
         "postcss": "^8.4.38",
@@ -30,10 +30,10 @@
         "prettier": "^3.2.5",
         "prettier-plugin-tailwindcss": "^0.5.13",
         "pusher-js": "^8.3.0",
-        "shaka-player": "^4.7.11",
+        "shaka-player": "^4.7.12",
         "tailwindcss": "^3.4.3",
         "vite": "^5.2.8",
         "vite-plugin-pwa": "^0.19.8",
-        "vitest": "^1.4.0"
+        "vitest": "^1.5.0"
     }
 }
