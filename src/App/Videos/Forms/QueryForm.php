@@ -3,7 +3,7 @@
 namespace App\Videos\Forms;
 
 use Domain\Videos\Rules\FilterExists;
-use Foxws\LivewireUse\Forms\Support\Form;
+use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
 class QueryForm extends Form

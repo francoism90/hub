@@ -3,7 +3,7 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Foxws\LivewireUse\Facades\LivewireUse;
+use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        LivewireUse::registerComponents(
+        WireUse::registerComponents(
             path: app_path(),
             prefix: 'app'
         );

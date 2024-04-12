@@ -7,7 +7,7 @@ use App\Playlists\Concerns\WithFavorites;
 use App\Playlists\Concerns\WithHistory;
 use App\Playlists\Concerns\WithWatchlist;
 use App\Videos\Concerns\WithVideo;
-use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Components\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;

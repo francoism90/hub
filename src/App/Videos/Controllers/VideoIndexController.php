@@ -4,8 +4,8 @@ namespace App\Videos\Controllers;
 
 use App\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
-use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Views\Components\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;

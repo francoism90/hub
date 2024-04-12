@@ -2,7 +2,7 @@
 
 namespace App\Dashboard\Controllers;
 
-use Foxws\LivewireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Components\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 

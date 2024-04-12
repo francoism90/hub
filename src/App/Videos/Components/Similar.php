@@ -5,7 +5,7 @@ namespace App\Videos\Components;
 use App\Videos\Concerns\WithVideo;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
-use Foxws\LivewireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

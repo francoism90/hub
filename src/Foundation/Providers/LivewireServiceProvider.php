@@ -2,11 +2,11 @@
 
 namespace Foundation\Providers;
 
-use Foxws\LivewireUse\Facades\LivewireUse;
-use Foxws\LivewireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
-use Foxws\LivewireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
-use Foxws\LivewireUse\Support\Livewire\Models\CollectionSynth;
-use Foxws\LivewireUse\Support\Livewire\Models\ModelSynth;
+use Foxws\WireUse\Facades\WireUse;
+use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
+use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
+use Foxws\WireUse\Support\Livewire\Models\CollectionSynth;
+use Foxws\WireUse\Support\Livewire\Models\ModelSynth;
 use Illuminate\Support\ServiceProvider;
 
 class LivewireServiceProvider extends ServiceProvider
@@ -34,7 +34,7 @@ class LivewireServiceProvider extends ServiceProvider
 
     protected function configureComponents(): void
     {
-        LivewireUse::registerLivewireComponents(
+        WireUse::registerLivewireComponents(
             path: app_path(),
             prefix: 'app'
         );

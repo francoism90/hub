@@ -1,13 +1,13 @@
-<x-livewire-use::layout-join class="gap-x-6">
-    <x-livewire-use::actions-dropdown>
+<x-wireui::layout-join class="gap-x-6">
+    <x-wireui::actions-dropdown>
         <x-slot:actions>
-            <x-livewire-use::actions-button class="text-sm font-semibold">
+            <x-wireui::actions-button class="text-sm font-semibold">
                 <span>{{ __('Sort') }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''"
                 />
-            </x-livewire-use::actions-button>
+            </x-wireui::actions-button>
         </x-slot:actions>
 
         <div
@@ -22,13 +22,13 @@
                         'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->is('sort', $item),
                     ])
                 >
-                    <x-livewire-use::forms-label for="sort-{{ $item }}">
+                    <x-wireui::forms-label for="sort-{{ $item }}">
                         {{ $label }}
 
                         @if ($this->form->is('sort', $item))
                             <x-heroicon-o-check class="h-4 w-4" />
                         @endif
-                    </x-livewire-use::forms-label>
+                    </x-wireui::forms-label>
 
                     <input
                         id="sort-{{ $item }}"
@@ -40,17 +40,17 @@
                 </div>
             @endforeach
         </div>
-    </x-livewire-use::actions-dropdown>
+    </x-wireui::actions-dropdown>
 
-    <x-livewire-use::actions-dropdown>
+    <x-wireui::actions-dropdown>
         <x-slot:actions>
-            <x-livewire-use::actions-button class="text-sm font-semibold">
+            <x-wireui::actions-button class="text-sm font-semibold">
                 <span>{{ __('Features') }}</span>
                 <x-heroicon-m-chevron-down
                     class="h-4 w-4"
                     x-bind:class="open ? 'rotate-180' : ''"
                 />
-            </x-livewire-use::actions-button>
+            </x-wireui::actions-button>
         </x-slot:actions>
 
         <div
@@ -65,13 +65,13 @@
                         'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500' => $this->form->contains('features', $item),
                     ])
                 >
-                    <x-livewire-use::forms-label for="feature-{{ $item }}">
+                    <x-wireui::forms-label for="feature-{{ $item }}">
                         {{ $label }}
 
                         @if ($this->form->contains('features', $item))
                             <x-heroicon-o-check class="h-4 w-4" />
                         @endif
-                    </x-livewire-use::forms-label>
+                    </x-wireui::forms-label>
 
                     <input
                         id="feature-{{ $item }}"
@@ -83,5 +83,5 @@
                 </div>
             @endforeach
         </div>
-    </x-livewire-use::actions-dropdown>
-</x-livewire-use::layout-join>
+    </x-wireui::actions-dropdown>
+</x-wireui::layout-join>

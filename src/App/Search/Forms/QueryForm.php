@@ -2,7 +2,7 @@
 
 namespace App\Search\Forms;
 
-use Foxws\LivewireUse\Forms\Support\Form;
+use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
 class QueryForm extends Form

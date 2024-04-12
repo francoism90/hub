@@ -1,4 +1,4 @@
-<x-livewire-use::layout-container class="flex flex-col flex-nowrap gap-y-2">
+<x-wireui::layout-container class="flex flex-col flex-nowrap gap-y-2">
     <livewire:app::videos-filters wire:model.live="form.search" />
 
     <div
@@ -17,4 +17,4 @@
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
-</x-livewire-use::layout-container>
+</x-wireui::layout-container>

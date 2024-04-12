@@ -9,7 +9,7 @@
         />
     </div>
 
-    <x-livewire-use::layout-container class="py-1">
+    <x-wireui::layout-container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
                 <dl>
@@ -34,7 +34,7 @@
             </header>
 
             <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 text-center text-sm text-gray-300">
-                <x-livewire-use::actions-button
+                <x-wireui::actions-button
                     class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite"
                 >
@@ -42,9 +42,9 @@
                         :name="$this->favorited"
                         class="h-6 w-6"
                     />
-                </x-livewire-use::actions-button>
+                </x-wireui::actions-button>
 
-                <x-livewire-use::actions-button
+                <x-wireui::actions-button
                     class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleWatchlist"
                 >
@@ -52,14 +52,14 @@
                         :name="$this->watchlisted"
                         class="h-6 w-6"
                     />
-                </x-livewire-use::actions-button>
+                </x-wireui::actions-button>
 
-                <x-livewire-use::actions-button
+                <x-wireui::actions-button
                     class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="edit"
                 >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
-                </x-livewire-use::actions-button>
+                </x-wireui::actions-button>
             </div>
 
             @if ($video->tags->isNotEmpty())
@@ -74,7 +74,7 @@
 
             <livewire:app::videos-similar :$video />
         </div>
-    </x-livewire-use::layout-container>
+    </x-wireui::layout-container>
 </article>
 
 @script

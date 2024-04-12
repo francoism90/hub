@@ -4,7 +4,7 @@
     {{ $attributes->class('flex flex-row flex-wrap gap-1.5 py-7 w-full') }}
 >
     <div class="flex flex-wrap flex-grow md:flex-nowrap gap-6">
-        <x-livewire-use::actions-link
+        <x-wireui::actions-link
             class="grow h-64 w-full md:w-96 md:max-w-96"
             href="{{ route('videos.view', $item) }}"
         >
@@ -58,18 +58,18 @@
                     />
                 </template>
             </figure>
-        </x-livewire-use::actions-link>
+        </x-wireui::actions-link>
 
         <div class="grow">
             <div class="flex flex-col gap-y-0.5">
-                <x-livewire-use::actions-link
+                <x-wireui::actions-link
                     class="line-clamp-2 text-2xl font-bold capitalize leading-8 tracking-tight"
                     href="{{ route('videos.view', $item) }}"
                     aria-label="{{ $item->title }}"
                     title="{{ $item->title }}"
                 >
                     {{ $item->title }}
-                </x-livewire-use::actions-link>
+                </x-wireui::actions-link>
 
                 <dl class="inline-flex items-center">
                     @if ($item->published)
