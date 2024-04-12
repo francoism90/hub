@@ -35,7 +35,7 @@
 
             <div class="grid grid-cols-3 gap-3.5 divide-x divide-gray-700 text-center text-sm text-gray-300">
                 <x-wireui::actions-button
-                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                    class="p-2 justify-center hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleFavorite"
                 >
                     <x-icon
@@ -45,7 +45,7 @@
                 </x-wireui::actions-button>
 
                 <x-wireui::actions-button
-                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                    class="p-2 justify-center hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="toggleWatchlist"
                 >
                     <x-icon
@@ -55,7 +55,7 @@
                 </x-wireui::actions-button>
 
                 <x-wireui::actions-button
-                    class="p-2 hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
+                    class="p-2 justify-center hover:text-primary-300 focus:text-primary-400 active:text-primary-400"
                     wire:click="edit"
                 >
                     <x-heroicon-o-pencil-square class="h-5 w-5" />
