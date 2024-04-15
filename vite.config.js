@@ -16,11 +16,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      host: 'hub.lan',
+      host: '0.0.0.0',
       https,
       port: 5173,
       strictPort: true,
-      hmr: { host: 'hub.lan' },
+      hmr: { host: 'hub.lan', clientPort: 5173 },
     },
     resolve: {
       alias: {

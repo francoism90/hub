@@ -5,6 +5,7 @@ After=hub-app.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/app.env
+TimeoutStartSec=900
 Restart=always
 
 [Container]
@@ -13,9 +14,7 @@ Volume=${APP_PATH}:/app:ro,z
 User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
-HostName=hub.lan
 Network=hub.network
-PublishPort=8000:8080
 Label=traefik.enable=true
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true

@@ -14,8 +14,8 @@ Volume=${APP_PATH}:/app:rw,z,U
 User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
-Secret=tlscert,target=/etc/certs/cert.pem,uid=${APP_UID}
-Secret=tlskey,target=/etc/certs/key.pem,uid=${APP_UID}
+Secret=tlscert,target=/etc/certs/cert.pem,uid=${APP_UID},gid=${APP_GID},mode=0600
+Secret=tlskey,target=/etc/certs/key.pem,uid=${APP_UID},gid=${APP_GID},mode=0600
 Network=hub.network
 ExposeHostPort=9000
 PublishPort=5173:5173
