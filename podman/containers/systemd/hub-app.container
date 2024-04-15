@@ -10,6 +10,7 @@ Restart=always
 
 [Container]
 Image=localhost/hub-app
+AutoUpdate=local
 Volume=${APP_PATH}:/app:rw,z,U
 User=${APP_UID}
 Group=${APP_GID}

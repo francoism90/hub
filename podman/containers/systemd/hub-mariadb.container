@@ -6,6 +6,7 @@ Restart=always
 
 [Container]
 Image=docker.io/library/mariadb:latest
+AutoUpdate=registry
 Volume=hub-mariadb:/var/lib/mysql:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/hub/mariadb.env
 Network=hub.network

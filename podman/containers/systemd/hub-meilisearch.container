@@ -6,6 +6,7 @@ Restart=always
 
 [Container]
 Image=docker.io/getmeili/meilisearch:latest
+AutoUpdate=registry
 Volume=hub-meilisearch:/meili_data:rw,Z,U
 EnvironmentFile=%h/.config/containers/systemd/hub/meilisearch.env
 Network=hub.network

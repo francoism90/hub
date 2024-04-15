@@ -6,6 +6,7 @@ Restart=always
 
 [Container]
 Image=docker.io/library/redis:latest
+AutoUpdate=registry
 Volume=hub-redis:/data:rw,Z,U
 Network=hub.network
 PublishPort=6379:6379

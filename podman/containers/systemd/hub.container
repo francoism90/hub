@@ -10,6 +10,7 @@ Restart=always
 
 [Container]
 Image=localhost/hub-nginx
+AutoUpdate=local
 Volume=${APP_PATH}:/app:ro,z
 User=${APP_UID}
 Group=${APP_GID}

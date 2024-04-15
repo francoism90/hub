@@ -7,6 +7,7 @@ Restart=always
 
 [Container]
 Image=docker.io/library/traefik:latest
+AutoUpdate=registry
 Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z
 Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,Z
 Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
