@@ -8,8 +8,9 @@ Restart=always
 Image=docker.io/library/redis:latest
 AutoUpdate=registry
 Volume=hub-redis:/data:rw,Z,U
+Exec=redis-server --save 60 1 --loglevel warning
 Network=hub.network
-PublishPort=6379:6379
+ExposeHostPort=6379
 
 [Install]
 WantedBy=multi-user.target default.target
