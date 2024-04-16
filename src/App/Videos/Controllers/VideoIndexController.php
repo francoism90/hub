@@ -5,7 +5,7 @@ namespace App\Videos\Controllers;
 use App\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\Views\Components\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
