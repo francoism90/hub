@@ -1,6 +1,6 @@
-<x-wireui::layout-container>
+<x-wireui::layout-container class="py-3.5">
     <div
-        class="flex flex-col gap-y-7 py-3.5"
+        class="flex flex-col gap-y-7"
         wire:poll.keep-alive.2400s
     >
         @foreach ($this->items as $group => $tags)

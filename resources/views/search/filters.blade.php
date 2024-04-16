@@ -1,4 +1,4 @@
-<x-wireui::layout-join class="gap-x-6">
+<x-wireui::layout-join class="gap-x-6 py-4">
     <x-wireui::actions-dropdown>
         <x-slot:actions>
             <x-wireui::actions-button class="text-sm font-semibold">

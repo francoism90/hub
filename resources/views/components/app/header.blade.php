@@ -44,24 +44,15 @@
                             class="flex min-w-64 max-w-64 flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
                         >
                             <section class="flex flex-col flex-nowrap gap-y-1">
-                                <x-wireui::actions-link
-                                    href="{{ route('profile.history') }}"
-                                    route="profile.history"
-                                >
+                                <x-wireui::actions-link route="profile.history">
                                     {{ __('History') }}
                                 </x-wireui::actions-link>
 
-                                <x-wireui::actions-link
-                                    href="{{ route('profile.favorites') }}"
-                                    route="profile.favorites"
-                                >
+                                <x-wireui::actions-link route="profile.favorites">
                                     {{ __('Favorites') }}
                                 </x-wireui::actions-link>
 
-                                <x-wireui::actions-link
-                                    href="{{ route('profile.watchlist') }}"
-                                    route="profile.watchlist"
-                                >
+                                <x-wireui::actions-link route="profile.watchlist">
                                     {{ __('Watchlist') }}
                                 </x-wireui::actions-link>
                             </section>
@@ -69,7 +60,7 @@
                             <section class="flex flex-col flex-nowrap gap-y-3">
                                 <x-wireui::actions-link
                                     href="{{ route('filament.admin.pages.dashboard') }}"
-                                    :navigate="false"
+                                    external
                                 >
                                     {{ __('Manage Profile') }}
                                 </x-wireui::actions-link>
