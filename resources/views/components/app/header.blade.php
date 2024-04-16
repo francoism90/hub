@@ -16,6 +16,7 @@
                 <x-wireui::layout-join class="gap-x-4">
                     <x-wireui::actions-link
                         href="{{ route('tags.index') }}"
+                        route="tags.index"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
                     >
@@ -24,6 +25,7 @@
 
                     <x-wireui::actions-link
                         href="{{ route('search') }}"
+                        route="search"
                         aria-label="{{ __('Search') }}"
                         title="{{ __('Search') }}"
                     >
@@ -42,15 +44,24 @@
                             class="flex min-w-64 max-w-64 flex-col gap-y-4 rounded bg-gray-900 px-6 py-4"
                         >
                             <section class="flex flex-col flex-nowrap gap-y-1">
-                                <x-wireui::actions-link href="{{ route('profile.history') }}">
+                                <x-wireui::actions-link
+                                    href="{{ route('profile.history') }}"
+                                    route="profile.history"
+                                >
                                     {{ __('History') }}
                                 </x-wireui::actions-link>
 
-                                <x-wireui::actions-link href="{{ route('profile.favorites') }}">
+                                <x-wireui::actions-link
+                                    href="{{ route('profile.favorites') }}"
+                                    route="profile.favorites"
+                                >
                                     {{ __('Favorites') }}
                                 </x-wireui::actions-link>
 
-                                <x-wireui::actions-link href="{{ route('profile.watchlist') }}">
+                                <x-wireui::actions-link
+                                    href="{{ route('profile.watchlist') }}"
+                                    route="profile.watchlist"
+                                >
                                     {{ __('Watchlist') }}
                                 </x-wireui::actions-link>
                             </section>
