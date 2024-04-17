@@ -43,7 +43,7 @@ If you only want to access Hub on your local machine, add the following `hosts` 
 
 ### Podman Quadlet
 
-Please read the dedicated <[guide](https://github.com/francoism90/hub/tree/main/podman)> for usage with Podman Quadlet.
+Please read the dedicated [guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet.
 
 ### Usage
 
