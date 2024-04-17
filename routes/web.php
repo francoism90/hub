@@ -6,6 +6,7 @@ use App\Profile\Controllers\WatchlistController;
 use App\Search\Controllers\SearchIndexController;
 use App\Tags\Controllers\TagIndexController;
 use App\Tags\Controllers\TagViewController;
+use App\Videos\Controllers\VideoAmbientController;
 use App\Videos\Controllers\VideoIndexController;
 use App\Videos\Controllers\VideoViewController;
 use Foxws\WireUi\Facades\WireUi;
@@ -17,6 +18,7 @@ WireUi::routes();
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
+    Route::get('/ambient', VideoAmbientController::class)->name('ambient');
     Route::get('/search', SearchIndexController::class)->name('search');
 
     // Profile

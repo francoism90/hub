@@ -1,6 +1,4 @@
 <x-wireui::layout-container class="flex flex-col flex-nowrap gap-y-2">
-    <livewire:app::videos-filters wire:model.live="form.search" />
-
     <div
         class="grid gap-y-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"
         wire:poll.keep-alive.2400s

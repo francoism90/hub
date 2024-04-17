@@ -1,4 +1,4 @@
-<header>
+<header class="sticky top-0 z-50 bg-transparent">
     <x-wireui::layout-container>
         <x-wireui::navigation-navbar>
             <x-slot:start>
@@ -15,7 +15,6 @@
             <x-slot:end>
                 <x-wireui::layout-join class="gap-x-4">
                     <x-wireui::actions-link
-                        href="{{ route('tags.index') }}"
                         route="tags.index"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
@@ -24,12 +23,19 @@
                     </x-wireui::actions-link>
 
                     <x-wireui::actions-link
-                        href="{{ route('search') }}"
                         route="search"
                         aria-label="{{ __('Search') }}"
                         title="{{ __('Search') }}"
                     >
                         <x-heroicon-o-magnifying-glass class="size-6" />
+                    </x-wireui::actions-link>
+
+                    <x-wireui::actions-link
+                        route="ambient"
+                        aria-label="{{ __('Ambient') }}"
+                        title="{{ __('Ambient') }}"
+                    >
+                        <x-heroicon-o-rectangle-stack class="size-6" />
                     </x-wireui::actions-link>
 
                     <x-wireui::actions-dropdown>
@@ -59,7 +65,7 @@
 
                             <section class="flex flex-col flex-nowrap gap-y-3">
                                 <x-wireui::actions-link
-                                    href="{{ route('filament.admin.pages.dashboard') }}"
+                                    route="filament.admin.pages.dashboard"
                                     external
                                 >
                                     {{ __('Manage Profile') }}
