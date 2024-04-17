@@ -15,7 +15,6 @@
             <x-slot:end>
                 <x-wireui::layout-join class="gap-x-4">
                     <x-wireui::actions-link
-                        href="{{ route('tags.index') }}"
                         route="tags.index"
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
@@ -24,7 +23,6 @@
                     </x-wireui::actions-link>
 
                     <x-wireui::actions-link
-                        href="{{ route('search') }}"
                         route="search"
                         aria-label="{{ __('Search') }}"
                         title="{{ __('Search') }}"
@@ -59,7 +57,7 @@
 
                             <section class="flex flex-col flex-nowrap gap-y-3">
                                 <x-wireui::actions-link
-                                    href="{{ route('filament.admin.pages.dashboard') }}"
+                                    route="filament.admin.pages.dashboard"
                                     external
                                 >
                                     {{ __('Manage Profile') }}
