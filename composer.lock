@@ -2740,7 +2740,7 @@
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v3.2.69",
+            "version": "v3.2.70",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
@@ -8550,16 +8550,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.4.2",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "ebee025f0262380fe17abf2bfa970d794431c387"
+                "reference": "05166a6fae90b4c2ab57ff2d25d7f97a5e29f47b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/ebee025f0262380fe17abf2bfa970d794431c387",
-                "reference": "ebee025f0262380fe17abf2bfa970d794431c387",
+                "url": "https://api.github.com/repos/spatie/image/zipball/05166a6fae90b4c2ab57ff2d25d7f97a5e29f47b",
+                "reference": "05166a6fae90b4c2ab57ff2d25d7f97a5e29f47b",
                 "shasum": ""
             },
             "require": {
@@ -8606,7 +8606,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.4.2"
+                "source": "https://github.com/spatie/image/tree/3.5.0"
             },
             "funding": [
                 {
@@ -8618,7 +8618,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-15T13:05:34+00:00"
+            "time": "2024-04-17T13:16:06+00:00"
         },
         {
             "name": "spatie/image-optimizer",
