@@ -4,9 +4,11 @@
 podman build \
     -t hub-nginx \
     --file=build/nginx/Dockerfile \
-    --env=../../.env
+    --env=../../.env \
+    --no-cache
 
 podman build \
     -t hub-app \
     --file=build/app/Dockerfile \
-    --env=../../.env
+    --env=../../.env \
+    --no-cache
