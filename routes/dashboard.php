@@ -7,4 +7,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // App
     Route::get('/', DashboardIndexController::class)->name('index');
 });
-
