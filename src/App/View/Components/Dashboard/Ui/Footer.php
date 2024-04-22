@@ -25,7 +25,7 @@ class Footer extends Component
 
             Action::make()
                 ->name(__('Content'))
-                ->route('tags.index')
+                ->route('dashboard.content')
                 ->icon('heroicon-o-rectangle-stack')
                 ->activeIcon('heroicon-s-rectangle-stack'),
 

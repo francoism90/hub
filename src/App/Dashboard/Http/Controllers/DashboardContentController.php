@@ -7,16 +7,16 @@ use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.dashboard')]
-class DashboardIndexController extends Page
+class DashboardContentController extends Page
 {
     public function mount(): void
     {
         $this->seo()->setTitle(__('Dashboard'));
-        $this->seo()->setDescription(__('Dashboard'));
+        $this->seo()->setDescription(__('Content Manager'));
     }
 
     public function render(): View
     {
-        return view('pages.dashboard.index');
+        return view('pages.dashboard.content');
     }
 }
