@@ -17,16 +17,16 @@
             {{ $attributes->whereStartsWith('wire:model') }}
         >
 
-        <label
-            for="{{ $action->getName() }}"
-            {{ $attributes
-                ->classOnly([
-                    'tab',
-                    'active' => $action->getName() === $this->state->tab()->getName(),
-                ])
-            }}
-        >
-            {{ $action->getName() }}
+        <label {{ $attributes
+            ->classOnly([
+                'tab',
+                'active' => $action->getName() === $this->state->tab()->getName(),
+            ])
+            ->merge([
+                'for' => $action->getName()
+            ])
+        }}>
+            {{ $action->getLabel() }}
         </label>
     @endforeach
 </nav>
