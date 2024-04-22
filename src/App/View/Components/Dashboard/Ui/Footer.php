@@ -28,13 +28,19 @@ class Footer extends Component
                 ->name(__('Content'))
                 ->route('tags.index')
                 ->icon('heroicon-o-rectangle-stack')
-                ->activeIcon('heroicon-s-squares-2x2'),
+                ->activeIcon('heroicon-s-rectangle-stack'),
 
             Action::make()
                 ->name(__('Analytics'))
                 ->route('tags.index')
-                ->icon('heroicon-o-rectangle-stack')
-                ->activeIcon('heroicon-s-squares-2x2'),
+                ->icon('heroicon-o-chart-bar')
+                ->activeIcon('heroicon-s-chart-bar'),
+
+            Action::make()
+                ->name(__('Settings'))
+                ->route('tags.index')
+                ->icon('heroicon-o-cog')
+                ->activeIcon('heroicon-s-cog'),
         ]);
     }
 }

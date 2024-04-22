@@ -1,5 +1,5 @@
 <footer class="border-t border-secondary-800/80">
-    <x-wireui::layout-container class="flex items-center justify-center py-1.5 gap-6 sm:gap-9">
+    <x-wireui::layout-container class="flex items-center justify-center py-1.5 gap-6 sm:gap-9 overflow-x-auto">
         @foreach ($actions->all() as $action)
             <x-wireuse::actions-link
                 :$action

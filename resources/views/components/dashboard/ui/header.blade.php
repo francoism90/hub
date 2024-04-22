@@ -5,33 +5,5 @@
                 <x-app.ui.logo />
             </x-wireuse::actions-link>
         </x-slot:start>
-
-        {{-- <x-slot:end>
-            <x-wireui::layout-join class="gap-x-4">
-                <x-wireui::actions-link
-                    route="tags.index"
-                    aria-label="{{ __('Tags') }}"
-                    title="{{ __('Tags') }}"
-                >
-                    <x-heroicon-o-rectangle-stack class="size-6" />
-                </x-wireui::actions-link>
-
-                <x-wireui::actions-link
-                    route="tags.index"
-                    aria-label="{{ __('Tags') }}"
-                    title="{{ __('Tags') }}"
-                >
-                    <x-heroicon-o-hashtag class="size-6" />
-                </x-wireui::actions-link>
-
-                <x-wireui::actions-link
-                    route="tags.index"
-                    aria-label="{{ __('Tags') }}"
-                    title="{{ __('Tags') }}"
-                >
-                    <x-heroicon-o-users class="size-6" />
-                </x-wireui::actions-link>
-            </x-wireui::layout-join>
-        </x-slot:end> --}}
     </x-wireui::navigation-navbar>
 </header>
