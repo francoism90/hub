@@ -16,7 +16,7 @@ export default {
       },
       colors: {
         primary: colors.pink,
-        gray: colors.gray,
+        secondary: colors.gray,
       },
     },
   },

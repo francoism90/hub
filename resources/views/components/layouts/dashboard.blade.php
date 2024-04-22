@@ -63,11 +63,13 @@
     @googlefonts('code')
 </head>
 
-<body class="relative h-screen min-h-screen bg-gray-950 text-white antialiased">
+<body class="relative flex flex-col h-screen min-h-screen bg-gray-950 text-white antialiased">
 
     <x-dashboard.header />
 
-    {{ $slot }}
+    <div class="flex-1 overflow-auto">
+        {{ $slot }}
+    </div>
 
     <x-dashboard.footer />
 
