@@ -3,7 +3,7 @@
         <x-wireui::navigation-navbar>
             <x-slot:start>
                 <x-wireui::actions-link
-                    href="/"
+                    route="home"
                     class:layer="inline-flex items-center gap-x-4 text-2xl font-medium lowercase hover:text-primary-100"
                     class:active="text-inherit"
                 >

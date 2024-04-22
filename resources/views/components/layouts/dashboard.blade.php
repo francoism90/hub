@@ -65,11 +65,11 @@
 
 <body class="relative h-screen min-h-screen bg-gray-950 text-white antialiased">
 
-    <x-app.header />
+    <x-dashboard.header />
 
     {{ $slot }}
 
-    <x-app.footer />
+    <x-dashboard.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
