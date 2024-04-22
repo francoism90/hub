@@ -6,7 +6,7 @@
                 class="flex-col text-xs gap-1 line-clamp-1"
             >
                 <x-icon :name="$component->icon()" class="size-6" />
-                <span>{{ $action->getName() }}</span>
+                <span>{{ $action->getLabel() }}</span>
             </x-wireuse::actions-link>
         @endforeach
     </x-wireui::layout-container>
