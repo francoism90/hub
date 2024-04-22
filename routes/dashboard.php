@@ -1,6 +1,6 @@
 <?php
 
-use App\Dashboard\Controllers\DashboardIndexController;
+use App\Dashboard\Http\Controllers\DashboardIndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {

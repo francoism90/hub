@@ -3,7 +3,6 @@
     class="scroll-smooth"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
-
 <head>
     <meta charset="utf-8" />
     <meta
@@ -65,17 +64,16 @@
 
 <body class="relative flex flex-col h-screen min-h-screen bg-gray-950 text-white antialiased">
 
-    <x-dashboard.header />
+    <x-dashboard.ui.header />
 
     <div class="flex-1 overflow-auto">
         {{ $slot }}
     </div>
 
-    <x-dashboard.footer />
+    <x-dashboard.ui.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
 
 </body>
-
 </html>

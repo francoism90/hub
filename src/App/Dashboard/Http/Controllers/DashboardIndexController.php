@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dashboard\Controllers;
+namespace App\Dashboard\Http\Controllers;
 
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
@@ -17,6 +17,6 @@ class DashboardIndexController extends Page
 
     public function render(): View
     {
-        return view('dashboard.index');
+        return view('pages.dashboard.index');
     }
 }
