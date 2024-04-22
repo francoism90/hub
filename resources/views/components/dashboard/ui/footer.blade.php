@@ -4,6 +4,7 @@
             <x-wireuse::actions-link
                 :$action
                 class="flex-col text-xs gap-1 line-clamp-1"
+                class:inactive="text-white/90"
             >
                 <x-icon :name="$component->icon()" class="size-6" />
                 <span>{{ $action->getLabel() }}</span>
