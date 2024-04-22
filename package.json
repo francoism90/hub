@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@angular-eslint/template-parser": "^17.3.0",
-        "@fontsource/material-icons-round": "^5.0.11",
+        "@fontsource/material-icons-round": "^5.0.12",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.12",
         "@typescript-eslint/parser": "^7.7.0",
