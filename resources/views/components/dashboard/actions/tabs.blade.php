@@ -13,6 +13,7 @@
         <input
             type="radio"
             value="{{ $action->getName() }}"
+            id="{{ $action->getName() }}"
             {{ $attributes->whereStartsWith('wire:model') }}
         >
 
