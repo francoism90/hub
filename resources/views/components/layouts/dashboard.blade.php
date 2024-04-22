@@ -63,7 +63,7 @@
     @googlefonts('code')
 </head>
 
-<body class="antialiased">
+<body class="relative h-screen min-h-screen bg-gray-950 text-white antialiased">
 
     <x-app.header />
 
