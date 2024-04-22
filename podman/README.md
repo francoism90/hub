@@ -14,10 +14,10 @@ The following workarounds have been applied to the host, which should hopefully 
 
 ## Installation
 
-Build the custom images:
+Build the Docker images:
 
 ```bash
-./make
+./build/make
 ```
 
 Copy the `systemd` directory to `~/.config/containers`, verify `~/.config/containers/systemd/hub.container` exists.
@@ -67,3 +67,17 @@ To learn more about Podman Quadlet, the following resources may be useful:
 - <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
 - <https://www.redhat.com/sysadmin/quadlet-podman>
 - <https://mo8it.com/blog/quadlet/>
+
+## Update
+
+Update the Docker images:
+
+```bash
+./build/update
+```
+
+Restart services:
+
+```bash
+systemctl --user restart hub-app hub
+```

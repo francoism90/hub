@@ -3,12 +3,12 @@
 # Build images
 podman build \
     -t hub-nginx \
-    --file=build/nginx/Dockerfile \
-    --env=../../.env \
+    --file=nginx/Dockerfile \
+    --env=../../../.env \
     --no-cache
 
 podman build \
     -t hub-app \
-    --file=build/app/Dockerfile \
-    --env=../../.env \
+    --file=app/Dockerfile \
+    --env=../../../.env \
     --no-cache
