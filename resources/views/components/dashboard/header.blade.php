@@ -19,7 +19,7 @@
                         aria-label="{{ __('Tags') }}"
                         title="{{ __('Tags') }}"
                     >
-                        <x-heroicon-o-circle-stack class="size-6" />
+                        <x-heroicon-o-rectangle-stack class="size-6" />
                     </x-wireui::actions-link>
 
                     <x-wireui::actions-link
