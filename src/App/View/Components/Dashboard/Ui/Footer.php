@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Dashboard\Ui;
 
-use Closure;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\Group;
 use Foxws\WireUse\Views\Support\Component;
@@ -10,7 +9,7 @@ use Illuminate\Contracts\View\View;
 
 class Footer extends Component
 {
-    public function render(): View|Closure|string
+    public function render(): View
     {
         return view('components.dashboard.ui.footer');
     }
@@ -41,6 +40,12 @@ class Footer extends Component
                 ->route('tags.index')
                 ->icon('heroicon-o-cog')
                 ->activeIcon('heroicon-s-cog'),
+
+            Action::make()
+                ->name(__('Account'))
+                ->route('tags.index')
+                ->icon('heroicon-o-user')
+                ->activeIcon('heroicon-s-user'),
         ]);
     }
 }

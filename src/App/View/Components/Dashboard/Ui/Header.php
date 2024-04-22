@@ -2,14 +2,13 @@
 
 namespace App\View\Components\Dashboard\Ui;
 
-use Closure;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Component;
 use Illuminate\Contracts\View\View;
 
 class Header extends Component
 {
-    public function render(): View|Closure|string
+    public function render(): View
     {
         return view('components.dashboard.ui.header');
     }
