@@ -12,6 +12,12 @@ The following workarounds have been applied to the host, which should hopefully 
 - <https://github.com/fedora-silverblue/issue-tracker/issues/547>
 - <https://github.com/containers/podman/issues/22044#issuecomment-2009255504>
 
+To learn more about Podman Quadlet, the following resources may be useful:
+
+- <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
+- <https://www.redhat.com/sysadmin/quadlet-podman>
+- <https://mo8it.com/blog/quadlet/>
+
 ## Installation
 
 Build the Docker images:
@@ -61,12 +67,6 @@ To start Hub:
 ```bash
 systemctl --user start hub.service
 ```
-
-To learn more about Podman Quadlet, the following resources may be useful:
-
-- <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
-- <https://www.redhat.com/sysadmin/quadlet-podman>
-- <https://mo8it.com/blog/quadlet/>
 
 ## Update
 
