@@ -1,4 +1,4 @@
-<x-wireui::layout-container class="flex flex-col flex-nowrap gap-y-2">
+<x-wireuse::layout-container class="flex flex-col flex-nowrap gap-y-2">
     {{-- <livewire:app::playlists-filters wire:model.live="form.search" /> --}}
 
     <div
@@ -17,4 +17,4 @@
             {{ $this->items->links('pagination.simple') }}
         </div>
     </div>
-</x-wireui::layout-container>
+</x-wireuse::layout-container>

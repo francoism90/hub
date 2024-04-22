@@ -1,4 +1,4 @@
-<x-wireui::layout-container class="py-3.5">
+<x-wireuse::layout-container class="py-3.5">
     <div
         class="flex flex-col gap-y-7"
         wire:poll.keep-alive.2400s
@@ -20,4 +20,4 @@
             </article>
         @endforeach
     </div>
-</x-wireui::layout-container>
+</x-wireuse::layout-container>

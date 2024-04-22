@@ -1,4 +1,4 @@
-<x-wireui::layout-container class="pt-4">
+<x-wireuse::layout-container class="pt-4">
     <x-wireui::forms-schema>
         <x-wireui::layout-join class="flex-nowrap gap-x-4 rounded bg-gray-800 px-3">
             <x-wireui::forms-input
@@ -36,4 +36,4 @@
             {{ $this->items->links('pagination.default') }}
         </div>
     @endif
-</x-wireui::layout-container>
+</x-wireuse::layout-container>

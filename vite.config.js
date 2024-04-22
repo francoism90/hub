@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       hmr: { host: 'hub.lan', clientPort: 5173 },
       watch: {
-        ignored: ['**/vendor/**', '**/storage/**'],
+        ignored: ['**/storage/**'],
       },
     },
     resolve: {

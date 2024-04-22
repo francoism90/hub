@@ -1,5 +1,5 @@
 <header>
-    <x-wireui::layout-container>
+    <x-wireuse::layout-container>
         <x-wireui::navigation-navbar>
             <x-slot:start>
                 <x-wireui::actions-link
@@ -68,5 +68,5 @@
                 </x-wireui::layout-join>
             </x-slot:end>
         </x-wireui::navigation-navbar>
-    </x-wireui::layout-container>
+    </x-wireuse::layout-container>
 </header>

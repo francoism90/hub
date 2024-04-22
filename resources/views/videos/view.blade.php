@@ -9,7 +9,7 @@
         />
     </div>
 
-    <x-wireui::layout-container class="py-1">
+    <x-wireuse::layout-container class="py-1">
         <div class="grid grid-cols-1 divide-y divide-gray-700">
             <header class="py-3.5">
                 <dl>
@@ -74,7 +74,7 @@
 
             <livewire:app::videos-similar :$video />
         </div>
-    </x-wireui::layout-container>
+    </x-wireuse::layout-container>
 </article>
 
 @script

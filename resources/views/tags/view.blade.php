@@ -1,4 +1,4 @@
-<x-wireui::layout-container class="flex flex-nowrap sm:space-x-24">
+<x-wireuse::layout-container class="flex flex-nowrap sm:space-x-24">
     <div
         class="grow flex-col gap-y-4 divide-y divide-gray-700 overflow-hidden"
         wire:poll.keep-alive.2400s
@@ -17,4 +17,4 @@
     </div>
 
     <x-app::tags-filters />
-</x-wireui::layout-container>
+</x-wireuse::layout-container>
