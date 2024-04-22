@@ -3,7 +3,7 @@
 namespace App\Profile\Controllers;
 
 use App\Playlists\Concerns\WithHistory;
-use Foxws\WireUse\Pages\Support\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

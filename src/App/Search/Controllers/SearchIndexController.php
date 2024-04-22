@@ -5,7 +5,7 @@ namespace App\Search\Controllers;
 use App\Search\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\Pages\Support\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;

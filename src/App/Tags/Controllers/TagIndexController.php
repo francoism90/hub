@@ -4,7 +4,7 @@ namespace App\Tags\Controllers;
 
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\Pages\Support\Page;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
