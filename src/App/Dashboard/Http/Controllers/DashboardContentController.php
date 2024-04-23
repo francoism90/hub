@@ -2,10 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\States\ContentState;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
-use Foxws\WireUse\Navigation\Support\NavigationGroup;
-use Foxws\WireUse\Navigation\Support\NavigationItem;
+use App\Livewire\Dashboard\States\DashboardContentState;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -17,7 +14,7 @@ class DashboardContentController extends Page
     #[Url(as: 'tab', except: 'videos')]
     public string $tab = 'videos';
 
-    public ContentState $state;
+    public DashboardContentState $state;
 
     public function mount(): void
     {
