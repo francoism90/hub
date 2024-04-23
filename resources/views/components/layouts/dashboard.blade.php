@@ -70,7 +70,7 @@
         {{ $slot }}
     </div>
 
-    {{-- <livewire:livewire.dashboard.ui.footer /> --}}
+    <livewire:livewire.dashboard.ui.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')
