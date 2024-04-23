@@ -64,13 +64,13 @@
 
 <body class="relative flex flex-col h-screen min-h-screen bg-gray-950 text-white antialiased">
 
-    <x-dashboard.ui.header />
+    <livewire:livewire.dashboard.ui.header />
 
     <div class="flex-1 overflow-auto">
         {{ $slot }}
     </div>
 
-    <x-dashboard.ui.footer />
+    <livewire:livewire.dashboard.ui.footer />
 
     @vite('resources/js/app.js')
     @stack('scripts')

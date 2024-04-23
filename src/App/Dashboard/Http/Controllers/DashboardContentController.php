@@ -26,7 +26,7 @@ class DashboardContentController extends Page
 
     public function render(): View
     {
-        return view('pages.dashboard.content');
+        return view('livewire.dashboard.pages.content');
     }
 
     protected function navigation(): array
@@ -40,5 +40,10 @@ class DashboardContentController extends Page
                 ->name('tags')
                 ->label(__('Tags')),
         ];
+    }
+
+    protected function navigator(): ?string
+    {
+        return 'tab';
     }
 }

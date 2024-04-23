@@ -17,6 +17,6 @@ class DashboardIndexController extends Page
 
     public function render(): View
     {
-        return view('pages.dashboard.index');
+        return view('livewire.dashboard.pages.index');
     }
 }
