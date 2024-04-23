@@ -1,6 +1,5 @@
 <x-wireuse::layout-page>
-    <x-wireuse::navigation-tabs
-        :navigation="$state->navigation()"
-        class="px-3 gap-5 border-b border-secondary-800/80"
-    />
+    {{ $this->tab }}
+
+    <x-wireuse::navigation-tabs :navigation="$this->navigation()" wire:model.live="tab" />
 </x-wireuse::layout-page>
