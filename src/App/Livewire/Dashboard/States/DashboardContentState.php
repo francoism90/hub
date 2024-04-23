@@ -11,16 +11,15 @@ class DashboardContentState extends State
     public function navigation(): NavigationGroup
     {
         return NavigationGroup::make()
+            ->wireModel('tab')
             ->components([
                 NavigationItem::make()
                     ->name('videos')
-                    ->label(__('Videos'))
-                    ->wireModel('tab'),
+                    ->label(__('Videos')),
 
                 NavigationItem::make()
                     ->name('tags')
-                    ->label(__('Tags'))
-                    ->wireModel('tab'),
+                    ->label(__('Tags')),
             ]);
     }
 }
