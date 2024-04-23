@@ -2,15 +2,22 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Dashboard\States\ContentState;
+use Foxws\WireUse\Navigation\Concerns\WithNavigation;
+use Foxws\WireUse\Navigation\Contracts\HasNavigation;
+use Foxws\WireUse\Navigation\Support\NavigationGroup;
+use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.dashboard')]
-class DashboardContentController extends Page
+class DashboardContentController extends Page implements HasNavigation
 {
-    public ContentState $state;
+    use WithNavigation;
+
+    #[Url(as: 'tab', except: 'videos')]
+    public string $tab = 'videos';
 
     public function mount(): void
     {
@@ -21,5 +28,18 @@ class DashboardContentController extends Page
     public function render(): View
     {
         return view('pages.dashboard.content');
+    }
+
+    public function navigation(): NavigationGroup
+    {
+        return NavigationGroup::make([
+            NavigationItem::make()
+                ->name('videos')
+                ->label(__('Videos')),
+
+            NavigationItem::make()
+                ->name('tags')
+                ->label(__('Tags')),
+        ]);
     }
 }

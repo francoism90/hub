@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Dashboard\Actions;
+namespace App\View\Components\Dashboard\Navigation;
 
 use Foxws\WireUse\Actions\Support\Group;
 use Foxws\WireUse\Views\Support\Component;
