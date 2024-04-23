@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.dashboard')]
-class DashboardContentController extends Page implements HasNavigation
+class DashboardContentController extends Page
 {
     use WithNavigation;
 
@@ -29,7 +29,7 @@ class DashboardContentController extends Page implements HasNavigation
         return view('pages.dashboard.content');
     }
 
-    public function navigation(): array
+    protected function navigation(): array
     {
         return [
             NavigationItem::make()
