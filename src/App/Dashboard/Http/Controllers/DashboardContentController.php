@@ -6,7 +6,6 @@ use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 
@@ -24,11 +23,12 @@ class DashboardContentController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.content');
+        return view('livewire.dashboard.pages.content')->with([
+            'navigation' => $this->tabs(),
+        ]);
     }
 
-    #[Computed]
-    public function navigation(): Navigation
+    protected function tabs(): Navigation
     {
         return Navigation::make()
             ->active($this->tab)
