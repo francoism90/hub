@@ -4,7 +4,6 @@ namespace App\Dashboard\Http\Controllers;
 
 use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Foxws\WireUse\Navigation\Contracts\HasNavigation;
-use Foxws\WireUse\Navigation\Support\NavigationGroup;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
@@ -30,9 +29,9 @@ class DashboardContentController extends Page implements HasNavigation
         return view('pages.dashboard.content');
     }
 
-    public function navigation(): NavigationGroup
+    public function navigation(): array
     {
-        return NavigationGroup::make([
+        return [
             NavigationItem::make()
                 ->name('videos')
                 ->label(__('Videos')),
@@ -40,6 +39,6 @@ class DashboardContentController extends Page implements HasNavigation
             NavigationItem::make()
                 ->name('tags')
                 ->label(__('Tags')),
-        ]);
+        ];
     }
 }

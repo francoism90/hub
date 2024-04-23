@@ -1,6 +1,6 @@
 <nav {{ $attributes
     ->cssClass([
-        'layer' => 'flex items-center px-3 gap-5 border-b border-secondary-800/80 overflow-x-auto',
+        'layer' => 'flex items-center px-3 gap-3 border-b border-secondary-800/80 overflow-x-auto',
         'tab' => 'inline-flex text-sm font-medium py-3 text-secondary-600',
         'active' => 'text-white border-b border-white-600/80',
     ])
