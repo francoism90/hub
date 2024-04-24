@@ -19,7 +19,7 @@
                 <div class="prose prose-headings:font-semibold prose-h1:text-sm prose-h1:text-base">
                     <h1>{{ __('Sort by' )}}</h1>
 
-                    {{ $action->foo }}
+                    {{-- {{ $action->foo }} --}}
 
                     <button wire:click="$parent.set('foo', 'bla')">Remove</button>
                 </div>
