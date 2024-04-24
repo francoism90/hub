@@ -17,9 +17,9 @@
             x-on:click.outside="open = false"
             x-on:keyup.escape.window="open = false"
             x-trap.inert.noscroll="open"
-            class="absolute z-30 bottom-0 inset-x-0 m-3"
+            class="absolute z-30 bottom-0 inset-x-0 mx-3"
         >
-            <div class="relative mx-auto rounded-xl w-full max-w-96 bg-secondary-800">
+            <div class="relative mx-auto rounded-xl w-full max-w-[27rem] bg-secondary-800">
                 <x-heroicon-m-minus class="h-8 fill-secondary-500 mx-auto" />
 
                 <div class="flex flex-col pb-4 px-4 gap-3">
