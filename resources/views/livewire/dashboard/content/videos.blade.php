@@ -1,5 +1,6 @@
 <x-wireuse::layout-container class="p-3" fluid>
-    <x-wireuse::actions-group :group="$filters" />
+    <x-dashboard.videos.filters>
+        <x-dashboard.videos.filters.sorters />
+    </x-dashboard.videos.filters>
 
-    {{ $form->sort }}
 </x-wireuse::layout-container>
