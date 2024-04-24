@@ -3,7 +3,8 @@
         <x-wireuse::navigation-tabs
             :$navigation
             class="gap-x-5"
-            class:tab="flex-col border-b text-sm font-medium"
+            class:tab="flex-col justify-stretch text-sm font-medium"
+            class:icon="size-9"
             {{-- class:active="border-primary-400 text-primary-400" --}}
             {{-- class:inactive="border-secondary-400 text-secondary-400" --}}
         />
