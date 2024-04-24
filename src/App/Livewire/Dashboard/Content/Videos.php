@@ -21,7 +21,7 @@ class Videos extends Component
 
     protected function filters(): ActionGroup
     {
-        return ActionGroup::make('filters')
+        return ActionGroup::make()
             ->attributes($this->getFilterAttributes())
             ->add('sort', fn (Action $item) => $item
                 ->label(__('Sort by'))
@@ -34,8 +34,6 @@ class Videos extends Component
     {
         return [
             'form' => $this->form->all(),
-            'rules' => $this->form->getRules(),
-
         ];
     }
 }

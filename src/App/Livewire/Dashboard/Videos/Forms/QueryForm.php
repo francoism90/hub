@@ -7,6 +7,6 @@ use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
 {
-    #[Validate('nullable|string|max:255')]
-    public string $sort = '';
+    #[Validate('required|string|max:255')]
+    public string $sort = 'recent';
 }
