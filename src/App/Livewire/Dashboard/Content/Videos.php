@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class Videos extends Component
 {
+    public $foo = 'bar';
+
     public function render()
     {
         return view('livewire.dashboard.content.videos')->with([
@@ -21,6 +23,8 @@ class Videos extends Component
         return ActionGroup::make()
             ->add('sort', fn (Action $item) => $item
                 ->label(__('Sort by'))
+                ->icon('heroicon-s-chevron-down')
+                ->attributes(['foo' => $this->foo])
                 ->livewire(Sorters::class)
             );
     }

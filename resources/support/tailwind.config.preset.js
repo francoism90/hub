@@ -15,6 +15,7 @@ export default {
         mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
       },
       colors: {
+        base: colors.white,
         primary: colors.pink,
         secondary: colors.gray,
       },
