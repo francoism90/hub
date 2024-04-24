@@ -26,8 +26,8 @@ class Footer extends Component
             )
             ->add('content', fn (NavigationItem $item) => $item
                 ->label(__('Content'))
-                ->icon('heroicon-s-rectangle-stack')
-                ->iconActive('heroicon-o-rectangle-stack')
+                ->icon('heroicon-o-rectangle-stack')
+                ->iconActive('heroicon-s-rectangle-stack')
                 ->route('dashboard.content')
             )
             ->add('post', fn (NavigationItem $item) => $item
