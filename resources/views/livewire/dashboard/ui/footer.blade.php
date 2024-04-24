@@ -4,9 +4,7 @@
             :$navigation
             class="gap-x-5"
             class:tab="flex-col gap-0.5 justify-stretch text-xs font-medium"
-            class:icon="size-6"
-            {{-- class:active="border-primary-400 text-primary-400" --}}
-            {{-- class:inactive="border-secondary-400 text-secondary-400" --}}
+            class:icon="size-6 sm:size-7"
         />
     </x-wireuse::layout-container>
 </footer>

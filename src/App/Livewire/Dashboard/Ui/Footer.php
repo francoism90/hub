@@ -18,17 +18,35 @@ class Footer extends Component
     protected function tabs(): Navigation
     {
         return Navigation::make()
-            ->add('videos', fn (NavigationItem $item) => $item
-                ->label(__('Videos'))
+            ->add('dashboard', fn (NavigationItem $item) => $item
+                ->label(__('Dashboard'))
                 ->icon('heroicon-o-squares-2x2')
                 ->iconActive('heroicon-s-squares-2x2')
                 ->route('dashboard.index')
             )
-            ->add('tags', fn (NavigationItem $item) => $item
-                ->label(__('Tags'))
-                ->icon('heroicon-o-squares-2x2')
-                ->iconActive('heroicon-s-squares-2x2')
+            ->add('content', fn (NavigationItem $item) => $item
+                ->label(__('Content'))
+                ->icon('heroicon-s-rectangle-stack')
+                ->iconActive('heroicon-o-rectangle-stack')
                 ->route('dashboard.content')
+            )
+            ->add('post', fn (NavigationItem $item) => $item
+                ->label(__('Post'))
+                ->icon('heroicon-o-plus-circle')
+                ->iconActive('heroicon-s-plus-circle')
+                ->route('dashboard.post')
+            )
+            ->add('settings', fn (NavigationItem $item) => $item
+                ->label(__('Settings'))
+                ->icon('heroicon-o-cog')
+                ->iconActive('heroicon-s-cog')
+                ->route('dashboard.settings')
+            )
+            ->add('activity', fn (NavigationItem $item) => $item
+                ->label(__('Activity'))
+                ->icon('heroicon-o-bell')
+                ->iconActive('heroicon-s-bell')
+                ->route('dashboard.activity')
             );
     }
 }

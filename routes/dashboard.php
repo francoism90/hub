@@ -7,4 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', DashboardIndexController::class)->name('index');
     Route::get('/content', DashboardContentController::class)->name('content');
+    Route::get('/post', DashboardContentController::class)->name('post');
+    Route::get('/settings', DashboardContentController::class)->name('settings');
+    Route::get('/activity', DashboardContentController::class)->name('activity');
 });
