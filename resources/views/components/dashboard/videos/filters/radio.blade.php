@@ -17,20 +17,28 @@
             x-on:click.outside="open = false"
             x-on:keyup.escape.window="open = false"
             x-trap.inert.noscroll="open"
-            class="absolute z-30 bottom-0 inset-x-1/4 m-3"
+            class="absolute z-30 bottom-0 inset-x-0 m-3"
         >
-            <div class="relative px-3 py-4 rounded-xl flex w-full max-w-[25rem] mx-auto bg-secondary-500">
-                <div class="prose prose-headings:font-semibold prose-h1:text-sm prose-h1:text-base">
-                    <h1>{{ __('Sort by' )}}</h1>
+            <div class="relative mx-auto rounded-xl w-full max-w-96 bg-secondary-800">
+                <x-heroicon-m-minus class="h-8 fill-secondary-500 mx-auto" />
 
-                    <input type="radio" value="recent" wire:model.live="form.sort"> Recent
-                    <input type="radio" value="random" wire:model.live="form.sort"> Random
+                <div class="flex flex-col pb-4 px-4 gap-3">
+                    <h1 class="font-semibold">{{ $action->getLabel() }}</h1>
 
-                    {{-- {{ $sort }} --}}
+                    @foreach ($action->all() as $option)
+                        <div class="flex items-center gap-3 text-sm">
+                            <input
+                                type="radio"
+                                id="{{ $option->getName() }}"
+                                value="{{ $option->getName() }}"
+                                wire:model.live="form.sort"
+                            />
 
-                    {{-- {{ $action->foo }} --}}
-
-                    {{-- <button wire:click="$parent.set('form.sort', 'bla')">Remove</button> --}}
+                            <label for="{{ $option->getName() }}">
+                                {{ $option->getLabel() }}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

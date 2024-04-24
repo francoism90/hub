@@ -31,6 +31,8 @@ class Videos extends Component
                 ->label(__('Sort by'))
                 ->icon('heroicon-s-chevron-down')
                 ->component('dashboard.videos.filters.radio')
+                ->add('recent', fn (Action $item) => $item->label('Most recent (standard'))
+                ->add('random', fn (Action $item) => $item->label('Most watched'))
             );
     }
 }
