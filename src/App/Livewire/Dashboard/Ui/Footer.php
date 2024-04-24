@@ -20,10 +20,14 @@ class Footer extends Component
         return Navigation::make()
             ->add('videos', fn (NavigationItem $item) => $item
                 ->label(__('Videos'))
+                ->icon('heroicon-o-squares-2x2')
+                ->iconActive('heroicon-s-squares-2x2')
                 ->route('dashboard.index')
             )
             ->add('tags', fn (NavigationItem $item) => $item
                 ->label(__('Tags'))
+                ->icon('heroicon-o-squares-2x2')
+                ->iconActive('heroicon-s-squares-2x2')
                 ->route('dashboard.content')
             );
     }
