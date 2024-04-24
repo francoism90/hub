@@ -2,6 +2,8 @@
 
 namespace App\Dashboard\Http\Controllers;
 
+use App\Livewire\Dashboard\Content\Tags;
+use App\Livewire\Dashboard\Content\Videos;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Foxws\WireUse\Views\Support\Page;
@@ -33,12 +35,14 @@ class DashboardContentController extends Page
         return Navigation::make()
             ->active($this->tab)
             ->add('videos', fn (NavigationItem $item) => $item
-                ->label(__('Videos'))
                 ->wireModel('tab')
+                ->label(__('Videos'))
+                ->livewire(Videos::class)
             )
             ->add('tags', fn (NavigationItem $item) => $item
-                ->label(__('Tags'))
                 ->wireModel('tab')
+                ->label(__('Tags'))
+                ->livewire(Tags::class)
             );
     }
 }
