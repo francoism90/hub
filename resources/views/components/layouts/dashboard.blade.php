@@ -64,7 +64,7 @@
 
 <body class="relative flex flex-col h-screen min-h-screen bg-gray-950 text-white antialiased">
 
-    {{-- <livewire:livewire.dashboard.ui.header /> --}}
+    <livewire:livewire.dashboard.ui.header />
 
     <div class="flex-1 overflow-auto">
         {{ $slot }}
