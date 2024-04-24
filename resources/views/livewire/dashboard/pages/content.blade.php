@@ -1,3 +1,3 @@
 <x-wireuse::layout-page>
-    <x-wireuse::navigation-tabs :$navigation wire:model.live="tab" />
+    <x-wireuse::navigation-tabs :$navigation />
 </x-wireuse::layout-page>

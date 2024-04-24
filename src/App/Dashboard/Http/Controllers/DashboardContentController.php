@@ -32,7 +32,13 @@ class DashboardContentController extends Page
     {
         return Navigation::make()
             ->active($this->tab)
-            ->add('videos', fn (NavigationItem $item) => $item->label(__('Videos')))
-            ->add('tags', fn (NavigationItem $item) => $item->label(__('Tags')));
+            ->add('videos', fn (NavigationItem $item) => $item
+                ->label(__('Videos'))
+                ->wireModel('tab')
+            )
+            ->add('tags', fn (NavigationItem $item) => $item
+                ->label(__('Tags'))
+                ->wireModel('tab')
+            );
     }
 }
