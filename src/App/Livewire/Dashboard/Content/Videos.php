@@ -30,9 +30,7 @@ class Videos extends Component
             ->add('sort', fn (Action $item) => $item
                 ->label(__('Sort by'))
                 ->icon('heroicon-s-chevron-down')
-                ->bladeAttributes([
-                    'class:icon' => 'size-3',
-                ])
+                ->component('dashboard.videos.filters.radio')
             );
     }
 }

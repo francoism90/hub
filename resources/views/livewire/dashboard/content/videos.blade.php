@@ -1,6 +1,10 @@
 <x-wireuse::layout-container class="p-3" fluid>
+    {{ $form->sort }}
+
     <x-dashboard.videos.filters>
-        <x-dashboard.videos.filters.sorters :action="$filters->first('sort')" />
+        @foreach($filters->all() as $action)
+            <x-dynamic-component :component="$action->getComponent()" :$action />
+        @endforeach
     </x-dashboard.videos.filters>
 
 </x-wireuse::layout-container>
