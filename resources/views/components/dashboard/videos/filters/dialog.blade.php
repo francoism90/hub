@@ -17,7 +17,7 @@
             x-on:click.outside="open = false"
             x-on:keyup.escape.window="open = false"
             x-trap.inert.noscroll="open"
-            class="absolute z-30 bottom-0 inset-x-0 mx-auto px-3 w-full max-w-[28rem] sm:bottom-4"
+            class="absolute z-30 bottom-4 inset-x-0 mx-auto px-3 w-full max-w-[28rem]"
         >
             <div class="relative rounded-xl bg-secondary-800">
                 <x-heroicon-m-minus class="h-8 fill-secondary-500 mx-auto" />
