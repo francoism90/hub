@@ -1,8 +1,13 @@
 <x-wireuse::layout-container x-data="scroll" fluid>
-    <main class="bg-primary-500 h-screen max-h-[calc(100dvh-65px)]" @scroll.window.throttle="refresh">
-            dwdw
-    </main>
+    <main
+        wire:key="{{ $this->item->getRouteKey() }}"
+        class="bg-black/25 h-screen w-screen max-h-[calc(100dvh-65px)]"
+        @wheel.self.throttle="start"
+        @touchmove.self.throttle="start"
+    >
 
+        {{ $this->item->name }}
+    </main>
 </x-wireuse::layout-container>
 
 @script
@@ -10,16 +15,10 @@
         Alpine.data('scroll', () => ({
             instance: null,
 
-            async init() {
+            start() {
                 console.log('scroll')
-            },
 
-            async destroy() {
-                console.log('scroll')
-            },
-
-            async refresh() {
-                console.log('scroll')
+                $wire.refresh()
             },
         }));
     </script>

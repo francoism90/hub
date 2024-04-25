@@ -24,11 +24,16 @@ class VideoIndexController extends Page
         //
     }
 
+    public function refresh(): void
+    {
+        unset($this->item);
+    }
+
     #[Computed]
     public function item(): ?Video
     {
         return $this->getQuery()
-            ->recommended()
+            ->published()
             ->inRandomOrder()
             ->first();
     }
