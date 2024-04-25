@@ -22,7 +22,7 @@
             <div class="relative rounded-xl bg-secondary-800">
                 <x-heroicon-m-minus class="h-8 fill-secondary-500 mx-auto" />
 
-                <div class="p-4 pt-0 flex flex-col gap-3">
+                <div class="p-4 pt-0 flex flex-col gap-y-3">
                     <h1 class="font-semibold">
                         {{ $action->getLabel() }}
                     </h1>
