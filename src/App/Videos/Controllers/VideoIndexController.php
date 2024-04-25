@@ -20,7 +20,7 @@ class VideoIndexController extends Page
 
     public function render(): View
     {
-        return view('videos.index');
+        return view('livewire.app.pages.index');
     }
 
     #[Computed()]

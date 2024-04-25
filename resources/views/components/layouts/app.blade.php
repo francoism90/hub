@@ -62,7 +62,7 @@
     @googlefonts('code')
 </head>
 
-<body class="relative overscroll-contain flex flex-col h-dvh antialiased bg-secondary-950 text-base">
+<body class="relative overscroll-contain flex flex-col h-[calc(100dvh)] antialiased bg-secondary-950 text-base">
 
     <livewire:livewire.app.ui.header />
 
