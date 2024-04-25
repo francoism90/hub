@@ -49,11 +49,20 @@
                 </dl>
             </a>
 
-            @if ($item->tags->isNotEmpty())
-                <x-app::videos-tags
-                    class="line-clamp-1 text-xs"
-                    :items="$item->tags"
-                />
+            @if ($item->tags()->count())
+                <div class="flex flex-wrap gap-2">
+                    @foreach ($item->tags as $tag)
+                        <a
+                            wire:key="tag-{{ $tag->getRouteKey() }}"
+                            class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
+                            href="{{ route('tags.view', $tag) }}"
+                            aria-label="{{ $tag->name }}"
+                            title="{{ $tag->name }}"
+                        >
+                            {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
             @endif
         </div>
 </article>
