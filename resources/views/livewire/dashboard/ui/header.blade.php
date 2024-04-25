@@ -5,5 +5,17 @@
                 <x-app.ui.logo />
             </a>
         </x-slot:start>
+
+        <x:slot:end>
+            <nav class="flex flex-nowrap gap-x-3">
+                @foreach ($navigation->items as $action)
+                    <x-wireuse::actions-link
+                        :$action
+                        class:label="sr-only"
+                        class:icon="size-6"
+                    />
+                @endforeach
+            </nav>
+        </x:slot:end>
     </x-wireuse::navigation-navbar>
 </header>
