@@ -62,11 +62,11 @@
     @googlefonts('code')
 </head>
 
-<body class="relative flex flex-col h-screen min-h-screen antialiased bg-secondary-950 text-base">
+<body class="relative flex flex-col h-dvh antialiased bg-secondary-950 text-base">
 
     <livewire:livewire.dashboard.ui.header />
 
-    <div class="flex-grow">
+    <div class="flex-1">
         {{ $slot }}
     </div>
 
