@@ -1,6 +1,6 @@
 <x-wireuse::layout-container
     x-data="scroll"
-    class="w-full h-full snap-mandatory snap-y overflow-y-scroll bg-black/25"
+    class="h-[calc(100vh-4rem)] snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
 >
     @forelse ($this->items as $item)

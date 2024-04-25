@@ -17,7 +17,7 @@
         loading="lazy"
     />
 
-    <div class="absolute z-10 mx-auto inset-x-0 h-screen w-3/5">
+    <div class="absolute z-10 mx-auto inset-0 w-3/5">
         <x-app.videos.feed.preview />
         <x-app.videos.feed.details />
     </div>
