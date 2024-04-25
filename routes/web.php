@@ -8,11 +8,11 @@ use App\Tags\Controllers\TagIndexController;
 use App\Tags\Controllers\TagViewController;
 use App\Videos\Controllers\VideoIndexController;
 use App\Videos\Controllers\VideoViewController;
-use Foxws\WireUi\Facades\WireUi;
+use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
 
 // Auth
-WireUi::routes();
+WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
