@@ -3,10 +3,19 @@
 ])
 
 <article {{ $attributes
-    ->class('w-full h-full snap-center')
+    ->class('relative w-full h-full snap-center')
     ->merge([
         'wire:key' => $item->getRouteKey(),
     ])
 }}>
-    {{ $item->title }}
+    <img
+        alt="{{ $item->title }}"
+        src="{{ $item->thumbnail }}"
+        srcset="{{ $item->placeholder }}"
+        class="absolute inset-0 object-fill blur-3xl brightness-50 saturate-50"
+        crossorigin="use-credentials"
+        loading="lazy"
+    />
+
+
 </article>
