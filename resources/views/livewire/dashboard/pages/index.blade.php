@@ -1,3 +1,3 @@
-<x-wireuse::layout-page>
+<div>
     Dashboard
-</x-wireuse::layout-page>
+</div>
