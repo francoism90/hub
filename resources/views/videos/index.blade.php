@@ -1,18 +1,24 @@
 <x-wireuse::layout-container x-data="scroll" fluid>
-    @if ($video)
-        <x-app.videos.feed :$video>
+    @forelse ($this->items as $item)
+        <x-app.videos.feed :$item>
             <x-app.videos.feed.item />
         </x-app.videos.feed>
-    @else
+    @empty
         {{ __('No videos available') }}
-    @endif
+    @endforelse
+
+
 </x-wireuse::layout-container>
 
 @script
     <script>
         Alpine.data('scroll', () => ({
-            start() {
-                $wire.refresh()
+            start(event) {
+                const deltaY = Math.sign(event.deltaY || 0)
+
+                return deltaY > 0
+                    ? $wire.next()
+                    : $wire.previous()
             },
         }));
     </script>

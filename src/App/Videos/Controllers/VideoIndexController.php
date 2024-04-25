@@ -6,29 +6,37 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class VideoIndexController extends Page
 {
+    use WithPagination;
+    use WithoutUrlPagination;
     use WithQueryBuilder;
 
     public function render(): View
     {
-        return view('videos.index')->with([
-            'video' => $this->video(),
-        ]);
+        return view('videos.index');
     }
 
-    public function refresh(): void
+    public function previous(): void
     {
-        $this->dispatch('$refesh');
+        $this->previousPage();
     }
 
-    protected function video(): ?Video
+    public function next(): void
+    {
+        $this->nextPage();
+    }
+
+    #[Computed()]
+    public function items()
     {
         return $this->getQuery()
-            ->published()
-            ->inRandomOrder()
-            ->first();
+            ->recommended()
+            ->simplePaginate(1);
     }
 
     protected static function getModelClass(): ?string
