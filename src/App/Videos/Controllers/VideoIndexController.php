@@ -37,7 +37,7 @@ class VideoIndexController extends Page
     {
         return $this->getQuery()
             ->recommended()
-            ->take(3)
+            ->take(10)
             ->get();
     }
 

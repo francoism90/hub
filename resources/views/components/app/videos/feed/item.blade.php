@@ -3,7 +3,7 @@
 ])
 
 <article {{ $attributes
-    ->class('w-screen h-screen max-h-[calc(100dvh-65px)]')
+    ->class('w-full h-full snap-center')
     ->merge([
         'wire:key' => $item->getRouteKey(),
     ])

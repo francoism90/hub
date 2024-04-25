@@ -2,7 +2,7 @@
     x-data="scroll"
     {{-- @wheel.self.throttle="wheel"
     @touchmove.self.throttle="start" --}}
-    class="bg-black/25 overflow-y-scroll"
+    class="w-screen h-screen max-h-[calc(100dvh-65px)] snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
 >
     @forelse ($this->items as $item)
