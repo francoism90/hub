@@ -2,7 +2,7 @@
     'action',
 ])
 
-<div x-data="{ open: true }" class="flex gap-3 items-center">
+<div x-data="{ open: false }" class="flex gap-3 items-center">
     <x-wireuse::actions-button
         :$action
         x-on:click="open = ! open"

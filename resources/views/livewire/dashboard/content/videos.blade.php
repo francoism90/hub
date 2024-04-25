@@ -5,6 +5,14 @@
         @endforeach
     </x-dashboard.videos.filters>
 
-    {{ $form->sort }}
+    <main
+        wire:poll.visible.900s
+        class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-3"
+    >
+        @forelse ($this->items as $item)
+            <x-dashboard.videos.content.item :$item />
+        @empty
 
+        @endforelse
+    </main>
 </x-wireuse::layout-container>

@@ -7,7 +7,6 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -62,7 +61,6 @@ class Videos extends Component
         $value = $this->form->getSearch();
 
         return $this->getScout($value)
-            ->when(blank($value), fn (Builder $query) => $query->whereIn('id', [0]))
             // ->when($this->form->contains('features', 'caption'), fn (Builder $query) => $query->where('caption', true))
             // ->when($this->form->is('sort', 'longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
             // ->when($this->form->is('sort', 'shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
@@ -70,7 +68,7 @@ class Videos extends Component
             //     ->orderBy('released', 'desc')
             //     ->orderBy('created_at', 'desc')
             // )
-            ->paginate(32);
+            ->paginate(12 * 3);
     }
 
     protected static function getModelClass(): ?string
