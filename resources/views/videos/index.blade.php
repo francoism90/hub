@@ -50,8 +50,6 @@
 
             async play() {
                 try {
-                    if (this.ready && this.open) return;
-
                     await this.instance.load(manifest);
                 } catch (e) {
                     //
@@ -60,11 +58,21 @@
 
             async stop() {
                 try {
-                    if (this.video?.playing) {
-                        await this.video?.pause()
+                    if (this.$refs.video?.playing) {
+                        await this.$refs.video?.pause()
                     }
 
-                    await this.container?.unload()
+                    await this.$refs.container?.unload()
+                } catch (e) {
+                    //
+                }
+            },
+
+            async toggle() {
+                try {
+                    this.$refs.video?.paused
+                        ? await this.$refs.video?.play()
+                        : await this.$refs.video?.pause()
                 } catch (e) {
                     //
                 }
