@@ -5,10 +5,7 @@ namespace App\Videos\Controllers;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 
 class VideoIndexController extends Page
 {
@@ -16,21 +13,17 @@ class VideoIndexController extends Page
 
     public function render(): View
     {
-        return view('videos.index');
-    }
-
-    public function updated(): void
-    {
-        //
+        return view('videos.index')->with([
+            'video' => $this->video(),
+        ]);
     }
 
     public function refresh(): void
     {
-        unset($this->item);
+        $this->dispatch('$refesh');
     }
 
-    #[Computed]
-    public function item(): ?Video
+    protected function video(): ?Video
     {
         return $this->getQuery()
             ->published()
