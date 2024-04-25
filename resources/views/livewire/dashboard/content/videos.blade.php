@@ -1,4 +1,4 @@
-<x-wireuse::layout-container class="p-3" fluid>
+<x-wireuse::layout-container class="flex flex-col gap-y-3 p-3" fluid>
     <x-dashboard.videos.filters>
         @foreach($filters->all() as $action)
             <x-dynamic-component :component="$action->getComponent()" :$action />
