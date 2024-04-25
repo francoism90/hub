@@ -21,3 +21,59 @@
         }));
     </script>
 @endscript
+
+@script
+    <script>
+        Alpine.data('player', (manifest) => ({
+            instance: null,
+            ready: false,
+            open: false,
+
+            async init() {
+                // Create instance
+                this.instance = new window.shaka.Player();
+
+                // Attach element
+                await this.instance.attach(this.$refs.video);
+
+                // Configure networking
+                this.instance
+                    .getNetworkingEngine()
+                    .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+
+                // Set ready
+                this.ready = true;
+            },
+
+            async destroy() {
+                await stop()
+            },
+
+            async play() {
+                try {
+                    if (this.ready && this.open) return;
+
+                    await this.instance.load(manifest);
+                } catch (e) {
+                    //
+                }
+
+                this.open = true
+            },
+
+            async stop() {
+                try {
+                    if (this.video?.playing) {
+                        await this.video?.pause()
+                    }
+
+                    await this.container?.unload()
+                } catch (e) {
+                    //
+                }
+
+                this.open = false
+            },
+        }));
+    </script>
+@endscript
