@@ -9,7 +9,7 @@
     <x-dashboard.videos.content.preview />
 
     <a class="block" href="{{ route('videos.view', $item) }}">
-        <h1 class="pt-3 font-medium text-sm leading-none tracking-tight line-clamp-2">
+        <h1 class="pt-4 font-medium text-sm leading-none tracking-tight line-clamp-1">
             {{ $item->title }}
         </h1>
 
@@ -45,7 +45,7 @@
     </a>
 
     @if ($item->tags()->count())
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 line-clamp-1">
             @foreach ($item->tags as $tag)
                 <a
                     wire:key="tag-{{ $tag->getRouteKey() }}"

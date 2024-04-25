@@ -6,7 +6,7 @@
     <x-wireuse::actions-button
         :$action
         x-on:click="open = ! open"
-        class="py-1.5 px-3 flex-row-reverse gap-1 rounded font-medium text-xs bg-secondary-700 text-secondary-200"
+        class="py-1.5 px-3 flex-row-reverse gap-1 rounded font-semibold text-xs bg-secondary-700 text-secondary-200"
         class:icon="size-3"
     />
 

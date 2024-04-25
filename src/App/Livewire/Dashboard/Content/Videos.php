@@ -9,6 +9,7 @@ use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
+use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -36,8 +37,6 @@ class Videos extends Component
     {
         $this->form->submit();
 
-        $this->refresh();
-
         $this->resetPage();
     }
 
@@ -48,26 +47,13 @@ class Videos extends Component
         $this->form->clear();
     }
 
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
-
     #[Computed]
     public function items(): LengthAwarePaginator
     {
         $value = $this->form->getSearch();
 
         return $this->getScout($value)
-            // ->when($this->form->contains('features', 'caption'), fn (Builder $query) => $query->where('caption', true))
-            // ->when($this->form->is('sort', 'longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            // ->when($this->form->is('sort', 'shortest'), fn (Builder $query) => $query->orderBy('duration', 'asc'))
-            // ->when($this->form->is('sort', 'released'), fn (Builder $query) => $query
-            //     ->orderBy('released', 'desc')
-            //     ->orderBy('created_at', 'desc')
-            // )
+            ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
             ->paginate(12 * 3);
     }
 
@@ -90,6 +76,14 @@ class Videos extends Component
                 ->component('dashboard.videos.filters.sort')
                 ->add('recent', fn (Action $item) => $item->label('Most recent (default)'))
                 ->add('random', fn (Action $item) => $item->label('Most watched'))
+            )
+            ->add('state', fn (Action $item) => $item
+                ->label(__('Visibility'))
+                ->icon('heroicon-s-chevron-down')
+                ->component('dashboard.videos.filters.visibility')
+                ->add('verified', fn (Action $item) => $item->label('Verified'))
+                ->add('pending', fn (Action $item) => $item->label('Pending'))
+                ->add('failed', fn (Action $item) => $item->label('Failed'))
             );
     }
 }

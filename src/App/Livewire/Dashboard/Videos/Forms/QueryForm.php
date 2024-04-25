@@ -17,6 +17,9 @@ class QueryForm extends Form
     #[Validate('required|string|in:recent,random|max:255')]
     public string $sort = 'recent';
 
+    #[Validate('required|array|in:verified,pending,failed')]
+    public array $visibility = [];
+
     public function getSearch(): string
     {
         return str($this->get('search', ''))
