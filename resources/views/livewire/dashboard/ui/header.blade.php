@@ -1,4 +1,4 @@
-<header class="border-b border-secondary-800/80">
+<header class="sticky z-30 top-0 border-b border-secondary-800/80">
     <x-wireuse::navigation-navbar class:padding="p-3">
         <x-slot:start>
             <a href="/" wire:navigate>
