@@ -7,7 +7,7 @@
 
     <main
         wire:poll.visible.900s
-        class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 md:grid-cols-3"
+        class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
     >
         @forelse ($this->items as $item)
             <x-dashboard.videos.content.item :$item />
