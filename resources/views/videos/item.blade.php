@@ -37,7 +37,7 @@
         </div>
 
         <div class="flex flex-col p-3.5">
-            <xa href="{{ route('videos.view', $item) }}">
+            <a href="{{ route('videos.view', $item) }}">
                 <h2
                     class="line-clamp-1 text-sm font-medium capitalize tracking-tight"
                     aria-label="{{ $item->title }}"
