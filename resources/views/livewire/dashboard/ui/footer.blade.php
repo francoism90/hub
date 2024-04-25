@@ -1,4 +1,4 @@
-<footer class="sticky bottom-0 z-30 py-1.5 px-3 border-t border-secondary-800/80">
+<footer class="sticky bottom-0 z-30 py-1.5 px-3 bg-inherit border-t border-secondary-800/80">
     <x-wireuse::layout-container class="flex items-center justify-center">
         <x-wireuse::navigation-tabs
             :$navigation
