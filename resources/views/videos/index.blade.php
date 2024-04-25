@@ -27,7 +27,6 @@
         Alpine.data('player', (manifest) => ({
             instance: null,
             ready: false,
-            open: false,
 
             async init() {
                 // Create instance
@@ -57,8 +56,6 @@
                 } catch (e) {
                     //
                 }
-
-                this.open = true
             },
 
             async stop() {
@@ -71,8 +68,6 @@
                 } catch (e) {
                     //
                 }
-
-                this.open = false
             },
         }));
     </script>
