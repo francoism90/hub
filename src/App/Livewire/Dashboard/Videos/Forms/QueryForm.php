@@ -11,11 +11,11 @@ class QueryForm extends Form
 
     protected static bool $store = true;
 
-    #[Validate('required|string|in:recent,random|max:255')]
-    public string $sort = 'recent';
-
     #[Validate('nullable|string|max:255')]
     public string $search = '';
+
+    #[Validate('required|string|in:recent,updated')]
+    public string $sort = 'recent';
 
     #[Validate('nullable|array|in:verified,pending,failed')]
     public array $visibility = [];

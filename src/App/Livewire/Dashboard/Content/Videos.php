@@ -53,6 +53,8 @@ class Videos extends Component
         $value = $this->form->getSearch();
 
         return $this->getScout($value)
+            ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
+            ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
             ->paginate(12 * 3);
     }
@@ -74,8 +76,8 @@ class Videos extends Component
                 ->label(__('Sort by'))
                 ->icon('heroicon-s-chevron-down')
                 ->component('dashboard.videos.filters.sort')
-                ->add('recent', fn (Action $item) => $item->label('Most recent (default)'))
-                ->add('random', fn (Action $item) => $item->label('Most watched'))
+                ->add('recent', fn (Action $item) => $item->label('Most recent'))
+                ->add('updated', fn (Action $item) => $item->label('Recently updated'))
             )
             ->add('state', fn (Action $item) => $item
                 ->label(__('Visibility'))
