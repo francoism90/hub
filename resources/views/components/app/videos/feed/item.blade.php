@@ -7,6 +7,6 @@
     ->merge([
         'wire:key' => $item->getRouteKey(),
     ])
-}}>>
+}}>
     {{ $item->title }}
 </article>

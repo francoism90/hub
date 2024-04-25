@@ -2,43 +2,48 @@
 
 namespace App\Videos\Controllers;
 
+use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Number;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\WithoutUrlPagination;
-use Livewire\WithPagination;
+use Livewire\Attributes\Locked;
 
 class VideoIndexController extends Page
 {
-    use WithPagination;
-    use WithoutUrlPagination;
     use WithQueryBuilder;
+
+    #[Locked]
+    public int $limit = 16;
 
     public function render(): View
     {
         return view('videos.index');
     }
 
-    public function previous(): void
-    {
-        $this->previousPage();
-    }
-
-    public function next(): void
-    {
-        $this->nextPage();
-    }
-
     #[Computed()]
-    public function items()
+    public function items(): VideoCollection
     {
         return $this->getQuery()
             ->recommended()
-            ->take(10)
+            ->take($this->getLimit())
             ->get();
+    }
+
+    public function fetch(): void
+    {
+        $this->limit += 10;
+
+        if ($this->getLimit() >= 100) {
+            $this->limit = 10;
+        }
+    }
+
+    protected function getLimit(): int
+    {
+        return Number::clamp($this->limit, min: 10, max: 100);
     }
 
     protected static function getModelClass(): ?string

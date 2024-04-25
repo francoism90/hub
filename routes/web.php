@@ -20,11 +20,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/search', SearchIndexController::class)->name('search');
 
     // Profile
-    Route::name('profile.')->group(function () {
-        Route::get('/history', HistoryController::class)->name('history');
-        Route::get('/favorites', FavoritesController::class)->name('favorites');
-        Route::get('/watchlist', WatchlistController::class)->name('watchlist');
-    });
+    // Route::name('profile.')->group(function () {
+    //     Route::get('/history', HistoryController::class)->name('history');
+    //     Route::get('/favorites', FavoritesController::class)->name('favorites');
+    //     Route::get('/watchlist', WatchlistController::class)->name('watchlist');
+    // });
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
