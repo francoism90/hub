@@ -5,6 +5,7 @@ namespace App\Videos\Controllers;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithoutUrlPagination;
@@ -36,7 +37,8 @@ class VideoIndexController extends Page
     {
         return $this->getQuery()
             ->recommended()
-            ->simplePaginate(1);
+            ->take(3)
+            ->get();
     }
 
     protected static function getModelClass(): ?string
