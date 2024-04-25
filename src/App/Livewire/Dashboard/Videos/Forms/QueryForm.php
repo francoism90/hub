@@ -7,6 +7,21 @@ use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
 {
-    #[Validate('required|string|max:255')]
+    protected static bool $recoverable = true;
+
+    protected static bool $store = true;
+
+    #[Validate('nullable|string|max:255')]
+    public string $search = '';
+
+    #[Validate('required|string|in:recent,random|max:255')]
     public string $sort = 'recent';
+
+    public function getSearch(): string
+    {
+        return str($this->get('search', ''))
+            ->headline()
+            ->squish()
+            ->value();
+    }
 }

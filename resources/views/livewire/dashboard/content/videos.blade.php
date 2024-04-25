@@ -5,4 +5,6 @@
         @endforeach
     </x-dashboard.videos.filters>
 
+    {{ $form->sort }}
+
 </x-wireuse::layout-container>
