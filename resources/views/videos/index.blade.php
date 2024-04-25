@@ -1,20 +1,26 @@
-<x-wireuse::layout-container class="flex flex-col flex-nowrap gap-y-2">
-    <livewire:app::videos-filters wire:model.live="form.search" />
+<x-wireuse::layout-container x-data="scroll" fluid>
+    <main class="bg-primary-500 h-screen max-h-[calc(100dvh-65px)]" @scroll.window.throttle="refresh">
+            dwdw
+    </main>
 
-    <div
-        class="grid gap-y-2 grid-cols-1 divide-y divide-gray-700 overflow-hidden"
-        wire:poll.keep-alive.2400s
-    >
-        @forelse ($this->items as $item)
-            <x-app::videos-card :$item />
-        @empty
-            <div class="flex items-center justify-center p-8 text-gray-400">
-                {{ __('No videos found') }}
-            </div>
-        @endforelse
-
-        <div class="py-4">
-            {{ $this->items->links('pagination.simple') }}
-        </div>
-    </div>
 </x-wireuse::layout-container>
+
+@script
+    <script>
+        Alpine.data('scroll', () => ({
+            instance: null,
+
+            async init() {
+                console.log('scroll')
+            },
+
+            async destroy() {
+                console.log('scroll')
+            },
+
+            async refresh() {
+                console.log('scroll')
+            },
+        }));
+    </script>
+@endscript
