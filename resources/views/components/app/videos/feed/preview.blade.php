@@ -5,7 +5,7 @@
 <div
     x-data="player('{{ $item->preview }}')"
     x-ref="container"
-    class="h-full w-full bg-black"
+    class="absolute inset-0 z-20 bg-black"
 >
     <video
         x-cloak
@@ -14,7 +14,7 @@
         x-intersect:leave="stop"
         x-on:click="toggle"
         playsinline
-        autoplay
+        {{-- autoplay --}}
         muted
         class="w-full h-full"
     />
