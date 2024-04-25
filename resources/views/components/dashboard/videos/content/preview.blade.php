@@ -13,7 +13,7 @@
         x-on:touchmove.passive="start"
         x-on:touchend.passive="stop"
         href="{{ route('videos.view', $item) }}"
-        class="relative h-40 w-full border-b border-gray-700/30 bg-black"
+        class="relative block h-40 w-full border-b border-secondary-700/30 bg-black"
     >
         <img
             alt="{{ $item->title }}"
@@ -28,12 +28,10 @@
             x-cloak
             x-ref="video"
             x-show="open"
-            src=""
             class="absolute inset-0 z-10 h-40 max-h-40 w-full rounded-t object-fill"
             playsinline
             autoplay
             muted
-            {{ $attributes }}
         />
     </a>
 </div>
