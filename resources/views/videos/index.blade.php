@@ -1,6 +1,6 @@
 <x-wireuse::layout-container
     x-data="scroll"
-    class="w-screen h-screen max-h-[calc(100dvh-65px)] snap-mandatory snap-y overflow-y-scroll bg-black/25"
+    class="w-full h-full snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
 >
     @forelse ($this->items as $item)
@@ -58,7 +58,7 @@
 
             async stop() {
                 try {
-                    if (this.$refs.video?.playing) {
+                    if (! this.$refs.video?.paused) {
                         await this.$refs.video?.pause()
                     }
 
