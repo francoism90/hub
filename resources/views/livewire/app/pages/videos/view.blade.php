@@ -1,6 +1,9 @@
-<x-wireuse::layout-container
-    class="h-[calc(100vh-4rem)] snap-mandatory snap-y overflow-y-scroll bg-black/25"
-    fluid
->
-   video
-</x-wireuse::layout-container>
+@props([
+    'video',
+])
+
+<div class="relative h-full w-full">
+    <x-app.videos.player :$video>
+        <x-app.videos.player.seek />
+    </x-app.videos.player>
+</div>

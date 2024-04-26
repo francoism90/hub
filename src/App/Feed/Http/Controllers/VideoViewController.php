@@ -5,7 +5,9 @@ namespace App\Feed\Http\Controllers;
 use App\Livewire\App\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
+use Livewire\Attributes\Layout;
 
+#[Layout('components.layouts.simple')]
 class VideoViewController extends Page
 {
     use WithVideo;
@@ -20,8 +22,8 @@ class VideoViewController extends Page
         $id = $this->getVideoId();
 
         return [
-            "echo-private:user.{$id},.video.deleted" => '$refresh',
-            "echo-private:user.{$id},.video.updated" => '$refresh',
+            "echo-private:video.{$id},.video.deleted" => '$refresh',
+            "echo-private:video.{$id},.video.updated" => '$refresh',
         ];
     }
 }

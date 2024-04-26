@@ -9,8 +9,10 @@ use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Number;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 
+#[Layout('components.layouts.app')]
 class VideoIndexController extends Page
 {
     use WithQueryBuilder;
