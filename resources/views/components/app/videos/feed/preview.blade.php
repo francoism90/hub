@@ -1,5 +1,4 @@
 @props([
-    'preview',
     'video',
 ])
 
@@ -17,17 +16,15 @@
         loading="lazy"
     />
 
-    @if ($preview)
-        <video
-            x-cloak
-            x-ref="video"
-            x-intersect:enter="play"
-            x-intersect:leave="stop"
-            x-on:click="toggle"
-            playsinline
-            muted
-            autoplay
-            class="h-full w-full absolute inset-0 z-40"
-        />
-    @endif
+    <video
+        x-cloak
+        x-ref="video"
+        x-intersect:enter="play"
+        x-intersect:leave="stop"
+        x-on:click="toggle"
+        playsinline
+        muted
+        autoplay
+        class="h-full w-full absolute inset-0 z-40"
+    />
 </div>

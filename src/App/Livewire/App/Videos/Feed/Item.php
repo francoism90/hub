@@ -13,9 +13,6 @@ class Item extends Component
 {
     use WithVideo;
 
-    #[Session]
-    public bool $preview = false;
-
     public function render()
     {
         return view('livewire.app.videos.feed.item')->with([
@@ -24,18 +21,14 @@ class Item extends Component
         ]);
     }
 
+    public function updated(): void
+    {
+        $this->dispatch('$refresh');
+    }
+
     protected function navigation(): Navigation
     {
-        return Navigation::make()
-            ->add('preview', fn (NavigationItem $item) => $item
-                ->label(__('Toggle Preview'))
-                ->icon('heroicon-o-eye')
-                ->iconActive('heroicon-s-eye')
-                ->active($this->preview)
-                ->bladeAttributes([
-                    'wire:click' => new HtmlString('$toggle(\'preview\')'),
-                ])
-        );
+        return Navigation::make();
     }
 
     protected function controls(): Navigation
