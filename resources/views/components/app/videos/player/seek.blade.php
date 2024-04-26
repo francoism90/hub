@@ -3,13 +3,13 @@
 ])
 
 <div class="absolute z-10 inset-x-4 bottom-4">
-    {{-- <input x-model="currentTime" x-mask:dynamic="creditCardMask" class="text-white bg-transparent"> --}}
+    <strong x-text="currentTime"></strong>
+    <strong x-text="bufferedPct(buffered, duration)"></strong>
+
 
     <strong x-text="timeFormat(currentTime)"></strong>
 
-        {{-- Time: <strong x-show="currentTime > 1" x-text="currentTime"></strong> --}}
-        {{-- Time: <strong x-text="duration"></strong> --}}
-    {{-- </div> --}}
+
 
     <input
         type="range"
