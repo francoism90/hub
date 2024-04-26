@@ -5,7 +5,7 @@
 <div
     x-data="player('{{ $item->preview }}')"
     x-ref="container"
-    class="absolute inset-0 z-20 bg-black"
+    class="absolute inset-y-0 inset-x-0 sm:inset-x-10 z-20 bg-black"
 >
     <video
         x-cloak

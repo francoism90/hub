@@ -2,8 +2,8 @@
     'item',
 ])
 
-<div class="absolute left-4 bottom-4 z-30">
-    <h1 class="pt-4 font-medium text-sm leading-none tracking-tight line-clamp-1">
+<div class="absolute bottom-4 inset-x-4 sm:inset-x-16 z-30">
+    <h1 class="font-medium text-sm leading-none tracking-tight line-clamp-1">
         {{ $item->title }}
     </h1>
 
