@@ -16,8 +16,6 @@
             class="progress progress-primary h-full w-full absolute z-10 inset-0"
         ></progress>
 
-        {{ $video->name }}
-
         <input
             type="range"
             x-model="currentTime"

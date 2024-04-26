@@ -8,10 +8,5 @@
             <span x-text="timeFormat(currentTime)"></span> /
             <span x-text="timeFormat(duration)"></span>
         </p>
-
-        <p class="text-sm font-medium">
-            <span x-text="timeFormat(currentTime)"></span> /
-            <span x-text="timeFormat(duration)"></span>
-        </p>
     </div>
 </div>
