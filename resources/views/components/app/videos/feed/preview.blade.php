@@ -13,7 +13,7 @@
             alt="{{ $video->title }}"
             srcset="{{ $video->placeholder }}"
             src="{{ $video->thumbnail }}"
-            class="h-full w-full object-contain"
+            class="h-full w-full brightness-90 object-contain"
             crossorigin="use-credentials"
             loading="lazy"
         />
@@ -27,7 +27,7 @@
             autoplay
             loop
             @class([
-                'h-full w-full absolute inset-0 z-40' => $preview,
+                'h-full w-full absolute inset-0 z-40 brightness-90' => $preview,
                 'hidden' => ! $preview,
             ])
         />
