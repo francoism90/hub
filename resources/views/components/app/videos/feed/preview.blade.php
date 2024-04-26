@@ -19,7 +19,7 @@
     <video
         x-cloak
         x-ref="video"
-        x-intersect:enter="play"
+        {{-- x-intersect:enter="play" --}}
         x-intersect:leave="stop"
         x-on:click="toggle"
         playsinline

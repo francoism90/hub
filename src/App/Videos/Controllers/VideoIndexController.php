@@ -16,7 +16,7 @@ class VideoIndexController extends Page
     use WithQueryBuilder;
 
     #[Locked]
-    public int $limit = 16;
+    public int $limit = 3;
 
     public function render(): View
     {
@@ -43,7 +43,7 @@ class VideoIndexController extends Page
 
     protected function getLimit(): int
     {
-        return Number::clamp($this->limit, min: 10, max: 100);
+        return Number::clamp($this->limit, min: 3, max: 100);
     }
 
     protected static function getModelClass(): ?string

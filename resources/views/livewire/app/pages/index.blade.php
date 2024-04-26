@@ -4,7 +4,7 @@
     fluid
 >
     @forelse ($this->items as $video)
-        <livewire:livewire.app.videos.feed.item :$video />
+        <livewire:livewire.app.videos.feed.item :$video :key="$video->getRouteKey()" />
     @empty
         {{ __('No videos available') }}
     @endforelse
