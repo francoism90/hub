@@ -19,7 +19,8 @@
         <source src="" />
     </video>
 
-    {{ $slot }}
+    <x-app.player.controls.seekbar :$video />
+    <x-app.player.controls.panel :$video />
 </div>
 
 @script
