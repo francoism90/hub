@@ -5,6 +5,7 @@ namespace App\Livewire\App\Videos\Feed;
 use App\Livewire\App\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
+use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 
@@ -15,12 +16,17 @@ class Item extends Component
     #[Session(key: 'feed-preview')]
     public bool $preview = false;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.app.videos.feed.item')->with([
             'navigation' => $this->navigation(),
             'controls' => $this->controls(),
         ]);
+    }
+
+    public function updated(): void
+    {
+        $this->dispatch('$refresh');
     }
 
     protected function navigation(): Navigation
