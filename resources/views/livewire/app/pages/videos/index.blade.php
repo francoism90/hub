@@ -12,8 +12,6 @@
     @endforelse
 
     <div x-intersect.full="$wire.fetch()"></div>
-
-    <x-app.videos.player />
 </x-wireuse::layout-container>
 @endpersist
 
