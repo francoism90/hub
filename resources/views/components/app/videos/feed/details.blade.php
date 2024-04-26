@@ -1,28 +1,24 @@
-@aware([
-    'item',
-])
-
-<div class="absolute bottom-4 inset-x-4 sm:inset-x-16 z-30">
+<div class="absolute z-30 bottom-4 inset-x-4 sm:inset-x-16">
     <h1 class="font-medium text-sm leading-none tracking-tight line-clamp-1">
-        {{ $item->title }}
+        {{ $this->video->title }}
     </h1>
 
-    <dl class="inline-flex items-center text-xs text-secondary-400">
+    <dl class="inline-flex videos-center text-xs text-secondary-400">
         <dt class="sr-only">{{ __('Time') }}</dt>
         <dd class="text-ellipsis">
             <time>
-                {{ duration($item->duration) }}
+                {{ duration($this->video->duration) }}
             </time>
         </dd>
 
-        @if ($item->episode || $item->season)
+        @if ($this->video->episode || $this->video->season)
             <dt class="sr-only">{{ __('ID') }}</dt>
             <dd class="text-ellipsis">
-                {{ $item->identifier }}
+                {{ $this->video->identifier }}
             </dd>
         @endif
 
-        @if ($item->caption)
+        @if ($this->video->caption)
             <dt class="sr-only">{{ __('Captions') }}</dt>
             <dd class="text-ellipsis">
                 {{ __('CC') }}
@@ -31,15 +27,15 @@
 
         <dt class="sr-only">{{ __('Published on') }}</dt>
         <dd class="text-ellipsis">
-            <time datetime="{{ $item->published->jsonSerialize() }}">
-                {{ $item->published->format('M d, Y') }}
+            <time datetime="{{ $this->video->published->jsonSerialize() }}">
+                {{ $this->video->published->format('M d, Y') }}
             </time>
         </dd>
     </dl>
 
-    @if ($item->tags()->count())
+    @if ($this->video->tags()->count())
         <div class="flex flex-wrap gap-2 line-clamp-1">
-            @foreach ($item->tags as $tag)
+            @foreach ($this->video->tags as $tag)
                 <a
                     wire:key="tag-{{ $tag->getRouteKey() }}"
                     class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"

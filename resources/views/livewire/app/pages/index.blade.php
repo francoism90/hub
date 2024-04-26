@@ -3,8 +3,9 @@
     class="h-[calc(100vh-4rem)] snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
 >
-    @forelse ($this->items as $item)
-        <x-app.videos.feed.item :$item />
+    @forelse ($this->items as $video)
+        {{-- <x-app.videos.feed.item :$item /> --}}
+        <livewire:livewire.app.videos.feed.item :$video />
     @empty
         {{ __('No videos available') }}
     @endforelse
