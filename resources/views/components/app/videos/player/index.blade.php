@@ -5,8 +5,9 @@
 @script
     <script>
         Alpine.data('player', (manifest) => ({
-            instance: null,
+            instance: undefined,
             ready: false,
+            id: undefined,
 
             async init() {
                 // Create instance
