@@ -19,7 +19,7 @@
                     >
                         <a
                             wire:navigate
-                            href="{{ route('tags.view', $relatable) }}"
+                            {{-- href="{{ route('tags.view', $relatable) }}" --}}
                         >
                             {{ $relatable->name }}
                         </a>

@@ -3,7 +3,7 @@
         <x-wireui::actions-link
             wire:key="query-{{ $item->getRouteKey() }}"
             class="font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            href="{{ route('tags.view', $item) }}"
+            {{-- href="{{ route('tags.view', $item) }}" --}}
             aria-label="{{ $item->name }}"
             title="{{ $item->name }}"
         >

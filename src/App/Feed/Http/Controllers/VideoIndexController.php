@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Videos\Controllers;
+namespace App\Feed\Http\Controllers;
 
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Models\Video;
@@ -20,7 +20,7 @@ class VideoIndexController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.pages.index');
+        return view('livewire.app.pages.videos.index');
     }
 
     #[Computed()]
