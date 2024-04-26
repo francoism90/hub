@@ -4,7 +4,6 @@
     fluid
 >
     @forelse ($this->items as $video)
-        {{-- <x-app.videos.feed.item :$item /> --}}
         <livewire:livewire.app.videos.feed.item :$video />
     @empty
         {{ __('No videos available') }}
@@ -22,13 +21,5 @@
                 $wire.fetch();
             },
         }));
-
-        Alpine.store('previews', {
-            on: false,
-
-            toggle() {
-                this.on = ! this.on
-            }
-        })
 </script>
 @endscript

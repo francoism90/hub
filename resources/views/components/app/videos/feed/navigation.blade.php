@@ -1,10 +1,10 @@
 @props([
-    'controls',
+    'navigation',
 ])
 
-<div class="absolute z-30 bottom-4 right-4 sm:-right-2">
-    <nav class="flex flex-col flex-nowrap items-center justify-center gap-y-4">
-        @foreach ($controls->items as $action)
+<div class="absolute z-30 top-4 inset-x-4">
+    <nav class="flex flex-nowrap items-center gap-x-4">
+        @foreach ($navigation->items as $action)
             <x-wireuse::actions-link
                 :$action
                 class:label="sr-only"
