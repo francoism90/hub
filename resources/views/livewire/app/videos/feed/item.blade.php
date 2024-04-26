@@ -1,6 +1,6 @@
 <article
     wire:key="{{ $video->getRouteKey() }}"
-    class="relative w-full h-full snap-center"
+    class="relative w-full h-full snap-center bg-black"
 >
     <img
         alt="{{ $video->title }}"
@@ -12,8 +12,8 @@
     />
 
     <div class="absolute z-10 mx-auto inset-0 w-full sm:w-3/5 xl:max-w-2xl">
-        <x-app.videos.feed.preview />
-        <x-app.videos.feed.details />
+        <x-app.videos.feed.preview :$video />
+        <x-app.videos.feed.details :$video />
         <x-app.videos.feed.controls :$controls />
     </div>
 </article>

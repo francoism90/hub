@@ -22,5 +22,13 @@
                 $wire.fetch();
             },
         }));
-    </script>
+
+        Alpine.store('previews', {
+            on: false,
+
+            toggle() {
+                this.on = ! this.on
+            }
+        })
+</script>
 @endscript
