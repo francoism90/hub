@@ -10,6 +10,7 @@
     <div x-data="player('{{ $video->preview }}')">
         <div
             x-ref="container"
+            x-intersect:enter="load"
             x-intersect:leave="destroy"
             class="absolute z-20 inset-y-0 inset-x-0 bg-black/25 sm:inset-x-10 sm:bg-black"
         >
@@ -41,13 +42,14 @@
 
 @script
     <script>
-        Alpine.data('player', (manifest, preview) => ({
+        Alpine.data('player', (manifest) => ({
             instance: undefined,
+            manifest: undefined,
             ready: false,
 
             async init() {
-                // Reset ready
                 this.ready = false
+                this.manifest = manifest
 
                 // Create instance
                 this.instance = new window.shaka.Player()
@@ -60,11 +62,12 @@
                  // Attach element
                 await this.instance.attach(this.$refs.video)
 
-                // Load manifest
-                await this.instance.load(manifest)
-
                 // Set ready
                 this.ready = true
+            },
+
+            async load() {
+                await this.instance.load(this.manifest)
             },
 
             async destroy() {
