@@ -7,7 +7,7 @@
         Alpine.data('player', (manifest) => ({
             instance: undefined,
             ready: false,
-            id: undefined,
+            open: false,
 
             async init() {
                 // Create instance
@@ -21,6 +21,9 @@
                     .getNetworkingEngine()
                     .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
 
+                // Load manifest
+                await this.instance.load(manifest);
+
                 // Set ready
                 this.ready = true;
             },
@@ -31,7 +34,8 @@
 
             async play() {
                 try {
-                    await this.instance.load(manifest);
+                    if (! this.$refs.video?.paused) return;
+                    await this.$refs.video?.play()
                 } catch (e) {
                     //
                 }
@@ -50,13 +54,17 @@
             },
 
             async toggle() {
+                this.open = ! this.open
+
                 try {
-                    this.$refs.video?.paused
-                        ? await this.$refs.video?.play()
-                        : await this.$refs.video?.pause()
+                    this.open
+                        ? await this.play()
+                        : await this.stop()
                 } catch (e) {
                     //
                 }
+
+
             },
         }));
     </script>
