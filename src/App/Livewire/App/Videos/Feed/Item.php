@@ -13,7 +13,7 @@ class Item extends Component
     use WithVideo;
 
     #[Session(key: 'feed-preview')]
-    public $preview = false;
+    public bool $preview = false;
 
     public function render()
     {
