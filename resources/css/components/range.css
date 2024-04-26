@@ -7,7 +7,7 @@
         }
 
         &::-webkit-slider-thumb {
-            @apply h-1 w-10 appearance-none bg-transparent;
+            @apply h-12 w-6 appearance-none bg-transparent;
         }
 
         &::-moz-progress-bar {
@@ -17,10 +17,6 @@
         &-primary {
             &::-webkit-progress-value {
                 @apply bg-primary-500;
-            }
-
-            &::-webkit-slider-thumb {
-                @apply h-14;
             }
         }
 
