@@ -1,0 +1,15 @@
+@layer components {
+    .dl {
+        @apply inline-flex flex-wrap items-center;
+
+        dd:not(.sr-only) {
+            &&::after {
+                @apply pr-1 content-['-'];
+            }
+        }
+
+        dd:last-child:after {
+            @apply pr-0 content-[];
+        }
+    }
+}

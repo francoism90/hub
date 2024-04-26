@@ -1,0 +1,24 @@
+@layer components {
+    .progress {
+        &::-webkit-progress-bar,
+        &::-webkit-progress-value {
+            @apply bg-transparent;
+        }
+
+        &::-moz-progress-bar {
+            @apply bg-transparent;
+        }
+
+        &-primary {
+            &::-webkit-progress-value {
+                @apply bg-primary-500;
+            }
+        }
+
+        &-secondary {
+            &::-webkit-progress-value {
+                @apply bg-secondary-500;
+            }
+        }
+    }
+}
