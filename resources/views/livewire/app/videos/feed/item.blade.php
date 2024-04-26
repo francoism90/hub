@@ -1,7 +1,4 @@
-<article
-    wire:key="{{ $video->getRouteKey() }}"
-    class="relative w-full h-full snap-center bg-black"
->
+<article class="relative w-full h-full snap-center bg-black">
     <img
         alt="{{ $video->title }}"
         srcset="{{ $video->placeholder }}"
