@@ -23,11 +23,6 @@ class Item extends Component
         ]);
     }
 
-    public function updated(): void
-    {
-        $this->dispatch('$refresh');
-    }
-
     protected function navigation(): Navigation
     {
         return Navigation::make()
