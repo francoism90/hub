@@ -16,6 +16,7 @@ class Item extends Component
     public function render()
     {
         return view('livewire.app.videos.feed.item')->with([
+            'play' => $this->play(),
             'navigation' => $this->navigation(),
             'controls' => $this->controls(),
         ]);
@@ -24,6 +25,14 @@ class Item extends Component
     public function updated(): void
     {
         $this->dispatch('$refresh');
+    }
+
+    protected function play(): NavigationItem
+    {
+        return NavigationItem::make()
+            ->label(__('Play'))
+            ->icon('heroicon-o-play')
+            ->route('videos.view', $this->video);
     }
 
     protected function navigation(): Navigation

@@ -12,7 +12,7 @@
         alt="{{ $video->title }}"
         srcset="{{ $video->placeholder }}"
         src="{{ $video->thumbnail }}"
-        class="h-full w-full object-contain"
+        class="h-full w-full brightness-75 object-contain"
         crossorigin="use-credentials"
         loading="lazy"
     />
