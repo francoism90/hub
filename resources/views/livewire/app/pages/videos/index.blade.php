@@ -15,7 +15,6 @@
 </x-wireuse::layout-container>
 @endpersist
 
-
 @script
     <script>
         Alpine.data('player', (manifest) => ({

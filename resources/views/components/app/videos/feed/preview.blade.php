@@ -6,7 +6,6 @@
     x-data="player('{{ $video->preview }}')"
     x-ref="container"
     class="absolute z-20 inset-y-0 inset-x-0 bg-black/25 sm:inset-x-10 sm:bg-black"
-    x-on:click="toggle"
 >
     <img
         alt="{{ $video->title }}"

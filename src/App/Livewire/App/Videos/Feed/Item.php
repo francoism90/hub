@@ -5,8 +5,6 @@ namespace App\Livewire\App\Videos\Feed;
 use App\Livewire\App\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
-use Illuminate\Support\HtmlString;
-use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class Item extends Component
@@ -16,7 +14,6 @@ class Item extends Component
     public function render()
     {
         return view('livewire.app.videos.feed.item')->with([
-            'play' => $this->play(),
             'navigation' => $this->navigation(),
             'controls' => $this->controls(),
         ]);
@@ -27,17 +24,14 @@ class Item extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function play(): NavigationItem
-    {
-        return NavigationItem::make()
-            ->label(__('Play'))
-            ->icon('heroicon-o-play')
-            ->route('videos.view', $this->video);
-    }
-
     protected function navigation(): Navigation
     {
-        return Navigation::make();
+        return Navigation::make()
+            ->add('preview', fn (NavigationItem $item) => $item
+                ->label(__('Toggle Previews'))
+                ->icon('heroicon-o-eye')
+                ->iconActive('heroicon-s-eye')
+            );
     }
 
     protected function controls(): Navigation
