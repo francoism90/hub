@@ -11,8 +11,10 @@
     dl {
         @apply inline-flex flex-wrap items-center;
 
-        dd:after {
-            @apply pr-1 content-['-'];
+        dd:not(.sr-only) {
+            &&::after {
+                @apply pr-1 content-['-'];
+            }
         }
 
         dd:last-child:after {

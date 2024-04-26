@@ -30,7 +30,7 @@
         @endif
 
         <dt class="sr-only">{{ __('Published on') }}</dt>
-        <dd class="text-ellipsis">
+        <dd class="sr-only text-ellipsis">
             <time datetime="{{ $video->published->jsonSerialize() }}">
                 {{ $video->published->format('M d, Y') }}
             </time>
