@@ -13,6 +13,8 @@
         x-ref="video"
         x-show="ready"
         x-on:durationchange="handleEvent"
+        x-on:play.debounce.100ms="handleEvent"
+        x-on:playing.debounce.100ms="handleEvent"
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="w-full h-full absolute z-0 inset-0"
@@ -22,8 +24,13 @@
         <source />
     </video>
 
-    <x-app.player.controls.seekbar :$video />
-    <x-app.player.controls.panel :$video :$controls />
+    <div
+        x-cloak
+        x-show="ready"
+    >
+        <x-app.player.controls.seekbar :$video />
+        <x-app.player.controls.panel :$video :$panel />
+    </div>
 </div>
 
 @script
@@ -78,7 +85,7 @@
                     ? await this.$refs.video.play()
                     : await this.$refs.video.pause()
 
-                this.paused = this.$refs.video.paused;
+                this.paused = this.$refs.video.paused
             },
 
             async setCurrentTime(event) {

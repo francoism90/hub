@@ -15,22 +15,22 @@ class Video extends Component
     public function render(): View
     {
         return view('livewire.app.player.video')->with([
-            'controls' => $this->controls(),
+            'panel' => $this->panel(),
         ]);
     }
 
-    protected function controls(): ActionGroup
+    protected function panel(): ActionGroup
     {
         return ActionGroup::make()
-            ->action($this->playAction());
+            ->action($this->togglePlayAction());
     }
 
-    protected function playAction(): Action
+    protected function togglePlayAction(): Action
     {
-        return Action::make('play')
-            ->label(__('Play'))
-            ->icon('heroicon-o-square-2-stack')
-            ->iconActive('heroicon-s-square-2-stack')
+        return Action::make('toggle-playback')
+            ->label(__('Toggle Playback'))
+            ->icon('heroicon-o-pause-circle')
+            ->iconActive('heroicon-o-play-circle')
             ->state('paused')
             ->bladeAttributes([
                 'x-on:click' => 'togglePlayback',
