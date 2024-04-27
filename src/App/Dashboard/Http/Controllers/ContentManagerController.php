@@ -25,7 +25,7 @@ class ContentManagerController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.content')->with([
+        return view('livewire.dashboard.pages.content.index')->with([
             'navigation' => $this->tabs(),
         ]);
     }

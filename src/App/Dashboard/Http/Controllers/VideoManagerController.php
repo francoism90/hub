@@ -21,7 +21,7 @@ class VideoManagerController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.index');
+        return view('livewire.dashboard.pages.content.video');
     }
 
     protected function getTitle(): string
