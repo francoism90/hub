@@ -7,6 +7,8 @@
     x-ref="container"
     x-intersect:enter="load"
     x-intersect:leave="destroy"
+    x-on:mousemove="showOverlay"
+    x-on:click="showOverlay"
 >
     <video
         x-cloak
@@ -26,7 +28,8 @@
 
     <div
         x-cloak
-        x-show="ready"
+        x-transition
+        x-show="overlay"
     >
         <x-app.player.controls.seekbar :$video />
         <x-app.player.controls.panel :$video :$panel />
@@ -41,6 +44,8 @@
             ready: false,
             live: false,
             paused: true,
+            overlay: false,
+            idle: 0,
             duration: 0.0,
             currentTime: 0.0,
             buffered: 0.0,
@@ -86,6 +91,13 @@
                     : await this.$refs.video.pause()
 
                 this.paused = this.$refs.video.paused
+            },
+
+            async showOverlay() {
+                clearTimeout(this.idle);
+
+                this.overlay = true
+                this.idle = setTimeout(() => this.overlay = false, 1500)
             },
 
             async setCurrentTime(event) {
