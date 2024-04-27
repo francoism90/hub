@@ -37,6 +37,10 @@ class VideoManagerController extends Page
     {
         return Navigation::make()
             ->active($this->tab)
+            ->attributes([
+                'model' => $this->video->getMorphClass(),
+                'id' => $this->video->getRouteKey(),
+            ])
             ->add('general', fn (NavigationItem $item) => $item
                 ->wireModel('tab')
                 ->label(__('General'))

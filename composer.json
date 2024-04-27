@@ -15,7 +15,7 @@
         "filament/spatie-laravel-google-fonts-plugin": "^3.2.71",
         "filament/spatie-laravel-media-library-plugin": "^3.2.71",
         "filament/spatie-laravel-translatable-plugin": "^3.2.71",
-        "foxws/wireui": "^0.0.7",
+        "foxws/wireuse": "*",
         "guzzlehttp/guzzle": "^7.8.1",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.5.0",
