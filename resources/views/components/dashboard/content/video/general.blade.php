@@ -3,5 +3,5 @@
 ])
 
 <div>
-    {{ $video->title }}
+    General: {{ $this->video->name }}
 </div>

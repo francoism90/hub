@@ -27,4 +27,6 @@
             @endif
         </dl>
     </div>
+
+    <x-dashboard.ui.tabs :$navigation />
 </x-wireuse::layout-container>
