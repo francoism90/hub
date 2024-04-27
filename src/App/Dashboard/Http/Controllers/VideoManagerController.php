@@ -2,7 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Content\Video\General;
+use App\Livewire\Dashboard\Videos\Panels\General;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Navigation\Support\Navigation;
