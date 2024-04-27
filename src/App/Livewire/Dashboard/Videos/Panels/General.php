@@ -28,11 +28,11 @@ class General extends Component
         return view('livewire.dashboard.videos.panels.general');
     }
 
-    public function save()
+    public function save(): void
     {
         $this->canUpdate($this->getModel());
 
-
+        dd('update here');
     }
 
     protected function getModel(): Video
