@@ -1,4 +1,4 @@
-@props([
+@aware([
     'video',
     'controls'
 ])

@@ -17,13 +17,13 @@
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="w-full h-full absolute z-0 inset-0"
         playsinline
-        autoplay
+        {{-- autoplay --}}
     >
         <source />
     </video>
 
     <x-app.player.controls.seekbar :$video />
-    <x-app.player.controls.panel :$video />
+    <x-app.player.controls.panel :$video :$controls />
 </div>
 
 @script
