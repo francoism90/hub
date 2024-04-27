@@ -101,6 +101,12 @@
                 this.idle = setTimeout(() => this.overlay = false, 1500)
             },
 
+            async forceOverlay() {
+                clearTimeout(this.idle);
+
+                this.overlay = true
+            },
+
             async setCurrentTime(event) {
                 this.$refs.video.currentTime = event.target.value
             },
