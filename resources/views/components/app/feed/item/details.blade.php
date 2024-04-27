@@ -1,13 +1,13 @@
-@props([
+@aware([
     'video',
 ])
 
 <div class="absolute z-30 bottom-4 inset-x-4 sm:inset-x-16">
-    <h1 class="font-medium text-sm leading-none tracking-tight line-clamp-1">
+    <h1 class="h-24 flex items-end text-sm font-semibold leading-none tracking-tight line-clamp-2">
         {{ $video->title }}
     </h1>
 
-    <dl class="dl text-xs text-secondary-400">
+    <dl class="dl text-xs font-medium text-secondary-400">
         <dt class="sr-only">{{ __('Time') }}</dt>
         <dd class="text-ellipsis">
             <time>
@@ -30,7 +30,7 @@
         @endif
 
         <dt class="sr-only">{{ __('Published on') }}</dt>
-        <dd class="sr-only text-ellipsis">
+        <dd class="text-ellipsis">
             <time datetime="{{ $video->published->jsonSerialize() }}">
                 {{ $video->published->format('M d, Y') }}
             </time>
