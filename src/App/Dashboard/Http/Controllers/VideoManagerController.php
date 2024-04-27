@@ -2,6 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
+use App\Livewire\Dashboard\Content\Video\General;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Navigation\Support\Navigation;
@@ -39,7 +40,7 @@ class VideoManagerController extends Page
             ->add('general', fn (NavigationItem $item) => $item
                 ->wireModel('tab')
                 ->label(__('General'))
-                ->component('dashboard.content.video.general')
+                ->livewire(General::class)
             )
             ->add('assets', fn (NavigationItem $item) => $item
                 ->wireModel('tab')
