@@ -13,7 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
 
     // Videos
-    Route::name('videos.')->prefix('videos')->group(function () {
+    Route::name('videos.')->group(function () {
         Route::get('/{video}', VideoViewController::class)->name('view');
     });
 });
