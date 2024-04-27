@@ -5,8 +5,8 @@ namespace App\Dashboard\Http\Controllers;
 use App\Livewire\Dashboard\Videos\Panels\General;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
-use Foxws\WireUse\Navigation\Support\Navigation;
-use Foxws\WireUse\Navigation\Support\NavigationItem;
+use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -33,20 +33,20 @@ class VideoManagerController extends Page
         $this->canUpdate($this->video);
     }
 
-    protected function navigation(): Navigation
+    protected function navigation(): ActionGroup
     {
-        return Navigation::make()
+        return ActionGroup::make()
             ->active($this->tab)
             ->attributes([
                 'model' => $this->video->getMorphClass(),
                 'id' => $this->video->getRouteKey(),
             ])
-            ->add('general', fn (NavigationItem $item) => $item
+            ->add('general', fn (Action $item) => $item
                 ->wireModel('tab')
                 ->label(__('General'))
                 ->livewire(General::class)
             )
-            ->add('assets', fn (NavigationItem $item) => $item
+            ->add('assets', fn (Action $item) => $item
                 ->wireModel('tab')
                 ->label(__('Assets'))
                 // ->livewire(Tags::class)

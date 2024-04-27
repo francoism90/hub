@@ -14,6 +14,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Videos
     Route::name('videos.')->group(function () {
-        Route::get('/{video}', VideoViewController::class)->name('view');
+        Route::get('/video/{video}', VideoViewController::class)->name('view');
     });
 });

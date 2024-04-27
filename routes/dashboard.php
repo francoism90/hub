@@ -15,6 +15,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Content
     Route::name('content.')->prefix('content')->group(function () {
         Route::get('/', ContentManagerController::class)->name('index');
-        Route::get('/{video}', VideoManagerController::class)->name('video');
+        Route::get('/video/{video}', VideoManagerController::class)->name('video');
     });
 });

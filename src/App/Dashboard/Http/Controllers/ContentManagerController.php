@@ -4,8 +4,8 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Content\Tags;
 use App\Livewire\Dashboard\Content\Videos;
-use Foxws\WireUse\Navigation\Support\Navigation;
-use Foxws\WireUse\Navigation\Support\NavigationItem;
+use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -26,20 +26,20 @@ class ContentManagerController extends Page
     public function render(): View
     {
         return view('livewire.dashboard.pages.content.index')->with([
-            'navigation' => $this->tabs(),
+            'actions' => $this->actions(),
         ]);
     }
 
-    protected function tabs(): Navigation
+    protected function actions(): ActionGroup
     {
-        return Navigation::make()
+        return ActionGroup::make()
             ->active($this->tab)
-            ->add('videos', fn (NavigationItem $item) => $item
+            ->add('videos', fn (Action $item) => $item
                 ->wireModel('tab')
                 ->label(__('Videos'))
                 ->livewire(Videos::class)
             )
-            ->add('tags', fn (NavigationItem $item) => $item
+            ->add('tags', fn (Action $item) => $item
                 ->wireModel('tab')
                 ->label(__('Tags'))
                 ->livewire(Tags::class)
