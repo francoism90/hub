@@ -5,12 +5,14 @@ namespace App\Livewire\Dashboard\Videos\Panels;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
+use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class General extends Component
 {
     use WithAction;
+    use WithAuthorization;
 
     public GeneralForm $form;
 
@@ -24,6 +26,13 @@ class General extends Component
     public function render(): View
     {
         return view('livewire.dashboard.videos.panels.general');
+    }
+
+    public function save()
+    {
+        $this->canUpdate($this->getModel());
+
+
     }
 
     protected function getModel(): Video
