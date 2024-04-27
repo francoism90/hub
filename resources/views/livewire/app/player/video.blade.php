@@ -27,17 +27,18 @@
         <source />
     </video>
 
-    <div
+    <x-app.player.controls
+        :$video
+        :$panel
+        :$settings
         x-cloak
         x-transition
         x-show="overlay"
     >
-        <x-app.player.controls :$video :$panel :$settings>
-            <x-app.player.controls.seekbar />
-            <x-app.player.controls.panel />
-            <x-app.player.controls.settings />
-        </x-app.player.controls>
-    </div>
+        <x-app.player.controls.seekbar />
+        <x-app.player.controls.panel />
+        <x-app.player.controls.settings />
+    </x-app.player.controls>
 </div>
 
 @script
