@@ -27,7 +27,7 @@ class Item extends Component
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')
-                ->toggle('$wire.$parent.preview')
+                ->active('$wire.$parent.preview')
                 ->bladeAttributes([
                     'wire:click' => '$parent.$toggle(\'preview\')',
                 ])
