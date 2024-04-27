@@ -3,7 +3,7 @@
     'panel'
 ])
 
-<div class="absolute z-10 bottom-4 left-6">
+<div class="absolute z-20 bottom-4 left-0">
     <div class="flex flex-row flex-nowrap items-center gap-3">
         <x-wireuse::actions-group :group="$panel" />
 

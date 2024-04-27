@@ -16,6 +16,7 @@ class Video extends Component
     {
         return view('livewire.app.player.video')->with([
             'panel' => $this->panel(),
+            'settings' => $this->settings(),
         ]);
     }
 
@@ -23,6 +24,12 @@ class Video extends Component
     {
         return ActionGroup::make()
             ->action($this->togglePlayAction());
+    }
+
+    protected function settings(): ActionGroup
+    {
+        return ActionGroup::make()
+            ->action($this->toggleFullscreen());
     }
 
     protected function togglePlayAction(): Action
@@ -36,6 +43,20 @@ class Video extends Component
                 'x-on:click' => 'togglePlayback',
                 'class:label' => 'sr-only',
                 'class:icon' => 'size-8'
+            ]);
+    }
+
+    protected function toggleFullscreen(): Action
+    {
+        return Action::make('toggle-playback')
+            ->label(__('Toggle Playback'))
+            ->icon('heroicon-o-arrows-pointing-out')
+            ->iconActive('heroicon-o-arrows-pointing-in')
+            ->state('fullscreen')
+            ->bladeAttributes([
+                'x-on:click' => 'toggleFullscreen',
+                'class:label' => 'sr-only',
+                'class:icon' => 'size-6'
             ]);
     }
 }

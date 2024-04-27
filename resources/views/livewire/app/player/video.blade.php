@@ -32,8 +32,11 @@
         x-transition
         x-show="overlay"
     >
-        <x-app.player.controls.seekbar :$video />
-        <x-app.player.controls.panel :$video :$panel />
+        <x-app.player.controls :$video :$panel :$settings>
+            <x-app.player.controls.seekbar />
+            <x-app.player.controls.panel />
+            <x-app.player.controls.settings />
+        </x-app.player.controls>
     </div>
 </div>
 
@@ -43,9 +46,10 @@
             instance: undefined,
             manifest: undefined,
             ready: false,
+            overlay: false,
             live: false,
             paused: true,
-            overlay: false,
+            fullscreen: false,
             idle: 0,
             duration: 0.0,
             currentTime: 0.0,
@@ -71,8 +75,8 @@
                 // Load manifest
                 await this.instance.load(this.manifest)
 
-                // Set ready
                 this.ready = true
+                this.showOverlay()
             },
 
             async handleEvent(event) {
@@ -94,11 +98,19 @@
                 this.paused = this.$refs.video.paused
             },
 
+            async toggleFullscreen() {
+                document.fullscreenElement
+                    ? await document.exitFullscreen()
+                    : await document.documentElement.requestFullscreen();
+
+                this.fullscreen = document.fullscreenElement
+            },
+
             async showOverlay() {
                 clearTimeout(this.idle);
 
                 this.overlay = true
-                this.idle = setTimeout(() => this.overlay = false, 1500)
+                this.idle = setTimeout(() => this.overlay = true, 2500)
             },
 
             async forceOverlay() {
