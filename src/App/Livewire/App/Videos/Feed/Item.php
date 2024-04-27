@@ -6,15 +6,11 @@ use App\Livewire\App\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Illuminate\View\View;
-use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class Item extends Component
 {
     use WithVideo;
-
-    #[Session(key: 'feed-preview')]
-    public bool $preview = false;
 
     public function render(): View
     {
@@ -31,9 +27,9 @@ class Item extends Component
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')
-                ->active($this->preview)
+                // ->active($this->preview)
                 ->bladeAttributes([
-                    'wire:click' => '$toggle(\'preview\')',
+                    'wire:click' => '$parent.$toggle(\'preview\')',
                 ])
             );
     }

@@ -4,6 +4,8 @@
     fluid
     wire:scroll
 >
+    <span class="text-white">Preview: {{ $preview }}</span>
+
     @forelse ($this->items as $video)
         <livewire:livewire.app.videos.feed.item :$video :key="$video->getRouteKey()" />
     @empty

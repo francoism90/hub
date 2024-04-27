@@ -1,6 +1,5 @@
 @props([
     'video',
-    'preview',
 ])
 
 <a
@@ -23,18 +22,19 @@
             loading="lazy"
         />
 
+        <div class="absolute top-10 left-10">
+        Previews: <span x-text="$wire.$parent.preview" />
+        </div>
+
         <video
             x-cloak
             x-ref="video"
-            x-show="ready"
+            x-show="ready && $wire.$parent.preview"
+            class="h-full w-full absolute inset-0 z-40 brightness-90"
             playsinline
             muted
             autoplay
             loop
-            @class([
-                'h-full w-full absolute inset-0 z-40 brightness-90' => $preview,
-                'hidden' => ! $preview,
-            ])
         >
             <source src="" />
         </video>
