@@ -1,2 +1,5 @@
 @layer base {
+    a {
+        @apply cursor-pointer;
+    }
 }
