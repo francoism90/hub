@@ -6,6 +6,7 @@
 
 <div class="absolute z-10 inset-6">
     @if ($slot->isEmpty())
+        <x-app.player.controls.navigation />
         <x-app.player.controls.details />
         <x-app.player.controls.seekbar />
         <x-app.player.controls.panel />

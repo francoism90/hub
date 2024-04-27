@@ -29,6 +29,7 @@
 
     <x-app.player.controls
         :$video
+        :$navigation
         :$panel
         :$settings
         x-cloak

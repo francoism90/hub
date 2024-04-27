@@ -30,6 +30,7 @@ class Item extends Component
                 ->state('$wire.$parent.preview')
                 ->bladeAttributes([
                     'wire:click' => '$parent.$toggle(\'preview\')',
+                    'class:icon' => 'size-8'
                 ])
             );
     }

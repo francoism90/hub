@@ -15,9 +15,24 @@ class Video extends Component
     public function render(): View
     {
         return view('livewire.app.player.video')->with([
+            'navigation' => $this->navigation(),
             'panel' => $this->panel(),
             'settings' => $this->settings(),
         ]);
+    }
+
+    protected function navigation(): ActionGroup
+    {
+        return ActionGroup::make()
+            ->add('home', fn (Action $item) => $item
+                ->label(__('Feed'))
+                ->icon('heroicon-m-arrow-left-circle')
+                ->route('home')
+                ->bladeAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-10 fill-secondary-100/50'
+                ])
+            );
     }
 
     protected function panel(): ActionGroup
