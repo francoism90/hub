@@ -2,7 +2,7 @@
 
 namespace App\Feed\Http\Controllers;
 
-use App\Livewire\App\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;

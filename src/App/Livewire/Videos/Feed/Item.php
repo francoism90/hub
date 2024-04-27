@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Livewire\App\Videos\Feed;
+namespace App\Livewire\Videos\Feed;
 
-use App\Livewire\App\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\ActionGroup;
-use Foxws\WireUse\Navigation\Support\Navigation;
-use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Illuminate\View\View;
 use Livewire\Component;
 

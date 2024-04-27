@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Player;
 
-use App\Livewire\App\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;

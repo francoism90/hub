@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App\Videos\Concerns;
+namespace App\Livewire\Videos\Concerns;
 
 use Domain\Videos\Models\Video;
 use Livewire\Attributes\Locked;
