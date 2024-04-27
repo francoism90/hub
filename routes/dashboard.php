@@ -1,19 +1,20 @@
 <?php
 
-use App\Dashboard\Http\Controllers\DashboardContentController;
+use App\Dashboard\Http\Controllers\ContentManagerController;
 use App\Dashboard\Http\Controllers\DashboardIndexController;
+use App\Dashboard\Http\Controllers\VideoManagerController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // App
     Route::get('/', DashboardIndexController::class)->name('index');
-    Route::get('/content', DashboardContentController::class)->name('content');
-    Route::get('/post', DashboardContentController::class)->name('post');
-    Route::get('/settings', DashboardContentController::class)->name('settings');
-    Route::get('/activity', DashboardContentController::class)->name('activity');
+    Route::get('/post', ContentManagerController::class)->name('post');
+    Route::get('/settings', ContentManagerController::class)->name('settings');
+    Route::get('/activity', ContentManagerController::class)->name('activity');
 
-    // Videos
-    Route::name('videos.')->group(function () {
-        // Route::get('/{video}', VideoViewController::class)->name('view');
+    // Content
+    Route::name('content.')->prefix('content')->group(function () {
+        Route::get('/', ContentManagerController::class)->name('index');
+        Route::get('/{video}', VideoManagerController::class)->name('video');
     });
 });

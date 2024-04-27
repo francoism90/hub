@@ -55,7 +55,7 @@ class Video extends Component
         return Action::make('edit')
             ->label(__('Manage Video'))
             ->icon('heroicon-o-book-open')
-            ->route('dashboard.videos.edit', $this->video)
+            ->route('dashboard.content.video', $this->video)
             ->bladeAttributes([
                 'class:label' => 'sr-only',
                 'class:icon' => 'size-6'
