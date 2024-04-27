@@ -70,7 +70,6 @@
 
             async destroy() {
                 try {
-                    await this.$refs.video?.pause()
                     await this.$refs.container?.unload()
                 } catch (e) {
                     //
