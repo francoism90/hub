@@ -7,7 +7,7 @@
     <span class="text-white">Preview: {{ $preview }}</span>
 
     @forelse ($this->items as $video)
-        <livewire:livewire.videos.feed.item :$video :key="$video->getRouteKey()" />
+        <livewire:livewire.feed.video :$video :key="$video->getRouteKey()" />
     @empty
         {{ __('No videos available') }}
     @endforelse

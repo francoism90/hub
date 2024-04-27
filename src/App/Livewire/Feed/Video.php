@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Videos\Feed;
+namespace App\Livewire\Feed;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
@@ -8,13 +8,13 @@ use Foxws\WireUse\Actions\Support\ActionGroup;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Item extends Component
+class Video extends Component
 {
     use WithVideo;
 
     public function render(): View
     {
-        return view('livewire.app.videos.feed.item')->with([
+        return view('livewire.app.feed.video')->with([
             'navigation' => $this->navigation(),
             'controls' => $this->controls(),
         ]);
