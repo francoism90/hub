@@ -7,9 +7,13 @@
     <div class="flex flex-row flex-nowrap items-center gap-3">
         <x-wireuse::actions-group :group="$panel" />
 
-        <p x-cloak x-show="currentTime >= 0 && duration >= 0" class="text-sm font-medium">
+        <div
+            x-cloak
+            x-show="currentTime >= 0 && duration >= 0"
+            class="text-sm font-medium"
+        >
             <span x-text="timeFormat(currentTime)"></span> /
             <span x-text="timeFormat(duration)"></span>
-        </p>
+        </div>
     </div>
 </div>
