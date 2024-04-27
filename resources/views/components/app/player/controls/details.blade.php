@@ -4,7 +4,7 @@
 ])
 
 <div class="absolute z-20 bottom-24 left-0">
-    <div class="flex flex-col flex-nowrap gap-0.5">
+    <div class="flex flex-col flex-nowrap gap-1.5">
         <h1 class="h-24 inline-flex items-end text-2xl font-semibold leading-none tracking-tight line-clamp-1 sm:text-3xl">
             {{ $video->title }}
         </h1>

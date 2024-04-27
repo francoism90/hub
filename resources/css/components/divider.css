@@ -4,7 +4,7 @@
 
         dd:not(.sr-only) {
             &::after {
-                @apply pr-1 content-['-'];
+                @apply pr-1 content-['|'];
             }
         }
 
