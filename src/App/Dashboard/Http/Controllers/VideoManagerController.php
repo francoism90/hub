@@ -26,7 +26,7 @@ class VideoManagerController extends Page
 
     protected function getTitle(): string
     {
-        return (string) $this->video->getAttribute('title');
+        return (string) $this->video->title;
     }
 
     protected function getDescription(): string
