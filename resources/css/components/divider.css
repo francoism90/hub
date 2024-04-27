@@ -3,7 +3,7 @@
         @apply inline-flex flex-wrap items-center;
 
         dd:not(.sr-only) {
-            &&::after {
+            &::after {
                 @apply pr-1 content-['-'];
             }
         }

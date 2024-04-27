@@ -7,7 +7,7 @@
         {{ $video->title }}
     </h1>
 
-    <dl class="inline-flex videos-center text-xs text-secondary-400">
+    <dl class="dl text-xs text-secondary-400">
         <dt class="sr-only">{{ __('Time') }}</dt>
         <dd class="text-ellipsis">
             <time>
