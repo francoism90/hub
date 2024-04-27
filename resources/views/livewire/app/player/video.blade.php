@@ -5,6 +5,8 @@
 <div
     x-data="play('{{ $video->stream }}')"
     x-ref="container"
+    x-intersect:enter="load"
+    x-intersect:leave="destroy"
 >
     <video
         x-cloak
@@ -13,10 +15,11 @@
         x-on:durationchange="handleEvent"
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
-        class="absolute z-0 w-full h-full"
+        class="w-full h-full absolute z-0 inset-0"
         playsinline
+        autoplay
     >
-        <source src="" />
+        <source />
     </video>
 
     <x-app.player.controls.seekbar :$video />
@@ -27,6 +30,7 @@
     <script data-navigate-track>
         Alpine.data('play', (manifest) => ({
             instance: undefined,
+            manifest: undefined,
             ready: false,
             live: false,
             duration: 0.0,
@@ -35,6 +39,7 @@
 
             async init() {
                 this.ready = false
+                this.manifest = manifest
 
                 // Create instance
                 this.instance = new window.shaka.Player()
@@ -46,9 +51,11 @@
 
                  // Attach element
                 await this.instance.attach(this.$refs.video)
+            },
 
+            async load() {
                 // Load manifest
-                await this.instance.load(manifest)
+                await this.instance.load(this.manifest)
 
                 // Set ready
                 this.ready = true
@@ -71,10 +78,7 @@
 
             async destroy() {
                 try {
-                    if (! this.$refs.video?.paused) {
-                        await this.$refs.video?.pause()
-                    }
-
+                    await this.$refs.video?.pause()
                     await this.$refs.container?.unload()
                 } catch (e) {
                     //

@@ -11,7 +11,7 @@
         x-ref="container"
         x-intersect:enter="load"
         x-intersect:leave="destroy"
-        class="absolute z-20 inset-y-0 inset-x-0 bg-black/25 sm:inset-x-10 sm:bg-black"
+        class="absolute z-10 inset-y-0 inset-x-0 bg-black/25 sm:inset-x-10 sm:bg-black"
     >
         <img
             alt="{{ $video->title }}"
@@ -26,13 +26,13 @@
             x-cloak
             x-ref="video"
             x-show="ready && $wire.$parent.preview"
-            class="h-full w-full absolute inset-0 z-40 brightness-90"
+            class="h-full w-full absolute z-30 inset-0 brightness-90"
             playsinline
             muted
             autoplay
             loop
         >
-            <source src="" />
+            <source />
         </video>
     </div>
 </a>
@@ -58,21 +58,19 @@
 
                  // Attach element
                 await this.instance.attach(this.$refs.video)
+            },
+
+            async load() {
+                // Load manifest
+                await this.instance.load(this.manifest)
 
                 // Set ready
                 this.ready = true
             },
 
-            async load() {
-                await this.instance.load(this.manifest)
-            },
-
             async destroy() {
                 try {
-                    if (! this.$refs.video?.paused) {
-                        await this.$refs.video?.pause()
-                    }
-
+                    await this.$refs.video?.pause()
                     await this.$refs.container?.unload()
                 } catch (e) {
                     //
