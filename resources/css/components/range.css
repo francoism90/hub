@@ -3,7 +3,7 @@
         @apply appearance-none bg-transparent;
 
         &::-webkit-slider-runnable-track {
-            @apply appearance-none bg-transparent;
+            @apply cursor-pointer appearance-none bg-transparent;
         }
 
         &::-webkit-slider-thumb {
@@ -11,7 +11,7 @@
         }
 
         &::-moz-progress-bar {
-            @apply bg-transparent;
+            @apply cursor-pointer appearance-none bg-transparent;
         }
 
         &-primary {
