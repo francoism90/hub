@@ -3,7 +3,7 @@
 ])
 
 <div
-    x-data="player('{{ $video->stream }}')"
+    x-data="play('{{ $video->stream }}')"
     x-ref="container"
 >
     <video
@@ -24,8 +24,8 @@
 </div>
 
 @script
-    <script>
-        Alpine.data('player', (manifest) => ({
+    <script data-navigate-track>
+        Alpine.data('play', (manifest) => ({
             instance: undefined,
             ready: false,
             live: false,

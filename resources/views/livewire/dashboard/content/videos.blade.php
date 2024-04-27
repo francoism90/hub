@@ -16,9 +16,9 @@
         @endforelse
     </main>
 </x-wireuse::layout-container>
-
+{{--
 @script
-    <script>
+    <script data-navigate-track>
         Alpine.data('player', (manifest) => ({
             instance: null,
             ready: false,
@@ -71,4 +71,4 @@
             },
         }));
     </script>
-@endscript
+@endscript --}}

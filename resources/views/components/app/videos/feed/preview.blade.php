@@ -8,7 +8,7 @@
     href="{{ route('videos.view', $video) }}"
 >
     <div
-        x-data="player('{{ $video->preview }}')"
+        x-data="preview('{{ $video->preview }}')"
         x-ref="container"
         x-intersect:enter="load"
         x-intersect:leave="destroy"
@@ -42,8 +42,8 @@
 </a>
 
 @script
-    <script>
-        Alpine.data('player', (manifest) => ({
+    <script data-navigate-track>
+        Alpine.data('preview', (manifest) => ({
             instance: undefined,
             manifest: undefined,
             ready: false,
