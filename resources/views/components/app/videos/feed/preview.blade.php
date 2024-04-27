@@ -22,10 +22,6 @@
             loading="lazy"
         />
 
-        <div class="absolute top-10 left-10">
-        Previews: <span x-text="$wire.$parent.preview" />
-        </div>
-
         <video
             x-cloak
             x-ref="video"
