@@ -3,6 +3,8 @@
 namespace App\Livewire\App\Videos\Feed;
 
 use App\Livewire\App\Videos\Concerns\WithVideo;
+use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Illuminate\View\View;
@@ -20,10 +22,10 @@ class Item extends Component
         ]);
     }
 
-    protected function navigation(): Navigation
+    protected function navigation(): ActionGroup
     {
-        return Navigation::make()
-            ->add('preview', fn (NavigationItem $item) => $item
+        return ActionGroup::make()
+            ->add('preview', fn (Action $item) => $item
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')
@@ -35,32 +37,48 @@ class Item extends Component
             );
     }
 
-    protected function controls(): Navigation
+    protected function controls(): ActionGroup
     {
-        return Navigation::make()
-            ->add('settings', fn (NavigationItem $item) => $item
+        return ActionGroup::make()
+            ->add('settings', fn (Action $item) => $item
                 ->label(__('Collections'))
                 ->icon('heroicon-o-square-2-stack')
                 ->iconActive('heroicon-s-square-2-stack')
                 ->route('dashboard.index')
+                ->bladeAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6'
+                ])
             )
-            ->add('settings', fn (NavigationItem $item) => $item
+            ->add('settings', fn (Action $item) => $item
                 ->label(__('Collections'))
                 ->icon('heroicon-o-heart')
                 ->iconActive('heroicon-s-heart')
                 ->route('dashboard.index')
+                ->bladeAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6'
+                ])
             )
-            ->add('settings', fn (NavigationItem $item) => $item
+            ->add('settings', fn (Action $item) => $item
                 ->label(__('Collections'))
                 ->icon('heroicon-o-clock')
                 ->iconActive('heroicon-o-clock')
                 ->route('dashboard.index')
+                ->bladeAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6'
+                ])
             )
-            ->add('post', fn (NavigationItem $item) => $item
+            ->add('post', fn (Action $item) => $item
                 ->label(__('More'))
                 ->icon('heroicon-o-ellipsis-horizontal')
                 ->iconActive('heroicon-s-ellipsis-horizontal')
                 ->route('dashboard.index')
+                ->bladeAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6'
+                ])
             );
     }
 }
