@@ -4,8 +4,11 @@
 ])
 
 <div class="absolute z-20 bottom-4 left-0">
-    <div class="flex flex-row flex-nowrap items-center gap-3">
-        <x-wireuse::actions-group :group="$panel" />
+    <div class="flex flex-row flex-nowrap items-center gap-4">
+        <x-wireuse::actions-group
+            :group="$panel"
+            class:layer="flex flex-row flex-nowrap items-center gap-4"
+        />
 
         <div
             x-cloak

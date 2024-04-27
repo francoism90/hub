@@ -5,11 +5,13 @@ namespace App\Livewire\Player;
 use App\Livewire\App\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
+    use WithAuthentication;
     use WithVideo;
 
     public function render(): View
@@ -44,7 +46,20 @@ class Video extends Component
     protected function settings(): ActionGroup
     {
         return ActionGroup::make()
+            ->actionIf(static::can('update', $this->video), $this->manage())
             ->action($this->toggleFullscreen());
+    }
+
+    protected function manage(): Action
+    {
+        return Action::make('edit')
+            ->label(__('Manage Video'))
+            ->icon('heroicon-o-book-open')
+            ->route('dashboard.videos.edit', $this->video)
+            ->bladeAttributes([
+                'class:label' => 'sr-only',
+                'class:icon' => 'size-6'
+            ]);
     }
 
     protected function togglePlayAction(): Action

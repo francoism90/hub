@@ -15,19 +15,24 @@ trait WithVideo
         $this->authorize('view', $this->video);
     }
 
+    protected function getVideo(): Video
+    {
+        return $this->video;
+    }
+
     protected function getVideoKey(): int
     {
-        return $this->video->getKey();
+        return $this->getVideo()->getKey();
     }
 
     protected function getVideoId(): string
     {
-        return $this->video->getRouteKey();
+        return $this->getVideo()->getRouteKey();
     }
 
     protected function refreshVideo(): void
     {
-        $this->video->refresh();
+        $this->getVideo()->refresh();
 
         $this->dispatch("video-updated.{$this->getVideoId()}");
     }
