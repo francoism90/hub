@@ -18,11 +18,11 @@ class VideoIndexController extends Page
 {
     use WithQueryBuilder;
 
-    #[Session(key: 'feed-preview')]
-    public $preview = true;
-
     #[Locked]
     public int $limit = 5;
+
+    #[Session(key: 'feed-preview')]
+    public bool $preview = true;
 
     public function render(): View
     {

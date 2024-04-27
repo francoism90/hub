@@ -27,7 +27,7 @@ class Header extends Component
             ->add('post', fn (NavigationItem $item) => $item
                 ->label(__('Post'))
                 ->icon('heroicon-o-user')
-                ->iconActive('hheroicon-s-user')
+                ->iconActive('heroicon-s-user')
                 ->route('dashboard.post')
             );
     }
