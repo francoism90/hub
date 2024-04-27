@@ -33,6 +33,7 @@
             manifest: undefined,
             ready: false,
             live: false,
+            paused: true,
             duration: 0.0,
             currentTime: 0.0,
             buffered: 0.0,
@@ -70,6 +71,14 @@
                         this.buffered = event.target.buffered
                         break;
                 }
+            },
+
+            async togglePlayback() {
+                this.$refs.video.paused
+                    ? await this.$refs.video.play()
+                    : await this.$refs.video.pause()
+
+                this.paused = this.$refs.video.paused;
             },
 
             async setCurrentTime(event) {

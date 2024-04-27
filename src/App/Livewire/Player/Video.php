@@ -31,7 +31,9 @@ class Video extends Component
             ->label(__('Play'))
             ->icon('heroicon-o-square-2-stack')
             ->iconActive('heroicon-s-square-2-stack')
+            ->state('paused')
             ->bladeAttributes([
+                'x-on:click' => 'togglePlayback',
                 'class:label' => 'sr-only',
                 'class:icon' => 'size-8'
             ]);
