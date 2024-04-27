@@ -11,7 +11,7 @@
         x-ref="video"
         x-show="ready"
         x-on:durationchange="handleEvent"
-        x-on:progress="handleEvent"
+        x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="absolute z-0 w-full h-full"
         playsinline
