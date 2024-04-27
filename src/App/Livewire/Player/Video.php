@@ -51,13 +51,13 @@ class Video extends Component
     {
         return Action::make('toggle-playback')
             ->label(__('Toggle Playback'))
-            ->icon('heroicon-o-pause-circle')
-            ->iconActive('heroicon-o-play-circle')
+            ->icon('heroicon-m-pause')
+            ->iconActive('heroicon-m-play')
             ->state('paused')
             ->bladeAttributes([
                 'x-on:click' => 'togglePlayback',
                 'class:label' => 'sr-only',
-                'class:icon' => 'size-8'
+                'class:icon' => 'size-6'
             ]);
     }
 
