@@ -3,6 +3,7 @@
 namespace App\Livewire\Player;
 
 use App\Livewire\App\Videos\Concerns\WithVideo;
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Support\Navigation;
 use Foxws\WireUse\Navigation\Support\NavigationItem;
 use Illuminate\View\View;
@@ -22,10 +23,18 @@ class Video extends Component
     protected function controls(): Navigation
     {
         return Navigation::make()
-            ->add('home', fn (NavigationItem $item) => $item
-                ->label(__('Feed'))
-                ->icon('heroicon-o-square-2-stack')
-                ->iconActive('heroicon-s-square-2-stack'),
-        );
+            ->add('play', fn () => $this->playAction());
+    }
+
+    protected function playAction(): Action
+    {
+        return Action::make()
+            ->label(__('Feed'))
+            ->icon('heroicon-o-square-2-stack')
+            ->iconActive('heroicon-s-square-2-stack')
+            ->bladeAttributes([
+                'class:label' => 'sr-only',
+                'class:icon' => 'size-8'
+            ]);
     }
 }
