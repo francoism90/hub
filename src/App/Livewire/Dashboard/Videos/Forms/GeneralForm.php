@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Forms;
 
+use App\Livewire\Forms\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Forms\Support\UpdateForm;
@@ -9,6 +10,8 @@ use Livewire\Attributes\Validate;
 
 class GeneralForm extends UpdateForm
 {
+    use WithTags;
+
     #[Validate('required|string|max:255')]
     public string $name = '';
 
@@ -17,16 +20,20 @@ class GeneralForm extends UpdateForm
         $this->setModel($model);
 
         $this->fillModelAttributes('name');
+
+        $this->fillModelTags($model);
     }
 
     protected function handle(): void
     {
         $validated = $this->validate();
 
-        app(UpdateVideoDetails::class)->execute(
-            $this->model,
-            $validated,
-        );
+        dd($validated);
+
+        // app(UpdateVideoDetails::class)->execute(
+        //     $this->model,
+        //     $validated,
+        // );
     }
 
     protected function afterHandle(): void

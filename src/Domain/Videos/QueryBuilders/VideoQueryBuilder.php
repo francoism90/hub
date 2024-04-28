@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\QueryBuilders;
 
-use Domain\Shared\Concerns\InteractsWithScout;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -14,8 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class VideoQueryBuilder extends Builder
 {
-    use InteractsWithScout;
-
     public function published(): self
     {
         return $this

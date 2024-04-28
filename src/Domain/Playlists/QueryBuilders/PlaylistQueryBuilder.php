@@ -3,13 +3,10 @@
 namespace Domain\Playlists\QueryBuilders;
 
 use Domain\Playlists\Enums\PlaylistType;
-use Domain\Shared\Concerns\InteractsWithScout;
 use Illuminate\Database\Eloquent\Builder;
 
 class PlaylistQueryBuilder extends Builder
 {
-    use InteractsWithScout;
-
     public function mixer(): self
     {
         return $this

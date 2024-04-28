@@ -8,6 +8,7 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class General extends Component

@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function convert(): self
+    public function toModels(): self
     {
         return $this
-            ->transform(fn (mixed $item): ?Tag => $item instanceof Tag
-                ? $item
-                : Tag::findByPrefixedId((string) $item)
+            ->transform(fn (Tag|string $item): ?Tag => ! $item instanceof Tag
+                ? Tag::findByPrefixedId($item)
+                : $item
             )
             ->filter()
             ->unique();
