@@ -4,28 +4,29 @@
 
 <div
     x-data="play"
-    x-ref="container"
-    {{-- x-intersect:enter="load"
-    x-intersect:leave="destroy"
+    x-intersect:enter.full="loadManifest($refs.video, '{{ $video->stream }}')"
+    x-intersect:leave.full="destroy"
     x-on:mousemove="showOverlay"
-    x-on:touchmove="showOverlay" --}}
+    x-on:touchmove="showOverlay"
     x-on:click="showOverlay"
 >
-    {{-- <video
+    <video
         x-cloak
         x-ref="video"
-        x-show="ready"
+        x-transition
         x-on:durationchange="handleEvent"
         x-on:play.debounce.100ms="handleEvent"
         x-on:playing.debounce.100ms="handleEvent"
+        x-on:pause.debounce.100ms="handleEvent"
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="w-full h-full absolute z-0 inset-0"
+        poster=""
         playsinline
         autoplay
     >
         <source />
-    </video> --}}
+    </video>
 
     <x-app.player.controls
         :$video
@@ -41,40 +42,49 @@
 @script
     <script data-navigate-track>
         Alpine.data('play', () => ({
-            instance: undefined,
-            manifest: undefined,
-            ready: false,
+            player: undefined,
             overlay: false,
-            live: false,
             paused: true,
             fullscreen: false,
             idle: 0,
             duration: 0.0,
             currentTime: 0.0,
+            seekTime: 0.0,
             buffered: 0.0,
 
             async init() {
-                this.ready = false
-                this.manifest = manifest
+                 // Install built-in polyfills
+                window.shaka.polyfill.installAll()
 
                 // Create instance
-                this.instance = new window.shaka.Player()
+                this.player = new window.shaka.Player()
 
                 // Configure networking
-                this.instance
+                this.player
                     .getNetworkingEngine()
                     .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true))
-
-                 // Attach element
-                await this.instance.attach(this.$refs.video)
             },
 
-            async load() {
-                // Load manifest
-                await this.instance.load(this.manifest)
+            async destroy() {
+                try {
+                    await this.player?.unload()
+                } catch (e) {
+                    //
+                }
+            },
 
-                this.ready = true
-                this.showOverlay()
+            async loadManifest(video, manifest) {
+                if (! this.player) {
+                    console.error('No player found');
+                    return;
+                }
+
+                try {
+                    await this.player.attach(video)
+                    await this.player.load(manifest)
+                } catch(e) {
+
+                }
             },
 
             async handleEvent(event) {
@@ -85,6 +95,16 @@
                     case 'progress':
                         this.buffered = event.target.buffered
                         break;
+                    case 'play':
+                    case 'playing':
+                    case 'pause':
+                        this.paused = this.$refs.video.paused
+                        break;
+                    case 'timeupdate':
+                        this.currentTime = this.$refs.video.currentTime
+                        break;
+                    default:
+                        console.error('Unhandled event: ' + event.type)
                 }
             },
 
@@ -92,8 +112,6 @@
                 this.$refs.video.paused
                     ? await this.$refs.video.play()
                     : await this.$refs.video.pause()
-
-                this.paused = this.$refs.video.paused
             },
 
             async toggleFullscreen() {
@@ -117,18 +135,8 @@
                 this.overlay = true
             },
 
-            async setCurrentTime(event) {
+            async seekTo(event) {
                 this.$refs.video.currentTime = event.target.value
-            },
-
-            async destroy() {
-                try {
-                    await this.$refs.container?.unload()
-                } catch (e) {
-                    //
-                }
-
-                this.ready = false
             },
         }));
     </script>

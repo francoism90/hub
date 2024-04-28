@@ -21,7 +21,7 @@
         <input
             type="range"
             x-model="currentTime"
-            x-on:input="setCurrentTime"
+            x-on:input="seekTo"
             :min="0"
             :max="duration"
             step="0.1"

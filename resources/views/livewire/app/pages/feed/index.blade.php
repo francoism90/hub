@@ -52,8 +52,6 @@
                     return;
                 }
 
-                console.log(video)
-
                 try {
                     await this.player.attach(video)
                     await this.player.load(manifest)

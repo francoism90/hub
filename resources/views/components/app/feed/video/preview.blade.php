@@ -20,8 +20,8 @@
         />
 
         <video
-            x-ref="video"
             x-cloak
+            x-ref="video"
             x-show="$wire.$parent.preview"
             x-transition
             x-intersect:enter.full="loadManifest($refs.video, '{{ $video->preview }}')"
