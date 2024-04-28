@@ -23,7 +23,7 @@ class DownloadController extends Controller implements HasMiddleware
 
     public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
     {
-        Gate::authorize('view', $media);
+        Gate::authorize('update', $media);
 
         return $media->toResponse($request);
     }
