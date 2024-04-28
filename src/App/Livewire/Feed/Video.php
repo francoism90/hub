@@ -31,7 +31,7 @@ class Video extends Component
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')
-                ->state('$wire.preview')
+                ->active($this->preview)
                 ->bladeAttributes([
                     'wire:click' => '$toggle(\'preview\')',
                 ])

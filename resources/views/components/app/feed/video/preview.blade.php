@@ -29,7 +29,7 @@
             class="h-full w-full absolute z-30 inset-0 brightness-90"
             playsinline
             muted
-            autoplay
+            {{-- autoplay --}}
             loop
         >
             <source />
