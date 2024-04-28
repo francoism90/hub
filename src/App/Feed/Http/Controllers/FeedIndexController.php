@@ -4,8 +4,6 @@ namespace App\Feed\Http\Controllers;
 
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Number;
@@ -13,7 +11,6 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Session;
 
 #[Layout('components.layouts.app')]
 class FeedIndexController extends Page
@@ -23,14 +20,9 @@ class FeedIndexController extends Page
     #[Locked]
     public int $limit = 5;
 
-    #[Session(key: 'feed-preview')]
-    public bool $preview = true;
-
     public function render(): View
     {
-        return view('livewire.app.pages.feed.index')->with([
-            'actions' => $this->actions(),
-        ]);
+        return view('livewire.app.pages.feed.index');
     }
 
     #[Computed()]
@@ -49,20 +41,6 @@ class FeedIndexController extends Page
         if ($this->getLimit() >= 100) {
             $this->limit = 5;
         }
-    }
-
-    protected function actions(): ActionGroup
-    {
-        return ActionGroup::make()
-            ->add('preview', fn (Action $item) => $item
-                ->label(__('Toggle Previews'))
-                ->icon('heroicon-o-eye')
-                ->iconActive('heroicon-s-eye')
-                ->state('$wire.preview')
-                ->bladeAttributes([
-                    'wire:click' => '$toggle(\'preview\')',
-                ])
-            );
     }
 
     protected function getLimit(): int

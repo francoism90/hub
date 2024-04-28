@@ -6,17 +6,36 @@ use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Actions\Support\ActionGroup;
 use Illuminate\View\View;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class Video extends Component
 {
     use WithVideo;
 
+    #[Session(key: 'feed-preview')]
+    public bool $preview = true;
+
     public function render(): View
     {
         return view('livewire.app.feed.video')->with([
+            'settings' => $this->settings(),
             'actions' => $this->actions(),
         ]);
+    }
+
+    protected function settings(): ActionGroup
+    {
+        return ActionGroup::make()
+            ->add('preview', fn (Action $item) => $item
+                ->label(__('Toggle Previews'))
+                ->icon('heroicon-o-eye')
+                ->iconActive('heroicon-s-eye')
+                ->state('$wire.preview')
+                ->bladeAttributes([
+                    'wire:click' => '$toggle(\'preview\')',
+                ])
+            );
     }
 
     protected function actions(): ActionGroup
