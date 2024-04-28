@@ -1,15 +1,18 @@
+@props([
+    'id',
+])
+
 <input {{ $attributes
     ->cssClass([
-        'layer' => 'peer w-full focus:border-transparent focus:ring-0',
+        'layer' => 'px-3 h-10 w-full bg-secondary-800/90 border-secondary-500/50 text-base focus:border-secondary-500 focus:border-2 focus:ring-0',
         'error' => '!border-red-500',
     ])
     ->classMerge([
         'layer',
-        'error' => $errors->has($wireModel()),
+        'error' => $errors->has($id),
     ])
     ->merge([
-        'wire:key' => $wireKey(),
-        'id' => $wireKey(),
+        'id' => $id,
         'type' => 'text',
     ])
 }}>

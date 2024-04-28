@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Videos\Panels;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
+use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -25,7 +26,14 @@ class General extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.panels.general');
+        return view('livewire.dashboard.videos.panels.general')->with([
+            'submit' => $this->submitAction(),
+        ]);
+    }
+
+    public function updated(): void
+    {
+        $this->validate();
     }
 
     public function save(): void
@@ -38,6 +46,15 @@ class General extends Component
     protected function authorizeAccess(): void
     {
         $this->canUpdate($this->getModel());
+    }
+
+    protected function submitAction(): Action
+    {
+        return Action::make('save')
+            ->label(__('Save changes'))
+            ->bladeAttributes([
+                'type' => 'submit',
+            ]);
     }
 
     protected function getModel(): Video
