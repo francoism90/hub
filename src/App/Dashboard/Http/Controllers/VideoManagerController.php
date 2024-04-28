@@ -49,7 +49,7 @@ class VideoManagerController extends Page
             ->add('assets', fn (Action $item) => $item
                 ->wireModel('tab')
                 ->label(__('Assets'))
-                // ->livewire(Tags::class)
+                ->livewire(General::class)
             );
     }
 
