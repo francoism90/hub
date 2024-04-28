@@ -11,11 +11,15 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Session;
 
 #[Layout('components.layouts.app')]
 class FeedIndexController extends Page
 {
     use WithQueryBuilder;
+
+    #[Session(key: 'feed-preview')]
+    public bool $preview = true;
 
     #[Locked]
     public int $limit = 5;
