@@ -62,4 +62,11 @@ class VideoManagerController extends Page
     {
         return (string) $this->video->summary;
     }
+
+    public function getListeners(): array
+    {
+        return [
+            ...$this->getVideoListeners(),
+        ];
+    }
 }

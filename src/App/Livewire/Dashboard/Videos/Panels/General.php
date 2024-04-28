@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Videos\Panels;
 
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
+use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
@@ -40,7 +41,10 @@ class General extends Component
     {
         $this->authorizeAccess();
 
-        dd('update here');
+        app(UpdateVideoDetails::class)->execute(
+            $this->getModel(),
+            $this->form->all(),
+        );
     }
 
     protected function authorizeAccess(): void

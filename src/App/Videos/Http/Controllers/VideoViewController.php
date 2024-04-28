@@ -19,11 +19,8 @@ class VideoViewController extends Page
 
     public function getListeners(): array
     {
-        $id = $this->getVideoId();
-
         return [
-            "echo-private:video.{$id},.video.deleted" => '$refresh',
-            "echo-private:video.{$id},.video.updated" => '$refresh',
+            ...$this->getVideoListeners(),
         ];
     }
 }
