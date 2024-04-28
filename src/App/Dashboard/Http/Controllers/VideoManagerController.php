@@ -24,7 +24,7 @@ class VideoManagerController extends Page
     public function render(): View
     {
         return view('livewire.dashboard.pages.content.video')->with([
-            'navigation' => $this->navigation(),
+            'actions' => $this->actions(),
         ]);
     }
 
@@ -33,7 +33,7 @@ class VideoManagerController extends Page
         $this->canUpdate($this->video);
     }
 
-    protected function navigation(): ActionGroup
+    protected function actions(): ActionGroup
     {
         return ActionGroup::make()
             ->active($this->tab)

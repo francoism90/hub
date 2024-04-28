@@ -7,11 +7,18 @@
         </x-slot:start>
 
         <x:slot:end>
-            <x-wireuse::navigation-tabs
-                :$actions
-                class:layer="flex flex-nowrap gap-x-3"
-                class:icon="size-6 sm:size-7"
-            />
+            <nav class="flex flex-nowrap items-center gap-x-3">
+                @foreach ($actions->all() as $action)
+                    <x-wireuse::actions-link :$action>
+                        <x-wireuse::actions-icon
+                            :$action
+                            class="size-6"
+                        />
+
+                        <span class="sr-only">{{ $action->getLabel() }}</span>
+                    </x-wireuse::actions-link>
+                @endforeach
+            </nav>
         </x:slot:end>
     </x-wireuse::navigation-navbar>
 </header>

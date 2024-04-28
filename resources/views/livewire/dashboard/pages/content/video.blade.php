@@ -28,5 +28,5 @@
         </dl>
     </div>
 
-    <x-dashboard.ui.tabs :$navigation />
+    <x-dashboard.ui.tabs :$actions />
 </x-wireuse::layout-container>
