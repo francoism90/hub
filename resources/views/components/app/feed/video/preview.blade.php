@@ -27,7 +27,6 @@
             x-intersect:enter.full="loadManifest($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"
             class="h-full w-full absolute z-30 inset-0 brightness-90"
-            poster=""
             playsinline
             muted
             autoplay

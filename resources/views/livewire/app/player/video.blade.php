@@ -19,7 +19,6 @@
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="w-full h-full absolute z-0 inset-0"
-        poster=""
         playsinline
         autoplay
     >
