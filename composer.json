@@ -28,6 +28,7 @@
         "spatie/laravel-activitylog": "^4.8.0",
         "spatie/laravel-collection-macros": "^7.14.0",
         "spatie/laravel-db-snapshots": "^2.6.1",
+        "spatie/laravel-flash": "^1.10",
         "spatie/laravel-google-fonts": "^1.4.1",
         "spatie/laravel-medialibrary": "^11.4.7",
         "spatie/laravel-model-states": "^2.7.1",

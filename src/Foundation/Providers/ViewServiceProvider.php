@@ -5,6 +5,7 @@ namespace Foundation\Providers;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Flash\Flash;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -12,6 +13,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         $this->configureSeo();
         $this->configurePaginators();
+        $this->configureMessages();
     }
 
     protected function configureSeo(): void
@@ -24,5 +26,14 @@ class ViewServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination.default');
         Paginator::defaultSimpleView('pagination.simple');
+    }
+
+    protected function configureMessages(): void
+    {
+        Flash::levels([
+            'success' => null,
+            'warning' => null,
+            'error' => null,
+        ]);
     }
 }

@@ -6,7 +6,7 @@
     @if ($submit)
         <x-wireuse::actions-button
             :action="$submit"
-            class="bg-primary-600 rounded text-secondary-100 px-3 h-8 text-sm font-medium"
+            class="bg-primary-500 rounded text-secondary-100 px-3 h-8 text-sm font-medium"
         />
     @endif
 
