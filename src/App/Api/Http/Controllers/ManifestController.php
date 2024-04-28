@@ -25,7 +25,7 @@ class ManifestController extends Controller implements HasMiddleware
 
     public function __invoke(Video $model, string $type): JsonResponse
     {
-        // Gate::authorize('view', $model);
+        Gate::authorize('view', $model);
 
         return response()->json(
             match ($type) {
