@@ -4,7 +4,6 @@ namespace App\Livewire\Dashboard\Videos\Panels;
 
 use App\Dashboard\Http\Controllers\VideoManagerController;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
-use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
@@ -45,11 +44,6 @@ class General extends Component
             parameters: $this->getModel(),
             navigate: true,
         );
-    }
-
-    protected function authorizeAccess(): void
-    {
-        $this->canUpdate($this->getModel());
     }
 
     protected function submitAction(): Action
