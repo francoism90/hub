@@ -33,7 +33,7 @@ class FeedIndexController extends Page
     public function items(): VideoCollection
     {
         return $this->getQuery()
-            ->recommended()
+            ->randomSeed(key: 'videos', ttl: now()->addHour())
             ->take($this->getLimit())
             ->get();
     }
@@ -45,6 +45,15 @@ class FeedIndexController extends Page
         if ($this->getLimit() >= 100) {
             $this->limit = 12;
         }
+    }
+
+    public function refresh(): void
+    {
+        app($this->getModelClass())::forgetRandomSeed('videos');
+
+        unset($this->items);
+
+        $this->dispatch('$refresh');
     }
 
     protected function getLimit(): int

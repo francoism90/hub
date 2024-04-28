@@ -23,6 +23,14 @@ class Video extends Component
     protected function settings(): ActionGroup
     {
         return ActionGroup::make()
+            ->add('refresh', fn (Action $item) => $item
+                ->label(__('Refresh Feed'))
+                ->icon('heroicon-o-arrow-path-rounded-square')
+                ->iconActive('heroicon-s-arrow-path-rounded-square')
+                ->bladeAttributes([
+                    'wire:click' => '$parent.refresh()',
+                ])
+            )
             ->add('preview', fn (Action $item) => $item
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
