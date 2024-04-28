@@ -1,16 +1,14 @@
 @persist('scrollbar')
 <x-app.layout.container
     x-data="feed"
-    class="relative h-[calc(100vh-4rem)] w-dvw snap-mandatory snap-y overflow-y-scroll bg-black/25"
+    class="relative h-dvh w-screen snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
     wire:scroll
 >
     @forelse ($this->items as $item)
-        <article class="relative w-full h-full snap-center">
-            @if ($item->getMorphClass() === 'video')
-                <livewire:livewire.feed.video :video="$item" :key="$item->getRouteKey()" />
-            @endif
-        </article>
+        @if ($item->getMorphClass() === 'video')
+            <livewire:livewire.feed.video :video="$item" :key="$item->getRouteKey()" />
+        @endif
     @empty
         {{ __('Please come back later!') }}
     @endforelse

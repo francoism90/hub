@@ -26,7 +26,7 @@ class VideoQueryBuilder extends Builder
     {
         return $this
             ->published()
-            ->randomSeed(key: 'videos', ttl: now()->addMinutes(10));
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes(20));
     }
 
     public function newest(): self

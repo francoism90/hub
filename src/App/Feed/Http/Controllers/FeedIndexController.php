@@ -22,7 +22,7 @@ class FeedIndexController extends Page
     public bool $preview = true;
 
     #[Locked]
-    public int $limit = 5;
+    public int $limit = 12;
 
     public function render(): View
     {
@@ -40,16 +40,16 @@ class FeedIndexController extends Page
 
     public function fetch(): void
     {
-        $this->limit += 5;
+        $this->limit += 12;
 
         if ($this->getLimit() >= 100) {
-            $this->limit = 5;
+            $this->limit = 12;
         }
     }
 
     protected function getLimit(): int
     {
-        return Number::clamp($this->limit, min: 5, max: 100);
+        return Number::clamp($this->limit, min: 12, max: 100);
     }
 
     protected static function getModelClass(): ?string
