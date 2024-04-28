@@ -23,10 +23,10 @@ class GeneralForm extends UpdateForm
     {
         $validated = $this->validate();
 
-        // app(UpdateVideoDetails::class)->execute(
-        //     $this->model,
-        //     $validated,
-        // );
+        app(UpdateVideoDetails::class)->execute(
+            $this->model,
+            $validated,
+        );
     }
 
     protected function afterHandle(): void
