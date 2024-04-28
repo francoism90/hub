@@ -3,15 +3,15 @@
 ])
 
 <div
-    x-data="play('{{ $video->stream }}')"
+    x-data="play"
     x-ref="container"
-    x-intersect:enter="load"
+    {{-- x-intersect:enter="load"
     x-intersect:leave="destroy"
     x-on:mousemove="showOverlay"
-    x-on:touchmove="showOverlay"
+    x-on:touchmove="showOverlay" --}}
     x-on:click="showOverlay"
 >
-    <video
+    {{-- <video
         x-cloak
         x-ref="video"
         x-show="ready"
@@ -22,25 +22,25 @@
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="w-full h-full absolute z-0 inset-0"
         playsinline
-        {{-- autoplay --}}
+        autoplay
     >
         <source />
-    </video>
+    </video> --}}
 
     <x-app.player.controls
         :$video
-        :$navigation
+        :$actions
         :$panel
         :$settings
         x-cloak
-        x-transition
         x-show="overlay"
+        x-transition
     />
 </div>
 
 @script
     <script data-navigate-track>
-        Alpine.data('play', (manifest) => ({
+        Alpine.data('play', () => ({
             instance: undefined,
             manifest: undefined,
             ready: false,

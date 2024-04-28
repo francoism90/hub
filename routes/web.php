@@ -14,7 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', FeedIndexController::class)->name('home');
 
     // Videos
-    Route::name('videos.')->prefix('videos')->group(function () {
-        Route::get('/video/{video}', VideoViewController::class)->name('view');
+    Route::name('videos.')->group(function () {
+        Route::get('/play/{video}', VideoViewController::class)->name('view');
     });
 });

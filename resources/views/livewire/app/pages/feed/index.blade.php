@@ -19,7 +19,6 @@
 </x-wireuse::layout-container>
 @endpersist
 
-
 @script
     <script data-navigate-track>
         Alpine.data('feed', () => ({

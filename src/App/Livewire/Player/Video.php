@@ -17,22 +17,21 @@ class Video extends Component
     public function render(): View
     {
         return view('livewire.app.player.video')->with([
-            'navigation' => $this->navigation(),
+            'actions' => $this->actions(),
             'panel' => $this->panel(),
             'settings' => $this->settings(),
         ]);
     }
 
-    protected function navigation(): ActionGroup
+    protected function actions(): ActionGroup
     {
         return ActionGroup::make()
-            ->add('home', fn (Action $item) => $item
-                ->label(__('Feed'))
+            ->add('previous', fn (Action $item) => $item
+                ->label(__('Go back'))
                 ->icon('heroicon-m-arrow-left-circle')
                 ->route('home')
                 ->bladeAttributes([
-                    'class:label' => 'sr-only',
-                    'class:icon' => 'size-10 fill-secondary-100/50'
+                    'title' => __('Go Back'),
                 ])
             );
     }
@@ -55,11 +54,7 @@ class Video extends Component
         return Action::make('edit')
             ->label(__('Manage Video'))
             ->icon('heroicon-o-book-open')
-            ->route('dashboard.content.video', $this->video)
-            ->bladeAttributes([
-                'class:label' => 'sr-only',
-                'class:icon' => 'size-6'
-            ]);
+            ->route('dashboard.content.video', $this->video);
     }
 
     protected function togglePlayAction(): Action
@@ -71,8 +66,6 @@ class Video extends Component
             ->state('paused')
             ->bladeAttributes([
                 'x-on:click' => 'togglePlayback',
-                'class:label' => 'sr-only',
-                'class:icon' => 'size-6'
             ]);
     }
 
@@ -85,8 +78,6 @@ class Video extends Component
             ->state('fullscreen')
             ->bladeAttributes([
                 'x-on:click' => 'toggleFullscreen',
-                'class:label' => 'sr-only',
-                'class:icon' => 'size-6'
             ]);
     }
 }
