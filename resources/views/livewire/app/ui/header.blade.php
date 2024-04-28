@@ -1,2 +1,3 @@
-<header class="h-0">
+<header class="hidden">
+    {{-- It starts with one --}}
 </header>
