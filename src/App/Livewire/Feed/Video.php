@@ -15,27 +15,11 @@ class Video extends Component
     public function render(): View
     {
         return view('livewire.app.feed.video')->with([
-            'navigation' => $this->navigation(),
-            'controls' => $this->controls(),
+            'actions' => $this->actions(),
         ]);
     }
 
-    protected function navigation(): ActionGroup
-    {
-        return ActionGroup::make()
-            ->add('preview', fn (Action $item) => $item
-                ->label(__('Toggle Previews'))
-                ->icon('heroicon-o-eye')
-                ->iconActive('heroicon-s-eye')
-                ->state('$wire.$parent.preview')
-                ->bladeAttributes([
-                    'wire:click' => '$parent.$toggle(\'preview\')',
-                    'class:icon' => 'size-8'
-                ])
-            );
-    }
-
-    protected function controls(): ActionGroup
+    protected function actions(): ActionGroup
     {
         return ActionGroup::make()
             ->add('settings', fn (Action $item) => $item

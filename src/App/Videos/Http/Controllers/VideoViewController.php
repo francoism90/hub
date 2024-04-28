@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Feed\Http\Controllers;
+namespace App\Videos\Http\Controllers;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Views\Support\Page;

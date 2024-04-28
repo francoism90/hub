@@ -1,7 +1,7 @@
 <?php
 
-use App\Feed\Http\Controllers\VideoIndexController;
-use App\Feed\Http\Controllers\VideoViewController;
+use App\Feed\Http\Controllers\FeedIndexController;
+use App\Videos\Http\Controllers\VideoViewController;
 use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
 
@@ -10,10 +10,11 @@ WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', VideoIndexController::class)->name('home');
+    // Feed
+    Route::get('/', FeedIndexController::class)->name('home');
 
     // Videos
-    Route::name('videos.')->group(function () {
+    Route::name('videos.')->prefix('videos')->group(function () {
         Route::get('/video/{video}', VideoViewController::class)->name('view');
     });
 });

@@ -8,6 +8,5 @@
         loading="lazy"
     />
 
-    <x-app.feed.navigation :$navigation />
-    <x-app.feed.item :$video :$controls />
+    <x-app.feed.item :$video :$actions />
 </article>
