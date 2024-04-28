@@ -23,6 +23,7 @@ $app = Application::configure(basePath: $basePath)
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(at: ['127.0.0.1']);
+        $middleware->throttleWithRedis();
         $middleware->statefulApi();
         $middleware->redirectGuestsTo('/login');
 
