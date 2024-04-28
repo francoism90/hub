@@ -29,8 +29,8 @@ class Video extends Component
             ->add('previous', fn (Action $item) => $item
                 ->label(__('Go back'))
                 ->icon('heroicon-m-arrow-left-circle')
-                ->route('home')
                 ->bladeAttributes([
+                    'onclick' => 'history.back()',
                     'title' => __('Go Back'),
                 ])
             );
