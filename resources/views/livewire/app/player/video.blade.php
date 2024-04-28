@@ -11,9 +11,7 @@
     x-on:click="showOverlay"
 >
     <video
-        x-cloak
         x-ref="video"
-        x-transition
         x-on:durationchange="handleEvent"
         x-on:play.debounce.100ms="handleEvent"
         x-on:playing.debounce.100ms="handleEvent"
@@ -33,9 +31,6 @@
         :$actions
         :$panel
         :$settings
-        x-cloak
-        x-show="overlay"
-        x-transition
     />
 </div>
 
@@ -79,11 +74,14 @@
                     return;
                 }
 
+                // Loading feedback
+                this.showOverlay()
+
                 try {
                     await this.player.attach(video)
                     await this.player.load(manifest)
                 } catch(e) {
-
+                    //
                 }
             },
 
@@ -126,7 +124,7 @@
                 clearTimeout(this.idle);
 
                 this.overlay = true
-                this.idle = setTimeout(() => this.overlay = true, 2500)
+                this.idle = setTimeout(() => this.overlay = false, 2500)
             },
 
             async forceOverlay() {
