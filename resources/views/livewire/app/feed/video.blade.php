@@ -1,12 +1,12 @@
-<article class="relative w-full h-full snap-center bg-black">
+<div>
     <img
         alt="{{ $video->title }}"
         srcset="{{ $video->placeholder }}"
         src="{{ $video->thumbnail }}"
-        class="absolute inset-0 object-fill blur-3xl brightness-50 saturate-50"
+        class="absolute z-0 inset-0 object-fill blur-3xl brightness-50 saturate-50"
         crossorigin="use-credentials"
         loading="lazy"
     />
 
-    <x-app.feed.item :$video :$actions />
-</article>
+    <x-app.feed.video :$video :$actions />
+</div>
