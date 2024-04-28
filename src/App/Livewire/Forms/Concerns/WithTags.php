@@ -5,9 +5,7 @@ namespace App\Livewire\Forms\Concerns;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Laravel\Scout\Builder;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 
 trait WithTags
