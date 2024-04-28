@@ -4,7 +4,6 @@ return [
     /*
     * Package Service Providers...
     */
-    App\Filament\Providers\AdminPanelProvider::class,
 
     /*
         * Application Service Providers...
@@ -13,7 +12,6 @@ return [
     Foundation\Providers\AuthServiceProvider::class,
     Foundation\Providers\BroadcastServiceProvider::class,
     Foundation\Providers\EventServiceProvider::class,
-    Foundation\Providers\FilamentServiceProvider::class,
     Foundation\Providers\HorizonServiceProvider::class,
     Foundation\Providers\LivewireServiceProvider::class,
     Foundation\Providers\RouteServiceProvider::class,

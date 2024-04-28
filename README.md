@@ -71,9 +71,8 @@ php artisan app:install
 
 The Hub instance should be available at <https://hub.lan> when using Traefik.
 
-The following services are available on:
+The following Laravel services are available on:
 
-- <https://hub.lan/admin> - Filament Panel
 - <https://hub.lan/horizon> - Laravel Horizon (super-admin only)
 - <https://hub.lan/telescope> - Laravel Telescope (super-admin only)
 

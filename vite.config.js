@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       laravel({
-        input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
+        input: ['resources/css/app.css', 'resources/js/app.js'],
         refresh: [...refreshPaths, 'resources/**', 'src/**'],
       }),
       VitePWA({
