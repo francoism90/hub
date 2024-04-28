@@ -1,5 +1,5 @@
 @persist('scrollbar')
-<x-wireuse::layout-container
+<x-app.layout.container
     x-data="feed"
     class="relative h-[calc(100vh-4rem)] w-dvw snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
@@ -16,7 +16,7 @@
     @endforelse
 
     <div x-intersect.full="$wire.fetch()"></div>
-</x-wireuse::layout-container>
+</x-app.layout.container>
 @endpersist
 
 @script

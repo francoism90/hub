@@ -1,5 +1,5 @@
 <header class="sticky z-30 top-0 bg-inherit border-b border-secondary-800/80">
-    <x-wireuse::navigation-navbar class:padding="p-3">
+    <x-app.navigation.navbar>
         <x-slot:start>
             <a href="/" wire:navigate>
                 <x-app.ui.logo />
@@ -20,5 +20,5 @@
                 @endforeach
             </nav>
         </x:slot:end>
-    </x-wireuse::navigation-navbar>
+    </x-app.navigation.navbar>
 </header>

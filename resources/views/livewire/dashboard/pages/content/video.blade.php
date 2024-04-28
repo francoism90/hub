@@ -1,4 +1,4 @@
-<x-wireuse::layout-container class="flex flex-col gap-y-3" fluid>
+<div class="flex flex-col gap-y-3">
     <div class="border-b border-secondary-400/40 p-3">
         <h1 class="text-base font-medium leading-none tracking-tight line-clamp-1">
             {{ $video->title }}
@@ -28,5 +28,5 @@
         </dl>
     </div>
 
-    <x-dashboard.ui.tabs :$actions />
-</x-wireuse::layout-container>
+    <x-dashboard.navigation.tabs :$actions />
+</div>

@@ -30,9 +30,14 @@ class General extends Component
 
     public function save(): void
     {
-        $this->canUpdate($this->getModel());
+        $this->authorizeAccess();
 
         dd('update here');
+    }
+
+    protected function authorizeAccess(): void
+    {
+        $this->canUpdate($this->getModel());
     }
 
     protected function getModel(): Video

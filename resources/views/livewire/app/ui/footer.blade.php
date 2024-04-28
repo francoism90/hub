@@ -3,7 +3,7 @@
 @endphp
 
 <footer class="sticky bottom-0 z-30 px-3 bg-inherit border-t border-secondary-800/80">
-    <x-wireuse::layout-container fluid>
+    <x-app.layout.container fluid>
         <nav class="flex h-16 items-center justify-between gap-x-3 overflow-x-auto sm:justify-center sm:gap-x-12">
             @foreach ($actions->all() as $action)
                 <x-wireuse::actions-link
@@ -19,5 +19,5 @@
                 </x-wireuse::actions-link>
             @endforeach
         </nav>
-    </x-wireuse::layout-container>
+    <x-app.layout.container>
 </footer>
