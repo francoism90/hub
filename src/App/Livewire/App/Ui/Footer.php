@@ -2,8 +2,8 @@
 
 namespace App\Livewire\App\Ui;
 
-use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Actions\Support\ActionGroup;
 use Livewire\Component;
 
 class Footer extends Component

@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Dashboard\Ui;
 
-use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Actions\Support\ActionGroup;
 use Livewire\Component;
 
 class Header extends Component

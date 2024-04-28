@@ -4,9 +4,9 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Panels\General;
 use App\Livewire\Videos\Concerns\WithVideo;
-use Foxws\WireUse\Auth\Concerns\WithAuthorization;
-use Foxws\WireUse\Actions\Support\ActionGroup;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;

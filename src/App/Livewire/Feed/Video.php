@@ -44,7 +44,7 @@ class Video extends Component
                 ->route('dashboard.index')
                 ->bladeAttributes([
                     'class:label' => 'sr-only',
-                    'class:icon' => 'size-6'
+                    'class:icon' => 'size-6',
                 ])
             )
             ->add('settings', fn (Action $item) => $item
@@ -54,7 +54,7 @@ class Video extends Component
                 ->route('dashboard.index')
                 ->bladeAttributes([
                     'class:label' => 'sr-only',
-                    'class:icon' => 'size-6'
+                    'class:icon' => 'size-6',
                 ])
             )
             ->add('settings', fn (Action $item) => $item
@@ -64,7 +64,7 @@ class Video extends Component
                 ->route('dashboard.index')
                 ->bladeAttributes([
                     'class:label' => 'sr-only',
-                    'class:icon' => 'size-6'
+                    'class:icon' => 'size-6',
                 ])
             )
             ->add('post', fn (Action $item) => $item
@@ -74,7 +74,7 @@ class Video extends Component
                 ->route('dashboard.index')
                 ->bladeAttributes([
                     'class:label' => 'sr-only',
-                    'class:icon' => 'size-6'
+                    'class:icon' => 'size-6',
                 ])
             );
     }
