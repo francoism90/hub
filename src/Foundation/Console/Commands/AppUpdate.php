@@ -32,19 +32,5 @@ class AppUpdate extends Command implements Isolatable
 
         // Sync indexes
         $this->call('scout:sync');
-
-        // Generate ide-helpers
-        $this->generateIdeHelpers();
-    }
-
-    protected function generateIdeHelpers(): void
-    {
-        if (! app()->environment('local')) {
-            return;
-        }
-
-        $this->call('ide-helper:generate');
-        $this->call('ide-helper:meta');
-        $this->call('ide-helper:models', ['--nowrite' => 'yes']);
     }
 }
