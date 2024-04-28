@@ -5,7 +5,7 @@
 <div
     x-data="play"
     x-intersect:enter.full="loadManifest($refs.video, '{{ $video->stream }}')"
-    x-intersect:leave="destroy"
+    x-intersect:leave.full="destroy"
     x-on:mousemove="showOverlay"
     x-on:touchmove="showOverlay"
     x-on:click="showOverlay"
