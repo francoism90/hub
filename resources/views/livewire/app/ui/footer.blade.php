@@ -19,5 +19,5 @@
                 </x-wireuse::actions-link>
             @endforeach
         </nav>
-    <x-app.layout.container>
+    </x-app.layout.container>
 </footer>
