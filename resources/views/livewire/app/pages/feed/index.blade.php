@@ -1,5 +1,5 @@
 @persist('scrollbar')
-<x-app.layout.container
+<div
     x-data="feed"
     class="relative h-dvh w-screen snap-mandatory snap-y overflow-y-scroll bg-black/25"
     fluid
@@ -14,7 +14,7 @@
     @endforelse
 
     <div x-intersect.full="$wire.fetch()"></div>
-</x-app.layout.container>
+</div>
 @endpersist
 
 @script

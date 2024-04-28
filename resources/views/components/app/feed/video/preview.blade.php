@@ -5,12 +5,14 @@
 <a
     wire:navigate
     href="{{ route('videos.view', $video) }}"
+    class="block"
 >
-    <div
-
-        class="absolute z-10 inset-y-0 inset-x-0 bg-black/25 sm:inset-x-10 sm:bg-black"
-    >
+    <div class="absolute z-10 inset-y-0 inset-x-0 w-full h-full bg-black/25 sm:inset-x-10 sm:bg-black">
         <img
+            x-cloak
+            x-ref="video"
+            x-show="! $wire.$parent.preview"
+            x-transition
             alt="{{ $video->title }}"
             srcset="{{ $video->placeholder }}"
             src="{{ $video->thumbnail }}"
