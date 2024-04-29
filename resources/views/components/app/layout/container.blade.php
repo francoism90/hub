@@ -1,3 +1,7 @@
+@props([
+    'fluid' => false,
+])
+
 <div {{ $attributes
     ->cssClass([
         'layer' => 'relative mx-auto w-full',

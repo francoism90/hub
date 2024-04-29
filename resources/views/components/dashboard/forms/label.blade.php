@@ -1,5 +1,7 @@
 @props([
-    'field',
+    'id',
+    'required' => false,
+    'hint' => null,
 ])
 
 <label {{ $attributes
@@ -11,15 +13,13 @@
     ])
     ->classMerge([
         'layer',
-        'error' => $errors->has($field->getName()),
+        'error' => $errors->has($id),
     ])
     ->merge([
-        'for' => $field->getName(),
+        'for' => $id,
     ])
 }}>
-    {{ $field->getLabel() }}
-
-    {{-- @if ($required)
+    @if ($required)
         <span class="{{ $attributes->classFor('required') }}">*</span>
     @endif
 
@@ -27,5 +27,5 @@
         <p class="{{ $attributes->classFor('hint') }}">
             {{ $hint }}
         </p>
-    @endif --}}
+    @endif
 </label>
