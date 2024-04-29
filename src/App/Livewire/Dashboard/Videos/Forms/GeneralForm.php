@@ -10,6 +10,9 @@ class GeneralForm extends Form
     #[Validate('required|string|max:255')]
     public string $name = '';
 
+    #[Validate('nullable|array|min:1|max:50|exists:tags,prefixed_id')]
+    public array $tags = [];
+
     protected function handle(): void
     {
         dd('success');

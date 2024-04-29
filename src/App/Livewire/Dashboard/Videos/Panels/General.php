@@ -6,8 +6,6 @@ use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Forms\Support\Field;
-use Foxws\WireUse\Forms\Support\Schema;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -34,16 +32,6 @@ class General extends Component
     public function updated(): void
     {
         $this->validate();
-    }
-
-    protected function schema(): Schema
-    {
-        return Schema::make()
-            ->add('name', fn (Field $field) => $field
-                ->component('dashboard.forms.input')
-                ->label__('Name')
-                ->wireModel('form.name')
-            );
     }
 
     public function save(): void

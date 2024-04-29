@@ -1,11 +1,16 @@
 @props([
-    'id',
-    'items',
+    'field',
 ])
 
-@php
-    $tags = $items->select(['name', 'prefixed_id'])->toArray();
-@endphp
+{{ $field->getName() }}
+
+@dd($field)
+
+
+@dd()
+
+{{--
+
 
 <div {{ $attributes
         ->cssClass([
@@ -53,4 +58,4 @@
             },
         }));
     </script>
-@endscript
+@endscript --}}
