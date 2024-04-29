@@ -4,7 +4,7 @@ namespace App\Livewire\Feed;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -20,9 +20,9 @@ class Video extends Component
         ]);
     }
 
-    protected function settings(): ActionGroup
+    protected function settings(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('refresh', fn (Action $item) => $item
                 ->label(__('Refresh Feed'))
                 ->icon('heroicon-o-arrow-path-rounded-square')
@@ -42,9 +42,9 @@ class Video extends Component
             );
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('settings', fn (Action $item) => $item
                 ->label(__('Collections'))
                 ->icon('heroicon-o-square-2-stack')

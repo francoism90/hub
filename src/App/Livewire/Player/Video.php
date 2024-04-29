@@ -4,7 +4,7 @@ namespace App\Livewire\Player;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -23,9 +23,9 @@ class Video extends Component
         ]);
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('previous', fn (Action $item) => $item
                 ->label(__('Go back'))
                 ->icon('heroicon-m-arrow-left-circle')
@@ -36,15 +36,15 @@ class Video extends Component
             );
     }
 
-    protected function panel(): ActionGroup
+    protected function panel(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->action($this->togglePlayAction());
     }
 
-    protected function settings(): ActionGroup
+    protected function settings(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->actionIf(static::can('update', $this->video), $this->manage())
             ->action($this->toggleFullscreen());
     }

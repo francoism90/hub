@@ -3,7 +3,7 @@
 namespace App\Livewire\Dashboard\Ui;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Livewire\Component;
 
 class Header extends Component
@@ -15,9 +15,9 @@ class Header extends Component
         ]);
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('content', fn (Action $item) => $item
                 ->label(__('Content'))
                 ->icon('heroicon-o-magnifying-glass')

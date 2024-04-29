@@ -3,7 +3,7 @@
 namespace App\Livewire\App\Ui;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Livewire\Component;
 
 class Footer extends Component
@@ -15,9 +15,9 @@ class Footer extends Component
         ]);
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('home', fn (Action $item) => $item
                 ->label(__('Feed'))
                 ->icon('heroicon-o-square-2-stack')

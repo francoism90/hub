@@ -5,7 +5,7 @@ namespace App\Dashboard\Http\Controllers;
 use App\Livewire\Dashboard\Videos\Panels\General;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
@@ -33,9 +33,9 @@ class VideoManagerController extends Page
         $this->canUpdate($this->video);
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->active($this->tab)
             ->attributes([
                 'model' => $this->video->getMorphClass(),

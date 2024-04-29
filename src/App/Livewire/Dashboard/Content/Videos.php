@@ -5,7 +5,7 @@ namespace App\Livewire\Dashboard\Content;
 use App\Livewire\Dashboard\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
@@ -69,9 +69,9 @@ class Videos extends Component
         return [];
     }
 
-    protected function filters(): ActionGroup
+    protected function filters(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->add('sort', fn (Action $item) => $item
                 ->label(__('Sort by'))
                 ->icon('heroicon-s-chevron-down')

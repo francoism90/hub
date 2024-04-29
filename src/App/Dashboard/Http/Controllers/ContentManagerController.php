@@ -5,7 +5,7 @@ namespace App\Dashboard\Http\Controllers;
 use App\Livewire\Dashboard\Content\Tags;
 use App\Livewire\Dashboard\Content\Videos;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\ActionGroup;
+use Foxws\WireUse\Actions\Support\Actions;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -30,9 +30,9 @@ class ContentManagerController extends Page
         ]);
     }
 
-    protected function actions(): ActionGroup
+    protected function actions(): Actions
     {
-        return ActionGroup::make()
+        return Actions::make()
             ->active($this->tab)
             ->add('videos', fn (Action $item) => $item
                 ->wireModel('tab')
