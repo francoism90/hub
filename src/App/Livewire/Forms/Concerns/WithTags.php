@@ -31,10 +31,10 @@ trait WithTags
             ->get();
     }
 
-    protected function fillModelTags(Model $model, string $relationship = 'tags'): void
+    protected function fillModelTags(Model $model): void
     {
         $this->fill([
-            'tags' => $model->{$relationship}?->routeKeys()->toArray() ?? []
+            'tags' => $model->tags->routeKeys()->toArray() ?? []
         ]);
     }
 
