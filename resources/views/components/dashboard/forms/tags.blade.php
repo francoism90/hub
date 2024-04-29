@@ -23,8 +23,9 @@
         ])
 }}>
     <x-dashboard.forms.input
-        id="form.name"
-        wire:model.live="form.name"
+        id="form.tagger"
+        wire:model.live="form.tagger"
+        placeholder="{{ __('Find tag') }}"
     />
 
     <div class="{{ $attributes->classFor('field') }}">

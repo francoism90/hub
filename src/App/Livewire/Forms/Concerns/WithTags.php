@@ -13,7 +13,7 @@ trait WithTags
     public array $tags = [];
 
     #[Validate('nullable|string|min:1|max:100')]
-    public string $tagQuery = '';
+    public string $tagger = '';
 
     public function getTags(): TagCollection
     {
@@ -34,7 +34,7 @@ trait WithTags
     protected function fillModelTags(Model $model): void
     {
         $this->fill([
-            'tags' => $model->tags->routeKeys()->toArray() ?? []
+            'tags' => $model->tags->routeKeys()->toArray()
         ]);
     }
 
