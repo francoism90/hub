@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function toModels(): self
+    public function toModels(): mixed
     {
         return $this
             ->transform(fn (Tag|string $item): ?Tag => ! $item instanceof Tag
@@ -17,6 +17,11 @@ class TagCollection extends Collection
             )
             ->filter()
             ->unique();
+    }
+
+    public function routeKeys(): mixed
+    {
+        return $this->pluck((new Tag)->getRouteKeyName());
     }
 
     public function type(TagType|string|null $type = null): mixed

@@ -9,7 +9,8 @@
 
 <div {{ $attributes
         ->cssClass([
-            'layer' => 'flex items-start gap-2 p-3 min-h-24 max-h-32 w-full bg-secondary-800/90 border border-secondary-500/50 text-base focus:border-secondary-500 focus:border-2 focus:ring-0',
+            'layer' => 'flex flex-col gap-y-3',
+            'field' => 'flex items-start gap-2 p-3 min-h-24 max-h-32 w-full bg-secondary-800/90 border border-secondary-500/50 text-base focus:border-secondary-500 focus:border-2 focus:ring-0',
             'error' => '!border-red-500',
         ])
         ->classMerge([
@@ -21,13 +22,20 @@
             'id' => $id,
         ])
 }}>
-    <template x-for="(tag, index) in tags" :key="tag.prefixed_id">
-        <a
-            x-text="tag.name"
-            x-on:click="tags.splice(index, 1)"
-        >
-        </a>
-    </template>
+    <x-dashboard.forms.input
+        id="form.name"
+        wire:model.live="form.name"
+    />
+
+    <div class="{{ $attributes->classFor('field') }}">
+        <template x-for="(tag, index) in tags" :key="tag.prefixed_id">
+            <a
+                x-text="tag.name"
+                x-on:click="tags.splice(index, 1)"
+            >
+            </a>
+        </template>
+    </div>
 </div>
 
 @script
@@ -39,7 +47,7 @@
             async init() {
                 this.$watch('tags', (value) => {
                     values = JSON.parse(JSON.stringify(value))
-                    this.selected = values.map(obj => obj.prefixed_id)
+                    this.selected = values.map(obj => obj?.prefixed_id)
                 })
             },
         }));
