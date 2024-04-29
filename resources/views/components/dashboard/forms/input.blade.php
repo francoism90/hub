@@ -1,8 +1,6 @@
 @props([
-    'field',
+    'id',
 ])
-
-<x-dashboard.forms.label :$field />
 
 <input {{ $attributes
     ->cssClass([
@@ -11,11 +9,10 @@
     ])
     ->classMerge([
         'layer',
-        'error' => $errors->has($field->getWireModel()),
+        'error' => $errors->has($id),
     ])
     ->merge([
-        'id' => $field->getName(),
-        'wire:model' => $field->getWireModel(),
+        'id' => $id,
         'type' => 'text',
     ])
 }}>

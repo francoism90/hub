@@ -24,9 +24,7 @@ class General extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.panels.general')->with([
-            'schema' => $this->schema(),
-        ]);
+        return view('livewire.dashboard.videos.panels.general');
     }
 
     public function updated(): void
