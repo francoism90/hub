@@ -17,6 +17,13 @@ class General extends Component
 
     public GeneralForm $form;
 
+    public function mount(): void
+    {
+        $this->form->fill(
+            $this->getModelProperties()
+        );
+    }
+
     public function render(): View
     {
         return view('livewire.dashboard.videos.panels.general')->with([
@@ -33,8 +40,9 @@ class General extends Component
     {
         return Schema::make()
             ->add('name', fn (Field $field) => $field
+                ->component('dashboard.forms.input')
                 ->label__('Name')
-                ->wireModel('foo')
+                ->wireModel('form.name')
             );
     }
 
@@ -56,6 +64,13 @@ class General extends Component
             ->bladeAttributes([
                 'type' => 'submit',
             ]);
+    }
+
+    protected function getModelProperties(): array
+    {
+        return $this->getModel()->only(
+            'name',
+        );
     }
 
     protected function getModel(): Video

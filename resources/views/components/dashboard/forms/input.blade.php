@@ -1,5 +1,5 @@
 @props([
-    'id',
+    'field',
 ])
 
 <input {{ $attributes
@@ -9,10 +9,11 @@
     ])
     ->classMerge([
         'layer',
-        'error' => $errors->has($id),
+        'error' => $errors->has($field->getWireModel()),
     ])
     ->merge([
-        'id' => $id,
+        'id' => $field->getName(),
+        'wire:model' => $field->getWireModel(),
         'type' => 'text',
     ])
 }}>

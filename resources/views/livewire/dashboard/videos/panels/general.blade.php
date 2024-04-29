@@ -1,5 +1,5 @@
 <form wire:submit="save">
-    form
+    <x-dashboard.forms.schema :$schema />
 
     {{ var_dump($schema->items()) }}
 </form>
