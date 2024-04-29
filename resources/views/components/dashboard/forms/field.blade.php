@@ -1,3 +1,9 @@
-<label {{ $attributes->class('flex flex-col gap-1.5')}}>
-    {{ $slot }}
+@props([
+    'property',
+])
+
+<label>
+    {{ $property->getLabel() }}
 </label>
+
+<span>{{ $property->getDefault() }}</span>

@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Dashboard\Videos\Panels;
 
-use App\Dashboard\Http\Controllers\VideoManagerController;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Forms\Support\Field;
+use Foxws\WireUse\Forms\Support\Schema;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -16,17 +17,10 @@ class General extends Component
 
     public GeneralForm $form;
 
-    public function mount(): void
-    {
-        $this->form->populate(
-            $this->getModel()
-        );
-    }
-
     public function render(): View
     {
         return view('livewire.dashboard.videos.panels.general')->with([
-            'submit' => $this->submitAction(),
+            'schema' => $this->schema(),
         ]);
     }
 
@@ -35,15 +29,24 @@ class General extends Component
         $this->validate();
     }
 
+    protected function schema(): Schema
+    {
+        return Schema::make()
+            ->add('name', fn (Field $field) => $field
+                ->label__('Name')
+                ->wireModel('foo')
+            );
+    }
+
     public function save(): void
     {
         $this->form->submit();
 
-        $this->redirectAction(
-            name: VideoManagerController::class,
-            parameters: $this->getModel(),
-            navigate: true,
-        );
+        // $this->redirectAction(
+        //     name: VideoManagerController::class,
+        //     parameters: $this->getModel(),
+        //     navigate: true,
+        // );
     }
 
     protected function submitAction(): Action

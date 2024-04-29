@@ -2,30 +2,17 @@
 
 namespace App\Livewire\Dashboard\Videos\Forms;
 
-use App\Livewire\Forms\Concerns\WithTags;
-use Domain\Videos\Actions\UpdateVideoDetails;
-use Domain\Videos\Models\Video;
-use Foxws\WireUse\Forms\Support\UpdateForm;
+use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
-class GeneralForm extends UpdateForm
+class GeneralForm extends Form
 {
-    use WithTags;
-
     #[Validate('required|string|max:255')]
     public string $name = '';
 
-    public function populate(Video $model): void
-    {
-        $this->setModel($model);
-
-        $this->fillModelAttributes('name');
-
-        $this->fillModelTags($model);
-    }
-
     protected function handle(): void
     {
+        dd('success');
         $validated = $this->validate();
 
         dd($validated);
@@ -38,6 +25,7 @@ class GeneralForm extends UpdateForm
 
     protected function afterHandle(): void
     {
+        dd('success');
         flash()->success(__('Video has been updated!'));
     }
 }
