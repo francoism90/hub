@@ -3,50 +3,50 @@
 namespace App\Livewire\Dashboard\Ui;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\Actions;
+use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Livewire\Component;
 
 class Footer extends Component
 {
+    use WithNavigation;
+
     public function render()
     {
-        return view('livewire.dashboard.ui.footer')->with([
-            'actions' => $this->actions(),
-        ]);
+        return view('livewire.dashboard.ui.footer');
     }
 
-    protected function actions(): Actions
+    protected function navigation(): array
     {
-        return Actions::make()
-            ->add('dashboard', fn (Action $item) => $item
+        return [
+            Action::make('dashboard')
                 ->label(__('Dashboard'))
                 ->icon('heroicon-o-squares-2x2')
                 ->iconActive('heroicon-s-squares-2x2')
-                ->route('dashboard.index')
-            )
-            ->add('content', fn (Action $item) => $item
+                ->route('dashboard.index'),
+
+            Action::make('content')
                 ->label(__('Content'))
                 ->icon('heroicon-o-rectangle-stack')
                 ->iconActive('heroicon-s-rectangle-stack')
-                ->route('dashboard.content.index')
-            )
-            ->add('post', fn (Action $item) => $item
+                ->route('dashboard.content.index'),
+
+            Action::make('post')
                 ->label(__('Post'))
                 ->icon('heroicon-o-plus-circle')
                 ->iconActive('heroicon-s-plus-circle')
-                ->route('dashboard.post')
-            )
-            ->add('settings', fn (Action $item) => $item
+                ->route('dashboard.post'),
+
+            Action::make('settings')
                 ->label(__('Settings'))
                 ->icon('heroicon-o-cog')
                 ->iconActive('heroicon-s-cog')
-                ->route('dashboard.settings')
-            )
-            ->add('activity', fn (Action $item) => $item
+                ->route('dashboard.settings'),
+
+            Action::make('activity')
                 ->label(__('Activity'))
                 ->icon('heroicon-o-bell')
                 ->iconActive('heroicon-s-bell')
                 ->route('dashboard.activity')
-            );
+        ];
     }
 }

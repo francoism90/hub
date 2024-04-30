@@ -1,5 +1,9 @@
 <div class="flex flex-col gap-y-3">
-    <div class="border-b border-secondary-400/40 p-3">
+    {{ $this->navigation->feed() }}
+
+    {{ $this->test() }}
+
+    {{-- <div class="border-b border-secondary-400/40 p-3">
         <h1 class="text-base font-medium leading-none tracking-tight line-clamp-1">
             {{ $video->title }}
         </h1>
@@ -28,5 +32,5 @@
         </dl>
     </div>
 
-    <x-dashboard.navigation.tabs :$actions />
+    <x-dashboard.navigation.tabs :$actions /> --}}
 </div>

@@ -64,7 +64,7 @@
 
 <body class="relative overscroll-contain flex flex-col h-[calc(100dvh)] antialiased bg-secondary-950 text-base">
 
-    <livewire:livewire.dashboard.ui.header />
+    {{-- <livewire:livewire.dashboard.ui.header /> --}}
 
     <div class="flex-1">
         {{ $slot }}
