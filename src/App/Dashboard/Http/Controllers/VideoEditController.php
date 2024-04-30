@@ -2,6 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
+use App\Livewire\Dashboard\Videos\Panels\General;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
@@ -37,12 +38,14 @@ class VideoEditController extends Page
             Action::make('general')
                 ->label(__('General'))
                 ->icon('heroicon-o-squares-2x2')
-                ->iconActive('heroicon-s-squares-2x2'),
+                ->iconActive('heroicon-s-squares-2x2')
+                ->livewire(General::class),
 
             Action::make('assets')
                 ->label(__('Assets'))
                 ->icon('heroicon-o-rectangle-stack')
-                ->iconActive('heroicon-s-rectangle-stack'),
+                ->iconActive('heroicon-s-rectangle-stack')
+                ->livewire(General::class),
         ];
     }
 

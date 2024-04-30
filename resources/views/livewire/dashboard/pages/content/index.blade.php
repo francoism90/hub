@@ -1,5 +1,5 @@
 <div>
-    <x-wireuse::navigation-tabs :nodes="$this->getNodes()" wire:model.live="tab" />
+    <x-wireuse::navigation-tabs :nodes="$this->getNodes()" />
 
     {{ $tab }}
 </div>

@@ -16,8 +16,8 @@ class Video extends Component
     public function render(): View
     {
         return view('livewire.app.feed.video')->with([
-            'settings' => $this->getNavigation('settings')->getNodes(),
-            'controls' => $this->getNavigation('controls')->getNodes(),
+            'settings' => $this->getNode('settings'),
+            'controls' => $this->getNode('controls'),
         ]);
     }
 
