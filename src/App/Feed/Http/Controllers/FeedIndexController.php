@@ -42,7 +42,7 @@ class FeedIndexController extends Page
     {
         $this->limit += 12;
 
-        if ($this->getLimit() >= 100) {
+        if ($this->getLimit() >= 120) {
             $this->limit = 12;
         }
     }
@@ -58,7 +58,7 @@ class FeedIndexController extends Page
 
     protected function getLimit(): int
     {
-        return Number::clamp($this->limit, min: 12, max: 100);
+        return Number::clamp($this->limit, min: 12, max: 120);
     }
 
     protected static function getModelClass(): ?string
