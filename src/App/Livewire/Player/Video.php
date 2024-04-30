@@ -69,7 +69,7 @@ class Video extends Component
             Action::make('edit')
                 ->label(__('Manage Video'))
                 ->icon('heroicon-o-book-open')
-                ->route('dashboard.content.video', $this->video),
+                ->route('dashboard.videos.edit', $this->video),
 
             Action::make('toggle-playback')
                 ->label(__('Toggle Playback'))

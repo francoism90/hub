@@ -2,7 +2,7 @@
 
 use App\Dashboard\Http\Controllers\ContentManagerController;
 use App\Dashboard\Http\Controllers\DashboardIndexController;
-use App\Dashboard\Http\Controllers\VideoManagerController;
+use App\Dashboard\Http\Controllers\VideoEditController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -15,6 +15,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Content
     Route::name('content.')->prefix('content')->group(function () {
         Route::get('/', ContentManagerController::class)->name('index');
-        Route::get('/video/{video}', VideoManagerController::class)->name('video');
+    });
+
+    // Videos
+    Route::name('videos.')->prefix('videos')->group(function () {
+        Route::get('/{video}', VideoEditController::class)->name('edit');
     });
 });
