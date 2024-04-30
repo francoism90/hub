@@ -3,11 +3,9 @@
 namespace App\Livewire\Videos\Concerns;
 
 use Domain\Videos\Models\Video;
-use Livewire\Attributes\Locked;
 
 trait WithVideo
 {
-    #[Locked]
     public Video $video;
 
     public function bootWithVideo(): void

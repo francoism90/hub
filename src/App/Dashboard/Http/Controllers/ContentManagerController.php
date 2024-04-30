@@ -12,7 +12,7 @@ use Livewire\Attributes\Url;
 #[Layout('components.layouts.dashboard')]
 class ContentManagerController extends Page
 {
-    use WithNavigation;
+    // use WithNavigation;
 
     #[Url(as: 'tab', except: 'videos', history: true)]
     public string $tab = 'videos';

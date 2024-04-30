@@ -3,10 +3,11 @@
 namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Panels\General;
+use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
+use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -16,15 +17,24 @@ use Livewire\Attributes\Url;
 class VideoEditController extends Page
 {
     use WithAuthorization;
-    use WithNavigation;
+    use WithTabs;
     use WithVideo;
+
+    public VideoState $state;
 
     #[Url(as: 'tab', except: 'general', history: true)]
     public string $tab = 'general';
 
+    public function mount(): void
+    {
+        $this->fillStateModel();
+    }
+
     public function render(): View
     {
-        return view('livewire.dashboard.pages.videos.edit');
+        return view('livewire.dashboard.pages.videos.edit')->with([
+            'tabs' => $this->tabs(),
+        ]);
     }
 
     protected function authorizeAccess(): void
@@ -32,7 +42,7 @@ class VideoEditController extends Page
         $this->canUpdate($this->video);
     }
 
-    protected function navigation(): array
+    protected function tabs(): array
     {
         return [
             Action::make('general')
@@ -57,6 +67,11 @@ class VideoEditController extends Page
     protected function getDescription(): string
     {
         return (string) $this->video->summary;
+    }
+
+    protected function fillStateModel(): void
+    {
+        $this->state->fill($this->video);
     }
 
     public function getListeners(): array

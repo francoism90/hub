@@ -3,19 +3,18 @@
 namespace App\Livewire\Dashboard\Ui;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Livewire\Component;
 
 class Header extends Component
 {
-    use WithNavigation;
-
     public function render()
     {
-        return view('livewire.dashboard.ui.header');
+        return view('livewire.dashboard.ui.header')->with([
+            'actions' => $this->actions(),
+        ]);
     }
 
-    protected function navigation(): array
+    protected function actions(): array
     {
         return [
             Action::make('dashboard')

@@ -28,5 +28,8 @@
         </dl>
     </div>
 
-    <x-wireuse::navigation-tabs :nodes="$this->getNodes()" />
+    <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
+
+
+    {{-- <x-wireuse::navigation-tab :$state /> --}}
 </div>

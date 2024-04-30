@@ -5,7 +5,7 @@
 
 <div class="absolute z-20 top-0 inset-x-0">
     <nav class="flex flex-row flex-nowrap items-center gap-x-4">
-        @foreach ($actions as $action)
+        @foreach ($actions->getNodes() as $action)
             <x-wireuse::actions-link :$action>
                 <x-wireuse::actions-icon
                     :$action

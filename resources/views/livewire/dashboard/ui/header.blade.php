@@ -8,7 +8,7 @@
 
         <x:slot:end>
             <nav class="flex flex-nowrap items-center gap-x-3">
-                @foreach ($this->getNodes() as $action)
+                @foreach ($actions as $action)
                     <x-wireuse::actions-link :$action>
                         <x-wireuse::actions-icon :$action />
                         <span class="sr-only">{{ $action->getLabel() }}</span>
