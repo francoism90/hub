@@ -5,5 +5,6 @@
             wire:model.live="form.name"
         />
 
+        <button type="submit">Save</button>
     </form>
 </x-app.layout.container>

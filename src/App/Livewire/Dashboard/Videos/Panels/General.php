@@ -4,14 +4,14 @@ namespace App\Livewire\Dashboard\Videos\Panels;
 
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Actions\Concerns\WithAction;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Navigation\Concerns\WithTab;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class General extends Component
 {
-    use WithAction;
+    use WithTab;
 
     public GeneralForm $form;
 
@@ -61,8 +61,6 @@ class General extends Component
 
     protected function getModel(): Video
     {
-        return Video::findByPrefixedIdOrFail(
-            $this->action->getContainer()->get('id')
-        );
+        return data_get($this->properties, 'video');
     }
 }
