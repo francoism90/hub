@@ -9,7 +9,6 @@
             @foreach ($controls as $action)
                 <x-wireuse::actions-link :$action>
                     <x-wireuse::actions-icon :$action />
-
                     <span class="sr-only">{{ $action->getLabel() }}</span>
                 </x-wireuse::actions-link>
             @endforeach
