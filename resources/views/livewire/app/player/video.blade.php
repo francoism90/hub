@@ -1,7 +1,3 @@
-@props([
-    'video',
-])
-
 <div
     x-data="play"
     x-intersect:enter.full="loadManifest($refs.video, '{{ $video->stream }}')"
@@ -28,7 +24,7 @@
     <x-app.player.controls
         :$video
         :$actions
-        :$panel
+        :$controls
         :$settings
     />
 </div>
@@ -85,6 +81,8 @@
             },
 
             async handleEvent(event) {
+                if (! event.target || ! this.$refs.video) return
+
                 switch(event.type) {
                     case 'durationchange':
                         this.duration = event.target.duration

@@ -15,7 +15,10 @@ class Video extends Component
 
     public function render(): View
     {
-        return view('livewire.app.feed.video');
+        return view('livewire.app.feed.video')->with([
+            'settings' => $this->getNavigation('settings')->getNodes(),
+            'controls' => $this->getNavigation('controls')->getNodes(),
+        ]);
     }
 
     protected function navigation(): array
@@ -23,6 +26,9 @@ class Video extends Component
         return [
             Action::make('settings')
                 ->fillNodes($this->settings()),
+
+            Action::make('controls')
+                ->fillNodes($this->controls()),
         ];
     }
 
@@ -48,48 +54,48 @@ class Video extends Component
         ];
     }
 
-    // protected function actions(): Actions
-    // {
-    //     return Actions::make()
-    //         ->add('settings', fn (Action $item) => $item
-    //             ->label(__('Collections'))
-    //             ->icon('heroicon-o-square-2-stack')
-    //             ->iconActive('heroicon-s-square-2-stack')
-    //             ->route('dashboard.index')
-    //             ->bladeAttributes([
-    //                 'class:label' => 'sr-only',
-    //                 'class:icon' => 'size-6',
-    //             ])
-    //         )
-    //         ->add('settings', fn (Action $item) => $item
-    //             ->label(__('Collections'))
-    //             ->icon('heroicon-o-heart')
-    //             ->iconActive('heroicon-s-heart')
-    //             ->route('dashboard.index')
-    //             ->bladeAttributes([
-    //                 'class:label' => 'sr-only',
-    //                 'class:icon' => 'size-6',
-    //             ])
-    //         )
-    //         ->add('settings', fn (Action $item) => $item
-    //             ->label(__('Collections'))
-    //             ->icon('heroicon-o-clock')
-    //             ->iconActive('heroicon-o-clock')
-    //             ->route('dashboard.index')
-    //             ->bladeAttributes([
-    //                 'class:label' => 'sr-only',
-    //                 'class:icon' => 'size-6',
-    //             ])
-    //         )
-    //         ->add('post', fn (Action $item) => $item
-    //             ->label(__('More'))
-    //             ->icon('heroicon-o-ellipsis-horizontal')
-    //             ->iconActive('heroicon-s-ellipsis-horizontal')
-    //             ->route('dashboard.index')
-    //             ->bladeAttributes([
-    //                 'class:label' => 'sr-only',
-    //                 'class:icon' => 'size-6',
-    //             ])
-    //         );
-    // }
+    protected function controls(): array
+    {
+        return [
+            Action::make('content')
+                ->label(__('Collections'))
+                ->icon('heroicon-o-square-2-stack')
+                ->iconActive('heroicon-s-square-2-stack')
+                ->route('dashboard.index')
+                ->componentAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6',
+                ]),
+
+            Action::make('collections')
+                ->label(__('Collections'))
+                ->icon('heroicon-o-heart')
+                ->iconActive('heroicon-s-heart')
+                ->route('dashboard.index')
+                ->componentAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6',
+                ]),
+
+            Action::make('favorite')
+                ->label(__('Favorite'))
+                ->icon('heroicon-o-clock')
+                ->iconActive('heroicon-o-clock')
+                ->route('dashboard.index')
+                ->componentAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6',
+                ]),
+
+            Action::make('more')
+                ->label(__('More'))
+                ->icon('heroicon-o-ellipsis-horizontal')
+                ->iconActive('heroicon-s-ellipsis-horizontal')
+                ->route('dashboard.index')
+                ->componentAttributes([
+                    'class:label' => 'sr-only',
+                    'class:icon' => 'size-6',
+                ]),
+        ];
+    }
 }

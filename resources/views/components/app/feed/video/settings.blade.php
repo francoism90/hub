@@ -1,10 +1,10 @@
 @props([
-    'settings',
+    'nodes',
 ])
 
 <div class="absolute z-30 top-0 left-3">
     <nav class="flex h-16 items-center gap-x-3 overflow-x-auto">
-        @foreach ($settings->all() as $action)
+        @foreach ($nodes as $action)
             <x-wireuse::actions-link :$action>
                 <x-wireuse::actions-icon
                     :$action

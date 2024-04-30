@@ -4,80 +4,81 @@ namespace App\Livewire\Player;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\Actions;
-use Foxws\WireUse\Auth\Concerns\WithAuthentication;
+use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
-    use WithAuthentication;
+    use WithNavigation;
     use WithVideo;
 
     public function render(): View
     {
         return view('livewire.app.player.video')->with([
-            'actions' => $this->actions(),
-            'panel' => $this->panel(),
-            'settings' => $this->settings(),
+            'actions' => $this->getNavigation('panel')->getNodes(),
+            'controls' => $this->getNavigation('controls')->getNodes(),
+            'settings' => $this->getNavigation('settings')->getNodes(),
         ]);
     }
 
-    protected function actions(): Actions
+    protected function navigation(): array
     {
-        return Actions::make()
-            ->add('previous', fn (Action $item) => $item
+        return [
+            Action::make('panel')
+                ->fillNodes($this->panel()),
+
+            Action::make('settings')
+                ->fillNodes($this->settings()),
+
+            Action::make('controls')
+                ->fillNodes($this->controls()),
+        ];
+    }
+
+    protected function panel(): array
+    {
+        return [
+            Action::make('navigate')
                 ->label(__('Go back'))
                 ->icon('heroicon-m-arrow-left-circle')
-                ->bladeAttributes([
+                ->componentAttributes([
                     'onclick' => 'history.back()',
                     'title' => __('Go Back'),
-                ])
-            );
+                ]),
+        ];
     }
 
-    protected function panel(): Actions
+    protected function controls(): array
     {
-        return Actions::make()
-            ->action($this->togglePlayAction());
+        return [
+            Action::make('toggle-playback')
+                ->label(__('Toggle Playback'))
+                ->icon('heroicon-m-pause')
+                ->iconActive('heroicon-m-play')
+                ->state('paused')
+                ->componentAttributes([
+                    'x-on:click' => 'togglePlayback',
+                ]),
+        ];
     }
 
-    protected function settings(): Actions
+    protected function settings(): array
     {
-        return Actions::make()
-            ->actionIf(static::can('update', $this->video), $this->manage())
-            ->action($this->toggleFullscreen());
-    }
+        return [
+            Action::make('edit')
+                ->label(__('Manage Video'))
+                ->icon('heroicon-o-book-open')
+                ->route('dashboard.content.video', $this->video),
 
-    protected function manage(): Action
-    {
-        return Action::make('edit')
-            ->label(__('Manage Video'))
-            ->icon('heroicon-o-book-open')
-            ->route('dashboard.content.video', $this->video);
-    }
-
-    protected function togglePlayAction(): Action
-    {
-        return Action::make('toggle-playback')
-            ->label(__('Toggle Playback'))
-            ->icon('heroicon-m-pause')
-            ->iconActive('heroicon-m-play')
-            ->state('paused')
-            ->bladeAttributes([
-                'x-on:click' => 'togglePlayback',
-            ]);
-    }
-
-    protected function toggleFullscreen(): Action
-    {
-        return Action::make('toggle-playback')
-            ->label(__('Toggle Playback'))
-            ->icon('heroicon-o-arrows-pointing-out')
-            ->iconActive('heroicon-o-arrows-pointing-in')
-            ->state('fullscreen')
-            ->bladeAttributes([
-                'x-on:click' => 'toggleFullscreen',
-            ]);
+            Action::make('toggle-playback')
+                ->label(__('Toggle Playback'))
+                ->icon('heroicon-o-arrows-pointing-out')
+                ->iconActive('heroicon-o-arrows-pointing-in')
+                ->state('fullscreen')
+                ->componentAttributes([
+                    'x-on:click' => 'toggleFullscreen',
+                ]),
+        ];
     }
 }
