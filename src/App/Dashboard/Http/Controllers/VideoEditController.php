@@ -2,7 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Panels\General;
+use App\Livewire\Dashboard\Videos\Edit\General;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
@@ -34,6 +34,7 @@ class VideoEditController extends Page
     {
         return view('livewire.dashboard.pages.videos.edit')->with([
             'tabs' => $this->tabs(),
+            'current' => $this->currentTab(),
         ]);
     }
 
@@ -49,13 +50,13 @@ class VideoEditController extends Page
                 ->label(__('General'))
                 ->icon('heroicon-o-squares-2x2')
                 ->iconActive('heroicon-s-squares-2x2')
-                ->livewire(General::class),
+                ->component(General::class),
 
             Action::make('assets')
                 ->label(__('Assets'))
                 ->icon('heroicon-o-rectangle-stack')
                 ->iconActive('heroicon-s-rectangle-stack')
-                ->livewire(General::class),
+                ->component(General::class),
         ];
     }
 

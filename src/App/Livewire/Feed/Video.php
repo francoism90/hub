@@ -4,32 +4,19 @@ namespace App\Livewire\Feed;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
-    use WithNavigation;
     use WithVideo;
 
     public function render(): View
     {
         return view('livewire.app.feed.video')->with([
-            'settings' => $this->getNode('settings'),
-            'controls' => $this->getNode('controls'),
+            'settings' => $this->settings(),
+            'controls' => $this->controls(),
         ]);
-    }
-
-    protected function navigation(): array
-    {
-        return [
-            Action::make('settings')
-                ->fillNodes($this->settings()),
-
-            Action::make('controls')
-                ->fillNodes($this->controls()),
-        ];
     }
 
     protected function settings(): array

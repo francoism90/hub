@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Forms;
 
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
@@ -29,5 +30,10 @@ class GeneralForm extends Form
     protected function afterHandle(): void
     {
         flash()->success(__('Video has been updated!'));
+    }
+
+    protected function beforeFormFill(Video $values): mixed
+    {
+        return $values->only('name');
     }
 }

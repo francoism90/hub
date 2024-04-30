@@ -1,30 +1,28 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Panels;
+namespace App\Livewire\Dashboard\Videos\Edit;
 
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithTab;
+use Foxws\WireUse\States\Concerns\WithState;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class General extends Component
 {
-    use WithTab;
+    use WithState;
 
     public GeneralForm $form;
 
     public function mount(): void
     {
-        $this->form->fill(
-            $this->getModelProperties()
-        );
+        $this->form->fill($this->getModel());
     }
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.panels.general');
+        return view('livewire.dashboard.videos.edit.general');
     }
 
     public function updated(): void
@@ -52,15 +50,10 @@ class General extends Component
             ]);
     }
 
-    protected function getModelProperties(): array
-    {
-        return $this->getModel()->only(
-            'name',
-        );
-    }
-
     protected function getModel(): Video
     {
-        return data_get($this->properties, 'video');
+        return Video::findByPrefixedIdOrFail(
+            $this->state->getPropertyValue('id')
+        );
     }
 }

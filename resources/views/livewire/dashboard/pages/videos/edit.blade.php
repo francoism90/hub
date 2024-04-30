@@ -30,6 +30,7 @@
 
     <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
 
-
-    {{-- <x-wireuse::navigation-tab :$state /> --}}
+    @if ($current)
+        <livewire:is :component="$current->getComponent()" :$state />
+    @endif
 </div>

@@ -4,39 +4,23 @@ namespace App\Livewire\Player;
 
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
-    use WithNavigation;
     use WithVideo;
 
     public function render(): View
     {
         return view('livewire.app.player.video')->with([
-            'actions' => $this->getNode('panel'),
-            'controls' => $this->getNode('controls'),
-            'settings' => $this->getNode('settings'),
+            'actions' => $this->actions(),
+            'controls' => $this->controls(),
+            'settings' => $this->settings(),
         ]);
     }
 
-    protected function navigation(): array
-    {
-        return [
-            Action::make('panel')
-                ->fillNodes($this->panel()),
-
-            Action::make('settings')
-                ->fillNodes($this->settings()),
-
-            Action::make('controls')
-                ->fillNodes($this->controls()),
-        ];
-    }
-
-    protected function panel(): array
+    protected function actions(): array
     {
         return [
             Action::make('navigate')
@@ -69,7 +53,7 @@ class Video extends Component
             Action::make('edit')
                 ->label(__('Manage Video'))
                 ->icon('heroicon-o-book-open')
-                ->route('dashboard.videos.edit', $this->video),
+                ->route('dashboard.videos.edit', $this->getVideo()),
 
             Action::make('toggle-playback')
                 ->label(__('Toggle Playback'))

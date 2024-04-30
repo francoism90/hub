@@ -3,7 +3,6 @@
 namespace App\Dashboard\Http\Controllers;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -12,8 +11,6 @@ use Livewire\Attributes\Url;
 #[Layout('components.layouts.dashboard')]
 class ContentManagerController extends Page
 {
-    // use WithNavigation;
-
     #[Url(as: 'tab', except: 'videos', history: true)]
     public string $tab = 'videos';
 
@@ -25,10 +22,12 @@ class ContentManagerController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.content.index');
+        return view('livewire.dashboard.pages.content.index')->with([
+            'actions' => $this->actions(),
+        ]);
     }
 
-    protected function navigation(): array
+    protected function actions(): array
     {
         return [
             Action::make('videos')

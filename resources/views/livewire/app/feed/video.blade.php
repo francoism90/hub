@@ -8,11 +8,11 @@
         loading="lazy"
     />
 
-    <x-app.feed.video.settings :nodes="$settings" />
+    <x-app.feed.video.settings :$settings />
 
     <div class="absolute z-20 mx-auto inset-0 h-[calc(100vh-4rem)] w-full sm:w-3/5 xl:max-w-2xl">
         <x-app.feed.video.preview :$video />
         <x-app.feed.video.details :$video />
-        <x-app.feed.video.actions :nodes="$controls" />
+        <x-app.feed.video.actions :$controls />
     </div>
 </article>

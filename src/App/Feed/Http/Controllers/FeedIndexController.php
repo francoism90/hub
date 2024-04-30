@@ -33,6 +33,7 @@ class FeedIndexController extends Page
     public function items(): VideoCollection
     {
         return $this->getQuery()
+            ->with(['media', 'tags'])
             ->randomSeed(key: 'videos', ttl: now()->addHour())
             ->take($this->getLimit())
             ->get();

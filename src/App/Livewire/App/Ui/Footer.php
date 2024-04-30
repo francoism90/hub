@@ -3,19 +3,18 @@
 namespace App\Livewire\App\Ui;
 
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Livewire\Component;
 
 class Footer extends Component
 {
-    use WithNavigation;
-
     public function render()
     {
-        return view('livewire.app.ui.footer');
+        return view('livewire.app.ui.footer')->with([
+            'actions' => $this->actions(),
+        ]);
     }
 
-    protected function navigation(): array
+    protected function actions(): array
     {
         return [
             Action::make('feed')
