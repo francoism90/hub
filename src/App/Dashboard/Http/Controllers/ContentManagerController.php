@@ -2,10 +2,8 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Content\Tags;
-use App\Livewire\Dashboard\Content\Videos;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Actions\Support\Actions;
+use Foxws\WireUse\Navigation\Concerns\WithNavigation;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -14,7 +12,9 @@ use Livewire\Attributes\Url;
 #[Layout('components.layouts.dashboard')]
 class ContentManagerController extends Page
 {
-    #[Url(as: 'tab', except: 'videos')]
+    use WithNavigation;
+
+    #[Url(as: 'tab', except: 'videos', history: true)]
     public string $tab = 'videos';
 
     public function mount(): void
@@ -25,24 +25,21 @@ class ContentManagerController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.content.index')->with([
-            'actions' => $this->actions(),
-        ]);
+        return view('livewire.dashboard.pages.content.index');
     }
 
-    protected function actions(): Actions
+    protected function navigation(): array
     {
-        return Actions::make()
-            ->active($this->tab)
-            ->add('videos', fn (Action $item) => $item
-                ->wireModel('tab')
+        return [
+            Action::make('videos')
                 ->label(__('Videos'))
-                ->livewire(Videos::class)
-            )
-            ->add('tags', fn (Action $item) => $item
-                ->wireModel('tab')
-                ->label(__('Tags'))
-                ->livewire(Tags::class)
-            );
+                ->icon('heroicon-o-squares-2x2')
+                ->iconActive('heroicon-s-squares-2x2'),
+
+            Action::make('tags')
+                ->label(__('Content'))
+                ->icon('heroicon-o-rectangle-stack')
+                ->iconActive('heroicon-s-rectangle-stack'),
+        ];
     }
 }
