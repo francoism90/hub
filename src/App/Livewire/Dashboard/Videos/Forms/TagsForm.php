@@ -19,8 +19,12 @@ class TagsForm extends Form
             ->value();
     }
 
-    public function getModels(array $ids = []): TagCollection
+    public function getModels(array $ids = []): array
     {
-        return TagCollection::make($ids)->toModels();
+        $collect = TagCollection::make($ids)->toModels();
+
+        return $collect
+            ->pluck('name', 'prefixed_id')
+            ->toArray();
     }
 }

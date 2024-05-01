@@ -17,6 +17,10 @@
             'layer',
             'error' => $errors->has($id),
         ])
+        ->merge([
+            'x-data' => 'tags',
+            'x-modelable' => 'tags',
+        ])
 }}>
     <x-dashboard.forms.input
         id="tags.tag"
@@ -25,8 +29,21 @@
     />
 
     <div class="{{ $attributes->classFor('field') }}">
-        @foreach ($form->getModels($selected) as $model)
-            {{ $model->name }}
-        @endforeach
+        <template x-for="(tag, index) in tags" :key="tag">
+            <a
+                x-text="selected[tag]"
+                x-on:click="tags.splice(index, 1)"
+            >
+            </a>
+        </template>
     </div>
 </div>
+
+@script
+    <script data-navigate-track>
+        Alpine.data('tags', () => ({
+            tags: [],
+            selected: @json($form->getModels($selected)),
+        }));
+    </script>
+@endscript
