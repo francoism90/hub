@@ -4,8 +4,7 @@
 
 <a
     x-data="{ show: false }"
-    x-intersect:enter="show = true"
-    x-intersect:leave="show = false"
+    x-intersect:once="show = true"
     wire:navigate
     href="{{ route('videos.view', $item) }}"
     class="block h-44"
