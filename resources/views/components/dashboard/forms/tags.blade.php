@@ -24,6 +24,7 @@
             x-on:click="open = ! open"
             id="tags.query"
             wire:model.live="tags.query"
+            autocomplete="off"
             placeholder="{{ __('Filter tags') }}"
         />
 
