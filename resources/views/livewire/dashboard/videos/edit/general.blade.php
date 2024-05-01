@@ -1,5 +1,5 @@
 <form wire:submit="save">
-    <x-app.layout.container class="flex flex-col py-6 gap-y-6 mx-0 max-w-2xl" fluid>
+    <x-app.layout.container class="flex flex-col py-6 gap-y-6 max-w-2xl" fluid>
         <x-dashboard.forms.messages />
 
         <x-dashboard.forms.input

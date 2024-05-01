@@ -4,9 +4,9 @@
 
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'relative mx-auto w-full',
+        'layer' => 'relative w-full',
         'padding' => 'px-3',
-        'width' => 'max-w-4xl xl:max-w-5xl',
+        'width' => 'mx-auto max-w-4xl xl:max-w-5xl',
     ])
     ->classMerge([
         'layer',
