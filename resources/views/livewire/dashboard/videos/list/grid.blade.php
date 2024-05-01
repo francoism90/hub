@@ -22,8 +22,6 @@
     <script data-navigate-track>
         Alpine.data('videos', () => ({
             player: undefined,
-            manifest: null,
-            show: false,
 
             async init() {
                  // Install built-in polyfills
@@ -44,9 +42,6 @@
                 } catch (e) {
                     //
                 }
-
-                this.manifest = null
-                this.show = false
             },
 
 
@@ -56,19 +51,12 @@
                     return
                 }
 
-                if (this.manifest == manifest) {
-                    return
-                }
-
                 try {
                     await this.player.attach(video)
                     await this.player.load(manifest)
                 } catch(e) {
                     //
                 }
-
-                this.manifest = manifest
-                this.show = true
             },
         }));
     </script>

@@ -10,7 +10,7 @@
     <div class="absolute z-10 inset-y-0 inset-x-0 w-full h-full bg-black/25 sm:inset-x-10 sm:bg-black">
         <img
             x-cloak
-            x-show="! $wire.$parent.preview"
+            x-show="! $wire?.$parent.preview"
             x-transition
             alt="{{ $video->title }}"
             srcset="{{ $video->placeholder }}"
@@ -23,7 +23,7 @@
         <video
             x-cloak
             x-ref="video"
-            x-show="$wire.$parent.preview"
+            x-show="$wire?.$parent.preview"
             x-transition
             x-intersect:enter.full="loadManifest($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"

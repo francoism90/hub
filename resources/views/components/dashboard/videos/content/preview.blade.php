@@ -2,21 +2,23 @@
     'item',
 ])
 
-<div
-    x-data
-    x-on:mouseover="loadManifest($refs.video, '{{ $item->preview }}')"
-    x-on:mouseleave="destroy"
-    x-on:touchstart.passive="loadManifest($refs.video, '{{ $item->preview }}')"
-    x-on:touchmove.passive="loadManifest($refs.video, '{{ $item->preview }}')"
-    x-on:touchend.passive="destroy"
+<a
+    x-data="{ show: false }"
+    x-intersect:enter="show = true"
+    x-intersect:leave="show = false"
+    wire:navigate
+    href="{{ route('videos.view', $item) }}"
+    class="block h-44"
 >
-    <a
-        wire:navigate
-        href="{{ route('videos.view', $item) }}"
-        class="block"
-    >
-
-        <div class="relative h-44 max-h-44">
+    <template x-if="show">
+        <div
+            x-on:mouseover="loadManifest($refs.video, '{{ $item->preview }}')"
+            x-on:mouseleave="destroy"
+            x-on:touchstart.passive="loadManifest($refs.video, '{{ $item->preview }}')"
+            x-on:touchmove.passive="loadManifest($refs.video, '{{ $item->preview }}')"
+            x-on:touchend.passive="destroy"
+            class="relative h-full max-h-44"
+        >
             <img
                 alt="{{ $item->title }}"
                 srcset="{{ $item->placeholder }}"
@@ -40,5 +42,5 @@
                 <source />
             </video>
         </div>
-    </a>
-</div>
+    </template>
+</a>
