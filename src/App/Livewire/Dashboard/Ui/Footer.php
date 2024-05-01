@@ -45,7 +45,7 @@ class Footer extends Component
                 ->label(__('Activity'))
                 ->icon('heroicon-o-bell')
                 ->iconActive('heroicon-s-bell')
-                ->route('dashboard.activity')
+                ->route('dashboard.activity'),
         ];
     }
 }

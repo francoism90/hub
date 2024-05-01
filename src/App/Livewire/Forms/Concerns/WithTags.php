@@ -34,7 +34,7 @@ trait WithTags
     protected function fillModelTags(Model $model): void
     {
         $this->fill([
-            'tags' => $model->tags->routeKeys()->toArray()
+            'tags' => $model->tags->routeKeys()->toArray(),
         ]);
     }
 

@@ -36,7 +36,7 @@ class Footer extends Component
                 ->route('dashboard.index'),
 
             Action::make('activity')
-                 ->label(__('Activity'))
+                ->label(__('Activity'))
                 ->icon('heroicon-o-user')
                 ->iconActive('heroicon-s-user')
                 ->route('dashboard.index'),
