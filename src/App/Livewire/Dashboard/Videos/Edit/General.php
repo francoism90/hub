@@ -4,6 +4,8 @@ namespace App\Livewire\Dashboard\Videos\Edit;
 
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\Forms\TagsForm;
+use App\Livewire\Tags\Concerns\WithTags;
+use Domain\Tags\Collections\TagCollection;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\States\Concerns\WithState;
@@ -13,6 +15,7 @@ use Livewire\Component;
 class General extends Component
 {
     use WithState;
+    use WithTags;
 
     public GeneralForm $form;
 
