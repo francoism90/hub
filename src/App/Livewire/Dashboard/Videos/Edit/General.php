@@ -22,7 +22,9 @@ class General extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.edit.general');
+        return view('livewire.dashboard.videos.edit.general')->with([
+            'actions' => $this->actions(),
+        ]);
     }
 
     public function updated(): void
@@ -41,13 +43,15 @@ class General extends Component
         // );
     }
 
-    protected function submitAction(): Action
+    protected function actions(): array
     {
-        return Action::make('save')
-            ->label(__('Save changes'))
-            ->bladeAttributes([
-                'type' => 'submit',
-            ]);
+        return [
+            Action::make('save')
+                ->label(__('Save changes'))
+                ->componentAttributes([
+                    'type' => 'submit',
+                ]),
+        ];
     }
 
     protected function getModel(): Video
