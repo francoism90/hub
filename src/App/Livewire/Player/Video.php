@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Player;
 
-use App\Livewire\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
-    use WithVideo;
+    use WithVideos;
 
     public function render(): View
     {
@@ -53,7 +53,7 @@ class Video extends Component
             Action::make('edit')
                 ->label(__('Manage Video'))
                 ->icon('heroicon-o-book-open')
-                ->route('dashboard.videos.edit', $this->getVideo()),
+                ->route('dashboard.videos.edit', $this->video),
 
             Action::make('toggle-playback')
                 ->label(__('Toggle Playback'))

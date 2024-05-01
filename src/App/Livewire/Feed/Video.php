@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Feed;
 
-use App\Livewire\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Video extends Component
 {
-    use WithVideo;
+    use WithVideos;
 
     public function render(): View
     {

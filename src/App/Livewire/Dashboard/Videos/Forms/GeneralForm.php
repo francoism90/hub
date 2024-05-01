@@ -12,37 +12,20 @@ class GeneralForm extends Form
     public string $name = '';
 
     #[Validate('nullable|string|max:255')]
-    public string $episode = '';
+    public ?string $episode = null;
 
     #[Validate('nullable|string|max:255')]
-    public string $season = '';
+    public ?string $season = null;
 
     #[Validate('nullable|array|min:1|max:20|exists:tags,prefixed_id')]
     public array $tags = [];
 
-    protected function handle(): void
+    protected function beforeFill(Video $model): array
     {
-        $validated = $this->validate();
+        $values = $model->only('name', 'episode', 'season');
 
-        dd($validated);
+        $values['tags'] = $model->tags->routeKeys()->toArray();
 
-        // app(UpdateVideoDetails::class)->execute(
-        //     $this->model,
-        //     $validated,
-        // );
-    }
-
-    protected function afterHandle(): void
-    {
-        flash()->success(__('Video has been updated!'));
-    }
-
-    protected function beforeFormFill(Video $model): array
-    {
-        $data = $model->only('name');
-
-        $data['tags'] = $model->tags->routeKeys()->toArray();
-
-        return $data;
+        return $values;
     }
 }

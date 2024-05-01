@@ -5,7 +5,7 @@ namespace App\Livewire\Dashboard\Videos\Edit;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\Forms\TagsForm;
 use App\Livewire\Tags\Concerns\WithTags;
-use Domain\Tags\Collections\TagCollection;
+use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\States\Concerns\WithState;
@@ -23,7 +23,7 @@ class General extends Component
 
     public function mount(): void
     {
-        $this->form->fill($this->getModel());
+        $this->fillForms();
     }
 
     public function render(): View
@@ -40,13 +40,25 @@ class General extends Component
 
     public function save(): void
     {
-        $this->form->submit();
+        $data = $this->form->validate();
+        dd($data);
+
+        $model = $this->getModel();
+
+        app(UpdateVideoDetails::class)->execute($model, $data);
 
         // $this->redirectAction(
         //     name: VideoManagerController::class,
         //     parameters: $this->getModel(),
         //     navigate: true,
         // );
+    }
+
+    protected function fillForms(): void
+    {
+        $model = $this->getModel();
+
+        $this->form->fill($model);
     }
 
     protected function actions(): array

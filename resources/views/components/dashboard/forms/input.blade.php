@@ -1,25 +1,53 @@
 @props([
-    'id',
+    'prepend' => null,
+    'append' => null,
+    'label' => null,
+    'hint' => null,
 ])
 
-<input {{ $attributes
+<div {{ $attributes
     ->cssClass([
-        'layer' => 'p-3 h-10 w-full text-base bg-secondary-800/90 border-secondary-500/50 focus:border-secondary-500 focus:border-2 focus:ring-0',
+        'layer' => 'flex flex-col gap-1.5',
+        'input' => 'p-3 h-10 w-full text-base bg-secondary-800/90 border-secondary-500/50 focus:border-secondary-500 focus:border-2 focus:ring-0',
+        'label' => 'flex items-center',
         'error' => '!border-red-500',
+        'hint' => 'py-3 text-xs',
         'message' => 'text-red-500 text-sm',
     ])
     ->classMerge([
         'layer',
-        'error' => $errors->has($id),
     ])
-    ->merge([
-        'id' => $id,
-        'type' => 'text',
-    ])
+    ->only('class')
 }}>
+    <label
+        class="{{ $attributes->classFor('label') }}"
+        for="{{ $attributes->wireKey() }}"
+    >
+        {{ $label }}
+    </label>
 
-@error($id)
-    <p class="{{ $attributes->classFor('message') }}">
-        {{ $message }}
-    </p>
-@enderror
+    {{ $prepend }}
+
+    <input {{ $attributes
+        ->classMerge([
+            'input',
+            'error' => $errors->has($attributes->wireModel()),
+        ])
+        ->merge([
+            ...['id' => $attributes->wireKey(), 'type' => 'text'],
+            ...$attributes->whereStartsWith('wire:model')
+        ])
+    }} />
+
+    {{ $append }}
+
+    @if ($hint)
+        <p class="{{ $attributes->classFor('hint') }}">{{ $hint }}</p>
+    @endif
+
+    @error($attributes->wireKey())
+        <p class="{{ $attributes->classFor('message') }}">
+            {{ $message }}
+        </p>
+    @enderror
+</div>

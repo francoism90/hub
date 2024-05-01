@@ -4,7 +4,7 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Edit\General;
 use App\Livewire\Dashboard\Videos\States\VideoState;
-use App\Livewire\Videos\Concerns\WithVideo;
+use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
@@ -18,7 +18,7 @@ class VideoEditController extends Page
 {
     use WithAuthorization;
     use WithTabs;
-    use WithVideo;
+    use WithVideos;
 
     public VideoState $state;
 
@@ -72,7 +72,9 @@ class VideoEditController extends Page
 
     protected function fillStateModel(): void
     {
-        $this->state->fill($this->video);
+        $this->state->fill([
+            'id' => $this->getVideoId(),
+        ]);
     }
 
     public function getListeners(): array

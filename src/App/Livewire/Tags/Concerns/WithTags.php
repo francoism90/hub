@@ -16,7 +16,17 @@ trait WithTags
         }
     }
 
-    public function getTagModels(array $ids = []): array
+    public function onTagDeleted(): void
+    {
+        //
+    }
+
+    public function onTagUpdated(): void
+    {
+        //
+    }
+
+    public function getTagModels(?array $ids = null): array
     {
         $this->authorize('viewAny', Tag::class);
 
@@ -30,16 +40,6 @@ trait WithTags
     protected function getTagId(): ?string
     {
         return $this->tag->getRouteKey();
-    }
-
-    public function onTagDeleted(): void
-    {
-        //
-    }
-
-    public function onTagUpdated(): void
-    {
-        //
     }
 
     protected function getTagListeners(): array
