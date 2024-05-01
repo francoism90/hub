@@ -13,11 +13,11 @@
             x-show="! $wire?.$parent.preview"
             x-transition
             alt="{{ $video->title }}"
+            crossorigin="use-credentials"
+            loading="lazy"
             srcset="{{ $video->placeholder }}"
             src="{{ $video->thumbnail }}"
             class="h-full w-full brightness-90 object-contain"
-            crossorigin="use-credentials"
-            loading="lazy"
         />
 
         <video

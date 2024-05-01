@@ -20,11 +20,11 @@
         >
             <img
                 alt="{{ $item->title }}"
+                crossorigin="use-credentials"
+                loading="lazy"
                 srcset="{{ $item->placeholder }}"
                 src="{{ $item->thumbnail }}"
                 class="h-full w-full rounded-xs object-fill"
-                crossorigin="use-credentials"
-                loading="lazy"
             />
 
             <video
