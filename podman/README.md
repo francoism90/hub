@@ -23,6 +23,7 @@ To learn more about Podman Quadlet, the following resources may be useful:
 Build the Docker images:
 
 ```bash
+cd hub/podman
 ./build/make
 ```
 

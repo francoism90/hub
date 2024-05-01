@@ -19,7 +19,7 @@ Network=hub.network
 Label=traefik.enable=true
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true
-Label=traefik.http.routers.hub.rule=Host'(`hub.lan`,`ws.hub.lan`)'
+Label=traefik.http.routers.hub.rule="Host(`hub.lan`) || Host(`ws.hub.lan`)"
 Label=traefik.http.services.hub.loadbalancer.server.port="8080"
 
 [Install]
