@@ -10,7 +10,7 @@
             <livewire:livewire.feed.video :video="$item" :key="$item->getRouteKey()" />
         @endif
     @empty
-        {{ __('Please come back later!') }}
+        {{ __('Please checkout later') }}
     @endforelse
 
     <div x-intersect.full="$wire.fetch()"></div>
@@ -47,7 +47,7 @@
             async loadManifest(video, manifest) {
                 if (! this.player) {
                     console.error('No player found');
-                    return;
+                    return
                 }
 
                 try {

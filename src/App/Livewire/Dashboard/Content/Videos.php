@@ -58,7 +58,7 @@ class Videos extends Component
             // ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             // ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             // ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
-            ->paginate(12 * 3);
+            ->paginate(10 * 3);
     }
 
     protected static function getModelClass(): ?string

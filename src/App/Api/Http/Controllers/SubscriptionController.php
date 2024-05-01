@@ -12,7 +12,9 @@ class SubscriptionController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
+            new Middleware('private'),
             new Middleware('auth:sanctum'),
+            new Middleware('throttle:none'),
             new Middleware('response_cache:900,user-'.auth()->id()),
         ];
     }

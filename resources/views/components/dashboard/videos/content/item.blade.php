@@ -2,7 +2,10 @@
     'item',
 ])
 
-<article class="flex flex-col flex-nowrap h-72 max-h-72 w-full">
+<article
+    wire:key="{{ $item->getRouteKey() }}"
+    class="flex flex-col flex-nowrap h-72 max-h-72 w-full"
+>
     <x-dashboard.videos.content.preview />
 
     <a class="block" href="{{ route('videos.view', $item) }}">

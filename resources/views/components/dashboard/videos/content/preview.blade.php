@@ -3,35 +3,42 @@
 ])
 
 <div
-    x-data="player('{{ $item->preview }}')"
-    x-ref="container"
+    x-data
+    x-on:mouseover="loadManifest($refs.video, '{{ $item->preview }}')"
+    x-on:mouseleave="destroy"
+    x-on:touchstart.passive="loadManifest($refs.video, '{{ $item->preview }}')"
+    x-on:touchmove.passive="loadManifest($refs.video, '{{ $item->preview }}')"
+    x-on:touchend.passive="destroy"
 >
     <a
-        x-on:mouseover="start"
-        x-on:mouseleave="stop"
-        x-on:touchstart.passive="start"
-        x-on:touchmove.passive="start"
-        x-on:touchend.passive="stop"
+        wire:navigate
         href="{{ route('videos.view', $item) }}"
-        class="relative block h-44 max-h-44 w-full bg-black"
+        class="block"
     >
-        <img
-            alt="{{ $item->title }}"
-            srcset="{{ $item->placeholder }}"
-            src="{{ $item->thumbnail }}"
-            class="h-44 max-h-44 w-full rounded-xs object-fill"
-            crossorigin="use-credentials"
-            loading="lazy"
-        />
 
-        <video
-            x-cloak
-            x-show="open"
-            x-ref="video"
-            class="absolute inset-0 z-10 h-44 max-h-44 w-full rounded-xs object-fill"
-            playsinline
-            autoplay
-            muted
-        />
+        <div class="relative h-44 max-h-44">
+            <img
+                alt="{{ $item->title }}"
+                srcset="{{ $item->placeholder }}"
+                src="{{ $item->thumbnail }}"
+                class="h-full w-full rounded-xs object-fill"
+                crossorigin="use-credentials"
+                loading="lazy"
+            />
+
+            <video
+                x-cloak
+                x-ref="video"
+                x-show="show"
+                x-transition
+                class="absolute inset-0 z-40 h-full w-full rounded-xs object-fill"
+                playsinline
+                muted
+                autoplay
+                loop
+            >
+                <source />
+            </video>
+        </div>
     </a>
 </div>
