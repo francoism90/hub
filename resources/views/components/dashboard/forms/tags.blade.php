@@ -10,7 +10,8 @@
 <div {{ $attributes
         ->cssClass([
             'layer' => 'flex flex-col gap-y-3',
-            'field' => 'flex items-start gap-2 p-3 min-h-24 max-h-32 w-full bg-secondary-800/90 border border-secondary-500/50 text-base focus:border-secondary-500 focus:border-2 focus:ring-0',
+            'field' => 'flex items-start gap-2 pt-1 w-full',
+            'item' => 'inline-flex items-center gap-2 px-2 py-1 rounded-xs text-xs bg-secondary-500',
             'error' => '!border-red-500',
         ])
         ->classMerge([
@@ -33,6 +34,7 @@
             <a
                 x-text="selected[tag]"
                 x-on:click="tags.splice(index, 1)"
+                class="{{ $attributes->classFor('item') }}"
             >
             </a>
         </template>
