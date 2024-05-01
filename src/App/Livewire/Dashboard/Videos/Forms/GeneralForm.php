@@ -11,6 +11,12 @@ class GeneralForm extends Form
     #[Validate('required|string|max:255')]
     public string $name = '';
 
+    #[Validate('nullable|string|max:255')]
+    public string $episode = '';
+
+    #[Validate('nullable|string|max:255')]
+    public string $season = '';
+
     #[Validate('nullable|array|min:1|max:20|exists:tags,prefixed_id')]
     public array $tags = [];
 
