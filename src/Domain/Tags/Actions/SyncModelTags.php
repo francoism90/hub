@@ -12,8 +12,6 @@ class SyncModelTags
     {
         $models = TagCollection::make($items)->toModels();
 
-        dd($models);
-
         $model->tags()->sync(
             $models->pluck('id')->all()
         );

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Edit;
 
+use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\Forms\TagsForm;
 use App\Livewire\Tags\Concerns\WithTags;
@@ -41,17 +42,16 @@ class General extends Component
     public function save(): void
     {
         $data = $this->form->validate();
-        dd($data);
 
-        $model = $this->getModel();
+        app(UpdateVideoDetails::class)->execute($this->getModel(), $data);
 
-        app(UpdateVideoDetails::class)->execute($model, $data);
+        flash()->success(__('Video has been updated!'));
 
-        // $this->redirectAction(
-        //     name: VideoManagerController::class,
-        //     parameters: $this->getModel(),
-        //     navigate: true,
-        // );
+        $this->redirectAction(
+            name: VideoEditController::class,
+            parameters: $this->getModel(),
+            navigate: true,
+        );
     }
 
     protected function fillForms(): void
