@@ -22,8 +22,8 @@ class VideoQueryBuilder extends Builder
     public function newest(): self
     {
         return $this
-            ->orderByDesc('released_at')
-            ->orderByDesc('created_at');
+        ->orderByDesc('created_at')
+        ->orderByDesc('released_at');
     }
 
     public function watched(): self
@@ -52,7 +52,7 @@ class VideoQueryBuilder extends Builder
 
     public function tagged(Arrayable|array|Tag|null $values = null): Builder
     {
-        $items = TagCollection::make($values)->convert();
+        $items = TagCollection::make($values)->toModels();
 
         return $this
             ->randomSeed(key: 'tagged', ttl: now()->addDay())
