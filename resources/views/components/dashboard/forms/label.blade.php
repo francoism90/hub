@@ -1,12 +1,13 @@
 @props([
     'id',
+    'label' => null,
     'required' => false,
     'hint' => null,
 ])
 
 <label {{ $attributes
     ->cssClass([
-        'layer' => 'flex items-center text-sm cursor-pointer',
+        'layer' => 'flex items-center text-sm font-medium cursor-pointer',
         'error' => 'text-red-500',
         'hint' => 'pt-1 text-red-500',
         'required' => 'px-1 text-primary-400',
@@ -19,6 +20,10 @@
         'for' => $id,
     ])
 }}>
+    {{ $slot }}
+
+    {{ $label }}
+
     @if ($required)
         <span class="{{ $attributes->classFor('required') }}">*</span>
     @endif
