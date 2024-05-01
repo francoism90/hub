@@ -32,7 +32,7 @@
                 x-ref="video"
                 x-show="show"
                 x-transition
-                class="absolute inset-0 z-40 h-full w-full rounded-xs object-fill"
+                class="absolute inset-0 z-30 h-full w-full rounded-xs object-fill"
                 playsinline
                 muted
                 autoplay

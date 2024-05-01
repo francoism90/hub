@@ -13,7 +13,7 @@ class HomeController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('signed'),
-            new Middleware('response_cache:600'),
+            new Middleware('response_cache:900'),
         ];
     }
 
