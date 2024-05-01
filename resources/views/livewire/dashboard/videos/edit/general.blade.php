@@ -18,19 +18,12 @@
             wire:model.live="form.season"
         />
 
-
-        {{-- <x-dashboard.forms.field>
-            <x-dashboard.forms.label
-                id="form.tags"
-                label="{{ __('Tags') }}"
-            />
-
-            <x-dashboard.forms.tags
-                :form="$tags"
-                id="form.tags"
-                wire:model.live="form.tags"
-            />
-        </x-dashboard.forms.field> --}}
+        <x-dashboard.forms.tags
+            :items="$tags->results()"
+            label="{{ __('Tags') }}"
+            id="form.tags"
+            wire:model.live="form.tags"
+        />
     </x-app.layout.container>
 
     <x-dashboard.forms.actions :$actions />

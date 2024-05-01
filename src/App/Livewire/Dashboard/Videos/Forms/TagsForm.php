@@ -11,7 +11,7 @@ class TagsForm extends Form
     #[Validate('nullable|string|max:100')]
     public string $query = '';
 
-    public function getQuery(): string
+    public function query(): string
     {
         return str($this->get('query', ''))
             ->headline()
@@ -19,11 +19,11 @@ class TagsForm extends Form
             ->value();
     }
 
-    public function getResults(): array
+    public function results(): array
     {
         $this->authorize('viewAny', Tag::class);
 
-        return Tag::search($this->getQuery())
+        return Tag::search($this->query())
             ->take(5)
             ->get()
             ->pluck('name', 'prefixed_id')
