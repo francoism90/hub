@@ -48,14 +48,10 @@ class VideoEditController extends Page
         return [
             Action::make('general')
                 ->label(__('General'))
-                ->icon('heroicon-o-squares-2x2')
-                ->iconActive('heroicon-s-squares-2x2')
                 ->component(General::class),
 
             Action::make('assets')
                 ->label(__('Assets'))
-                ->icon('heroicon-o-rectangle-stack')
-                ->iconActive('heroicon-s-rectangle-stack')
                 ->component(General::class),
         ];
     }
