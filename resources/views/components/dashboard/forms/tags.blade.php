@@ -19,21 +19,31 @@
             'x-modelable' => 'tags',
         ])
 }}>
-    <x-dashboard.forms.input
-        id="tags.query"
-        wire:model.live="tags.query"
-        placeholder="{{ __('Filter tags') }}"
-    />
+    <x-dashboard.forms.field class:layer="relative flex flex-col">
+        <x-dashboard.forms.input
+            x-on:click="open = ! open"
+            id="tags.query"
+            wire:model.live="tags.query"
+            placeholder="{{ __('Filter tags') }}"
+        />
 
-    <div class="flex flex-col">
-        @foreach ($form->getResults() as $id => $value)
-            <a
-                x-on:click="tags.push('{{ $id }}')"
-            >
-                {{ $value }}
-            </a>
-        @endforeach
-    </div>
+        <div
+            x-cloak
+            x-show="open"
+            class="absolute z-50 top-12 inset-0"
+        >
+            <div class="flex flex-col w-full divide-y divide-solid divide-secondary-500/50 border border-secondary-500/50 bg-secondary-800">
+                @foreach ($form->getResults() as $id => $value)
+                    <a
+                        x-on:click="add('{{ $id }}')"
+                        class="text-sm hover:bg-secondary-600 px-3 py-2"
+                    >
+                        {{ $value }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </x-dashboard.forms.field>
 
     <div class="{{ $attributes->classFor('field') }}">
         <template x-for="(tag, index) in tags" :key="tag">
@@ -53,11 +63,17 @@
         Alpine.data('tags', () => ({
             tags: [],
             selected: [],
+            open: false,
 
             init() {
                 this.$watch('tags', async (value) => {
                     this.selected = await $wire.getTagModels(value)
                 })
+            },
+
+            add(id) {
+                this.tags.push(id)
+                this.open = false
             },
         }));
     </script>
