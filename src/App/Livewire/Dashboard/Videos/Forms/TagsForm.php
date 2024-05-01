@@ -8,12 +8,12 @@ use Livewire\Attributes\Validate;
 
 class TagsForm extends Form
 {
-    #[Validate('nullable|string|max:255')]
-    public string $search = '';
+    #[Validate('nullable|string|max:1')]
+    public string $query = '';
 
     public function getSearch(): string
     {
-        return str($this->get('search', ''))
+        return str($this->get('query', ''))
             ->headline()
             ->squish()
             ->value();

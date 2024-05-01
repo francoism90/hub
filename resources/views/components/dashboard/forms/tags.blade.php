@@ -5,6 +5,7 @@
 
 @php
     $selected = $this->getPropertyValue($attributes->wireModel());
+    $queryModel = "{$form->getPropertyName()}.query";
 @endphp
 
 <div {{ $attributes
@@ -24,8 +25,8 @@
         ])
 }}>
     <x-dashboard.forms.input
-        id="tags.tag"
-        {{-- wire:model.live="form.tagger" --}}
+        id="{{ $queryModel }}"
+        wire:model.live="{{ $queryModel }}"
         placeholder="{{ __('Find tag') }}"
     />
 
