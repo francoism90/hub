@@ -2,23 +2,14 @@
 
 namespace App\Livewire\Dashboard\Videos\Forms;
 
+use Domain\Tags\Collections\TagCollection;
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
-class QueryForm extends Form
+class TagsForm extends Form
 {
-    protected static bool $recoverable = true;
-
-    protected static bool $store = true;
-
     #[Validate('nullable|string|max:255')]
     public string $search = '';
-
-    #[Validate('required|string|in:recent,updated')]
-    public string $sort = 'recent';
-
-    #[Validate('nullable|array|in:verified,pending,failed')]
-    public array $visibility = [];
 
     public function getSearch(): string
     {
@@ -26,5 +17,10 @@ class QueryForm extends Form
             ->headline()
             ->squish()
             ->value();
+    }
+
+    public function getModels(array $ids = []): TagCollection
+    {
+        return TagCollection::make($ids)->toModels();
     }
 }

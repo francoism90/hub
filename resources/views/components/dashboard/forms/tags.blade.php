@@ -1,16 +1,11 @@
 @props([
-    'field',
+    'id',
+    'form',
 ])
 
-{{ $field->getName() }}
-
-@dd($field)
-
-
-@dd()
-
-{{--
-
+@php
+    $selected = $this->getPropertyValue($attributes->wireModel());
+@endphp
 
 <div {{ $attributes
         ->cssClass([
@@ -22,40 +17,16 @@
             'layer',
             'error' => $errors->has($id),
         ])
-        ->merge([
-            'x-data' => 'tags',
-            'id' => $id,
-        ])
 }}>
     <x-dashboard.forms.input
-        id="form.tagger"
-        wire:model.live="form.tagger"
+        id="tags.tag"
+        {{-- wire:model.live="form.tagger" --}}
         placeholder="{{ __('Find tag') }}"
     />
 
     <div class="{{ $attributes->classFor('field') }}">
-        <template x-for="(tag, index) in tags" :key="tag.prefixed_id">
-            <a
-                x-text="tag.name"
-                x-on:click="tags.splice(index, 1)"
-            >
-            </a>
-        </template>
+        @foreach ($form->getModels($selected) as $model)
+            {{ $model->name }}
+        @endforeach
     </div>
 </div>
-
-@script
-    <script data-navigate-track>
-        Alpine.data('tags', () => ({
-            selected: $wire.entangle('{{ $id }}'),
-            tags: {{ Js::from($tags) }},
-
-            async init() {
-                this.$watch('tags', (value) => {
-                    values = JSON.parse(JSON.stringify(value))
-                    this.selected = values.map(obj => obj?.prefixed_id)
-                })
-            },
-        }));
-    </script>
-@endscript --}}

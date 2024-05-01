@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Videos\Edit;
 
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
+use App\Livewire\Dashboard\Videos\Forms\TagsForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\States\Concerns\WithState;
@@ -14,6 +15,8 @@ class General extends Component
     use WithState;
 
     public GeneralForm $form;
+
+    public TagsForm $tags;
 
     public function mount(): void
     {

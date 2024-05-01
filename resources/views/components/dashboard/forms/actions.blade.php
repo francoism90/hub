@@ -2,7 +2,7 @@
     'actions',
 ])
 
-<nav class="my-6 py-3 overflow-x-auto border-t border-secondary-700/50">
+<nav class="my-3 py-3 overflow-x-auto border-t border-secondary-700/50">
     <x-app.layout.container fluid>
         <nav class="flex flex-nowrap items-center gap-x-3">
             @foreach ($actions as $action)

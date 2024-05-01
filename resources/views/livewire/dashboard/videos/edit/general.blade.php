@@ -1,5 +1,5 @@
-<form wire:submit="save" class="flex flex-col gap-y-3 py-6">
-    <x-app.layout.container class="mx-0 max-w-2xl" fluid>
+<form wire:submit="save">
+    <x-app.layout.container class="flex flex-col py-6 gap-y-6 mx-0 max-w-2xl" fluid>
         <x-dashboard.forms.field>
             <x-dashboard.forms.label
                 id="form.name"
@@ -9,6 +9,19 @@
             <x-dashboard.forms.input
                 id="form.name"
                 wire:model.live="form.name"
+            />
+        </x-dashboard.forms.field>
+
+        <x-dashboard.forms.field>
+            <x-dashboard.forms.label
+                id="form.tags"
+                label="{{ __('Tags') }}"
+            />
+
+            <x-dashboard.forms.tags
+                :form="$tags"
+                id="form.tags"
+                wire:model.live="form.tags"
             />
         </x-dashboard.forms.field>
     </x-app.layout.container>
