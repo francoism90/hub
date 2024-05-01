@@ -2,6 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
+use App\Livewire\Dashboard\Content\Videos;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
@@ -35,7 +36,8 @@ class ContentIndexController extends Page
     {
         return [
             Action::make('videos')
-                ->label(__('Videos')),
+                ->label(__('Videos'))
+                ->component(Videos::class),
 
             Action::make('tags')
                 ->label(__('Tags')),

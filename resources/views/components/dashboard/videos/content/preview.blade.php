@@ -19,16 +19,16 @@
             alt="{{ $item->title }}"
             srcset="{{ $item->placeholder }}"
             src="{{ $item->thumbnail }}"
-            class="h-44 max-h-44 w-full rounded object-fill"
+            class="h-44 max-h-44 w-full rounded-xs object-fill"
             crossorigin="use-credentials"
             loading="lazy"
         />
 
         <video
             x-cloak
-            x-ref="video"
             x-show="open"
-            class="absolute inset-0 z-10 h-44 max-h-44 w-full rounded object-fill"
+            x-ref="video"
+            class="absolute inset-0 z-10 h-44 max-h-44 w-full rounded-xs object-fill"
             playsinline
             autoplay
             muted
