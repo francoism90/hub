@@ -1,7 +1,7 @@
 [Unit]
 Description=Hub container
-Requires=hub-app.service
-After=hub-app.service
+Requires=traefik.service hub-app.service
+After=traefik.service hub-app.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/app.env
