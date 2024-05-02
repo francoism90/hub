@@ -10,6 +10,9 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:100')]
     public string $query = '';
 
+    #[Validate('nullable|string|in:recent,updated')]
+    public string $sort = 'recent';
+
     public function query(): string
     {
         return str($this->get('query', ''))

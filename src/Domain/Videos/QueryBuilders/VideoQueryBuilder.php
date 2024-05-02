@@ -19,13 +19,6 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
-    public function newest(): self
-    {
-        return $this
-            ->orderByDesc('created_at')
-            ->orderByDesc('released_at');
-    }
-
     public function watched(): self
     {
         /** @var User */
