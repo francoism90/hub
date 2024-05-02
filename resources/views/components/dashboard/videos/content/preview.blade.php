@@ -24,7 +24,7 @@
                 loading="lazy"
                 srcset="{{ $item->placeholder }}"
                 src="{{ $item->thumbnail }}"
-                class="h-full w-full rounded-xs object-fill"
+                class="rounded-xs h-full w-full object-fill"
             />
 
             <video
@@ -32,7 +32,7 @@
                 x-ref="video"
                 x-show="show"
                 x-transition
-                class="absolute inset-0 z-30 h-full w-full rounded-xs object-fill"
+                class="rounded-xs absolute inset-0 z-30 h-full w-full object-fill"
                 playsinline
                 muted
                 autoplay

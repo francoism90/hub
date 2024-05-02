@@ -1,6 +1,6 @@
 @persist('scrollbar')
 <div
-    class="h-dvh min-h-dvh snap-mandatory snap-y overflow-y-scroll"
+    class="h-dvh min-h-dvh snap-y snap-mandatory overflow-y-scroll"
     wire:scroll
 >
     @forelse ($this->items as $item)

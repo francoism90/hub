@@ -22,8 +22,8 @@ class VideoQueryBuilder extends Builder
     public function newest(): self
     {
         return $this
-        ->orderByDesc('created_at')
-        ->orderByDesc('released_at');
+            ->orderByDesc('created_at')
+            ->orderByDesc('released_at');
     }
 
     public function watched(): self

@@ -9,7 +9,7 @@
     x-cloak
     x-show="overlay"
     x-transition
-    class="absolute z-10 inset-6"
+    class="absolute inset-6 z-10"
 >
     <x-app.player.controls.navigation />
     <x-app.player.controls.details />

@@ -14,7 +14,7 @@
         x-on:pause.debounce.100ms="handleEvent"
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
-        class="w-full h-full absolute z-0 inset-0"
+        class="absolute inset-0 z-0 h-full w-full"
         playsinline
         autoplay
     >
@@ -30,109 +30,109 @@
 </div>
 
 @script
-    <script data-navigate-track>
-        Alpine.data('play', () => ({
-            player: undefined,
-            overlay: false,
-            paused: true,
-            fullscreen: false,
-            idle: 0,
-            duration: 0.0,
-            currentTime: 0.0,
-            seekTime: 0.0,
-            buffered: 0.0,
+<script data-navigate-track>
+    Alpine.data('play', () => ({
+        player: undefined,
+        overlay: false,
+        paused: true,
+        fullscreen: false,
+        idle: 0,
+        duration: 0.0,
+        currentTime: 0.0,
+        seekTime: 0.0,
+        buffered: 0.0,
 
-            async init() {
-                 // Install built-in polyfills
-                window.shaka.polyfill.installAll()
+        async init() {
+            // Install built-in polyfills
+            window.shaka.polyfill.installAll();
 
-                // Create instance
-                this.player = new window.shaka.Player()
+            // Create instance
+            this.player = new window.shaka.Player();
 
-                // Configure networking
-                this.player
-                    .getNetworkingEngine()
-                    .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true))
-            },
+            // Configure networking
+            this.player
+                .getNetworkingEngine()
+                .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+        },
 
-            async destroy() {
-                try {
-                    await this.player?.unload()
-                } catch (e) {
-                    //
-                }
-            },
+        async destroy() {
+            try {
+                await this.player?.unload();
+            } catch (e) {
+                //
+            }
+        },
 
-            async loadManifest(video, manifest) {
-                if (! this.player) {
-                    console.error('No player found');
-                    return;
-                }
+        async loadManifest(video, manifest) {
+            if (!this.player) {
+                console.error('No player found');
+                return;
+            }
 
-                // Loading feedback
-                this.showOverlay()
+            // Loading feedback
+            this.showOverlay();
 
-                try {
-                    await this.player.attach(video)
-                    await this.player.load(manifest)
-                } catch(e) {
-                    //
-                }
-            },
+            try {
+                await this.player.attach(video);
+                await this.player.load(manifest);
+            } catch (e) {
+                //
+            }
+        },
 
-            async handleEvent(event) {
-                if (! event.target || ! this.$refs.video) return
+        async handleEvent(event) {
+            if (!event.target || !this.$refs.video) return;
 
-                switch(event.type) {
-                    case 'durationchange':
-                        this.duration = event.target.duration
-                        break;
-                    case 'progress':
-                        this.buffered = event.target.buffered
-                        break;
-                    case 'play':
-                    case 'playing':
-                    case 'pause':
-                        this.paused = this.$refs.video.paused
-                        break;
-                    case 'timeupdate':
-                        this.currentTime = this.$refs.video.currentTime
-                        break;
-                    default:
-                        console.error('Unhandled event: ' + event.type)
-                }
-            },
+            switch (event.type) {
+                case 'durationchange':
+                    this.duration = event.target.duration;
+                    break;
+                case 'progress':
+                    this.buffered = event.target.buffered;
+                    break;
+                case 'play':
+                case 'playing':
+                case 'pause':
+                    this.paused = this.$refs.video.paused;
+                    break;
+                case 'timeupdate':
+                    this.currentTime = this.$refs.video.currentTime;
+                    break;
+                default:
+                    console.error('Unhandled event: ' + event.type);
+            }
+        },
 
-            async togglePlayback() {
-                this.$refs.video.paused
-                    ? await this.$refs.video.play()
-                    : await this.$refs.video.pause()
-            },
+        async togglePlayback() {
+            this.$refs.video.paused
+                ? await this.$refs.video.play()
+                : await this.$refs.video.pause();
+        },
 
-            async toggleFullscreen() {
-                document.fullscreenElement
-                    ? await document.exitFullscreen()
-                    : await document.documentElement.requestFullscreen();
+        async toggleFullscreen() {
+            document.fullscreenElement
+                ? await document.exitFullscreen()
+                : await document.documentElement.requestFullscreen();
 
-                this.fullscreen = document.fullscreenElement
-            },
+            this.fullscreen = document.fullscreenElement;
+        },
 
-            async showOverlay() {
-                clearTimeout(this.idle);
+        async showOverlay() {
+            clearTimeout(this.idle);
 
-                this.overlay = true
-                this.idle = setTimeout(() => this.overlay = false, 2500)
-            },
+            this.overlay = true;
+            this.idle = setTimeout(() => (this.overlay = false), 2500);
+        },
 
-            async forceOverlay() {
-                clearTimeout(this.idle);
+        async forceOverlay() {
+            clearTimeout(this.idle);
 
-                this.overlay = true
-            },
+            this.overlay = true;
+        },
 
-            async seekTo(event) {
-                this.$refs.video.currentTime = event.target.value
-            },
-        }));
-    </script>
+        async seekTo(event) {
+            this.$refs.video.currentTime = event.target.value;
+        },
+    }));
+</script>
 @endscript
