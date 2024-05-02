@@ -2,7 +2,7 @@
     'action',
 ])
 
-<x-dashboard.videos.filters.dialog :$action>
+<x-dashboard.videos.filters.dialog>
     @foreach ($action->getNodes() as $option)
         <div class="flex items-center gap-3 text-sm">
             <input

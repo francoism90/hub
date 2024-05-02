@@ -14,7 +14,7 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:100')]
     public string $query = '';
 
-    #[Validate('nullable|string|in:recent,updated')]
+    #[Validate('nullable|string|in:relevance,recent,updated')]
     public string $sort = 'recent';
 
     #[Validate('nullable|array|in:verified,pending,failed')]
@@ -26,5 +26,12 @@ class QueryForm extends Form
             ->headline()
             ->squish()
             ->value();
+    }
+
+    protected function beforeValidate(): void
+    {
+        if ($this->query()) {
+            $this->sort = 'relevance';
+        }
     }
 }

@@ -1,4 +1,4 @@
-@props([
+@aware([
     'action',
 ])
 
@@ -9,9 +9,14 @@
     <x-wireuse::actions-button
         :$action
         x-on:click="open = ! open"
-        class="flex-row-reverse gap-1 rounded bg-secondary-700 px-3 py-1.5 text-xs font-semibold text-secondary-200"
-        class:icon="size-3"
-    />
+        class="flex-row-reverse gap-1 rounded bg-secondary-700 h-8 px-3"
+    >
+        <x-wireuse::actions-icon class:icon="size-5" :$action />
+
+        @if (! $action->getIcon())
+            <span class="text-xs font-medium text-secondary-200">{{ $action->getLabel() }}</span>
+        @endif
+    </x-wireuse::actions-button>
 
     @teleport('body')
     <div

@@ -68,16 +68,23 @@ class Videos extends Component
     protected function actions(): array
     {
         return [
+            Action::make('filter')
+                ->label(__('Filter'))
+                ->icon('heroicon-s-adjustments-horizontal')
+                ->component('dashboard.videos.filters.filter')
+                ->componentAttributes([
+                    'class:label' => 'sr-only',
+                ]),
+
             Action::make('sort')
                 ->label(__('Sort by'))
-                ->icon('heroicon-s-chevron-down')
                 ->component('dashboard.videos.filters.sort')
+                ->addIf('relevance', filled($this->form->query()), fn (Action $item) => $item->label('Relevance'))
                 ->add('recent', fn (Action $item) => $item->label('Most recent'))
                 ->add('updated', fn (Action $item) => $item->label('Recently updated')),
 
             Action::make('visible')
                 ->label(__('Visibility'))
-                ->icon('heroicon-s-chevron-down')
                 ->component('dashboard.videos.filters.visibility')
                 ->add('verified', fn (Action $item) => $item->label('Verified'))
                 ->add('pending', fn (Action $item) => $item->label('Pending'))
