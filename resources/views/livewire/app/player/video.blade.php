@@ -1,6 +1,6 @@
 <div
     x-data="play"
-    x-intersect:enter.full="loadManifest($refs.video, '{{ $video->stream }}')"
+    x-intersect:enter.full="load($refs.video, '{{ $video->stream }}')"
     x-intersect:leave.full="destroy"
     x-on:mousemove="showOverlay"
     x-on:touchmove="showOverlay"
@@ -63,7 +63,7 @@
             }
         },
 
-        async loadManifest(video, manifest) {
+        async load(video, manifest) {
             if (!this.player) {
                 console.error('No player found');
                 return;
