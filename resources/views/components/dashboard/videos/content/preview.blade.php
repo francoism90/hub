@@ -14,7 +14,7 @@
         x-on:touchstart.passive="load($refs.video, '{{ $item->preview }}')"
         x-on:touchmove.passive="load($refs.video, '{{ $item->preview }}')"
         x-on:touchend.passive="destroy"
-        class="relative h-full max-h-44"
+        class="relative h-44 min-h-44 max-h-44 bg-black"
     >
         <img
             alt="{{ $item->title }}"

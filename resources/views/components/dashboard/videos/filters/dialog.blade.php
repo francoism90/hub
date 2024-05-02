@@ -2,7 +2,10 @@
     'action',
 ])
 
-<div x-data="{ open: false }" class="flex items-center gap-3">
+<div
+    x-data="{ open: false }"
+    class="flex items-center gap-3"
+>
     <x-wireuse::actions-button
         :$action
         x-on:click="open = ! open"
@@ -12,11 +15,9 @@
 
     @teleport('body')
     <div
-        x-cloak
         x-show="open"
         x-on:click.outside="open = false"
         x-on:keyup.escape.window="open = false"
-        x-trap.inert.noscroll="open"
         class="absolute inset-x-0 bottom-4 z-30 mx-auto w-full max-w-[28rem] px-3"
     >
         <div class="relative rounded-xl bg-secondary-800">

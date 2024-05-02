@@ -56,7 +56,7 @@ class Videos extends Component
             ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
             ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
-            // ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
+            ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
             ->paginate(10 * 3);
     }
 

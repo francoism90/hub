@@ -3,7 +3,7 @@
 ])
 
 <x-dashboard.videos.filters.dialog :$action>
-    @foreach ($action->all() as $option)
+    @foreach ($action->getNodes() as $option)
         <div class="flex items-center gap-3 text-sm">
             <input
                 type="checkbox"

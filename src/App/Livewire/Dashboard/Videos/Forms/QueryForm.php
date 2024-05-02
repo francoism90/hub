@@ -7,11 +7,18 @@ use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
 {
+    protected static bool $store = true;
+
+    protected static bool $recoverable = true;
+
     #[Validate('nullable|string|max:100')]
     public string $query = '';
 
     #[Validate('nullable|string|in:recent,updated')]
     public string $sort = 'recent';
+
+    #[Validate('nullable|array|in:verified,pending,failed')]
+    public array $visibility = [];
 
     public function query(): string
     {
