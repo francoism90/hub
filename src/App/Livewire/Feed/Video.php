@@ -78,7 +78,7 @@ class Video extends Component
                 ->label(__('More'))
                 ->icon('heroicon-o-ellipsis-horizontal')
                 ->iconActive('heroicon-s-ellipsis-horizontal')
-                ->route('dashboard.index')
+                ->route('dashboard.videos.edit', $this->video)
                 ->componentAttributes([
                     'class:label' => 'sr-only',
                     'class:icon' => 'size-6',
