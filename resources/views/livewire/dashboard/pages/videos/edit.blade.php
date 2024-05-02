@@ -21,6 +21,16 @@
             <dt class="sr-only">{{ __('ID') }}</dt>
             <dd class="text-ellipsis">{{ $video->identifier }}</dd>
             @endif
+
+            <dt class="sr-only">{{ __('Play') }}</dt>
+            <dd class="text-ellipsis">
+                <a
+                    wire:navigate
+                    href="{{ route('videos.view', $video) }}"
+                >
+                    View
+                </a>
+            </dd>
         </dl>
     </div>
 

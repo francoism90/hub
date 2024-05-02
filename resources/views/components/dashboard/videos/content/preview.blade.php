@@ -5,7 +5,7 @@
 <a
     wire:key="{{ $item->getRouteKey() }}"
     wire:navigate
-    href="{{ route('videos.view', $item) }}"
+    href="{{ route('dashboard.videos.edit', $item) }}"
 >
     <div
         x-data="preview"
