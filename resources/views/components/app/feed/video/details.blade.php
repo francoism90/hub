@@ -2,7 +2,7 @@
     'video',
 ])
 
-<div class="absolute z-30 bottom-4 left-4 right-16 sm:inset-x-16">
+<div class="absolute z-30 bottom-4 inset-x-4">
     <h1 class="h-24 flex items-end text-sm font-semibold tracking-tight line-clamp-2">
         {{ $video->title }}
     </h1>

@@ -1,16 +1,12 @@
 @props([
-    'controls',
+    'actions',
 ])
 
-<div class="absolute z-30 bottom-4 right-4 sm:-right-24">
+<div class="absolute z-30 bottom-4 right-4 sm:-right-12">
     <nav class="flex flex-col items-center justify-center gap-y-3">
-        @foreach ($controls as $action)
+        @foreach ($actions as $action)
             <x-wireuse::actions-link :$action>
-                <x-wireuse::actions-icon
-                    :$action
-                    class="size-6 sm:size-7"
-                />
-
+                <x-wireuse::actions-icon :$action />
                 <span class="sr-only">{{ $action->getLabel() }}</span>
             </x-wireuse::actions-link>
         @endforeach

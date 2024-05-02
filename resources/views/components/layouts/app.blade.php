@@ -62,7 +62,7 @@
     @googlefonts('code')
 </head>
 
-<body class="relative overscroll-none overflow-hidden flex flex-col h-dvh antialiased bg-secondary-950 text-base">
+<body class="relative flex flex-col h-dvh min-h-dvh antialiased overscroll-none overflow-hidden bg-secondary-950 text-base">
 
     <livewire:livewire.app.ui.header />
 
@@ -70,7 +70,7 @@
         {{ $slot }}
     </div>
 
-    <livewire:livewire.app.ui.footer />
+    {{-- <livewire:livewire.app.ui.footer /> --}}
 
     @vite('resources/js/app.js')
     @stack('scripts')

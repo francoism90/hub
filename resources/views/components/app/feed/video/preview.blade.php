@@ -2,32 +2,27 @@
     'video',
 ])
 
-<a
-    wire:navigate
-    href="{{ route('videos.view', $video) }}"
-    class="block"
->
-    <div class="absolute z-10 inset-y-0 inset-x-0 w-full h-full bg-black/25 sm:inset-x-10 sm:bg-black">
+<a wire:navigate href="{{ route('videos.view', $video) }}">
+    <div
+        x-data="video"
+        class="relative flex h-full w-full items-center justify-center"
+    >
+
         <img
-            x-cloak
-            x-show="! $wire?.$parent.preview"
-            x-transition
             alt="{{ $video->title }}"
             crossorigin="use-credentials"
             loading="lazy"
             srcset="{{ $video->placeholder }}"
             src="{{ $video->thumbnail }}"
-            class="h-full w-full brightness-90 object-contain"
+            class="absolute z-10 h-72 min-h-72 max-h-72 w-full"
         />
 
         <video
-            x-cloak
             x-ref="video"
-            x-show="$wire?.$parent.preview"
-            x-transition
-            x-intersect:enter.full="loadManifest($refs.video, '{{ $video->preview }}')"
+            x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"
-            class="h-full w-full absolute z-30 inset-0 brightness-90"
+            x-show="$wire.$parent.preview"
+            class="z-20 h-72 min-h-72 max-h-72 w-full object-fill"
             playsinline
             muted
             autoplay
@@ -37,3 +32,46 @@
         </video>
     </div>
 </a>
+
+@script
+    <script data-navigate-track>
+        Alpine.data('video', () => ({
+            player: undefined,
+
+            async init() {
+                 // Install built-in polyfills
+                window.shaka.polyfill.installAll()
+
+                // Create instance
+                this.player = new window.shaka.Player()
+
+                // Configure networking
+                this.player
+                    .getNetworkingEngine()
+                    .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true))
+            },
+
+            async destroy() {
+                try {
+                    await this.player?.unload()
+                } catch (e) {
+                    //
+                }
+            },
+
+            async load(video, manifest) {
+                if (! this.player) {
+                    console.error('No player found');
+                    return
+                }
+
+                try {
+                    await this.player.attach(video)
+                    await this.player.load(manifest)
+                } catch(e) {
+
+                }
+            },
+        }));
+    </script>
+@endscript

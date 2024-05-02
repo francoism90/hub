@@ -15,7 +15,7 @@ class Video extends Component
     {
         return view('livewire.app.feed.video')->with([
             'settings' => $this->settings(),
-            'controls' => $this->controls(),
+            'actions' => $this->actions(),
         ]);
     }
 
@@ -41,7 +41,7 @@ class Video extends Component
         ];
     }
 
-    protected function controls(): array
+    protected function actions(): array
     {
         return [
             Action::make('content')

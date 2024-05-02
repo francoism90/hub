@@ -40,8 +40,8 @@ class Video extends Component
                 ->label(__('Toggle Playback'))
                 ->icon('heroicon-m-pause')
                 ->iconActive('heroicon-m-play')
+                ->state('paused')
                 ->componentAttributes([
-                    'x-modelable' => 'paused',
                     'x-on:click' => 'togglePlayback',
                 ]),
         ];
