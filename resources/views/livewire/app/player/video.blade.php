@@ -9,9 +9,9 @@
     <video
         x-ref="video"
         x-on:durationchange="handleEvent"
-        x-on:play.debounce.100ms="handleEvent"
-        x-on:playing.debounce.100ms="handleEvent"
-        x-on:pause.debounce.100ms="handleEvent"
+        x-on:play="handleEvent"
+        x-on:playing="handleEvent"
+        x-on:pause="handleEvent"
         x-on:progress.debounce.100ms="handleEvent"
         x-on:timeupdate.debounce.100ms="handleEvent"
         class="absolute inset-0 z-0 h-full w-full"
