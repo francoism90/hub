@@ -21,12 +21,7 @@
         <source />
     </video>
 
-    <x-app.player.controls
-        :$video
-        :$actions
-        :$controls
-        :$settings
-    />
+    <x-app.player.controls :$video :$actions :$controls :$settings />
 </div>
 
 @script
