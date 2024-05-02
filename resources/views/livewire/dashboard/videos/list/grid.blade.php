@@ -11,4 +11,6 @@
             {{ __('No items found') }}
         @endforelse
     </main>
+
+    {{ $this->items->links() }}
 </x-app.layout.container>
