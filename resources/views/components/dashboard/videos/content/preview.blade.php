@@ -3,7 +3,6 @@
 ])
 
 <a
-    wire:key="{{ $item->getRouteKey() }}"
     wire:navigate
     href="{{ route('dashboard.videos.edit', $item) }}"
 >

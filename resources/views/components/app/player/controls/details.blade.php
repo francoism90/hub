@@ -37,7 +37,6 @@
         <div class="line-clamp-1 flex flex-wrap gap-2">
             @foreach ($video->tags as $tag)
             <a
-                wire:key="tag-{{ $tag->getRouteKey() }}"
                 class="text-sm font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
                 {{-- href="{{ route('tags.view', $tag) }}" --}}
                 aria-label="{{ $tag->name }}"

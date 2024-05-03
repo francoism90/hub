@@ -42,9 +42,8 @@
     <div class="line-clamp-1 flex flex-wrap gap-2">
         @foreach ($item->tags as $tag)
         <a
-            wire:key="tag-{{ $tag->getRouteKey() }}"
+            wire:click="$set('form.query', '{{ $tag->name }}')"
             class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            {{-- href="{{ route('tags.view', $tag) }}" --}}
             aria-label="{{ $tag->name }}"
         >
             {{ $tag->name }}
