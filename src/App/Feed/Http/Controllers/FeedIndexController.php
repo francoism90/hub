@@ -13,7 +13,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Session;
 
-#[Layout('components.layouts.app')]
+#[Layout('components.layouts.simple')]
 class FeedIndexController extends Page
 {
     use WithQueryBuilder;

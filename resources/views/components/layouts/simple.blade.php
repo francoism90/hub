@@ -62,8 +62,11 @@
     @googlefonts('code')
 </head>
 
-<body class="relative flex h-viewport items-center justify-center overflow-hidden bg-secondary-950 text-base antialiased">
-    {{ $slot }}
+<body class="relative flex h-viewport flex-col overflow-hidden overscroll-none bg-secondary-950 text-base antialiased">
+
+    <div class="flex-1">
+        {{ $slot }}
+    </div>
 
     @vite('resources/js/app.js')
     @stack('scripts')
