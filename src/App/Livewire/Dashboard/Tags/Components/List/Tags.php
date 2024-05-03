@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Tags\Component\List;
+namespace App\Livewire\Dashboard\Tags\Components\List;
 
 use Livewire\Component;
 
