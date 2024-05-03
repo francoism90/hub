@@ -26,17 +26,6 @@ trait WithTags
         //
     }
 
-    public function getTagModels(?array $ids = null): array
-    {
-        $this->authorize('viewAny', Tag::class);
-
-        $collect = TagCollection::make($ids)->toModels();
-
-        return $collect
-            ->pluck('name', 'prefixed_id')
-            ->toArray();
-    }
-
     protected function getTagId(): ?string
     {
         return $this->tag->getRouteKey();

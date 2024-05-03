@@ -38,45 +38,49 @@
         class="absolute z-50 top-20 inset-0"
     >
         <div class="flex flex-col w-full divide-y divide-solid divide-secondary-500/50 border border-secondary-500/50 bg-secondary-800">
-            @foreach ($items as $id => $value)
+            @foreach ($items as $option)
                 <a
-                    x-on:click="add('{{ $id }}')"
+                    x-on:click="add({{ Js::from($option) }})"
                     class="text-sm hover:bg-secondary-600 px-3 py-2"
                 >
-                    {{ $value }}
+                    {{ $option['name'] }}
                 </a>
             @endforeach
         </div>
     </div>
 
     <div class="{{ $attributes->classFor('items') }}">
-        <template x-for="(tag, index) in tags" :key="tag">
+        <template x-for="(tag, index) in tags" :key="tag.id">
             <a
-                x-text="selected[tag]"
+                x-text="tag.name"
                 x-on:click="tags.splice(index, 1)"
                 class="{{ $attributes->classFor('item') }}"
             >
             </a>
         </template>
     </div>
+
+    @error($attributes->wireKey())
+        <p class="text-secondary-500">
+            {{ $message }}
+        </p>
+    @enderror
 </div>
 
 @script
     <script>
         Alpine.data('tags', () => ({
             tags: [],
-            selected: [],
             open: false,
 
-            init() {
-                this.$watch('tags', async (value) => {
-                    this.selected = await $wire.getTagModels(value)
-                })
-            },
-
-            add(id) {
-                this.tags.push(id)
+            add(tag) {
+                console.log(tag)
+                this.tags.push(tag)
+                // this.tags.push(id)
                 this.open = false
+
+                console.log(this.tags)
+                console.log(tag)
             },
         }));
     </script>

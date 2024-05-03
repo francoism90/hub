@@ -17,17 +17,17 @@ class GeneralForm extends Form
     #[Validate('nullable|string|min:1|max:255')]
     public ?string $season = null;
 
-    #[Validate('nullable|decimal:0,4')]
+    #[Validate('nullable|decimal:0,')]
     public ?float $snapshot = null;
 
-    #[Validate('nullable|array|min:1|max:20|exists:tags,prefixed_id')]
+    #[Validate(['tags' => 'nullable|array', 'tags.*.id' => 'exists:tags,prefixed_id'])]
     public array $tags = [];
 
     protected function beforeFill(Video $model): array
     {
         $values = $model->only('name', 'episode', 'season', 'snapshot');
 
-        $values['tags'] = $model->tags->routeKeys()->toArray();
+        $values['tags'] = $model->tags->options()->toArray();
 
         return $values;
     }

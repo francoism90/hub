@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Forms;
 
+use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
@@ -19,14 +20,13 @@ class TagsForm extends Form
             ->value();
     }
 
-    public function results(): array
+    public function results(): TagCollection
     {
         $this->authorize('viewAny', Tag::class);
 
         return Tag::search($this->query())
             ->take(5)
             ->get()
-            ->pluck('name', 'prefixed_id')
-            ->toArray();
+            ->options();
     }
 }

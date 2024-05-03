@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
+    public function options(): self
+    {
+        return $this->transform(fn (Tag $tag) => [
+            'id' => $tag->getRouteKey(),
+            'name' => $tag->name,
+        ]);
+    }
+
     public function toModels(): mixed
     {
         return $this

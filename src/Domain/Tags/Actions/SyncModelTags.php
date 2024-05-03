@@ -3,17 +3,19 @@
 namespace Domain\Tags\Actions;
 
 use ArrayAccess;
-use Domain\Tags\Collections\TagCollection;
+use Domain\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 
 class SyncModelTags
 {
     public function execute(Model $model, array|ArrayAccess $items = []): void
     {
-        $models = TagCollection::make($items)->toModels();
+        $ids = data_get($items, '*.id', []);
 
-        $model->tags()->sync(
-            $models->pluck('id')->all()
-        );
+        $models = Tag::query()
+            ->whereIn('prefixed_id', $ids)
+            ->get();
+
+        $model->tags()->sync($models);
     }
 }
