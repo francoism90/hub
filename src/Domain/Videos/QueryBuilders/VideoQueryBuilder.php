@@ -16,6 +16,12 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
+    public function random(int $value = 10): self
+    {
+        return $this
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes($value));
+    }
+
     public function watched(): self
     {
         /** @var User */

@@ -52,15 +52,11 @@ class Videos extends Component
         $value = $this->form->query();
 
         return $this->getScout($value)
+            ->when($this->form->isStrict('sort', 'recommended'), fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
             ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
             ->paginate(10 * 3);
-    }
-
-    protected static function getModelClass(): ?string
-    {
-        return Video::class;
     }
 
     protected function actions(): array
@@ -78,6 +74,7 @@ class Videos extends Component
                 ->label(__('Sort by'))
                 ->component('dashboard.videos.filters.sort')
                 ->addIf('relevance', filled($this->form->query()), fn (Action $item) => $item->label('Relevance'))
+                ->add('recommended', fn (Action $item) => $item->label('Recommended'))
                 ->add('recent', fn (Action $item) => $item->label('Most recent'))
                 ->add('updated', fn (Action $item) => $item->label('Recently updated')),
 
@@ -88,6 +85,20 @@ class Videos extends Component
                 ->add('pending', fn (Action $item) => $item->label('Pending'))
                 ->add('failed', fn (Action $item) => $item->label('Failed')),
         ];
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
+    }
+
+    protected static function getRandomKeys(): array
+    {
+        return static::getQuery()
+            ->random()
+            ->take(12 * 5)
+            ->get()
+            ->modelKeys();
     }
 
     public function getListeners(): array
