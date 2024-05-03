@@ -29,9 +29,8 @@
         <div class="relative rounded-xl bg-secondary-800">
             <x-heroicon-m-minus class="mx-auto h-8 fill-secondary-500" />
 
-            <div class="flex flex-col gap-y-3 p-4 pt-0">
+            <div class="flex flex-col gap-y-3 p-5 pt-0">
                 <h1 class="font-semibold">{{ $action->getLabel() }}</h1>
-
                 {{ $slot }}
             </div>
         </div>

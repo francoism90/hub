@@ -4,7 +4,6 @@ namespace App\Livewire\Dashboard\Videos\Components\List;
 
 use App\Livewire\Dashboard\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
-use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -53,7 +52,6 @@ class Videos extends Component
         $value = $this->form->query();
 
         return $this->getScout($value)
-            ->query(fn (VideoQueryBuilder $query) => $query->with('tags'))
             ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
