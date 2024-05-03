@@ -27,7 +27,6 @@
             label="{{ __('Snapshot') }}"
             placeholder="0.0"
             id="form.snapshot"
-            type="number"
             wire:model.live="form.snapshot"
         />
 
