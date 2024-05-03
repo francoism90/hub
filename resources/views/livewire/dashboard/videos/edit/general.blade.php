@@ -20,6 +20,13 @@
             wire:model.live="form.season"
         />
 
+        <x-dashboard.forms.input
+            label="{{ __('Snapshot') }}"
+            id="form.snapshot"
+            type="number"
+            wire:model.live="form.snapshot"
+        />
+
         <x-dashboard.forms.tags
             :items="$tags->results()"
             label="{{ __('Tags') }}"
