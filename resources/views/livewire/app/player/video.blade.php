@@ -18,7 +18,7 @@
         playsinline
         autoplay
     >
-        <source />
+        <source src="" />
     </video>
 
     <x-app.player.controls :$video :$actions :$controls :$settings />

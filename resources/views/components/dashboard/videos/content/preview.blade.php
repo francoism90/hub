@@ -35,7 +35,7 @@
             autoplay
             loop
         >
-            <source />
+            <source src="" />
         </video>
     </div>
 </a>
