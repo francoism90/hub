@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Tags\Concerns;
 
-use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 
 trait WithTags
