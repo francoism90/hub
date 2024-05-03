@@ -63,7 +63,7 @@
 </div>
 
 @script
-    <script data-navigate-track>
+    <script>
         Alpine.data('tags', () => ({
             tags: [],
             selected: [],

@@ -41,7 +41,7 @@
 </a>
 
 @script
-<script data-navigate-track>
+<script>
     Alpine.data('preview', () => ({
         player: undefined,
         show: false,

@@ -50,6 +50,7 @@
     <script
         id="vite-plugin-pwa:register-sw"
         src="{{ asset('build/registerSW.js') }}"
+        data-navigate-track
     ></script>
     <style>
         [x-cloak] {

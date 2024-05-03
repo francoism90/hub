@@ -33,7 +33,7 @@
 </a>
 
 @script
-<script data-navigate-track>
+<script>
     Alpine.data('video', () => ({
         player: undefined,
 
