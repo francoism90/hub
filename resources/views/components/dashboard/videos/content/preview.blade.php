@@ -24,7 +24,6 @@
         />
 
         <video
-            wire:ignore
             x-cloak
             x-ref="video"
             x-show="show"
