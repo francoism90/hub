@@ -4,24 +4,28 @@
 
         <x-dashboard.forms.input
             label="{{ __('Name') }}"
+            placeholder="{{ __('Name') }}"
             id="form.name"
             wire:model.live="form.name"
         />
 
         <x-dashboard.forms.input
             label="{{ __('Episode') }}"
+            placeholder="{{ __('E01') }}"
             id="form.episode"
             wire:model.live="form.episode"
         />
 
         <x-dashboard.forms.input
             label="{{ __('Season') }}"
+            placeholder="{{ __('S01') }}"
             id="form.season"
             wire:model.live="form.season"
         />
 
         <x-dashboard.forms.input
             label="{{ __('Snapshot') }}"
+            placeholder="0.0"
             id="form.snapshot"
             type="number"
             wire:model.live="form.snapshot"
