@@ -25,7 +25,7 @@
 </div>
 
 @script
-<script data-navigate-track>
+<script>
     Alpine.data('play', () => ({
         player: undefined,
         overlay: false,
