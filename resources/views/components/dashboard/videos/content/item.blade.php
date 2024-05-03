@@ -13,7 +13,7 @@
             {{ $item->title }}
         </h1>
 
-        <dl class="inline-flex items-center text-xs text-secondary-400">
+        <dl class="dl text-xs text-secondary-400">
             <dt class="sr-only">{{ __('Time') }}</dt>
             <dd class="text-ellipsis">
                 <time> {{ duration($item->duration) }} </time>
