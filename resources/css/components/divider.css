@@ -2,6 +2,10 @@
     .dl {
         @apply inline-flex flex-wrap items-center;
 
+        dt:not(.sr-only) {
+            @apply pr-1;
+        }
+
         dd:not(.sr-only) {
             &::after {
                 @apply pr-1 content-['|'];

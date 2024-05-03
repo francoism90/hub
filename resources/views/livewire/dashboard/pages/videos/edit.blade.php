@@ -10,7 +10,7 @@
                 <time> {{ duration($video->duration) }} </time>
             </dd>
 
-            <dt class="sr-only">{{ __('Published on') }}</dt>
+            <dt>{{ __('Published on') }}</dt>
             <dd class="text-ellipsis">
                 <time datetime="{{ $video->published->jsonSerialize() }}">
                     {{ $video->published->format('M d, Y') }}
