@@ -7,7 +7,7 @@
         <dl class="dl text-xs font-medium text-secondary-300">
             <dt class="sr-only">{{ __('Time') }}</dt>
             <dd class="text-ellipsis">
-                <time> {{ duration($video->duration) }} </time>
+                <time>{{ duration($video->duration) }}</time>
             </dd>
 
             <dt>{{ __('Published on') }}</dt>
@@ -28,7 +28,7 @@
                     wire:navigate
                     href="{{ route('videos.view', $video) }}"
                 >
-                    View
+                    {{ __('View') }}
                 </a>
             </dd>
         </dl>
