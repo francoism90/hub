@@ -2,6 +2,7 @@
 
 namespace Domain\Playlists\Models;
 
+use Domain\Playlists\Collections\PlaylistCollection;
 use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
@@ -64,6 +65,11 @@ class Playlist extends Model implements HasMedia
     public function newEloquentBuilder($query): PlaylistQueryBuilder
     {
         return new PlaylistQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): PlaylistCollection
+    {
+        return new PlaylistCollection($models);
     }
 
     public function getRouteKeyName(): string
