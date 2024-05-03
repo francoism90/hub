@@ -3,6 +3,7 @@
 namespace Domain\Imports\Actions;
 
 use Domain\Imports\Models\Import;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -22,6 +23,7 @@ class SyncImports
     {
         collect($finder)
             ->each(fn (SplFileInfo $file) => app(CreateImport::class)->execute([
+                'user_id' => User::first()->getKey(),
                 'file_name' => $file->getFilename(),
                 'name' => $file->getFilenameWithoutExtension(),
                 'size' => $file->getSize(),
