@@ -13,9 +13,9 @@ return new class extends Migration
             $table->nullableMorphs('model');
             $table
                 ->foreignId('user_id')
+                ->nullable()
                 ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->nullOnDelete();
             $table->string('file_name');
             $table->unsignedBigInteger('size');
             $table->string('name')->nullable();

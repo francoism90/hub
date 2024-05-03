@@ -11,7 +11,7 @@ class Import extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'videos:import {--force=true}';
+    protected $signature = 'videos:import {--user=1} {--force=true}';
 
     /**
      * @var string
