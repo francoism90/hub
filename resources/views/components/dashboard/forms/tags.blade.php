@@ -52,7 +52,6 @@
     <div class="{{ $attributes->classFor('items') }}">
         <template x-for="(tag, index) in tags" :key="tag">
             <a
-                x-show="selected[tag]"
                 x-text="selected[tag]"
                 x-on:click="tags.splice(index, 1)"
                 class="{{ $attributes->classFor('item') }}"
