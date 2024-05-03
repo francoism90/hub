@@ -1,4 +1,5 @@
 <div
+    wire:key="play-{{ $video->getRouteKey() }}"
     x-data="play"
     x-intersect:enter.full="load($refs.video, '{{ $video->stream }}')"
     x-intersect:leave.full="destroy"

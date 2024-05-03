@@ -18,4 +18,3 @@
 
     <livewire:livewire.app.ui.footer />
 </div>
-
