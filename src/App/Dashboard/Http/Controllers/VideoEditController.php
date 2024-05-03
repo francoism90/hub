@@ -38,6 +38,16 @@ class VideoEditController extends Page
         ]);
     }
 
+    public function onVideoDeleted(): void
+    {
+        $this->dispatch('$refresh');
+    }
+
+    public function onVideoUpdated(): void
+    {
+        $this->dispatch('$refresh');
+    }
+
     protected function authorizeAccess(): void
     {
         $this->canUpdate($this->video);

@@ -12,8 +12,8 @@
         x-on:play="handleEvent"
         x-on:playing="handleEvent"
         x-on:pause="handleEvent"
-        x-on:progress.debounce.100ms="handleEvent"
-        x-on:timeupdate.debounce.100ms="handleEvent"
+        x-on:progress.debounce.200ms="handleEvent"
+        x-on:timeupdate.debounce.200ms="handleEvent"
         class="absolute inset-0 z-0 h-full w-full"
         playsinline
         autoplay
@@ -69,7 +69,7 @@
 
             try {
                 await this.player.attach(video);
-                await this.player.load(manifest);
+                await this.player.load(manifest, {{ $this->startsAt }});
             } catch (e) {
                 //
             }
@@ -92,6 +92,9 @@
                     break;
                 case 'timeupdate':
                     this.currentTime = this.$refs.video.currentTime;
+
+                    if (this.currentTime > 1)
+                        $wire.updateHistory(this.currentTime)
                     break;
                 default:
                     console.error('Unhandled event: ' + event.type);

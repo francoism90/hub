@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Tags\Concerns;
+namespace App\Livewire\Playlists\Concerns;
 
 use Domain\Playlists\Models\Playlist;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
-trait WithFavorites
+trait WithHistory
 {
     public function bootWithHistory(): void
     {

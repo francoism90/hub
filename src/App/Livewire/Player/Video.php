@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Player;
 
+use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Videos\Concerns\WithVideos;
+use Domain\Playlists\Models\Playlist;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Video extends Component
 {
+    use WithHistory;
     use WithVideos;
 
     public function render(): View
@@ -17,6 +21,27 @@ class Video extends Component
             'actions' => $this->actions(),
             'controls' => $this->controls(),
             'settings' => $this->settings(),
+        ]);
+    }
+
+    #[Computed]
+    public function startsAt(): float
+    {
+        $model = static::history()
+            ->videos()
+            ->find($this->video);
+
+        return data_get($model?->pivot?->options ?: [], 'timestamp', 0);
+    }
+
+    public function updateHistory(?float $time = null): void
+    {
+        $this->authorize('update', $model = static::history());
+
+        throw_unless($time >= 0 && $time <= ceil($this->video->duration));
+
+        $model->attachVideo($this->video, [
+            'timestamp' => round($time, 2),
         ]);
     }
 
