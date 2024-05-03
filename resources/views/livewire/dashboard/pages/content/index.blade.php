@@ -2,6 +2,6 @@
     <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
 
     @if ($current)
-        @livewire($current->getComponent(), compact('state'), key($current->getName()))
+        @livewire($current->getComponent(), [], key($current->getName()))
     @endif
 </div>
