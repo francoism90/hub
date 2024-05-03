@@ -11,8 +11,8 @@ use Livewire\Attributes\Layout;
 #[Layout('components.layouts.simple')]
 class VideoViewController extends Page
 {
-    use WithVideos;
     use WithHistory;
+    use WithVideos;
 
     public function render(): View
     {
