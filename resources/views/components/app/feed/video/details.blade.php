@@ -1,7 +1,7 @@
 @props(['video'])
 
 <div class="absolute inset-x-4 bottom-4 z-30">
-    <h1 class="line-clamp-2 flex h-24 items-end text-sm font-semibold tracking-tight">
+    <h1 class="pr-4 line-clamp-2 flex h-24 items-end text-sm font-semibold tracking-tight">
         {{ $video->title }}
     </h1>
 

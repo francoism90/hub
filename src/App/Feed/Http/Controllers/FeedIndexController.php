@@ -34,7 +34,7 @@ class FeedIndexController extends Page
     {
         return $this->getQuery()
             ->with(['media', 'tags'])
-            ->randomSeed(key: 'videos', ttl: now()->addHour())
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes(10))
             ->take($this->getLimit())
             ->get();
     }
