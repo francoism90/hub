@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Videos\Components\Edit;
 use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\Forms\TagsForm;
+use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
@@ -15,6 +16,7 @@ use Livewire\Component;
 
 class General extends Component
 {
+    use WithHistory;
     use WithState;
     use WithTags;
 
@@ -31,6 +33,7 @@ class General extends Component
     {
         return view('livewire.dashboard.videos.edit.general')->with([
             'actions' => $this->actions(),
+            'snapshot' => $this->snapshot(),
         ]);
     }
 
@@ -43,7 +46,10 @@ class General extends Component
     {
         $data = $this->form->validate();
 
-        app(UpdateVideoDetails::class)->execute($this->getModel(), $data);
+        app(UpdateVideoDetails::class)->execute(
+            model: $this->getModel(),
+            attributes: $data
+        );
 
         flash()->success(__('Video has been updated!'));
 
@@ -52,6 +58,15 @@ class General extends Component
             parameters: $this->getModel(),
             navigate: true,
         );
+    }
+
+    public function setSnapshot(): void
+    {
+        $videoable = static::history()
+            ->videos()
+            ->firstWhere('id', $this->getModel()->getKey());
+
+        $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
     }
 
     protected function fillForms(): void
@@ -70,6 +85,19 @@ class General extends Component
                     'type' => 'submit',
                 ]),
         ];
+    }
+
+    protected function snapshot(): Action
+    {
+        return Action::make('snapshot')
+            ->label(__('Snapshot'))
+            ->icon('heroicon-o-camera')
+            ->componentAttributes([
+                'type' => 'button',
+                'class:icon' => 'size-10',
+                'class:label' => 'sr-only',
+                'wire:click' => 'setSnapshot',
+            ]);
     }
 
     protected function getModel(): Video

@@ -28,7 +28,11 @@
             placeholder="0.0"
             id="form.snapshot"
             wire:model.live="form.snapshot"
-        />
+        >
+            <x-slot:append>
+                <x-wireuse::actions-button :action="$snapshot" />
+            </x-slot:append>
+        </x-dashboard.forms.input>
 
         <x-dashboard.forms.tags
             :items="$tags->results()"
