@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Forms;
+namespace App\Livewire\Dashboard\Tags\Forms;
 
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;

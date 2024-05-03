@@ -8,25 +8,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function options(): self
-    {
-        return $this->transform(fn (Tag $tag) => [
-            'id' => $tag->getRouteKey(),
-            'name' => $tag->name,
-        ]);
-    }
-
-    public function toModels(): mixed
-    {
-        return $this
-            ->transform(fn (Tag|string $item): ?Tag => ! $item instanceof Tag
-                ? Tag::findByPrefixedId($item)
-                : $item
-            )
-            ->filter()
-            ->unique();
-    }
-
     public function routeKeys(): mixed
     {
         return $this->pluck((new Tag)->getRouteKeyName());

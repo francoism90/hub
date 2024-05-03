@@ -3,8 +3,8 @@
 namespace App\Livewire\Dashboard\Videos\Components\Edit;
 
 use App\Dashboard\Http\Controllers\VideoEditController;
+use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
-use App\Livewire\Dashboard\Videos\Forms\TagsForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
