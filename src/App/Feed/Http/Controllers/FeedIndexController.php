@@ -50,7 +50,7 @@ class FeedIndexController extends Page
 
     public function refresh(): void
     {
-        app($this->getModelClass())::forgetRandomSeed('videos');
+        app($this->getModelClass())::forgetRandomSeed('feed');
 
         unset($this->items);
 
