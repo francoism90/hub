@@ -21,6 +21,7 @@
     @teleport('body')
     <div
         x-show="open"
+        x-trap="open"
         x-on:click.outside="open = false"
         x-on:keyup.escape.window="open = false"
         class="absolute inset-x-0 bottom-4 z-30 mx-auto w-full max-w-[28rem] px-3"

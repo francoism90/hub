@@ -7,6 +7,7 @@
         <x-dashboard.forms.input
             label="{{ __('Search') }}"
             id="form.query"
+            autofocus
             wire:model.live.debounce.300ms="form.query"
         />
     </div>
