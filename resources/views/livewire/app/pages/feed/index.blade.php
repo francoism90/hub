@@ -6,7 +6,7 @@
         >
             @forelse ($this->items as $item)
                 @if ($item->getMorphClass() === 'video')
-                    <livewire:livewire.feed.video :video="$item" :key="$item->getRouteKey()" />
+                    <livewire:livewire.feed.video :video="$item" :key="$this->hash" />
                 @endif
             @empty
                 {{ __('Please checkout later') }}

@@ -3,7 +3,7 @@
 ])
 
 <article
-    wire:key="feed-{{ $item->getRouteKey() }}"
+    wire:key="item-{{ $item->getRouteKey() }}"
     class="flex h-72 max-h-72 w-full flex-col flex-nowrap"
 >
     <x-dashboard.videos.content.preview />
