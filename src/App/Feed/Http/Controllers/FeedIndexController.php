@@ -41,10 +41,10 @@ class FeedIndexController extends Page
 
     public function fetch(): void
     {
-        $this->limit += 12;
+        $this->limit += 16;
 
-        if ($this->getLimit() >= 120) {
-            $this->limit = 12;
+        if ($this->getLimit() >= 192) {
+            $this->limit = 16;
         }
     }
 
