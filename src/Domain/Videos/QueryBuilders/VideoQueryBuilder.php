@@ -16,24 +16,17 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
+    public function recommended(int $value = 10): self
+    {
+        return $this
+            ->published()
+            ->randomSeed(key: 'feed', ttl: now()->addMinutes($value));
+    }
+
     public function random(int $value = 10): self
     {
         return $this
             ->randomSeed(key: 'videos', ttl: now()->addMinutes($value));
-    }
-
-    public function watched(): self
-    {
-        /** @var User */
-        $user = auth()->user();
-
-        return $this
-            ->randomSeed(key: 'videos-feed', ttl: now()->addMinutes(10))
-            ->withWhereHas('playlists', fn ($query) => $query
-                ->history()
-                ->where('user_id', $user->getKey())
-                ->has('videos')
-            );
     }
 
     public function similar(Video $model): self
