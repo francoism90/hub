@@ -11,7 +11,7 @@ class SyncImports
 {
     public function execute(): void
     {
-        $finder = $this->getImportables();
+        $finder = static::getImportables();
 
         $this->createModels($finder);
 
@@ -40,7 +40,7 @@ class SyncImports
             ->delete();
     }
 
-    protected function getImportables(): Finder
+    protected static function getImportables(): Finder
     {
         return (new Finder)
             ->in(Storage::disk('import')->path(''))
