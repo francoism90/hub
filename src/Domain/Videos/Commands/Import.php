@@ -16,7 +16,7 @@ class Import extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $description = 'Optimizes application';
+    protected $description = 'Bulk import videos';
 
     public function handle(): void
     {
