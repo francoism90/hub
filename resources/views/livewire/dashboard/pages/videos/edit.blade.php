@@ -6,12 +6,12 @@
 
         <dl class="dl text-xs font-medium text-secondary-300">
             <dt class="sr-only">{{ __('Time') }}</dt>
-            <dd class="text-ellipsis">
+            <dd>
                 <time>{{ duration($video->duration) }}</time>
             </dd>
 
-            <dt>{{ __('Published on') }}</dt>
-            <dd class="text-ellipsis">
+            <dt class="sr-only">{{ __('Published on') }}</dt>
+            <dd>
                 <time datetime="{{ $video->published->jsonSerialize() }}">
                     {{ $video->published->format('M d, Y') }}
                 </time>
@@ -19,11 +19,11 @@
 
             @if ($video->episode || $video->season)
             <dt class="sr-only">{{ __('ID') }}</dt>
-            <dd class="text-ellipsis">{{ $video->identifier }}</dd>
+            <dd>{{ $video->identifier }}</dd>
             @endif
 
             <dt class="sr-only">{{ __('Play') }}</dt>
-            <dd class="text-ellipsis">
+            <dd>
                 <a
                     wire:navigate
                     href="{{ route('videos.view', $video) }}"

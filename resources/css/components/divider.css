@@ -2,18 +2,18 @@
     .dl {
         @apply inline-flex flex-wrap items-center;
 
-        dt:not(.sr-only) {
-            @apply pr-1;
+        dd {
+            @apply inline-flex;
         }
 
         dd:not(.sr-only) {
             &::after {
-                @apply pr-1 content-['|'];
+                @apply px-1 content-['|'];
             }
         }
 
         dd:last-child:after {
-            @apply pr-0 content-[];
+            @apply px-0 content-[];
         }
     }
 }

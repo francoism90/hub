@@ -17,7 +17,7 @@ class GeneralForm extends Form
     #[Validate('nullable|string|min:1|max:255')]
     public ?string $season = null;
 
-    #[Validate('nullable|float|min:0')]
+    #[Validate('nullable|numeric|min:0')]
     public ?float $snapshot = null;
 
     #[Validate('nullable|array|min:1|max:20|exists:tags,prefixed_id')]
