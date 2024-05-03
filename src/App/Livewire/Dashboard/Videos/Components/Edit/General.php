@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Edit;
+namespace App\Livewire\Dashboard\Videos\Components\Edit;
 
 use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;

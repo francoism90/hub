@@ -2,7 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Edit\General;
+use App\Livewire\Dashboard\Videos\Components\Edit\General;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;

@@ -30,6 +30,6 @@ class QueryForm extends Form
 
     protected function beforeValidate(): void
     {
-        $this->sort = $this->query() ? 'relevance' : 'recent';
+        $this->sort = $this->query() ? 'relevance' : $this->sort;
     }
 }

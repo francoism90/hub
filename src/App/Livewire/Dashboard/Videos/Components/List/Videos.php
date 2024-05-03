@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Content;
+namespace App\Livewire\Dashboard\Videos\Components\List;
 
 use App\Livewire\Dashboard\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
