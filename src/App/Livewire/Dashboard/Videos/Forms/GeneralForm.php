@@ -26,7 +26,7 @@ class GeneralForm extends Form
     protected function beforeValidate(): void
     {
         collect($this->all())
-            ->filter(fn (mixed $value) => is_string($value))
+            ->filter(fn (mixed $value) => filled($value) && is_string($value))
             ->each(fn (mixed $value, string $key) => data_set($this, $key, str($value)->squish()->value()));
     }
 
