@@ -2,7 +2,7 @@
     x-data="{ show: false }"
     x-intersect:enter="show = true"
     x-intersect:leave="show = false"
-    class="relative h-dvh min-h-dvh w-dvw snap-center"
+    class="relative h-viewport w-full snap-center"
 >
     <template x-if="show">
         <div>
