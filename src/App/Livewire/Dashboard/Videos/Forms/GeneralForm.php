@@ -23,6 +23,13 @@ class GeneralForm extends Form
     #[Validate(['tags' => 'nullable|array', 'tags.*.id' => 'exists:tags,prefixed_id'])]
     public array $tags = [];
 
+    protected function beforeValidate(): void
+    {
+        collect($this->all())
+            ->filter(fn (mixed $value) => is_string($value))
+            ->each(fn (mixed $value) => str($value)->squish()->value());
+    }
+
     protected function beforeFill(Video $model): array
     {
         $values = $model->only('name', 'episode', 'season', 'snapshot');

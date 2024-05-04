@@ -31,6 +31,7 @@ class VideoEditController extends Page
     public function render(): View
     {
         return view('livewire.dashboard.pages.videos.edit')->with([
+            'actions' => $this->actions(),
             'tabs' => $this->tabs(),
             'current' => $this->currentTab(),
         ]);
@@ -68,6 +69,25 @@ class VideoEditController extends Page
             Action::make('assets')
                 ->label(__('Assets'))
                 ->component(General::class),
+        ];
+    }
+
+    protected function actions(): array
+    {
+        return [
+            Action::make('delete')
+                ->label(__('Delete'))
+                ->componentAttributes([
+                    'wire:click' => 'delete',
+                    'wire:confirm' => __('Are you sure you want to delete this video?')
+                ]),
+
+            Action::make('view')
+                ->label(__('View'))
+                ->componentAttributes([
+                    'wire:navigate' => true,
+                    'href' => route('videos.view', $this->video),
+                ]),
         ];
     }
 

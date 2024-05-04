@@ -22,25 +22,12 @@
             <dd>{{ $video->identifier }}</dd>
             @endif
 
-            <dt class="sr-only">{{ __('Delete') }}</dt>
+            @foreach ($actions as $action)
+            <dt class="sr-only">{{ $action->getLabel() }}</dt>
             <dd>
-                <a
-                    wire:click="delete"
-                    wire:confirm="{{ __('Are you sure you want to delete this video?') }}"
-                >
-                    {{ __('Delete') }}
-                </a>
+                <x-wireuse::actions-link :$action />
             </dd>
-
-            <dt class="sr-only">{{ __('Play') }}</dt>
-            <dd>
-                <a
-                    wire:navigate
-                    href="{{ route('videos.view', $video) }}"
-                >
-                    {{ __('View') }}
-                </a>
-            </dd>
+            @endforeach
         </dl>
     </div>
 
