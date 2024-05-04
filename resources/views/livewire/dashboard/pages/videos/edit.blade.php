@@ -22,6 +22,16 @@
             <dd>{{ $video->identifier }}</dd>
             @endif
 
+            <dt class="sr-only">{{ __('Delete') }}</dt>
+            <dd>
+                <a
+                    wire:click="delete"
+                    wire:confirm="{{ __('Are you sure you want to delete this video?') }}"
+                >
+                    {{ __('Delete') }}
+                </a>
+            </dd>
+
             <dt class="sr-only">{{ __('Play') }}</dt>
             <dd>
                 <a

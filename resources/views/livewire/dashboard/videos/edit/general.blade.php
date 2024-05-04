@@ -9,6 +9,13 @@
             wire:model.live="form.name"
         />
 
+        <x-dashboard.forms.tags
+            :items="$tags->results()"
+            label="{{ __('Tags') }}"
+            id="form.tags"
+            wire:model.live="form.tags"
+        />
+
         <x-dashboard.forms.input
             label="{{ __('Episode') }}"
             placeholder="{{ __('E01') }}"
@@ -33,13 +40,6 @@
                 <x-wireuse::actions-button :action="$snapshot" />
             </x-slot:append>
         </x-dashboard.forms.input>
-
-        <x-dashboard.forms.tags
-            :items="$tags->results()"
-            label="{{ __('Tags') }}"
-            id="form.tags"
-            wire:model.live="form.tags"
-        />
     </x-app.layout.container>
 
     <x-dashboard.forms.actions :$actions />

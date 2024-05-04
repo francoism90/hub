@@ -36,6 +36,13 @@ class VideoEditController extends Page
         ]);
     }
 
+    public function delete(): void
+    {
+        $this->canDelete($this->video);
+
+        dd('delete');
+    }
+
     public function onVideoDeleted(): void
     {
         $this->dispatch('$refresh');
