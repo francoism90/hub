@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cbce439f77d0e3d495b22823be8743f",
+    "content-hash": "7c480d2352687853a3524fda18ac6e99",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1915,16 +1915,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "bfe71cfc962a69317b306ff7c87eb3235d2b4d68"
+                "reference": "523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/bfe71cfc962a69317b306ff7c87eb3235d2b4d68",
-                "reference": "bfe71cfc962a69317b306ff7c87eb3235d2b4d68",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9",
+                "reference": "523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9",
                 "shasum": ""
             },
             "require": {
@@ -1986,7 +1986,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.0"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.2"
             },
             "funding": [
                 {
@@ -1994,7 +1994,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-02T16:38:26+00:00"
+            "time": "2024-05-04T02:04:42+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -2863,16 +2863,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v5.24.3",
+            "version": "v5.24.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "01fd607c57f238507cac4c055f3c54e5e23002ac"
+                "reference": "8d31ff178bf5493efc2b2629c10612054f31f584"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/01fd607c57f238507cac4c055f3c54e5e23002ac",
-                "reference": "01fd607c57f238507cac4c055f3c54e5e23002ac",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/8d31ff178bf5493efc2b2629c10612054f31f584",
+                "reference": "8d31ff178bf5493efc2b2629c10612054f31f584",
                 "shasum": ""
             },
             "require": {
@@ -2936,9 +2936,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.24.3"
+                "source": "https://github.com/laravel/horizon/tree/v5.24.4"
             },
-            "time": "2024-04-22T15:17:18+00:00"
+            "time": "2024-05-03T13:34:14+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -7032,16 +7032,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.7.2",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "62f7463483d1bd975f6f06025d89d42a29608fe1"
+                "reference": "d4f0d09c44700c78d1718cd40da404b1c800b935"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/62f7463483d1bd975f6f06025d89d42a29608fe1",
-                "reference": "62f7463483d1bd975f6f06025d89d42a29608fe1",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/d4f0d09c44700c78d1718cd40da404b1c800b935",
+                "reference": "d4f0d09c44700c78d1718cd40da404b1c800b935",
                 "shasum": ""
             },
             "require": {
@@ -7081,9 +7081,9 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/image-optimizer/issues",
-                "source": "https://github.com/spatie/image-optimizer/tree/1.7.2"
+                "source": "https://github.com/spatie/image-optimizer/tree/1.7.3"
             },
-            "time": "2023-11-03T10:08:02+00:00"
+            "time": "2024-05-03T14:05:33+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
@@ -14354,16 +14354,16 @@
         },
         {
             "name": "spatie/flare-client-php",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/flare-client-php.git",
-                "reference": "9aa60f6ded35a774554e7a5256dca12b72693b78"
+                "reference": "e27977d534eefe04c154c6fd8460217024054c05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/9aa60f6ded35a774554e7a5256dca12b72693b78",
-                "reference": "9aa60f6ded35a774554e7a5256dca12b72693b78",
+                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/e27977d534eefe04c154c6fd8460217024054c05",
+                "reference": "e27977d534eefe04c154c6fd8460217024054c05",
                 "shasum": ""
             },
             "require": {
@@ -14411,7 +14411,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/flare-client-php/issues",
-                "source": "https://github.com/spatie/flare-client-php/tree/1.5.0"
+                "source": "https://github.com/spatie/flare-client-php/tree/1.5.1"
             },
             "funding": [
                 {
@@ -14419,20 +14419,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-02T13:18:42+00:00"
+            "time": "2024-05-03T15:43:14+00:00"
         },
         {
             "name": "spatie/ignition",
-            "version": "1.14.0",
+            "version": "1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "80385994caed328f6f9c9952926932e65b9b774c"
+                "reference": "c23cc018c5f423d2f413b99f84655fceb6549811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/80385994caed328f6f9c9952926932e65b9b774c",
-                "reference": "80385994caed328f6f9c9952926932e65b9b774c",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/c23cc018c5f423d2f413b99f84655fceb6549811",
+                "reference": "c23cc018c5f423d2f413b99f84655fceb6549811",
                 "shasum": ""
             },
             "require": {
@@ -14502,7 +14502,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-26T08:45:51+00:00"
+            "time": "2024-05-03T15:56:16+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
