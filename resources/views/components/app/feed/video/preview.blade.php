@@ -13,7 +13,7 @@
             loading="lazy"
             srcset="{{ $video->placeholder }}"
             src="{{ $video->thumbnail }}"
-            class="absolute z-10 h-72 max-h-72 min-h-72 w-full"
+            class="absolute z-10 h-80 max-h-80 min-h-80 w-full"
         />
 
         <video
@@ -21,7 +21,7 @@
             x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"
             x-show="$wire.$parent.preview"
-            class="z-20 h-72 max-h-72 min-h-72 w-full object-fill"
+            class="z-20 h-80 max-h-80 min-h-80 w-full object-fill"
             playsinline
             muted
             autoplay
