@@ -52,11 +52,9 @@ class General extends Component
 
         $this->form->submit();
 
-        $data = $this->form->validate();
-
         app(UpdateVideoDetails::class)->execute(
             model: $model,
-            attributes: $data
+            attributes: $this->form->validate(),
         );
 
         flash()->success(__('Video has been updated!'));
@@ -68,7 +66,7 @@ class General extends Component
         );
     }
 
-    public function setSnapshot(): void
+    public function fillSnapshot(): void
     {
         $videoable = static::history()
             ->videos()
@@ -104,7 +102,7 @@ class General extends Component
                 'type' => 'button',
                 'class:icon' => 'size-10',
                 'class:label' => 'sr-only',
-                'wire:click' => 'setSnapshot',
+                'wire:click' => 'fillSnapshot()',
             ]);
     }
 
