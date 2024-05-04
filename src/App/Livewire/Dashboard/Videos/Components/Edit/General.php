@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Dashboard\Videos\Components\Edit;
 
-use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\States\VideoState;
@@ -58,12 +57,6 @@ class General extends Component
         );
 
         flash()->success(__('Video has been updated!'));
-
-        $this->redirectAction(
-            name: VideoEditController::class,
-            parameters: $model,
-            navigate: true,
-        );
     }
 
     public function fillSnapshot(): void
