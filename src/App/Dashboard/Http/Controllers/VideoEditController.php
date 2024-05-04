@@ -82,6 +82,12 @@ class VideoEditController extends Page
                     'wire:confirm' => __('Are you sure you want to delete this video?')
                 ]),
 
+            Action::make('download')
+                ->label(__('Download'))
+                ->componentAttributes([
+                    'href' => $this->video->clips()->first()?->getUrl(),
+                ]),
+
             Action::make('view')
                 ->label(__('View'))
                 ->componentAttributes([
