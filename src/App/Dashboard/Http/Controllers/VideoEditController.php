@@ -6,7 +6,6 @@ use App\Livewire\Dashboard\Videos\Components\Edit\General;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\Auth\Concerns\WithAuthorization;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
@@ -16,7 +15,6 @@ use Livewire\Attributes\Url;
 #[Layout('components.layouts.dashboard')]
 class VideoEditController extends Page
 {
-    use WithAuthorization;
     use WithTabs;
     use WithVideos;
 
