@@ -4,7 +4,7 @@
 
 <a
     wire:navigate
-    href="{{ route('dashboard.videos.edit', $item) }}"
+    href="{{ route('videos.view', $item) }}"
 >
     <div
         x-data="preview"
