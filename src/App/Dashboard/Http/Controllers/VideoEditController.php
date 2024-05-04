@@ -40,7 +40,7 @@ class VideoEditController extends Page
     {
         $this->canDelete($this->video);
 
-        dd('delete');
+        $this->video->deleteOrFail();
     }
 
     public function onVideoDeleted(): void
