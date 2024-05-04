@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\QueryBuilders;
 
-use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;

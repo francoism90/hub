@@ -5,15 +5,18 @@ namespace App\Livewire\Dashboard\Videos\Components\Edit;
 use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
+use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
-use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\States\Concerns\WithState;
 use Illuminate\View\View;
 use Livewire\Component;
 
+/**
+ * @property VideoState $state
+ */
 class General extends Component
 {
     use WithHistory;
@@ -44,10 +47,12 @@ class General extends Component
 
     public function save(): void
     {
+        $this->authorize('update', $model = $this->state->getModel());
+
         $data = $this->form->validate();
 
         app(UpdateVideoDetails::class)->execute(
-            model: $this->getModel(),
+            model: $model,
             attributes: $data
         );
 
@@ -55,7 +60,7 @@ class General extends Component
 
         $this->redirectAction(
             name: VideoEditController::class,
-            parameters: $this->getModel(),
+            parameters: $model,
             navigate: true,
         );
     }
@@ -64,16 +69,16 @@ class General extends Component
     {
         $videoable = static::history()
             ->videos()
-            ->firstWhere('id', $this->getModel()->getKey());
+            ->firstWhere('id', $this->state->getModel()->getKey());
 
         $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
     }
 
     protected function fillForms(): void
     {
-        $model = $this->getModel();
-
-        $this->form->fill($model);
+        $this->form->fill(
+            $this->state->getModel()
+        );
     }
 
     protected function actions(): array
@@ -98,12 +103,5 @@ class General extends Component
                 'class:label' => 'sr-only',
                 'wire:click' => 'setSnapshot',
             ]);
-    }
-
-    protected function getModel(): Video
-    {
-        return Video::findByPrefixedIdOrFail(
-            $this->state->getPropertyValue('id')
-        );
     }
 }
