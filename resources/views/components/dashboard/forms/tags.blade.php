@@ -74,7 +74,11 @@
             open: false,
 
             add(tag) {
-                this.tags.push(tag)
+                const index = this.tags.findIndex((item) => item.id === tag.id);
+
+                if (index === -1) {
+                    this.tags.push(tag)
+                }
             },
         }));
     </script>
