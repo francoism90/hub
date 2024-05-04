@@ -20,7 +20,7 @@ class ContentIndexController extends Page
 
     public function mount(): void
     {
-        $this->seo()->setTitle(__('Dashboard'));
+        $this->seo()->setTitle(__('Content'));
         $this->seo()->setDescription(__('Content Manager'));
     }
 
