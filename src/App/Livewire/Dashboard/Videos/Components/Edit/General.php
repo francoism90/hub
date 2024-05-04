@@ -9,6 +9,7 @@ use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\States\Concerns\WithState;
 use Illuminate\View\View;
@@ -47,7 +48,7 @@ class General extends Component
 
     public function save(): void
     {
-        $this->authorize('update', $model = $this->state->getModel());
+        $this->authorize('update', $model = $this->getModel());
 
         $data = $this->form->validate();
 
@@ -69,7 +70,7 @@ class General extends Component
     {
         $videoable = static::history()
             ->videos()
-            ->firstWhere('id', $this->state->getModel()->getKey());
+            ->firstWhere('id', $this->getModel()->getKey());
 
         $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
     }
@@ -77,7 +78,7 @@ class General extends Component
     protected function fillForms(): void
     {
         $this->form->fill(
-            $this->state->getModel()
+            $this->getModel()
         );
     }
 
@@ -103,5 +104,12 @@ class General extends Component
                 'class:label' => 'sr-only',
                 'wire:click' => 'setSnapshot',
             ]);
+    }
+
+    protected function getModel(): Video
+    {
+        return Video::findByPrefixedIdOrFail(
+            $this->state->id
+        );
     }
 }
