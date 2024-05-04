@@ -35,8 +35,10 @@
     <div
         x-cloak
         x-show="open"
+        x-on:click.outside="open = false"
         class="absolute z-50 top-20 inset-0"
     >
+        @if ($items->isNotEmpty())
         <div class="flex flex-col w-full divide-y divide-solid divide-secondary-500/50 border border-secondary-500/50 bg-secondary-800">
             @foreach ($items as $option)
                 <a
@@ -47,6 +49,7 @@
                 </a>
             @endforeach
         </div>
+        @endif
     </div>
 
     <div class="{{ $attributes->classFor('items') }}">
@@ -76,9 +79,10 @@
             add(tag) {
                 const index = this.tags.findIndex((item) => item.id === tag.id);
 
-                if (index === -1) {
+                if (index === -1)
                     this.tags.push(tag)
-                }
+
+                this.open = false;
             },
         }));
     </script>

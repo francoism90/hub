@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Dashboard\Tags\Forms;
 
-use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Validate;
 
 class TagsForm extends Form
@@ -20,11 +20,15 @@ class TagsForm extends Form
             ->value();
     }
 
-    public function results(): TagCollection
+    public function results(): Collection
     {
         $this->authorize('viewAny', Tag::class);
 
-        return Tag::search($this->query())
+        if (! $query = $this->query()) {
+            return collect();
+        }
+
+        return Tag::search($query)
             ->take(5)
             ->get()
             ->options();
