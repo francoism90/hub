@@ -6,7 +6,6 @@ use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
@@ -21,7 +20,6 @@ class General extends Component
 {
     use WithHistory;
     use WithState;
-    use WithTags;
 
     public GeneralForm $form;
 

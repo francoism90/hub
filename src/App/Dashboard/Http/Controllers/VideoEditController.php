@@ -3,6 +3,7 @@
 namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Components\Edit\General;
+use App\Livewire\Dashboard\Videos\Components\Edit\Similar;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
@@ -69,6 +70,10 @@ class VideoEditController extends Page
             Action::make('assets')
                 ->label(__('Assets'))
                 ->component(General::class),
+
+            Action::make('similar')
+                ->label(__('Similar'))
+                ->component(Similar::class),
         ];
     }
 
@@ -79,7 +84,7 @@ class VideoEditController extends Page
                 ->label(__('Delete'))
                 ->componentAttributes([
                     'wire:click' => 'delete',
-                    'wire:confirm' => __('Are you sure you want to delete this video?')
+                    'wire:confirm' => __('Are you sure you want to delete this video?'),
                 ]),
 
             Action::make('download')
