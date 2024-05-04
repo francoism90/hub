@@ -50,6 +50,8 @@ class General extends Component
     {
         $this->authorize('update', $model = $this->getModel());
 
+        $this->form->submit();
+
         $data = $this->form->validate();
 
         app(UpdateVideoDetails::class)->execute(
