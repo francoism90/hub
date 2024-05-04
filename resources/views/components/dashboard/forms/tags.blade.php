@@ -74,13 +74,7 @@
             open: false,
 
             add(tag) {
-                console.log(tag)
                 this.tags.push(tag)
-                // this.tags.push(id)
-                this.open = false
-
-                console.log(this.tags)
-                console.log(tag)
             },
         }));
     </script>
