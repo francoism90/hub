@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Videos\Components\List;
 use App\Livewire\Dashboard\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
+use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
@@ -15,6 +16,7 @@ use Livewire\WithPagination;
 
 class Videos extends Component
 {
+    use WithAuthentication;
     use WithPagination;
     use WithQueryBuilder;
 
@@ -103,6 +105,11 @@ class Videos extends Component
 
     public function getListeners(): array
     {
-        return [];
+        $id = static::getAuthKey();
+
+        return [
+            "echo-private:user.{$id},.video.deleted" => '$refresh',
+            "echo-private:user.{$id},.video.updated" => '$refresh',
+        ];
     }
 }

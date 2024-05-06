@@ -24,7 +24,7 @@
     <x-dashboard.forms.input
         :$append
         :$prepend
-        x-on:click="open = ! open"
+        x-on:click="open = true"
         label="{{ __('Tags') }}"
         id="tags.query"
         wire:model.live="tags.query"
