@@ -8,8 +8,8 @@ See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots
 
 ## Prerequisites
 
-- Linux (Ubuntu, Fedora, Debian, Arch)
-- [Podman 5.0](https://podman.io/) with SELinux support
+- Linux (Fedora, Debian, Arch, Ubuntu)
+- [Podman 5.0](https://podman.io/) or higher (with SELinux support)
 
 ## Installation
 
@@ -83,7 +83,7 @@ You may want to use a different mount-point for media storage:
 ```bash
 sudo mount --bind /mnt/data/videos/media ~/Code/hub/storage/app/media -o x-gvfs-hide
 podman system migrate
-systemctl --user restart hub.service
+systemctl --user restart hub-app hub
 ```
 
-Make sure `/mnt/data/videos/media` also contains a `.gitigore` file.
+> **NOTE:** Make sure `/mnt/data/videos/media` also contains a `.gitigore` file.
