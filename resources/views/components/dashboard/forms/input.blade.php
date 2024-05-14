@@ -19,12 +19,14 @@
     ])
     ->only('class')
 }}>
-    <label
-        class="{{ $attributes->classFor('label') }}"
-        for="{{ $attributes->wireKey() }}"
-    >
-        {{ $label }}
-    </label>
+    @if ($label)
+        <label
+            class="{{ $attributes->classFor('label') }}"
+            for="{{ $attributes->wireKey() }}"
+        >
+            {{ $label }}
+        </label>
+    @endif
 
     <div class="flex flex-row flex-nowrap gap-3 items-center">
         {{ $prepend }}
