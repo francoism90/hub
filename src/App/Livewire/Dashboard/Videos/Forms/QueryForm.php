@@ -14,8 +14,8 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    #[Validate('nullable|string|in:recommended,relevance,recent,updated')]
-    public string $sort = 'recommended';
+    #[Validate('nullable|string|in:relevance,recent,updated')]
+    public string $sort = 'relevance';
 
     #[Validate('nullable|array|in:verified,pending,failed')]
     public array $visibility = [];
@@ -26,10 +26,5 @@ class QueryForm extends Form
             ->headline()
             ->squish()
             ->value();
-    }
-
-    protected function beforeValidate(): void
-    {
-        $this->sort = filled($this->query()) ? 'relevance' : $this->sort ?? 'recommended';
     }
 }
