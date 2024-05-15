@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Route;
+use Spatie\PrefixedIds\Exceptions\NoPrefixedModelFound;
 
 $basePath = $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__);
 
@@ -13,9 +15,16 @@ $app = Application::configure(basePath: $basePath)
         channels: __DIR__.'/../routes/channels.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        then: function () {
+            Route::middleware('web')
+                ->prefix('dashboard')
+                ->name('dashboard.')
+                ->group(base_path('routes/dashboard.php'));
+        },
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(at: ['127.0.0.1']);
+        $middleware->throttleWithRedis();
         $middleware->statefulApi();
         $middleware->redirectGuestsTo('/login');
 
@@ -30,12 +39,14 @@ $app = Application::configure(basePath: $basePath)
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(fn (NoPrefixedModelFound $e) => abort(404));
     })
     ->withCommands([
         \Foundation\Console\Commands\AppInstall::class,
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
+        \Domain\Videos\Commands\Clean::class,
+        \Domain\Videos\Commands\Import::class,
         \Support\Scout\Commands\SyncIndexes::class,
     ])
     ->create();

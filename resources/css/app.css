@@ -1,6 +1,3 @@
-/* Vendors */
-@import 'vendor/_all.css';
-
 /* Styles */
 @import 'base/_all.css';
 @import 'components/_all.css';

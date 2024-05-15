@@ -10,12 +10,12 @@ class SyncModelTags
 {
     public function execute(Model $model, array|ArrayAccess $items = []): void
     {
-        $models = collect($items)
-            ->map(fn (array $item) => Tag::findByPrefixedIdOrFail($item['id']))
-            ->unique();
+        $ids = data_get($items, '*.id', []);
 
-        $model->tags()->sync(
-            $models->pluck('id')->all()
-        );
+        $models = Tag::query()
+            ->whereIn('prefixed_id', $ids)
+            ->get();
+
+        $model->tags()->sync($models);
     }
 }

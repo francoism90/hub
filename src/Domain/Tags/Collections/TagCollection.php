@@ -8,15 +8,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-    public function convert(): self
+    public function routeKeys(): mixed
     {
-        return $this
-            ->transform(fn (mixed $item): ?Tag => $item instanceof Tag
-                ? $item
-                : Tag::findByPrefixedId((string) $item)
-            )
-            ->filter()
-            ->unique();
+        return $this->pluck((new Tag)->getRouteKeyName());
     }
 
     public function type(TagType|string|null $type = null): mixed

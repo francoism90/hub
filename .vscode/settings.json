@@ -1,3 +1,6 @@
 {
     "intelephense.format.enable": false,
+    "files.exclude": {
+        "**/storage": true,
+    }
 }

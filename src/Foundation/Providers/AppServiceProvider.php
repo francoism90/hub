@@ -12,6 +12,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureMorphMap();
         $this->configurePrefixedIds();
         $this->configureJsonResource();
+        $this->configureMacros();
     }
 
     protected function configureUrlScheme(): void
@@ -72,5 +74,13 @@ class AppServiceProvider extends ServiceProvider
     protected function configureJsonResource(): void
     {
         JsonResource::withoutWrapping();
+    }
+
+    protected function configureMacros(): void
+    {
+        Collection::macro('options', fn (string $label = 'name') => $this->transform(fn (Model $item) => [
+            'id' => $item->getRouteKey(),
+            'name' => $item->getAttribute($label),
+        ]));
     }
 }

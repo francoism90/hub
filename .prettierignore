@@ -1,0 +1,7 @@
+**/.git
+**/.svn
+**/.hg
+**/composer.lock
+**/node_modules
+**/database
+**/storage

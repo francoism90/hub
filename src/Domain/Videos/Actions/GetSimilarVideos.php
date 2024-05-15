@@ -57,7 +57,7 @@ class GetSimilarVideos
 
         return Video::query()
             ->published()
-            ->tagged([
+            ->withAnyTagsOfAnyType([
                 ...$model->tags,
                 ...$relatables,
             ])

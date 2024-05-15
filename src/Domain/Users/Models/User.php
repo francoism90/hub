@@ -6,11 +6,9 @@ use Database\Factories\UserFactory;
 use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
-use Domain\Users\Concerns\InteractsWithFilament;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
 use Domain\Videos\Concerns\InteractsWithVideos;
-use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
@@ -29,7 +27,7 @@ use Spatie\ModelStates\HasStates;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class User extends Authenticatable implements FilamentUser, HasMedia, MustVerifyEmail
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use BroadcastsEvents;
     use HasApiTokens;
@@ -38,7 +36,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia, MustVerify
     use HasRoles;
     use HasStates;
     use InteractsWithCache;
-    use InteractsWithFilament;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
     use InteractsWithVideos;

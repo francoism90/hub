@@ -33,10 +33,7 @@ class AppOptimize extends Command implements Isolatable
 
         // Optimize assets
         $this->call('icons:cache');
-
-        // Optimize cache
         $this->call('structure-scouts:cache');
-        $this->call('filament:cache-components');
 
         // Terminate Horizon
         $this->call('horizon:terminate');

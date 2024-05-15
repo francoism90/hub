@@ -1,6 +1,3 @@
-import '@fontsource/material-icons-round';
-import shaka from 'shaka-player/dist/shaka-player.ui';
-
-shaka.polyfill.installAll();
+import shaka from 'shaka-player';
 
 window.shaka = shaka;

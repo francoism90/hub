@@ -3,6 +3,7 @@
 namespace Domain\Imports\Actions;
 
 use Domain\Imports\Models\Import;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -11,7 +12,7 @@ class SyncImports
 {
     public function execute(): void
     {
-        $finder = $this->getImportables();
+        $finder = static::getImportables();
 
         $this->createModels($finder);
 
@@ -22,6 +23,7 @@ class SyncImports
     {
         collect($finder)
             ->each(fn (SplFileInfo $file) => app(CreateImport::class)->execute([
+                'user_id' => User::first()->getKey(),
                 'file_name' => $file->getFilename(),
                 'name' => $file->getFilenameWithoutExtension(),
                 'size' => $file->getSize(),
@@ -40,7 +42,7 @@ class SyncImports
             ->delete();
     }
 
-    protected function getImportables(): Finder
+    protected static function getImportables(): Finder
     {
         return (new Finder)
             ->in(Storage::disk('import')->path(''))

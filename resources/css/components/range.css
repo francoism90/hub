@@ -1,0 +1,29 @@
+@layer components {
+    .range {
+        @apply appearance-none bg-transparent;
+
+        &::-webkit-slider-runnable-track {
+            @apply cursor-pointer appearance-none bg-transparent;
+        }
+
+        &::-webkit-slider-thumb {
+            @apply h-12 w-6 appearance-none bg-transparent;
+        }
+
+        &::-moz-progress-bar {
+            @apply cursor-pointer appearance-none bg-transparent;
+        }
+
+        &-primary {
+            &::-webkit-progress-value {
+                @apply bg-primary-500;
+            }
+        }
+
+        &-secondary {
+            &::-webkit-slider-runnable-track {
+                @apply bg-secondary-500/50;
+            }
+        }
+    }
+}

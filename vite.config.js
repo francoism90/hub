@@ -21,6 +21,9 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       strictPort: true,
       hmr: { host: 'hub.lan', clientPort: 5173 },
+      watch: {
+        ignored: ['**/storage/**'],
+      },
     },
     resolve: {
       alias: {
@@ -31,7 +34,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       laravel({
-        input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
+        input: ['resources/css/app.css', 'resources/js/app.js'],
         refresh: [...refreshPaths, 'resources/**', 'src/**'],
       }),
       VitePWA({
@@ -84,7 +87,7 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             utils: ['axios'],
             ws: ['laravel-echo', 'pusher-js'],
-            player: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
+            player: ['shaka-player'],
           },
         },
       },

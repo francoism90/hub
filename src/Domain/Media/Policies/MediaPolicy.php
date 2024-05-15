@@ -12,7 +12,7 @@ class MediaPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function view(?User $user, Media $media): bool
+    public function view(User $user, Media $media): bool
     {
         if ($user && $user->hasRole('super-admin')) {
             return true;

@@ -8,8 +8,8 @@ See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots
 
 ## Prerequisites
 
-- Linux (Ubuntu, Fedora, Debian, Arch)
-- [Podman 5.0](https://podman.io/) with SELinux support
+- Linux (Fedora, Debian, Arch, Ubuntu)
+- [Podman 5.0](https://podman.io/) or higher (with SELinux support)
 
 ## Installation
 
@@ -71,9 +71,8 @@ php artisan app:install
 
 The Hub instance should be available at <https://hub.lan> when using Traefik.
 
-The following services are available on:
+The following Laravel services are available on:
 
-- <https://hub.lan/admin> - Filament Panel
 - <https://hub.lan/horizon> - Laravel Horizon (super-admin only)
 - <https://hub.lan/telescope> - Laravel Telescope (super-admin only)
 
@@ -84,7 +83,7 @@ You may want to use a different mount-point for media storage:
 ```bash
 sudo mount --bind /mnt/data/videos/media ~/Code/hub/storage/app/media -o x-gvfs-hide
 podman system migrate
-systemctl --user restart hub.service
+systemctl --user restart hub-app hub
 ```
 
-Make sure `/mnt/data/videos/media` also contains a `.gitigore` file.
+> **NOTE:** Make sure `/mnt/data/videos/media` also contains a `.gitigore` file.
