@@ -17,6 +17,9 @@ class GeneralForm extends Form
     #[Validate('nullable|string|min:1|max:255')]
     public ?string $season = null;
 
+    #[Validate('nullable|date_format:Y-m-d')]
+    public ?string $released_at = null;
+
     #[Validate('nullable|decimal:0,4')]
     public ?float $snapshot = null;
 
@@ -32,7 +35,7 @@ class GeneralForm extends Form
 
     protected function beforeFill(Video $model): array
     {
-        $values = $model->only('name', 'episode', 'season', 'snapshot');
+        $values = $model->only('name', 'episode', 'season', 'released_at', 'snapshot');
 
         $values['tags'] = $model->tags->options()->toArray();
 

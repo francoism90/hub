@@ -1,7 +1,11 @@
+@props([
+    'vertical' => false,
+])
+
 <div {{ $attributes
     ->cssClass([
-        'layer' => 'flex',
-        'horizontal' => 'items-center',
+        'layer' => 'flex items-center gap-3',
+        'horizontal' => 'flex-row',
         'vertical' => 'flex-col',
     ])
     ->classMerge([
