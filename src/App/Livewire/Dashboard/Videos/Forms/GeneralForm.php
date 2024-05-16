@@ -17,7 +17,7 @@ class GeneralForm extends Form
     #[Validate('nullable|string|min:1|max:255')]
     public ?string $season = null;
 
-    #[Validate('nullable|date_format:Y-m-d')]
+    #[Validate('nullable|date')]
     public ?string $released_at = null;
 
     #[Validate('nullable|decimal:0,4')]
