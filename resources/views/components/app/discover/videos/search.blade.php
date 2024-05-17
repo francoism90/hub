@@ -4,7 +4,7 @@
             placeholder="{{ __('Type something..') }}"
             id="form.query"
             class:input="px-3 h-16 w-screen max-w-screen text-base bg-transparent border-0 focus:border-0 focus:ring-0"
-            wire:model.live.debounce.200ms="form.query"
+            wire:model.live.debounce.300ms="form.query"
         />
     </x-app.navigation.navbar>
 </header>
