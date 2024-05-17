@@ -34,7 +34,7 @@
         </dl>
 
         @if ($video->tags()->count())
-        <div class="line-clamp-1 flex flex-wrap gap-2">
+        <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
             @foreach ($video->tags as $tag)
             <a
                 class="text-sm font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
