@@ -13,7 +13,7 @@
         </dl>
 
         @if ($tag->description)
-            <p class="prose">
+            <p class="prose text-sm">
                 {{ $tag->description }}
             </p>
         @endif
