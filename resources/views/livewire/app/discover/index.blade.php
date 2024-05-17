@@ -18,7 +18,7 @@
         @endif
 
         @unless ($form->query())
-            <livewire:livewire.discover.tags.items :key="$this->hash" />
+            <livewire:livewire.discover.tags.items />
         @endunless
     </x-app.layout.container>
 </div>
