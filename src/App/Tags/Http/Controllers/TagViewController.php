@@ -3,6 +3,7 @@
 namespace App\Tags\Http\Controllers;
 
 use App\Livewire\Tags\Concerns\WithTags;
+use Domain\Relates\Collections\RelatedCollection;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -33,6 +34,15 @@ class TagViewController extends Page
             ->videos()
             ->randomSeed(key: 'tag', ttl: now()->addDay())
             ->simplePaginate(32);
+    }
+
+    #[Computed]
+    public function relatables(): RelatedCollection
+    {
+        return $this
+            ->getModel()
+            ->findByPrefixedIdOrFail($this->getTagId())
+            ->relates;
     }
 
     public function onTagDeleted(): void

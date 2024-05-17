@@ -10,13 +10,21 @@
 
             <dt class="sr-only">{{ __('Type') }}</dt>
             <dd class="text-ellipsis">{{ $tag->type?->label() }}</dd>
-        </dl>
 
-        @if ($tag->description)
-            <p class="prose text-sm">
-                {{ $tag->description }}
-            </p>
-        @endif
+             @foreach ($this->relatables as $relatable)
+                <dt class="sr-only">{{ __('Relatable') }}</dt>
+                <dd class="text-ellipsis">
+                    <a
+                        wire:navigate
+                        wire:key="relatable-{{ $relatable->getRouteKey() }}"
+                        class="text-primary-400 hover:text-primary-300"
+                        href="{{ route('tags.view', $relatable) }}"
+                    >
+                        {{ $relatable->name }}
+                    </a>
+                </dd>
+            @endforeach
+        </dl>
     </div>
 
     <x-app.layout.container
