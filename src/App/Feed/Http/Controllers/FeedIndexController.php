@@ -26,7 +26,7 @@ class FeedIndexController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.pages.feed.index');
+        return view('livewire.app.feed.index');
     }
 
     #[Computed()]

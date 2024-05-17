@@ -16,7 +16,7 @@ class VideoViewController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.pages.videos.view');
+        return view('livewire.app.videos.view');
     }
 
     public function onVideoDeleted(): void

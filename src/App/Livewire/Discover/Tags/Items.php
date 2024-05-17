@@ -17,7 +17,7 @@ class Items extends Component
 
     public function render(): View
     {
-        return view('tags.items');
+        return view('livewire.app.tags.items');
     }
 
     #[Computed(cache: true, key: 'taggables', seconds: 7200)]

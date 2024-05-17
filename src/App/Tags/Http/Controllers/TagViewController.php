@@ -22,7 +22,7 @@ class TagViewController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.pages.tags.view');
+        return view('livewire.app.tags.view');
     }
 
     #[Computed]

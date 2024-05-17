@@ -30,7 +30,7 @@ class DiscoverIndexController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.pages.discover.index');
+        return view('livewire.app.discover.index');
     }
 
     public function updated(): void
