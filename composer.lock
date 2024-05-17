@@ -7032,16 +7032,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "ed39c7bfce7a2ecf676174a2d4286ab3a1c4f4f7"
+                "reference": "43aff6725cd87bb78ccd8532633cfa8bdc962505"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/ed39c7bfce7a2ecf676174a2d4286ab3a1c4f4f7",
-                "reference": "ed39c7bfce7a2ecf676174a2d4286ab3a1c4f4f7",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/43aff6725cd87bb78ccd8532633cfa8bdc962505",
+                "reference": "43aff6725cd87bb78ccd8532633cfa8bdc962505",
                 "shasum": ""
             },
             "require": {
@@ -7081,9 +7081,9 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/image-optimizer/issues",
-                "source": "https://github.com/spatie/image-optimizer/tree/1.7.4"
+                "source": "https://github.com/spatie/image-optimizer/tree/1.7.5"
             },
-            "time": "2024-05-06T09:12:30+00:00"
+            "time": "2024-05-16T08:48:33+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
@@ -7474,16 +7474,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "11.4.8",
+            "version": "11.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "2c50eee8310a90b2210ff5e4907908333f38915c"
+                "reference": "424afe6168b9aa49b2430d3f45f08eea904255b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/2c50eee8310a90b2210ff5e4907908333f38915c",
-                "reference": "2c50eee8310a90b2210ff5e4907908333f38915c",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/424afe6168b9aa49b2430d3f45f08eea904255b1",
+                "reference": "424afe6168b9aa49b2430d3f45f08eea904255b1",
                 "shasum": ""
             },
             "require": {
@@ -7566,7 +7566,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.4.8"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.5.0"
             },
             "funding": [
                 {
@@ -7578,7 +7578,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-06T09:16:55+00:00"
+            "time": "2024-05-16T08:53:13+00:00"
         },
         {
             "name": "spatie/laravel-model-states",
