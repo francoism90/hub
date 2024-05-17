@@ -39,7 +39,7 @@
     </a>
 
     @if ($item->tags()->count())
-    <div class="line-clamp-1 flex flex-wrap gap-2">
+    <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
         @foreach ($item->tags as $tag)
         <a
             wire:navigate
