@@ -4,7 +4,6 @@ namespace App\Tags\Http\Controllers;
 
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Tags\Models\Tag;
-use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
