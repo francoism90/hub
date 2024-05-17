@@ -27,7 +27,7 @@ class Footer extends Component
                 ->label(__('Discover'))
                 ->icon('heroicon-o-magnifying-glass')
                 ->iconActive('heroicon-s-magnifying-glass')
-                ->route('dashboard.content.index'),
+                ->route('discover'),
 
             Action::make('collections')
                 ->label(__('Collections'))

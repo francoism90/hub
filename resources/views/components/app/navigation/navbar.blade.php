@@ -1,7 +1,11 @@
+@props([
+    'start' => null,
+    'end' => null,
+])
+
 <nav {{ $attributes
     ->cssClass([
-        'base' => 'flex flex-nowrap items-center justify-between leading-none',
-        'padding' => 'p-3',
+        'base' => 'flex flex-nowrap items-stretch justify-between leading-none',
         'start' => 'inline-flex w-2/4 items-center justify-start',
         'center' => 'inline-flex shrink-0 items-center',
         'end' => 'inline-flex w-2/4 items-center justify-end',
