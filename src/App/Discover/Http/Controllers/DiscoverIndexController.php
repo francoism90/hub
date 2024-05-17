@@ -3,19 +3,22 @@
 namespace App\Discover\Http\Controllers;
 
 use App\Livewire\Discover\Forms\QueryForm;
-use Domain\Tags\Models\Tag;
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
+use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\WithPagination;
 
 #[Layout('components.layouts.app')]
 class DiscoverIndexController extends Page
 {
     use WithAuthentication;
+    use WithPagination;
     use WithQueryBuilder;
 
     public QueryForm $form;
@@ -33,6 +36,8 @@ class DiscoverIndexController extends Page
     public function updated(): void
     {
         $this->form->submit();
+
+        $this->resetPage();
     }
 
     public function clear(): void
@@ -42,25 +47,24 @@ class DiscoverIndexController extends Page
         $this->form->clear();
     }
 
-    #[Computed(cache: true, key: 'taggables', seconds: 7200)]
-    public function items(): Collection
+    #[Computed]
+    public function items(): LengthAwarePaginator
     {
-        return $this->getQuery()
-            ->withCount('videos')
-            ->ordered()
-            ->get()
-            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
-            ->groupBy(fn (Tag $item) => str($item->name)->upper()->substr(0, 1));
-    }
+        $value = $this->form->query();
 
-    protected static function getModelClass(): ?string
-    {
-        return Tag::class;
+        return $this->getScout($value)
+            ->when(! $value, fn (Builder $query) => $query->whereIn('id', [0]))
+            ->paginate(10 * 3);
     }
 
     protected function getTitle(): string
     {
         return __('Discover');
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
     }
 
     public function getListeners(): array

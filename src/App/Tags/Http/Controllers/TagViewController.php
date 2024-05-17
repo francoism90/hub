@@ -35,7 +35,7 @@ class TagViewController extends Page
 
             return $engine->search($query, $options);
         })
-        ->paginate(10 * 3);
+            ->paginate(10 * 3);
     }
 
     public function onTagDeleted(): void

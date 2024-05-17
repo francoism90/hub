@@ -35,7 +35,7 @@ class Items extends Component
 
             return $engine->search($query, $options);
         })
-        ->paginate(10 * 3);
+            ->paginate(10 * 3);
     }
 
     protected static function getModelClass(): ?string
