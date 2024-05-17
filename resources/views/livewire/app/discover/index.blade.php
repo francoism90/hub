@@ -2,7 +2,7 @@
     <x-app.discover.videos.search />
 
     <x-app.layout.container class="flex flex-col py-6 gap-y-6" fluid>
-        @if ($form->filled('query', 'tag'))
+        @if ($form->query())
             <main
                 class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                 wire:poll.visible.900s
