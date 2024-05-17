@@ -14,6 +14,9 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
+    #[Validate('nullable|string|max:255')]
+    public string $tag = '';
+
     public function query(): string
     {
         return str($this->get('query', ''))

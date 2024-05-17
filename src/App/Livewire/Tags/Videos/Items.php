@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Discover\Videos;
+namespace App\Livewire\Tags\Videos;
 
-use App\Livewire\Discover\Forms\QueryForm;
+use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -16,12 +16,11 @@ class Items extends Component
 {
     use WithPagination;
     use WithQueryBuilder;
-
-    public QueryForm $form;
+    use WithTags;
 
     public function render(): View
     {
-        return view('livewire.videos.items');
+        return view('livewire.tags.videos');
     }
 
     #[Computed]

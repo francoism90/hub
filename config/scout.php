@@ -165,9 +165,10 @@ return [
                 'filterableAttributes' => [
                     'id',
                     'identifier',
-                    'tagged',
                     'adult',
                     'caption',
+                    'tags',
+                    'tagged',
                     'state',
                     'created_at',
                     'updated_at',

@@ -42,7 +42,8 @@
     <div class="line-clamp-1 flex flex-wrap gap-2">
         @foreach ($item->tags as $tag)
         <a
-            wire:click="$set('form.query', '{{ $tag->name }}')"
+            wire:navigate
+            href="{{ route('tags.view', $tag) }}"
             class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
             aria-label="{{ $tag->name }}"
         >
