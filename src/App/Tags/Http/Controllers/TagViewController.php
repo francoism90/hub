@@ -3,15 +3,15 @@
 namespace App\Tags\Http\Controllers;
 
 use App\Livewire\Tags\Concerns\WithTags;
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
-use Meilisearch\Endpoints\Indexes;
 
 #[Layout('components.layouts.app')]
 class TagViewController extends Page
@@ -26,16 +26,14 @@ class TagViewController extends Page
     }
 
     #[Computed]
-    public function items(): LengthAwarePaginator
+    public function items(): Paginator
     {
-        $value = (string) $this->tag->name;
-
-        return $this->getScout($value, function (Indexes $engine, string $query, array $options) {
-            $options['attributesToSearchOn'] = ['tags'];
-
-            return $engine->search($query, $options);
-        })
-            ->paginate(10 * 3);
+        return $this
+            ->getModel()
+            ->findByPrefixedIdOrFail($this->getTagId())
+            ->videos()
+            ->randomSeed(key: 'tag', ttl: now()->addDay())
+            ->simplePaginate(32);
     }
 
     public function onTagDeleted(): void
@@ -60,7 +58,7 @@ class TagViewController extends Page
 
     protected static function getModelClass(): ?string
     {
-        return Video::class;
+        return Tag::class;
     }
 
     public function getListeners(): array
