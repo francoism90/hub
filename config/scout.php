@@ -167,7 +167,6 @@ return [
                     'identifier',
                     'adult',
                     'caption',
-                    'tags',
                     'tagged',
                     'state',
                     'created_at',
