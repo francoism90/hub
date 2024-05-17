@@ -54,7 +54,7 @@ class Videos extends Component
         $value = $this->form->query();
 
         return $this->getScout($value)
-            ->when(! $value, fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
+            ->when($this->form->blank('query', 'sort'), fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
             ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
