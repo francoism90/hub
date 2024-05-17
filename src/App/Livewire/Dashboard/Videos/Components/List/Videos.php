@@ -7,9 +7,10 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
-use Laravel\Scout\Builder;
+use Laravel\Scout\Builder as Scout;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -54,11 +55,15 @@ class Videos extends Component
         $value = $this->form->query();
 
         return $this->getScout($value)
-            ->when($this->form->blank('query', 'sort'), fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
-            ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
-            ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
-            ->when($this->form->get('visibility'), fn (Builder $query, array $state) => $query->whereIn('state', $state))
-            ->paginate(10 * 3);
+            ->query(fn (Builder $query) => $this->form->filled('untagged')
+                ? $query->whereDoesntHave('tags')
+                : $query->with('tags')
+            )
+            ->when($this->form->blank('query', 'sort'), fn (Scout $query) => $query->whereIn('id', static::getRandomKeys()))
+            ->when($this->form->isStrict('sort', 'recent'), fn (Scout $query) => $query->orderBy('created_at', 'desc'))
+            ->when($this->form->isStrict('sort', 'updated'), fn (Scout $query) => $query->orderBy('updated_at', 'desc'))
+            ->when($this->form->get('visibility'), fn (Scout $query, array $value) => $query->whereIn('state', $value))
+            ->paginate(12 * 3);
     }
 
     protected function actions(): array
@@ -68,6 +73,7 @@ class Videos extends Component
                 ->label(__('Filter'))
                 ->icon('heroicon-s-adjustments-horizontal')
                 ->component('dashboard.videos.filters.filter')
+                ->add('untagged', fn (Action $item) => $item->label('Untagged'))
                 ->componentAttributes([
                     'class:label' => 'sr-only',
                 ]),

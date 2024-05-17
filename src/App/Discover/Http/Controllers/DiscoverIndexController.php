@@ -54,7 +54,7 @@ class DiscoverIndexController extends Page
 
         return $this->getScout($value)
             ->when(! $value, fn (Builder $query) => $query->whereIn('id', [0]))
-            ->paginate(10 * 3);
+            ->paginate(12 * 3);
     }
 
     protected function getTitle(): string

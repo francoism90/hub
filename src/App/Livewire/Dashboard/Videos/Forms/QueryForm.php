@@ -20,6 +20,9 @@ class QueryForm extends Form
     #[Validate('nullable|array|in:verified,pending,failed')]
     public array $visibility = [];
 
+    #[Validate('nullable|boolean')]
+    public bool $untagged = false;
+
     public function query(): string
     {
         return str($this->get('query', ''))
