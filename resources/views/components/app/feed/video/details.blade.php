@@ -34,7 +34,7 @@
         @foreach ($video->tags as $tag)
         <a
             class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            {{-- href="{{ route('tags.view', $tag) }}" --}}
+            href="{{ route('tags.view', $tag) }}"
             aria-label="{{ $tag->name }}"
         >
             {{ $tag->name }}
