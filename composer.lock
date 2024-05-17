@@ -1915,16 +1915,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9"
+                "reference": "3140cdf686be9e2709c8222130922dfa40148db5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9",
-                "reference": "523e193b8c466f3eb5b52ab4e6cfd2d7ea4c5cf9",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/3140cdf686be9e2709c8222130922dfa40148db5",
+                "reference": "3140cdf686be9e2709c8222130922dfa40148db5",
                 "shasum": ""
             },
             "require": {
@@ -1986,7 +1986,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.2"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.3"
             },
             "funding": [
                 {
@@ -1994,7 +1994,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-04T02:04:42+00:00"
+            "time": "2024-05-16T18:42:23+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -12051,16 +12051,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.6.11",
+            "version": "1.6.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "81a161d0b135df89951abd52296adf97deb0723d"
+                "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/81a161d0b135df89951abd52296adf97deb0723d",
-                "reference": "81a161d0b135df89951abd52296adf97deb0723d",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/1f4efdd7d3beafe9807b08156dfcb176d18f1699",
+                "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699",
                 "shasum": ""
             },
             "require": {
@@ -12130,7 +12130,7 @@
                 "security": "https://github.com/mockery/mockery/security/advisories",
                 "source": "https://github.com/mockery/mockery"
             },
-            "time": "2024-03-21T18:34:15+00:00"
+            "time": "2024-05-16T03:13:13+00:00"
         },
         {
             "name": "myclabs/deep-copy",
