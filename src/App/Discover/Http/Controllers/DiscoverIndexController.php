@@ -11,7 +11,6 @@ use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
-use Livewire\WithPagination;
 
 #[Layout('components.layouts.app')]
 class DiscoverIndexController extends Page

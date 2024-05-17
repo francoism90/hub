@@ -10,7 +10,6 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Meilisearch\Endpoints\Indexes;
 
 class Items extends Component
 {
@@ -27,16 +26,10 @@ class Items extends Component
     #[Computed]
     public function items(): LengthAwarePaginator
     {
-        $value = implode(' ', $this->form->only('search', 'tag'));
+        $value = $this->form->get('query');
 
-        return $this->getScout($value, function (Indexes $engine, string $query, array $options) {
-            if ($this->form->filled('tag')) {
-                $options['attributesToSearchOn'] = ['tags'];
-            }
-
-            return $engine->search($query, $options);
-        })
-        ->paginate(10 * 3);
+        return $this->getScout($value)
+            ->paginate(10 * 3);
     }
 
     protected static function getModelClass(): ?string
