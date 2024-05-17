@@ -3,14 +3,11 @@
 namespace App\Discover\Http\Controllers;
 
 use App\Livewire\Discover\Forms\QueryForm;
-use Domain\Videos\Models\Video;
+use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
-use Laravel\Scout\Builder;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 
@@ -47,33 +44,13 @@ class DiscoverIndexController extends Page
         $this->form->clear();
     }
 
-    #[Computed]
-    public function items(): LengthAwarePaginator
-    {
-        $value = $this->form->query();
-
-        return $this->getScout($value)
-            ->when(! $this->form->query(), fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
-            ->paginate(10 * 3);
-    }
-
     protected static function getModelClass(): ?string
     {
-        return Video::class;
+        return Tag::class;
     }
 
     protected function getTitle(): string
     {
         return __('Discover');
-    }
-
-    public function getListeners(): array
-    {
-        $id = static::getAuthKey();
-
-        return [
-            "echo-private:user.{$id},.video.deleted" => '$refresh',
-            "echo-private:user.{$id},.video.updated" => '$refresh',
-        ];
     }
 }
