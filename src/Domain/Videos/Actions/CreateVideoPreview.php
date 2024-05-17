@@ -27,7 +27,7 @@ class CreateVideoPreview
             'ffprobe.binaries' => config('media-library.ffprobe_path'),
             'temporary_directory' => $temporaryDirectory->path(),
             'ffmpeg.threads' => 0,
-            'timeout' => 60 * 30,
+            'timeout' => 60 * 60,
         ]);
 
         $file = $model->clips()->first()->getPath();
@@ -43,7 +43,7 @@ class CreateVideoPreview
                 $path = $temporaryDirectory->path("clip_{$key}.mp4");
 
                 $format = (new X264())
-                    ->setKiloBitrate(1500)
+                    ->setKiloBitrate(4500)
                     ->setAudioCodec('copy')
                     ->setAdditionalParameters(['-an']);
 
@@ -54,7 +54,7 @@ class CreateVideoPreview
 
                 $clip
                     ->filters()
-                    ->resize(new Dimension(320, 240), ResizeFilter::RESIZEMODE_INSET)
+                    ->resize(new Dimension(960, 540), ResizeFilter::RESIZEMODE_INSET)
                     ->synchronize();
 
                 $clip->save($format, $path);
@@ -73,14 +73,14 @@ class CreateVideoPreview
 
     protected function getSegments(float $duration, int $count = 14): Collection
     {
-        $collect = collect(range(0, $duration, $duration / $count))
+        $items = collect(range(0, $duration, $duration / $count))
             ->map(fn (float $segment) => round($segment, 2))
             ->unique()
             ->take($count);
 
-        $collect->shift();
-        $collect->pop();
+        $items->shift();
+        $items->pop();
 
-        return $collect;
+        return $items;
     }
 }

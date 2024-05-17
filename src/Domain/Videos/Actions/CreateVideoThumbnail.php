@@ -3,8 +3,10 @@
 namespace Domain\Videos\Actions;
 
 use Domain\Videos\Models\Video;
+use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\FFMpeg;
+use FFMpeg\Filters\Video\ResizeFilter;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
 
 class CreateVideoThumbnail
@@ -38,6 +40,7 @@ class CreateVideoThumbnail
 
         $video
             ->filters()
+            ->resize(new Dimension(960, 540), ResizeFilter::RESIZEMODE_INSET)
             ->synchronize();
 
         $video
