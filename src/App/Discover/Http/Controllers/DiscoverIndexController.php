@@ -23,14 +23,14 @@ class DiscoverIndexController extends Page
 
     public QueryForm $form;
 
-    public function render(): View
-    {
-        return view('livewire.app.pages.discover.index');
-    }
-
     public function mount(): void
     {
         $this->form->restore();
+    }
+
+    public function render(): View
+    {
+        return view('livewire.app.discover.index');
     }
 
     public function updated(): void
@@ -53,18 +53,18 @@ class DiscoverIndexController extends Page
         $value = $this->form->query();
 
         return $this->getScout($value)
-            ->when(! $this->form->query(), fn (Builder $query) => $query->whereIn('id', static::getRandomKeys()))
+            ->when(! $value, fn (Builder $query) => $query->whereIn('id', [0]))
             ->paginate(10 * 3);
-    }
-
-    protected static function getModelClass(): ?string
-    {
-        return Video::class;
     }
 
     protected function getTitle(): string
     {
         return __('Discover');
+    }
+
+    protected static function getModelClass(): ?string
+    {
+        return Video::class;
     }
 
     public function getListeners(): array

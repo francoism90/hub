@@ -4,7 +4,7 @@
         wire:poll.visible.900s
     >
         @forelse ($this->items as $item)
-            <x-dashboard.videos.content.item :$item />
+            <x-app.videos.item :$item />
         @empty
             {{ __('No videos found') }}
         @endforelse

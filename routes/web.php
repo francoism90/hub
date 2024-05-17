@@ -2,6 +2,7 @@
 
 use App\Discover\Http\Controllers\DiscoverIndexController;
 use App\Feed\Http\Controllers\FeedIndexController;
+use App\Tags\Http\Controllers\TagViewController;
 use App\Videos\Http\Controllers\VideoViewController;
 use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Videos
     Route::name('videos.')->group(function () {
         Route::get('/play/{video}', VideoViewController::class)->name('view');
+    });
+
+    // Tags
+    Route::name('tags.')->group(function () {
+        Route::get('/tags/{tag}', TagViewController::class)->name('view');
     });
 });

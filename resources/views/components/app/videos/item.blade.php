@@ -6,7 +6,7 @@
     wire:key="item-{{ $item->getRouteKey() }}"
     class="flex h-72 max-h-72 w-full flex-col flex-nowrap"
 >
-    <x-dashboard.videos.content.preview />
+    <x-app.videos.preview />
 
     <a class="block" href="{{ route('videos.view', $item) }}">
         <h1 class="line-clamp-1 pt-4 text-sm font-medium leading-none tracking-tight">
@@ -42,7 +42,8 @@
     <div class="line-clamp-1 flex flex-wrap gap-2">
         @foreach ($item->tags as $tag)
         <a
-            wire:click="$set('form.query', '{{ $tag->name }}')"
+            wire:navigate
+            href="{{ route('tags.view', $tag) }}"
             class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
             aria-label="{{ $tag->name }}"
         >
