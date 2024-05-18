@@ -33,9 +33,10 @@ class ListVideos
             && $this->form->isStrict('sort', 'relevance');
     }
 
-    protected static function randomKeys(): array
+    protected function randomKeys(): array
     {
         return Video::query()
+            ->when($this->form->filled('untagged'), fn (Eloquent $query) => $query->whereDoesntHave('tags'))
             ->random()
             ->take(12 * 10)
             ->get()
