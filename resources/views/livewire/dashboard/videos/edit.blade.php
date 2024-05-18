@@ -4,7 +4,7 @@
             {{ $video->title }}
         </h1>
 
-        <dl class="dl py-1 text-xs font-medium text-secondary-300">
+        <dl class="dl pt-1 text-xs font-medium text-secondary-300">
             <dt class="sr-only">{{ __('Time') }}</dt>
             <dd>
                 <time>{{ duration($video->duration) }}</time>
