@@ -10,16 +10,22 @@
             &::after {
                 @apply px-1 content-['|'];
             }
-
-            &-list {
-                &::after {
-                    @apply px-1 content-['•'];
-                }
-            }
         }
 
         dd:last-child:after {
             @apply px-0 content-[];
+        }
+
+        &-list {
+            dd:not(.sr-only) {
+                &::after {
+                    @apply px-1 content-['•'];
+                }
+            }
+
+            dd:last-child:after {
+                @apply px-0 content-[];
+            }
         }
     }
 }

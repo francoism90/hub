@@ -12,7 +12,7 @@
 
         <div class="flex flex-col w-full">
             <h1 class="text-base font-semibold">{{ $item->name }}</h1>
-            <dl class="dl text-sm text-secondary-300">
+            <dl class="dl dl-list text-sm text-secondary-300">
                 @if ($item->type)
                     <dt class="sr-only">{{ __('Type') }}</dt>
                     <dd class="text-ellipsis">{{ $item->type->label() }}</dd>
