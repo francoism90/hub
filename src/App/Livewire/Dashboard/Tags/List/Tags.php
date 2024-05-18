@@ -7,7 +7,7 @@ use App\Livewire\Dashboard\Tags\Scopes\ListTags;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -48,13 +48,13 @@ class Tags extends Component
     }
 
     #[Computed]
-    public function items(): LengthAwarePaginator
+    public function items(): Paginator
     {
         $query = $this->form->query();
 
         return $this->getScout($query)->tap(
             new ListTags(form: $this->form)
-        )->paginate(12 * 3);
+        )->simplePaginate(12 * 3);
     }
 
     protected function actions(): array

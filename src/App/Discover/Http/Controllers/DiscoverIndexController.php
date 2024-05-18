@@ -8,6 +8,7 @@ use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
@@ -48,13 +49,13 @@ class DiscoverIndexController extends Page
     }
 
     #[Computed]
-    public function items(): LengthAwarePaginator
+    public function items(): Paginator
     {
         $value = $this->form->query();
 
         return $this->getScout($value)
             ->when(! $value, fn (Builder $query) => $query->whereIn('id', [0]))
-            ->paginate(12 * 3);
+            ->simplePaginate(12 * 3);
     }
 
     protected function getTitle(): string
