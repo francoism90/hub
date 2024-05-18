@@ -78,7 +78,7 @@ class AppServiceProvider extends ServiceProvider
 
     protected function configureMacros(): void
     {
-        Collection::macro('options', fn (string $label = 'name') => $this->transform(fn (Model $item) => [
+        Collection::macro('options', fn (string $label = 'name') => $this->map(fn (Model $item) => [
             'id' => $item->getRouteKey(),
             'name' => $item->getAttribute($label),
         ]));

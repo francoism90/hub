@@ -56,7 +56,7 @@ class General extends Component
     {
         $videoable = static::history()
             ->videos()
-            ->firstWhere('id', $this->getModel()->getKey());
+            ->firstWhere('id', $this->video->getKey());
 
         $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
     }
