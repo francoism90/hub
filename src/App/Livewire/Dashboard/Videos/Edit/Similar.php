@@ -2,46 +2,33 @@
 
 namespace App\Livewire\Dashboard\Videos\Edit;
 
-use App\Livewire\Dashboard\Videos\States\VideoState;
+use App\Livewire\Videos\Concerns\WithVideos;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\States\Concerns\WithState;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
-/**
- * @property VideoState $state
- */
 class Similar extends Component
 {
     use WithQueryBuilder;
-    use WithState;
+    use WithVideos;
 
     public function render(): View
     {
         return view('livewire.dashboard.videos.tabs.similar');
     }
 
-    #[Computed()]
+    #[Computed]
     public function items(): Collection
     {
-        return app(GetSimilarVideos::class)->execute(
-            $this->getModel()
-        );
+        return app(GetSimilarVideos::class)->execute($this->video);
     }
 
     protected static function getModelClass(): ?string
     {
         return Video::class;
-    }
-
-    protected function getModel(): Video
-    {
-        return Video::findByPrefixedIdOrFail(
-            $this->state->id
-        );
     }
 }
