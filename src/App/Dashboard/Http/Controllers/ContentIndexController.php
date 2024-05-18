@@ -2,7 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Components\List\Videos;
+use App\Livewire\Dashboard\Videos\List\Videos;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
@@ -26,7 +26,7 @@ class ContentIndexController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.content.index')->with([
+        return view('livewire.dashboard.content.index')->with([
             'tabs' => $this->tabs(),
             'current' => $this->currentTab(),
         ]);

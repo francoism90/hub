@@ -2,8 +2,8 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Components\Edit\General;
-use App\Livewire\Dashboard\Videos\Components\Edit\Similar;
+use App\Livewire\Dashboard\Videos\Edit\General;
+use App\Livewire\Dashboard\Videos\Edit\Similar;
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
@@ -31,7 +31,7 @@ class VideoEditController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.pages.videos.edit')->with([
+        return view('livewire.dashboard.videos.edit')->with([
             'actions' => $this->actions(),
             'tabs' => $this->tabs(),
             'current' => $this->currentTab(),
