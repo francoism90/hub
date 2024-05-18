@@ -4,10 +4,14 @@
 
         <x-dashboard.forms.input
             label="{{ __('Name') }}"
-            placeholder="{{ __('Name') }}"
+            placeholder="Name"
             id="form.name"
             wire:model.live="form.name"
-        />
+        >
+            <x-slot:append>
+                <x-wireuse::actions-button :action="$titleize" />
+            </x-slot:append>
+        </x-dashboard.forms.input>
 
         <x-app.layout.join>
             <x-dashboard.forms.input

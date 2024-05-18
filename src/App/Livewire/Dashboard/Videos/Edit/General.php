@@ -29,6 +29,7 @@ class General extends Component
     {
         return view('livewire.dashboard.videos.tabs.general')->with([
             'actions' => $this->actions(),
+            'titleize' => $this->titleize(),
             'snapshot' => $this->snapshot(),
         ]);
     }
@@ -50,6 +51,11 @@ class General extends Component
         );
 
         flash()->success(__('Video has been updated!'));
+    }
+
+    public function fillName(): void
+    {
+        $this->form->name = str($this->form->get('name', ''))->headline();
     }
 
     public function fillSnapshot(): void
@@ -75,6 +81,19 @@ class General extends Component
                     'type' => 'submit',
                 ]),
         ];
+    }
+
+    protected function titleize(): Action
+    {
+        return Action::make('titleize')
+            ->label(__('Titleize'))
+            ->icon('heroicon-o-language')
+            ->componentAttributes([
+                'type' => 'button',
+                'class:icon' => 'size-10',
+                'class:label' => 'sr-only',
+                'wire:click' => 'fillName()',
+            ]);
     }
 
     protected function snapshot(): Action
