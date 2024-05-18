@@ -25,6 +25,13 @@
             />
 
             <x-dashboard.forms.input
+                label="{{ __('Part') }}"
+                placeholder="{{ __('1') }}"
+                id="form.part"
+                wire:model.live="form.part"
+            />
+
+            <x-dashboard.forms.input
                 label="{{ __('Released At') }}"
                 placeholder="{{ __('2024-12-01') }}"
                 id="form.released_at"
