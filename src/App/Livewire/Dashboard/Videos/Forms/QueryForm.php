@@ -14,7 +14,7 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    #[Validate('required|string|in:relevance,recent,updated')]
+    #[Validate('nullable|string|in:relevance,recent,updated')]
     public string $sort = 'relevance';
 
     #[Validate('nullable|array|in:verified,pending,failed')]
