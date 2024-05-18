@@ -35,6 +35,8 @@ class VideoEditController extends Page
         $this->canDelete($this->video);
 
         $this->video->deleteOrFail();
+
+        $this->redirect(ContentController::class, true);
     }
 
     protected function authorizeAccess(): void
