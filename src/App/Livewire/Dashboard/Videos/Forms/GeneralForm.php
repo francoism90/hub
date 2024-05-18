@@ -38,7 +38,11 @@ class GeneralForm extends Form
 
     protected function beforeFill(Video $model): array
     {
-        $values = $model->only('name', 'episode', 'season', 'part', 'snapshot', 'released_at');
+        $translations = collect($model->getTranslations())
+            ->map(fn (?array $item, string $key) => data_get($item, 'en'))
+            ->toArray();
+
+        $values = [...$model->toArray(), ...$translations];
 
         $values['tags'] = $model->tags->options()->toArray();
 

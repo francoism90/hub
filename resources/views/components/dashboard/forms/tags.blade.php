@@ -52,16 +52,18 @@
         @endif
     </div>
 
-    <div class="{{ $attributes->classFor('items') }}">
-        <template x-for="(tag, index) in tags" :key="tag.id">
-            <a
-                x-text="tag.name"
-                x-on:click="tags.splice(index, 1)"
-                class="{{ $attributes->classFor('item') }}"
-            >
-            </a>
-        </template>
-    </div>
+    <template x-if="tags.length">
+        <div class="{{ $attributes->classFor('items') }}">
+            <template x-for="(tag, index) in tags" :key="tag.id">
+                <a
+                    x-text="tag.name"
+                    x-on:click="tags.splice(index, 1)"
+                    class="{{ $attributes->classFor('item') }}"
+                >
+                </a>
+            </template>
+        </div>
+    </template>
 
     @error($attributes->wireKey())
         <p class="text-secondary-500">
