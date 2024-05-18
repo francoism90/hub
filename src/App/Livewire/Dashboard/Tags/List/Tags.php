@@ -54,7 +54,7 @@ class Tags extends Component
 
         return $this->getScout($query)->tap(
             new ListTags(form: $this->form)
-        )->paginate();
+        )->paginate(12 * 3);
     }
 
     protected function actions(): array
