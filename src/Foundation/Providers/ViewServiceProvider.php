@@ -3,7 +3,6 @@
 namespace Foundation\Providers;
 
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Flash\Flash;
 
@@ -12,8 +11,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureSeo();
-        $this->configurePaginators();
-        $this->configureMessages();
+        $this->configureSessionFlash();
     }
 
     protected function configureSeo(): void
@@ -22,13 +20,7 @@ class ViewServiceProvider extends ServiceProvider
         SEOMeta::setRobots('noindex,nofollow');
     }
 
-    protected function configurePaginators(): void
-    {
-        Paginator::defaultView('pagination.default');
-        Paginator::defaultSimpleView('pagination.simple');
-    }
-
-    protected function configureMessages(): void
+    protected function configureSessionFlash(): void
     {
         Flash::levels([
             'success' => null,
