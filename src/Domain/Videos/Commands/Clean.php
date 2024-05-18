@@ -20,11 +20,16 @@ class Clean extends Command implements Isolatable
 
     public function handle(): void
     {
-        $collect = Video::onlyTrashed()->lazy();
+        $items = Video::onlyTrashed()->lazy();
 
-        throw_if(! $this->confirm("Are you sure to delete {$collect->count()} videos?"));
+        if ($items->count() === 0) {
+            $this->info('No items to clean');
+            return;
+        }
 
-        $collect->each(function (Video $model) {
+        throw_if(! $this->confirm("Are you sure to delete {$items->count()} videos?"));
+
+        $items->each(function (Video $model) {
             if ($model->trashed()) {
                 $this->info("processing {$model->name}");
                 $model->forceDelete();
