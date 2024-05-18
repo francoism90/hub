@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Components\List;
+namespace App\Livewire\Dashboard\Videos\List;
 
 use App\Livewire\Dashboard\Videos\Forms\QueryForm;
 use Domain\Videos\Models\Video;
@@ -30,7 +30,7 @@ class Videos extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.list.grid')->with([
+        return view('livewire.dashboard.content.videos')->with([
             'actions' => $this->actions(),
         ]);
     }

@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.dashboard')]
-class DashboardIndexController extends Page
+class DashboardController extends Page
 {
     public function mount(): void
     {

@@ -4,7 +4,7 @@
             {{ $video->title }}
         </h1>
 
-        <dl class="dl text-xs font-medium text-secondary-300">
+        <dl class="dl pt-1 text-xs font-medium text-secondary-300">
             <dt class="sr-only">{{ __('Time') }}</dt>
             <dd>
                 <time>{{ duration($video->duration) }}</time>
@@ -18,15 +18,15 @@
             </dd>
 
             @if ($video->episode || $video->season)
-            <dt class="sr-only">{{ __('ID') }}</dt>
-            <dd>{{ $video->identifier }}</dd>
+                <dt class="sr-only">{{ __('ID') }}</dt>
+                <dd>{{ $video->identifier }}</dd>
             @endif
 
             @foreach ($actions as $action)
-            <dt class="sr-only">{{ $action->getLabel() }}</dt>
-            <dd>
-                <x-wireuse::actions-link :$action />
-            </dd>
+                <dt class="sr-only">{{ $action->getLabel() }}</dt>
+                <dd>
+                    <x-wireuse::actions-link :$action />
+                </dd>
             @endforeach
         </dl>
     </div>
@@ -34,6 +34,6 @@
     <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
 
     @if ($current)
-        <livewire:dynamic-component :is="$current->getComponent()" :key="$this->hash" :$state />
+        <livewire:dynamic-component :is="$current->getComponent()" :key="$this->hash" :$video />
     @endif
 </div>

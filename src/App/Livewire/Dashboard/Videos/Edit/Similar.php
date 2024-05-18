@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Components\Edit;
+namespace App\Livewire\Dashboard\Videos\Edit;
 
 use App\Livewire\Dashboard\Videos\States\VideoState;
 use Domain\Videos\Actions\GetSimilarVideos;
@@ -22,7 +22,7 @@ class Similar extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.edit.similar');
+        return view('livewire.dashboard.videos.tabs.similar');
     }
 
     #[Computed()]

@@ -9,7 +9,7 @@
                     <livewire:livewire.feed.video :video="$item" :key="$this->hash" />
                 @endif
             @empty
-                {{ __('Please checkout later') }}
+                {{ __('No items found') }}
             @endforelse
 
             <div x-intersect.full="$wire.fetch()"></div>

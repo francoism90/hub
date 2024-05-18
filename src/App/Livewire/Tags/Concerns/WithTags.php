@@ -17,12 +17,12 @@ trait WithTags
 
     public function onTagDeleted(): void
     {
-        //
+        $this->dispatch('$refresh');
     }
 
     public function onTagUpdated(): void
     {
-        //
+        $this->dispatch('$refresh');
     }
 
     protected function getTagId(): ?string

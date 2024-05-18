@@ -2,9 +2,8 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Edit\General;
-use App\Livewire\Dashboard\Videos\Edit\Similar;
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Dashboard\Tags\Edit\General;
+use App\Livewire\Tags\Concerns\WithTags;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
@@ -13,17 +12,17 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.dashboard')]
-class VideoEditController extends Page
+class TagEditController extends Page
 {
     use WithTabs;
-    use WithVideos;
+    use WithTags;
 
     #[Url(as: 'tab', except: 'general', history: true)]
     public string $tab = 'general';
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.edit')->with([
+        return view('livewire.dashboard.tags.edit')->with([
             'actions' => $this->actions(),
             'tabs' => $this->tabs(),
             'current' => $this->currentTab(),
@@ -32,14 +31,14 @@ class VideoEditController extends Page
 
     public function delete(): void
     {
-        $this->canDelete($this->video);
+        $this->canDelete($this->tag);
 
-        $this->video->deleteOrFail();
+        $this->tag->deleteOrFail();
     }
 
     protected function authorizeAccess(): void
     {
-        $this->canUpdate($this->video);
+        $this->canUpdate($this->tag);
     }
 
     protected function tabs(): array
@@ -48,14 +47,6 @@ class VideoEditController extends Page
             Action::make('general')
                 ->label(__('General'))
                 ->component(General::class),
-
-            Action::make('assets')
-                ->label(__('Assets'))
-                ->component(General::class),
-
-            Action::make('similar')
-                ->label(__('Similar'))
-                ->component(Similar::class),
         ];
     }
 
@@ -66,38 +57,32 @@ class VideoEditController extends Page
                 ->label(__('Delete'))
                 ->componentAttributes([
                     'wire:click' => 'delete',
-                    'wire:confirm' => __('Are you sure you want to delete this video?'),
-                ]),
-
-            Action::make('download')
-                ->label(__('Download'))
-                ->componentAttributes([
-                    'href' => $this->video->clips()->first()?->getUrl(),
+                    'wire:confirm' => __('Are you sure you want to delete this tag?'),
                 ]),
 
             Action::make('view')
                 ->label(__('View'))
                 ->componentAttributes([
                     'wire:navigate' => true,
-                    'href' => route('videos.view', $this->video),
+                    'href' => route('tags.view', $this->tag),
                 ]),
         ];
     }
 
     protected function getTitle(): string
     {
-        return (string) $this->video->title;
+        return (string) $this->tag->name;
     }
 
     protected function getDescription(): string
     {
-        return (string) $this->video->summary;
+        return (string) $this->tag->description;
     }
 
     public function getListeners(): array
     {
         return [
-            ...$this->getVideoListeners(),
+            ...$this->getTagListeners(),
         ];
     }
 }
