@@ -9,7 +9,7 @@ use Livewire\Attributes\Validate;
 
 class TagsForm extends Form
 {
-    #[Validate('nullable|string|max:100')]
+    #[Validate('nullable|string|max:255')]
     public string $query = '';
 
     public function query(): string

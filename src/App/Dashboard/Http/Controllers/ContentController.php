@@ -2,6 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
+use App\Livewire\Dashboard\Tags\List\Tags;
 use App\Livewire\Dashboard\Videos\List\Videos;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
@@ -11,7 +12,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 
 #[Layout('components.layouts.dashboard')]
-class ContentIndexController extends Page
+class ContentController extends Page
 {
     use WithTabs;
 
@@ -40,7 +41,8 @@ class ContentIndexController extends Page
                 ->component(Videos::class),
 
             Action::make('tags')
-                ->label(__('Tags')),
+                ->label(__('Tags'))
+                ->component(Tags::class),
         ];
     }
 }
