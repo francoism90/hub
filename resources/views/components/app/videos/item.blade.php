@@ -4,16 +4,16 @@
 
 <article
     wire:key="item-{{ $item->getRouteKey() }}"
-    class="flex h-72 max-h-72 w-full flex-col flex-nowrap"
+    class="flex h-80 max-h-80 w-full flex-col flex-nowrap"
 >
     <x-app.videos.preview />
 
     <a class="block" href="{{ route('videos.view', $item) }}">
-        <h1 class="line-clamp-1 pt-4 text-sm font-medium leading-none tracking-tight">
+        <h1 class="line-clamp-2 pt-4 text-sm font-medium leading-none tracking-tight">
             {{ $item->title }}
         </h1>
 
-        <dl class="dl text-xs text-secondary-400">
+        <dl class="dl pt-1 text-xs text-secondary-400">
             <dt class="sr-only">{{ __('Time') }}</dt>
             <dd class="text-ellipsis">
                 <time> {{ duration($item->duration) }} </time>
