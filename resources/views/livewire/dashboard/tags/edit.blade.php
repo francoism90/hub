@@ -4,7 +4,7 @@
             {{ $tag->name }}
         </h1>
 
-        <dl class="dl text-xs font-medium text-secondary-300">
+        <dl class="dl py-1 text-xs font-medium text-secondary-300">
             <dt class="sr-only">{{ __('Created on') }}</dt>
             <dd>
                 <time datetime="{{ $tag->created_at->jsonSerialize() }}">
