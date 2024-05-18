@@ -2,6 +2,7 @@
 
 use App\Dashboard\Http\Controllers\ContentController;
 use App\Dashboard\Http\Controllers\DashboardController;
+use App\Dashboard\Http\Controllers\TagEditController;
 use App\Dashboard\Http\Controllers\VideoEditController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
         Route::get('/{video}', VideoEditController::class)->name('edit');
+    });
+
+    // Tags
+    Route::name('tags.')->prefix('tags')->group(function () {
+        Route::get('/{tag}', TagEditController::class)->name('edit');
     });
 });

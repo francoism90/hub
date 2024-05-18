@@ -2,8 +2,7 @@
 
 namespace App\Dashboard\Http\Controllers;
 
-use App\Livewire\Dashboard\Videos\Edit\General;
-use App\Livewire\Dashboard\Videos\Edit\Similar;
+use App\Livewire\Dashboard\Tags\Edit\General;
 use App\Livewire\Tags\Concerns\WithTags;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
@@ -23,7 +22,7 @@ class TagEditController extends Page
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.edit')->with([
+        return view('livewire.dashboard.tags.edit')->with([
             'actions' => $this->actions(),
             'tabs' => $this->tabs(),
             'current' => $this->currentTab(),
@@ -72,7 +71,7 @@ class TagEditController extends Page
 
     protected function getTitle(): string
     {
-        return (string) $this->tag->title;
+        return (string) $this->tag->name;
     }
 
     protected function getDescription(): string

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Edit;
+namespace App\Livewire\Dashboard\Videos\Components\Edit;
 
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
@@ -32,7 +32,7 @@ class General extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.tabs.general')->with([
+        return view('livewire.dashboard.videos.edit.general')->with([
             'actions' => $this->actions(),
             'snapshot' => $this->snapshot(),
         ]);
