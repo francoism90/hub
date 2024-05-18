@@ -10,7 +10,7 @@
                 @forelse ($this->items as $item)
                     <x-app.videos.item :$item />
                 @empty
-                    {{ __('No videos found') }}
+                    {{ __('No items found') }}
                 @endforelse
             </main>
 

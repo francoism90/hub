@@ -28,14 +28,14 @@
     </div>
 
     <x-app.layout.container
+        fluid
         class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         wire:poll.visible.900s
-        fluid
     >
         @forelse ($this->items as $item)
             <x-app.videos.item :$item />
         @empty
-            {{ __('No videos found') }}
+            {{ __('No items found') }}
         @endforelse
     </x-app.layout.container>
 
