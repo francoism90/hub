@@ -26,6 +26,7 @@ class Clean extends Command implements Isolatable
 
         $collect->each(function (Video $model) {
             if ($model->trashed()) {
+                $this->info("processing {$model->name}");
                 $model->forceDelete();
             }
         });
