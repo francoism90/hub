@@ -11,7 +11,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureSeo();
-        $this->configureSessionFlash();
+        $this->configureMessages();
     }
 
     protected function configureSeo(): void
@@ -20,7 +20,7 @@ class ViewServiceProvider extends ServiceProvider
         SEOMeta::setRobots('noindex,nofollow');
     }
 
-    protected function configureSessionFlash(): void
+    protected function configureMessages(): void
     {
         Flash::levels([
             'success' => null,
