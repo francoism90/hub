@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Livewire\Dashboard\Videos\Components\Edit;
+namespace App\Livewire\Dashboard\Videos\Edit;
 
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
-use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Playlists\Concerns\WithHistory;
+use App\Livewire\Videos\Concerns\WithVideos;
 use Domain\Videos\Actions\UpdateVideoDetails;
-use Domain\Videos\Models\Video;
 use Foxws\WireUse\Actions\Support\Action;
-use Foxws\WireUse\States\Concerns\WithState;
 use Illuminate\View\View;
 use Livewire\Component;
 
-/**
- * @property VideoState $state
- */
 class General extends Component
 {
     use WithHistory;
-    use WithState;
+    use WithVideos;
 
     public GeneralForm $form;
 
@@ -32,7 +27,7 @@ class General extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.videos.edit.general')->with([
+        return view('livewire.dashboard.videos.tabs.general')->with([
             'actions' => $this->actions(),
             'snapshot' => $this->snapshot(),
         ]);
@@ -45,12 +40,12 @@ class General extends Component
 
     public function save(): void
     {
-        $this->authorize('update', $model = $this->getModel());
+        $this->authorize('update', $this->video);
 
         $this->form->submit();
 
         app(UpdateVideoDetails::class)->execute(
-            model: $model,
+            model: $this->video,
             attributes: $this->form->validate(),
         );
 
@@ -68,9 +63,7 @@ class General extends Component
 
     protected function fillForms(): void
     {
-        $this->form->fill(
-            $this->getModel()
-        );
+        $this->form->fill($this->video);
     }
 
     protected function actions(): array
@@ -95,12 +88,5 @@ class General extends Component
                 'class:label' => 'sr-only',
                 'wire:click' => 'fillSnapshot()',
             ]);
-    }
-
-    protected function getModel(): Video
-    {
-        return Video::findByPrefixedIdOrFail(
-            $this->state->id
-        );
     }
 }

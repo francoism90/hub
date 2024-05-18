@@ -4,7 +4,6 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Edit\General;
 use App\Livewire\Dashboard\Videos\Edit\Similar;
-use App\Livewire\Dashboard\Videos\States\VideoState;
 use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
@@ -19,15 +18,8 @@ class VideoEditController extends Page
     use WithTabs;
     use WithVideos;
 
-    public VideoState $state;
-
     #[Url(as: 'tab', except: 'general', history: true)]
     public string $tab = 'general';
-
-    public function mount(): void
-    {
-        $this->fillStateModel();
-    }
 
     public function render(): View
     {
@@ -100,13 +92,6 @@ class VideoEditController extends Page
     protected function getDescription(): string
     {
         return (string) $this->video->summary;
-    }
-
-    protected function fillStateModel(): void
-    {
-        $this->state->fill([
-            'id' => $this->getVideoId(),
-        ]);
     }
 
     public function getListeners(): array
