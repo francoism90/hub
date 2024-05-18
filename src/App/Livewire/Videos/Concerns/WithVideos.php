@@ -17,12 +17,12 @@ trait WithVideos
 
     public function onVideoDeleted(): void
     {
-        //
+        $this->dispatch('$refresh');
     }
 
     public function onVideoUpdated(): void
     {
-        //
+        $this->dispatch('$refresh');
     }
 
     protected function getVideoId(): ?string

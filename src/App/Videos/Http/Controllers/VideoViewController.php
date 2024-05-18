@@ -19,16 +19,6 @@ class VideoViewController extends Page
         return view('livewire.app.videos.view');
     }
 
-    public function onVideoDeleted(): void
-    {
-        $this->dispatch('$refresh');
-    }
-
-    public function onVideoUpdated(): void
-    {
-        $this->dispatch('$refresh');
-    }
-
     protected function getTitle(): string
     {
         return (string) $this->video->title;
