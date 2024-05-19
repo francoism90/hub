@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e9dcdb82435f9e8ac6bf2804c4bc4ca",
+    "content-hash": "8fe00108783ae95c0bf80cca5534f1f3",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1915,21 +1915,23 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "3140cdf686be9e2709c8222130922dfa40148db5"
+                "reference": "17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/3140cdf686be9e2709c8222130922dfa40148db5",
-                "reference": "3140cdf686be9e2709c8222130922dfa40148db5",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3",
+                "reference": "17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3",
                 "shasum": ""
             },
             "require": {
                 "artesaos/seotools": "^1.3",
                 "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
                 "laravel/scout": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
@@ -1937,8 +1939,9 @@
                 "spatie/php-structure-discoverer": "^2.1"
             },
             "require-dev": {
-                "laravel/pint": "^1.14.0",
-                "nunomaduro/collision": "^8.0",
+                "larastan/larastan": "^2.9",
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
                 "orchestra/testbench": "^9.0",
                 "pestphp/pest": "^2.34.4",
                 "pestphp/pest-plugin-arch": "^2.7",
@@ -1986,7 +1989,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.3"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -1994,7 +1997,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-16T18:42:23+00:00"
+            "time": "2024-05-19T09:10:21+00:00"
         },
         {
             "name": "fruitcake/php-cors",
