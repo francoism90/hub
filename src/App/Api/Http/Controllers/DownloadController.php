@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class DownloadController extends Controller implements HasMiddleware
 {
@@ -21,7 +20,7 @@ class DownloadController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
+    public function __invoke(Media $media, Request $request): Response
     {
         Gate::authorize('update', $media);
 

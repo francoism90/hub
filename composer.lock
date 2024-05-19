@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e9dcdb82435f9e8ac6bf2804c4bc4ca",
+    "content-hash": "933af3653eded4674f20053b4005ba20",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1915,21 +1915,23 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "3140cdf686be9e2709c8222130922dfa40148db5"
+                "reference": "17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/3140cdf686be9e2709c8222130922dfa40148db5",
-                "reference": "3140cdf686be9e2709c8222130922dfa40148db5",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3",
+                "reference": "17c2f9c4a5bc9e83e71ff3a6494c5e728c8c31a3",
                 "shasum": ""
             },
             "require": {
                 "artesaos/seotools": "^1.3",
                 "illuminate/contracts": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
                 "laravel/scout": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
@@ -1937,8 +1939,9 @@
                 "spatie/php-structure-discoverer": "^2.1"
             },
             "require-dev": {
-                "laravel/pint": "^1.14.0",
-                "nunomaduro/collision": "^8.0",
+                "larastan/larastan": "^2.9",
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
                 "orchestra/testbench": "^9.0",
                 "pestphp/pest": "^2.34.4",
                 "pestphp/pest-plugin-arch": "^2.7",
@@ -1986,7 +1989,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v1.0.3"
+                "source": "https://github.com/foxws/wireuse/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -1994,7 +1997,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-16T18:42:23+00:00"
+            "time": "2024-05-19T09:10:21+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -11921,6 +11924,108 @@
             "time": "2024-03-08T09:58:59+00:00"
         },
         {
+            "name": "larastan/larastan",
+            "version": "v2.9.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/larastan/larastan.git",
+                "reference": "93d5b95d2e29cdb8203363d44abfdbc0bc7ef57f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/93d5b95d2e29cdb8203363d44abfdbc0bc7ef57f",
+                "reference": "93d5b95d2e29cdb8203363d44abfdbc0bc7ef57f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/console": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/container": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/contracts": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/database": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/http": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/pipeline": "^9.52.16 || ^10.28.0 || ^11.0",
+                "illuminate/support": "^9.52.16 || ^10.28.0 || ^11.0",
+                "php": "^8.0.2",
+                "phpmyadmin/sql-parser": "^5.9.0",
+                "phpstan/phpstan": "^1.10.66"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^12.0",
+                "nikic/php-parser": "^4.19.1",
+                "orchestra/canvas": "^7.11.1 || ^8.11.0 || ^9.0.2",
+                "orchestra/testbench": "^7.33.0 || ^8.13.0 || ^9.0.3",
+                "phpunit/phpunit": "^9.6.13 || ^10.5.16"
+            },
+            "suggest": {
+                "orchestra/testbench": "Using Larastan for analysing a package needs Testbench"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Larastan\\Larastan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Can Vural",
+                    "email": "can9119@gmail.com"
+                },
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Larastan - Discover bugs in your code without running it. A phpstan/phpstan wrapper for Laravel",
+            "keywords": [
+                "PHPStan",
+                "code analyse",
+                "code analysis",
+                "larastan",
+                "laravel",
+                "package",
+                "php",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/larastan/larastan/issues",
+                "source": "https://github.com/larastan/larastan/tree/v2.9.6"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/canvural",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-05-09T11:53:26+00:00"
+        },
+        {
             "name": "laravel/pint",
             "version": "v1.15.3",
             "source": {
@@ -12905,6 +13010,94 @@
             "time": "2024-02-23T11:10:43+00:00"
         },
         {
+            "name": "phpmyadmin/sql-parser",
+            "version": "5.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmyadmin/sql-parser.git",
+                "reference": "011fa18a4e55591fac6545a821921dd1d61c6984"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/011fa18a4e55591fac6545a821921dd1d61c6984",
+                "reference": "011fa18a4e55591fac6545a821921dd1d61c6984",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.3",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "conflict": {
+                "phpmyadmin/motranslator": "<3.0"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^1.1",
+                "phpmyadmin/coding-standard": "^3.0",
+                "phpmyadmin/motranslator": "^4.0 || ^5.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.9.12",
+                "phpstan/phpstan-phpunit": "^1.3.3",
+                "phpunit/php-code-coverage": "*",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "psalm/plugin-phpunit": "^0.16.1",
+                "vimeo/psalm": "^4.11",
+                "zumba/json-serializer": "~3.0.2"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance",
+                "phpmyadmin/motranslator": "Translate messages to your favorite locale"
+            },
+            "bin": [
+                "bin/highlight-query",
+                "bin/lint-query",
+                "bin/sql-parser",
+                "bin/tokenize-query"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpMyAdmin\\SqlParser\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "The phpMyAdmin Team",
+                    "email": "developers@phpmyadmin.net",
+                    "homepage": "https://www.phpmyadmin.net/team/"
+                }
+            ],
+            "description": "A validating SQL lexer and parser with a focus on MySQL dialect.",
+            "homepage": "https://github.com/phpmyadmin/sql-parser",
+            "keywords": [
+                "analysis",
+                "lexer",
+                "parser",
+                "query linter",
+                "sql",
+                "sql lexer",
+                "sql linter",
+                "sql parser",
+                "sql syntax highlighter",
+                "sql tokenizer"
+            ],
+            "support": {
+                "issues": "https://github.com/phpmyadmin/sql-parser/issues",
+                "source": "https://github.com/phpmyadmin/sql-parser"
+            },
+            "funding": [
+                {
+                    "url": "https://www.phpmyadmin.net/donate/",
+                    "type": "other"
+                }
+            ],
+            "time": "2024-01-20T20:34:02+00:00"
+        },
+        {
             "name": "phpstan/phpdoc-parser",
             "version": "1.29.0",
             "source": {
@@ -12950,6 +13143,64 @@
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/1.29.0"
             },
             "time": "2024-05-06T12:04:23+00:00"
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "1.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "e524358f930e41a2b4cca1320e3b04fc26b39e0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e524358f930e41a2b4cca1320e3b04fc26b39e0b",
+                "reference": "e524358f930e41a2b4cca1320e3b04fc26b39e0b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-05-15T08:00:59+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

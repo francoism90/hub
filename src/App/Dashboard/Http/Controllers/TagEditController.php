@@ -71,12 +71,12 @@ class TagEditController extends Page
 
     protected function getTitle(): string
     {
-        return (string) $this->tag->name;
+        return $this->tag->getTranslation('name', 'en');
     }
 
     protected function getDescription(): string
     {
-        return (string) $this->tag->description;
+        return $this->tag->getTranslation('description', 'en');
     }
 
     public function getListeners(): array

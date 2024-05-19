@@ -27,7 +27,7 @@ class GeneralForm extends Form
     {
         $values = $model->only('name', 'description');
 
-        $values['type'] = $model->type?->value;
+        $values['type'] = (string) $model->type?->value;
 
         return $values;
     }

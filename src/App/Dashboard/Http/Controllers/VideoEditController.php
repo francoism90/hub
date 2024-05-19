@@ -88,12 +88,12 @@ class VideoEditController extends Page
 
     protected function getTitle(): string
     {
-        return (string) $this->video->title;
+        return $this->video->getTranslation('title', 'en');
     }
 
     protected function getDescription(): string
     {
-        return (string) $this->video->summary;
+        return $this->video->getTranslation('summary', 'en');
     }
 
     public function getListeners(): array
