@@ -25,7 +25,7 @@ class CreateVideoThumbnail
             'ffprobe.binaries' => config('media-library.ffprobe_path'),
             'temporary_directory' => $temporaryDirectory->path(),
             'ffmpeg.threads' => 0,
-            'timeout' => 60 * 15,
+            'timeout' => 60 * 30,
         ]);
 
         $file = $model->clips()->first()->getPath();

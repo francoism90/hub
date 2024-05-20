@@ -30,12 +30,12 @@ class ProcessVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60;
+    public $timeout = 60 * 60 * 2;
 
     /**
      * @var int
      */
-    public $backoff = 30;
+    public $backoff = 60;
 
     /**
      * @var bool

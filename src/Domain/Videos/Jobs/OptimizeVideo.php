@@ -28,12 +28,12 @@ class OptimizeVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 30;
+    public $timeout = 60 * 60;
 
     /**
      * @var int
      */
-    public $backoff = 30;
+    public $backoff = 60;
 
     /**
      * @var bool

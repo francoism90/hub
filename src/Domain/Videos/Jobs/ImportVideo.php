@@ -33,7 +33,7 @@ class ImportVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $backoff = 30;
+    public $backoff = 60;
 
     /**
      * @var bool
