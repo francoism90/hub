@@ -59,6 +59,7 @@ export default defineConfig(({ mode }) => {
           categories: ['videos', 'vod'],
           theme_color: '#030712',
           background_color: '#030712',
+          display_override: ['fullscreen', 'minimal-ui'],
           display: 'fullscreen',
           orientation: 'portrait-primary',
           id: '/',
