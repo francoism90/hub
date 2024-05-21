@@ -11,7 +11,7 @@
                 class="p-3"
                 wire:click="$set('form.query', '')"
             >
-                <x-heroicon-m-backspace class="size-5 fill-secondary-500" />
+                <x-heroicon-s-backspace class="size-5 fill-secondary-500" />
             </a>
         </x-slot:append>
     @endif

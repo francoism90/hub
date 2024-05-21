@@ -49,7 +49,7 @@ class Video extends Component
         return [
             Action::make('navigate')
                 ->label(__('Go back'))
-                ->icon('heroicon-m-arrow-left-circle')
+                ->icon('heroicon-s-arrow-left-circle')
                 ->componentAttributes([
                     'onclick' => 'history.back()',
                     'title' => __('Go Back'),
@@ -62,11 +62,25 @@ class Video extends Component
         return [
             Action::make('toggle-playback')
                 ->label(__('Toggle Playback'))
-                ->icon('heroicon-m-pause')
-                ->iconActive('heroicon-m-play')
+                ->icon('heroicon-s-pause')
+                ->iconActive('heroicon-s-play')
                 ->state('paused')
                 ->componentAttributes([
                     'x-on:click' => 'togglePlayback',
+                ]),
+
+            Action::make('backward')
+                ->label(__('Backward'))
+                ->icon('heroicon-s-backward')
+                ->componentAttributes([
+                    'x-on:click' => 'backward',
+                ]),
+
+            Action::make('forward')
+                ->label(__('Forward'))
+                ->icon('heroicon-s-forward')
+                ->componentAttributes([
+                    'x-on:click' => 'forward',
                 ]),
         ];
     }

@@ -131,6 +131,14 @@
         async seekTo(event) {
             this.$refs.video.currentTime = event.target.value;
         },
+
+        async backward() {
+            this.$refs.video.currentTime -= 10;
+        },
+
+        async forward() {
+            this.$refs.video.currentTime += 10;
+        },
     }));
 </script>
 @endscript

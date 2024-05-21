@@ -27,7 +27,7 @@
         class="absolute inset-x-0 bottom-4 z-30 mx-auto w-full max-w-[28rem] px-3"
     >
         <div class="relative rounded-xl bg-secondary-800">
-            <x-heroicon-m-minus class="mx-auto h-8 fill-secondary-500" />
+            <x-heroicon-s-minus class="mx-auto h-8 fill-secondary-500" />
 
             <div class="flex flex-col gap-y-3 p-5 pt-0">
                 <h1 class="font-semibold">{{ $action->getLabel() }}</h1>
