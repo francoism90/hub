@@ -15,7 +15,6 @@
         "@tailwindcss/typography": "^0.5.13",
         "autoprefixer": "^10.4.19",
         "axios": "^1.7.2",
-        "cssnano": "^7.0.1",
         "eslint": "9.x",
         "globals": "^15.3.0",
         "laravel-echo": "^1.16.1",
