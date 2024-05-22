@@ -1,6 +1,25 @@
 {
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "eslint.experimental.useFlatConfig": true,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
     "files.exclude": {
         "**/storage": true
     },
-    "intelephense.format.enable": false
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": [
+        "class:(.*?)",
+    ],
+    "tailwindCSS.includeLanguages": {
+        "blade": "html",
+        "blade.php": "html",
+        "php": "html",
+        "plaintext": "html",
+        "vue": "html",
+        "vue-html": "html"
+    },
 }

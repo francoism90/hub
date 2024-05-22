@@ -1,0 +1,9 @@
+**/.git
+**/.svn
+**/.hg
+**/database
+**/node_modules
+**/storage
+**/vendor
+composer.lock
+yarn.lock

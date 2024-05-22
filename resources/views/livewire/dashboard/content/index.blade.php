@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+<div class="flex flex-col p-3">
     <x-wireuse::navigation-tabs wire:model.live="tab" :$tabs />
 
     @if ($current)

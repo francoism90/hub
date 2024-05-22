@@ -12,7 +12,7 @@
         x-on:mouseleave="destroy"
         x-on:touchstart.passive="load($refs.video, '{{ $item->preview }}')"
         x-on:touchend.passive="destroy"
-        class="relative h-48 min-h-48 max-h-48 bg-black"
+        class="relative h-48 max-h-48 min-h-48 bg-black"
     >
         <img
             alt="{{ $item->title }}"
@@ -41,7 +41,7 @@
 
 @script
 <script>
-    Alpine.data('preview', () => ({
+    Alpine.data("preview", () => ({
         player: undefined,
         show: false,
 
@@ -55,11 +55,13 @@
             // Configure networking
             this.player
                 .getNetworkingEngine()
-                .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+                .registerRequestFilter(
+                    async (type, request) => (request.allowCrossSiteCredentials = true)
+                );
         },
 
         async destroy() {
-            this.show = false
+            this.show = false;
 
             try {
                 await this.player?.unload();
@@ -70,11 +72,11 @@
 
         async load(video, manifest) {
             if (!this.player) {
-                console.error('No player found');
+                console.error("No player found");
                 return;
             }
 
-            this.show = true
+            this.show = true;
 
             try {
                 await this.player.attach(video);

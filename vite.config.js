@@ -20,7 +20,10 @@ export default defineConfig(({ mode }) => {
       https,
       port: 5173,
       strictPort: true,
-      hmr: { host: "hub.lan", clientPort: 5173 },
+      hmr: {
+        host: "hub.lan",
+        clientPort: 5173,
+      },
       watch: {
         ignored: ["**/storage/**"],
       },
@@ -49,9 +52,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
-          globPatterns: [
-            "**/*.{js,css,html,svg,jpg,png,webp,ico,txt,woff,woff2}",
-          ],
+          globPatterns: ["**/*.{js,css,html,svg,jpg,png,webp,ico,txt,woff,woff2}"],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
           navigateFallbackDenylist: [/\/[api,admin,livewire,vod]+\/.*/],

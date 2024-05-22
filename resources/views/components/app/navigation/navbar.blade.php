@@ -29,4 +29,4 @@
             {{ $end }}
         </div>
     @endif
-</<nav>
+</nav>
