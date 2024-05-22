@@ -6,8 +6,7 @@
         "build": "vite build",
         "test": "vitest run",
         "coverage": "vitest run --coverage",
-        "lint": "npx eslint",
-        "format": "npx prettier . --write"
+        "lint": "npx eslint"
     },
     "devDependencies": {
         "@eslint/js": "^9.3.0",
