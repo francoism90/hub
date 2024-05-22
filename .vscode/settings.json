@@ -1,6 +1,17 @@
 {
-    "intelephense.format.enable": false,
     "files.exclude": {
-        "**/storage": true,
+        "**/storage": true
+    },
+    "intelephense.format.enable": false,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": [
+        "class:(.*?)",
+    ],
+    "tailwindCSS.includeLanguages": {
+        "blade": "html",
+        "php": "html",
+        "plaintext": "html",
+        "vue": "html",
+        "vue-html": "html"
     }
 }
