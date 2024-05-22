@@ -13,7 +13,7 @@
             </x-slot:append>
         </x-dashboard.forms.input>
 
-        <x-app.layout.join>
+        <x-app.layout.join class="flex-wrap">
             <x-dashboard.forms.input
                 label="{{ __('Episode') }}"
                 placeholder="{{ __('E01') }}"
