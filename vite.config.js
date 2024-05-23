@@ -47,8 +47,6 @@ export default defineConfig(({ mode }) => {
         scope: "/",
         registerType: "autoUpdate",
         injectRegister: "script-defer",
-        includeAssets: ["storage/fonts/**/*.woff2", "storage/**/*.png"],
-        includeManifestIcons: true,
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
