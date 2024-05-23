@@ -55,7 +55,7 @@ class Videos extends Component
 
         return $this->getScout($query)->tap(
             new ListVideos(form: $this->form)
-        )->simplePaginate(12 * 3);
+        )->simplePaginate(12 * 4);
     }
 
     protected function actions(): array
