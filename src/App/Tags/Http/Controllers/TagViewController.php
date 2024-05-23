@@ -3,11 +3,11 @@
 namespace App\Tags\Http\Controllers;
 
 use App\Livewire\Tags\Concerns\WithTags;
-use Domain\Relates\Collections\RelatedCollection;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -37,12 +37,12 @@ class TagViewController extends Page
     }
 
     #[Computed]
-    public function relatables(): RelatedCollection
+    public function relatables(): Collection
     {
         return $this
             ->getModel()
             ->findByPrefixedIdOrFail($this->getTagId())
-            ->relates;
+            ->related;
     }
 
     public function onTagDeleted(): void
