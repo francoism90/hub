@@ -5,7 +5,7 @@
 <div {{ $attributes
     ->cssClass([
         'layer' => 'flex items-center gap-3',
-        'horizontal' => 'flex-row',
+        'horizontal' => 'flex-row flex-wrap sm:flex-nowrap',
         'vertical' => 'flex-col',
     ])
     ->classMerge([
