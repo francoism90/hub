@@ -15,9 +15,9 @@ class UpdateVideoDetails
         );
 
         if (array_key_exists('tags', $attributes)) {
-            $ids = collect(data_get($attributes['tags'], '*.id', []))->toModels();
+            $tags = collect(data_get($attributes['tags'], '*.id', []))->toModels();
 
-            $model->tags()->sync($ids);
+            $model->syncTags($tags);
         }
 
         OptimizeVideo::dispatchIf(
