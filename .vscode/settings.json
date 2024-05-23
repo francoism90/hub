@@ -10,6 +10,7 @@
     "files.exclude": {
         "**/storage": true
     },
+    "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.experimental.classRegex": [
         "class:(.*?)",
@@ -21,5 +22,5 @@
         "plaintext": "html",
         "vue": "html",
         "vue-html": "html"
-    },
+    }
 }

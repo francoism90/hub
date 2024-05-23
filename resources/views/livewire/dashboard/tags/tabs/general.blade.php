@@ -16,6 +16,12 @@
             id="form.type"
             wire:model.live="form.type"
         />
+
+        <x-dashboard.forms.tags
+            :items="$tags->results()"
+            id="form.related"
+            wire:model.live="form.related"
+        />
     </x-app.layout.container>
 
     <x-dashboard.forms.actions :$actions />

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->float('boost')->nullable();
             $table->json('options')->nullable();
             $table->timestamps();
-            $table->softDeletes();
             $table->unique(['model_id', 'model_type', 'relate_id', 'relate_type']);
         });
     }

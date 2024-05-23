@@ -12,5 +12,11 @@ class UpdateTagDetails
         $model->updateOrFail(
             Arr::only($attributes, $model->getFillable())
         );
+
+        if (array_key_exists('related', $attributes)) {
+            $ids = collect(data_get($attributes['related'], '*.id', []))->toModels();
+
+            $model->syncRelated($ids);
+        }
     }
 }

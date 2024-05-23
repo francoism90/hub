@@ -2,7 +2,6 @@
 
 namespace Domain\Videos\Actions;
 
-use Domain\Tags\Actions\SyncModelTags;
 use Domain\Videos\Jobs\OptimizeVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Arr;
@@ -16,11 +15,14 @@ class UpdateVideoDetails
         );
 
         if (array_key_exists('tags', $attributes)) {
-            app(SyncModelTags::class)->execute($model, $attributes['tags']);
+            $ids = collect(data_get($attributes['tags'], '*.id', []))->toModels();
+
+            $model->tags()->sync($ids);
         }
 
         OptimizeVideo::dispatchIf(
-            $model->wasChanged('snapshot'), $model
+            $model->wasChanged('snapshot'),
+            $model
         );
     }
 }

@@ -16,6 +16,9 @@ class GeneralForm extends Form
     #[Validate]
     public string $type = '';
 
+    #[Validate(['related' => 'nullable|array', 'related.*.id' => 'exists:tags,prefixed_id'])]
+    public array $related = [];
+
     protected function beforeValidate(): void
     {
         collect($this->all())
@@ -28,6 +31,8 @@ class GeneralForm extends Form
         $values = $model->only('name', 'description');
 
         $values['type'] = $model->type?->value;
+
+        $values['related'] = $model->related->options()->toArray();
 
         return $values;
     }

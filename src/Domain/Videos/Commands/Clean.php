@@ -24,6 +24,7 @@ class Clean extends Command implements Isolatable
 
         if ($items->count() === 0) {
             $this->info('No items to clean');
+
             return;
         }
 

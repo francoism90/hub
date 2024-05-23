@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Tags\Edit;
 
 use App\Livewire\Dashboard\Tags\Forms\GeneralForm;
+use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
 use App\Livewire\Tags\Concerns\WithTags;
 use Domain\Tags\Actions\UpdateTagDetails;
@@ -17,6 +18,8 @@ class General extends Component
     use WithTags;
 
     public GeneralForm $form;
+
+    public TagsForm $tags;
 
     public function mount(): void
     {

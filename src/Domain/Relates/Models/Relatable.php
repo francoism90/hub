@@ -8,12 +8,10 @@ use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Relatable extends Model
 {
     use InteractsWithRandomSeed;
-    use SoftDeletes;
 
     /**
      * @var array<int, string>
@@ -21,6 +19,8 @@ class Relatable extends Model
     protected $fillable = [
         'relate_type',
         'relate_id',
+        'model_id',
+        'model_type',
         'score',
         'boost',
         'options',
@@ -60,5 +60,13 @@ class Relatable extends Model
     public function relate(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function getRelatedValues(): array
+    {
+        return [
+            'type' => $this->relate_type,
+            'id' => $this->relate_id,
+        ];
     }
 }

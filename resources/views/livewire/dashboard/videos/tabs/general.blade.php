@@ -45,7 +45,6 @@
 
         <x-dashboard.forms.tags
             :items="$tags->results()"
-            label="{{ __('Tags') }}"
             id="form.tags"
             wire:model.live="form.tags"
         />
