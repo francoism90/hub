@@ -16,6 +16,9 @@ class GeneralForm extends Form
     #[Validate]
     public string $type = '';
 
+    #[Validate]
+    public string $description = '';
+
     #[Validate(['related' => 'nullable|array', 'related.*.id' => 'exists:tags,prefixed_id'])]
     public array $related = [];
 
@@ -42,6 +45,7 @@ class GeneralForm extends Form
         return [
             'name' => 'required|string|min:1|max:255',
             'type' => [Rule::enum(TagType::class)],
+            'description' => 'nullable|string|min:1|max:4096',
         ];
     }
 }

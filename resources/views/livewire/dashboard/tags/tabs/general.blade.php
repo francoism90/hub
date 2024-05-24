@@ -17,6 +17,13 @@
             wire:model.live="form.type"
         />
 
+        <x-dashboard.forms.input
+            label="{{ __('Description') }}"
+            placeholder="{{ __('Description') }}"
+            id="form.description"
+            wire:model.live="form.description"
+        />
+
         <x-dashboard.forms.tags
             :items="$tags->results()"
             id="form.related"
