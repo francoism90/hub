@@ -45,9 +45,10 @@ $app = Application::configure(basePath: $basePath)
         \Foundation\Console\Commands\AppInstall::class,
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
+        \Domain\Tags\Commands\Sort::class,
         \Domain\Videos\Commands\Clean::class,
         \Domain\Videos\Commands\Import::class,
-        \Support\Scout\Commands\SyncIndexes::class,
+        \Support\Scout\Commands\Sync::class,
     ])
     ->create();
 
