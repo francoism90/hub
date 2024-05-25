@@ -16,4 +16,5 @@
     <x-app.player.controls.seekbar />
     <x-app.player.controls.playback />
     <x-app.player.controls.settings />
+    <x-app.player.controls.dialog />
 </div>

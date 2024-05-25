@@ -28,7 +28,9 @@
 <script>
     Alpine.data('play', () => ({
         player: undefined,
-        overlay: false,
+        overlay: true,
+        dialog: false,
+        section: 0,
         paused: true,
         fullscreen: false,
         idle: 0,
@@ -64,7 +66,6 @@
                 return;
             }
 
-            // Loading feedback
             this.showOverlay();
 
             try {
@@ -99,6 +100,11 @@
                 default:
                     console.error('Unhandled event: ' + event.type);
             }
+        },
+
+        async toggleDialog(index = 0) {
+            this.section = index;
+            this.dialog = ! this.dialog;
         },
 
         async togglePlayback() {
@@ -139,6 +145,11 @@
         async forward() {
             this.$refs.video.currentTime += 10;
         },
+
+        async setTextTrack(track) {
+            this.player.selectTextTrack(track)
+            this.player.setTextTrackVisibility(true)
+        }
     }));
 </script>
 @endscript

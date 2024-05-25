@@ -93,8 +93,18 @@ class Video extends Component
                 ->icon('heroicon-o-book-open')
                 ->route('dashboard.videos.edit', $this->video),
 
-            Action::make('toggle-playback')
-                ->label(__('Toggle Playback'))
+            Action::make('captions')
+                ->label(__('Captions'))
+                ->icon('heroicon-o-bars-3-bottom-left')
+                ->iconActive('heroicon-o-bars-3-bottom-left')
+                ->componentAttributes([
+                    'x-cloak',
+                    'x-show' => 'player?.getTextTracks().length',
+                    'x-on:click' => 'toggleDialog(0)',
+                ]),
+
+            Action::make('toggle-fullscreen')
+                ->label(__('Toggle Fullscreen'))
                 ->icon('heroicon-o-arrows-pointing-out')
                 ->iconActive('heroicon-o-arrows-pointing-in')
                 ->state('fullscreen')
