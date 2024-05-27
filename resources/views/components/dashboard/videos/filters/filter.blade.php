@@ -5,10 +5,11 @@
 <x-dashboard.videos.filters.dialog>
     <div class="flex items-center w-full gap-3 text-sm">
         <x-dashboard.forms.input
+            type="search"
+            wire:model.live.debounce="form.query"
             id="form.query"
             placeholder="{{ __('Search') }}"
             autofocus
-            wire:model.live.debounce.300ms="form.query"
         />
     </div>
 

@@ -7,9 +7,9 @@
         <div class="flex items-center gap-3 text-sm">
             <input
                 type="radio"
+                wire:model.live="form.sort"
                 id="{{ $option->getName() }}"
                 value="{{ $option->getName() }}"
-                wire:model.live="form.sort"
             />
 
             <label for="{{ $option->getName() }}">

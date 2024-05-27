@@ -3,10 +3,10 @@
         <x-dashboard.forms.messages />
 
         <x-dashboard.forms.input
+            wire:model.blur="form.name"
             label="{{ __('Name') }}"
             placeholder="Name"
             id="form.name"
-            wire:model.live="form.name"
         >
             <x-slot:append>
                 <x-wireuse::actions-button :action="$titleize" />
@@ -15,45 +15,45 @@
 
         <x-app.layout.join>
             <x-dashboard.forms.input
+                wire:model.blur="form.episode"
                 label="{{ __('Episode') }}"
                 placeholder="{{ __('E01') }}"
                 id="form.episode"
-                wire:model.live="form.episode"
             />
 
             <x-dashboard.forms.input
+                wire:model.blur="form.season"
                 label="{{ __('Season') }}"
                 placeholder="{{ __('S01') }}"
                 id="form.season"
-                wire:model.live="form.season"
             />
 
             <x-dashboard.forms.input
+                wire:model.blur="form.part"
                 label="{{ __('Part') }}"
                 placeholder="{{ __('1') }}"
                 id="form.part"
-                wire:model.live="form.part"
             />
 
             <x-dashboard.forms.input
+                wire:model.blur="form.released_at"
                 label="{{ __('Released At') }}"
                 placeholder="{{ __('2024-12-01') }}"
                 id="form.released_at"
-                wire:model.live="form.released_at"
             />
         </x-app.layout.join>
 
         <x-dashboard.forms.tags
+            wire:model.blur="form.tags"
             :items="$tags->results()"
             id="form.tags"
-            wire:model.live="form.tags"
         />
 
         <x-dashboard.forms.input
+            wire:model.blur="form.snapshot"
             label="{{ __('Snapshot') }}"
             placeholder="0.0"
             id="form.snapshot"
-            wire:model.live="form.snapshot"
         >
             <x-slot:append>
                 <x-wireuse::actions-button :action="$snapshot" />

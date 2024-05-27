@@ -7,9 +7,9 @@
         <div class="flex items-center gap-3 text-sm">
             <input
                 type="checkbox"
+                wire:model.live="form.visibility"
                 id="{{ $option->getName() }}"
                 value="{{ $option->getName() }}"
-                wire:model.live="form.visibility"
             />
 
             <label for="{{ $option->getName() }}">

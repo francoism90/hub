@@ -3,31 +3,31 @@
         <x-dashboard.forms.messages />
 
         <x-dashboard.forms.input
+            wire:model.blur="form.name"
             label="{{ __('Name') }}"
             placeholder="{{ __('Name') }}"
             id="form.name"
-            wire:model.live="form.name"
         />
 
         <x-dashboard.forms.select
+            wire:model.lazy="form.type"
             :options="$types"
             label="{{ __('Type') }}"
             placeholder="{{ __('Type') }}"
             id="form.type"
-            wire:model.live="form.type"
         />
 
         <x-dashboard.forms.input
+            wire:model.blur="form.description"
             label="{{ __('Description') }}"
             placeholder="{{ __('Description') }}"
             id="form.description"
-            wire:model.live="form.description"
         />
 
         <x-dashboard.forms.tags
+            wire:model.blur="form.related"
             :items="$tags->results()"
             id="form.related"
-            wire:model.live="form.related"
         />
     </x-app.layout.container>
 

@@ -24,10 +24,11 @@
     <x-dashboard.forms.input
         :$append
         :$prepend
+        type="search"
+        wire:model.live.debounce="tags.query"
         x-on:click="open = true"
         label="{{ __('Tags') }}"
         id="tags.query"
-        wire:model.live="tags.query"
         autocomplete="off"
         placeholder="{{ __('Filter tags') }}"
     />
