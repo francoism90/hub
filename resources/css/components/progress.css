@@ -1,14 +1,14 @@
 @layer components {
     .progress {
-        @apply h-full w-full;
+        @apply h-full w-full appearance-none bg-transparent;
 
         &::-webkit-progress-bar,
         &::-webkit-progress-value {
-            @apply bg-transparent;
+            @apply appearance-none bg-transparent;
         }
 
         &::-moz-progress-bar {
-            @apply bg-transparent;
+            @apply appearance-none bg-transparent;
         }
 
         &-primary {

@@ -1,13 +1,13 @@
 @layer components {
     .range {
-        @apply appearance-none bg-transparent;
+        @apply h-full w-full appearance-none bg-transparent;
 
         &::-webkit-slider-runnable-track {
             @apply cursor-pointer appearance-none bg-transparent;
         }
 
         &::-webkit-slider-thumb {
-            @apply h-12 w-6 appearance-none bg-transparent;
+            @apply h-6 w-6 cursor-pointer appearance-none bg-transparent;
         }
 
         &::-moz-progress-bar {
