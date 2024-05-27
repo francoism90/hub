@@ -3,7 +3,7 @@
 ])
 
 <a
-    wire:key="taggable-{{ $item->getRouteKey() }}"
+    wire:key="{{ $item->getRouteKey() }}"
     wire:navigate
     href="{{ route('tags.view', $item) }}"
     class="block cursor-pointer text-sm font-medium uppercase"

@@ -5,7 +5,7 @@
 
 <div class="absolute inset-x-0 bottom-24 z-20">
     <div class="flex flex-col flex-nowrap gap-y-1.5">
-        <h1 class="line-clamp-1 flex h-24 items-end text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
+        <h1 class="line-clamp-2 flex h-24 items-end text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
             {{ $video->title }}
         </h1>
 
@@ -22,7 +22,7 @@
                 </time>
             </dd>
 
-            @if ($video->episode || $video->season)
+            @if ($video->identifier)
                 <dt class="sr-only">{{ __('ID') }}</dt>
                 <dd class="text-ellipsis">{{ $video->identifier }}</dd>
             @endif

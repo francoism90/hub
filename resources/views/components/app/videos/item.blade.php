@@ -3,7 +3,7 @@
 ])
 
 <article
-    wire:key="item-{{ $item->getRouteKey() }}"
+    wire:key="{{ $item->getRouteKey() }}"
     class="flex h-80 max-h-80 w-full flex-col flex-nowrap"
 >
     <x-app.videos.preview />
@@ -19,7 +19,7 @@
                 <time> {{ duration($item->duration) }} </time>
             </dd>
 
-            @if ($item->episode || $item->season)
+            @if ($item->identifier)
             <dt class="sr-only">{{ __('ID') }}</dt>
             <dd class="text-ellipsis">{{ $item->identifier }}</dd>
             @endif
@@ -42,6 +42,7 @@
     <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
         @foreach ($item->tags as $tag)
         <a
+            wire:key="{{ $tag->id }}"
             wire:navigate
             href="{{ route('tags.view', $tag) }}"
             class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
