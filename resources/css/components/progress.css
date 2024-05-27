@@ -1,5 +1,7 @@
 @layer components {
     .progress {
+        @apply h-full w-full;
+
         &::-webkit-progress-bar,
         &::-webkit-progress-value {
             @apply bg-transparent;
@@ -17,7 +19,7 @@
 
         &-secondary {
             &::-webkit-progress-value {
-                @apply bg-secondary-500;
+                @apply bg-secondary-100/50;
             }
         }
     }
