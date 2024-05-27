@@ -3,6 +3,7 @@
 namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Tags\Edit\General;
+use App\Livewire\Dashboard\Tags\Edit\Related;
 use App\Livewire\Tags\Concerns\WithTags;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
@@ -47,6 +48,10 @@ class TagEditController extends Page
             Action::make('general')
                 ->label(__('General'))
                 ->component(General::class),
+
+            Action::make('related')
+                ->label(__('Related'))
+                ->component(Related::class),
         ];
     }
 
