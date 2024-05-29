@@ -6,7 +6,6 @@
             wire:model.blur="form.name"
             label="{{ __('Name') }}"
             placeholder="{{ __('Name') }}"
-            id="form.name"
         />
 
         <x-dashboard.forms.select
@@ -14,20 +13,17 @@
             :options="$types"
             label="{{ __('Type') }}"
             placeholder="{{ __('Type') }}"
-            id="form.type"
         />
 
         <x-dashboard.forms.input
             wire:model.blur="form.description"
             label="{{ __('Description') }}"
             placeholder="{{ __('Description') }}"
-            id="form.description"
         />
 
         <x-dashboard.forms.tags
             wire:model.blur="form.related"
             :items="$tags->results()"
-            id="form.related"
         />
     </x-app.layout.container>
 
