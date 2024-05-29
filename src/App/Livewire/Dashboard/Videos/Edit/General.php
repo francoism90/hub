@@ -90,8 +90,8 @@ class General extends Component
             ->icon('heroicon-o-language')
             ->componentAttributes([
                 'type' => 'button',
-                'class:icon' => 'size-10',
                 'class:label' => 'sr-only',
+                'class:icon' => 'size-6 text-secondary-400',
                 'wire:click' => 'fillName()',
             ]);
     }
@@ -103,8 +103,8 @@ class General extends Component
             ->icon('heroicon-o-camera')
             ->componentAttributes([
                 'type' => 'button',
-                'class:icon' => 'size-10',
                 'class:label' => 'sr-only',
+                'class:icon' => 'size-6 text-secondary-400',
                 'wire:click' => 'fillSnapshot()',
             ]);
     }
