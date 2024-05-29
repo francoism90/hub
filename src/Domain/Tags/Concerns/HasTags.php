@@ -12,21 +12,6 @@ trait HasTags
 {
     use BaseHasTags;
 
-    public function getTagsByType(): string
-    {
-        return TagCollection::make(TagType::cases())
-            ->map(fn (TagType $type) => $this->tags()->type($type)->get()->translated())
-            ->filter()
-            ->implode(', ');
-    }
-
-    public function getRelatedTags(): string
-    {
-        $items = $this->tags->flatMap(fn (Tag $tag) => $tag->relates);
-
-        return TagCollection::make($items->all())->translated();
-    }
-
     protected function tagsTranslated(): Attribute
     {
         return Attribute::make(
@@ -39,5 +24,24 @@ trait HasTags
         return Attribute::make(
             get: fn () => $this->getRelatedTags()
         )->shouldCache();
+    }
+
+    public function getTagsByType(): string
+    {
+        return TagCollection::make(TagType::cases())
+            ->map(fn (TagType $type) => $this->tags()->type($type)->get()->translated())
+            ->filter()
+            ->implode(', ');
+    }
+
+    public function getRelatedTags(): string
+    {
+        $items = $this->tags
+            ->loadMissing('relatables')
+            ->flatMap(fn (Tag $tag) => $tag->relates)
+            ->unique()
+            ->all();
+
+        return TagCollection::make($items)->translated();
     }
 }

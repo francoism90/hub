@@ -18,7 +18,7 @@ class GetSimilarVideos
         ]);
     }
 
-    protected static function phrases(Video $model): LazyCollection
+    public static function phrases(Video $model): LazyCollection
     {
         $query = str($model->name)
             ->headline()
@@ -48,11 +48,12 @@ class GetSimilarVideos
             ->unique();
     }
 
-    protected static function tagged(Video $model): LazyCollection
+    public static function tagged(Video $model): LazyCollection
     {
-        $relatables = collect($model->tags)
-            ->flatMap(fn (Tag $tag) => $tag->relates)
-            ->pluck('prefixed_id')
+        $relatables = $model->tags
+            ->loadMissing('relatables')
+            ->flatMap(fn (Tag $tag) => $tag->related)
+            ->unique()
             ->all();
 
         return Video::query()
@@ -62,7 +63,7 @@ class GetSimilarVideos
                 ...$relatables,
             ])
             ->whereKeyNot($model)
-            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(10))
+            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(20))
             ->take(12)
             ->cursor();
     }

@@ -3,7 +3,7 @@
     x-trap="dialog"
     x-on:click.outside="dialog = false"
     x-on:keyup.escape.window="dialog = false"
-    class="absolute bottom-24 right-0 z-30 bg-secondary-600/50 border border-secondary-500/25"
+    class="absolute bottom-16 right-0 z-40 bg-secondary-800/90 border border-secondary-500/25"
 >
     <div
         x-show="section === 0"
@@ -20,7 +20,7 @@
         <div class="grid grid-cols-1 divide-y divide-secondary-600">
             <template x-for="textTrack in player?.getTextTracks()" :key="textTrack.id">
                 <div
-                    class="py-1.5"
+                    class="py-1.5 cursor-pointer"
                     :class="{ 'text-primary-500': textTrack.active }"
                     x-on:click="setTextTrack(textTrack.id)"
                 >

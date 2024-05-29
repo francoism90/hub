@@ -2,10 +2,12 @@
     'item',
 ])
 
-<article
-    wire:key="{{ $item->getRouteKey() }}"
-    class="flex h-80 max-h-80 w-full flex-col flex-nowrap"
->
+<article {{ $attributes
+    ->class('flex flex-col flex-nowrap h-80 max-h-80 w-full min-w-72')
+    ->merge([
+        'wire:key' => $item->getRouteKey(),
+    ])
+}}>
     <x-app.videos.preview />
 
     <a class="block" href="{{ route('videos.view', $item) }}">

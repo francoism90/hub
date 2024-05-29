@@ -11,7 +11,6 @@ use Domain\Tags\QueryBuilders\TagQueryBuilder;
 use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
@@ -167,17 +166,5 @@ class Tag extends BaseTag implements HasMedia
     protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
     {
         return $query->with($this->with);
-    }
-
-    protected function relates(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this
-                ->relatables()
-                ->whereHasMorph('relate', static::class)
-                ->scores()
-                ->get()
-                ->relates()
-        )->shouldCache();
     }
 }

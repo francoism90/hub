@@ -96,7 +96,6 @@ class Video extends Component
             Action::make('captions')
                 ->label(__('Captions'))
                 ->icon('heroicon-o-bars-3-bottom-left')
-                ->iconActive('heroicon-o-bars-3-bottom-left')
                 ->componentAttributes([
                     'x-cloak',
                     'x-show' => 'player?.getTextTracks().length',
@@ -104,10 +103,10 @@ class Video extends Component
                 ]),
 
             Action::make('toggle-fullscreen')
+                ->state('fullscreen')
                 ->label(__('Toggle Fullscreen'))
                 ->icon('heroicon-o-arrows-pointing-out')
                 ->iconActive('heroicon-o-arrows-pointing-in')
-                ->state('fullscreen')
                 ->componentAttributes([
                     'x-on:click' => 'toggleFullscreen',
                 ]),

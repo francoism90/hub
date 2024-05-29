@@ -4,11 +4,14 @@ namespace Domain\Relates\Models;
 
 use Domain\Relates\Collections\RelatedCollection;
 use Domain\Relates\QueryBuilders\RelatedQueryBuilder;
+use Domain\Relates\Scopes\ScoreScope;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+#[ScopedBy(ScoreScope::class)]
 class Relatable extends Model
 {
     use InteractsWithRandomSeed;

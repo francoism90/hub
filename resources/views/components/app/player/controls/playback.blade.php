@@ -3,14 +3,14 @@
     'controls'
 ])
 
-<div class="absolute bottom-4 left-0 z-20">
+<div class="absolute bottom-0 left-0 z-20">
     <div class="flex flex-row flex-nowrap items-center gap-x-4">
         <nav class="flex flex-row flex-nowrap items-center gap-x-4">
             @foreach ($controls as $action)
-            <x-wireuse::actions-link :$action>
-                <x-wireuse::actions-icon :$action />
-                <span class="sr-only">{{ $action->getLabel() }}</span>
-            </x-wireuse::actions-link>
+                <x-wireuse::actions-link
+                    :$action
+                    class:label="sr-only"
+                />
             @endforeach
         </nav>
 

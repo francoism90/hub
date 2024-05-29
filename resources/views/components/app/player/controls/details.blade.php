@@ -3,7 +3,7 @@
     'panel'
 ])
 
-<div class="absolute inset-x-0 bottom-24 z-20">
+<div class="absolute inset-x-0 bottom-16 z-20">
     <div class="flex flex-col flex-nowrap gap-y-1.5">
         <h1 class="line-clamp-2 flex h-24 items-end text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
             {{ $video->title }}
@@ -34,17 +34,17 @@
         </dl>
 
         @if ($video->tags()->count())
-        <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
-            @foreach ($video->tags as $tag)
-            <a
-                class="text-sm font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-                href="{{ route('tags.view', $tag) }}"
-                aria-label="{{ $tag->name }}"
-            >
-                {{ $tag->name }}
-            </a>
-            @endforeach
-        </div>
+            <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
+                @foreach ($video->tags as $tag)
+                <a
+                    class="text-sm font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
+                    href="{{ route('tags.view', $tag) }}"
+                    aria-label="{{ $tag->name }}"
+                >
+                    {{ $tag->name }}
+                </a>
+                @endforeach
+            </div>
         @endif
     </div>
 </div>
