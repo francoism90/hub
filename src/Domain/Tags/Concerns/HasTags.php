@@ -38,7 +38,7 @@ trait HasTags
     {
         $items = $this->tags
             ->loadMissing('relatables')
-            ->flatMap(fn (Tag $tag) => $tag->relates)
+            ->flatMap(fn (Tag $tag) => $tag->related)
             ->unique()
             ->all();
 
