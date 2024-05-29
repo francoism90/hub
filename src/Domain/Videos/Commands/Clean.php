@@ -23,7 +23,7 @@ class Clean extends Command implements Isolatable
         $items = Video::onlyTrashed()->lazy();
 
         if ($items->count() === 0) {
-            $this->info('No items to clean');
+            $this->info('No videos found');
 
             return;
         }
