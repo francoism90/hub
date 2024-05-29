@@ -33,6 +33,7 @@ class Clean extends Command implements Isolatable
         $items->each(function (Video $model) {
             if ($model->trashed()) {
                 $this->info("deleting {$model->name} ({$model->getKey()})");
+
                 $model->forceDelete();
             }
         });
