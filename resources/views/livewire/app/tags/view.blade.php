@@ -5,9 +5,6 @@
         </h1>
 
         <dl class="dl text-sm text-secondary-400">
-            <dt class="sr-only">{{ __('Items') }}</dt>
-            <dd class="text-ellipsis">{{ $this->items->count() }} {{ __('items') }}</dd>
-
             <dt class="sr-only">{{ __('Type') }}</dt>
             <dd class="text-ellipsis">{{ $tag->type?->label() }}</dd>
 
