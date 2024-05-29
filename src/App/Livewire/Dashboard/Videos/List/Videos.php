@@ -73,7 +73,7 @@ class Videos extends Component
             Action::make('sort')
                 ->label(__('Sort by'))
                 ->component('dashboard.videos.filters.sort')
-                ->add('relevance', fn (Action $item) => $item->label('Relevance'))
+                ->add('', fn (Action $item) => $item->label('Default'))
                 ->add('recent', fn (Action $item) => $item->label('Most recent'))
                 ->add('updated', fn (Action $item) => $item->label('Recently updated')),
 

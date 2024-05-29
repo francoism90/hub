@@ -158,6 +158,7 @@ class Tag extends BaseTag implements HasMedia
             'description' => (string) $this->description,
             'type' => (string) $this->type?->value,
             'adult' => (bool) $this->adult,
+            'order' => (int) $this->order_column,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
         ];

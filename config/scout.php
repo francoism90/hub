@@ -263,6 +263,7 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'type',
+                    'order',
                     'created_at',
                     'updated_at',
                 ],

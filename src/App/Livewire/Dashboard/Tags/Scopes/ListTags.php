@@ -17,6 +17,12 @@ class ListTags
     {
         $query
             ->query(fn (Eloquent $query) => $query->withCount('videos'))
-            ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'));
+            ->when($this->useOrdered(), fn (Builder $query) => $query->orderBy('order'))
+            ->when($this->form->is('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'));
+    }
+
+    protected function useOrdered(): bool
+    {
+        return $this->form->blank('query', 'sort');
     }
 }

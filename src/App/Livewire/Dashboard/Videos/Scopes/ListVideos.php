@@ -21,16 +21,15 @@ class ListVideos
                 ? $query->whereDoesntHave('tags')
                 : $query->with('tags')
             )
-            ->when($this->shouldRandomize(), fn (Builder $query) => $query->whereIn('id', static::randomKeys()))
-            ->when($this->form->isStrict('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
-            ->when($this->form->isStrict('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
+            ->when($this->useRandom(), fn (Builder $query) => $query->whereIn('id', static::randomKeys()))
+            ->when($this->form->is('sort', 'recent'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
+            ->when($this->form->is('sort', 'updated'), fn (Builder $query) => $query->orderBy('updated_at', 'desc'))
             ->when($this->form->get('visibility'), fn (Builder $query, array $value) => $query->whereIn('state', $value));
     }
 
-    protected function shouldRandomize(): bool
+    protected function useRandom(): bool
     {
-        return $this->form->blank('query')
-            && $this->form->isStrict('sort', 'relevance');
+        return $this->form->blank('query', 'sort');
     }
 
     protected function randomKeys(): array
