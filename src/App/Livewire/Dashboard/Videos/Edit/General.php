@@ -55,7 +55,10 @@ class General extends Component
 
     public function fillName(): void
     {
-        $this->form->name = str($this->form->get('name', ''))->headline();
+        $this->form->name = str($this->form->get('name', ''))
+            ->replace('.', ' ')
+            ->headline()
+            ->squish();
     }
 
     public function fillSnapshot(): void
