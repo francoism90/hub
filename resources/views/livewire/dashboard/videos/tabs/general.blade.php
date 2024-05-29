@@ -46,7 +46,7 @@
         <x-dashboard.forms.input
             wire:model.blur="form.snapshot"
             label="{{ __('Snapshot') }}"
-            placeholder="0.0"
+            placeholder="1.0"
         >
             <x-slot:append>
                 <x-wireuse::actions-button :action="$snapshot" />
