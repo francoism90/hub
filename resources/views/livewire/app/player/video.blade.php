@@ -53,6 +53,8 @@
         },
 
         async destroy() {
+            clearTimeout(this.idle);
+
             try {
                 await this.player?.unload();
             } catch (e) {
