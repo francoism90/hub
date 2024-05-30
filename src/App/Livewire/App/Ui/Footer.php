@@ -23,11 +23,11 @@ class Footer extends Component
                 ->iconActive('heroicon-s-square-2-stack')
                 ->route('home'),
 
-            Action::make('discover')
-                ->label(__('Discover'))
+            Action::make('search')
+                ->label(__('Search'))
                 ->icon('heroicon-o-magnifying-glass')
                 ->iconActive('heroicon-s-magnifying-glass')
-                ->route('discover'),
+                ->route('search'),
 
             Action::make('collections')
                 ->label(__('Collections'))
