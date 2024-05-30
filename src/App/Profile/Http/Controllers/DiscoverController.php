@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Discover\Http\Controllers;
+namespace App\Profile\Http\Controllers;
 
 use App\Livewire\Discover\Forms\QueryForm;
 use Domain\Videos\Models\Video;
@@ -15,7 +15,7 @@ use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 
 #[Layout('components.layouts.app')]
-class DiscoverIndexController extends Page
+class DiscoverController extends Page
 {
     use WithAuthentication;
     use WithPagination;
@@ -53,11 +53,16 @@ class DiscoverIndexController extends Page
         $value = $this->form->query();
 
         return $this->getScout($value)
-            ->when(! $value, fn (Builder $query) => $query->whereIn('id', [0]))
+            ->when(blank($value), fn (Builder $query) => $query->whereIn('id', [0]))
             ->simplePaginate(12 * 3);
     }
 
     protected function getTitle(): string
+    {
+        return __('Discover');
+    }
+
+    protected function getDescription(): string
     {
         return __('Discover');
     }

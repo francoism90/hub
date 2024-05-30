@@ -24,11 +24,10 @@ trait WithHistory
             ->firstOrFail();
     }
 
-    protected static function isWatched(Video $video, ?User $user = null): bool
+    protected static function isWatched(Video $video, ?User $user = null): ?Video
     {
         return static::history($user)
             ->videos()
-            ->where('id', $video->getKey())
-            ->exists();
+            ->firstWhere('id', $video->getKey());
     }
 }

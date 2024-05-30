@@ -1,7 +1,8 @@
 <?php
 
-use App\Discover\Http\Controllers\DiscoverIndexController;
-use App\Feed\Http\Controllers\FeedIndexController;
+use App\Profile\Http\Controllers\DiscoverController;
+use App\Profile\Http\Controllers\FeedController;
+use App\Profile\Http\Controllers\HistoryController;
 use App\Tags\Http\Controllers\TagViewController;
 use App\Videos\Http\Controllers\VideoViewController;
 use Foxws\WireUse\Facades\WireUse;
@@ -12,16 +13,23 @@ WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', FeedIndexController::class)->name('home');
-    Route::get('/discover', DiscoverIndexController::class)->name('discover');
+    Route::get('/', FeedController::class)->name('home');
+    Route::get('/discover', DiscoverController::class)->name('discover');
+
+    // Profile
+    Route::name('profile.')->group(function () {
+        Route::get('/history', HistoryController::class)->name('history');
+        // Route::get('/favorites', FavoritesController::class)->name('favorites');
+        // Route::get('/watchlist', WatchlistController::class)->name('watchlist');
+    });
 
     // Videos
-    Route::name('videos.')->group(function () {
-        Route::get('/play/{video}', VideoViewController::class)->name('view');
+    Route::name('videos.')->prefix('videos')->group(function () {
+        Route::get('/{video}', VideoViewController::class)->name('view');
     });
 
     // Tags
-    Route::name('tags.')->group(function () {
-        Route::get('/tags/{tag}', TagViewController::class)->name('view');
+    Route::name('tags.')->prefix('tags')->group(function () {
+        Route::get('/{tag}', TagViewController::class)->name('view');
     });
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Feed\Http\Controllers;
+namespace App\Profile\Http\Controllers;
 
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Models\Video;
@@ -14,7 +14,7 @@ use Livewire\Attributes\Locked;
 use Livewire\Attributes\Session;
 
 #[Layout('components.layouts.simple')]
-class FeedIndexController extends Page
+class FeedController extends Page
 {
     use WithQueryBuilder;
 
@@ -41,25 +41,37 @@ class FeedIndexController extends Page
 
     public function fetch(): void
     {
-        $this->limit += 16;
+        $this->limit += 12;
 
-        if ($this->getLimit() >= 192) {
-            $this->limit = 16;
+        if ($this->getLimit() >= 72) {
+            $this->clear();
         }
     }
 
-    public function refresh(): void
+    public function clear(): void
     {
         app($this->getModelClass())::forgetRandomSeed('feed');
 
         unset($this->items);
 
+        $this->reset('limit');
+
         $this->dispatch('$refresh');
+    }
+
+    protected function getTitle(): string
+    {
+        return __('Feed');
+    }
+
+    protected function getDescription(): string
+    {
+        return __('Feed');
     }
 
     protected function getLimit(): int
     {
-        return Number::clamp($this->limit, min: 12, max: 120);
+        return Number::clamp($this->limit, min: 12, max: 72);
     }
 
     protected static function getModelClass(): ?string
