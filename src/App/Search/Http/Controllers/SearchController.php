@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Profile\Http\Controllers;
+namespace App\Search\Http\Controllers;
 
-use App\Livewire\Discover\Forms\QueryForm;
+use App\Livewire\Search\Forms\QueryForm;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -15,7 +15,7 @@ use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 
 #[Layout('components.layouts.app')]
-class DiscoverController extends Page
+class SearchController extends Page
 {
     use WithAuthentication;
     use WithPagination;
@@ -30,7 +30,7 @@ class DiscoverController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.discover.index');
+        return view('livewire.app.search.index');
     }
 
     public function updated(): void
@@ -59,12 +59,12 @@ class DiscoverController extends Page
 
     protected function getTitle(): string
     {
-        return __('Discover');
+        return __('Search');
     }
 
     protected function getDescription(): string
     {
-        return __('Discover');
+        return __('Search');
     }
 
     protected static function getModelClass(): ?string

@@ -1,5 +1,5 @@
 <div>
-    <x-app.discover.videos.search />
+    <x-app.search.filters />
 
     <x-app.layout.container class="flex flex-col py-6" fluid>
         @if ($form->query())

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Discover\Forms;
+namespace App\Livewire\Search\Forms;
 
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;

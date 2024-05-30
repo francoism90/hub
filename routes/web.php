@@ -1,8 +1,8 @@
 <?php
 
-use App\Profile\Http\Controllers\DiscoverController;
 use App\Profile\Http\Controllers\FeedController;
 use App\Profile\Http\Controllers\HistoryController;
+use App\Search\Http\Controllers\SearchController;
 use App\Tags\Http\Controllers\TagViewController;
 use App\Videos\Http\Controllers\VideoViewController;
 use Foxws\WireUse\Facades\WireUse;
@@ -14,7 +14,7 @@ WireUse::routes();
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', FeedController::class)->name('home');
-    Route::get('/discover', DiscoverController::class)->name('discover');
+    Route::get('/search', SearchController::class)->name('search');
 
     // Profile
     Route::name('profile.')->group(function () {

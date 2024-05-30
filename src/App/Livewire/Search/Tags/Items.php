@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Discover\Tags;
+namespace App\Livewire\Search\Tags;
 
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -17,7 +17,7 @@ class Items extends Component
 
     public function render(): View
     {
-        return view('livewire.app.tags.items');
+        return view('livewire.app.search.tags');
     }
 
     #[Computed(cache: true, key: 'taggables', seconds: 7200)]
