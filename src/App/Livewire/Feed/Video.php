@@ -23,11 +23,11 @@ class Video extends Component
     {
         return [
             Action::make('dashboard')
-                ->label(__('Refresh Feed'))
+                ->label(__('Refresh'))
                 ->icon('heroicon-o-arrow-path-rounded-square')
                 ->iconActive('heroicon-s-arrow-path-rounded-square')
                 ->componentAttributes([
-                    'wire:click.prevent' => '$parent.refresh()',
+                    'wire:click.prevent' => '$parent.clear()',
                 ]),
 
             Action::make('content')
