@@ -27,7 +27,7 @@ class Video extends Component
                 ->icon('heroicon-o-arrow-path-rounded-square')
                 ->iconActive('heroicon-s-arrow-path-rounded-square')
                 ->componentAttributes([
-                    'wire:click.prevent' => '$parent.clear()',
+                    'wire:click' => '$parent.clear()',
                 ]),
 
             Action::make('previews')
