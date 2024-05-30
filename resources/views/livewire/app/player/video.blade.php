@@ -71,8 +71,15 @@
             this.showOverlay();
 
             try {
+                // Load manifest
                 await this.player.attach(video);
                 await this.player.load(manifest, {{ $this->startsAt }});
+
+                // Set textTrack
+                if ($wire.captions) {
+                    await this.player.selectTextLanguage('en', 'subtitle')
+                    await this.player.setTextTrackVisibility(true)
+                }
             } catch (e) {
                 //
             }
@@ -148,9 +155,13 @@
             this.$refs.video.currentTime += 10;
         },
 
-        async setTextTrack(track) {
-            this.player.selectTextTrack(track)
-            this.player.setTextTrackVisibility(true)
+        async setTextTrack(track = 0) {
+            try {
+                await this.player.selectTextTrack(track)
+                await this.player.setTextTrackVisibility(true)
+            } catch {
+                //
+            }
         }
     }));
 </script>

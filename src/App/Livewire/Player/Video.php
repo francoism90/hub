@@ -7,12 +7,16 @@ use App\Livewire\Videos\Concerns\WithVideos;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class Video extends Component
 {
     use WithHistory;
     use WithVideos;
+
+    #[Session]
+    public bool $captions = true;
 
     public function render(): View
     {
