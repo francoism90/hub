@@ -18,7 +18,7 @@
         @endif
 
         @unless ($form->query())
-            <livewire:livewire.discover.tags.items />
+            <livewire:livewire.search.tags.items />
         @endunless
     </x-app.layout.container>
 </div>
