@@ -22,7 +22,7 @@ class Video extends Component
     protected function settings(): array
     {
         return [
-            Action::make('dashboard')
+            Action::make('refresh')
                 ->label(__('Refresh'))
                 ->icon('heroicon-o-arrow-path-rounded-square')
                 ->iconActive('heroicon-s-arrow-path-rounded-square')
@@ -30,7 +30,7 @@ class Video extends Component
                     'wire:click.prevent' => '$parent.clear()',
                 ]),
 
-            Action::make('content')
+            Action::make('previews')
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')
