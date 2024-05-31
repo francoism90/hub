@@ -27,6 +27,7 @@
         type="search"
         wire:model.live.debounce="tags.query"
         x-on:click="open = true"
+        x-on:click.outside="open = false"
         label="{{ __('Tags') }}"
         id="tags.query"
         autocomplete="off"
@@ -36,7 +37,6 @@
     <div
         x-cloak
         x-show="open"
-        x-on:click.outside="open = false"
         class="absolute z-50 top-20 inset-0"
     >
         @if ($items->isNotEmpty())
