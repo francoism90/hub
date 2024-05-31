@@ -7,14 +7,9 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
-    "files.exclude": {
-        "**/storage": true
-    },
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.experimental.classRegex": [
-        "class:(.*?)",
-    ],
+    "tailwindCSS.experimental.classRegex": ["class:(.*?)"],
     "tailwindCSS.includeLanguages": {
         "blade": "html",
         "blade.php": "html",
