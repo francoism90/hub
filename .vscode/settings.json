@@ -17,5 +17,8 @@
         "plaintext": "html",
         "vue": "html",
         "vue-html": "html"
+    },
+    "search.exclude": {
+        "**/storage/app": true
     }
 }
