@@ -32,6 +32,6 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
-        Route::get('{video}/manifest/{type}', ManifestController::class)->name('manifest');
+        Route::get('/{video}/manifest/{type}', ManifestController::class)->name('manifest');
     });
 });
