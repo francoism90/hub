@@ -36,7 +36,7 @@ class CreateVideoPreview
 
         $path = $temporaryDirectory->path('preview.mp4');
 
-        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration');
+        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration', 0);
 
         $clips = $this->getSegments($duration)
             ->map(function (float $item, int $key) use ($temporaryDirectory, $video) {
@@ -71,7 +71,7 @@ class CreateVideoPreview
             ->toMediaCollection('previews');
     }
 
-    protected function getSegments(float $duration, int $count = 14): Collection
+    protected function getSegments(float $duration = 0, int $count = 14): Collection
     {
         $items = collect(range(0, $duration, $duration / $count))
             ->map(fn (float $segment) => round($segment, 2))
