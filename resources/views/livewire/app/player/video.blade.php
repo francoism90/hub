@@ -5,6 +5,7 @@
     x-on:mousemove="showOverlay"
     x-on:touchmove="showOverlay"
     x-on:click="showOverlay"
+    class="relative h-screen w-screen"
 >
     <video
         x-ref="video"
