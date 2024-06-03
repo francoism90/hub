@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Http\Controllers;
+namespace App\Api\Authentication\Controllers;
 
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
@@ -12,7 +12,6 @@ class HomeController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('signed'),
             new Middleware('response_cache:600'),
         ];
     }

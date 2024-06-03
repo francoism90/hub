@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Http\Controllers;
+namespace App\Api\Media\Controllers;
 
 use Domain\Media\Models\Media;
 use Foundation\Http\Controllers\Controller;

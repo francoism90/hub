@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Http\Controllers;
+namespace App\Api\Videos\Controllers;
 
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;

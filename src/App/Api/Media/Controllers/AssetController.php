@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Http\Controllers;
+namespace App\Api\Media\Controllers;
 
 use Domain\Media\Models\Media;
 use Foundation\Http\Controllers\Controller;
@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class DownloadController extends Controller implements HasMiddleware
+class AssetController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
         return [
-            new Middleware('signed'),
+            new Middleware('auth:sanctum'),
             new Middleware('cache.headers:public;max_age=604800;etag'),
         ];
     }
 
     public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
     {
-        Gate::authorize('update', $media);
+        Gate::authorize('view', $media);
 
         return $media->toResponse($request);
     }

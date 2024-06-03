@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Http\Controllers;
+namespace App\Api\Videos\Controllers;
 
 use Domain\Videos\Actions\GetPreviewManifest;
 use Domain\Videos\Actions\GetStreamManifest;
