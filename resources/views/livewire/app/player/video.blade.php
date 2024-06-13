@@ -164,12 +164,11 @@
             clearTimeout(this.idle);
 
             this.overlay = true;
-            this.idle = setTimeout(() => (this.overlay = false), 4000);
+            this.idle = setTimeout(() => (this.overlay = false), 3500);
         },
 
         async forceOverlay() {
             clearTimeout(this.idle);
-
             this.overlay = true;
         },
 
@@ -178,10 +177,12 @@
         },
 
         async backward() {
+            if (! this.$refs.video) return
             this.$refs.video.currentTime -= 10;
         },
 
         async forward() {
+            if (! this.$refs.video) return
             this.$refs.video.currentTime += 10;
         },
 
