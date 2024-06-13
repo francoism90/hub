@@ -41,11 +41,35 @@
         buffered: 0.0,
 
         async init() {
+            if (this.player !== undefined)
+                return;
+
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
 
             // Create instance
             this.player = new window.shaka.Player();
+
+            // Configure player
+            this.player.configure({
+                streaming: {
+                    ignoreTextStreamFailures: true,
+                    segmentPrefetchLimit: 2,
+                    retryParameters: {
+                        baseDelay: 100,
+                    },
+                },
+                manifest: {
+                    retryParameters: {
+                        baseDelay: 100,
+                    },
+                },
+                drm: {
+                    retryParameters: {
+                        baseDelay: 100,
+                    },
+                },
+            });
 
             // Configure networking
             this.player
