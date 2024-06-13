@@ -3,7 +3,7 @@
 ])
 
 <article {{ $attributes
-    ->class('flex flex-col flex-nowrap h-80 max-h-80 w-full min-w-72 sm:max-w-md')
+    ->class('flex flex-col flex-nowrap h-80 max-h-80 w-full min-w-72 select-none sm:max-w-md')
     ->merge([
         'wire:key' => $item->getRouteKey(),
     ])
