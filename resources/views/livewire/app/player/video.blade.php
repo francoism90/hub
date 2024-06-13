@@ -91,10 +91,10 @@
 
             switch (event.type) {
                 case 'durationchange':
-                    this.duration = event.target.duration;
+                    this.duration = event.target.duration || 0.0;
                     break;
                 case 'progress':
-                    this.buffered = event.target.buffered;
+                    this.buffered = event.target.buffered || 0.0;
                     break;
                 case 'play':
                 case 'playing':
@@ -102,10 +102,13 @@
                     this.paused = this.$refs.video.paused;
                     break;
                 case 'timeupdate':
-                    this.currentTime = this.$refs.video.currentTime;
+                    const currentTime = this.$refs.video.currentTime;
 
-                    if (this.currentTime > 1)
-                        $wire.updateHistory(this.currentTime)
+                    if (currentTime > 0) {
+                        this.currentTime = currentTime;
+
+                        await $wire.updateHistory(currentTime);
+                    }
                     break;
                 default:
                     console.error('Unhandled event: ' + event.type);
@@ -135,7 +138,7 @@
             clearTimeout(this.idle);
 
             this.overlay = true;
-            this.idle = setTimeout(() => (this.overlay = false), 3500);
+            this.idle = setTimeout(() => (this.overlay = false), 4000);
         },
 
         async forceOverlay() {
