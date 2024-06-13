@@ -2,7 +2,7 @@
     'video',
 ])
 
-<div class="absolute inset-x-0 bottom-10 z-0">
+<div class="absolute inset-x-6 bottom-14 z-0">
     <div class="relative h-1.5 w-full bg-secondary-500/50">
         <progress
             x-model="bufferedPct(buffered, duration)"

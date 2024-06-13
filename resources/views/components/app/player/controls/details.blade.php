@@ -3,7 +3,7 @@
     'panel'
 ])
 
-<div class="absolute inset-x-0 bottom-16 z-20">
+<div class="absolute inset-x-6 bottom-20 z-10">
     <div class="flex flex-col flex-nowrap gap-y-1.5">
         <h1 class="line-clamp-2 flex h-24 items-end text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
             {{ $video->title }}
