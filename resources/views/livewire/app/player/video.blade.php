@@ -8,6 +8,7 @@
     class="relative h-screen w-screen"
 >
     <video
+        x-cloak
         x-ref="video"
         x-on:durationchange="handleEvent"
         x-on:play="handleEvent"
@@ -53,6 +54,7 @@
             // Configure player
             this.player.configure({
                 streaming: {
+                    autoLowLatencyMode: true,
                     ignoreTextStreamFailures: true,
                     segmentPrefetchLimit: 2,
                     retryParameters: {
@@ -74,7 +76,9 @@
             // Configure networking
             this.player
                 .getNetworkingEngine()
-                .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+                .registerRequestFilter(
+                    async (type, request) => (request.allowCrossSiteCredentials = true)
+                );
         },
 
         async destroy() {
@@ -88,9 +92,8 @@
         },
 
         async load(video, manifest) {
-            if (! this.player || ! manifest.length) {
+            if (! this.player || ! manifest.length)
                 return;
-            }
 
             this.showOverlay();
 
@@ -110,7 +113,8 @@
         },
 
         async handleEvent(event) {
-            if (!event.target || !this.$refs.video) return;
+            if (!event.target || !this.$refs.video)
+                return;
 
             switch (event.type) {
                 case 'durationchange':
@@ -129,12 +133,11 @@
 
                     if (currentTime > 0) {
                         this.currentTime = currentTime;
-
                         await $wire.updateHistory(currentTime);
                     }
                     break;
                 default:
-                    console.error('Unhandled event: ' + event.type);
+                    console.debug('Unhandled event: ' + event.type);
             }
         },
 
@@ -183,6 +186,9 @@
         },
 
         async setTextTrack(track = 0) {
+            if (! this.player || track < 0)
+                return;
+
             try {
                 await this.player.selectTextTrack(track)
                 await this.player.setTextTrackVisibility(true)

@@ -19,8 +19,8 @@
             x-show="currentTime >= 0 && duration >= 0"
             class="text-sm font-medium"
         >
-            <span x-text="timeFormat(currentTime)"></span> /
-            <span x-text="timeFormat(duration)"></span>
+            <span x-text="timeFormat(currentTime || 0)"></span> /
+            <span x-text="timeFormat(duration || 0)"></span>
         </div>
     </div>
 </div>

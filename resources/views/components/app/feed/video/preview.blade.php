@@ -17,10 +17,12 @@
         />
 
         <video
+            x-cloak
             x-ref="video"
+            x-show="$wire.$parent.preview"
+            x-transition
             x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"
-            x-show="$wire.$parent.preview"
             class="z-20 h-80 max-h-80 min-h-80 w-full object-fill"
             playsinline
             muted
@@ -36,6 +38,7 @@
 <script>
     Alpine.data('video', () => ({
         player: undefined,
+        show: false,
 
         async init() {
             if (this.player !== undefined)
@@ -81,20 +84,20 @@
         },
 
         async destroy() {
-            if (this.player === undefined)
-                return;
+            this.show = false;
 
             try {
-                await this.player.unload();
+                await this.player?.unload();
             } catch (e) {
                 //
             }
         },
 
         async load(video, manifest) {
-            if (! this.player || ! manifest.length) {
+            if (! this.player || ! manifest.length)
                 return;
-            }
+
+            this.show = true;
 
             try {
                 await this.player.attach(video);
