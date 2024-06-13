@@ -64,8 +64,7 @@
         },
 
         async load(video, manifest) {
-            if (!this.player) {
-                console.error('No player found');
+            if (! this.player || ! manifest.length) {
                 return;
             }
 
@@ -76,8 +75,8 @@
                 await this.player.attach(video);
                 await this.player.load(manifest, {{ $this->startsAt }});
 
-                // Set textTrack
-                if ($wire.captions) {
+                // Select tracks
+                if ($wire && $wire.captions) {
                     await this.player.selectTextLanguage('en', 'subtitle')
                     await this.player.setTextTrackVisibility(true)
                 }
