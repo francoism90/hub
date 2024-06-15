@@ -1,7 +1,7 @@
 [Unit]
 Description=Proxy container
 Requires=podman.socket
-After=podman.socket hub.service
+After=podman.socket
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
