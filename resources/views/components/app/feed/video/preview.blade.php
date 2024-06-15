@@ -36,13 +36,12 @@
 
 @script
 <script>
-    Alpine.data('video', () => ({
+    Alpine.data("video", () => ({
         player: undefined,
         show: false,
 
         async init() {
-            if (this.player !== undefined)
-                return;
+            if (this.player !== undefined) return;
 
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
@@ -80,7 +79,9 @@
             // Configure networking
             this.player
                 .getNetworkingEngine()
-                .registerRequestFilter(async (type, request) => (request.allowCrossSiteCredentials = true));
+                .registerRequestFilter(
+                    async (type, request) => (request.allowCrossSiteCredentials = true)
+                );
         },
 
         async destroy() {
@@ -94,8 +95,7 @@
         },
 
         async load(video, manifest) {
-            if (! this.player || ! manifest.length)
-                return;
+            if (!this.player || !manifest.length) return;
 
             this.show = true;
 

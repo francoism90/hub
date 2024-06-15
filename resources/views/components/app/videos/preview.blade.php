@@ -46,8 +46,7 @@
         show: false,
 
         async init() {
-            if (this.player !== undefined)
-                return;
+            if (this.player !== undefined) return;
 
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
@@ -101,8 +100,7 @@
         },
 
         async load(video, manifest) {
-            if (! this.player || ! manifest.length)
-                return;
+            if (!this.player || !manifest.length) return;
 
             this.show = true;
 

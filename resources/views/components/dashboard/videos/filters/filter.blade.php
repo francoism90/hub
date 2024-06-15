@@ -3,7 +3,7 @@
 ])
 
 <x-dashboard.videos.filters.dialog>
-    <div class="flex items-center w-full gap-3 text-sm">
+    <div class="flex w-full items-center gap-3 text-sm">
         <x-dashboard.forms.input
             type="search"
             wire:model.live.debounce="form.query"

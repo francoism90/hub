@@ -7,7 +7,7 @@
     href="{{ route('dashboard.tags.edit', $item) }}"
     class="block"
 >
-    <article class="flex h-12 max-h-12 gap-3 w-full">
+    <article class="flex h-12 max-h-12 w-full gap-3">
         <x-heroicon-s-tag class="bg-gradient-to-tl from-indigo-500 via-purple-500 to-primary-500 p-3" />
 
         <div class="flex flex-col w-full">
