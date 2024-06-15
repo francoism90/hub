@@ -5,6 +5,7 @@ After=podman.socket
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
+TimeoutStartSec=900
 Restart=always
 
 [Container]
@@ -17,7 +18,7 @@ SecurityLabelType=container_runtime_t
 Secret=tlscert,target=/etc/certs/cert.pem,mode=0600
 Secret=tlskey,target=/etc/certs/key.pem,mode=0600
 Environment=TRAEFIK_TZ=${TRAEFIK_TZ}
-Network=podman
+Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
 PublishPort=8080:8080

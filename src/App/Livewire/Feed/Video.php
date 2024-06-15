@@ -22,15 +22,15 @@ class Video extends Component
     protected function settings(): array
     {
         return [
-            Action::make('dashboard')
-                ->label(__('Refresh Feed'))
+            Action::make('refresh')
+                ->label(__('Refresh'))
                 ->icon('heroicon-o-arrow-path-rounded-square')
                 ->iconActive('heroicon-s-arrow-path-rounded-square')
                 ->componentAttributes([
-                    'wire:click.prevent' => '$parent.refresh()',
+                    'wire:click' => '$parent.clear()',
                 ]),
 
-            Action::make('content')
+            Action::make('previews')
                 ->label(__('Toggle Previews'))
                 ->icon('heroicon-o-eye')
                 ->iconActive('heroicon-s-eye')

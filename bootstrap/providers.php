@@ -6,8 +6,8 @@ return [
     */
 
     /*
-        * Application Service Providers...
-        */
+    * Application Service Providers...
+    */
     Foundation\Providers\AppServiceProvider::class,
     Foundation\Providers\AuthServiceProvider::class,
     Foundation\Providers\BroadcastServiceProvider::class,

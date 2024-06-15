@@ -8,7 +8,7 @@ class GetManifestUrl
 {
     public function execute(Video $video, string $type): string
     {
-        $route = trim(route('api.videos.manifest', compact('type', 'video'), false), '/');
+        $route = trim(route('api.videos.manifest', compact('video', 'type'), false), '/');
 
         return implode('/', [$this->getVodUrl(), $route, 'manifest.mpd']);
     }

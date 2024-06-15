@@ -22,7 +22,7 @@ class AppUpdate extends Command implements Isolatable
         throw_if(! $this->option('force') && ! $this->confirm('Are you sure to update the application?'));
 
         // Optimize app
-        $this->call('app:optimize');
+        $this->call('app:optimize', ['--force' => 'yes']);
 
         // Fetch assets
         $this->call('google-fonts:fetch');

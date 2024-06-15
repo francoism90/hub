@@ -3,7 +3,7 @@
     x-trap="dialog"
     x-on:click.outside="dialog = false"
     x-on:keyup.escape.window="dialog = false"
-    class="absolute bottom-16 right-0 z-40 bg-secondary-800/90 border border-secondary-500/25"
+    class="absolute bottom-20 right-6 z-40 bg-secondary-800/90 border border-secondary-500/25"
 >
     <div
         x-show="section === 0"

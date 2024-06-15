@@ -17,7 +17,6 @@ class GetPreviewManifest
 
         $sequences = array_merge(
             $this->getClips($model)->toArray(),
-            // $this->getCaptions($model)->toArray(), // TODO: add preview captions
         );
 
         return (new Manifest)

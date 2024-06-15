@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Edit;
 
+use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
@@ -41,16 +42,18 @@ class General extends Component
 
     public function save(): void
     {
-        $this->authorize('update', $this->video);
+        $this->authorize('update', $model = $this->video);
 
         $this->form->submit();
 
         app(UpdateVideoDetails::class)->execute(
-            model: $this->video,
+            model: $model,
             attributes: $this->form->validate(),
         );
 
         flash()->success(__('Video has been updated!'));
+
+        $this->redirectAction(VideoEditController::class, [$model], navigate: true);
     }
 
     public function fillName(): void

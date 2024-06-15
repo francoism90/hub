@@ -26,7 +26,7 @@ class QueryForm extends Form
     public function query(): string
     {
         return str($this->get('query', ''))
-            ->headline()
+            ->title()
             ->squish()
             ->value();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Tags\Edit;
 
+use App\Dashboard\Http\Controllers\TagEditController;
 use App\Livewire\Dashboard\Tags\Forms\GeneralForm;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
@@ -41,16 +42,18 @@ class General extends Component
 
     public function save(): void
     {
-        $this->authorize('update', $this->tag);
+        $this->authorize('update', $model = $this->tag);
 
         $this->form->submit();
 
         app(UpdateTagDetails::class)->execute(
-            model: $this->tag,
+            model: $model,
             attributes: $this->form->validate(),
         );
 
         flash()->success(__('Tag has been updated!'));
+
+        $this->redirectAction(TagEditController::class, [$model], navigate: true);
     }
 
     protected function fillForms(): void

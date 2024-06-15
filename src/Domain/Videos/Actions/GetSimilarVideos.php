@@ -21,7 +21,7 @@ class GetSimilarVideos
     public static function phrases(Video $model): LazyCollection
     {
         $query = str($model->name)
-            ->headline()
+            ->title()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array(mb_strtolower($word), ['and', 'a', 'or']))
             ->take(7)
