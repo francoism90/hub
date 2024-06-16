@@ -17,7 +17,7 @@
         <div
             x-cloak
             x-show="currentTime >= 0 && duration >= 0"
-            class="text-sm font-medium"
+            class="text-sm font-medium text-secondary-300"
         >
             <span x-text="timeFormat(currentTime || 0)"></span> /
             <span x-text="timeFormat(duration || 0)"></span>
