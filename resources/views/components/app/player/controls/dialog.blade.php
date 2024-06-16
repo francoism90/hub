@@ -1,6 +1,7 @@
 <div
+    x-cloak
     x-show="overlay && dialog"
-    x-trap="dialog"
+    x-trap.noscroll="dialog"
     x-on:click.outside="dialog = false"
     x-on:keyup.escape.window="dialog = false"
     class="absolute bottom-20 right-6 z-40 bg-secondary-800/90 border border-secondary-500/25"

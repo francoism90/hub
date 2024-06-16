@@ -14,14 +14,15 @@
         <x-wireuse::actions-icon class:icon="size-5" :$action />
 
         @if (! $action->getIcon())
-        <span class="text-xs font-medium text-secondary-200">{{ $action->getLabel() }}</span>
+            <span class="text-xs font-medium text-secondary-200">{{ $action->getLabel() }}</span>
         @endif
     </x-wireuse::actions-button>
 
     @teleport('body')
     <div
+        x-cloak
         x-show="open"
-        x-trap="open"
+        x-trap.noscroll="open"
         x-on:click.outside="open = false"
         x-on:keyup.escape.window="open = false"
         class="absolute inset-x-0 bottom-4 z-30 mx-auto w-full max-w-[28rem] px-3"
