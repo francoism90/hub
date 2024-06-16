@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col gap-y-7"
+    class="flex flex-col gap-y-6 py-3"
     wire:poll.keep-alive.2400s
 >
     @foreach ($this->items as $group => $tags)

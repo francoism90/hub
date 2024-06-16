@@ -4,7 +4,7 @@
         wire:model.live.debounce="form.query"
         placeholder="{{ __('Type something..') }}"
         id="form.query"
-        class:input="px-3 h-16 w-screen max-w-screen text-base bg-transparent border-0 focus:border-0 focus:ring-0"
+        class:input="px-0 h-16 w-screen max-w-screen text-base bg-transparent border-0 focus:border-0 focus:ring-0"
     >
     @if ($this->form->query())
         <x-slot:append>

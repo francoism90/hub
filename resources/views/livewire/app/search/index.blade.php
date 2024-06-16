@@ -1,7 +1,7 @@
-<div>
-    <x-app.search.filters />
+<div class="flex flex-col p-3">
+    <x-app.layout.container class="flex flex-col gap-y-6" fluid>
+        <x-app.search.filters />
 
-    <x-app.layout.container class="flex flex-col py-6" fluid>
         @if ($form->query())
             <main
                 class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
