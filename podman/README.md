@@ -24,7 +24,7 @@ Build the Docker images:
 
 ```bash
 cd hub/podman
-./build/make
+./make
 ```
 
 Copy the `systemd` directory to `~/.config/containers`, verify `~/.config/containers/systemd/hub.container` exists.
@@ -74,7 +74,7 @@ systemctl --user start hub.service
 Update the Docker images:
 
 ```bash
-./build/update
+./update
 ```
 
 Restart services:
