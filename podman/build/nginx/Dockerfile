@@ -83,7 +83,7 @@ RUN cd /usr/local/src \
 
 RUN apk del .build-deps
 
-COPY runtimes/. /etc/nginx
+COPY --chown=$UID:$GID runtimes/. /etc/nginx
 
 STOPSIGNAL SIGQUIT
 
