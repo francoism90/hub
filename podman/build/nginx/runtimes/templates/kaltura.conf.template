@@ -29,8 +29,8 @@ server {
     vod_max_mapping_response_size 4k;
 
     # vod path
-    vod_base_url "https://hub.lan/vod";
-    vod_segments_base_url "https://hub.lan/vod";
+    vod_base_url ${NGINX_VOD_URL};
+    vod_segments_base_url ${NGINX_VOD_URL};
 
     # vod caches
     vod_mapping_cache mapping_cache 512m 60m;
@@ -47,7 +47,7 @@ server {
         internal;
         proxy_pass http://app/api/v1/videos/subscription;
         proxy_pass_request_body off;
-        proxy_set_header Host hub.lan;
+        proxy_set_header Host ${NGINX_HOST};
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $request_uri;
         include /etc/nginx/config/proxy.conf;
@@ -57,7 +57,7 @@ server {
     location ~ /json/[^/]+/(.*) {
         internal;
         proxy_pass http://app/$1;
-        proxy_set_header Host hub.lan;
+        proxy_set_header Host ${NGINX_HOST};
         include /etc/nginx/config/proxy.conf;
     }
 

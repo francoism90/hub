@@ -9,11 +9,11 @@ upstream vod {
 }
 
 server {
-    listen 8080;
-    listen [::]:8080;
+    listen ${NGINX_PORT};
+    listen [::]:${NGINX_PORT};
     http2 on;
 
-    server_name hub.lan;
+    server_name ${NGINX_HOST};
     set $base /app;
     root $base/public;
 
@@ -40,7 +40,7 @@ server {
 
     # assets, media
     location ~ ^/(build/assets|storage)/ {
-        expires 30d;
+        expires 7d;
         add_header Cache-Control public;
         break;
     }
@@ -59,11 +59,11 @@ server {
 
 # WebSocket
 server {
-    listen 8080;
-    listen [::]:8080;
+    listen ${NGINX_PORT};
+    listen [::]:${NGINX_PORT};
     http2 on;
 
-    server_name ws.hub.lan;
+    server_name ws.${NGINX_HOST};
 
     # root
     location / {
