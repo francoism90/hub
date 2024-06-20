@@ -32,7 +32,7 @@ class AppUpdate extends Command implements Isolatable
         $this->call('google-fonts:fetch');
 
         // Run migrations
-        $this->call('migrate', ['--seed']);
+        $this->call('migrate', ['--seed', '--force' => 'yes']);
 
         // Sync indexes
         $this->call('scout:sync');
