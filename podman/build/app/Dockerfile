@@ -88,8 +88,8 @@ RUN setcap "cap_net_bind_service=+ep" $(which php) \
 
 RUN apk del .build-deps
 
-COPY runtimes/supervisord.conf /etc/supervisord.conf
-COPY runtimes/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY --chown=$UID:$GID runtimes/supervisord.conf /etc/supervisord.conf
+COPY --chown=$UID:$GID runtimes/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /app
 
