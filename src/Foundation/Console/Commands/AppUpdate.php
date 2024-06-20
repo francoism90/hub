@@ -21,6 +21,10 @@ class AppUpdate extends Command implements Isolatable
     {
         throw_if(! $this->option('force') && ! $this->confirm('Are you sure to update the application?'));
 
+        // Clear caches
+        $this->call('cache:clear');
+        $this->call('optimize:clear');
+
         // Optimize app
         $this->call('app:optimize', ['--force' => 'yes']);
 
