@@ -19,6 +19,10 @@ export default {
         primary: colors.pink,
         secondary: colors.gray,
       },
+      container: {
+        center: true,
+        padding: '2rem',
+      },
     },
   },
 };

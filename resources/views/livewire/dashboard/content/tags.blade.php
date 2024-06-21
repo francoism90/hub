@@ -1,4 +1,4 @@
-<x-app.layout.container class="flex flex-col py-6 gap-y-6" fluid>
+<x-wireuse::layout.container class="flex flex-col py-6 gap-y-6" fluid>
     <x-dashboard.videos.filters :$actions />
 
     <main
@@ -13,4 +13,4 @@
     </main>
 
     {{ $this->items->links() }}
-</x-app.layout.container>
+</x-wireuse::layout.container>

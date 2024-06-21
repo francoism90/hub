@@ -1,5 +1,5 @@
 <div class="flex flex-col p-3">
-    <x-app.layout.container class="flex flex-col gap-y-6" fluid>
+    <x-wireuse::layout.container class="flex flex-col gap-y-6" fluid>
         <div class="py-3 bg-transparent border-b border-secondary-800/80">
             <h1 class="text-2xl font-semibold text-secondary">
                 {{ $tag->name }}
@@ -39,5 +39,5 @@
 
             {{ $this->items->links() }}
         </div>
-    </x-app.layout.container>
+    </x-wireuse::layout.container>
 </div>

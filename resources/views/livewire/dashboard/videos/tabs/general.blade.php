@@ -1,5 +1,5 @@
 <form wire:submit="save">
-    <x-app.layout.container class="flex max-w-2xl flex-col gap-y-6 py-6" fluid>
+    <x-wireuse::layout.container class="flex max-w-2xl flex-col gap-y-6 py-6" fluid>
         <x-dashboard.forms.messages />
 
         <x-dashboard.forms.input
@@ -12,7 +12,7 @@
             </x-slot:append>
         </x-dashboard.forms.input>
 
-        <x-app.layout.join>
+        <x-wireuse::layout.join>
             <x-dashboard.forms.input
                 wire:model.blur="form.episode"
                 label="{{ __('Episode') }}"
@@ -36,7 +36,7 @@
                 label="{{ __('Released At') }}"
                 placeholder="{{ __('2024-12-01') }}"
             />
-        </x-app.layout.join>
+        </x-wireuse::layout.join>
 
         <x-dashboard.forms.tags
             wire:model.blur="form.tags"
@@ -52,7 +52,7 @@
                 <x-wireuse::actions-button :action="$snapshot" />
             </x-slot:append>
         </x-dashboard.forms.input>
-    </x-app.layout.container>
+    </x-wireuse::layout.container>
 
     <x-dashboard.forms.actions :$actions />
 </form>

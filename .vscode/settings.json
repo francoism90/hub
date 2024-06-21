@@ -3,7 +3,7 @@
         "comments": "on",
         "strings": "on"
     },
-    "eslint.experimental.useFlatConfig": true,
+    "eslint.useFlatConfig": true,
     "files.associations": {
         "*.css": "tailwindcss"
     },
