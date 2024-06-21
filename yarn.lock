@@ -1971,9 +1971,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.796:
-  version "1.4.807"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.807.tgz#4d6c5ea1516f0164ac5bfd487ccd4ee9507c8f01"
-  integrity sha512-kSmJl2ZwhNf/bcIuCH/imtNOKlpkLDn2jqT5FJ+/0CXjhnFaOa9cOe9gHKKy71eM49izwuQjZhKk+lWQ1JxB7A==
+  version "1.4.808"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.808.tgz#85b2f93a5e32c2949a1a4d39375851945c936835"
+  integrity sha512-0ItWyhPYnww2VOuCGF4s1LTfbrdAV2ajy/TN+ZTuhR23AHI6rWHCrBXJ/uxoXOvRRqw8qjYVrG81HFI7x/2wdQ==
 
 eme-encryption-scheme-polyfill@^2.1.5:
   version "2.1.5"
@@ -3619,10 +3619,10 @@ set-function-name@^2.0.1, set-function-name@^2.0.2:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.2"
 
-shaka-player@^4.9.8:
-  version "4.9.8"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.9.8.tgz#30906c4b47df8670c57fe7832924c905a3d0c07c"
-  integrity sha512-DFuiJfz5Mvd7vp13uWBXLevYO3fREekoQJjP+Q/5XeWZ0vaxs+XUj+RJNFvAufhShBfSEktnXm3NBMYIdjh24A==
+shaka-player@^4.9.9:
+  version "4.9.9"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.9.9.tgz#e63ef1ea22d7d712d281fbfad0d3854c3e8042e5"
+  integrity sha512-oZC3U5etSIOoKybU30PgiJ2/wXNa4zXRZyyftjsd52TZRKZeJiJA3mrb7IPoCabpYREysLGWFpfMpo3buAYX+g==
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.5"
 

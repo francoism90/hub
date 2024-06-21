@@ -11,8 +11,7 @@ class ListVideos
 {
     public function __construct(
         protected readonly QueryForm $form,
-    ) {
-    }
+    ) {}
 
     public function __invoke(Builder $query): void
     {
