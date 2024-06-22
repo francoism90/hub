@@ -29,11 +29,11 @@ class Footer extends Component
                 ->iconActive('heroicon-s-magnifying-glass')
                 ->route('search'),
 
-            Action::make('collections')
-                ->label(__('Collections'))
+            Action::make('playlists')
+                ->label(__('Playlists'))
                 ->icon('heroicon-o-bookmark')
                 ->iconActive('heroicon-s-bookmark')
-                ->route('dashboard.content.index'),
+                ->route('playlists.index'),
 
             Action::make('activity')
                 ->label(__('Activity'))

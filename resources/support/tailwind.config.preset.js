@@ -11,7 +11,7 @@ export default {
             fontVariationSettings: '"opsz" 32',
           },
         ],
-        serif: ["Montserrat", "ui-serif", "serif"],
+        serif: ['Jost, ui-sans-serif, system-ui, sans-serif'],
         mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
       },
       colors: {
