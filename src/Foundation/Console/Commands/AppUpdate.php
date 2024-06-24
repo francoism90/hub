@@ -25,14 +25,14 @@ class AppUpdate extends Command implements Isolatable
         $this->call('cache:clear');
         $this->call('optimize:clear');
 
+        // Run migrations
+        $this->call('migrate', ['--seed', '--force' => 'yes']);
+
         // Optimize app
         $this->call('app:optimize', ['--force' => 'yes']);
 
         // Fetch assets
         $this->call('google-fonts:fetch');
-
-        // Run migrations
-        $this->call('migrate', ['--seed', '--force' => 'yes']);
 
         // Sync indexes
         $this->call('scout:sync');
