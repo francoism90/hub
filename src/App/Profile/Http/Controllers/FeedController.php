@@ -43,7 +43,7 @@ class FeedController extends Page
     {
         $this->limit += 12;
 
-        if ($this->getLimit() >= 72) {
+        if ($this->getLimit() >= 192) {
             $this->clear();
         }
     }
@@ -71,7 +71,7 @@ class FeedController extends Page
 
     protected function getLimit(): int
     {
-        return Number::clamp($this->limit, min: 12, max: 72);
+        return Number::clamp($this->limit, min: 12, max: 192);
     }
 
     protected static function getModelClass(): ?string
