@@ -80,7 +80,7 @@ class FeedController extends Page
         return $this->getQuery()
             ->with(['media', 'tags'])
             ->recommended()
-            ->paginate(perPage: 12, page: $page);
+            ->paginate(perPage: 16, page: $page);
     }
 
     protected function mergeItems(array $models = []): void
