@@ -3,8 +3,8 @@
 namespace Foundation\Providers;
 
 use Domain\Users\Models\User;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Pulse\Facades\Pulse;
 
 class PulseServiceProvider extends ServiceProvider
