@@ -26,7 +26,7 @@ class VideoQueryBuilder extends Builder
     {
         return $this
             ->published()
-            ->randomSeed(key: 'random', ttl: now()->addMinutes($ttl));
+            ->randomSeed(key: 'videos', ttl: now()->addMinutes($ttl));
     }
 
     public function similar(Video $model): self
