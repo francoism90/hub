@@ -92,7 +92,7 @@ class FeedController extends Page
     {
         $page ??= $this->getPage() ?? 1;
 
-        return Number::clamp($page, 1, 24);
+        return Number::clamp($page, 1, 32);
     }
 
     protected static function getModelClass(): ?string
