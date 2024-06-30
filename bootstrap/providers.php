@@ -14,8 +14,8 @@ return [
     Foundation\Providers\EventServiceProvider::class,
     Foundation\Providers\HorizonServiceProvider::class,
     Foundation\Providers\LivewireServiceProvider::class,
+    Foundation\Providers\PulseServiceProvider::class,
     Foundation\Providers\RouteServiceProvider::class,
     Foundation\Providers\SanctumServiceProvider::class,
-    Foundation\Providers\TelescopeServiceProvider::class,
     Foundation\Providers\ViewServiceProvider::class,
 ];

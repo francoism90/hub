@@ -33,8 +33,5 @@ class AppUpdate extends Command implements Isolatable
 
         // Optimize app
         $this->call('app:optimize', ['--force' => 'yes']);
-
-        // Sync indexes
-        $this->call('scout:sync');
     }
 }
