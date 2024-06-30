@@ -63,7 +63,7 @@ class GetSimilarVideos
                 ...$relatables,
             ])
             ->whereKeyNot($model)
-            ->randomSeed(key: 'tagged', ttl: now()->addMinutes(20))
+            ->randomSeed(key: 'tagged', ttl: 900)
             ->take(12)
             ->cursor();
     }

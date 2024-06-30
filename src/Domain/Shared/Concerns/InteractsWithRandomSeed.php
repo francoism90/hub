@@ -3,18 +3,17 @@
 namespace Domain\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
 
 trait InteractsWithRandomSeed
 {
-    public function scopeRandomSeed(Builder $query, string $key, Carbon|int $ttl = 300): Builder
+    public function scopeRandomSeed(Builder $query, string $key, int $ttl = 300): Builder
     {
         return $query
             ->reorder()
             ->inRandomOrder(static::getRandomSeed($key, $ttl));
     }
 
-    protected static function getRandomSeed(string $key, Carbon|int $ttl = 300): mixed
+    protected static function getRandomSeed(string $key, int $ttl = 300): mixed
     {
         return cache()->remember(
             static::getRandomSeedKey($key),
