@@ -36,7 +36,7 @@ class ListVideos
         return Video::query()
             ->when($this->form->filled('untagged'), fn (Eloquent $query) => $query->whereDoesntHave('tags'))
             ->random()
-            ->take(12 * 10)
+            ->take(12 * 12)
             ->get()
             ->modelKeys();
     }
