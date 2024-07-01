@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TagQueryBuilder extends Builder
 {
-    public function recommended(int $ttl = 600): self
+    public function recommended(int $ttl = 60): self
     {
         return $this
-            ->randomSeed(key: 'tags', ttl: $ttl);
+            ->randomSeed(key: 'tags', ttl: now()->addMinutes($ttl));
     }
 
     public function type(TagType|string $value): self

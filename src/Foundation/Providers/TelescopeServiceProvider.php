@@ -2,25 +2,20 @@
 
 namespace Foundation\Providers;
 
+use Domain\Users\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 {
-    public function boot(): void
-    {
-        parent::boot();
-    }
-
     public function register(): void
     {
         parent::register();
 
-        if ($this->app->runningInConsole()) {
-            config(['telescope.enabled' => false]);
-        }
+        Telescope::night();
 
         $this->hideSensitiveRequestDetails();
 
@@ -39,15 +34,8 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
     protected function hideSensitiveRequestDetails(): void
     {
-        if ($this->app->environment('local')) {
-            return;
-        }
-
         Telescope::hideRequestParameters([
             '_token',
-            'password_hash_web',
-            'search',
-            'queries',
         ]);
 
         Telescope::hideRequestHeaders([
@@ -60,8 +48,13 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
     protected function authorization(): void
     {
-        Telescope::auth(
-            fn (Request $request) => $request->user()->hasRole('super-admin')
-        );
+        $this->gate();
+
+        Telescope::auth(fn (Request $request) => Gate::check('viewTelescope', [$request->user()]));
+    }
+
+    protected function gate(): void
+    {
+        Gate::define('viewTelescope', fn (User $user) => $user->hasRole('super-admin'));
     }
 }

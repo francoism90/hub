@@ -2,21 +2,23 @@
 
 namespace Foundation\Providers;
 
+use Domain\Users\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\Horizon;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
 
 class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
-    public function boot(): void
-    {
-        parent::boot();
-    }
-
     protected function authorization(): void
     {
-        Horizon::auth(
-            fn (Request $request) => $request->user()->hasRole('super-admin')
-        );
+        $this->gate();
+
+        Horizon::auth(fn (Request $request) => Gate::check('viewHorizon', [$request->user()]));
+    }
+
+    protected function gate(): void
+    {
+        Gate::define('viewHorizon', fn (User $user) => $user->hasRole('super-admin'));
     }
 }
