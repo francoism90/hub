@@ -16,7 +16,7 @@
         "autoprefixer": "^10.4.19",
         "axios": "^1.7.2",
         "eslint": "^9.6",
-        "globals": "^15.6.0",
+        "globals": "^15.7.0",
         "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0.4",
         "postcss": "^8.4.38",
