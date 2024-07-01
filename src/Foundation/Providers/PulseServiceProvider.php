@@ -11,23 +11,17 @@ class PulseServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->configureAuthentication();
-        $this->configureUsers();
-    }
+        $this->authorization();
 
-    protected function configureAuthentication(): void
-    {
-        Gate::define('viewPulse', function (User $user) {
-            return $user->hasRole('super-admin');
-        });
-    }
-
-    protected function configureUsers(): void
-    {
         Pulse::user(fn (User $user) => [
             'name' => $user->name,
             'extra' => $user->email,
             'avatar' => $user->avatar,
         ]);
+    }
+
+    protected function authorization(): void
+    {
+        Gate::define('viewPulse', fn (User $user) => $user->hasRole('super-admin'));
     }
 }
