@@ -20,7 +20,7 @@
         "laravel/reverb": "@beta",
         "laravel/sanctum": "^4.0.2",
         "laravel/scout": "^10.10.0",
-        "laravel/telescope": "^5.1",
+        "laravel/telescope": "^5.1.1",
         "laravel/tinker": "^2.9.0",
         "livewire/livewire": "^3.5.1",
         "meilisearch/meilisearch-php": "^1.8.0",
