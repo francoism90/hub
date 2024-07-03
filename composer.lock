@@ -2797,16 +2797,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.13.0",
+            "version": "v11.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "92deaa4f037ff100e36809443811301819a8cf84"
+                "reference": "657e8464e13147d56bc3a399115c8c26f38d4821"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/92deaa4f037ff100e36809443811301819a8cf84",
-                "reference": "92deaa4f037ff100e36809443811301819a8cf84",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/657e8464e13147d56bc3a399115c8c26f38d4821",
+                "reference": "657e8464e13147d56bc3a399115c8c26f38d4821",
                 "shasum": ""
             },
             "require": {
@@ -2859,6 +2859,7 @@
             },
             "provide": {
                 "psr/container-implementation": "1.1|2.0",
+                "psr/log-implementation": "1.0|2.0|3.0",
                 "psr/simple-cache-implementation": "1.0|2.0|3.0"
             },
             "replace": {
@@ -2998,7 +2999,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-06-27T09:04:50+00:00"
+            "time": "2024-07-02T17:23:58+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -7387,16 +7388,16 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "7.14.0",
+            "version": "7.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "defd9f18f89d575f95924b6dd7019689fa40678d"
+                "reference": "17dca9472ed115e270190ce2a21874673a99280c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/defd9f18f89d575f95924b6dd7019689fa40678d",
-                "reference": "defd9f18f89d575f95924b6dd7019689fa40678d",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/17dca9472ed115e270190ce2a21874673a99280c",
+                "reference": "17dca9472ed115e270190ce2a21874673a99280c",
                 "shasum": ""
             },
             "require": {
@@ -7454,7 +7455,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.14.0"
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.14.1"
             },
             "funding": [
                 {
@@ -7462,7 +7463,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-08T11:51:32+00:00"
+            "time": "2024-07-02T13:39:03+00:00"
         },
         {
             "name": "spatie/laravel-db-snapshots",
