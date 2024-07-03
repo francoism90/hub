@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard\Videos\Edit;
 
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -14,7 +14,7 @@ use Livewire\Component;
 class Similar extends Component
 {
     use WithQueryBuilder;
-    use WithVideos;
+    use WithVideo;
 
     public function render(): View
     {

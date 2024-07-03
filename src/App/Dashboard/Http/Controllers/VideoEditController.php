@@ -4,7 +4,7 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Videos\Edit\General;
 use App\Livewire\Dashboard\Videos\Edit\Similar;
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
@@ -16,7 +16,7 @@ use Livewire\Attributes\Url;
 class VideoEditController extends Page
 {
     use WithTabs;
-    use WithVideos;
+    use WithVideo;
 
     #[Url(as: 'tab', except: 'general', history: true)]
     public string $tab = 'general';

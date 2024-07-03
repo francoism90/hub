@@ -3,7 +3,7 @@
 namespace App\Videos\Http\Controllers;
 
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -12,7 +12,7 @@ use Livewire\Attributes\Layout;
 class VideoViewController extends Page
 {
     use WithHistory;
-    use WithVideos;
+    use WithVideo;
 
     public function render(): View
     {

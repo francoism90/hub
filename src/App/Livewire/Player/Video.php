@@ -3,7 +3,7 @@
 namespace App\Livewire\Player;
 
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -13,7 +13,7 @@ use Livewire\Component;
 class Video extends Component
 {
     use WithHistory;
-    use WithVideos;
+    use WithVideo;
 
     #[Session]
     public bool $captions = true;

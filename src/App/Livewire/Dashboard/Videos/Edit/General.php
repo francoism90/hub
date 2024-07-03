@@ -6,7 +6,7 @@ use App\Dashboard\Http\Controllers\VideoEditController;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Dashboard\Videos\Forms\GeneralForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Videos\Concerns\WithVideos;
+use App\Livewire\Videos\Concerns\WithVideo;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
@@ -15,7 +15,7 @@ use Livewire\Component;
 class General extends Component
 {
     use WithHistory;
-    use WithVideos;
+    use WithVideo;
 
     public GeneralForm $form;
 
@@ -30,8 +30,8 @@ class General extends Component
     {
         return view('livewire.dashboard.videos.tabs.general')->with([
             'actions' => $this->actions(),
-            'titleize' => $this->titleize(),
             'snapshot' => $this->snapshot(),
+            'titleize' => $this->titleize(),
         ]);
     }
 

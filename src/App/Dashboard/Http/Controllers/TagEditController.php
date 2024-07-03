@@ -4,7 +4,7 @@ namespace App\Dashboard\Http\Controllers;
 
 use App\Livewire\Dashboard\Tags\Edit\General;
 use App\Livewire\Dashboard\Tags\Edit\Related;
-use App\Livewire\Tags\Concerns\WithTags;
+use App\Livewire\Tags\Concerns\WithTag;
 use Foxws\WireUse\Actions\Support\Action;
 use Foxws\WireUse\Navigation\Concerns\WithTabs;
 use Foxws\WireUse\Views\Support\Page;
@@ -16,7 +16,7 @@ use Livewire\Attributes\Url;
 class TagEditController extends Page
 {
     use WithTabs;
-    use WithTags;
+    use WithTag;
 
     #[Url(as: 'tab', except: 'general', history: true)]
     public string $tab = 'general';

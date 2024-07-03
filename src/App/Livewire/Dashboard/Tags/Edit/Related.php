@@ -4,7 +4,7 @@ namespace App\Livewire\Dashboard\Tags\Edit;
 
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Tags\Concerns\WithTags;
+use App\Livewire\Tags\Concerns\WithTag;
 use Domain\Tags\Actions\UpdateTagDetails;
 use Domain\Tags\Enums\TagType;
 use Foxws\WireUse\Actions\Support\Action;
@@ -14,7 +14,7 @@ use Livewire\Component;
 class Related extends Component
 {
     use WithHistory;
-    use WithTags;
+    use WithTag;
 
     public TagsForm $tags;
 

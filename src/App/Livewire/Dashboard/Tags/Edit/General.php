@@ -6,7 +6,7 @@ use App\Dashboard\Http\Controllers\TagEditController;
 use App\Livewire\Dashboard\Tags\Forms\GeneralForm;
 use App\Livewire\Dashboard\Tags\Forms\TagsForm;
 use App\Livewire\Playlists\Concerns\WithHistory;
-use App\Livewire\Tags\Concerns\WithTags;
+use App\Livewire\Tags\Concerns\WithTag;
 use Domain\Tags\Actions\UpdateTagDetails;
 use Domain\Tags\Enums\TagType;
 use Foxws\WireUse\Actions\Support\Action;
@@ -16,7 +16,7 @@ use Livewire\Component;
 class General extends Component
 {
     use WithHistory;
-    use WithTags;
+    use WithTag;
 
     public GeneralForm $form;
 

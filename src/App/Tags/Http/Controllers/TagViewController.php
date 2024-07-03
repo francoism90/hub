@@ -2,7 +2,7 @@
 
 namespace App\Tags\Http\Controllers;
 
-use App\Livewire\Tags\Concerns\WithTags;
+use App\Livewire\Tags\Concerns\WithTag;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -18,7 +18,7 @@ class TagViewController extends Page
 {
     use WithPagination;
     use WithQueryBuilder;
-    use WithTags;
+    use WithTag;
 
     public function render(): View
     {
