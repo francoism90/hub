@@ -15,6 +15,7 @@ User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
 Volume=${APP_PATH}:/app:rw,z,U
+Volume=${APP_MEDIA_PATH}:/app/storage/app/media:rw,z,U
 Network=hub.network
 ExposeHostPort=9000
 PublishPort=5173:5173

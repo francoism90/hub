@@ -40,7 +40,7 @@ server {
     vod_performance_counters perf_counters;
 
     # vod security
-    vod_secret_key "ukr3or6tknb2m1lw-$vod_filepath";
+    vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
     # auth
     location = /auth {

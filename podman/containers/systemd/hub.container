@@ -12,6 +12,7 @@ Restart=always
 Image=localhost/hub-nginx
 AutoUpdate=local
 Volume=${APP_PATH}:/app:ro,z
+Volume=${APP_MEDIA_PATH}:/app/storage/app/media:ro,z
 EnvironmentFile=%h/.config/containers/systemd/hub/nginx.env
 User=${APP_UID}
 Group=${APP_GID}

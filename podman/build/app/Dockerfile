@@ -1,4 +1,4 @@
-FROM docker.io/php:8.3.8-fpm-alpine
+FROM docker.io/php:8.3.9-fpm-alpine
 
 ARG UID=1000
 ARG GID=$UID
@@ -13,36 +13,42 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     alpine-sdk
 
 RUN apk add --no-cache --virtual .run-deps \
+    ca-certificates \
+    curl \
     git \
+    gnupg \
+    gsm \
     brotli \
     ffmpeg \
-    tzdata \
+    lame \
+    libass \
     libcap \
-    curl \
-    unzip \
-    opencore-amr \
-    jpegoptim \
+    libogg \
+    libpng \
+    librsvg \
+    libtheora \
+    libva \
+    libvdpau \
+    libvorbis \
+    libvpx \
+    libwebp \
+    fdk-aac \
     mariadb-client \
     npm \
-    yarn \
+    numactl \
+    opencore-amr \
+    jpegoptim \
+    openjpeg \
     optipng \
     pngquant \
-    supervisor \
-    libass \
-    gsm \
-    lame \
     speex \
-    libtheora \
-    libogg \
-    libwebp \
-    libva \
-    libvpx \
+    sqlite \
+    supervisor \
+    tzdata \
+    unzip \
     xvidcore \
-    numactl \
-    libvdpau \
-    fdk-aac \
-    libvorbis \
-    openjpeg \
+    yarn \
+    zip \
     x264 \
     x265
 
@@ -57,6 +63,8 @@ RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
     && sed -i "s/memory_limit = .*/memory_limit = 512M/" "$PHP_INI_DIR/php.ini" \
     && sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" "$PHP_INI_DIR/php.ini" \
     && sed -i "s/post_max_size = .*/post_max_size = 100M/" "$PHP_INI_DIR/php.ini" \
+    && sed -i "s/variables_order = .*/variables_order = EGPCS/" "$PHP_INI_DIR/php.ini" \
+    && sed -i "s/pcov.directory = .*/pcov.directory = ./" "$PHP_INI_DIR/php.ini" \
     && sed -i "s/;date.timezone.*/date.timezone = UTC/" "$PHP_INI_DIR/php.ini" \
     && curl -sSLf \
     -o /usr/local/bin/install-php-extensions \
@@ -66,19 +74,26 @@ RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
 RUN install-php-extensions \
     @composer \
     bcmath \
+    bz2 \
+    calendar \
     event \
     exif \
+    ffi \
     gd \
     gettext \
     igbinary \
+    imap \
     intl \
+    ldap \
     msgpack \
     mysqli \
     opcache \
     pcntl \
+    pcov \
     pdo_mysql \
     redis \
     soap \
+    swoole \
     zip
 
 RUN npm install -g svgo
