@@ -1,10 +1,13 @@
 @props([
     'video',
+    'preview',
 ])
 
 <a wire:navigate href="{{ route('videos.view', $video) }}">
     <div
-        x-data="video"
+        x-data="video({{ $preview }})"
+        x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
+        x-intersect:leave.full="destroy"
         class="relative flex h-full w-full items-center justify-center"
     >
         <img
@@ -19,10 +22,8 @@
         <video
             x-cloak
             x-ref="video"
-            x-show="$wire.$parent?.preview || false"
-            x-transition
-            x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
-            x-intersect:leave.full="destroy"
+            x-show="ready"
+            x-transition.opacity.delay.200ms
             class="z-20 h-80 max-h-80 min-h-80 w-full object-fill"
             playsinline
             muted
@@ -36,13 +37,12 @@
 
 @script
 <script>
-    Alpine.data("video", () => ({
+    Alpine.data("video", (preview = false) => ({
+        ready: false,
         player: undefined,
-        show: false,
+        show: preview,
 
         async init() {
-            if (this.player !== undefined) return;
-
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
 
@@ -85,7 +85,7 @@
         },
 
         async destroy() {
-            this.show = false;
+            this.ready = false;
 
             try {
                 await this.player?.unload();
@@ -95,14 +95,15 @@
         },
 
         async load(video, manifest) {
-            if (!this.player || !manifest.length) return;
-
-            this.show = true;
+            if (! this.show)
+                return;
 
             try {
                 await this.player.attach(video);
                 await this.player.load(manifest);
             } catch (e) {}
+
+            this.ready = true;
         },
     }));
 </script>

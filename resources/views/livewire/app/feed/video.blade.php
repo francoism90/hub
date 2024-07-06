@@ -19,7 +19,7 @@
 
             <div class="absolute inset-0 z-10 mx-auto size-full bg-black/25 sm:bg-black sm:w-3/5 xl:max-w-2xl">
                 <div class="relative h-[calc(100vh-4rem)] w-full">
-                    <x-app.feed.video.preview :$video />
+                    <x-app.feed.video.preview :$video :$preview />
                     <x-app.feed.video.details :$video />
                     <x-app.feed.video.actions :$actions />
                 </div>

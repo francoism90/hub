@@ -6,7 +6,7 @@
         >
             @foreach ($this->items as $item)
                 @if ($item->getMorphClass() === 'video')
-                    <livewire:livewire.feed.video :video="$item" :key="$this->hash" />
+                    <livewire:livewire.feed.video :video="$item" :$preview :key="$this->hash" />
                 @endif
             @endforeach
 

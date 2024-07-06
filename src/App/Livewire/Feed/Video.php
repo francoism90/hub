@@ -5,11 +5,15 @@ namespace App\Livewire\Feed;
 use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class Video extends Component
 {
     use WithVideo;
+
+    #[Reactive]
+    public bool $preview = false;
 
     public function render(): View
     {
