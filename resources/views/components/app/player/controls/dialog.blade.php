@@ -12,7 +12,7 @@
     >
         <div
             class="py-1.5"
-            :class="{ 'text-primary-500': ! player.isTextTrackVisible() }"
+            :class="{ 'text-primary-500': ! player?.isTextTrackVisible() }"
             x-on:click="player.setTextTrackVisibility(false)"
         >
             {{ __('Disabled') }}

@@ -1,6 +1,5 @@
 @aware([
     'video',
-    'panel'
 ])
 
 <div class="absolute inset-x-6 bottom-24 z-10">

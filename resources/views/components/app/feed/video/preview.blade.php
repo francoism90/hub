@@ -19,7 +19,7 @@
         <video
             x-cloak
             x-ref="video"
-            x-show="$wire.$parent.preview"
+            x-show="$wire.$parent?.preview || false"
             x-transition
             x-intersect:enter.full="load($refs.video, '{{ $video->preview }}')"
             x-intersect:leave.full="destroy"

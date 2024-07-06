@@ -41,18 +41,18 @@
     </a>
 
     @if ($item->tags()->count())
-    <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
-        @foreach ($item->tags as $tag)
-        <a
-            wire:key="{{ $tag->id }}"
-            wire:navigate
-            href="{{ route('tags.view', $tag) }}"
-            class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-            aria-label="{{ $tag->name }}"
-        >
-            {{ $tag->name }}
-        </a>
-        @endforeach
-    </div>
+        <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
+            @foreach ($item->tags as $tag)
+            <a
+                wire:key="{{ $tag->id }}"
+                wire:navigate
+                href="{{ route('tags.view', $tag) }}"
+                class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
+                aria-label="{{ $tag->name }}"
+            >
+                {{ $tag->name }}
+            </a>
+            @endforeach
+        </div>
     @endif
 </article>

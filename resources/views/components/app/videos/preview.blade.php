@@ -9,8 +9,8 @@
     <div
         x-data="preview"
         x-on:mouseover="load($refs.video, '{{ $item->preview }}')"
-        x-on:mouseleave="destroy"
         x-on:touchstart.passive="load($refs.video, '{{ $item->preview }}')"
+        x-on:mouseleave="destroy"
         x-on:touchend.passive="destroy"
         class="relative h-48 max-h-48 min-h-48 bg-black"
     >

@@ -1,5 +1,4 @@
 @aware([
-    'video',
     'settings'
 ])
 
