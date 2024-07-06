@@ -46,8 +46,6 @@
         show: false,
 
         async init() {
-            if (this.player !== undefined) return;
-
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
 

@@ -1,4 +1,5 @@
 <div
+    wire:ignore
     x-data="play"
     x-intersect:enter.full="load($refs.video, '{{ $video->stream }}')"
     x-intersect:leave.full="destroy"
@@ -42,9 +43,6 @@
         buffered: 0.0,
 
         async init() {
-            if (this.player !== undefined)
-                return;
-
             // Install built-in polyfills
             window.shaka.polyfill.installAll();
 
