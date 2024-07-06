@@ -39,6 +39,10 @@ $app = Application::configure(basePath: $basePath)
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->dontReport([
+            NoPrefixedModelFound::class,
+        ]);
+
         $exceptions->render(fn (NoPrefixedModelFound $e) => abort(404));
     })
     ->withCommands([
