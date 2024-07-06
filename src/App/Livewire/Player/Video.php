@@ -7,9 +7,11 @@ use App\Livewire\Videos\Concerns\WithVideo;
 use Foxws\WireUse\Actions\Support\Action;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 
+#[Lazy]
 class Video extends Component
 {
     use WithHistory;
