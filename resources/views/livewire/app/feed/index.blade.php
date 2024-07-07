@@ -1,5 +1,5 @@
 <div>
-    @persist('scrollbar')
+    {{-- @persist('scrollbar')
         <div
             class="relative h-viewport overflow-y-scroll snap-y snap-mandatory"
             wire:scroll
@@ -12,7 +12,8 @@
 
             <div x-intersect.full="$wire.fetch()"></div>
         </div>
-    @endpersist
+    @endpersist --}}
+    {{ html()->div()->wireIgnore() }}
 
     <livewire:livewire.app.ui.footer />
 </div>
