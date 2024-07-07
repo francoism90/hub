@@ -9,8 +9,8 @@ export default {
   content: [
     "./resources/**/*.blade.php",
     "./src/**/*.php",
-    // "./vendor/foxws/wireuse/**/*.php",
-    // "./vendor/foxws/wireuse/**/*.blade.php",
+    "./vendor/foxws/wireuse/resources/**/*.blade.php",
+    "./vendor/foxws/wireuse/src/**/*.php",
   ],
   plugins: [forms, typography],
 };
