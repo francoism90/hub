@@ -2,7 +2,7 @@
     <x-wireuse::layout.container class="flex flex-col gap-y-6" fluid>
         <x-app.search.filters />
 
-        @if ($form->query())
+        @if ($form->query()->isNotEmpty())
             <main
                 class="grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                 wire:poll.visible.900s
@@ -15,10 +15,8 @@
             </main>
 
             {{ $this->items->links() }}
-        @endif
-
-        @unless ($form->query())
+        @else
             <livewire:livewire.search.tags.items />
-        @endunless
+        @endif
     </x-wireuse::layout.container>
 </div>

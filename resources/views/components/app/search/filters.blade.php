@@ -6,7 +6,7 @@
         id="form.query"
         class:input="px-0 h-16 w-screen max-w-screen text-base bg-transparent border-0 focus:border-0 focus:ring-0"
     >
-    @if ($this->form->query())
+    @if ($this->form->query()->isNotEmpty())
         <x-slot:append>
             <a
                 class="p-3"
