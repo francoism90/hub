@@ -3,6 +3,7 @@
 namespace App\Livewire\Search\Forms;
 
 use Foxws\WireUse\Forms\Support\Form;
+use Illuminate\Support\Stringable;
 use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
@@ -14,11 +15,10 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    public function query(): string
+    public function query(): ?Stringable
     {
         return str($this->get('query', ''))
             ->title()
-            ->squish()
-            ->value();
+            ->squish();
     }
 }

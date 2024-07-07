@@ -40,6 +40,16 @@ class SearchController extends Page
         $this->resetPage();
     }
 
+    #[Computed]
+    public function items(): Paginator
+    {
+        $search = $this->form->query();
+
+        return $this->getScout($search)
+            ->when($search->isEmpty(), fn (Builder $query) => $query->whereIn('id', [0]))
+            ->simplePaginate(4 * 12);
+    }
+
     public function clear(): void
     {
         $this->form->forget();
@@ -47,14 +57,11 @@ class SearchController extends Page
         $this->form->clear();
     }
 
-    #[Computed]
-    public function items(): Paginator
+    public function refresh(): void
     {
-        $value = $this->form->query();
+        unset($this->items);
 
-        return $this->getScout($value)
-            ->when(blank($value), fn (Builder $query) => $query->whereIn('id', [0]))
-            ->simplePaginate(12 * 3);
+        $this->dispatch('$refresh');
     }
 
     protected function getTitle(): string
@@ -77,8 +84,8 @@ class SearchController extends Page
         $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$id},.video.deleted" => '$refresh',
-            "echo-private:user.{$id},.video.updated" => '$refresh',
+            "echo-private:user.{$id},.video.deleted" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
         ];
     }
 }
