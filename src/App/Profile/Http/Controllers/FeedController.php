@@ -16,7 +16,7 @@ use Livewire\Attributes\Session;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-#[Layout('components.layouts.simple')]
+#[Layout('components.layouts.app')]
 class FeedController extends Page
 {
     use WithoutUrlPagination;

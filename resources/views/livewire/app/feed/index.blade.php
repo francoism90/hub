@@ -13,5 +13,4 @@
             <div x-intersect.full="$wire.fetch()"></div>
         </div>
     @endpersist --}}
-    <livewire:livewire.app.ui.footer />
 </div>

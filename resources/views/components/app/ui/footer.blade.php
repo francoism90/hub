@@ -1,5 +1,5 @@
 {{ html()->element('footer')->class('sticky bottom-0 z-30 h-16 max-h-16 w-full bg-secondary-950 border-t border-secondary-800/80')->children([
-    html()->element('nav')->class('*:flex-col *:p-1.5 *:gap-1.5 *:line-clamp *:text-xs *:font-medium container max-w-xl flex h-full justify-between gap-x-3 overflow-x-auto sm:gap-x-12')->children([
+    html()->element('nav')->class('*:flex-col *:gap-1 *:py-0.5 *:line-clamp *:text-sm *:font-medium container flex h-full max-w-xl justify-between gap-x-3 overflow-x-auto sm:gap-x-12')->children([
         html()->a()->route('home')->text('Home')->prependChildren([
             html()->icon()->svg(request()->routeIs('home') ? 'heroicon-s-square-2-stack' : 'heroicon-o-square-2-stack', 'text-white size-6'),
         ]),
