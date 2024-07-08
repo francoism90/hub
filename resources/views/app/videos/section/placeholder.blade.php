@@ -1,1 +1,1 @@
-{{ html()->div()->class('container h-72 min-h-72 bg-primary-500') }}
+{{ html()->div()->class('container h-80 min-h-80') }}

@@ -2,7 +2,7 @@
     'item',
 ])
 
-{{ html()->element('article')->class('flex flex-col gap-y-0.5')->wireKey($item->getRouteKey())->children([
+{{ html()->element('article')->class('flex flex-col gap-y-1')->wireKey($item->getRouteKey())->children([
     html()->a()->child(
         html()->img($item->thumbnail, $item->title)->class('shrink-0 w-80 h-40 rounded bg-black')
     ),
