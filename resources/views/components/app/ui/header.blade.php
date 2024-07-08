@@ -4,7 +4,7 @@
             html()->a()->route('home')->children([
                 html()->div()->class('flex flex-nowrap items-center text-primary-100 hover:text-primary-100 gap-x-3')->children([
                     html()->icon()->svg('heroicon-s-play-circle', 'size-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-0.5'),
-                    html()->span('Hub')->class('text-2xl font-light lowercase')
+                    html()->span(config('app.name'))->class('text-2xl font-light lowercase')
                 ])
             ])
         ),
@@ -15,7 +15,7 @@
             ),
 
             html()->a()->route('profile.history')->child(
-                html()->icon()->svg('heroicon-o-user', 'size-6'),
+                html()->icon()->svg('heroicon-o-bell', 'size-6 text-inherit'),
             ),
         ]),
     ])
