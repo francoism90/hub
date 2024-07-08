@@ -1,5 +1,5 @@
 <div class="flex flex-col p-3">
-    <x-wireuse::layout.container class="flex flex-col gap-y-6" fluid>
+    {{-- <x-wireuse::layout.container class="flex flex-col gap-y-6" fluid>
         <x-app.search.filters />
 
         @if ($form->query()->isNotEmpty())
@@ -18,5 +18,5 @@
         @else
             <livewire:livewire.search.tags.items />
         @endif
-    </x-wireuse::layout.container>
+    </x-wireuse::layout.container> --}}
 </div>

@@ -30,7 +30,7 @@ class SearchController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.search.index');
+        return view('app.search.index');
     }
 
     public function updated(): void

@@ -12,16 +12,16 @@
             html()->icon()->svg($isActive('search') ? 'heroicon-s-magnifying-glass' : 'heroicon-o-magnifying-glass', 'text-white size-6'),
         ]),
 
-        html()->a()->route('search')->text('Collections')->prependChildren([
-            html()->icon()->svg($isActive('search') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'text-white size-6'),
+        html()->a()->route('profile.history')->text('Collections')->prependChildren([
+            html()->icon()->svg($isActive('foo') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'text-white size-6'),
         ]),
 
-        html()->a()->route('search')->text('Me')->prependChildren([
-            html()->icon()->svg($isActive('search') ? 'heroicon-s-user' : 'heroicon-o-user', 'text-white size-6'),
+        html()->a()->route('profile.history')->text('Me')->prependChildren([
+            html()->icon()->svg($isActive('foo2') ? 'heroicon-s-user' : 'heroicon-o-user', 'text-white size-6'),
         ]),
 
-        html()->a()->route('search')->text('More')->prependChildren([
-            html()->icon()->svg($isActive('search') ? 'heroicon-s-ellipsis-horizontal' : 'heroicon-o-ellipsis-horizontal', 'text-white size-6'),
+        html()->a()->route('profile.history')->text('More')->prependChildren([
+            html()->icon()->svg($isActive('foo3') ? 'heroicon-s-ellipsis-horizontal' : 'heroicon-o-ellipsis-horizontal', 'text-white size-6'),
         ]),
     ])
 ]) }}

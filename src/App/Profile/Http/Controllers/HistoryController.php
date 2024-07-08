@@ -23,7 +23,7 @@ class HistoryController extends Page
 
     public function render(): View
     {
-        return view('livewire.app.feed.history');
+        return view('app.search.index');
     }
 
     #[Computed]
