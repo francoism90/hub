@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Videos\Concerns;
+namespace App\Web\Videos\Concerns;
 
 use Domain\Videos\Models\Video;
 

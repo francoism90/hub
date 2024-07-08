@@ -2,9 +2,9 @@
     {{ html()->element('h1')->text($title)->class('text-2xl') }}
 
     {{ html()->div()->class('relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto')->open() }}
-        @foreach ($this->items as $item)
+        @foreach ($this->items as $video)
             {{ html()->div()->class('snap-start scroll-mx-6 shrink-0')->open() }}
-                <x-app.videos.item :$item />
+                <livewire:app::videos-item :$video />
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->div()->close() }}
