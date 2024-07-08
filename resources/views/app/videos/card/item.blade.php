@@ -14,7 +14,6 @@
                     'x-transition',
                     'autoplay',
                     'muted',
-                    'loop',
                 ]),
 
             html()
@@ -25,6 +24,8 @@
                     'x-data' => '{ manifest: $el.dataset.manifest }',
                     'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
                     'x-on:mouseleave.outside' => 'unload()',
+                    'x-on:touchstart.passive' => 'load($refs.video, manifest)',
+                    'x-on:touchend.passive' => 'unload()',
                 ]),
         ]),
 
