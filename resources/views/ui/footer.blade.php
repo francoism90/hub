@@ -5,10 +5,12 @@
         //     html()->icon('heroicon-o-square-2-stack'),
         // ),
 
-        html()->a()->route('home')->text('Home'),
+        // html()->a()->route('home')->text('Home'),
 
         // html()->a()->href(route('home'))->text('Home'),
 
         // html()->a()->href(route('home'))->text('Home'),
+
+        html()->icon()->svg('heroicon-o-square-2-stack', 'text-white size-5'),
     ])
 ]) }}
