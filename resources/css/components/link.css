@@ -3,11 +3,11 @@
         @apply inline-flex shrink-0 cursor-pointer items-center justify-center focus:outline-none;
 
         &-primary {
-            @apply text-primary-500 hover:text-primary-300;
+            @apply text-primary-500 hover:text-primary-400;
         }
 
         &-active {
-            @apply text-primary-500 hover:text-primary-300;
+            @apply text-primary-500 hover:text-primary-400;
         }
     }
 }
