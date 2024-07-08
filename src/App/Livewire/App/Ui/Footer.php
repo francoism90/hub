@@ -17,12 +17,6 @@ class Footer extends Component
     protected function actions(): array
     {
         return [
-            Action::make('feed')
-                ->label(__('Feed'))
-                ->icon('heroicon-o-square-2-stack')
-                ->iconActive('heroicon-s-square-2-stack')
-                ->route('home'),
-
             Action::make('search')
                 ->label(__('Search'))
                 ->icon('heroicon-o-magnifying-glass')
