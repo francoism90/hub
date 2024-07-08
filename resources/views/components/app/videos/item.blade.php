@@ -2,57 +2,21 @@
     'item',
 ])
 
-<article {{ $attributes
-    ->class('flex flex-col flex-nowrap h-80 max-h-80 w-full min-w-72 select-none sm:max-w-md')
-    ->merge([
-        'wire:key' => $item->getRouteKey(),
-    ])
-}}>
-    <x-app.videos.preview />
+{{ html()->element('article')->class('flex flex-col gap-y-0.5')->wireKey($item->getRouteKey())->children([
+    html()->a()->child(
+        html()->img($item->thumbnail, $item->title)->class('shrink-0 w-80 h-40 rounded bg-black')
+    ),
 
-    <a class="block" href="{{ route('videos.view', $item) }}">
-        <h1 class="line-clamp-2 pt-4 text-sm font-medium leading-none tracking-tight">
-            {{ $item->title }}
-        </h1>
-
-        <dl class="dl pt-1 text-xs text-secondary-400">
-            <dt class="sr-only">{{ __('Time') }}</dt>
-            <dd class="text-ellipsis">
-                <time> {{ duration($item->duration) }} </time>
-            </dd>
-
-            @if ($item->identifier)
-            <dt class="sr-only">{{ __('ID') }}</dt>
-            <dd class="text-ellipsis">{{ $item->identifier }}</dd>
-            @endif
-
-            @if ($item->caption)
-            <dt class="sr-only">{{ __('Captions') }}</dt>
-            <dd class="text-ellipsis">{{ __('CC') }}</dd>
-            @endif
-
-            <dt class="sr-only">{{ __('Published on') }}</dt>
-            <dd class="text-ellipsis">
-                <time datetime="{{ $item->published->jsonSerialize() }}">
-                    {{ $item->published->format('M d, Y') }}
-                </time>
-            </dd>
-        </dl>
-    </a>
-
-    @if ($item->tags()->count())
-        <div class="line-clamp-1 flex flex-wrap gap-x-2 gap-y-1">
-            @foreach ($item->tags as $tag)
-            <a
-                wire:key="{{ $tag->id }}"
-                wire:navigate
-                href="{{ route('tags.view', $tag) }}"
-                class="text-xs font-medium uppercase tracking-tight text-primary-500 hover:text-primary-400"
-                aria-label="{{ $tag->name }}"
-            >
-                {{ $tag->name }}
-            </a>
-            @endforeach
-        </div>
-    @endif
-</article>
+    html()->p()->class('text-center')->children([
+        html()->a()->text($item->title)->class('text-sm'),
+        html()->element('dl')->class('dl dl-list justify-center text-xs text-secondary-100')
+            ->childrenIf($item->duration, [
+                html()->element('dt')->text('Duration')->class('sr-only'),
+                html()->element('dd')->text(duration($item->duration))
+            ])
+            ->childrenIf($item->identifier, [
+                html()->element('dt')->text('ID')->class('sr-only'),
+                html()->element('dd')->text($item->identifier)
+            ]),
+    ]),
+]) }}

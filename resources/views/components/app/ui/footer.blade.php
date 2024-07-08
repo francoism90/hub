@@ -8,19 +8,19 @@
             html()->icon()->svg($isActive('home') ? 'heroicon-s-home' : 'heroicon-s-home', 'size-6'),
         ),
 
-        html()->a()->route('profile.history')->text('Collections')->prependChild(
+        html()->a()->route('search')->text('Collections')->prependChild(
             html()->icon()->svg($isActive('foo') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
-        html()->a()->route('profile.history')->text('Library')->prependChild(
+        html()->a()->route('search')->text('Library')->prependChild(
             html()->icon()->svg($isActive('foo3') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->route('profile.history')->text('History')->prependChild(
+        html()->a()->route('search')->text('History')->prependChild(
             html()->icon()->svg($isActive('foo3') ? 'heroicon-s-clock' : 'heroicon-o-clock', 'size-6'),
         ),
 
-        html()->a()->route('profile.history')->text('Me')->prependChild(
+        html()->a()->route('search')->text('Me')->prependChild(
             html()->icon()->svg($isActive('foo2') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),
     ])

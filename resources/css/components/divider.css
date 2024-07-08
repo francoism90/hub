@@ -19,7 +19,7 @@
         &-list {
             dd:not(.sr-only) {
                 &::after {
-                    @apply px-1 content-['•'];
+                    @apply px-1 content-['-'];
                 }
             }
 
