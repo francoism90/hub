@@ -1,25 +1,29 @@
 {{ html()
     ->element('article')
-    ->attribute('x-data', '{ preview: false }')
     ->class('flex flex-col gap-y-1')
     ->wireKey($video->getRouteKey())
     ->children([
         html()->a()->navigate()->class('relative w-80 h-40 min-h-40 min-w-80')->children([
             html()
                 ->element('video')
-                ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill')
+                ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
-                    'x-show' => 'preview',
+                    'x-show' => 'show',
+                    'autoplay',
+                    'muted',
+                    'loop',
                 ]),
 
             html()
                 ->img($video->thumbnail, $video->title)
                 ->class('shrink-0 w-80 h-40 rounded bg-black')
+                ->data('manifest', $video->preview)
                 ->attributes([
-                    'x-on:mouseover' => 'preview = true',
-                    'x-on:mouseleave' => 'preview = false',
+                    'x-data' => '{ manifest: $el.dataset.manifest }',
+                    'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
+                    'x-on:mouseleave.outside' => 'unload()',
                 ]),
         ]),
 

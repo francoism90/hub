@@ -13,8 +13,6 @@
                 return;
             }
 
-            console.log('create')
-
             // Create instance
             this.instance = new window.shaka.Player();
 
@@ -54,8 +52,6 @@
         },
 
         async destroy() {
-            this.show = false;
-
             if (this.instance === undefined) {
                 return;
             }
@@ -72,13 +68,23 @@
                 return;
             }
 
-            console.log(this.instance.getManifest())
-
             try {
                 await this.instance.attach(video);
                 await this.instance.load(manifest);
+            } catch (e) {}
 
-                this.show = true;
+            this.show = true;
+        },
+
+        async unload() {
+            this.show = false
+
+            if (this.instance === undefined) {
+                return;
+            }
+
+            try {
+                await this.instance.unload();
             } catch (e) {}
         },
     }));
