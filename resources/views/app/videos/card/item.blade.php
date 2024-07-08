@@ -9,8 +9,9 @@
                 ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
                 ->attributes([
                     'x-cloak',
-                    'x-ref' => 'video',
                     'x-show' => 'show',
+                    'x-ref' => 'video',
+                    'x-transition',
                     'autoplay',
                     'muted',
                     'loop',
