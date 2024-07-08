@@ -63,7 +63,7 @@
     @googlefonts('code')
 </head>
 
-<body class="h-viewport relative flex flex-col overscroll-none bg-secondary-950 text-base antialiased">
+<body class="h-screen relative flex flex-col overscroll-none bg-secondary-950 text-base antialiased">
 
     <x-app.ui.header />
 
