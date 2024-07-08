@@ -5,11 +5,12 @@
     },
     "eslint.useFlatConfig": true,
     "files.associations": {
-        "*.css": "tailwindcss"
+        "*.css": "tailwindcss",
+        "*.scss": "tailwindcss",
     },
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.experimental.classRegex": ["class:(.*?)"],
+    "tailwindCSS.experimental.classRegex": ["class:(.*?)", "->class(.*?)"],
     "tailwindCSS.includeLanguages": {
         "blade": "html",
         "blade.php": "html",
