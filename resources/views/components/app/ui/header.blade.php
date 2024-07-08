@@ -1,7 +1,3 @@
-@php
-    $isActive = fn (string $route) => request()->routeIs($route, "{$route}.*");
-@endphp
-
 {{ html()->element('header')->class('h-14 max-h-14 bg-secondary-950 border-b border-secondary-800/80')->children([
     html()->element('nav')->class('container mx-0 max-w-none h-full flex flex-nowrap items-stretch justify-between gap-x-3 overflow-x-auto sm:gap-x-12')->children([
         html()->div()->class('inline-flex w-2/4 items-center justify-start')->child(
