@@ -5,5 +5,9 @@
         &-primary {
             @apply text-primary-500 hover:text-primary-300;
         }
+
+        &-active {
+            @apply text-primary-500 hover:text-primary-300;
+        }
     }
 }

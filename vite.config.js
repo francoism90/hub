@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
         clientPort: 5173,
       },
       watch: {
-        ignored: ["**/storage/**"],
+        ignored: ["**/storage/**", "**/vendor/**"],
       },
     },
     resolve: {
@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       laravel({
         input: ["resources/css/app.css", "resources/js/app.js"],
-        refresh: ["resources/**", "src/**"],
+        refresh: [...refreshPaths, "resources/**", "src/**"],
       }),
       VitePWA({
         outDir: "public/build",
