@@ -12,8 +12,8 @@
             html()->icon()->svg($isActive('foo') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
-        html()->a()->route('search')->text('Library')->prependChild(
-            html()->icon()->svg($isActive('foo3') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
+        html()->a()->route('library.index')->text('Library')->prependChild(
+            html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
         html()->a()->route('search')->text('Me')->prependChild(
