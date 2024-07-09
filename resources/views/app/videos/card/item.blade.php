@@ -3,7 +3,7 @@
     ->class('w-80 h-60 max-w-80 max-h-60')
     ->wireKey($video->getRouteKey())
     ->children([
-        html()->a()->route('videos.view', $video)->navigate()->class('relative w-80 h-40')->children([
+        html()->a()->route('videos.view', $video)->class('relative w-80 h-40')->children([
             html()
                 ->element('video')
                 ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
