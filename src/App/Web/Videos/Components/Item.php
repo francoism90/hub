@@ -20,6 +20,6 @@ class Item extends Component
 
     public function placeholder(array $params = []): View
     {
-        return view('app.videos.section.placeholder', $params);
+        return view('app.videos.card.placeholder', $params);
     }
 }

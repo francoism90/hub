@@ -1,4 +1,1 @@
-{{ html()
-    ->element('main')
-    ->class('relative size-full bg-black')
-}}
+{{ html()->div()->class('relative size-full bg-black') }}
