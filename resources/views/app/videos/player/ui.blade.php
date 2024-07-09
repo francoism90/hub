@@ -229,7 +229,7 @@
 
         async forward() {
             if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime -= 10;
+                this.$refs.video.currentTime += 10;
             }
         },
 

@@ -10,6 +10,5 @@
     //     'x-transition',
     // ])
 ])->open() }}
-    <x-app.player.ui.seekbar />
     <x-app.player.ui.playback />
 {{ html()->div()->close() }}
