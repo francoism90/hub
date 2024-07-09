@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Web\Account\Controllers;
+namespace App\Web\Videos\Controllers;
 
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
-class HomeController extends Page
+class FeedController extends Page
 {
     public function render(): View
     {
-        return view('app.account.home');
+        return view('app.videos.feed');
     }
 }

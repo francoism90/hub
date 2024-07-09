@@ -1,6 +1,6 @@
 <?php
 
-use App\Web\Account\Controllers\HomeController;
+use App\Web\Videos\Controllers\FeedController;
 use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +9,8 @@ WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', HomeController::class)->name('home');
-    Route::get('/search', HomeController::class)->name('search');
+    Route::get('/', FeedController::class)->name('home');
+    Route::get('/search', FeedController::class)->name('search');
 
     // // Profile
     // Route::name('profile.')->group(function () {
