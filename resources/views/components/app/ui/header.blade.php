@@ -10,11 +10,11 @@
         ),
 
         html()->div()->class('*:inline-flex *:gap-1 *:py-0.5 *:text-sm *:font-medium *:line-clamp inline-flex w-2/4 items-center justify-end gap-x-3')->children([
-            html()->a()->route('search')->child(
+            html()->a()->route('search.index')->child(
                 html()->icon()->svg('heroicon-o-magnifying-glass', 'size-6 text-inherit'),
             ),
 
-            html()->a()->route('search')->child(
+            html()->a()->route('search.index')->child(
                 html()->icon()->svg('heroicon-o-bell', 'size-6 text-inherit'),
             ),
         ]),

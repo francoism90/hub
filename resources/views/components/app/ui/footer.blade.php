@@ -8,7 +8,7 @@
             html()->icon()->svg($isActive('home') ? 'heroicon-s-home' : 'heroicon-o-home', 'size-6'),
         ),
 
-        html()->a()->route('search')->text('Collections')->prependChild(
+        html()->a()->route('search.index')->text('Collections')->prependChild(
             html()->icon()->svg($isActive('foo') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
@@ -16,7 +16,7 @@
             html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->route('search')->text('Me')->prependChild(
+        html()->a()->route('search.index')->text('Me')->prependChild(
             html()->icon()->svg($isActive('foo2') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),
     ])
