@@ -4,7 +4,7 @@
     {{ html()->div()->close() }}
 
     {{ html()->div()->class('container py-4')->children([
-        html()->element('h1')->text($video->title)->class('text-2xl line-clamp-2'),
+        html()->element('h1')->text($video->title)->class('text-2xl hyphens-auto line-clamp-2'),
         html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
             ->childrenIf($video->duration, [
                 html()->element('dt')->text('Time')->class('sr-only'),
@@ -15,4 +15,12 @@
                 html()->element('dd')->text($video->identifier)
             ]),
     ]) }}
+
+    @if ($video->tags()->count())
+        {{ html()->div()->class('container py-4 flex gap-3')->open() }}
+            @foreach ($video->tags as $tag)
+                {{ html()->a()->class('bg-secondary-600/50 rounded py-1.5 px-3')->text($tag->name) }}
+            @endforeach
+        {{ html()->div()->close() }}
+    @endif
 {{ html()->div()->close() }}
