@@ -16,8 +16,8 @@
             html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->route('search.index')->text('Me')->prependChild(
-            html()->icon()->svg($isActive('foo2') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
+        html()->a()->route('account.notifications')->text('Me')->prependChild(
+            html()->icon()->svg($isActive('account') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),
     ])
 ]) }}
