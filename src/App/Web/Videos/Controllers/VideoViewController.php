@@ -14,4 +14,21 @@ class VideoViewController extends Page
     {
         return view('app.videos.view');
     }
+
+    protected function getTitle(): string
+    {
+        return (string) $this->video->title;
+    }
+
+    protected function getDescription(): string
+    {
+        return (string) $this->video->summary;
+    }
+
+    public function getListeners(): array
+    {
+        return [
+            ...$this->getVideoListeners(),
+        ];
+    }
 }

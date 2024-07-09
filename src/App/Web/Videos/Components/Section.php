@@ -17,7 +17,7 @@ class Section extends Component
 
     public function render(): View
     {
-        return view('app.videos.section.scroller')->with([
+        return view('app.videos.section.view')->with([
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
         ]);
