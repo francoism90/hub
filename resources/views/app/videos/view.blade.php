@@ -17,7 +17,7 @@
     ]) }}
 
     @if ($video->tags()->count())
-        {{ html()->div()->class('container py-3 flex flex-wrap gap-3')->open() }}
+        {{ html()->div()->class('container flex flex-wrap gap-3')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
             @endforeach

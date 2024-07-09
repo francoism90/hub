@@ -3,7 +3,7 @@
 @endphp
 
 {{ html()->element('footer')->class('sticky bottom-0 z-30 h-16 min-h-16 w-full bg-secondary-950 border-t border-secondary-800/80')->children([
-    html()->element('nav')->class('*:flex-col *:gap-1 *:py-0.5 *:text-sm *:font-medium *:line-clamp container h-full max-w-xl flex flex-nowrap items-stretch justify-between gap-x-3 overflow-x-auto sm:gap-x-12')->children([
+    html()->element('nav')->class('*:flex-col *:gap-1 *:py-0.5 *:px-3 *:text-sm *:font-medium *:line-clamp container h-full max-w-xl flex flex-nowrap items-stretch justify-between overflow-x-auto')->children([
         html()->a()->route('home')->text('Home')->prependChild(
             html()->icon()->svg($isActive('home') ? 'heroicon-s-home' : 'heroicon-o-home', 'size-6'),
         ),
