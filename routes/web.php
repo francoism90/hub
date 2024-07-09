@@ -1,6 +1,7 @@
 <?php
 
 use App\Web\Library\Controllers\LibraryIndexController;
+use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Videos\Controllers\VideoIndexController;
 use App\Web\Videos\Controllers\VideoViewController;
@@ -30,8 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', SearchIndexController::class)->name('index');
     });
 
-    // Tags
-    // Route::name('tags.')->prefix('tags')->group(function () {
-    //     Route::get('/{tag}', TagViewController::class)->name('view');
-    // });
+    // Lists
+    Route::name('lists.')->prefix('lists')->group(function () {
+        Route::get('/', ListIndexController::class)->name('index');
+    });
 });

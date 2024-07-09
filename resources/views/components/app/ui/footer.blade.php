@@ -8,8 +8,8 @@
             html()->icon()->svg($isActive('home') ? 'heroicon-s-home' : 'heroicon-o-home', 'size-6'),
         ),
 
-        html()->a()->route('search.index')->text('Collections')->prependChild(
-            html()->icon()->svg($isActive('foo') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
+        html()->a()->route('lists.index')->text('Playlists')->prependChild(
+            html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
         html()->a()->route('library.index')->text('Library')->prependChild(
