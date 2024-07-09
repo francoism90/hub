@@ -1,0 +1,9 @@
+@layer components {
+    .input {
+        @apply bottom-0 appearance-none bg-transparent focus:outline-none;
+
+        &-bordered {
+            @apply border border-secondary-500/50;
+        }
+    }
+}

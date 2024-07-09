@@ -1,13 +1,13 @@
 {{ html()
     ->element('article')
-    ->class('w-80 h-60 max-w-80 max-h-60')
+    ->class('min-w-80 min-h-60')
     ->wireKey($video->getRouteKey())
     ->children([
-        html()->a()->route('videos.view', $video)->class('relative w-80 h-40')->children([
+        html()->a()->route('videos.view', $video)->class('relative w-full h-40')->children([
             html()
                 ->element('video')
                 ->ignore()
-                ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
+                ->class('absolute inset-0 z-30 w-full h-40 rounded object-fill pointer-events-none')
                 ->attributes([
                     'x-cloak',
                     'x-show' => 'show',
@@ -22,7 +22,7 @@
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->responsive)
                 ->loading('lazy')
-                ->class('shrink-0 w-80 h-40 rounded bg-black')
+                ->class('shrink-0 w-full h-40 rounded bg-black')
                 ->data('manifest', $video->preview)
                 ->attributes([
                     'x-data' => '{ manifest: $el.dataset.manifest }',
