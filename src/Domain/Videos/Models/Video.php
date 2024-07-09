@@ -243,7 +243,7 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function placeholder(): Attribute
+    public function responsive(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->getFirstMedia('thumbnail')?->getSrcset()

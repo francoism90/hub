@@ -20,6 +20,8 @@
 
             html()
                 ->img($video->thumbnail, $video->title)
+                ->srcset($video->responsive)
+                ->loading('lazy')
                 ->class('shrink-0 w-80 h-40 rounded bg-black')
                 ->data('manifest', $video->preview)
                 ->attributes([
