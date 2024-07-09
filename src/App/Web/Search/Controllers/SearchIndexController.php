@@ -31,13 +31,6 @@ class SearchIndexController extends Page
         return view('app.search.index');
     }
 
-    public function updated(): void
-    {
-        $this->form->submit();
-
-        $this->resetPage();
-    }
-
     #[Computed()]
     public function items(): Paginator
     {
@@ -46,6 +39,15 @@ class SearchIndexController extends Page
         return $this->getScout($query)->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(12 * 4);
+    }
+
+    public function submit(): void
+    {
+        $this->form->submit();
+
+        $this->refresh();
+
+        $this->resetPage();
     }
 
     public function clear(): void
