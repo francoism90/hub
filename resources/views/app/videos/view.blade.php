@@ -1,3 +1,3 @@
 {{ html()->element('main')->open() }}
-    <livewire:app::videos-recently lazy="on-load" />
+    <livewire:app::videos-player :$video />
 {{ html()->element('main')->close() }}

@@ -1,8 +1,27 @@
+{{ html()
+    ->element('main')
+    ->attribute('x-data', "play('{$manifest}')")
+    ->class('h-80 min-h-80 max-h-96 w-full bg-black sm:h-[32rem] sm:min-h-[32rem] sm:max-h-[32rem]')
+    ->children([
+        html()
+            ->element('video')
+            ->class('size-full bg-black')
+            ->attributes([
+                'x-cloak',
+                'x-show' => 'ready',
+                'x-ref' => 'video',
+                'x-transition',
+                // 'autoplay',
+                'muted',
+            ]),
+    ])
+}}
+
 @script
 <script>
-    Alpine.data("player", () => ({
+    Alpine.data("play", (manifest = null) => ({
         instance: undefined,
-        show: false,
+        ready: false,
         overlay: true,
         dialog: false,
         section: 0,
@@ -15,6 +34,31 @@
         buffered: 0.0,
 
         async init() {
+            // Make sure polyfills are always installed
+            window.shaka.polyfill.installAll();
+
+            // Create instance
+            await this.create();
+
+            // Load manifest
+            await this.load(this.$refs.video, manifest);
+        },
+
+        async destroy() {
+            this.ready = false;
+
+            if (this.instance === undefined) {
+                return;
+            }
+
+            try {
+                await this.instance.unload();
+            } catch (e) {
+                //
+            }
+        },
+
+        async create() {
             // Make sure polyfills are always installed
             window.shaka.polyfill.installAll();
 
@@ -56,21 +100,9 @@
                 );
         },
 
-        async destroy() {
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
-        },
-
         async load(video, manifest) {
             if (this.instance === undefined) {
-                return;
+                await this.create();
             }
 
             try {
@@ -79,17 +111,17 @@
                 await this.instance.load(manifest);
 
                 // Select tracks
-                if ($wire !== undefined && $wire.captions) {
-                    await this.instance.selectTextLanguage('en', 'subtitle')
+                if ($wire !== undefined && $wire.caption?.length) {
+                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
                     await this.instance.setTextTrackVisibility(true)
                 }
             } catch (e) {}
 
-            this.show = true;
+            this.ready = true;
         },
 
         async unload() {
-            this.show = false
+            this.ready = false
 
             if (this.instance === undefined) {
                 return;
@@ -123,9 +155,9 @@
                     if (currentTime > 0) {
                         this.currentTime = currentTime;
 
-                        if ($wire?.updateHistory !== undefined) {
-                            await $wire.updateHistory(currentTime);
-                        }
+                        // if ($wire.updateHistory !== undefined) {
+                        //     await $wire.updateHistory(currentTime);
+                        // }
                     }
                     break;
                 default:
@@ -138,16 +170,10 @@
             this.dialog = ! this.dialog;
         },
 
-        async togglePlayback() {
-            this.$refs.video.paused
-                ? await this.$refs.video.play()
-                : await this.$refs.video.pause();
-        },
-
         async toggleFullscreen() {
             document.fullscreenElement
                 ? await document.exitFullscreen()
-                : await document.documentElement.requestFullscreen();
+                : await document.documentElement?.requestFullscreen();
 
             this.fullscreen = document.fullscreenElement;
         },
@@ -164,21 +190,31 @@
             this.overlay = true;
         },
 
+        async togglePlayback() {
+            if (this.$refs.video === undefined) {
+                return;
+            }
+
+            this.$refs.video.paused
+                ? await this.$refs.video.play()
+                : await this.$refs.video.pause();
+        },
+
         async seekTo(event) {
-            if ((time = event.target?.value || undefined) && time >= 0) {
-                await this.$refs.video.currentTime = time;
+            if ((time = event.target?.value) && time >= 0) {
+                this.$refs.video.currentTime = time;
             }
         },
 
         async backward() {
             if (this.$refs.video?.currentTime !== undefined) {
-                await this.$refs.video.currentTime -= 10;
+                this.$refs.video.currentTime -= 10;
             }
         },
 
         async forward() {
             if (this.$refs.video?.currentTime !== undefined) {
-                await this.$refs.video.currentTime -= 10;
+                this.$refs.video.currentTime -= 10;
             }
         },
 

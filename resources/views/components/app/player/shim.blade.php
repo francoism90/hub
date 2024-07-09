@@ -8,6 +8,28 @@
             // Make sure polyfills are always installed
             window.shaka.polyfill.installAll();
 
+            // Create instance
+            await this.create();
+        },
+
+        async destroy() {
+            this.show = false;
+
+            if (this.instance === undefined) {
+                return;
+            }
+
+            try {
+                await this.instance.unload();
+            } catch (e) {
+                //
+            }
+        },
+
+        async create() {
+            // Make sure polyfills are always installed
+            window.shaka.polyfill.installAll();
+
             // Do not re-create instance
             if (this.instance !== undefined) {
                 return;
@@ -51,21 +73,9 @@
                 );
         },
 
-        async destroy() {
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
-        },
-
         async load(video, manifest) {
             if (this.instance === undefined) {
-                return;
+                await this.create();
             }
 
             try {
