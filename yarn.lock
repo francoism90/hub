@@ -3619,10 +3619,10 @@ set-function-name@^2.0.1, set-function-name@^2.0.2:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.2"
 
-shaka-player@^4.10.2:
-  version "4.10.2"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.2.tgz#3d19c389362b9d43d489b2f42d58b4c046b5e077"
-  integrity sha512-Be9A3Oyhi+WNA0YVeCjVTRd5gqwyvriQvwJG3IefL7fvTYhAr4eRKK370XWBdfT4F+/8c8Ljl22TcIIjLCzPww==
+shaka-player@^4.10.3:
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.3.tgz#9c9a0eb64bb9482ec530dfd85ee2965e9654997f"
+  integrity sha512-h8PHSsIXHm5yIquSFWSiRw9cOh8W4viEilkxqYmU4KQKTsfvCK5VSnWHJnhWRdHsXXNXkrMFOn1mRO4ei2EeDg==
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.5"
 
