@@ -6,243 +6,83 @@
         'x-data' => "play('{$manifest}')",
         'x-ref' => 'container',
     ])
-    ->child(html()
-        ->element('video')
-        ->class('absolute z-0 inset-0 size-full bg-black')
-        ->attributes([
-            'x-cloak',
-            'x-show' => 'ready',
-            'x-transition',
-            'x-ref' => 'video',
-            'x-on:durationchange' => 'handleEvent',
-            'x-on:play' => 'handleEvent',
-            'x-on:playing' => 'handleEvent',
-            'x-on:pause' => 'handleEvent',
-            'x-on:progress.debounce.200ms' => 'handleEvent',
-            'x-on:timeupdate.debounce.200ms' => 'handleEvent',
-            'playsinline',
-            // 'autoplay',
-            'muted',
-        ]),
-    )
-    ->open()
+    ->children([
+        html()
+            ->element('video')
+            ->class('absolute z-0 inset-0 size-full bg-black')
+            ->attributes([
+                'x-cloak',
+                'x-show' => 'ready',
+                'x-transition',
+                'x-ref' => 'video',
+                'x-on:durationchange' => 'handleEvent',
+                'x-on:play' => 'handleEvent',
+                'x-on:playing' => 'handleEvent',
+                'x-on:pause' => 'handleEvent',
+                'x-on:progress.debounce.200ms' => 'handleEvent',
+                'x-on:timeupdate.debounce.200ms' => 'handleEvent',
+                'playsinline',
+                // 'autoplay',
+                'muted',
+            ]),
+
+        html()->div()->class('absolute z-10 inset-0 size-full')->children([
+            html()->div()->class('size-full grid grid-cols-2 gap-x-4')->children([
+                html()->div()->attribute('x-on:dblclick.debounce', 'backward'),
+                html()->div()->attribute('x-on:dblclick.debounce', 'forward'),
+            ]),
+
+            html()->div()->class('absolute z-20 bottom-3 inset-x-3')->child(
+                html()->div()->class('flex flex-col flex-nowrap gap-y-3')->children([
+                    html()->div()->class('relative h-1.5 w-full bg-secondary-500/50')->children([
+                        html()->element('progress')->class('progress progress-secondary absolute inset-0 z-10')->attributes([
+                            'x-model' => 'bufferedPct(buffered, duration)',
+                            ':min' => 0,
+                            ':max' => 100,
+                            'step' => 'any'
+                        ]),
+
+                        html()->element('progress')->class('progress progress-primary absolute inset-0 z-20')->attributes([
+                            'x-model' => 'currentTime',
+                            ':min' => 0,
+                            ':max' => 'duration',
+                            'step' => 'any'
+                        ]),
+
+                        html()->input('range')->class('range range-primary absolute inset-0 z-30')->attributes([
+                            'x-model' => 'currentTime',
+                            'x-on:input' => 'seekTo',
+                            ':min' => 0,
+                            ':max' => 'duration',
+                            'step' => 'any'
+                        ]),
+                    ]),
+
+                    html()->element('nav')->class('h-full w-full flex flex-nowrap items-center justify-between')->children([
+                        html()->div()->class('inline-flex w-2/4 items-center justify-start gap-x-1')->children([
+                            html()->button()->class('btn')->attribute('x-on:click', 'togglePlayback')->children([
+                                html()->icon()->svg('heroicon-s-pause', 'size-6')->attributes(['x-cloak', 'x-show' => 'paused']),
+                                html()->icon()->svg('heroicon-s-play', 'size-6')->attributes(['x-cloak', 'x-show' => '! paused']),
+                            ]),
+
+                            html()->p()->class('inline-flex text-sm text-secondary-300 gap-x-0.5')->children([
+                                html()->span()->attribute('x-text', 'timeFormat(currentTime)'),
+                                html()->span()->text('/'),
+                                html()->span()->attribute('x-text', 'timeFormat(duration)'),
+                            ]),
+                        ]),
+
+                        html()->div()->class('inline-flex w-2/4 items-center justify-end gap-x-3')->children([
+                            html()->button()->class('btn')->attribute('x-on:click', 'toggleFullscreen')->children([
+                                html()->icon()->svg('heroicon-s-arrows-pointing-in', 'size-6')->attributes(['x-cloak', 'x-show' => 'fullscreen']),
+                                html()->icon()->svg('heroicon-s-arrows-pointing-out', 'size-6')->attributes(['x-cloak', 'x-show' => '! fullscreen']),
+                            ]),
+                        ]),
+                    ])
+                ])
+            ),
+        ])
+    ])
 }}
-    <x-app.player.ui />
-{{ html()->element('main')->close() }}
 
-@script
-<script>
-    Alpine.data("play", (manifest = null) => ({
-        instance: undefined,
-        ready: false,
-        overlay: true,
-        dialog: false,
-        section: 0,
-        paused: true,
-        fullscreen: false,
-        idle: 0.0,
-        duration: 0.0,
-        currentTime: 0.0,
-        seekTime: 0.0,
-        buffered: 0.0,
-
-        async init() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
-            // Create instance
-            await this.create();
-
-            // Load manifest
-            await this.load(this.$refs.video, manifest);
-        },
-
-        async destroy() {
-            this.ready = false;
-
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
-        },
-
-        async create() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
-            // Do not re-create instance
-            if (this.instance !== undefined) {
-                return;
-            }
-
-            // Create instance
-            this.instance = new window.shaka.Player();
-
-            // Configure player
-            this.instance.configure({
-                streaming: {
-                    autoLowLatencyMode: true,
-                    ignoreTextStreamFailures: true,
-                    segmentPrefetchLimit: 2,
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                manifest: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                drm: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-            });
-
-            // Configure networking
-            this.instance
-                .getNetworkingEngine()
-                .registerRequestFilter(
-                    async (type, request) => (request.allowCrossSiteCredentials = true)
-                );
-        },
-
-        async load(video, manifest) {
-            if (this.instance === undefined) {
-                await this.create();
-            }
-
-            try {
-                // Load manifest
-                await this.instance.attach(video);
-                await this.instance.load(manifest);
-
-                // Select tracks
-                if ($wire !== undefined && $wire.caption?.length) {
-                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
-                    await this.instance.setTextTrackVisibility(true)
-                }
-            } catch (e) {}
-
-            this.ready = true;
-        },
-
-        async unload() {
-            this.ready = false
-
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {}
-        },
-
-        async handleEvent(event) {
-            if (event === undefined || this.instance === undefined || this.$refs.video === undefined) {
-                return;
-            }
-
-            switch (event.type) {
-                case 'durationchange':
-                    this.duration = event.target.duration || 0.0;
-                    break;
-                case 'progress':
-                    this.buffered = event.target.buffered || 0.0;
-                    break;
-                case 'play':
-                case 'playing':
-                case 'pause':
-                    this.paused = this.$refs.video.paused;
-                    break;
-                case 'timeupdate':
-                    const currentTime = this.$refs.video.currentTime;
-
-                    if (currentTime > 0) {
-                        this.currentTime = currentTime;
-
-                        // if ($wire.updateHistory !== undefined) {
-                        //     await $wire.updateHistory(currentTime);
-                        // }
-                    }
-                    break;
-                default:
-                    console.debug('Unhandled event: ' + event.type);
-            }
-        },
-
-        async toggleDialog(index = 0) {
-            this.section = index;
-            this.dialog = ! this.dialog;
-        },
-
-        async toggleFullscreen() {
-            const element = this.$refs.container;
-
-            document.fullscreenElement
-                ? await document.exitFullscreen()
-                : await element.requestFullscreen();
-
-            this.fullscreen = document.fullscreenElement;
-        },
-
-        async showOverlay() {
-            clearTimeout(this.idle);
-
-            this.overlay = true;
-            this.idle = setTimeout(() => (this.overlay = false), 3500);
-        },
-
-        async forceOverlay() {
-            clearTimeout(this.idle);
-            this.overlay = true;
-        },
-
-        async togglePlayback() {
-            if (this.$refs.video === undefined) {
-                return;
-            }
-
-            this.$refs.video.paused
-                ? await this.$refs.video.play()
-                : await this.$refs.video.pause();
-        },
-
-        async seekTo(event) {
-            if ((time = event.target?.value) && time >= 0) {
-                this.$refs.video.currentTime = time;
-            }
-        },
-
-        async backward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime -= 10;
-            }
-        },
-
-        async forward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime += 10;
-            }
-        },
-
-        async setTextTrack(trackId = 0) {
-            if (trackId < 0 || this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.selectTextTrack(trackId)
-                await this.instance.setTextTrackVisibility(true)
-            } catch (e) {}
-        }
-    }));
-</script>
-@endscript
+<x-app.player.ui />
