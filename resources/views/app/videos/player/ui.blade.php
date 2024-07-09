@@ -1,21 +1,31 @@
 {{ html()
     ->element('main')
     ->attribute('x-data', "play('{$manifest}')")
-    ->class('h-80 min-h-80 max-h-96 w-full bg-black sm:h-[32rem] sm:min-h-[32rem] sm:max-h-[32rem]')
+    ->class('relative h-80 min-h-80 max-h-96 w-full bg-black sm:h-[32rem] sm:min-h-[32rem] sm:max-h-[32rem]')
     ->children([
         html()
             ->element('video')
-            ->class('size-full bg-black')
+            ->class('absolute z-0 inset-0 size-full bg-black')
             ->attributes([
                 'x-cloak',
                 'x-show' => 'ready',
-                'x-ref' => 'video',
                 'x-transition',
+                'x-ref' => 'video',
+                'x-on:durationchange' => 'handleEvent',
+                'x-on:play' => 'handleEvent',
+                'x-on:playing' => 'handleEvent',
+                'x-on:pause' => 'handleEvent',
+                'x-on:progress.debounce.200ms' => 'handleEvent',
+                'x-on:timeupdate.debounce.200ms' => 'handleEvent',
+                'playsinline',
                 // 'autoplay',
                 'muted',
             ]),
-    ])
+        ])
+    ->open()
 }}
+    <x-app.player.ui />
+{{ html()->element('main')->close() }}
 
 @script
 <script>

@@ -12,6 +12,7 @@
                     'x-show' => 'show',
                     'x-ref' => 'video',
                     'x-transition',
+                    'playsinline',
                     'autoplay',
                     'muted',
                 ]),
