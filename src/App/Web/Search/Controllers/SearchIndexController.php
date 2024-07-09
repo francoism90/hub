@@ -31,11 +31,6 @@ class SearchIndexController extends Page
         return view('app.search.index');
     }
 
-    public function updated(): void
-    {
-        $this->submit();
-    }
-
     #[Computed()]
     public function items(): Paginator
     {
