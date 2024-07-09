@@ -19,7 +19,7 @@
     @if ($video->tags()->count())
         {{ html()->div()->class('container py-4 flex gap-3')->open() }}
             @foreach ($video->tags as $tag)
-                {{ html()->a()->class('btn btn-primary px-3 py-1.5 rounded')->text($tag->name) }}
+                {{ html()->a()->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
             @endforeach
         {{ html()->div()->close() }}
     @endif
