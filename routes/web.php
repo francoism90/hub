@@ -1,6 +1,7 @@
 <?php
 
-use App\Web\Videos\Controllers\FeedController;
+use App\Web\Videos\Controllers\VideoIndexController;
+use App\Web\Videos\Controllers\VideoViewController;
 use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
 
@@ -9,20 +10,13 @@ WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', FeedController::class)->name('home');
-    Route::get('/search', FeedController::class)->name('search');
+    Route::get('/', VideoIndexController::class)->name('home');
+    Route::get('/search', VideoIndexController::class)->name('search');
 
-    // // Profile
-    // Route::name('profile.')->group(function () {
-    //     Route::get('/history', HistoryController::class)->name('history');
-    //     // Route::get('/favorites', FavoritesController::class)->name('favorites');
-    //     // Route::get('/watchlist', WatchlistController::class)->name('watchlist');
-    // });
-
-    // // Videos
-    // Route::name('videos.')->prefix('videos')->group(function () {
-    //     Route::get('/{video}', VideoViewController::class)->name('view');
-    // });
+    // Videos
+    Route::name('videos.')->prefix('videos')->group(function () {
+        Route::get('/{video}', VideoViewController::class)->name('view');
+    });
 
     // // Tags
     // Route::name('tags.')->prefix('tags')->group(function () {

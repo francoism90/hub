@@ -16,10 +16,6 @@
             html()->icon()->svg($isActive('foo3') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->route('search')->text('History')->prependChild(
-            html()->icon()->svg($isActive('foo3') ? 'heroicon-s-clock' : 'heroicon-o-clock', 'size-6'),
-        ),
-
         html()->a()->route('search')->text('Me')->prependChild(
             html()->icon()->svg($isActive('foo2') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),

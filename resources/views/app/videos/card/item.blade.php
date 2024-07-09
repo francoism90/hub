@@ -3,7 +3,7 @@
     ->class('w-80 h-60 max-w-80 max-h-60')
     ->wireKey($video->getRouteKey())
     ->children([
-        html()->a()->navigate()->class('relative w-80 h-40')->children([
+        html()->a()->route('videos.view', $video)->navigate()->class('relative w-80 h-40')->children([
             html()
                 ->element('video')
                 ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
@@ -30,7 +30,7 @@
         ]),
 
         html()->p()->class('pt-1.5 text-center')->children([
-            html()->a()->text($video->title)->class('text-sm line-clamp-2'),
+            html()->a()->route('videos.view', $video)->text($video->title)->class('text-sm line-clamp-2'),
             html()->element('dl')->class('dl dl-list justify-center text-xs text-secondary-100')
                 ->childrenIf($video->duration, [
                     html()->element('dt')->text('Time')->class('sr-only'),
