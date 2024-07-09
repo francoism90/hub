@@ -17,7 +17,7 @@ class Player extends Component
 
     public function render(): View
     {
-        return view('app.videos.player.container')->with([
+        return view('app.videos.player.view')->with([
             'manifest' => $this->getManifest(),
         ]);
     }
