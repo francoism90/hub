@@ -33,7 +33,7 @@
             html()->a()->text($video->title)->class('text-sm line-clamp-2'),
             html()->element('dl')->class('dl dl-list justify-center text-xs text-secondary-100')
                 ->childrenIf($video->duration, [
-                    html()->element('dt')->text('Duration')->class('sr-only'),
+                    html()->element('dt')->text('Time')->class('sr-only'),
                     html()->element('dd')->text(duration($video->duration))
                 ])
                 ->childrenIf($video->identifier, [
