@@ -11,7 +11,7 @@ use Foxws\WireUse\Facades\WireUse;
 use Illuminate\Support\Facades\Route;
 
 // Auth
-WireUse::routes();
+// WireUse::routes();
 
 // App
 Route::middleware(['auth', 'verified'])->group(function () {
