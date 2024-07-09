@@ -31,16 +31,16 @@ class SearchIndexController extends Page
         return view('app.search.index');
     }
 
+    public function placeholder(array $params = []): View
+    {
+        return view('app.search.placeholder', $params);
+    }
+
     public function updated(): void
     {
         $this->form->submit();
 
         $this->resetPage();
-    }
-
-    public function placeholder(array $params = []): View
-    {
-        return view('app.search.placeholder', $params);
     }
 
     #[Computed()]

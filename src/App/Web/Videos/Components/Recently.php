@@ -2,7 +2,6 @@
 
 namespace App\Web\Videos\Components;
 
-use App\Web\Videos\Components\Section;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;

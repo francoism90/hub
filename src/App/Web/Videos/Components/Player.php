@@ -4,7 +4,6 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 
