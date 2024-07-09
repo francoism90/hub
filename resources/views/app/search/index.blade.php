@@ -1,7 +1,7 @@
 {{ html()->div()->attribute('x-data', 'player')->class('container py-4')->open() }}
     {{ html()->element('h1')->text('Search')->class('text-2xl') }}
 
-    {{ html()->div()->class('flex pt-4 items-center gap-2.5')->children([
+    {{ html()->div()->class('flex pt-2 items-center gap-2.5')->children([
         html()->input('search', 'query')->wireModel('form.query', 'live.debounce')->class('input input-bordered w-full')->placeholder('Search'),
     ]) }}
 
