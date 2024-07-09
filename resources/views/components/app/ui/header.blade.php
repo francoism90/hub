@@ -14,7 +14,7 @@
                 html()->icon()->svg('heroicon-o-magnifying-glass', 'size-6 text-inherit'),
             ),
 
-            html()->a()->route('search.index')->child(
+            html()->a()->route('account.notifications')->child(
                 html()->icon()->svg('heroicon-o-bell', 'size-6 text-inherit'),
             ),
         ]),

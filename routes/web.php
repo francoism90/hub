@@ -1,5 +1,6 @@
 <?php
 
+use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Search\Controllers\SearchIndexController;
@@ -15,9 +16,14 @@ WireUse::routes();
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
 
+    // Account
+    Route::name('account.')->prefix('account')->group(function () {
+        Route::get('/notifications', NotificationsController::class)->name('notifications');
+    });
+
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
-        // Route::get('/', VideoIndexController::class)->name('home');
+        Route::get('/', VideoIndexController::class)->name('index');
         Route::get('/{video}', VideoViewController::class)->name('view');
     });
 
