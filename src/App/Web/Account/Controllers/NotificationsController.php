@@ -31,11 +31,6 @@ class NotificationsController extends Page
         return view('app.library.index');
     }
 
-    public function placeholder(array $params = []): View
-    {
-        return view('app.library.placeholder', $params);
-    }
-
     public function updated(): void
     {
         $this->form->submit();
