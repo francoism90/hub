@@ -7,13 +7,13 @@
         ])
     }}
 
-    {{-- @if ($tag->related()->count())
-        {{ html()->div()->class('container py-3 flex gap-3')->open() }}
-            @foreach ($tag->tags as $tag)
-                {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
-            @endforeach
-        {{ html()->div()->close() }}
-    @endif --}}
+    @if ($tag->related->count())
+    {{ html()->div()->class('py-4 flex flex-wrap gap-3')->open() }}
+        @foreach ($tag->related as $tag)
+            {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
+        @endforeach
+    {{ html()->div()->close() }}
+    @endif
 
 
     {{ html()->element('section')->class('pt-4 grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}

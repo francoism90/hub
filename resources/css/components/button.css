@@ -4,11 +4,15 @@
 
         &-primary,
         &-active {
-            @apply text-primary-600/50 hover:text-primary-500/50;
+            @apply text-primary-100 text-primary-600/50 hover:text-primary-500/50;
         }
 
         &-secondary {
-            @apply bg-secondary-600/50 hover:bg-secondary-500/50;
+            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50;
+
+            &.link-active {
+                @apply text-secondary-200;
+            }
         }
     }
 }
