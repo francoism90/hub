@@ -8,19 +8,19 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 
 #[Lazy]
-class Watching extends Section
+class Recently extends Section
 {
     #[Computed]
     public function items(): Collection
     {
         return $this->getQuery()
-            ->published()
+            ->latest()
             ->take(16)
             ->get();
     }
 
     protected function getTitle(): ?string
     {
-        return __('Continue Watching');
+        return __('Recently Added');
     }
 }

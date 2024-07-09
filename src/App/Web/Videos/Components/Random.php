@@ -15,7 +15,7 @@ class Random extends Section
     {
         return $this->getQuery()
             ->random()
-            ->take(12)
+            ->take(16)
             ->get();
     }
 
