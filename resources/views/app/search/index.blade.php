@@ -2,7 +2,7 @@
     {{ html()->element('h1')->text('Search')->class('text-2xl') }}
 
     {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([
-        html()->input('search', 'query')->wireModel('form.query', 'live.debounce')->class('input input-bordered w-full')->placeholder('Search'),
+        html()->input('search', 'form.query')->wireModel('form.query', modifiers: 'live.debounce')->class('input input-bordered w-full')->placeholder('Search'),
     ]) }}
 
     @if ($this->items->isNotEmpty())
