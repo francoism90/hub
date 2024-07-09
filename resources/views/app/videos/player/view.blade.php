@@ -22,7 +22,7 @@
                 'x-on:progress.debounce.200ms' => 'handleEvent',
                 'x-on:timeupdate.debounce.200ms' => 'handleEvent',
                 'playsinline',
-                // 'autoplay',
+                'autoplay',
                 'muted',
             ]),
 
