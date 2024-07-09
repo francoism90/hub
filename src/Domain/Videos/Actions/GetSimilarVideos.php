@@ -10,12 +10,12 @@ use Illuminate\Support\LazyCollection;
 
 class GetSimilarVideos
 {
-    public function execute(Video $model): Collection
+    public function execute(Video $model, int $limit = 24): Collection
     {
         return collect()->merge([
             ...static::phrases($model),
             ...static::tagged($model),
-        ]);
+        ])->take($limit);
     }
 
     public static function phrases(Video $model): LazyCollection

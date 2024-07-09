@@ -1,6 +1,6 @@
 {{ html()
     ->element('article')
-    ->class('min-w-80 min-h-60')
+    ->class('h-60 min-w-80 min-h-60 sm:max-h-60 sm:max-w-80')
     ->wireKey($video->getRouteKey())
     ->children([
         html()->a()->route('videos.view', $video)->class('relative w-full h-40')->children([
