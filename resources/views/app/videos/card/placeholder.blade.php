@@ -1,3 +1,3 @@
-{{ html()->element('article')->class('flex flex-col gap-y-1')->children([
+{{ html()->element('article')->class('w-80 h-60 min-w-80 min-h-60')->children([
     //
 ]) }}
