@@ -15,6 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
+        // Route::get('/', VideoIndexController::class)->name('home');
         Route::get('/{video}', VideoViewController::class)->name('view');
     });
 

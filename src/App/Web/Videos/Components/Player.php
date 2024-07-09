@@ -12,7 +12,7 @@ class Player extends Component
 
     public function render(): View
     {
-        return view('app.player.ui')->with([
+        return view('app.videos.player.ui')->with([
             // 'title' => $this->getTitle(),
             // 'description' => $this->getDescription(),
         ]);
@@ -20,6 +20,6 @@ class Player extends Component
 
     public function placeholder(array $params = []): View
     {
-        return view('app.player.ui.placeholder', $params);
+        return view('app.videos.player.placeholder', $params);
     }
 }
