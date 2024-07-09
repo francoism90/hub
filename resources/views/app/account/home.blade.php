@@ -4,6 +4,6 @@
         <livewire:app::videos-random lazy="on-load" />
         <livewire:app::videos-recently lazy="on-load" />
     {{ html()->element('section')->close() }}
-
-    <x-app.player.shim />
 {{ html()->element('main')->close() }}
+
+<x-app.player.shim />
