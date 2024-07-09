@@ -1,7 +1,22 @@
-{{ html()->div()->attribute('x-data', 'player')->class('container py-4 flex flex-col gap-y-3')->open() }}
+{{ html()->div()->attribute('x-data', 'player')->class('container py-4')->open() }}
     {{ html()->element('h1')->text($tag->name)->class('text-2xl') }}
+    {{ html()->element('dl')->class('dl dl-list text-secondary-100')
+        ->childrenIf($tag->type, [
+            html()->element('dt')->text('Time')->class('sr-only'),
+            html()->element('dd')->text($tag->type->label())
+        ])
+    }}
 
-    {{ html()->element('section')->class('grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
+    {{-- @if ($tag->related()->count())
+        {{ html()->div()->class('container py-3 flex gap-3')->open() }}
+            @foreach ($tag->tags as $tag)
+                {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
+            @endforeach
+        {{ html()->div()->close() }}
+    @endif --}}
+
+
+    {{ html()->element('section')->class('pt-4 grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $video)
             <livewire:app::videos-item :$video :key="$video->getRouteKey()" />
         @endforeach
