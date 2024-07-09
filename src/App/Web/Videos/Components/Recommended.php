@@ -8,7 +8,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 
 #[Lazy]
-class Random extends Section
+class Recommended extends Section
 {
     #[Computed]
     public function items(): Collection
@@ -21,6 +21,6 @@ class Random extends Section
 
     protected function getTitle(): ?string
     {
-        return __('Random Videos');
+        return __('Recommended');
     }
 }
