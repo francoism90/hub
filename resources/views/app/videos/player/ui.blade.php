@@ -1,27 +1,30 @@
 {{ html()
     ->element('main')
-    ->attribute('x-data', "play('{$manifest}')")
-    ->class('relative h-80 min-h-80 max-h-96 w-full bg-black sm:h-[32rem] sm:min-h-[32rem] sm:max-h-[32rem]')
-    ->children([
-        html()
-            ->element('video')
-            ->class('absolute z-0 inset-0 size-full bg-black')
-            ->attributes([
-                'x-cloak',
-                'x-show' => 'ready',
-                'x-transition',
-                'x-ref' => 'video',
-                'x-on:durationchange' => 'handleEvent',
-                'x-on:play' => 'handleEvent',
-                'x-on:playing' => 'handleEvent',
-                'x-on:pause' => 'handleEvent',
-                'x-on:progress.debounce.200ms' => 'handleEvent',
-                'x-on:timeupdate.debounce.200ms' => 'handleEvent',
-                'playsinline',
-                // 'autoplay',
-                'muted',
-            ]),
-        ])
+    ->ignore()
+    ->class('relative size-full bg-black')
+    ->attributes([
+        'x-data' => "play('{$manifest}')",
+        'x-ref' => 'container',
+    ])
+    ->child(html()
+        ->element('video')
+        ->class('absolute z-0 inset-0 size-full bg-black')
+        ->attributes([
+            'x-cloak',
+            'x-show' => 'ready',
+            'x-transition',
+            'x-ref' => 'video',
+            'x-on:durationchange' => 'handleEvent',
+            'x-on:play' => 'handleEvent',
+            'x-on:playing' => 'handleEvent',
+            'x-on:pause' => 'handleEvent',
+            'x-on:progress.debounce.200ms' => 'handleEvent',
+            'x-on:timeupdate.debounce.200ms' => 'handleEvent',
+            'playsinline',
+            // 'autoplay',
+            'muted',
+        ]),
+    )
     ->open()
 }}
     <x-app.player.ui />
@@ -37,7 +40,7 @@
         section: 0,
         paused: true,
         fullscreen: false,
-        idle: 0,
+        idle: 0.0,
         duration: 0.0,
         currentTime: 0.0,
         seekTime: 0.0,
@@ -181,9 +184,11 @@
         },
 
         async toggleFullscreen() {
+            const element = this.$refs.container;
+
             document.fullscreenElement
                 ? await document.exitFullscreen()
-                : await document.documentElement?.requestFullscreen();
+                : await element.requestFullscreen();
 
             this.fullscreen = document.fullscreenElement;
         },
@@ -236,9 +241,7 @@
             try {
                 await this.instance.selectTextTrack(trackId)
                 await this.instance.setTextTrackVisibility(true)
-            } catch {
-                //
-            }
+            } catch (e) {}
         }
     }));
 </script>

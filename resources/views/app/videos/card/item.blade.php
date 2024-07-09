@@ -6,6 +6,7 @@
         html()->a()->route('videos.view', $video)->class('relative w-80 h-40')->children([
             html()
                 ->element('video')
+                ->ignore()
                 ->class('absolute inset-0 z-30 w-80 h-40 rounded object-fill pointer-events-none')
                 ->attributes([
                     'x-cloak',
