@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{video}', VideoViewController::class)->name('view');
     });
 
-    // // Tags
+    // Tags
     // Route::name('tags.')->prefix('tags')->group(function () {
     //     Route::get('/{tag}', TagViewController::class)->name('view');
     // });

@@ -23,7 +23,7 @@ class Section extends Component
         ]);
     }
 
-    public function placeholder(array $params = [])
+    public function placeholder(array $params = []): View
     {
         return view('app.videos.section.placeholder', $params);
     }

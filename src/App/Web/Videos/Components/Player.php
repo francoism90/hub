@@ -6,13 +6,13 @@ use App\Web\Videos\Concerns\WithVideo;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Item extends Component
+class Player extends Component
 {
     use WithVideo;
 
     public function render(): View
     {
-        return view('app.videos.card.item')->with([
+        return view('app.player.ui')->with([
             // 'title' => $this->getTitle(),
             // 'description' => $this->getDescription(),
         ]);
@@ -20,6 +20,6 @@ class Item extends Component
 
     public function placeholder(array $params = []): View
     {
-        return view('app.videos.section.placeholder', $params);
+        return view('app.player.ui.placeholder', $params);
     }
 }
