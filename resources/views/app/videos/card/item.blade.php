@@ -1,6 +1,6 @@
 {{ html()
     ->element('article')
-    ->class('w-80 h-60 max-w-80 max-h-60 flex flex-col gap-y-1')
+    ->class('w-80 h-60 max-w-80 max-h-60')
     ->wireKey($video->getRouteKey())
     ->children([
         html()->a()->navigate()->class('relative w-80 h-40')->children([
@@ -29,7 +29,7 @@
                 ]),
         ]),
 
-        html()->p()->class('text-center')->children([
+        html()->p()->class('pt-1.5 text-center')->children([
             html()->a()->text($video->title)->class('text-sm line-clamp-2'),
             html()->element('dl')->class('dl dl-list justify-center text-xs text-secondary-100')
                 ->childrenIf($video->duration, [
