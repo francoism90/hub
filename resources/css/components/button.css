@@ -1,6 +1,6 @@
 @layer components {
     .btn {
-        @apply inline-flex shrink-0 cursor-pointer items-center focus:outline-none;
+        @apply inline-flex w-fit shrink-0 cursor-pointer items-center rounded px-3 py-1.5 focus:outline-none;
 
         &-primary,
         &-active {
@@ -13,6 +13,10 @@
             &.link-active {
                 @apply text-secondary-200;
             }
+        }
+
+        &-inline {
+            @apply w-none rounded-none p-0;
         }
     }
 }

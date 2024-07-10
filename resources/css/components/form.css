@@ -1,0 +1,13 @@
+@layer components {
+    .form-control {
+        @apply flex flex-col gap-y-1;
+    }
+
+    .form-message {
+        @apply block rounded bg-secondary-600/40 p-3;
+    }
+
+    .label {
+        @apply block cursor-pointer select-none;
+    }
+}
