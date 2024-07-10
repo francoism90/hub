@@ -13,7 +13,14 @@
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($video->created_at->format('M d, Y')),
         ])
-        ->child(html()->a()->href('#')->attribute('wire:click.prevent', 'beautify')->text('Beautify 🔅')),
+        ->children([
+            html()->element('dt')->text('View')->class('sr-only'),
+            html()->element('dd')->child(html()->a()->route('videos.view', $video)->text('View')),
+        ])
+        ->children([
+            html()->element('dt')->text('Actions')->class('sr-only'),
+            html()->element('dd')->child(html()->a()->href('#')->attribute('wire:click.prevent', 'beautify')->text('Beautify 🔅'))
+        ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
         html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
