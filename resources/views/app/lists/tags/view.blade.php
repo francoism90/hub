@@ -4,9 +4,7 @@
     @persist('scrollbar')
     {{ html()->div()->class('flex flex-col gap-3 w-full overflow-y-scroll')->attribute('wire:scroll')->open() }}
         @foreach ($this->items as $tag)
-            <div>
-                <livewire:app::tags-item :$tag :key="$tag->getRouteKey()" />
-            </div>
+            <livewire:app::tags-item :$tag :key="$tag->getRouteKey()" />
         @endforeach
 
         {{ html()->button()->text('Load More')->class('btn btn-primary')->attribute('wire:click', 'fetch') }}

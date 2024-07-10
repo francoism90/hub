@@ -3,7 +3,7 @@
 
     {{ html()->div()->class('flex flex-col gap-y-3')->open() }}
     @foreach ($types as $type)
-        <livewire:app::lists-section :$type :key="$type->value" lazy="on-load" />
+        <livewire:app::lists-section :$type :key="$type->value" lazy />
     @endforeach
     {{ html()->div()->close() }}
 {{ html()->div()->close() }}
