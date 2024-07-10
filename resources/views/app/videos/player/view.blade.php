@@ -23,7 +23,6 @@
                 'x-on:timeupdate.debounce.200ms' => 'handleEvent',
                 'playsinline',
                 'autoplay',
-                'muted',
             ]),
 
         html()->div()->class('absolute z-10 inset-0 size-full')->children([
