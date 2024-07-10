@@ -10,7 +10,7 @@ class QueryForm extends Form
 {
     protected static bool $store = true;
 
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:1')]
     public string $query = '';
 
     public function query(): ?Stringable

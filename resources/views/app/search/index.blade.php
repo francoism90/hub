@@ -2,8 +2,8 @@
     {{ html()->element('h1')->text('Search')->class('text-2xl') }}
 
     {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([
-        html()->input('search', name: 'form.query')->wireModel('form.query')->class('input input-bordered w-full')->placeholder('Search'),
-        html()->validate('form.query'),
+        html()->input('search', name: 'form.query')->wireModel('form.query', 'live.debounce')->class('input input-bordered w-full')->placeholder('Search'),
+        html()->validate('form.query')->message(),
     ]) }}
 
     @if ($this->items->isNotEmpty())
