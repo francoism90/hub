@@ -1,7 +1,7 @@
 
 @script
 <script>
-    Alpine.data("play", (manifest = null) => ({
+    Alpine.data("play", (manifest = null, startsAt = 0) => ({
         instance: undefined,
         ready: false,
         overlay: true,
@@ -23,7 +23,7 @@
             await this.create();
 
             // Load manifest
-            await this.load(this.$refs.video, manifest);
+            await this.load(this.$refs.video, manifest, startsAt);
         },
 
         async destroy() {
@@ -90,7 +90,7 @@
             try {
                 // Load manifest
                 await this.instance.attach(video);
-                await this.instance.load(manifest);
+                await this.instance.load(manifest, startsAt);
 
                 // Select tracks
                 if ($wire !== undefined && $wire.caption?.length) {
@@ -137,9 +137,9 @@
                     if (currentTime > 0) {
                         this.currentTime = currentTime;
 
-                        // if ($wire.updateHistory !== undefined) {
-                        //     await $wire.updateHistory(currentTime);
-                        // }
+                        if ($wire !== undefined && $wire.updateHistory !== undefined) {
+                            await $wire.updateHistory(currentTime);
+                        }
                     }
                     break;
                 default:

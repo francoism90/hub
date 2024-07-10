@@ -20,6 +20,7 @@ class Player extends Component
     {
         return view('app.videos.player.view')->with([
             'manifest' => $this->getManifest(),
+            'startsAt' => $this->getStartTime(),
         ]);
     }
 
@@ -44,7 +45,7 @@ class Player extends Component
         return $this->video->stream;
     }
 
-    protected function getStartsAt(): ?float
+    protected function getStartTime(): ?float
     {
         $model = static::history()
             ->videos()
