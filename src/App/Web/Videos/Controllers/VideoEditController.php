@@ -2,6 +2,7 @@
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Lists\Concerns\WithHistory;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
 use App\Web\Videos\Concerns\WithVideo;
@@ -12,6 +13,7 @@ use Illuminate\View\View;
 
 class VideoEditController extends Page
 {
+    use WithHistory;
     use WithVideo;
 
     public GeneralForm $form;
@@ -49,6 +51,15 @@ class VideoEditController extends Page
         $this->redirectAction(static::class, [$model], navigate: true);
     }
 
+    public function beautify(): void
+    {
+        $this->authorize('update', $this->video);
+
+        $this->fillName();
+
+        $this->fillSnapshot();
+    }
+
     public function toggleTag(Tag $tag): void
     {
         $items = collect($this->form->tags);
@@ -63,6 +74,24 @@ class VideoEditController extends Page
     protected function fillForms(): void
     {
         $this->form->fill($this->video);
+    }
+
+    protected function fillName(): void
+    {
+        $this->form->name = str($this->form->get('name', ''))
+            ->replace('.', ' ')
+            ->headline()
+            ->squish()
+            ->value();
+    }
+
+    protected function fillSnapshot(): void
+    {
+         $videoable = static::history()
+            ->videos()
+            ->firstWhere('id', $this->video->getKey());
+
+        $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
     }
 
     protected function getTitle(): string
