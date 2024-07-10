@@ -2,7 +2,6 @@
 
 namespace App\Web\Lists\Concerns;
 
-use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\Models\Playlist;
 
 trait WithPlaylist

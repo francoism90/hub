@@ -3,10 +3,9 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Library\Controllers\LibraryIndexController;
-use App\Web\Videos\Components\Player;
+use App\Web\Videos\Concerns\WithVideo;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
-use App\Web\Videos\Concerns\WithVideo;
 use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Actions\UpdateVideoDetails;

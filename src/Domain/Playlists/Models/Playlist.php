@@ -139,7 +139,7 @@ class Playlist extends Model implements HasMedia
 
     public static function findByName(User $user, string $name): ?Playlist
     {
-        return match($name) {
+        return match ($name) {
             'favorites' => $user->playlists()->favorites(),
             'history' => $user->playlists()->history(),
             'watchlist' => $user->playlists()->watchlist(),
