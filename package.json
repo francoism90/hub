@@ -18,7 +18,7 @@
         "eslint": "^9.6",
         "globals": "^15.8.0",
         "laravel-echo": "^1.16.1",
-        "laravel-vite-plugin": "^1.0.4",
+        "laravel-vite-plugin": "^1.0.5",
         "postcss": "^8.4.39",
         "postcss-import": "^16.1.0",
         "prettier": "^3.3.2",
