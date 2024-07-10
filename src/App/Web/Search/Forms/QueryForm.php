@@ -8,7 +8,7 @@ use Livewire\Attributes\Validate;
 
 class QueryForm extends Form
 {
-    protected static bool $store = true;
+    // protected static bool $store = true;
 
     #[Validate('nullable|string|max:1')]
     public string $query = '';

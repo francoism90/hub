@@ -31,6 +31,11 @@ class SearchIndexController extends Page
         return view('app.search.index');
     }
 
+    public function updated(): void
+    {
+        $this->form->validate();
+    }
+
     #[Computed()]
     public function items(): Paginator
     {
@@ -45,9 +50,9 @@ class SearchIndexController extends Page
     {
         $this->form->submit();
 
-        $this->refresh();
+        // $this->refresh();
 
-        $this->resetPage();
+        // $this->resetPage();
     }
 
     public function clear(): void

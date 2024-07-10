@@ -13,6 +13,7 @@ export default {
         base: colors.white,
         primary: colors.pink,
         secondary: colors.gray,
+        error: colors.red,
       },
       container: {
         center: true,

@@ -6,6 +6,7 @@ import theme from "./resources/support/tailwind.config.preset";
 /** @type {import('tailwindcss').Config} */
 export default {
   presets: [preset, theme],
+  relative: true,
   content: [
     "./resources/**/*.blade.php",
     "./src/**/*.php",
