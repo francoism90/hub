@@ -13,7 +13,6 @@ use Illuminate\View\View;
 
 class VideoEditController extends Page
 {
-    use WithHistory;
     use WithVideo;
 
     public GeneralForm $form;

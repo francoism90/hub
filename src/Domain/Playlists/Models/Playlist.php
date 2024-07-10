@@ -7,6 +7,7 @@ use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Users\Models\User;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
@@ -134,5 +135,15 @@ class Playlist extends Model implements HasMedia
     public function broadcastAfterCommit(): bool
     {
         return true;
+    }
+
+    public static function findByName(User $user, string $name): ?Playlist
+    {
+        return match($name) {
+            'favorites' => $user->playlists()->favorites(),
+            'history' => $user->playlists()->history(),
+            'watchlist' => $user->playlists()->watchlist(),
+            default => $user->playlists()->firstwhere('name', $name),
+        };
     }
 }

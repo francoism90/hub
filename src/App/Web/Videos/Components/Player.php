@@ -2,15 +2,14 @@
 
 namespace App\Web\Videos\Components;
 
-use App\Web\Lists\Concerns\WithHistory;
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Playlists\Models\Playlist;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class Player extends Component
 {
-    use WithHistory;
     use WithVideo;
 
     #[Session]
@@ -31,13 +30,15 @@ class Player extends Component
 
     public function updateHistory(?float $time = null): void
     {
-        $this->authorize('update', $model = static::history());
+        if (! $user = auth()->user()) {
+            return;
+        }
 
-        throw_unless($time >= 0 && $time <= ceil($this->video->duration));
+        $playlist = Playlist::findByName($user, 'history');
 
-        $model->attachVideo($this->video, [
-            'timestamp' => round($time, 2),
-        ]);
+        $this->authorize('update', $playlist);
+
+        $this->video->markWatched($user, $time);
     }
 
     protected function getManifest(): ?string
@@ -47,9 +48,15 @@ class Player extends Component
 
     protected function getStartTime(): ?float
     {
-        $model = static::history()
-            ->videos()
-            ->find($this->video);
+        if (! $user = auth()->user()) {
+            return 0;
+        }
+
+        $playlist = Playlist::findByName($user, 'history');
+
+        $this->authorize('update', $playlist);
+
+        $model = $playlist?->videos()->find($this->video);
 
         return data_get($model?->pivot?->options ?: [], 'timestamp', 0);
     }

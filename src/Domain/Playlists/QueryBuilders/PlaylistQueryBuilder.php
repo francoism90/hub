@@ -3,6 +3,7 @@
 namespace Domain\Playlists\QueryBuilders;
 
 use Domain\Playlists\Enums\PlaylistType;
+use Domain\Playlists\Models\Playlist;
 use Illuminate\Database\Eloquent\Builder;
 
 class PlaylistQueryBuilder extends Builder
@@ -19,24 +20,24 @@ class PlaylistQueryBuilder extends Builder
             ->where('type', PlaylistType::System);
     }
 
-    public function favorites(): self
+    public function favorites(): ?Playlist
     {
         return $this
             ->system()
-            ->where('name', 'favorites');
+            ->firstWhere('name', 'favorites');
     }
 
-    public function history(): self
+    public function history(): ?Playlist
     {
         return $this
             ->system()
-            ->where('name', 'history');
+            ->firstWhere('name', 'history');
     }
 
-    public function watchlist(): self
+    public function watchlist(): ?Playlist
     {
         return $this
             ->system()
-            ->where('name', 'watchlist');
+            ->firstWhere('name', 'watchlist');
     }
 }
