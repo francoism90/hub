@@ -18,7 +18,7 @@ trait InteractsWithPlaylists
         throw_unless(! $time || ($time >= 0 && $time <= ceil($this->duration)));
 
         cache()->remember(static::getWatchedKey($user), now()->addSeconds(10), function () use ($user, $time) {
-            $this->attachVideoHistory($user, $time);
+            $this->attachVideoHistory($user, $time || 0);
 
             return time();
         });
