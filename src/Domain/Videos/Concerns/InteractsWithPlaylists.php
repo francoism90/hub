@@ -26,9 +26,9 @@ trait InteractsWithPlaylists
 
     protected function attachVideoHistory(User $user, float $time = 0): void
     {
-        $this->playlists()
+        $user
+            ->playlists()
             ->history()
-            ->firstWhere('user_id', $user->getKey())
             ->attachVideo($this, [
                 'timestamp' => round($time, 2),
             ]);
