@@ -19,7 +19,7 @@ class Watching extends Section
 
         return $playlist->videos()
             ->published()
-            ->orderByDesc('videoables.created_at')
+            ->orderByDesc('videoables.updated_at')
             ->take(16)
             ->get();
     }
