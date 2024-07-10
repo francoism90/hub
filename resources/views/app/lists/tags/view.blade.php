@@ -3,7 +3,9 @@
 
     {{ html()->div()->class('grid grid-cols-1 gap-3 w-full overflow-y-scroll sm:grid-cols-3')->attribute('wire:scroll')->open() }}
         @foreach ($this->items as $tag)
-            <livewire:app::tags-item :$tag :key="$tag->getRouteKey()" />
+            {{ html()->div()->wireKey($tag->getRouteKey())->open() }}
+                <livewire:app::tags-item :$tag :key="$tag->getRouteKey()" />
+            {{ html()->div()->close() }}
         @endforeach
     {{ html()->div()->close() }}
 

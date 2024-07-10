@@ -8,7 +8,7 @@
 
     {{ html()->element('section')->class('grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $video)
-            {{ html()->div()->class('snap-start scroll-mx-6 shrink-0')->open() }}
+            {{ html()->div()->wireKey($video->getRouteKey())->class('snap-start scroll-mx-6 shrink-0')->open() }}
                 <livewire:app::videos-item :$video :key="$video->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
