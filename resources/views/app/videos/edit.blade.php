@@ -12,7 +12,8 @@
         ->childrenIf($video->created_at, [
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($video->created_at->format('M d, Y')),
-    ]),
+        ])
+        ->child(html()->a()->href('#')->attribute('wire:click.prevent', 'beautify')->text('Beautify 🔅')),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
         html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
