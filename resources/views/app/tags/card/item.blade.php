@@ -1,7 +1,6 @@
 {{ html()
     ->element('article')
     ->class('h-14 max-h-14 w-full')
-    ->wireKey($tag->getRouteKey())
     ->child(html()
         ->a()
         ->route('tags.view', $tag)
