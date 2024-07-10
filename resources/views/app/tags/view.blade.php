@@ -8,7 +8,7 @@
     }}
 
     @if ($tag->related->count())
-    {{ html()->div()->class('py-4 flex flex-wrap gap-3')->open() }}
+    {{ html()->div()->class('py-4 flex flex-wrap gap-2')->open() }}
         @foreach ($tag->related as $tag)
             {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
         @endforeach
