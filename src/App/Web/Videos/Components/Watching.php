@@ -13,11 +13,7 @@ class Watching extends Section
     #[Computed]
     public function items(): Collection
     {
-        $playlist = Playlist::findByName(auth()->user(), 'history');
-
-        $this->authorize('view', $playlist);
-
-        return $playlist->videos()
+        return $this->getPlaylist()->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
             ->take(16)
@@ -27,5 +23,14 @@ class Watching extends Section
     protected function getTitle(): ?string
     {
         return __('Continue Watching');
+    }
+
+    protected function getPlaylist(): Playlist
+    {
+        $playlist = Playlist::findByName(auth()->user(), 'history');
+
+        $this->authorize('view', $playlist);
+
+        return $playlist;
     }
 }
