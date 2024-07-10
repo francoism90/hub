@@ -30,7 +30,7 @@ class VideoEditController extends Page
 
     public function submit(): void
     {
-         $this->authorize('update', $model = $this->video);
+        $this->authorize('update', $model = $this->video);
 
         $this->form->submit();
 
