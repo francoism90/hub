@@ -14,9 +14,9 @@
         "foxws/wireuse": "^1.0.7",
         "guzzlehttp/guzzle": "^7.8.1",
         "http-interop/http-factory-guzzle": "^1.2",
-        "laravel/framework": "^11.14.0",
-        "laravel/horizon": "^5.24.6",
-        "laravel/pulse": "^1.2.3",
+        "laravel/framework": "^11.15.0",
+        "laravel/horizon": "^5.25.0",
+        "laravel/pulse": "^1.2.4",
         "laravel/reverb": "@beta",
         "laravel/sanctum": "^4.0.2",
         "laravel/scout": "^10.10.1",
@@ -43,8 +43,8 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0.0",
         "fakerphp/faker": "^1.23.1",
-        "laravel/pint": "^1.16.1",
-        "laravel/sail": "^1.30.1",
+        "laravel/pint": "^1.16.2",
+        "laravel/sail": "^1.30.2",
         "mockery/mockery": "^1.6.12",
         "nunomaduro/collision": "^8.1.1",
         "pestphp/pest": "^2.34.8",
@@ -76,10 +76,7 @@
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta",
-            "@php artisan ide-helper:models --nowrite"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
