@@ -26,12 +26,13 @@ trait InteractsWithPlaylists
 
     protected function attachVideoHistory(User $user, float $time = 0): void
     {
-        $user
-            ->playlists()
-            ->history()
-            ->attachVideo($this, [
-                'timestamp' => round($time, 2),
-            ]);
+        $model = $user->playlists()->history();
+
+        $model->attachVideo($this, [
+            'timestamp' => round($time, 2),
+        ]);
+
+        $model->touch();
     }
 
     protected static function getWatchedKey(User $user): string
