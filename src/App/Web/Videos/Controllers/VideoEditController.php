@@ -2,7 +2,7 @@
 
 namespace App\Web\Videos\Controllers;
 
-use App\Web\Lists\Concerns\WithHistory;
+use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
 use App\Web\Videos\Concerns\WithVideo;
@@ -48,6 +48,15 @@ class VideoEditController extends Page
         flash()->success(__('Video has been updated!'));
 
         $this->redirectAction(static::class, [$model], navigate: true);
+    }
+
+    public function delete(): void
+    {
+        $this->canDelete($this->video);
+
+        $this->video->deleteOrFail();
+
+        $this->redirect(LibraryIndexController::class, navigate: true);
     }
 
     public function beautify(): void
