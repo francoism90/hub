@@ -15,7 +15,7 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
-    public function recommended(int $ttl = 90): self
+    public function recommended(int $ttl = 20): self
     {
         return $this
             ->published()
