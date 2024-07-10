@@ -37,6 +37,13 @@ class Section extends Component
             ->get();
     }
 
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
     protected function getTitle(): ?string
     {
         return null;
@@ -57,8 +64,8 @@ class Section extends Component
         $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$id},.video.deleted" => '$refresh',
-            "echo-private:user.{$id},.video.updated" => '$refresh',
+            "echo-private:user.{$id},.video.deleted" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
         ];
     }
 }

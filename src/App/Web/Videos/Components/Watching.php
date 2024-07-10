@@ -5,9 +5,7 @@ namespace App\Web\Videos\Components;
 use Domain\Playlists\Models\Playlist;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 
-#[Lazy]
 class Watching extends Section
 {
     #[Computed]
@@ -18,6 +16,13 @@ class Watching extends Section
             ->orderByDesc('videoables.updated_at')
             ->take(16)
             ->get();
+    }
+
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
     }
 
     protected function getTitle(): ?string
@@ -32,5 +37,17 @@ class Watching extends Section
         $this->authorize('view', $playlist);
 
         return $playlist;
+    }
+
+    public function getListeners(): array
+    {
+        $id = static::getAuthKey();
+
+        return [
+            "echo-private:user.{$id},.playlist.deleted" => 'refresh',
+            "echo-private:user.{$id},.playlist.updated" => 'refresh',
+            "echo-private:user.{$id},.video.deleted" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
+        ];
     }
 }
