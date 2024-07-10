@@ -13,10 +13,11 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    public function query(): ?Stringable
+    public function query(): string
     {
         return str($this->get('query', ''))
             ->title()
-            ->squish();
+            ->squish()
+            ->value();
     }
 }

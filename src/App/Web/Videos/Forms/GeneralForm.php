@@ -2,8 +2,10 @@
 
 namespace App\Web\Videos\Forms;
 
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Forms\Support\Form;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 
 class GeneralForm extends Form
@@ -38,12 +40,14 @@ class GeneralForm extends Form
 
     protected function beforeFill(Video $model): array
     {
+        // Handle translatables
         $translations = collect($model->getTranslations())
             ->map(fn (?array $item, string $key) => data_get($item, 'en'))
             ->toArray();
 
         $values = [...$model->toArray(), ...$translations];
 
+        // Convert tags to options
         $values['tags'] = $model->tags->options()->toArray();
 
         return $values;

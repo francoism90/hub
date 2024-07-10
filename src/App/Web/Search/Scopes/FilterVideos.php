@@ -19,6 +19,6 @@ class FilterVideos
 
     protected function hasQuery(): bool
     {
-        return $this->form->query()->isNotEmpty();
+        return filled($this->form->query());
     }
 }

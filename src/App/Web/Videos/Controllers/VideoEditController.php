@@ -3,7 +3,10 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\GeneralForm;
+use App\Web\Videos\Forms\TagsForm;
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Tags\Models\Tag;
+use Domain\Videos\Actions\UpdateVideoDetails;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
@@ -12,6 +15,8 @@ class VideoEditController extends Page
     use WithVideo;
 
     public GeneralForm $form;
+
+    public TagsForm $tags;
 
     public function mount(): void
     {
@@ -34,14 +39,25 @@ class VideoEditController extends Page
 
         $this->form->submit();
 
-        // app(UpdateVideoDetails::class)->execute(
-        //     model: $model,
-        //     attributes: $this->form->validate(),
-        // );
+        app(UpdateVideoDetails::class)->execute(
+            model: $model,
+            attributes: $this->form->validate(),
+        );
 
         flash()->success(__('Video has been updated!'));
 
         $this->redirectAction(static::class, [$model], navigate: true);
+    }
+
+    public function toggleTag(Tag $tag): void
+    {
+        $items = collect($this->form->tags);
+
+        $items = $items->contains('id', $tag->getRouteKey())
+            ? $items->reject(fn (array $item) => $item['id'] === $tag->getRouteKey())
+            : $items->push(['id' => $tag->getRouteKey(), 'name' => $tag->name]);
+
+        $this->form->tags = $items->toArray();
     }
 
     protected function fillForms(): void

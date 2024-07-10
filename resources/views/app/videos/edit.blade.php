@@ -58,6 +58,36 @@
             ]),
         ]),
 
+        html()->div()->class('form-control')->attribute('x-data', '{ open: false }')->children([
+            html()->label('Tags')->for('form.tags')->class('label'),
+            html()
+                ->search()
+                ->attributes([
+                    'wire:model.live.debounce' => 'tags.query',
+                    'x-on:click' => 'open = ! open',
+                    'x-on:click.outside' => 'open = false',
+                ])
+                ->placeholder('Filter tags...')
+                ->class('input input-bordered')
+                ->autocomplete('off'),
+            html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->tags, fn ($item) => html()
+                ->a()
+                ->href('#')
+                ->attribute('wire:click.prevent', "toggleTag('{$item['id']}')")
+                ->class('btn btn-secondary text-sm px-2 py-1')
+                ->text($item['name'])
+            ),
+            html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
+                html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($tags->results(), fn ($item) => html()
+                    ->a()
+                    ->href('#')
+                    ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
+                    ->class('py-1 px-3 bg-secondary-500 hover:bg-secondary-600')
+                    ->text($item->name)
+                ),
+            ),
+        ]),
+
         html()->button()->text('Save Changes')->class('btn btn-secondary')
     ])
 ]) }}
