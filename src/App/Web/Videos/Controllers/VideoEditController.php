@@ -3,9 +3,11 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Library\Controllers\LibraryIndexController;
+use App\Web\Videos\Components\Player;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Foxws\WireUse\Views\Support\Page;
@@ -97,11 +99,13 @@ class VideoEditController extends Page
 
     protected function fillSnapshot(): void
     {
-         $videoable = static::history()
-            ->videos()
-            ->firstWhere('id', $this->video->getKey());
+        $playlist = Playlist::findByName(auth()->user(), 'history');
 
-        $this->form->snapshot = data_get($videoable?->pivot?->options, 'timestamp');
+        $this->authorize('view', $playlist);
+
+        $model = $playlist?->videos()->find($this->video);
+
+        $this->form->snapshot = data_get($model?->pivot?->options ?: [], 'timestamp', 0);
     }
 
     protected function getTitle(): string
