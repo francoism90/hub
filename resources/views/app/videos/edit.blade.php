@@ -12,10 +12,9 @@
         ->childrenIf($video->created_at, [
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($video->created_at->format('M d, Y')),
-        ])
-])->open() }}
+    ]),
 
-    {{ html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
+    html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
         html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
 
         html()->div()->class('form-control')->children([
@@ -59,6 +58,5 @@
         ]),
 
         html()->button()->text('Save Changes')->class('btn btn-secondary')
-    ]) }}
-
-{{ html()->div()->close() }}
+    ])
+]) }}
