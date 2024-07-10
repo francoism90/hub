@@ -18,13 +18,12 @@ class Section extends Component
     use WithQueryBuilder;
 
     #[Locked]
-    public ?TagType $type = null;
+    public TagType $type;
 
     public function render(): View
     {
         return view('app.lists.tags.view')->with([
             'title' => $this->getTitle(),
-            'description' => $this->getDescription(),
         ]);
     }
 
@@ -37,19 +36,15 @@ class Section extends Component
     public function items(): Collection
     {
         return $this->getQuery()
-            // ->published()
+            ->withCount('videos')
+            ->type($this->type)
             ->take(12)
             ->get();
     }
 
     protected function getTitle(): ?string
     {
-        return null;
-    }
-
-    protected function getDescription(): ?string
-    {
-        return null;
+        return $this->type->label();
     }
 
     protected static function getModelClass(): ?string

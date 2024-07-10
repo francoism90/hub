@@ -13,13 +13,13 @@ class TagQueryBuilder extends Builder
             ->randomSeed(key: 'tags-recommended', ttl: now()->addMinutes($ttl));
     }
 
-    public function type(TagType|string $value): self
+    public function type(TagType|string|int $value): self
     {
-        $type = ! $value instanceof TagType
-            ? TagType::tryFrom($value)
-            : $value;
+        $type = $value instanceof TagType
+            ? $value
+            : TagType::tryFrom($value);
 
-        return $this->when(filled($type), fn (Builder $query) => $query
+        return $this->when($type, fn (Builder $query) => $query
             ->where('type', $type)
         );
     }

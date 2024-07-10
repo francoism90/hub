@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Web\Videos\Components;
+namespace App\Web\Tags\Components;
 
-use App\Web\Videos\Concerns\WithVideo;
+use App\Web\Tags\Concerns\WithTag;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class Item extends Component
 {
-    use WithVideo;
+    use WithTag;
 
     public function render(): View
     {
-        return view('app.videos.card.item')->with([
+        return view('app.tags.card.item')->with([
             // 'title' => $this->getTitle(),
             // 'description' => $this->getDescription(),
         ]);
@@ -20,6 +20,6 @@ class Item extends Component
 
     public function placeholder(array $params = []): View
     {
-        return view('app.videos.card.placeholder', $params);
+        return view('app.tags.card.placeholder', $params);
     }
 }

@@ -1,8 +1,7 @@
-{{ html()->div()->attribute('x-data', 'player')->class('container py-4 flex flex-col gap-y-3')->open() }}
+{{ html()->div()->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->element('h1')->text('Lists')->class('text-2xl') }}
 
-    {{-- <livewire:app::lists-user lazy="on-load" /> --}}
-    <livewire:app::lists-section lazy="on-load" />
+    @foreach ($types as $type)
+        <livewire:app::lists-section :$type :key="$type->value" lazy="on-load" />
+    @endforeach
 {{ html()->div()->close() }}
-
-<x-app.player.shim />
