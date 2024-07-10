@@ -61,7 +61,7 @@ class VideoEditController extends Page
 
     public function beautify(): void
     {
-        $this->authorize('update', $this->video);
+        $this->canUpdate($this->video);
 
         $this->fillName();
 
@@ -70,6 +70,8 @@ class VideoEditController extends Page
 
     public function toggleTag(Tag $tag): void
     {
+        $this->canUpdate($this->video);
+
         $items = collect($this->form->tags);
 
         $items = $items->contains('id', $tag->getRouteKey())
