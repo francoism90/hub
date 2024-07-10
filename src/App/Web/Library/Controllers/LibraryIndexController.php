@@ -35,6 +35,8 @@ class LibraryIndexController extends Page
     {
         $this->form->submit();
 
+        $this->refresh();
+
         $this->resetPage();
     }
 

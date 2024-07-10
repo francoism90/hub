@@ -28,12 +28,14 @@ class ListIndexController extends Page
 
     public function render(): View
     {
-        return view('app.library.index');
+        return view('app.lists.index');
     }
 
     public function updated(): void
     {
         $this->form->submit();
+
+        $this->refresh();
 
         $this->resetPage();
     }
