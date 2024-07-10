@@ -54,7 +54,7 @@ class Player extends Component
 
         $playlist = Playlist::findByName($user, 'history');
 
-        $this->authorize('update', $playlist);
+        $this->authorize('view', $playlist);
 
         $model = $playlist?->videos()->find($this->video);
 
