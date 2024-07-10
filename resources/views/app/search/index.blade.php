@@ -6,7 +6,7 @@
         html()->validate('form.query'),
     ]) }}
 
-    @if ($this->items->isNotEmpty())
+    @if ($this->hasResults())
         {{ html()->element('section')->wireKey($this->hash)->class('pt-4 grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
             @foreach ($this->items as $video)
                 <livewire:app::videos-item :$video :key="$video->getRouteKey()" />

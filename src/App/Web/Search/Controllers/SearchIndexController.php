@@ -50,9 +50,9 @@ class SearchIndexController extends Page
     {
         $this->form->submit();
 
-        // $this->refresh();
+        $this->refresh();
 
-        // $this->resetPage();
+        $this->resetPage();
     }
 
     public function clear(): void
@@ -67,6 +67,11 @@ class SearchIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    public function hasResults(): bool
+    {
+        return ! $this->form->fails() && $this->items()->isNotEmpty();
     }
 
     protected function getTitle(): ?string
