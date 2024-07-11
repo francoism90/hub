@@ -12,7 +12,7 @@ class TagPolicy
         return true;
     }
 
-    public function view(User $user, Tag $model): bool
+    public function view(User $user, Tag $tag): bool
     {
         return true;
     }
@@ -22,22 +22,22 @@ class TagPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function update(User $user, Tag $model): bool
+    public function update(User $user, Tag $tag): bool
+    {
+        return $tag->user()->is($user) || $user->hasRole('super-admin');
+    }
+
+    public function delete(User $user, Tag $tag): bool
+    {
+        return $tag->user()->is($user) || $user->hasRole('super-admin');
+    }
+
+    public function restore(User $user, Tag $tag): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function delete(User $user, Tag $model): bool
-    {
-        return $user->hasRole('super-admin');
-    }
-
-    public function restore(User $user, Tag $model): bool
-    {
-        return $user->hasRole('super-admin');
-    }
-
-    public function forceDelete(User $user, Tag $model): bool
+    public function forceDelete(User $user, Tag $tag): bool
     {
         return $user->hasRole('super-admin');
     }
