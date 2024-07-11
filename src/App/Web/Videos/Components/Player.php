@@ -50,7 +50,7 @@ class Player extends Component
     protected function getStartTime(): ?float
     {
         if (! $user = auth()->user()) {
-            return 0;
+            return null;
         }
 
         return app(GetVideoStartTime::class)->execute($user, $this->getVideo());
