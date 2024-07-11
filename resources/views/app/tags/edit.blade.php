@@ -79,7 +79,7 @@
                 html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($related->results(), fn ($item) => html()
                     ->a()
                     ->href('#')
-                    ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
+                    ->attribute('wire:click.prevent', "toggleRelated('{$item->getRouteKey()}')")
                     ->class('py-1 px-3 bg-secondary-500 hover:bg-secondary-600')
                     ->text($item->name)
                 ),
