@@ -17,7 +17,7 @@
         ),
 
         html()->a()->route('account.profile')->text('Me')->prependChild(
-            html()->icon()->svg($isActive('account') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
+            html()->icon()->svg($isActive('account.profile') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),
     ])
 ]) }}
