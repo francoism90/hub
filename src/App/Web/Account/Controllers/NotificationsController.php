@@ -15,63 +15,20 @@ use Livewire\WithPagination;
 
 class NotificationsController extends Page
 {
-    use WithPagination;
-    use WithQueryBuilder;
-
-    public QueryForm $form;
-
-    public function mount(): void
-    {
-        $this->form->restore();
-    }
-
     public function render(): View
     {
-        return view('app.library.index');
+        return view('app.account.notifications');
     }
 
-    public function updated(): void
-    {
-        $this->form->submit();
-
-        $this->resetPage();
-    }
-
-    #[Computed()]
-    public function items(): Paginator
-    {
-        return $this->getQuery()->tap(
-            new FilterVideos(form: $this->form)
-        )->simplePaginate(12 * 4);
-    }
-
-    public function clear(): void
-    {
-        $this->form->forget();
-
-        $this->form->clear();
-    }
-
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
 
     protected function getTitle(): ?string
     {
-        return __('Library');
+        return __('Notifications');
     }
 
     protected function getDescription(): ?string
     {
-        return $this->getTitle();
-    }
-
-    protected static function getModelClass(): ?string
-    {
-        return Video::class;
+        return __('Manage your notifications and preferences.');
     }
 
     public function getListeners(): array
@@ -79,8 +36,8 @@ class NotificationsController extends Page
         $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$id},.video.deleted" => 'refresh',
-            "echo-private:user.{$id},.video.updated" => 'refresh',
+            "echo-private:user.{$id},.user.deleted" => '$refresh',
+            "echo-private:user.{$id},.user.updated" => '$refresh',
         ];
     }
 }
