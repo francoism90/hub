@@ -7,12 +7,14 @@ use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeEncrypted;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class MarkAsWatched implements ShouldQueue
+class MarkAsWatched implements ShouldQueue, ShouldBeUnique, ShouldBeEncrypted
 {
     use Batchable;
     use Dispatchable;
@@ -28,12 +30,17 @@ class MarkAsWatched implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 10;
+    public $timeout = 60 * 30;
 
     /**
      * @var int
      */
     public $backoff = 60;
+
+    /**
+     * @var int
+     */
+    public $uniqueFor = 60;
 
     /**
      * @var bool
@@ -57,8 +64,8 @@ class MarkAsWatched implements ShouldQueue
         app(UpdatePlaylistHistory::class)->execute($this->user, $this->video);
     }
 
-    public function retryUntil(): \DateTime
+    public function uniqueId(): string
     {
-        return now()->addDay();
+        return sprintf('watched:%s-%s', $this->user->getKey(), $this->video->getKey());
     }
 }
