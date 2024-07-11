@@ -4,7 +4,7 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
 use Domain\Playlists\Actions\GetVideoStartTime;
-use Domain\Playlists\Models\Playlist;
+use Domain\Playlists\Actions\MarkWatched;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
@@ -31,15 +31,11 @@ class Player extends Component
 
     public function updateHistory(?float $time = null): void
     {
-        if (! $user = auth()->user()) {
+        if ($time === null || (! $user = auth()->user())) {
             return;
         }
 
-        $playlist = Playlist::findByName($user, 'history');
-
-        $this->authorize('update', $playlist);
-
-        $this->video->markWatched($user, $time);
+        app(MarkWatched::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string
