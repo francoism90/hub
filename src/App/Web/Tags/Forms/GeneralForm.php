@@ -33,7 +33,7 @@ class GeneralForm extends Form
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'type' => [Rule::enum(TagType::class)],
+            'type' => ['required', Rule::enum(TagType::class)],
             'description' => 'nullable|string|min:1|max:4096',
         ];
     }
