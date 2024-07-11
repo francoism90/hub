@@ -8,12 +8,12 @@
             html()->icon()->svg($isActive('home') ? 'heroicon-s-home' : 'heroicon-o-home', 'size-6'),
         ),
 
-        html()->a()->route('lists.index')->text('Playlists')->prependChild(
-            html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
-        ),
-
         html()->a()->route('library.index')->text('Library')->prependChild(
             html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
+        ),
+
+        html()->a()->route('lists.index')->text('Playlists')->prependChild(
+            html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
         html()->a()->route('account.notifications')->text('Me')->prependChild(
