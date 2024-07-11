@@ -23,7 +23,9 @@
     @if ($video->tags()->count())
         {{ html()->div()->class('container py-2 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
-                {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
+                {{ html()->div()->wireKey($tag->getRouteKey())->child(
+                    html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name)
+                ) }}
             @endforeach
         {{ html()->div()->close() }}
     @endif

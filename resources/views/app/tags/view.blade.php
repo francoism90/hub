@@ -1,16 +1,22 @@
 {{ html()->div()->attribute('x-data', 'player')->class('container py-4')->open() }}
     {{ html()->element('h1')->text($tag->name)->class('text-2xl') }}
-    {{ html()->element('dl')->class('dl dl-list text-secondary-100')
+    {{ html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
         ->childrenIf($tag->type, [
             html()->element('dt')->text('Time')->class('sr-only'),
             html()->element('dd')->text($tag->type->label())
         ])
+        ->childrenIf(auth()->user()->can('update', $tag), [
+            html()->element('dt')->text('ID')->class('sr-only'),
+            html()->element('dd')->child(html()->a()->route('account.videos.edit', $tag)->text('Manage')),
+        ])
     }}
 
     @if ($tag->related->count())
-    {{ html()->div()->class('py-4 flex flex-wrap gap-2')->open() }}
+    {{ html()->div()->class('py-4 flex flex-wrap gap-2')->text('Related')->open() }}
         @foreach ($tag->related as $tag)
-            {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary')->text($tag->name) }}
+            {{ html()->div()->wireKey($tag->getRouteKey())->child(
+                html()->a()->route('tags.view', $tag)->class('btn btn-secondary')->text($tag->name)
+            )}}
         @endforeach
     {{ html()->div()->close() }}
     @endif
