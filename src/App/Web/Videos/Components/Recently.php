@@ -4,9 +4,7 @@ namespace App\Web\Videos\Components;
 
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 
-#[Lazy]
 class Recently extends Section
 {
     #[Computed]

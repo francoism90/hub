@@ -21,7 +21,7 @@
     ]) }}
 
     @if ($video->tags()->count())
-        {{ html()->div()->class('container flex flex-wrap gap-2')->open() }}
+        {{ html()->div()->class('container py-2 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name) }}
             @endforeach
@@ -30,6 +30,7 @@
 
     {{ html()->element('section')->attribute('x-data', 'player')->class('py-6')->open() }}
         <livewire:app::videos-next :$video lazy="on-load" />
+        <livewire:app::videos-recommended :$video lazy="on-load" />
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
 

@@ -8,7 +8,6 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 
-#[Lazy]
 class Next extends Section
 {
     use WithVideo;
