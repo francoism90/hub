@@ -4,8 +4,8 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-This is a personal project, do not expect a production ready product.
-It is mainly intended for learning and testing Laravel features.
+> **NOTE:** This is a personal project, do not expect a production ready product.
+It is mainly intended for learning and testing the latest Laravel features.
 
 You can fork the project and make your own adjustments based on my changes.
 
