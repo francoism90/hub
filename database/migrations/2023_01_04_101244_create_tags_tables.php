@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table
                 ->foreignId('user_id')
+                ->nullable()
                 ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->nullOnDelete();
             $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('slug');

@@ -32,9 +32,9 @@ class Tag extends BaseTag implements HasMedia
     use HasFactory;
     use HasPrefixedId;
     use HasRelated;
-    use InteractsWithUser;
     use InteractsWithMedia;
     use InteractsWithRandomSeed;
+    use InteractsWithUser;
     use LogsActivity;
     use Searchable;
 
