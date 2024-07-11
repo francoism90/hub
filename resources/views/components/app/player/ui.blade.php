@@ -166,7 +166,7 @@
             clearTimeout(this.idle);
 
             this.overlay = true;
-            this.idle = setTimeout(() => (this.overlay = false), 3500);
+            this.idle = setTimeout(() => (this.overlay = false), 2500);
         },
 
         async forceOverlay() {

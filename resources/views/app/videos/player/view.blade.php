@@ -34,7 +34,7 @@
                 html()->div()->attribute('x-on:dblclick.debounce', 'forward'),
             ]),
 
-            html()->div()->attributes(['x-cloak', 'x-show' => 'overlay', 'x-transition'])->class('absolute z-20 bottom-3 inset-x-4')->child(
+            html()->div()->attributes(['x-cloak', 'x-show' => 'overlay', 'x-transition.opacity'])->class('absolute z-20 bottom-3 inset-x-4')->child(
                 html()->div()->class('flex flex-col flex-nowrap gap-y-3')->children([
                     html()->div()->class('relative h-1.5 w-full bg-secondary-500/50')->children([
                         html()->element('progress')->class('progress progress-secondary absolute inset-0 z-10')->attributes([
