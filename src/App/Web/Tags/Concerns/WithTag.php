@@ -23,9 +23,14 @@ trait WithTag
         $this->dispatch('$refresh');
     }
 
+    protected function getTag(): Tag
+    {
+        return $this->tag;
+    }
+
     protected function getTagId(): string
     {
-        return $this->tag->getRouteKey();
+        return $this->getTag()->getRouteKey();
     }
 
     protected function getTagListeners(): array

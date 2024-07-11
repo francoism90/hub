@@ -3,6 +3,7 @@
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Playlists\Actions\GetVideoStartTime;
 use Domain\Playlists\Models\Playlist;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
@@ -52,12 +53,6 @@ class Player extends Component
             return 0;
         }
 
-        $playlist = Playlist::findByName($user, 'history');
-
-        $this->authorize('view', $playlist);
-
-        $model = $playlist?->videos()->find($this->video);
-
-        return data_get($model?->pivot?->options ?: [], 'timestamp', 0);
+        return app(GetVideoStartTime::class)->execute($user, $this->getVideo());
     }
 }

@@ -23,9 +23,14 @@ trait WithVideo
         $this->dispatch('$refresh');
     }
 
+    protected function getVideo(): Video
+    {
+        return $this->video;
+    }
+
     protected function getVideoId(): string
     {
-        return $this->video->getRouteKey();
+        return $this->getVideo()->getRouteKey();
     }
 
     protected function getVideoListeners(): array
