@@ -1,0 +1,9 @@
+@layer components {
+    .textarea {
+        @apply flex h-32 min-h-32 w-full appearance-none items-center bg-transparent px-3 focus:outline-none;
+
+        &-bordered {
+            @apply border border-secondary-500/50;
+        }
+    }
+}

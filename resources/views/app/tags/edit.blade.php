@@ -72,6 +72,12 @@
             ),
         ]),
 
+        html()->div()->class('form-control')->children([
+            html()->label('Description')->for('form.description')->class('label'),
+            html()->textarea()->wireModel('form.description')->placeholder('Description')->class('textarea textarea-bordered'),
+            html()->validate('form.description'),
+        ]),
+
         html()->button()->text('Save Changes')->class('btn btn-secondary')
     ])
 ]) }}
