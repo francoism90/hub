@@ -35,6 +35,8 @@ class Player extends Component
             return;
         }
 
+        logger($time);
+
         app(MarkWatched::class)->execute($user, $this->getVideo(), $time);
     }
 

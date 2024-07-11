@@ -7,8 +7,10 @@ use Domain\Videos\Models\Video;
 
 class UpdatePlaylistHistory
 {
-    public function execute(User $user, Video $video, float $time = 0): void
+    public function execute(User $user, Video $video, ?float $time = null): void
     {
+        $time ??= app(GetVideoStartTime::class)->execute($user, $video);
+
         $model = $user->playlists()->history();
 
         // Attach the video to the playlist history

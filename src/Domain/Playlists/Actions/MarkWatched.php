@@ -15,10 +15,10 @@ class MarkWatched
         $key = $this->getWatchKey($video);
 
         // Store current time
-        $user->storeSet($key, $time);
+        $user->storeSet($key, $time, now()->addWeek());
 
         // Persist to database
-        $this->saveHistory($user, $video, $time);
+        $this->saveHistory($user, $video);
     }
 
     protected function getWatchKey(Video $video): string
@@ -26,9 +26,9 @@ class MarkWatched
         return sprintf('watched:%s', $video->getKey());
     }
 
-    protected function saveHistory(User $user, Video $video, float $time): void
+    protected function saveHistory(User $user, Video $video): void
     {
-        MarkAsWatched::dispatch($user, $video, $time)
+        MarkAsWatched::dispatch($user, $video)
             ->delay(now()->addSeconds(30));
     }
 }

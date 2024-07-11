@@ -48,14 +48,13 @@ class MarkAsWatched implements ShouldQueue
     public function __construct(
         protected User $user,
         protected Video $video,
-        protected float $time = 0,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(UpdatePlaylistHistory::class)->execute($this->user, $this->video, $this->time);
+        app(UpdatePlaylistHistory::class)->execute($this->user, $this->video);
     }
 
     public function retryUntil(): \DateTime

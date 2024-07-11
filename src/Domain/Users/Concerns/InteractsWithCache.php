@@ -28,8 +28,7 @@ trait InteractsWithCache
 
     public function storeSet(string $key, mixed $value = null, Carbon|int|null $ttl = null): bool
     {
-        return Cache::tags(['user', "user:{$this->getKey()}"])
-            ->put($this->storeKey($key), $value, $ttl);
+        return Cache::put($this->storeKey($key), $value, $ttl);
     }
 
     public function storeValue(string $key, mixed $default = null): mixed
