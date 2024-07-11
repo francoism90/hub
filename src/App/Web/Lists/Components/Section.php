@@ -15,6 +15,7 @@ use Livewire\WithoutUrlPagination;
 
 class Section extends Component
 {
+    use WithAuthentication;
     use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
