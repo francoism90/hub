@@ -12,13 +12,13 @@
     }}
 
     @if ($tag->related->count())
-    {{ html()->div()->class('py-4 flex flex-wrap gap-2')->text('Related')->open() }}
-        @foreach ($tag->related as $tag)
-            {{ html()->div()->wireKey($tag->getRouteKey())->child(
-                html()->a()->route('tags.view', $tag)->class('btn btn-secondary')->text($tag->name)
-            )}}
-        @endforeach
-    {{ html()->div()->close() }}
+        {{ html()->div()->class('py-4 flex flex-wrap gap-2')->open() }}
+            @foreach ($tag->related as $tag)
+                {{ html()->div()->wireKey($tag->getRouteKey())->child(
+                    html()->a()->route('tags.view', $tag)->class('btn btn-secondary text-sm')->text($tag->name)
+                )}}
+            @endforeach
+        {{ html()->div()->close() }}
     @endif
 
 
