@@ -5,6 +5,9 @@
     ->attributes([
         'x-data' => "play('{$manifest}', {$startsAt})",
         'x-ref' => 'container',
+        'x-on:click' => 'showOverlay',
+        'x-on:mousemove' => 'showOverlay',
+        'x-on:touchmove' => 'showOverlay',
     ])
     ->children([
         html()
@@ -22,7 +25,7 @@
                 'x-on:progress.debounce.200ms' => 'handleEvent',
                 'x-on:timeupdate.debounce.200ms' => 'handleEvent',
                 'playsinline',
-                // 'autoplay',
+                'autoplay',
             ]),
 
         html()->div()->class('absolute z-10 inset-0 size-full')->children([
@@ -31,7 +34,7 @@
                 html()->div()->attribute('x-on:dblclick.debounce', 'forward'),
             ]),
 
-            html()->div()->class('absolute z-20 bottom-3 inset-x-4')->child(
+            html()->div()->attributes(['x-cloak', 'x-show' => 'overlay', 'x-transition'])->class('absolute z-20 bottom-3 inset-x-4')->child(
                 html()->div()->class('flex flex-col flex-nowrap gap-y-3')->children([
                     html()->div()->class('relative h-1.5 w-full bg-secondary-500/50')->children([
                         html()->element('progress')->class('progress progress-secondary absolute inset-0 z-10')->attributes([
