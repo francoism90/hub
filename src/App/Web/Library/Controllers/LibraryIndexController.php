@@ -69,7 +69,7 @@ class LibraryIndexController extends Page
 
     protected function getDescription(): ?string
     {
-        return $this->getTitle();
+        return __('Browse and watch videos');
     }
 
     protected static function getModelClass(): ?string
