@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Web\Search\Controllers;
+namespace App\Web\Account\Controllers;
 
-use App\Web\Search\Forms\QueryForm;
-use App\Web\Search\Scopes\FilterVideos;
+use App\Web\Library\Forms\QueryForm;
+use App\Web\Library\Scopes\FilterVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -13,7 +13,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class SearchIndexController extends Page
+class ProfileController extends Page
 {
     use WithPagination;
     use WithQueryBuilder;
@@ -27,31 +27,22 @@ class SearchIndexController extends Page
 
     public function render(): View
     {
-        return view('app.search.index');
+        return view('app.library.index');
     }
 
     public function updated(): void
     {
-        $this->form->validate();
+        $this->form->submit();
+
+        $this->resetPage();
     }
 
     #[Computed()]
     public function items(): Paginator
     {
-        $query = $this->form->query();
-
-        return $this->getScout($query)->tap(
+        return $this->getQuery()->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(12 * 4);
-    }
-
-    public function submit(): void
-    {
-        $this->form->submit();
-
-        $this->refresh();
-
-        $this->resetPage();
     }
 
     public function clear(): void
@@ -68,14 +59,9 @@ class SearchIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    public function hasResults(): bool
-    {
-        return ! $this->form->fails() && $this->items()->isNotEmpty();
-    }
-
     protected function getTitle(): ?string
     {
-        return __('Search');
+        return __('Library');
     }
 
     protected function getDescription(): ?string

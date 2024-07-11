@@ -16,7 +16,7 @@
             html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
-        html()->a()->route('account.notifications')->text('Me')->prependChild(
+        html()->a()->route('account.profile')->text('Me')->prependChild(
             html()->icon()->svg($isActive('account') ? 'heroicon-s-user' : 'heroicon-o-user', 'size-6'),
         ),
     ])

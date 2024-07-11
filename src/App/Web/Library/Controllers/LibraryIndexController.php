@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 
 class LibraryIndexController extends Page
 {
-    use WithAuthentication;
     use WithPagination;
     use WithQueryBuilder;
 

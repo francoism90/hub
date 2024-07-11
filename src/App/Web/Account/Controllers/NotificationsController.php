@@ -15,7 +15,6 @@ use Livewire\WithPagination;
 
 class NotificationsController extends Page
 {
-    use WithAuthentication;
     use WithPagination;
     use WithQueryBuilder;
 
