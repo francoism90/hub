@@ -24,6 +24,7 @@ return new class extends Migration
             $table->json('titles')->nullable();
             $table->string('season')->nullable();
             $table->string('episode')->nullable();
+            $table->string('part')->nullable();
             $table->float('snapshot')->nullable();
             $table->boolean('adult')->default(false);
             $table->string('state');
