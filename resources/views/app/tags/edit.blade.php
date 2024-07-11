@@ -36,7 +36,7 @@
 
         html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-3')->children([
             html()->div()->class('form-control')->children([
-                html()->label('Episode')->for('form.type')->class('label'),
+                html()->label('Type')->for('form.type')->class('label'),
                 html()->select(options: $types)->wireModel('form.type')->placeholder('Type')->class('select select-bordered'),
                 html()->validate('form.type'),
             ]),
