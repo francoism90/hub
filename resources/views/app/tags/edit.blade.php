@@ -42,20 +42,6 @@
             ]),
         ]),
 
-        // html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-2')->children([
-        //     html()->div()->class('form-control')->children([
-        //         html()->label('Released At')->for('form.released_at')->class('label'),
-        //         html()->date()->wireModel('form.released_at')->class('input input-bordered'),
-        //         html()->validate('form.released_at'),
-        //     ]),
-
-        //     html()->div()->class('form-control')->children([
-        //         html()->label('Snapshot')->for('form.snapshot')->class('label'),
-        //         html()->text()->wireModel('form.snapshot')->placeholder('1.0')->class('input input-bordered'),
-        //         html()->validate('form.snapshot'),
-        //     ]),
-        // ]),
-
         html()->div()->class('form-control')->attribute('x-data', '{ open: false }')->children([
             html()->label('Related')->for('form.related')->class('label'),
             html()
