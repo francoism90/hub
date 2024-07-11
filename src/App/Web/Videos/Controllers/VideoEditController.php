@@ -6,6 +6,7 @@ use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Videos\Concerns\WithVideo;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
+use Domain\Playlists\Actions\GetVideoStartTime;
 use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Actions\UpdateVideoDetails;
@@ -98,13 +99,9 @@ class VideoEditController extends Page
 
     protected function fillSnapshot(): void
     {
-        $playlist = Playlist::findByName(auth()->user(), 'history');
+        $time = app(GetVideoStartTime::class)->execute(auth() ?->user(), $this->getVideo());
 
-        $this->authorize('view', $playlist);
-
-        $model = $playlist?->videos()->find($this->video);
-
-        $this->form->snapshot = data_get($model?->pivot?->options ?: [], 'timestamp', 0);
+        $this->form->snapshot = $time;
     }
 
     protected function getTitle(): string

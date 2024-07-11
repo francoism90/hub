@@ -8,6 +8,11 @@ use Livewire\Attributes\Computed;
 
 class Watching extends Section
 {
+    public function boot(): void
+    {
+        $this->authorize('view', $this->getPlaylist());
+    }
+
     #[Computed]
     public function items(): Collection
     {
@@ -32,11 +37,7 @@ class Watching extends Section
 
     protected function getPlaylist(): Playlist
     {
-        $playlist = Playlist::findByName(auth()->user(), 'history');
-
-        $this->authorize('view', $playlist);
-
-        return $playlist;
+        return auth()->user()->playlists()->history();
     }
 
     public function getListeners(): array
