@@ -9,6 +9,7 @@ use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
 use Domain\Tags\Scopes\OrderedScope;
+use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -31,6 +32,7 @@ class Tag extends BaseTag implements HasMedia
     use HasFactory;
     use HasPrefixedId;
     use HasRelated;
+    use InteractsWithUser;
     use InteractsWithMedia;
     use InteractsWithRandomSeed;
     use LogsActivity;
