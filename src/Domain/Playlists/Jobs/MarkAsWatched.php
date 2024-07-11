@@ -28,7 +28,7 @@ class MarkAsWatched implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60;
+    public $timeout = 60 * 10;
 
     /**
      * @var int
@@ -59,6 +59,6 @@ class MarkAsWatched implements ShouldQueue
 
     public function retryUntil(): \DateTime
     {
-        return now()->addSeconds(30);
+        return now()->addDay();
     }
 }
