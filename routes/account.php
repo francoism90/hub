@@ -2,6 +2,7 @@
 
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
+use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Videos\Controllers\VideoEditController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
         Route::get('/{video}', VideoEditController::class)->name('edit');
+    });
+
+    // Tags
+    Route::name('tags.')->prefix('tags')->group(function () {
+        Route::get('/{tag}', TagEditController::class)->name('edit');
     });
 });
