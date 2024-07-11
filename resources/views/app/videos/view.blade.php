@@ -29,8 +29,8 @@
     @endif
 
     {{ html()->element('section')->attribute('x-data', 'player')->class('py-6')->open() }}
-        <livewire:app::videos-next :$video lazy="on-load" />
-        <livewire:app::videos-recommended :$video lazy="on-load" />
+        <livewire:app::videos-next :$video lazy />
+        <livewire:app::videos-recommended :$video lazy />
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
 
