@@ -5,10 +5,6 @@
         show: false,
 
         async init() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
-            // Create instance
             await this.create();
         },
 
