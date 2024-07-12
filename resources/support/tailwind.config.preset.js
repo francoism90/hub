@@ -1,27 +1,23 @@
+import { fontFamily } from "tailwindcss/defaultTheme";
 import colors from "tailwindcss/colors";
 
 export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "Inter, ui-sans-serif, system-ui, sans-serif",
-          {
-            fontFeatureSettings: '"calt", "case", "ccmp", "cv11", "ss01"',
-            fontVariationSettings: '"opsz" 32',
-          },
-        ],
-        serif: ["Montserrat", "ui-serif", "serif"],
-        mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+        sans: ["Jost", fontFamily.sans],
+        serif: ["Montserrat", fontFamily.serif],
+        mono: ["IBM Plex Mono", fontFamily.mono],
       },
       colors: {
         base: colors.white,
         primary: colors.pink,
         secondary: colors.gray,
+        error: colors.red,
       },
       container: {
         center: true,
-        padding: '2rem',
+        padding: '1rem',
       },
     },
   },

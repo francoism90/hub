@@ -3,7 +3,6 @@
     class="scroll-smooth"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
-
 <head>
     <meta charset="utf-8" />
     <meta
@@ -64,13 +63,14 @@
     @googlefonts('code')
 </head>
 
-<body class="relative h-screen min-h-screen bg-gray-950 text-white antialiased">
+<body class="h-screen min-h-screen relative flex flex-col overscroll-none bg-secondary-950 text-base antialiased">
 
-    {{ $slot }}
+    <div class="flex-1">
+        {{ $slot }}
+    </div>
 
     @vite('resources/js/app.js')
     @stack('scripts')
 
 </body>
-
 </html>

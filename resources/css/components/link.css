@@ -1,0 +1,10 @@
+@layer components {
+    .link {
+        @apply inline-flex shrink-0 cursor-pointer items-center justify-center focus:outline-none;
+
+        &-primary,
+        &-active {
+            @apply text-primary-500 hover:text-primary-400;
+        }
+    }
+}

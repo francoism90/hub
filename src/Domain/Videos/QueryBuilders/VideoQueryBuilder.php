@@ -15,18 +15,18 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
-    public function recommended(int $ttl = 90): self
+    public function recommended(int $ttl = 20): self
     {
         return $this
             ->published()
-            ->randomSeed(key: 'feed', ttl: now()->addMinutes($ttl));
+            ->randomSeed(key: 'videos-recommended', ttl: now()->addMinutes($ttl));
     }
 
-    public function random(int $ttl = 20): self
+    public function random(int $ttl = 10): self
     {
         return $this
             ->published()
-            ->randomSeed(key: 'videos', ttl: now()->addMinutes($ttl));
+            ->randomSeed(key: 'videos-random', ttl: now()->addMinutes($ttl));
     }
 
     public function similar(Video $model): self

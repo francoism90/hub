@@ -10,6 +10,11 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table
+                ->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('slug');

@@ -8,9 +8,13 @@ use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
+use Domain\Tags\Scopes\OrderedScope;
+use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
@@ -21,6 +25,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
 
+#[ScopedBy(OrderedScope::class)]
 class Tag extends BaseTag implements HasMedia
 {
     use BroadcastsEvents;
@@ -29,6 +34,7 @@ class Tag extends BaseTag implements HasMedia
     use HasRelated;
     use InteractsWithMedia;
     use InteractsWithRandomSeed;
+    use InteractsWithUser;
     use LogsActivity;
     use Searchable;
 
@@ -167,5 +173,19 @@ class Tag extends BaseTag implements HasMedia
     protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
     {
         return $query->with($this->with);
+    }
+
+    public function responsive(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->videos()->first()?->responsive,
+        )->shouldCache();
+    }
+
+    public function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->videos()->first()?->thumbnail,
+        )->shouldCache();
     }
 }

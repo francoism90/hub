@@ -1,0 +1,13 @@
+@layer components {
+    .select {
+        @apply flex h-10 min-h-10 w-full appearance-none items-center bg-transparent px-3 focus:outline-none;
+
+        &-bordered {
+            @apply border border-secondary-500/50;
+
+            option {
+                @apply bg-secondary-950 text-base;
+            }
+        }
+    }
+}

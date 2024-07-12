@@ -30,6 +30,8 @@ Adjust environment files in `~/.config/containers/systemd/hub`. Values should re
 
 [Traefik](https://doc.traefik.io/traefik/) is used as proxy. However you are free to use something else, or not even proxy at all.
 
+> **TIP:** See <https://doc.traefik.io/traefik/middlewares/http/basicauth> for generating a basic-auth password.
+
 It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificates](https://doc.traefik.io/traefik/https/tls/) for local development.
 
 Adjust the configuration files in `~/.config/containers/systemd/traefik`, and make sure `podman.socket` is enabled (`systemctl --user enable podman.socket --now`).
@@ -52,7 +54,7 @@ systemctl --user daemon-reload
 systemctl --user restart hub-app hub
 ```
 
-To start Hub:
+To start containers:
 
 ```bash
 systemctl --user start hub

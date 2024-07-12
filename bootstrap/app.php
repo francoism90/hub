@@ -17,9 +17,12 @@ $app = Application::configure(basePath: $basePath)
         health: '/up',
         then: function () {
             Route::middleware('web')
-                ->prefix('dashboard')
-                ->name('dashboard.')
-                ->group(base_path('routes/dashboard.php'));
+                ->group(__DIR__.'/../routes/auth.php');
+
+            Route::middleware('web')
+                ->prefix('me')
+                ->name('account.')
+                ->group(__DIR__.'/../routes/account.php');
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
