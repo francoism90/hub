@@ -30,7 +30,9 @@
         ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
-        html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
+        html()->div()
+            ->classIf(flash()->message, 'form-message')
+            ->textIf(flash()->message, flash()->message),
 
         html()->div()->class('form-control')->children([
             html()->label('Name', 'form.name')->class('label'),
