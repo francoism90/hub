@@ -1938,9 +1938,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.820:
-  version "1.4.825"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.825.tgz#2d9c3d1eb81a67ecea0c06bcf70740b00ba52718"
-  integrity sha512-OCcF+LwdgFGcsYPYC5keEEFC2XT0gBhrYbeGzHCx7i9qRFbzO/AqTmc/C/1xNhJj+JA7rzlN7mpBuStshh96Cg==
+  version "1.4.827"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.827.tgz#76068ed1c71dd3963e1befc8ae815004b2da6a02"
+  integrity sha512-VY+J0e4SFcNfQy19MEoMdaIcZLmDCprqvBtkii1WTCTQHpRvf5N8+3kTYCgL/PcntvwQvmMJWTuDPsq+IlhWKQ==
 
 eme-encryption-scheme-polyfill@^2.1.5:
   version "2.1.5"
@@ -3270,9 +3270,9 @@ postcss-selector-parser@6.0.10:
     util-deprecate "^1.0.2"
 
 postcss-selector-parser@^6.0.11:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.1.0.tgz#49694cb4e7c649299fea510a29fa6577104bcf53"
-  integrity sha512-UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.1.1.tgz#5be94b277b8955904476a2400260002ce6c56e38"
+  integrity sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==
   dependencies:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
@@ -3533,10 +3533,10 @@ set-function-name@^2.0.1, set-function-name@^2.0.2:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.2"
 
-shaka-player@^4.10.4:
-  version "4.10.4"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.4.tgz#1c9e7bdcbf2ce934bd1093c4f194a532f3207665"
-  integrity sha512-LH6x1B76HXv/rInefTkNvDNLqnBRlvtB2IbVOGnAftdlbUrMFdp1rMVDbGO6OtETKIHnccEIpiO5NjUyr9PK2g==
+shaka-player@^4.10.5:
+  version "4.10.5"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.5.tgz#a829a66e537c1f603fd9b5df5d999b98e76cee3d"
+  integrity sha512-WU74jRyn/wq9K6kmg2DPqY5bAcPXv3HPUvwKzwQSSYQbnpLB1OXJRjlenUXH3/KNa31vshQv0NRM+JlLn2jNtQ==
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.5"
 

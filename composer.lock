@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66390d6ac154d6f8013fc3d36ef52f0b",
+    "content-hash": "382144d20373e770ffa0d4c40235058c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1400,16 +1400,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.4.1",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "8536c1b9103405bcbd310c69e7a5739a1c2b1f0b"
+                "reference": "c51258e759afdb17f1fd1fe83bc12baaef6309d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/8536c1b9103405bcbd310c69e7a5739a1c2b1f0b",
-                "reference": "8536c1b9103405bcbd310c69e7a5739a1c2b1f0b",
+                "url": "https://api.github.com/repos/composer/semver/zipball/c51258e759afdb17f1fd1fe83bc12baaef6309d6",
+                "reference": "c51258e759afdb17f1fd1fe83bc12baaef6309d6",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1461,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.4.1"
+                "source": "https://github.com/composer/semver/tree/3.4.2"
             },
             "funding": [
                 {
@@ -1477,7 +1477,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-12T09:13:09+00:00"
+            "time": "2024-07-12T11:35:52+00:00"
         },
         {
             "name": "daverandom/libdns",
@@ -2051,16 +2051,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "b299a26c6c33ecb0b97aee9670025c094d7ad3eb"
+                "reference": "49209a4e1a638822b8f4c15058d40f3e0f77f577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/b299a26c6c33ecb0b97aee9670025c094d7ad3eb",
-                "reference": "b299a26c6c33ecb0b97aee9670025c094d7ad3eb",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/49209a4e1a638822b8f4c15058d40f3e0f77f577",
+                "reference": "49209a4e1a638822b8f4c15058d40f3e0f77f577",
                 "shasum": ""
             },
             "require": {
@@ -2127,7 +2127,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.0.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.0.1"
             },
             "funding": [
                 {
@@ -2135,7 +2135,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-12T10:49:20+00:00"
+            "time": "2024-07-12T15:01:24+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -11479,16 +11479,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v3.0.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "bc1d67f01ce8c77e3f97d48ba51fa1d81874f622"
+                "reference": "591e7d665fbab8a3b682e451641706341573eb80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/bc1d67f01ce8c77e3f97d48ba51fa1d81874f622",
-                "reference": "bc1d67f01ce8c77e3f97d48ba51fa1d81874f622",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/591e7d665fbab8a3b682e451641706341573eb80",
+                "reference": "591e7d665fbab8a3b682e451641706341573eb80",
                 "shasum": ""
             },
             "require": {
@@ -11520,7 +11520,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -11557,7 +11557,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-ide-helper/issues",
-                "source": "https://github.com/barryvdh/laravel-ide-helper/tree/v3.0.0"
+                "source": "https://github.com/barryvdh/laravel-ide-helper/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -11569,7 +11569,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-01T12:53:18+00:00"
+            "time": "2024-07-12T14:20:51+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",

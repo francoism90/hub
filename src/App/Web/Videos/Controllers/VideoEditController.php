@@ -108,7 +108,9 @@ class VideoEditController extends Page
 
         $time = app(GetVideoStartTime::class)->execute(auth()?->user(), $this->getVideo());
 
-        $this->form->snapshot = $time;
+        if ($time !== null && $time > 0) {
+            $this->form->snapshot = round($time, 2);
+        }
     }
 
     protected function getTitle(): string
