@@ -14,15 +14,15 @@
             html()->element('dd')->text($video->created_at->format('M d, Y')),
         ])
         ->children([
+            html()->element('dt')->text('Beautify')->class('sr-only'),
+            html()->element('dd')->child(html()->a()->href('#')->attribute('wire:click.prevent', 'beautify')->text('Beautify 🔅'))
+        ])
+        ->children([
             html()->element('dt')->text('Delete')->class('sr-only'),
             html()->element('dd')->child(html()->a()->href('#')->text('Delete')->attributes([
                 'wire:click.prevent' => 'delete',
                 'wire:confirm' => 'Are you sure you want to delete this video?',
             ]))
-        ])
-        ->children([
-            html()->element('dt')->text('Beautify')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->href('#')->attribute('wire:click.prevent', 'beautify')->text('Beautify 🔅'))
         ])
         ->children([
             html()->element('dt')->text('View')->class('sr-only'),
