@@ -6,7 +6,7 @@
     "eslint.useFlatConfig": true,
     "files.associations": {
         "*.css": "tailwindcss",
-        "*.scss": "tailwindcss",
+        "*.scss": "tailwindcss"
     },
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
