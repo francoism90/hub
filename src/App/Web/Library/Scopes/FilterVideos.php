@@ -14,11 +14,7 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->when(! $this->hasQuery(), fn (Builder $query) => $query->recommended());
-    }
-
-    protected function hasQuery(): bool
-    {
-        return filled($this->form->query());
+            ->recommended()
+            ->when($this->form->isStrict('type', 'untagged'), fn (Builder $query) => $query->whereDoesntHave('tags'));
     }
 }

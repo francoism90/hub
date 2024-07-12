@@ -4,7 +4,7 @@
 
         &-primary,
         &-active {
-            @apply text-primary-100 text-primary-600/50 hover:text-primary-500/50;
+            @apply bg-secondary-300/50 text-secondary-100 hover:text-secondary-100;
         }
 
         &-secondary {
@@ -17,6 +17,10 @@
 
         &-inline {
             @apply w-none rounded-none p-0;
+        }
+
+        &-ghost {
+            @apply bg-transparent;
         }
     }
 }

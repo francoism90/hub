@@ -26,16 +26,14 @@ class LibraryIndexController extends Page
 
     public function render(): View
     {
-        return view('app.library.index');
+        return view('app.library.index')->with([
+            'types' => $this->getTypes(),
+        ]);
     }
 
     public function updated(): void
     {
-        $this->form->submit();
-
-        $this->refresh();
-
-        $this->resetPage();
+        $this->form->validate();
     }
 
     #[Computed()]
@@ -44,6 +42,24 @@ class LibraryIndexController extends Page
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(12 * 4);
+    }
+
+    public function setType(string $type = ''): void
+    {
+        $this->authorize('viewAny', $this->getModelClass());
+
+        $this->form->type = $type;
+
+        $this->submit();
+    }
+
+    public function submit(): void
+    {
+        $this->form->submit();
+
+        $this->refresh();
+
+        $this->resetPage();
     }
 
     public function clear(): void
@@ -58,6 +74,14 @@ class LibraryIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    protected function getTypes(): array
+    {
+        return [
+            ['key' => '', 'label' => __('All')],
+            ['key' => 'untagged', 'label' => __('Untagged')],
+        ];
     }
 
     protected function getTitle(): ?string
