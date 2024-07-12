@@ -78,6 +78,7 @@
             html()->label('Tags')->for('form.tags')->class('label'),
             html()
                 ->search()
+                ->id('form.tags')
                 ->attributes([
                     'wire:model.live.debounce' => 'tags.query',
                     'x-on:click' => 'open = ! open',

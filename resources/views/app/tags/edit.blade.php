@@ -46,6 +46,7 @@
             html()->label('Related')->for('form.related')->class('label'),
             html()
                 ->search()
+                ->id('form.related')
                 ->attributes([
                     'wire:model.live.debounce' => 'related.query',
                     'x-on:click' => 'open = ! open',
