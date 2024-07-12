@@ -14,6 +14,10 @@
                 html()->element('dt')->text('ID')->class('sr-only'),
                 html()->element('dd')->text($video->identifier),
             ])
+            ->childrenIf($video->published, [
+                html()->element('dt')->text('ID')->class('sr-only'),
+                html()->element('dd')->text($video->published->format('M d, Y')),
+            ])
             ->childrenIf(auth()->user()->can('update', $video), [
                 html()->element('dt')->text('ID')->class('sr-only'),
                 html()->element('dd')->child(html()->a()->route('account.videos.edit', $video)->text('Manage')),
