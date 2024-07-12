@@ -2,7 +2,7 @@
     ->element('article')
     ->class('h-60 min-w-60 min-h-60 sm:max-h-60 sm:max-w-80')
     ->children([
-        html()->a()->route('videos.view', $video)->class('relative w-full h-40')->children([
+        html()->a()->route('videos.view', $video)->class('relative block w-full min-w-60 h-40')->children([
             html()
                 ->element('video')
                 ->ignore()
