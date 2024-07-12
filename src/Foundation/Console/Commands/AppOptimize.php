@@ -36,10 +36,10 @@ class AppOptimize extends Command implements Isolatable
         $this->call('view:cache');
         $this->call('event:cache');
 
-        // Sync packages
+        // Sync settings
         $this->call('scout:sync-index-settings');
 
-        // Terminate services
+        // Restart services
         $this->call('horizon:terminate');
         $this->call('pulse:restart');
     }

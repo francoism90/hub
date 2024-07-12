@@ -33,5 +33,8 @@ class AppUpdate extends Command implements Isolatable
 
         // Optimize app
         $this->call('app:optimize', ['--force' => 'yes']);
+
+        // Restart services
+        $this->call('pulse:clear');
     }
 }
