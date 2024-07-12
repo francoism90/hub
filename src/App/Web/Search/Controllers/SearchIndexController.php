@@ -70,7 +70,7 @@ class SearchIndexController extends Page
 
     public function hasResults(): bool
     {
-        return ! $this->form->fails() && $this->items()->isNotEmpty();
+        return $this->form->getErrorBag()->isEmpty() && $this->items()->isNotEmpty();
     }
 
     protected function getTitle(): ?string
