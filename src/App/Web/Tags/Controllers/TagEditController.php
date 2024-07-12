@@ -6,9 +6,9 @@ use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\GeneralForm;
 use App\Web\Tags\Forms\RelatedForm;
-use Domain\Tags\Models\Tag;
 use Domain\Tags\Actions\UpdateTagDetails;
 use Domain\Tags\Enums\TagType;
+use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 

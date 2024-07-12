@@ -6,7 +6,6 @@ use App\Web\Videos\Concerns\WithVideo;
 use Domain\Videos\Actions\GetSimilarVideos;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 
 class Next extends Section
 {

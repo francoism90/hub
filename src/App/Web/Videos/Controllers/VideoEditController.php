@@ -7,7 +7,6 @@ use App\Web\Videos\Concerns\WithVideo;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
 use Domain\Playlists\Actions\GetVideoStartTime;
-use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Foxws\WireUse\Views\Support\Page;
@@ -99,7 +98,7 @@ class VideoEditController extends Page
 
     protected function fillSnapshot(): void
     {
-        $time = app(GetVideoStartTime::class)->execute(auth() ?->user(), $this->getVideo());
+        $time = app(GetVideoStartTime::class)->execute(auth()?->user(), $this->getVideo());
 
         $this->form->snapshot = $time;
     }

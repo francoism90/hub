@@ -2,16 +2,8 @@
 
 namespace App\Web\Account\Controllers;
 
-use App\Web\Library\Forms\QueryForm;
-use App\Web\Library\Scopes\FilterVideos;
-use Domain\Videos\Models\Video;
-use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
 
 class ProfileController extends Page
 {

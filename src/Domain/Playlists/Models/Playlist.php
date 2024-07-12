@@ -7,7 +7,6 @@ use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
 use Domain\Users\Concerns\InteractsWithUser;
-use Domain\Users\Models\User;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;

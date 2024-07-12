@@ -5,7 +5,6 @@ namespace App\Web\Search\Controllers;
 use App\Web\Search\Forms\QueryForm;
 use App\Web\Search\Scopes\FilterVideos;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
@@ -70,7 +69,7 @@ class SearchIndexController extends Page
 
     public function hasResults(): bool
     {
-        return $this->form->getErrorBag()->isEmpty() && $this->items()->isNotEmpty();
+        return ! $this->form->hasMessages() && $this->items()->isNotEmpty();
     }
 
     protected function getTitle(): ?string
