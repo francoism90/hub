@@ -10,7 +10,7 @@
     },
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.experimental.classRegex": ["class:(.*?)", "->class(.*?)"],
+    "tailwindCSS.experimental.classRegex": ["class:(.*?)", "class(.*?)"],
     "tailwindCSS.includeLanguages": {
         "blade": "html",
         "blade.php": "html",
