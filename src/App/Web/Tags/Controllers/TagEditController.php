@@ -89,7 +89,11 @@ class TagEditController extends Page
 
     protected function fillName(): void
     {
-        $this->form->name = str($this->form->get('name', ''))
+        if ($this->form->filled('name')) {
+            return;
+        }
+
+        $this->form->name = str($this->getTag()->name)
             ->replace('.', ' ')
             ->headline()
             ->squish()

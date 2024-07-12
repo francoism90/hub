@@ -89,7 +89,11 @@ class VideoEditController extends Page
 
     protected function fillName(): void
     {
-        $this->form->name = str($this->form->get('name', ''))
+        if ($this->form->filled('name')) {
+            return;
+        }
+
+        $this->form->name = str($this->getVideo()->name)
             ->replace('.', ' ')
             ->headline()
             ->squish()
@@ -98,6 +102,10 @@ class VideoEditController extends Page
 
     protected function fillSnapshot(): void
     {
+        if ($this->form->filled('snapshot')) {
+            return;
+        }
+
         $time = app(GetVideoStartTime::class)->execute(auth()?->user(), $this->getVideo());
 
         $this->form->snapshot = $time;
