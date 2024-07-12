@@ -9,7 +9,7 @@ TimeoutStartSec=900
 Restart=always
 
 [Container]
-Image=localhost/hub-nginx
+Image=localhost/hub-nginx:latest
 AutoUpdate=local
 Volume=${APP_PATH}:/app:ro,z
 Volume=${APP_MEDIA_PATH}:/app/storage/app/media:ro,z

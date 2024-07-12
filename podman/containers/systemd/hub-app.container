@@ -9,7 +9,7 @@ TimeoutStartSec=900
 Restart=always
 
 [Container]
-Image=localhost/hub-app
+Image=localhost/hub-app:latest
 AutoUpdate=local
 User=${APP_UID}
 Group=${APP_GID}
@@ -17,6 +17,7 @@ UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
 Volume=${APP_PATH}:/app:rw,z,U
 Volume=${APP_MEDIA_PATH}:/app/storage/app/media:rw,z,U
 Network=hub.network
+ExposeHostPort=6001
 ExposeHostPort=9000
 PublishPort=5173:5173
 Secret=tlscert,target=/etc/certs/cert.pem,uid=${APP_UID},gid=${APP_GID},mode=0600
