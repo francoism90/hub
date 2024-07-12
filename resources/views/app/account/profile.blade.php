@@ -2,5 +2,3 @@
     html()->element('h1')->text('My Profile')->class('text-2xl'),
     html()->a()->route('logout')->text('Log Out')->class('btn btn-secondary')
 ]) }}
-
-
