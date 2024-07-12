@@ -12,10 +12,7 @@ class Item extends Component
 
     public function render(): View
     {
-        return view('app.videos.card.item')->with([
-            // 'title' => $this->getTitle(),
-            // 'description' => $this->getDescription(),
-        ]);
+        return view('app.videos.card.item');
     }
 
     public function placeholder(array $params = []): View
