@@ -29,6 +29,6 @@ class MarkWatched
     protected function saveHistory(User $user, Video $video): void
     {
         MarkAsWatched::dispatch($user, $video)
-            ->delay(now()->addSeconds(30));
+            ->delay(now()->addSeconds(15));
     }
 }
