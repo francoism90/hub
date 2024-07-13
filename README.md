@@ -34,7 +34,7 @@ cp .env.example .env
 vi .env
 ```
 
-To access Hub on your local machine, add the following `\etc\hosts` entries:
+To access Hub on your local machine, add the following `/etc/hosts` entries:
 
 ```md
 127.0.0.1 hub.lan ws.hub.lan
