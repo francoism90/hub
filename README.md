@@ -49,17 +49,12 @@ Please read the dedicated [guide](https://github.com/francoism90/hub/tree/main/p
 
 ### Usage
 
-You may need to alter permissions when using SELinux:
+#### First run
+
+Start Hub:
 
 ```bash
-chcon -Rt container_file_t ~/Code/hub/storage
-chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
-```
-
-To start Hub:
-
-```bash
-systemctl --user start hub
+systemctl --user start hub-app hub
 ```
 
 Enter the `systemd-hub-app` container, and execute the followings commands:
@@ -81,15 +76,37 @@ The following Laravel services are available:
 - <https://hub.lan/pulse> - Laravel Pulse
 - <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
 
+#### Updating
+
+See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
+
+It is advisable to rebuild the images:
+
+```bash
+cd podman
+./update
+```
+
+To update Hub:
+
+```bash
+$ podman exec -it systemd-hub-app sh
+composer install
+yarn install && yarn run build
+php artisan app:update
+```
+
 #### Managing media
 
 To import videos:
 
 ```bash
+cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
+chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
 php artisan videos:import
 ```
 
-To clean (force-delete) videos:
+To clean soft-deleted videos (force-delete):
 
 ```bash
 php artisan videos:clean

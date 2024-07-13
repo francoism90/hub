@@ -65,6 +65,7 @@ systemctl --user start hub
 To update/rebuild the Docker images:
 
 ```bash
+cd hub/podman
 ./update
 ```
 
