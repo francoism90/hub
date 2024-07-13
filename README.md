@@ -78,20 +78,20 @@ The following Laravel services are available:
 
 #### Updating
 
-See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
-
-It is advisable to rebuild the images:
-
-```bash
-cd ~/Code/hub/podman
-./update
-```
-
-To get latest changes:
+To retrieve the latest changes:
 
 ```bash
 cd ~/Code/hub
 git pull
+```
+
+> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
+
+Depending on the changes, you may need to rebuild the images:
+
+```bash
+cd ~/Code/hub/podman
+./update
 ```
 
 To update the application:
@@ -125,7 +125,7 @@ chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
 hub php artisan videos:import
 ```
 
-To clean soft-deleted videos (force-delete):
+To force removing of soft-deleted videos:
 
 ```bash
 hub php artisan videos:clean
