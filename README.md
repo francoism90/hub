@@ -83,11 +83,18 @@ See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on 
 It is advisable to rebuild the images:
 
 ```bash
-cd podman
+cd ~/Code/hub/podman
 ./update
 ```
 
-To update Hub:
+To get latest changes:
+
+```bash
+cd ~/Code/hub
+git pull
+```
+
+To update the application:
 
 ```bash
 $ podman exec -it systemd-hub-app sh
@@ -96,18 +103,30 @@ yarn install && yarn run build
 php artisan app:update
 ```
 
-#### Managing media
+#### Manage application
+
+The following [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) may be useful:
+
+```bash
+$ cat ~/.config/fish/config.fish
+# system
+abbr -a -- sc 'sudo systemctl'
+abbr -a -- scu 'systemctl --user'
+
+# containers
+abbr -a -- hub 'podman exec -it systemd-hub-app'
+```
 
 To import videos:
 
 ```bash
 cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
 chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
-php artisan videos:import
+hub php artisan videos:import
 ```
 
 To clean soft-deleted videos (force-delete):
 
 ```bash
-php artisan videos:clean
+hub php artisan videos:clean
 ```
