@@ -13,7 +13,7 @@
                 ->a()
                 ->href('#')
                 ->attribute('wire:click.prevent', "setQuery('{$item}')")
-                ->class('inline-flex px-1.5 text-sm text-secondary-100')
+                ->class('link link-secondary px-1.5 text-sm')
                 ->text($item)
             )
         ) }}
