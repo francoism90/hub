@@ -4,6 +4,7 @@ namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Forms\QueryForm;
 use App\Web\Search\Scopes\FilterVideos;
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -26,7 +27,9 @@ class SearchIndexController extends Page
 
     public function render(): View
     {
-        return view('app.search.index');
+        return view('app.search.index')->with([
+            'suggestions' => $this->getSuggestions(),
+        ]);
     }
 
     public function updated(): void
@@ -34,7 +37,7 @@ class SearchIndexController extends Page
         $this->form->validate();
     }
 
-    #[Computed()]
+    #[Computed]
     public function items(): Paginator
     {
         $query = $this->form->query();
@@ -69,7 +72,23 @@ class SearchIndexController extends Page
 
     public function hasResults(): bool
     {
-        return ! $this->form->hasMessages() && $this->items()->isNotEmpty();
+        return $this->form->query() && $this->items()->isNotEmpty();
+    }
+
+    public function setQuery(?string $query = null): void
+    {
+        $this->canViewAny($this->getModelClass());
+
+        $this->form->query = $query;
+    }
+
+    protected function getSuggestions(): array
+    {
+        return Tag::query()
+            ->inRandomOrder()
+            ->limit(3)
+            ->pluck('name')
+            ->all();
     }
 
     protected function getTitle(): ?string
