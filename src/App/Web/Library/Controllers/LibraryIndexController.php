@@ -81,6 +81,7 @@ class LibraryIndexController extends Page
         return [
             ['key' => '', 'label' => __('All')],
             ['key' => 'untagged', 'label' => __('Untagged')],
+            ['key' => 'new', 'label' => __('New to you')],
         ];
     }
 

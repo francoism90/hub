@@ -15,6 +15,9 @@ class FilterVideos
     {
         $query
             ->recommended()
-            ->when($this->form->isStrict('type', 'untagged'), fn (Builder $query) => $query->whereDoesntHave('tags'));
+            ->when($this->form->isStrict('type', 'untagged'), fn (Builder $query) => $query->whereDoesntHave('tags'))
+            ->when($this->form->isStrict('type', 'new'), fn (Builder $query) => $query->whereDoesntHave('playlists.videos', fn (Builder $query) => $query
+                ->where('playlists.user_id', auth()->id() ?? 0)
+            ));
     }
 }
