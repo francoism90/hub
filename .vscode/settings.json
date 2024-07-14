@@ -10,7 +10,27 @@
     },
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.experimental.classRegex": ["class:(.*?)", "class(.*?)"],
+    "tailwindCSS.experimental.classRegex": [
+        // Credits: https://github.com/paolotiu/tailwind-intellisense-regex-list
+        [
+            "class\\(.*?\\)(?!\\])",
+            "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
+        ],
+        [
+            "classList.(?:add|remove)\\(([^)]*)\\)",
+            "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
+        ],
+        [
+            "@?class\\(([^]*)\\)",
+            "'([^']*)'"
+        ],
+        [
+            "data-.*-class=['\"]([^'\"]*)"
+        ],
+        "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
+        ":\\s*?[\"'`]([^\"'`]*).*?,",
+        "(?:enter|leave)(?:from|to)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)"
+    ],
     "tailwindCSS.includeLanguages": {
         "blade": "html",
         "blade.php": "html",
@@ -20,6 +40,7 @@
         "vue-html": "html"
     },
     "search.exclude": {
+        "**/data": true,
         "**/storage/app": true
     }
 }
