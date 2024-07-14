@@ -229,7 +229,33 @@ class Video extends Model implements HasMedia
         return $models->loadMissing($this->with);
     }
 
-    public function identifier(): Attribute
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (int) $this->getScoutKey(),
+            'name' => (string) $this->name,
+            'identifier' => (string) $this->identifier,
+            'content' => (string) $this->content,
+            'summary' => (string) $this->summary,
+            'duration' => (float) $this->duration,
+            'caption' => (bool) $this->caption,
+            'released' => (string) $this->released,
+            'adult' => (bool) $this->adult,
+            'tags' => (string) $this->tags_translated,
+            'relatables' => (string) $this->tags_related,
+            'tagged' => (array) $this->tags->modelKeys(),
+            'state' => (string) $this->state,
+            'created_at' => (int) $this->created_at->getTimestamp(),
+            'updated_at' => (int) $this->updated_at->getTimestamp(),
+        ];
+    }
+
+    protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
+    {
+        return $query->with($this->with);
+    }
+
+       public function identifier(): Attribute
     {
         return Attribute::make(
             get: fn () => implode('-', array_filter([$this->season, $this->episode, $this->part]))
@@ -243,7 +269,7 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function responsive(): Attribute
+    public function srcset(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->getFirstMedia('thumbnail')?->getSrcset()
@@ -269,31 +295,5 @@ class Video extends Model implements HasMedia
         return Attribute::make(
             get: fn () => $this->released_at ?: $this->created_at
         )->shouldCache();
-    }
-
-    public function toSearchableArray(): array
-    {
-        return [
-            'id' => (int) $this->getScoutKey(),
-            'name' => (string) $this->name,
-            'identifier' => (string) $this->identifier,
-            'content' => (string) $this->content,
-            'summary' => (string) $this->summary,
-            'duration' => (float) $this->duration,
-            'caption' => (bool) $this->caption,
-            'released' => (string) $this->released,
-            'adult' => (bool) $this->adult,
-            'tags' => (string) $this->tags_translated,
-            'relatables' => (string) $this->tags_related,
-            'tagged' => (array) $this->tags->modelKeys(),
-            'state' => (string) $this->state,
-            'created_at' => (int) $this->created_at->getTimestamp(),
-            'updated_at' => (int) $this->updated_at->getTimestamp(),
-        ];
-    }
-
-    protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
-    {
-        return $query->with($this->with);
     }
 }

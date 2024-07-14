@@ -81,4 +81,11 @@ trait InteractsWithVod
             get: fn () => app(GetManifestUrl::class)->execute($this, 'stream')
         )->shouldCache();
     }
+
+    public function download(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMediaUrl('clips')
+        )->shouldCache();
+    }
 }

@@ -1,10 +1,6 @@
 {{ html()->div()->class('container py-4')->children([
     html()->element('h1')->text($video->title)->class('text-3xl hyphens-auto line-clamp-2'),
     html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
-        ->childrenIf($video->duration, [
-            html()->element('dt')->text('Time')->class('sr-only'),
-            html()->element('dd')->text(duration($video->duration)),
-        ])
         ->childrenIf($video->identifier, [
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($video->identifier),
@@ -23,6 +19,10 @@
                 'wire:click.prevent' => 'delete',
                 'wire:confirm' => 'Are you sure you want to delete this video?',
             ]))
+        ])
+        ->children([
+            html()->element('dt')->text('Download')->class('sr-only'),
+            html()->element('dd')->child(html()->a()->href($video->download)->text('Download'))
         ])
         ->children([
             html()->element('dt')->text('View')->class('sr-only'),
