@@ -23,7 +23,7 @@
                 html()->validate('form.remember'),
             ]),
 
-            html()->button()->text('Log In')->class('btn btn-secondary')
+            html()->button()->type('submit')->text('Log In')->class('btn btn-secondary')
         ])
     ])
 ) }}

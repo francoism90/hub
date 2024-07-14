@@ -79,6 +79,6 @@
             html()->validate('form.description'),
         ]),
 
-        html()->button()->text('Save Changes')->class('btn btn-secondary')
+        html()->button()->type('submit')->text('Save Changes')->class('btn btn-secondary')
     ])
 ]) }}
