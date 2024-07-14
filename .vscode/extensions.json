@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "bmewburn.vscode-intelephense-client",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "devsense.composer-php-vscode",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "neilbrayfield.php-docblocker",
+        "onecentlin.laravel-blade"
+    ]
+}
