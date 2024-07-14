@@ -59,7 +59,7 @@
     @googlefonts('code')
 </head>
 
-<body class="h-viewport relative flex flex-col overscroll-none bg-secondary-950 text-base antialiased">
+<body class="h-viewport relative flex flex-col overscroll-none bg-secondary-950 text-secondary-50 antialiased">
 
         <div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">

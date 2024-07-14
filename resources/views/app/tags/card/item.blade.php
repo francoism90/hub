@@ -9,7 +9,7 @@
         ->children([
             html()->icon()->svg('heroicon-s-tag', 'p-3 size-12 bg-gradient-to-tl from-indigo-500 via-purple-500 to-primary-500'),
             html()->div()->class('flex flex-col')->children([
-                html()->span($tag->name)->class('text-base'),
+                html()->span($tag->name)->class('text-secondary-100'),
                 html()->span("{$tag->videos_count} videos")->class('text-sm text-secondary-300'),
             ]),
         ])
