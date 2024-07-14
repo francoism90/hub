@@ -31,7 +31,7 @@
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
         html()->div()
-            ->classIf(flash()->message, 'form-message')
+            ->classIf(flash()->message, ['alert', flash()->class])
             ->textIf(flash()->message, flash()->message),
 
         html()->div()->class('form-control')->children([

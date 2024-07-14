@@ -23,9 +23,9 @@ class ViewServiceProvider extends ServiceProvider
     protected function configureMessages(): void
     {
         Flash::levels([
-            'success' => null,
-            'warning' => null,
-            'error' => null,
+            'success' => 'alert-success',
+            'warning' => 'alert-warning',
+            'error' => 'alert-error',
         ]);
     }
 }
