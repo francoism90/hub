@@ -40,7 +40,12 @@ class GeneralForm extends Form
 
     protected function beforeFill(Tag $model): array
     {
-        $values = $model->only('name', 'description');
+        // Handle translatables
+        $translations = collect($model->getTranslations())
+            ->map(fn (?array $item, string $key) => data_get($item, 'en'))
+            ->toArray();
+
+        $values = [...$model->toArray(), ...$translations];
 
         $values['type'] = $model->type?->value;
 
