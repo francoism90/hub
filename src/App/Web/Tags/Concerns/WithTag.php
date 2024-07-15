@@ -38,6 +38,8 @@ trait WithTag
         return [
             "echo-private:tag.{$this->getTagId()},.tag.deleted" => 'onTagDeleted',
             "echo-private:tag.{$this->getTagId()},.tag.updated" => 'onTagUpdated',
+            "echo-private:tag.{$this->getTagId()},.tag.trashed" => 'onTagDeleted',
+            "echo-private:tag.{$this->getTagId()},.tag.restored" => 'onTagUpdated',
         ];
     }
 }

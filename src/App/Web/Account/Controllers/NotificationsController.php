@@ -2,11 +2,14 @@
 
 namespace App\Web\Account\Controllers;
 
+use App\Web\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
 class NotificationsController extends Page
 {
+    use WithAuthentication;
+
     public function render(): View
     {
         return view('app.account.notifications');
@@ -24,11 +27,8 @@ class NotificationsController extends Page
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
-
         return [
-            "echo-private:user.{$id},.user.deleted" => '$refresh',
-            "echo-private:user.{$id},.user.updated" => '$refresh',
+            ...$this->geAuthListeners(),
         ];
     }
 }
