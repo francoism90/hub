@@ -3538,10 +3538,10 @@ set-function-name@^2.0.1, set-function-name@^2.0.2:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.2"
 
-shaka-player@^4.10.5:
-  version "4.10.5"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.5.tgz#a829a66e537c1f603fd9b5df5d999b98e76cee3d"
-  integrity sha512-WU74jRyn/wq9K6kmg2DPqY5bAcPXv3HPUvwKzwQSSYQbnpLB1OXJRjlenUXH3/KNa31vshQv0NRM+JlLn2jNtQ==
+shaka-player@^4.10.6:
+  version "4.10.6"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.10.6.tgz#90fff70b75f16900080fe5dc40e5e74d38991650"
+  integrity sha512-WQYetDIQvPH9Y4WuWP3Q6kyuN0IdLwdoaYvPJQzHyuQ7ahwc5AO/7z51aLhTwGplKhEZOaMVuisNnK0UfNntng==
   dependencies:
     eme-encryption-scheme-polyfill "^2.1.5"
 
@@ -3772,10 +3772,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwindcss@^3.4.4:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.4.tgz#351d932273e6abfa75ce7d226b5bf3a6cb257c05"
-  integrity sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==
+tailwindcss@^3.4.5:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.5.tgz#0de2e92ed4d00fb015feb962fa0781605761724d"
+  integrity sha512-DlTxttYcogpDfx3tf/8jfnma1nfAYi2cBUYV2YNoPPecwmO3YGiFlOX9D8tGAu+EDF38ryBzvrDKU/BLMsUwbw==
   dependencies:
     "@alloc/quick-lru" "^5.2.0"
     arg "^5.0.2"
