@@ -3,10 +3,9 @@
 **/.hg
 **/node_modules
 **/vendor
-/node_modules
-/database
-/public
-/data
-/storage
+**/database
+**/public
+**/data
+**/storage
 composer.lock
 yarn.lock
