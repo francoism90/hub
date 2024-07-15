@@ -26,7 +26,9 @@
         ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([
-        html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
+        html()->div()
+            ->classIf(flash()->message, ['alert', flash()->class])
+            ->textIf(flash()->message, flash()->message),
 
         html()->div()->class('form-control')->children([
             html()->label('Name', 'form.name')->class('label'),
@@ -55,6 +57,7 @@
                 ->placeholder('Filter tags...')
                 ->class('input input-bordered')
                 ->autocomplete('off'),
+
             html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->related, fn ($item) => html()
                 ->a()
                 ->href('#')
@@ -62,6 +65,7 @@
                 ->class('btn btn-secondary text-sm px-2 py-1')
                 ->text($item['name'])
             ),
+
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
                 html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($related->results(), fn ($item) => html()
                     ->a()

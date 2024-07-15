@@ -87,6 +87,7 @@
                 ->placeholder('Filter tags...')
                 ->class('input input-bordered')
                 ->autocomplete('off'),
+
             html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->tags, fn ($item) => html()
                 ->a()
                 ->href('#')
@@ -94,6 +95,7 @@
                 ->class('btn btn-secondary text-sm px-2 py-1')
                 ->text($item['name'])
             ),
+
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
                 html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($tags->results(), fn ($item) => html()
                     ->a()
