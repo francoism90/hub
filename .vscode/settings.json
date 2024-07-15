@@ -11,7 +11,6 @@
     "intelephense.format.enable": false,
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.experimental.classRegex": [
-        // Credits: https://github.com/paolotiu/tailwind-intellisense-regex-list
         [
             "class\\(.*?\\)(?!\\])",
             "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
