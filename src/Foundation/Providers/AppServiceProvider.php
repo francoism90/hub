@@ -88,7 +88,9 @@ class AppServiceProvider extends ServiceProvider
 
         Collection::macro('toModels', function () {
             /** @var Collection $this */
-            return $this->map(fn (string $item) => PrefixedIds::find($item));
+            return $this
+                ->map(fn (string $item) => PrefixedIds::find($item))
+                ->filter();
         });
     }
 }
