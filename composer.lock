@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36135469c72881d4b89ec6ec8954dc4b",
+    "content-hash": "e8a686112a382a7ab5b58a73ce0cb849",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2051,16 +2051,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.0.2",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "f619b8315d71095408c2aa3f5a9dc917f75c8741"
+                "reference": "8668a2ebdd3af90f566f0f2d840de04fc9d3e072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/f619b8315d71095408c2aa3f5a9dc917f75c8741",
-                "reference": "f619b8315d71095408c2aa3f5a9dc917f75c8741",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/8668a2ebdd3af90f566f0f2d840de04fc9d3e072",
+                "reference": "8668a2ebdd3af90f566f0f2d840de04fc9d3e072",
                 "shasum": ""
             },
             "require": {
@@ -2072,7 +2072,7 @@
                 "laravel/scout": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
-                "spatie/laravel-html": "^3.10",
+                "spatie/laravel-html": "^3.11",
                 "spatie/laravel-package-tools": "^1.16.3",
                 "spatie/php-structure-discoverer": "^2.1"
             },
@@ -2127,7 +2127,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.0.2"
+                "source": "https://github.com/foxws/wireuse/tree/v2.1.0"
             },
             "funding": [
                 {
@@ -2135,7 +2135,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-13T19:40:02+00:00"
+            "time": "2024-07-16T10:45:18+00:00"
         },
         {
             "name": "fruitcake/php-cors",
