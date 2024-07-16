@@ -33,7 +33,6 @@
     "tailwindCSS.includeLanguages": {
         "blade": "html",
         "blade.php": "html",
-        "php": "html",
         "plaintext": "html",
         "vue": "html",
         "vue-html": "html"
