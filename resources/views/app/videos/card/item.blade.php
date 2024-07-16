@@ -2,7 +2,7 @@
     ->element('article')
     ->class('h-60 min-w-60 min-h-60 sm:max-h-60 sm:max-w-80')
     ->children([
-        html()->a()->route('videos.view', $video)->class('relative block w-full min-w-60 h-40')->children([
+        html()->a()->link('videos.view', $video)->class('relative block w-full min-w-60 h-40')->children([
             html()
                 ->element('video')
                 ->ignore()
@@ -33,7 +33,7 @@
         ]),
 
         html()->p()->class('pt-1.5 text-center')->children([
-            html()->a()->route('videos.view', $video)->text($video->title)->class('text-sm hyphens-auto line-clamp-2'),
+            html()->a()->link('videos.view', $video)->text($video->title)->class('text-sm hyphens-auto line-clamp-2'),
             html()->element('dl')->class('dl dl-list justify-center text-xs text-secondary-100')
                 ->childrenIf($video->duration, [
                     html()->element('dt')->text('Time')->class('sr-only'),

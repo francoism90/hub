@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0267da238791edecbaff025d78cb1d8c",
+    "content-hash": "36135469c72881d4b89ec6ec8954dc4b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -939,16 +939,16 @@
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blade-ui-kit/blade-heroicons.git",
-                "reference": "a265dbcf2a098121aad05752d0bba9f59022e4ba"
+                "reference": "a7c377a4ef88cd54712e3e15cbed30446820da0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-heroicons/zipball/a265dbcf2a098121aad05752d0bba9f59022e4ba",
-                "reference": "a265dbcf2a098121aad05752d0bba9f59022e4ba",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-heroicons/zipball/a7c377a4ef88cd54712e3e15cbed30446820da0b",
+                "reference": "a7c377a4ef88cd54712e3e15cbed30446820da0b",
                 "shasum": ""
             },
             "require": {
@@ -992,7 +992,7 @@
             ],
             "support": {
                 "issues": "https://github.com/blade-ui-kit/blade-heroicons/issues",
-                "source": "https://github.com/blade-ui-kit/blade-heroicons/tree/2.3.0"
+                "source": "https://github.com/blade-ui-kit/blade-heroicons/tree/2.4.0"
             },
             "funding": [
                 {
@@ -1004,7 +1004,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2024-02-07T16:33:46+00:00"
+            "time": "2024-07-16T07:00:01+00:00"
         },
         {
             "name": "blade-ui-kit/blade-icons",
@@ -7686,16 +7686,16 @@
         },
         {
             "name": "spatie/laravel-html",
-            "version": "3.10.1",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-html.git",
-                "reference": "c20cc9f6e0b9ef3ae6f5e620b08e69e07695f181"
+                "reference": "94f5900cedc75454800877ace9780e27d6149287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/c20cc9f6e0b9ef3ae6f5e620b08e69e07695f181",
-                "reference": "c20cc9f6e0b9ef3ae6f5e620b08e69e07695f181",
+                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/94f5900cedc75454800877ace9780e27d6149287",
+                "reference": "94f5900cedc75454800877ace9780e27d6149287",
                 "shasum": ""
             },
             "require": {
@@ -7752,7 +7752,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-html/tree/3.10.1"
+                "source": "https://github.com/spatie/laravel-html/tree/3.11.0"
             },
             "funding": [
                 {
@@ -7760,7 +7760,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-07-15T09:37:42+00:00"
+            "time": "2024-07-16T07:58:45+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",

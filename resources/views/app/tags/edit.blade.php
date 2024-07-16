@@ -22,7 +22,7 @@
         ])
         ->children([
             html()->element('dt')->text('View')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->route('tags.view', $tag)->text('View')),
+            html()->element('dd')->child(html()->a()->link('tags.view', $tag)->text('View')),
         ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([

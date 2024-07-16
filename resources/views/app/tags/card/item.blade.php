@@ -3,7 +3,7 @@
     ->class('h-12 max-h-12 w-full')
     ->child(html()
         ->a()
-        ->route('tags.view', $tag)
+        ->link('tags.view', $tag)
         ->forgetAttribute('class')
         ->class('flex flex-nowrap items-center gap-x-3 hover:bg-secondary-500/50')
         ->children([

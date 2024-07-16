@@ -7,7 +7,7 @@
         ])
         ->childrenIf(auth()->user()->can('update', $tag), [
             html()->element('dt')->text('ID')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->route('account.tags.edit', $tag)->text('Edit')),
+            html()->element('dd')->child(html()->a()->link('account.tags.edit', $tag)->text('Edit')),
         ])
     }}
 
@@ -15,7 +15,7 @@
         {{ html()->div()->class('py-4 flex flex-wrap gap-2')->open() }}
             @foreach ($tag->related as $tag)
                 {{ html()->div()->wireKey($tag->getRouteKey())->child(
-                    html()->a()->route('tags.view', $tag)->class('btn btn-secondary text-sm')->text($tag->name)
+                    html()->a()->link('tags.view', $tag)->class('btn btn-secondary text-sm')->text($tag->name)
                 )}}
             @endforeach
         {{ html()->div()->close() }}

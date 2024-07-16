@@ -26,7 +26,7 @@
         ])
         ->children([
             html()->element('dt')->text('View')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->route('videos.view', $video)->text('View')),
+            html()->element('dd')->child(html()->a()->link('videos.view', $video)->text('View')),
         ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col py-6 gap-y-6')->children([

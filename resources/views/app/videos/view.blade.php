@@ -20,7 +20,7 @@
             ])
             ->childrenIf(auth()->user()->can('update', $video), [
                 html()->element('dt')->text('ID')->class('sr-only'),
-                html()->element('dd')->child(html()->a()->route('account.videos.edit', $video)->text('Edit')),
+                html()->element('dd')->child(html()->a()->link('account.videos.edit', $video)->text('Edit')),
             ])
     ]) }}
 
@@ -28,7 +28,7 @@
         {{ html()->div()->class('container py-2 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->div()->wireKey($tag->getRouteKey())->child(
-                    html()->a()->route('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name)
+                    html()->a()->link('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name)
                 ) }}
             @endforeach
         {{ html()->div()->close() }}
