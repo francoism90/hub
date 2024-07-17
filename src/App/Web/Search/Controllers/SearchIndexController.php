@@ -32,7 +32,7 @@ class SearchIndexController extends Page
         ]);
     }
 
-    public function updated(): void
+    public function updatedForm(): void
     {
         $this->form->validate();
     }
