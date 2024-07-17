@@ -34,8 +34,6 @@ trait WithAuthentication
     protected function geAuthListeners(): array
     {
         return [
-            "echo-private:user.{$this->getUserId()},.user.deleted" => 'onUserDeleted',
-            "echo-private:user.{$this->getUserId()},.user.restored" => 'onUserUpdated',
             "echo-private:user.{$this->getUserId()},.user.trashed" => 'onUserDeleted',
             "echo-private:user.{$this->getUserId()},.user.updated" => 'onUserUpdated',
         ];

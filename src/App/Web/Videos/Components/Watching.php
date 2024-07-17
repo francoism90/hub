@@ -45,10 +45,8 @@ class Watching extends Section
         $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$id},.playlist.deleted" => 'refresh',
+            "echo-private:user.{$id},.playlist.trashed" => 'refresh',
             "echo-private:user.{$id},.playlist.updated" => 'refresh',
-            "echo-private:user.{$id},.video.deleted" => 'refresh',
-            "echo-private:user.{$id},.video.restored" => 'refresh',
             "echo-private:user.{$id},.video.trashed" => 'refresh',
             "echo-private:user.{$id},.video.updated" => 'refresh',
         ];

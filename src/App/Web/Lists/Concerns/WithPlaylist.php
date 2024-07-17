@@ -31,8 +31,6 @@ trait WithPlaylist
     protected function getPlaylistListeners(): array
     {
         return [
-            "echo-private:playlist.{$this->getPlaylistId()},.playlist.deleted" => 'onPlaylistDeleted',
-            "echo-private:playlist.{$this->getPlaylistId()},.playlist.restored" => 'onPlaylistUpdated',
             "echo-private:playlist.{$this->getPlaylistId()},.playlist.trashed" => 'onPlaylistDeleted',
             "echo-private:playlist.{$this->getPlaylistId()},.playlist.updated" => 'onPlaylistUpdated',
         ];
