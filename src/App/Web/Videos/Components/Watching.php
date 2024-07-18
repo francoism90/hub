@@ -37,7 +37,7 @@ class Watching extends Section
 
     protected function getPlaylist(): Playlist
     {
-        return auth()->user()->playlists()->history();
+        return static::getAuthUser()->playlists()->history();
     }
 
     public function getListeners(): array

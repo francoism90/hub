@@ -61,6 +61,7 @@ class Section extends Component
         $id = static::getAuthKey();
 
         return [
+            "echo-private:user.{$id},.video.deleted" => '$refresh',
             "echo-private:user.{$id},.video.trashed" => '$refresh',
             "echo-private:user.{$id},.video.updated" => '$refresh',
         ];
