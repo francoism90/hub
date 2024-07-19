@@ -3,7 +3,6 @@
 **/.hg
 **/node_modules
 **/vendor
-**/database
 **/public
 **/data
 **/storage

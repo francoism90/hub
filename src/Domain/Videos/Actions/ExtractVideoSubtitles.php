@@ -27,7 +27,7 @@ class ExtractVideoSubtitles
             'timeout' => 60 * 30,
         ]);
 
-        $file = $model->clips()->first()->getPath();
+        $file = $model->clips->first()->getPath();
 
         $video = $ffmpeg->openAdvanced([$file]);
 

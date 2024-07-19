@@ -28,7 +28,7 @@ class GetStreamManifest
 
     protected function getClips(Video $model): Collection
     {
-        return $model->clips()->map(fn (Media $media) => (new Sequence)
+        return $model->clips->map(fn (Media $media) => (new Sequence)
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
@@ -39,7 +39,7 @@ class GetStreamManifest
 
     protected function getCaptions(Video $model): Collection
     {
-        return $model->captions()->map(fn (Media $media) => (new Sequence)
+        return $model->captions->map(fn (Media $media) => (new Sequence)
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->language($media->getCustomProperty('locale', 'eng'))

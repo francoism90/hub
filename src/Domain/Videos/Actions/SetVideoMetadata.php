@@ -15,7 +15,7 @@ class SetVideoMetadata
             'ffprobe.binaries' => config('media-library.ffprobe_path'),
         ]);
 
-        $model->clips()->each(function (Media $media) use ($ffmpeg) {
+        $model->clips->each(function (Media $media) use ($ffmpeg) {
             $format = $ffmpeg->getFFProbe()->format($media->getPath());
             $stream = $ffmpeg->getFFProbe()->streams($media->getPath())->videos()->first();
 

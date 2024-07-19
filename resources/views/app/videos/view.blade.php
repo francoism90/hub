@@ -7,7 +7,7 @@
         html()->element('h1')->text($video->title)->class('text-2xl hyphens-auto line-clamp-2'),
         html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
             ->childrenIf($video->duration, [
-                html()->element('dt')->text('Time')->class('sr-only'),
+                html()->element('dt')->text('Filesize')->class('sr-only'),
                 html()->element('dd')->text(duration($video->duration)),
             ])
             ->childrenIf($video->identifier, [

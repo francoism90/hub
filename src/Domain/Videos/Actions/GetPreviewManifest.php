@@ -27,7 +27,7 @@ class GetPreviewManifest
 
     protected function getClips(Video $model): Collection
     {
-        return $model->previews()->map(fn (Media $media) => (new Sequence)
+        return $model->previews->map(fn (Media $media) => (new Sequence)
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([

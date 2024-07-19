@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 trait InteractsWithVod
 {
-    public function clips(): MediaCollection
+    public function getClipCollection(): MediaCollection
     {
         return $this->getMedia('clips')->sortBy([
             ['custom_properties->bitrate', 'desc'],
@@ -18,12 +18,12 @@ trait InteractsWithVod
         ]);
     }
 
-    public function captions(): MediaCollection
+    public function getCaptionCollection(): MediaCollection
     {
         return $this->getMedia('captions');
     }
 
-    public function previews(): MediaCollection
+    public function getPreviewCollection(): MediaCollection
     {
         return $this->getMedia('previews')->sortBy([
             ['custom_properties->bitrate', 'desc'],
@@ -34,7 +34,7 @@ trait InteractsWithVod
 
     public function hasCaptions(): bool
     {
-        if ($this->captions()->count()) {
+        if ($this->captions->count()) {
             return true;
         }
 
@@ -52,6 +52,27 @@ trait InteractsWithVod
             ->first();
 
         return $media?->getCustomProperty('duration') ?: 0;
+    }
+
+    protected function clips(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getClipCollection()
+        )->shouldCache();
+    }
+
+    protected function captions(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getCaptionCollection()
+        )->shouldCache();
+    }
+
+    protected function previews(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getPreviewCollection()
+        )->shouldCache();
     }
 
     protected function caption(): Attribute
@@ -86,6 +107,13 @@ trait InteractsWithVod
     {
         return Attribute::make(
             get: fn () => $this->getFirstMediaUrl('clips')
+        )->shouldCache();
+    }
+
+    public function fileSize(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->clips?->totalSizeInBytes()
         )->shouldCache();
     }
 }

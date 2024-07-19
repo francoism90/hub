@@ -30,7 +30,7 @@ class CreateVideoPreview
             'timeout' => 60 * 60,
         ]);
 
-        $file = $model->clips()->first()->getPath();
+        $file = $model->clips->first()->getPath();
 
         $video = $ffmpeg->open($file);
 

@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Number')
+
 {{ html()->div()->class('container py-4')->children([
     html()->element('h1')->text($video->title)->class('text-3xl hyphens-auto line-clamp-2'),
     html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
@@ -8,6 +10,10 @@
         ->childrenIf($video->created_at, [
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($video->created_at->format('M d, Y')),
+        ])
+        ->childrenIf($video->file_size, [
+            html()->element('dt')->text('Filesize')->class('sr-only'),
+            html()->element('dd')->text(Number::fileSize($video->file_size)),
         ])
         ->children([
             html()->element('dt')->text('Beautify')->class('sr-only'),
