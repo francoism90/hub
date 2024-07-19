@@ -93,7 +93,7 @@ RUN install-php-extensions \
     pdo_mysql \
     redis \
     soap \
-    swoole \
+    uv \
     zip
 
 RUN npm install -g svgo
