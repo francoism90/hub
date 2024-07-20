@@ -7,7 +7,7 @@ use Livewire\Attributes\Computed;
 
 class Recommended extends Section
 {
-    #[Computed]
+    #[Computed(persist: true)]
     public function items(): Collection
     {
         return $this->getQuery()

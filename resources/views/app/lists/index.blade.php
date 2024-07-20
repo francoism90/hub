@@ -2,7 +2,7 @@
     {{ html()->element('h1')->text('Lists')->class('text-2xl') }}
 
     {{ html()->div()->class('flex flex-col gap-y-6')->open() }}
-    @foreach ($types as $type)
+    @foreach ($this->types as $type)
         {{ html()->div()->wireKey($type->value)->open() }}
             <livewire:app::lists-section :$type :key="$type->value" lazy />
         {{ html()->div()->close() }}

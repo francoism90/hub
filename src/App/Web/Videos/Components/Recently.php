@@ -7,7 +7,7 @@ use Livewire\Attributes\Computed;
 
 class Recently extends Section
 {
-    #[Computed]
+    #[Computed(persist: true)]
     public function items(): Collection
     {
         return $this->getQuery()

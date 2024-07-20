@@ -34,7 +34,7 @@ class RelatedForm extends Form
             ->value();
     }
 
-    #[Computed(persist: true)]
+    #[Computed(cache: true, key: 'popular-tags')]
     public function popular(): Collection
     {
         return Tag::query()

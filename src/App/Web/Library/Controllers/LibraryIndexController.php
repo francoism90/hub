@@ -36,7 +36,12 @@ class LibraryIndexController extends Page
         $this->form->validate();
     }
 
-    #[Computed()]
+    public function updatedPage(): void
+    {
+        unset($this->items);
+    }
+
+    #[Computed(persist: true)]
     public function items(): Paginator
     {
         return $this->getQuery()->tap(

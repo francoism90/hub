@@ -13,7 +13,7 @@ class Watching extends Section
         $this->authorize('view', $this->getPlaylist());
     }
 
-    #[Computed]
+    #[Computed(persist: true)]
     public function items(): Collection
     {
         return $this->getPlaylist()->videos()

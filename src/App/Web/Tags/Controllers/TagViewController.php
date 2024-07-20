@@ -19,7 +19,12 @@ class TagViewController extends Page
         return view('app.tags.view');
     }
 
-    #[Computed()]
+    public function updatedPage(): void
+    {
+        unset($this->items);
+    }
+
+    #[Computed(persist: true)]
     public function items(): Paginator
     {
         return $this->tag
