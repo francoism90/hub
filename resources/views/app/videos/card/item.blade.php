@@ -21,6 +21,7 @@
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
                 ->loading('lazy')
+                ->crossorigin('use-credentials')
                 ->class('shrink-0 w-full h-40 rounded bg-black')
                 ->data('manifest', $video->preview)
                 ->attributes([
