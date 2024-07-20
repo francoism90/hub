@@ -4,7 +4,7 @@
     {{ html()->div()->close() }}
 
     {{ html()->div()->class('container py-4')->children([
-        html()->element('h1')->text($video->title)->class('text-2xl hyphens-auto line-clamp-2'),
+        html()->element('h1')->text($video->title)->class('text-2xl capitalize line-clamp-2'),
         html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
             ->childrenIf($video->duration, [
                 html()->element('dt')->text('Time')->class('sr-only'),
