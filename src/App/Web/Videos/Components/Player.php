@@ -4,7 +4,7 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
 use Domain\Playlists\Actions\GetVideoStartTime;
-use Domain\Playlists\Actions\MarkWatched;
+use Domain\Playlists\Actions\MarkAsWatched;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
@@ -35,7 +35,7 @@ class Player extends Component
             return;
         }
 
-        app(MarkWatched::class)->execute($user, $this->getVideo(), $time);
+        app(MarkAsWatched::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string

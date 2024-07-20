@@ -7,6 +7,7 @@
         overlay: true,
         dialog: false,
         section: 0,
+        synced: 0,
         paused: true,
         fullscreen: false,
         idle: 0.0,
@@ -77,6 +78,9 @@
                 .registerRequestFilter(
                     async (type, request) => (request.allowCrossSiteCredentials = true)
                 );
+
+            // Set a synced reference time
+            this.synced = new Date().getTime();
         },
 
         async load(video, manifest) {
@@ -131,10 +135,14 @@
                 case 'timeupdate':
                     const currentTime = this.$refs.video.currentTime;
 
-                    if (currentTime > 0) {
+                    if (currentTime >= 0) {
                         this.currentTime = currentTime;
 
-                        if ($wire !== undefined && $wire.updateHistory !== undefined) {
+                        const secondsBetweenSync = Math.abs((new Date().getTime() - this.synced) / 1000);
+
+                        if (secondsBetweenSync >= 5 && $wire?.updateHistory !== undefined) {
+                            this.synced = new Date().getTime();
+
                             await $wire.updateHistory(currentTime);
                         }
                     }

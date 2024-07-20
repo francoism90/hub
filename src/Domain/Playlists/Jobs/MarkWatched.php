@@ -14,7 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class MarkAsWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
+class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;

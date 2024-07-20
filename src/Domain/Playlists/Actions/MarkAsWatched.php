@@ -2,11 +2,11 @@
 
 namespace Domain\Playlists\Actions;
 
-use Domain\Playlists\Jobs\MarkAsWatched;
+use Domain\Playlists\Jobs\MarkWatched;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
-class MarkWatched
+class MarkAsWatched
 {
     public function execute(User $user, Video $video, float $time = 0): void
     {
@@ -28,7 +28,7 @@ class MarkWatched
 
     protected function saveHistory(User $user, Video $video): void
     {
-        MarkAsWatched::dispatch($user, $video)
+        MarkWatched::dispatch($user, $video)
             ->delay(now()->addSeconds(15));
     }
 }
