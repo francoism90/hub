@@ -15,7 +15,7 @@ class MarkAsWatched
         $key = $this->getWatchKey($video);
 
         // Store current time
-        $user->storeSet($key, $time, now()->addWeek());
+        $user->storeSet($key, $time, now()->addMonths(3));
 
         // Persist to database
         $this->saveHistory($user, $video);

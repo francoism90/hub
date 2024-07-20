@@ -140,7 +140,7 @@
 
                         const secondsBetweenSync = Math.abs((new Date().getTime() - this.synced) / 1000);
 
-                        if (secondsBetweenSync >= 5 && $wire?.updateHistory !== undefined) {
+                        if (secondsBetweenSync >= 3 && $wire?.updateHistory !== undefined) {
                             this.synced = new Date().getTime();
 
                             await $wire.updateHistory(currentTime);
