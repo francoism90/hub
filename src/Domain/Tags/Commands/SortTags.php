@@ -6,7 +6,7 @@ use Domain\Tags\Actions\SetTagsOrder;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 
-class Sort extends Command implements Isolatable
+class SortTags extends Command implements Isolatable
 {
     /**
      * @var string
@@ -24,6 +24,6 @@ class Sort extends Command implements Isolatable
 
         app(SetTagsOrder::class)->execute();
 
-        $this->info('Tags have been sorted');
+        $this->info('Tags have been sorted successfully.');
     }
 }
