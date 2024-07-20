@@ -8,6 +8,7 @@ use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\FFMpeg;
 use FFMpeg\Filters\Video\ResizeFilter;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
+use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
 
 class CreateVideoThumbnail
 {
@@ -17,8 +18,7 @@ class CreateVideoThumbnail
             return;
         }
 
-        $temporaryDirectory = TemporaryDirectory::create()
-            ->deleteWhenDestroyed();
+        $temporaryDirectory = $this->createTemporaryDirectory();
 
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),
@@ -50,5 +50,11 @@ class CreateVideoThumbnail
         $model
             ->addMedia($path)
             ->toMediaCollection('thumbnail');
+    }
+
+    protected function createTemporaryDirectory(): BaseTemporaryDirectory
+    {
+        return TemporaryDirectory::create()
+            ->deleteWhenDestroyed();
     }
 }

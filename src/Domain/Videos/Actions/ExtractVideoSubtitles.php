@@ -6,18 +6,18 @@ use Domain\Videos\Models\Video;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe\DataMapping\Stream;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
+use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
 use Support\FFMpeg\Format\Subtitle\WebVTT;
 
 class ExtractVideoSubtitles
 {
     public function execute(Video $model): void
     {
-        if (! $model->hasMedia('clips') || $model->hasMedia('captions')) {
+        if ($model->hasCaptions() || ! $model->hasMedia('clips')) {
             return;
         }
 
-        $temporaryDirectory = TemporaryDirectory::create()
-            ->deleteWhenDestroyed();
+        $temporaryDirectory = $this->createTemporaryDirectory();
 
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),
@@ -58,5 +58,11 @@ class ExtractVideoSubtitles
                 ->toMediaCollection('captions')
             );
         }
+    }
+
+    protected function createTemporaryDirectory(): BaseTemporaryDirectory
+    {
+        return TemporaryDirectory::create()
+            ->deleteWhenDestroyed();
     }
 }

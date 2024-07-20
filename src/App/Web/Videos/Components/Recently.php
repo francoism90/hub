@@ -12,7 +12,7 @@ class Recently extends Section
     {
         return $this->getQuery()
             ->latest()
-            ->take(16)
+            ->take(24)
             ->get();
     }
 

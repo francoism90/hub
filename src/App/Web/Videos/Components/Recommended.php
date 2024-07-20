@@ -12,7 +12,7 @@ class Recommended extends Section
     {
         return $this->getQuery()
             ->random()
-            ->take(16)
+            ->take(24)
             ->get();
     }
 

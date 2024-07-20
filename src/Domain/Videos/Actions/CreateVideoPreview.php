@@ -10,6 +10,7 @@ use FFMpeg\Filters\Video\ResizeFilter;
 use FFMpeg\Format\Video\X264;
 use Illuminate\Support\Collection;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
+use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
 
 class CreateVideoPreview
 {
@@ -19,8 +20,7 @@ class CreateVideoPreview
             return;
         }
 
-        $temporaryDirectory = TemporaryDirectory::create()
-            ->deleteWhenDestroyed();
+        $temporaryDirectory = $this->createTemporaryDirectory();
 
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),
@@ -82,5 +82,11 @@ class CreateVideoPreview
         $items->pop();
 
         return $items;
+    }
+
+    protected function createTemporaryDirectory(): BaseTemporaryDirectory
+    {
+        return TemporaryDirectory::create()
+            ->deleteWhenDestroyed();
     }
 }

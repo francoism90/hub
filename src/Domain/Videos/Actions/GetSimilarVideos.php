@@ -5,14 +5,13 @@ namespace Domain\Videos\Actions;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
-use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 
 class GetSimilarVideos
 {
-    public function execute(Video $model, int $limit = 24): Collection
+    public function execute(Video $model, int $limit = 24): LazyCollection
     {
-        return collect()->merge([
+        return LazyCollection::make([
             ...static::phrases($model),
             ...static::tagged($model),
         ])->take($limit);
