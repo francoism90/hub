@@ -1,4 +1,4 @@
-{{ html()->div()->class('container h-80 min-h-80 flex flex-col gap-y-3')->open() }}
+{{ html()->div()->class('container h-80 min-h-80 max-h-80 flex flex-col gap-y-3')->open() }}
     {{ html()->element('h1')->text($title)->class('text-2xl') }}
 
     {{ html()->div()->attribute('wire.poll.300s', 'refresh')->class('relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto')->open() }}
