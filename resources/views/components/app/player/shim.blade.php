@@ -5,27 +5,20 @@
         show: false,
 
         async init() {
+            // Make sure polyfills are always installed
+            await window.shaka.polyfill.installAll();
+
+            // Create instance
             await this.create();
         },
 
         async destroy() {
             this.show = false;
 
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
+            await this.unload();
         },
 
         async create() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
             // Do not re-create instance
             if (this.instance !== undefined) {
                 return;
@@ -71,26 +64,23 @@
 
         async load(video, manifest) {
             if (this.instance === undefined) {
-                await this.create();
-            }
-
-            try {
-                await this.instance.attach(video);
-                await this.instance.load(manifest);
-            } catch (e) {}
-
-            this.show = true;
-        },
-
-        async unload() {
-            this.show = false
-
-            if (this.instance === undefined) {
+                console.error('Player does not exists');
                 return;
             }
 
             try {
-                await this.instance.unload();
+                // Load manifest
+                await this.instance.attach(video);
+                await this.instance.load(manifest);
+            } catch (e) {}
+
+            // Set ready state
+            this.show = true;
+        },
+
+        async unload() {
+            try {
+                await this.instance?.detach();
             } catch (e) {}
         },
     }));

@@ -2,9 +2,9 @@
 @script
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
-        ready: false,
         instance: undefined,
         manager: undefined,
+        ready: false,
         state: 'paused',
         stats: undefined,
         buffering: false,
@@ -18,7 +18,10 @@
         idle: 0.0,
 
         async init() {
-            // Create instance
+            // Install polyfills to patch browser incompatibilities
+            await window.shaka.polyfill.installAll();
+
+            // Create instances
             await this.create();
 
             // Load manifest
@@ -32,9 +35,6 @@
         },
 
         async create() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
             // Do not re-create instance
             if (this.instance !== undefined && this.manager !== undefined) {
                 return;
