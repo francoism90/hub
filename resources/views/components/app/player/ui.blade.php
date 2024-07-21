@@ -155,9 +155,9 @@
         },
 
         async togglePlayback() {
-            this.state === 'playing'
-                ? await this.instance.getMediaElement().pause()
-                : await this.instance.getMediaElement().play();
+            this.instance.getMediaElement().paused
+                ? await this.instance.getMediaElement().play()
+                : await this.instance.getMediaElement().pause();
         },
 
         async seekTo(event) {
