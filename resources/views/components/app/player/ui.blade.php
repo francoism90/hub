@@ -2,6 +2,7 @@
 @script
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
+        ready: false,
         instance: undefined,
         manager: undefined,
         state: 'paused',
@@ -10,11 +11,10 @@
         buffered: undefined,
         duration: 0.0,
         currentTime: 0.0,
+        fullscreen: false,
         overlay: true,
         dialog: false,
         section: 0,
-        synced: 0,
-        fullscreen: false,
         idle: 0.0,
 
         async init() {
@@ -26,6 +26,8 @@
         },
 
         async destroy() {
+            this.ready = false;
+
             await this.unload();
         },
 
@@ -70,9 +72,6 @@
                 .registerRequestFilter(
                     async (type, request) => (request.allowCrossSiteCredentials = true)
                 );
-
-            // Set a synced reference time
-            // this.synced = new Date().getTime();
         },
 
         async load(manifest = null, startsAt = 0) {
@@ -92,6 +91,12 @@
                 await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
 
+                // Set default tracks
+                if ($wire !== undefined && $wire.caption?.length) {
+                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
+                    await this.instance.setTextTrackVisibility(true)
+                }
+
                 // Attach event listeners
                 const onBuffering = (event) => {
                     const stats = this.instance.getStats();
@@ -107,14 +112,24 @@
                 this.manager.listen(video, 'timeupdate', (event) => this.currentTime = event.target.currentTime);
                 this.manager.listen(video, 'progress', onBuffering);
                 this.manager.listen(video, 'waiting', onBuffering);
+
+                this.ready = true;
             } catch (e) {}
         },
 
         async unload() {
             try {
-                await this.manager?.release()();
+                await this.manager?.release();
                 await this.instance?.detach();
             } catch (e) {}
+        },
+
+        async sync() {
+            const currentTime = this.instance?.getMediaElement().currentTime;
+
+            if (currentTime >= 0 && $wire?.updateHistory !== undefined) {
+                await $wire.updateHistory(currentTime);
+            }
         },
 
         async toggleFullscreen() {
