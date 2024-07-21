@@ -4,8 +4,8 @@
     ->class('relative size-full bg-black')
     ->attributes([
         'x-data' => "play('{$manifest}', {$startsAt})",
-        'x-ref' => 'container',
         'x-cloak',
+        'x-ref' => 'container',
         'x-show' => 'ready',
         'x-transition.opacity',
         'x-on:click' => 'showOverlay',
