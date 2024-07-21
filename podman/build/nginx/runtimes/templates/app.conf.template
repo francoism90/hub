@@ -1,13 +1,3 @@
-upstream reverb {
-    server systemd-hub-app:6001;
-    keepalive 32;
-}
-
-upstream vod {
-    server localhost:1936;
-    keepalive 32;
-}
-
 # Resolver
 resolver ${NGINX_LOCAL_RESOLVERS} valid=300s;
 
