@@ -14,28 +14,18 @@
         duration: 0.0,
         currentTime: 0.0,
         seekTime: 0.0,
-        buffered: 0.0,
+        buffered: undefined,
 
         async init() {
             // Create instance
             await this.create();
 
             // Load manifest
-            await this.load(this.$refs.video, manifest, startsAt);
+            await this.load(manifest, startsAt);
         },
 
         async destroy() {
-            this.ready = false;
-
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
+            await this.unload();
         },
 
         async create() {
@@ -83,14 +73,17 @@
             this.synced = new Date().getTime();
         },
 
-        async load(video, manifest) {
+        async load(manifest) {
             if (this.instance === undefined) {
                 await this.create();
             }
 
             try {
+                // Set text displayer
+                await this.instance.setVideoContainer(this.$refs.container)
+
                 // Load manifest
-                await this.instance.attach(video);
+                await this.instance.attach(this.$refs.video);
                 await this.instance.load(manifest, startsAt);
 
                 // Select tracks
@@ -116,16 +109,19 @@
         },
 
         async handleEvent(event) {
-            if (event === undefined || this.instance === undefined || this.$refs.video === undefined) {
+            if (event === undefined || this.instance === undefined) {
                 return;
             }
+
+            console.log(this.instance.getBufferedInfo().total[0]);
+            console.log(event.target.buffered)
 
             switch (event.type) {
                 case 'durationchange':
                     this.duration = event.target.duration || 0.0;
                     break;
                 case 'progress':
-                    this.buffered = event.target.buffered || 0.0;
+                    this.buffered = this.instance.getBufferedInfo()?.total[0];
                     break;
                 case 'play':
                 case 'playing':

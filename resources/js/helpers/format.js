@@ -6,7 +6,7 @@ window.timeFormat = function (input = 0) {
 };
 
 window.bufferedPct = function (buffered = NaN, duration = NaN) {
-  return buffered && buffered.length > 0 && buffered.end && duration
-    ? ((buffered.end(0) / duration) * 100).toFixed(2)
+  return buffered && buffered.end && duration
+    ? ((buffered.end / duration) * 100).toFixed(2)
     : 0;
 };
