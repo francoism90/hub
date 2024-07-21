@@ -5,6 +5,9 @@
     ->attributes([
         'x-data' => "play('{$manifest}', {$startsAt})",
         'x-ref' => 'container',
+        'x-cloak',
+        'x-show' => 'ready',
+        'x-transition.opacity',
         'x-on:click' => 'showOverlay',
         'x-on:mousemove' => 'showOverlay',
         'x-on:touchmove' => 'showOverlay',
@@ -14,9 +17,6 @@
             ->element('video')
             ->class('absolute z-0 inset-0 size-full bg-black')
             ->attributes([
-                'x-cloak',
-                'x-show' => 'ready',
-                'x-transition',
                 'x-ref' => 'video',
                 'x-on:timeupdate.throttle.2500ms' => 'sync',
                 'playsinline',
