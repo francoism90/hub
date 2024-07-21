@@ -113,6 +113,7 @@
                 this.manager.listen(video, 'progress', onBuffering);
                 this.manager.listen(video, 'waiting', onBuffering);
 
+                // Set ready state
                 this.ready = true;
             } catch (e) {}
         },
