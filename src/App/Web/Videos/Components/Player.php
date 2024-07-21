@@ -31,12 +31,11 @@ class Player extends Component
 
     public function updateHistory(?float $time = null): void
     {
-        logger($time);
         if ($time === null || (! $user = auth()->user())) {
             return;
         }
 
-        // app(MarkAsWatched::class)->execute($user, $this->getVideo(), $time);
+        app(MarkAsWatched::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string
