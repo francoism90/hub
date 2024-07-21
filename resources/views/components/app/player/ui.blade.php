@@ -4,18 +4,18 @@
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
         instance: undefined,
         manager: undefined,
-        buffering: undefined,
-        buffered: undefined,
         state: 'paused',
-        ready: false,
+        stats: undefined,
+        buffering: false,
+        buffered: undefined,
+        duration: 0.0,
+        currentTime: 0.0,
         overlay: true,
         dialog: false,
         section: 0,
         synced: 0,
         fullscreen: false,
         idle: 0.0,
-        duration: 0.0,
-        currentTime: 0.0,
 
         async init() {
             // Create instance
@@ -94,18 +94,20 @@
 
                 // Attach event listeners
                 const onBuffering = (event) => {
+                    const stats = this.instance.getStats();
+
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
+                    this.stats = window.pick(stats, ['width', 'height', 'streamBandwidth']);
                 };
 
+                this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
                 this.manager.listen(this.instance, 'statechanged', (event) => this.state = event.newstate);
                 this.manager.listen(video, 'durationchange', (event) => this.duration = event.target.duration);
                 this.manager.listen(video, 'timeupdate', (event) => this.currentTime = event.target.currentTime);
                 this.manager.listen(video, 'progress', onBuffering);
                 this.manager.listen(video, 'waiting', onBuffering);
             } catch (e) {}
-
-            console.log(this.state)
         },
 
         async unload() {
@@ -113,11 +115,6 @@
                 await this.manager?.release()();
                 await this.instance?.detach();
             } catch (e) {}
-        },
-
-        async toggleDialog(index = 0) {
-            this.section = index;
-            this.dialog = ! this.dialog;
         },
 
         async toggleFullscreen() {
@@ -143,35 +140,30 @@
         },
 
         async togglePlayback() {
-            if (this.$refs.video === undefined) {
-                return;
-            }
-
-            this.$refs.video.paused
-                ? await this.$refs.video.play()
-                : await this.$refs.video.pause();
+            this.state === 'playing'
+                ? await this.instance.getMediaElement().pause()
+                : await this.instance.getMediaElement().play();
         },
 
         async seekTo(event) {
-            if ((time = event.target?.value) && time >= 0) {
-                this.$refs.video.currentTime = time;
+            const range = this.instance?.seekRange();
+            const time = event.target?.value || 0;
+
+            if (range !== undefined && time >= range.start && time <= range.end) {
+                this.instance.getMediaElement().currentTime = time;
             }
         },
 
         async backward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime -= 10;
-            }
+            this.instance.getMediaElement().currentTime -= 10;
         },
 
         async forward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime += 10;
-            }
+            this.instance.getMediaElement().currentTime += 10;
         },
 
         async setTextTrack(trackId = 0) {
-            if (trackId < 0 || this.instance === undefined) {
+            if (trackId < 0) {
                 return;
             }
 
