@@ -90,7 +90,7 @@
             }
 
             try {
-                await this.instance.detachAndSavePreload();
+                await this.instance.unload();
             } catch (e) {}
         },
     }));

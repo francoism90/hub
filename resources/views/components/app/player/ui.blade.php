@@ -3,18 +3,19 @@
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
         instance: undefined,
+        manager: undefined,
+        buffering: undefined,
+        buffered: undefined,
+        state: 'paused',
         ready: false,
         overlay: true,
         dialog: false,
         section: 0,
         synced: 0,
-        paused: true,
         fullscreen: false,
         idle: 0.0,
         duration: 0.0,
         currentTime: 0.0,
-        seekTime: 0.0,
-        buffered: undefined,
 
         async init() {
             // Create instance
@@ -33,12 +34,13 @@
             window.shaka.polyfill.installAll();
 
             // Do not re-create instance
-            if (this.instance !== undefined) {
+            if (this.instance !== undefined && this.manager !== undefined) {
                 return;
             }
 
-            // Create instance
+            // Create instances
             this.instance = new window.shaka.Player();
+            this.manager = new window.shaka.util.EventManager();
 
             // Configure player
             this.instance.configure({
@@ -70,82 +72,47 @@
                 );
 
             // Set a synced reference time
-            this.synced = new Date().getTime();
+            // this.synced = new Date().getTime();
         },
 
-        async load(manifest) {
+        async load(manifest = null, startsAt = 0) {
             if (this.instance === undefined) {
-                await this.create();
+                console.error('Player does not exists');
+                return;
             }
 
             try {
+                const container = this.$refs.container;
+                const video = this.$refs.video;
+
                 // Set text displayer
-                await this.instance.setVideoContainer(this.$refs.container)
+                await this.instance.setVideoContainer(container)
 
                 // Load manifest
-                await this.instance.attach(this.$refs.video);
+                await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
 
-                // Select tracks
-                if ($wire !== undefined && $wire.caption?.length) {
-                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
-                    await this.instance.setTextTrackVisibility(true)
-                }
+                // Attach event listeners
+                const onBuffering = (event) => {
+                    this.buffering = this.instance.isBuffering();
+                    this.buffered = this.instance.getBufferedInfo()?.total[0];
+                };
+
+                this.manager.listen(this.instance, 'statechanged', (event) => this.state = event.newstate);
+                this.manager.listen(video, 'durationchange', (event) => this.duration = event.target.duration);
+                this.manager.listen(video, 'timeupdate', (event) => this.currentTime = event.target.currentTime);
+                this.manager.listen(video, 'progress', onBuffering);
+                this.manager.listen(video, 'waiting', onBuffering);
             } catch (e) {}
 
-            this.ready = true;
+            console.log(this.state)
         },
 
         async unload() {
-            this.ready = false
-
-            if (this.instance === undefined) {
-                return;
-            }
-
             try {
-                await this.instance.unload();
+                await this.manager?.release()();
+                await this.instance?.detach();
             } catch (e) {}
-        },
-
-        async handleEvent(event) {
-            if (event === undefined || this.instance === undefined) {
-                return;
-            }
-
-            console.log(this.instance.getBufferedInfo().total[0]);
-            console.log(event.target.buffered)
-
-            switch (event.type) {
-                case 'durationchange':
-                    this.duration = event.target.duration || 0.0;
-                    break;
-                case 'progress':
-                    this.buffered = this.instance.getBufferedInfo()?.total[0];
-                    break;
-                case 'play':
-                case 'playing':
-                case 'pause':
-                    this.paused = this.$refs.video.paused;
-                    break;
-                case 'timeupdate':
-                    const currentTime = this.$refs.video.currentTime;
-
-                    if (currentTime >= 0) {
-                        this.currentTime = currentTime;
-
-                        const secondsBetweenSync = Math.abs((new Date().getTime() - this.synced) / 1000);
-
-                        if (secondsBetweenSync >= 3 && $wire?.updateHistory !== undefined) {
-                            this.synced = new Date().getTime();
-
-                            await $wire.updateHistory(currentTime);
-                        }
-                    }
-                    break;
-                default:
-                    console.debug('Unhandled event: ' + event.type);
-            }
         },
 
         async toggleDialog(index = 0) {
