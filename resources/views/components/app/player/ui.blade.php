@@ -3,52 +3,46 @@
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
         instance: undefined,
+        manager: undefined,
         ready: false,
+        state: 'paused',
+        stats: undefined,
+        buffering: false,
+        buffered: undefined,
+        duration: 0.0,
+        currentTime: 0.0,
+        fullscreen: false,
         overlay: true,
         dialog: false,
         section: 0,
-        synced: 0,
-        paused: true,
-        fullscreen: false,
         idle: 0.0,
-        duration: 0.0,
-        currentTime: 0.0,
-        seekTime: 0.0,
-        buffered: 0.0,
 
         async init() {
-            // Create instance
+            // Install polyfills to patch browser incompatibilities
+            await window.shaka.polyfill.installAll();
+
+            // Create instances
             await this.create();
 
             // Load manifest
-            await this.load(this.$refs.video, manifest, startsAt);
+            await this.load(manifest, startsAt);
         },
 
         async destroy() {
             this.ready = false;
 
-            if (this.instance === undefined) {
-                return;
-            }
-
-            try {
-                await this.instance.unload();
-            } catch (e) {
-                //
-            }
+            await this.unload();
         },
 
         async create() {
-            // Make sure polyfills are always installed
-            window.shaka.polyfill.installAll();
-
             // Do not re-create instance
-            if (this.instance !== undefined) {
+            if (this.instance !== undefined && this.manager !== undefined) {
                 return;
             }
 
-            // Create instance
+            // Create instances
             this.instance = new window.shaka.Player();
+            this.manager = new window.shaka.util.EventManager();
 
             // Configure player
             this.instance.configure({
@@ -78,83 +72,65 @@
                 .registerRequestFilter(
                     async (type, request) => (request.allowCrossSiteCredentials = true)
                 );
-
-            // Set a synced reference time
-            this.synced = new Date().getTime();
         },
 
-        async load(video, manifest) {
+        async load(manifest = null, startsAt = 0) {
             if (this.instance === undefined) {
-                await this.create();
+                console.error('Player does not exists');
+                return;
             }
 
             try {
+                const container = this.$refs.container;
+                const video = this.$refs.video;
+
+                // Set text displayer
+                await this.instance.setVideoContainer(container)
+
                 // Load manifest
                 await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
 
-                // Select tracks
+                // Set default tracks
                 if ($wire !== undefined && $wire.caption?.length) {
                     await this.instance.selectTextLanguage($wire.caption, 'subtitle')
                     await this.instance.setTextTrackVisibility(true)
                 }
-            } catch (e) {}
 
-            this.ready = true;
+                // Attach event listeners
+                const onBuffering = (event) => {
+                    const stats = this.instance.getStats();
+
+                    this.buffering = this.instance.isBuffering();
+                    this.buffered = this.instance.getBufferedInfo()?.total[0];
+                    this.stats = window.pick(stats, ['width', 'height', 'streamBandwidth']);
+                };
+
+                this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
+                this.manager.listen(this.instance, 'statechanged', (event) => this.state = event.newstate);
+                this.manager.listen(video, 'durationchange', (event) => this.duration = event.target.duration);
+                this.manager.listen(video, 'timeupdate', (event) => this.currentTime = event.target.currentTime);
+                this.manager.listen(video, 'progress', onBuffering);
+                this.manager.listen(video, 'waiting', onBuffering);
+
+                // Set ready state
+                this.ready = true;
+            } catch (e) {}
         },
 
         async unload() {
-            this.ready = false
-
-            if (this.instance === undefined) {
-                return;
-            }
-
             try {
-                await this.instance.unload();
+                await this.manager?.release();
+                await this.instance?.detach();
             } catch (e) {}
         },
 
-        async handleEvent(event) {
-            if (event === undefined || this.instance === undefined || this.$refs.video === undefined) {
-                return;
+        async sync() {
+            const currentTime = this.instance?.getMediaElement().currentTime;
+
+            if (currentTime >= 0 && $wire?.updateHistory !== undefined) {
+                await $wire.updateHistory(currentTime);
             }
-
-            switch (event.type) {
-                case 'durationchange':
-                    this.duration = event.target.duration || 0.0;
-                    break;
-                case 'progress':
-                    this.buffered = event.target.buffered || 0.0;
-                    break;
-                case 'play':
-                case 'playing':
-                case 'pause':
-                    this.paused = this.$refs.video.paused;
-                    break;
-                case 'timeupdate':
-                    const currentTime = this.$refs.video.currentTime;
-
-                    if (currentTime >= 0) {
-                        this.currentTime = currentTime;
-
-                        const secondsBetweenSync = Math.abs((new Date().getTime() - this.synced) / 1000);
-
-                        if (secondsBetweenSync >= 3 && $wire?.updateHistory !== undefined) {
-                            this.synced = new Date().getTime();
-
-                            await $wire.updateHistory(currentTime);
-                        }
-                    }
-                    break;
-                default:
-                    console.debug('Unhandled event: ' + event.type);
-            }
-        },
-
-        async toggleDialog(index = 0) {
-            this.section = index;
-            this.dialog = ! this.dialog;
         },
 
         async toggleFullscreen() {
@@ -180,35 +156,30 @@
         },
 
         async togglePlayback() {
-            if (this.$refs.video === undefined) {
-                return;
-            }
-
-            this.$refs.video.paused
-                ? await this.$refs.video.play()
-                : await this.$refs.video.pause();
+            this.instance.getMediaElement().paused
+                ? await this.instance.getMediaElement().play()
+                : await this.instance.getMediaElement().pause();
         },
 
         async seekTo(event) {
-            if ((time = event.target?.value) && time >= 0) {
-                this.$refs.video.currentTime = time;
+            const range = this.instance?.seekRange();
+            const time = event.target?.value || 0;
+
+            if (range !== undefined && time >= range.start && time <= range.end) {
+                this.instance.getMediaElement().currentTime = time;
             }
         },
 
         async backward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime -= 10;
-            }
+            this.instance.getMediaElement().currentTime -= 10;
         },
 
         async forward() {
-            if (this.$refs.video?.currentTime !== undefined) {
-                this.$refs.video.currentTime += 10;
-            }
+            this.instance.getMediaElement().currentTime += 10;
         },
 
         async setTextTrack(trackId = 0) {
-            if (trackId < 0 || this.instance === undefined) {
+            if (trackId < 0) {
                 return;
             }
 
