@@ -6,7 +6,6 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -30,7 +29,7 @@ class Section extends Component
     }
 
     #[Computed]
-    public function items(): Collection|LazyCollection
+    public function items(): Collection
     {
         return $this->getQuery()
             ->published()
