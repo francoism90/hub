@@ -1,42 +1,15 @@
 {
-    "editor.quickSuggestions": {
-        "comments": "on",
-        "strings": "on"
-    },
-    "eslint.useFlatConfig": true,
-    "files.associations": {
-        "*.css": "tailwindcss",
-        "*.scss": "tailwindcss"
-    },
-    "intelephense.format.enable": false,
-    "tailwindCSS.emmetCompletions": true,
+    "LaravelExtraIntellisense.phpCommand": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php -r \"{code}\"",
+    "LaravelExtraIntellisense.basePathForCode": "/app",
     "tailwindCSS.experimental.classRegex": [
-        [
-            "class\\(.*?\\)(?!\\])",
-            "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
-        ],
-        [
-            "classList.(?:add|remove)\\(([^)]*)\\)",
-            "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
-        ],
-        [
-            "@?class\\(([^]*)\\)",
-            "'([^']*)'"
-        ],
-        [
-            "data-.*-class=['\"]([^'\"]*)"
-        ],
+        ["class\\(.*?\\)(?!\\])", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+        ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+        ["@?class\\(([^]*)\\)", "'([^']*)'"],
+        ["data-.*-class=['\"]([^'\"]*)"],
         "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
         ":\\s*?[\"'`]([^\"'`]*).*?,",
         "(?:enter|leave)(?:from|to)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)"
     ],
-    "tailwindCSS.includeLanguages": {
-        "blade": "html",
-        "blade.php": "html",
-        "plaintext": "html",
-        "vue": "html",
-        "vue-html": "html"
-    },
     "search.exclude": {
         "**/data": true,
         "**/storage/app": true
