@@ -6,7 +6,6 @@
         "dbaeumer.vscode-eslint",
         "devsense.composer-php-vscode",
         "esbenp.prettier-vscode",
-        "onecentlin.laravel-blade",
-        "shufo.vscode-blade-formatter"
+        "onecentlin.laravel-blade"
     ]
 }
