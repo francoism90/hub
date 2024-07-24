@@ -1,6 +1,6 @@
 {{ html()->div()->class('container py-4')->children([
     html()->element('h1')->text($tag->name)->class('text-3xl hyphens-auto line-clamp-2'),
-    html()->element('dl')->class('dl dl-list text-sm text-secondary-100')
+    html()->element('dl')->class('dl text-sm text-secondary-100')
         ->childrenIf($tag->type, [
             html()->element('dt')->text('ID')->class('sr-only'),
             html()->element('dd')->text($tag->type->label()),

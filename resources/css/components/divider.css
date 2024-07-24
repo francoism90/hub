@@ -1,31 +1,21 @@
 @layer components {
+    dd {
+        @apply flex appearance-none items-center;
+    }
+
+    .list {
+        @apply flex items-center *:after:mx-1 *:after:content-["-"];
+
+        :last-child {
+            @apply after:hidden;
+        }
+    }
+
     .dl {
-        @apply flex flex-wrap items-center;
+        @apply flex items-center *:after:mx-1.5 *:after:h-3 *:after:w-[1px] *:after:bg-secondary-400 *:after:content-["\00a0_"];
 
-        dd {
-            @apply inline-flex items-center;
-        }
-
-        dd:not(.sr-only) {
-            &::after {
-                @apply px-1 content-['|'];
-            }
-        }
-
-        dd:last-child:after {
-            @apply px-0 content-[];
-        }
-
-        &-list {
-            dd:not(.sr-only) {
-                &::after {
-                    @apply px-1 content-['-'];
-                }
-            }
-
-            dd:last-child:after {
-                @apply px-0 content-[];
-            }
+        :last-child {
+            @apply after:hidden;
         }
     }
 }

@@ -1,6 +1,7 @@
 {
     "LaravelExtraIntellisense.phpCommand": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php -r \"{code}\"",
     "LaravelExtraIntellisense.basePathForCode": "/app",
+    "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.experimental.classRegex": [
         ["class\\(.*?\\)(?!\\])", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
         ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
