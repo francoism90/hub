@@ -15,7 +15,7 @@ class ListIndexController extends Page
         return view('app.lists.index');
     }
 
-    #[Computed(cache: true, key: 'tag-types')]
+    #[Computed(cache: true, key: 'tags')]
     public function types(): array
     {
         return collect(TagType::cases())

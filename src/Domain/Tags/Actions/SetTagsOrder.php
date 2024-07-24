@@ -12,18 +12,12 @@ class SetTagsOrder
     {
         $items = collect();
 
-        $items = $items->merge([
-            ...$this->getTags(TagType::Studio),
-            ...$this->getTags(TagType::Person),
-            ...$this->getTags(TagType::Language),
-            ...$this->getTags(TagType::Genre),
-        ]);
+        foreach (TagType::cases() as $type) {
+            $items = $items->merge($this->getTags($type));
+        }
 
-        Tag::setNewOrder(
-            $items->pluck('id')->all()
-        );
+        Tag::setNewOrder($items->pluck('id')->all());
 
-        // Remove caches
         cache()->forget('tags');
     }
 
