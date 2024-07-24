@@ -9,6 +9,7 @@
         @endforeach
     {{ html()->div()->close() }}
 
-    {{ html()->button()->text('Load More')->class('btn btn-secondary py-1 px-3 w-fit rounded')->attribute('wire:click', 'fetch') }}
+    @if ($this->hasMorePages())
+        {{ html()->button()->text('Load More')->class('btn btn-secondary py-1 px-3 w-fit rounded')->attribute('wire:click', 'fetch') }}
+    @endif
 {{ html()->div()->close() }}
-

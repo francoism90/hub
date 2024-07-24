@@ -43,7 +43,7 @@ class Section extends Component
             ->withCount('videos')
             ->type($this->type)
             ->random()
-            ->paginate(perPage: 6, page: $page);
+            ->paginate(perPage: 9, page: $page);
     }
 
     protected function getTitle(): ?string
