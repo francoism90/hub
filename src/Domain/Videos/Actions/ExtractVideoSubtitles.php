@@ -41,7 +41,7 @@ class ExtractVideoSubtitles
             ])
             ->each(fn (string $path, int $key) => $video->map(
                 outs: ["0:{$key}"],
-                format: new WebVTT(),
+                format: new WebVTT,
                 outputFilename: $path,
                 forceDisableAudio: true,
                 forceDisableVideo: true,

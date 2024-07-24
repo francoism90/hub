@@ -42,7 +42,7 @@ class CreateVideoPreview
             ->map(function (float $item, int $key) use ($temporaryDirectory, $video) {
                 $path = $temporaryDirectory->path("clip_{$key}.mp4");
 
-                $format = (new X264())
+                $format = (new X264)
                     ->setKiloBitrate(4500)
                     ->setAudioCodec('copy')
                     ->setAdditionalParameters(['-an']);
