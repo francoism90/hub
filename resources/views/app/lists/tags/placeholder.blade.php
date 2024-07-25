@@ -1,1 +1,1 @@
-{{ html()->div()->class('h-96 min-h-96') }}
+{{ html()->div()->class('w-full h-96 min-h-96') }}

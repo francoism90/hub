@@ -3,7 +3,7 @@
 {{ html()
     ->element('article')
     ->attribute('x-data')
-    ->class('w-full h-60 min-w-56 min-h-60 max-h-60 sm:min-w-60 sm:max-w-80')
+    ->class('w-full h-60 min-w-60 min-h-60 max-h-60')
     ->children([
         html()->a()->link('videos.view', $video)->class('relative block w-full h-48 min-h-48 max-h-48')->children([
             html()
