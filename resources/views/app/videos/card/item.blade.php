@@ -54,7 +54,7 @@
                 ]),
         ]),
 
-        html()->div()->class('py-1.5 dl justify-center')->children($video->tags->take(2), fn(Tag $tag) =>
+        html()->div()->class('py-1.5 dl justify-center')->children($video->tags->take(3), fn (Tag $tag) =>
             html()
                 ->a()
                 ->link('tags.view', $tag)

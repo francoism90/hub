@@ -1,3 +1,5 @@
+@use('Domain\Tags\Models\Tag')
+
 {{ html()->div()->class('container py-4')->children([
     html()->element('h1')->text($tag->name)->class('text-3xl hyphens-auto line-clamp-2'),
     html()->element('dl')->class('dl text-sm text-secondary-100')
@@ -36,13 +38,13 @@
             html()->validate('form.name'),
         ]),
 
-        html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-3')->children([
+        html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-3')->child(
             html()->div()->class('form-control')->children([
                 html()->label('Type')->for('form.type')->class('label'),
                 html()->select(options: $types)->wireModel('form.type')->placeholder('Type')->class('select select-bordered'),
                 html()->validate('form.type'),
             ]),
-        ]),
+        ),
 
         html()->div()->class('form-control')->attribute('x-data', '{ open: false }')->children([
             html()->label('Related')->for('form.related')->class('label'),
@@ -58,7 +60,7 @@
                 ->class('input input-bordered')
                 ->autocomplete('off'),
 
-            html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->related, fn ($item) => html()
+            html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->related, fn (array $item) => html()
                 ->a()
                 ->href('#')
                 ->attribute('wire:click.prevent', "toggleRelated('{$item['id']}')")
@@ -67,7 +69,7 @@
             ),
 
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
-                html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($related->results(), fn ($item) => html()
+                html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($related->results(), fn (Tag $item) => html()
                     ->a()
                     ->href('#')
                     ->attribute('wire:click.prevent', "toggleRelated('{$item->getRouteKey()}')")
