@@ -7,17 +7,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TagQueryBuilder extends Builder
 {
-    public function random(int $ttl = 2 * 60): self
+    public function random(int $ttl = 60 * 60): self
     {
         return $this
-            ->randomSeed(key: 'tags-random', ttl: now()->addMinutes($ttl));
+            ->randomSeed('tags-random', $ttl);
     }
 
-    public function type(TagType|string|int $value): self
+    public function type(TagType|string $value): self
     {
-        $type = $value instanceof TagType
-            ? $value
-            : TagType::tryFrom($value);
+        $type = $value instanceof TagType ? $value : TagType::tryFrom($value);
 
         return $this->when($type, fn (Builder $query) => $query
             ->where('type', $type)
