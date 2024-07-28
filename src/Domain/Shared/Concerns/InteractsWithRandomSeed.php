@@ -4,6 +4,7 @@ namespace Domain\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 trait InteractsWithRandomSeed
 {
@@ -16,7 +17,7 @@ trait InteractsWithRandomSeed
 
     protected function getRandomSeed(string $key, int|Carbon $ttl = 300): mixed
     {
-        return cache()->remember(
+        return Cache::remember(
             $this->getRandomSeedKey($key),
             $ttl,
             fn () => time()
@@ -25,7 +26,7 @@ trait InteractsWithRandomSeed
 
     protected function forgetRandomSeed(string $key): mixed
     {
-        return cache()->forget(
+        return Cache::forget(
             $this->getRandomSeedKey($key)
         );
     }
