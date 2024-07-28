@@ -40,7 +40,8 @@ class AppOptimize extends Command implements Isolatable
         $this->call('scout:sync-index-settings');
 
         // Restart services
-        $this->call('pulse:restart');
+        $this->call('octane:reload');
         $this->call('horizon:terminate');
+        $this->call('pulse:restart');
     }
 }
