@@ -12,12 +12,12 @@ class GetSimilarVideos
     public function execute(Video $model, int $limit = 24): LazyCollection
     {
         return LazyCollection::make([
-            ...static::phrases($model),
-            ...static::tagged($model),
+            ...$this->phrases($model),
+            ...$this->tagged($model),
         ])->take($limit);
     }
 
-    public static function phrases(Video $model): LazyCollection
+    protected function phrases(Video $model): LazyCollection
     {
         $query = str($model->name)
             ->title()
@@ -47,7 +47,7 @@ class GetSimilarVideos
             ->unique();
     }
 
-    public static function tagged(Video $model): LazyCollection
+    protected function tagged(Video $model): LazyCollection
     {
         $relatables = $model->tags
             ->loadMissing('relatables')
@@ -62,7 +62,7 @@ class GetSimilarVideos
                 ...$relatables,
             ])
             ->whereKeyNot($model)
-            ->randomSeed(key: 'similar-tagged', ttl: now()->addMinutes(20))
+            ->randomSeed('similar-tagged', 60 * 20)
             ->take(12)
             ->cursor();
     }

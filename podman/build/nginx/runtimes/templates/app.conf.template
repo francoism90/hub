@@ -16,8 +16,31 @@ server {
     # index
     index index.php;
 
+    # error
+    error_page 404 /index.php;
+
     # service worker
     add_header Service-Worker-Allowed /;
+
+    # vod
+    location ^~ /vod/ {
+        proxy_pass http://vod/;
+        proxy_set_header Host $host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # livewire
+    location ^~ /livewire {
+        try_files $uri $uri/ @octane;
+    }
+
+    # assets, media
+    location ~ ^/(build/assets|storage)/ {
+        expires 30d;
+        access_log off;
+        add_header Cache-Control public;
+        break;
+    }
 
     # pwa
     location /manifest.webmanifest {
@@ -25,25 +48,26 @@ server {
         return 301 $scheme://$http_host/build/manifest.webmanifest;
     }
 
-    # vod
-    location ^~ /vod/ {
-        proxy_pass http://vod/;
+    # octane
+    location /index.php {
+        try_files /not_exists @octane;
+    }
+
+    location / {
+        try_files $uri $uri/ @octane;
+    }
+
+    location @octane {
+        set $suffix "";
+
+        if ($uri = /index.php) {
+            set $suffix ?$query_string;
+        }
+
+        proxy_pass http://octane$suffix;
+        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
-
-    # assets, media
-    location ~ ^/(build/assets|storage)/ {
-        expires 7d;
-        add_header Cache-Control public;
-        break;
-    }
-
-    # root
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    error_page 404 /index.php;
 
     # additional config
     include /etc/nginx/config/general.conf;

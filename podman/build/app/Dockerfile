@@ -88,6 +88,7 @@ RUN install-php-extensions \
     msgpack \
     mysqli \
     opcache \
+    openswoole \
     pcntl \
     pcov \
     pdo_mysql \
@@ -112,6 +113,7 @@ STOPSIGNAL SIGQUIT
 
 EXPOSE 5173
 EXPOSE 6001
+EXPOSE 8000
 EXPOSE 9000
 
 USER $UID

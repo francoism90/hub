@@ -10,6 +10,8 @@ server {
     # index
     index index.html;
 
+    error_page 404 /index.html;
+
     # vod settings
     vod_mode mapped;
     vod_upstream_location /json;
@@ -87,8 +89,6 @@ server {
 
         stub_status on;
     }
-
-    error_page 404 /index.html;
 
     # additional config
     include /etc/nginx/config/general.conf;

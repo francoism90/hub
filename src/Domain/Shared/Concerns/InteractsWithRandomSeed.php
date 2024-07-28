@@ -4,6 +4,7 @@ namespace Domain\Shared\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 trait InteractsWithRandomSeed
 {
@@ -11,26 +12,26 @@ trait InteractsWithRandomSeed
     {
         return $query
             ->reorder()
-            ->inRandomOrder(static::getRandomSeed($key, $ttl));
+            ->inRandomOrder($this->getRandomSeed($key, $ttl));
     }
 
-    protected static function getRandomSeed(string $key, int|Carbon $ttl = 300): mixed
+    protected function getRandomSeed(string $key, int|Carbon $ttl = 300): mixed
     {
-        return cache()->remember(
-            static::getRandomSeedKey($key),
+        return Cache::remember(
+            $this->getRandomSeedKey($key),
             $ttl,
             fn () => time()
         );
     }
 
-    protected static function forgetRandomSeed(string $key): mixed
+    protected function forgetRandomSeed(string $key): mixed
     {
-        return cache()->forget(
-            static::getRandomSeedKey($key)
+        return Cache::forget(
+            $this->getRandomSeedKey($key)
         );
     }
 
-    protected static function getRandomSeedKey(string $key): mixed
+    protected function getRandomSeedKey(string $key): mixed
     {
         $id = auth()->id() ?: session()->getId();
 
