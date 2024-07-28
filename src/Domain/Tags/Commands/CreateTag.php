@@ -31,7 +31,7 @@ class CreateTag extends Command implements Isolatable
 
         $type = select(
             label: 'Type',
-            options: TagType::cases(),
+            options: collect(TagType::cases())->pluck('name', 'value'),
             required: true,
         );
 
