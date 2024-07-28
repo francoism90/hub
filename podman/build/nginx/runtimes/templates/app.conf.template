@@ -16,13 +16,15 @@ server {
     # index
     index index.php;
 
+    # error
+    error_page 404 /index.php;
+
     # service worker
     add_header Service-Worker-Allowed /;
 
-    # pwa
-    location /manifest.webmanifest {
-        types { } default_type "application/manifest+json webmanifest;";
-        return 301 $scheme://$http_host/build/manifest.webmanifest;
+    # livewire
+    location ^~ /livewire {
+        try_files $uri $uri/ /index.php?$query_string;
     }
 
     # vod
@@ -33,17 +35,38 @@ server {
 
     # assets, media
     location ~ ^/(build/assets|storage)/ {
-        expires 7d;
+        expires 30d;
+        access_log off;
         add_header Cache-Control public;
         break;
     }
 
-    # root
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
+    # pwa
+    location /manifest.webmanifest {
+        types { } default_type "application/manifest+json webmanifest;";
+        return 301 $scheme://$http_host/build/manifest.webmanifest;
     }
 
-    error_page 404 /index.php;
+    # octane
+    location /index.php {
+        try_files /not_exists @octane;
+    }
+
+    location / {
+        try_files $uri $uri/ @octane;
+    }
+
+    location @octane {
+        set $suffix "";
+
+        if ($uri = /index.php) {
+            set $suffix ?$query_string;
+        }
+
+        proxy_pass http://127.0.0.1:8000$suffix;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
 
     # additional config
     include /etc/nginx/config/general.conf;
