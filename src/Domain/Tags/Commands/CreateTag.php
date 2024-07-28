@@ -37,6 +37,6 @@ class CreateTag extends Command implements Isolatable
 
         $model = Tag::firstOrCreate(compact('name', 'type'));
 
-        $this->info("Tag has been created successfully ({$model->getKey()})");
+        $this->info("Tag has been created successfully ({$model->getKey()}).");
     }
 }
