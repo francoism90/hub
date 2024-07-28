@@ -88,6 +88,7 @@ RUN install-php-extensions \
     msgpack \
     mysqli \
     opcache \
+    openswoole \
     pcntl \
     pcov \
     pdo_mysql \
