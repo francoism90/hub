@@ -22,15 +22,16 @@ server {
     # service worker
     add_header Service-Worker-Allowed /;
 
-    # livewire
-    location ^~ /livewire {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
     # vod
     location ^~ /vod/ {
         proxy_pass http://vod/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
+    }
+
+    # livewire
+    location ^~ /livewire {
+        try_files $uri $uri/ @octane;
     }
 
     # assets, media
