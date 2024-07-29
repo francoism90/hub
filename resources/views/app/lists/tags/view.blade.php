@@ -4,7 +4,7 @@
     {{ html()->div()->attribute('wire.poll.300s', 'refresh')->class('grid grid-cols-1 gap-3 w-full overflow-y-scroll sm:grid-cols-3')->attribute('wire:scroll')->open() }}
         @foreach ($this->items as $tag)
             {{ html()->div()->wireKey($tag->getRouteKey())->open() }}
-                <livewire:app::tags-item :$tag :key="$tag->getRouteKey()" />
+                <livewire:web.tags.item :$tag :key="$tag->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->div()->close() }}
