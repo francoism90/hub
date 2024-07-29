@@ -79,7 +79,7 @@ return [
     */
 
     'ingest' => [
-        'driver' => env('PULSE_INGEST_DRIVER', 'storage'),
+        'driver' => env('PULSE_INGEST_DRIVER', 'redis'),
 
         'buffer' => env('PULSE_INGEST_BUFFER', 5_000),
 
