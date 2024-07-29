@@ -2,7 +2,6 @@
 
 namespace Foundation\Providers;
 
-use Foxws\WireUse\Facades\WireUse;
 use Foxws\WireUse\Scout\LivewireScout;
 use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
 use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
