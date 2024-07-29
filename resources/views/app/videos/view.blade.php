@@ -1,6 +1,6 @@
 {{ html()->div()->open() }}
     {{ html()->div()->class('relative h-80 min-h-80 max-h-96 w-full bg-black sm:h-[32rem] sm:min-h-[32rem] sm:max-h-[32rem]')->open() }}
-        <livewire:app::videos-player :$video />
+        <livewire:web.videos.player :$video />
     {{ html()->div()->close() }}
 
     {{ html()->div()->class('container py-4')->children([
@@ -35,8 +35,8 @@
     @endif
 
     {{ html()->element('section')->attribute('x-data', 'player')->class('py-6')->open() }}
-        <livewire:app::videos-next :$video lazy />
-        <livewire:app::videos-recommended :$video lazy />
+        <livewire:web.videos.next :$video lazy />
+        <livewire:web.videos.recommended :$video lazy />
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
 
