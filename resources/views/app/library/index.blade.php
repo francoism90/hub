@@ -16,7 +16,7 @@
     {{ html()->element('section')->attribute('wire.poll.300s', 'refresh')->class('grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $video)
             {{ html()->div()->wireKey($video->getRouteKey())->class('snap-start scroll-mx-6 shrink-0 sm:max-w-80')->open() }}
-                <livewire:app::videos-item :$video :key="$video->getRouteKey()" />
+                <livewire:web.videos.item :$video :key="$video->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->element('section')->close() }}
