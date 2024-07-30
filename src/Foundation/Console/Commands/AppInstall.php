@@ -22,7 +22,6 @@ class AppInstall extends Command implements Isolatable
         throw_if(! $this->option('force') && ! $this->confirm('Are you sure to install the application?'));
 
         // Clear cache
-        $this->call('cache:clear');
         $this->call('optimize:clear');
 
         // Create symlinks

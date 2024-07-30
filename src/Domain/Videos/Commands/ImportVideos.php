@@ -6,7 +6,7 @@ use Domain\Imports\Actions\BulkImport;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 
-class Import extends Command implements Isolatable
+class ImportVideos extends Command implements Isolatable
 {
     /**
      * @var string

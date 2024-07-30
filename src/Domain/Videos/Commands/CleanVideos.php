@@ -6,7 +6,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 
-class Clean extends Command implements Isolatable
+class CleanVideos extends Command implements Isolatable
 {
     /**
      * @var string
