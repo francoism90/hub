@@ -21,8 +21,8 @@ class RefreshStructures extends Command implements Isolatable
 
     public function handle(): void
     {
-        ComponentScout::create(app_path('Web'), 'App\\')->clear();
-        LivewireScout::create(app_path('Web'), 'App\\')->clear();
+        ComponentScout::create()->clear();
+        LivewireScout::create()->clear();
 
         $this->info('Cached structures cleared successfully.');
     }
