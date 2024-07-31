@@ -32,9 +32,9 @@ class SyncIndexes extends Command implements Isolatable
 
         // Sync models
         if (count($indexes)) {
-            foreach ($indexes as $name => $settings) {
-                if (class_exists($name)) {
-                    $this->call('scout:import', compact('name'));
+            foreach ($indexes as $model => $settings) {
+                if (class_exists($model)) {
+                    $this->call('scout:import', compact('model'));
                 }
             }
         }
