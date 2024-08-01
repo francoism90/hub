@@ -12,8 +12,8 @@ See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots
 
 ## Prerequisites
 
-- Linux (Fedora, Debian, Arch, Ubuntu)
-- [Podman 5.1](https://podman.io/) or higher (with SELinux support)
+-   Linux (Fedora, Debian, Arch, Ubuntu)
+-   [Podman 5.1](https://podman.io/) or higher (with SELinux support)
 
 ## Installation
 
@@ -72,9 +72,9 @@ The Hub instance should be available at <https://hub.lan> when using Traefik.
 
 The following Laravel services are available:
 
-- <https://hub.lan/horizon> - Laravel Horizon
-- <https://hub.lan/pulse> - Laravel Pulse
-- <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
+-   <https://hub.lan/horizon> - Laravel Horizon
+-   <https://hub.lan/pulse> - Laravel Pulse
+-   <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
 
 #### Updating
 

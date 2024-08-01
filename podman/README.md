@@ -4,14 +4,14 @@ The given instructions are tested on Fedora 40 Silverblue with Podman 5.1 (rootl
 
 We recommend running containers rootless:
 
-- <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
-- <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
+-   <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
+-   <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
 
 To learn more about Podman Quadlet, the following resources may be useful:
 
-- <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
-- <https://www.redhat.com/sysadmin/quadlet-podman>
-- <https://mo8it.com/blog/quadlet/>
+-   <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
+-   <https://www.redhat.com/sysadmin/quadlet-podman>
+-   <https://mo8it.com/blog/quadlet/>
 
 ## Installation
 
