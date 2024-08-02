@@ -18,7 +18,7 @@
             ->class('absolute z-0 inset-0 size-full bg-black')
             ->attributes([
                 'x-ref' => 'video',
-                'x-on:timeupdate.throttle.2500ms' => 'sync',
+                'x-on:timeupdate.throttle.2000ms' => 'sync',
                 'playsinline',
                 'autoplay',
             ]),
@@ -83,4 +83,3 @@
 }}
 
 <x-app.player.ui />
-
