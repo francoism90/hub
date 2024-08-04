@@ -1,24 +1,24 @@
 @layer base {
     progress {
-        appearance: none;
+        @apply appearance-none;
         -webkit-appearance: none;
     }
 
     ::-webkit-progress-bar,
     ::-webkit-progress-value {
-        appearance: none;
+        @apply appearance-none;
         -webkit-appearance: none;
     }
 
     ::-moz-progress-bar {
-        appearance: none;
+        @apply appearance-none;
     }
 
     ::-webkit-search-decoration,
     ::-webkit-search-cancel-button,
     ::-webkit-search-results-button,
     ::-webkit-search-results-decoration {
-        appearance: none;
+        @apply appearance-none;
         -webkit-appearance: none;
     }
 }
