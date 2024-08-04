@@ -1,4 +1,4 @@
-import './pwa';
-import './axios';
-import './echo';
-import './shaka';
+import "./pwa";
+import "./axios";
+import "./echo";
+import "./shaka";

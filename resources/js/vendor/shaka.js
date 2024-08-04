@@ -1,3 +1,3 @@
-import shaka from 'shaka-player';
+import shaka from "shaka-player";
 
 window.shaka = shaka;
