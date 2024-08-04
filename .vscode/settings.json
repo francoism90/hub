@@ -1,5 +1,6 @@
 {
     "LaravelExtraIntellisense.phpCommand": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php -r \"{code}\"",
+    "php.validate.executablePath": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php",
     "LaravelExtraIntellisense.basePathForCode": "/app",
     "LaravelExtraIntellisense.modelsPaths": ["app", "src"],
     "tailwindCSS.emmetCompletions": true,
