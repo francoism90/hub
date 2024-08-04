@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Build images
 podman build \
     -t hub-nginx \
     --file=build/nginx/Dockerfile \
