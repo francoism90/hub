@@ -1,10 +1,10 @@
 **/.git
-**/.svn
 **/.hg
-**/node_modules
-**/vendor
-**/public
-**/data
-**/storage
+**/.svn
+/node_modules
+/public
+/storage
+/data
+/vendor
 composer.lock
 yarn.lock
