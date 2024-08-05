@@ -26,7 +26,7 @@ $app = Application::configure(basePath: $basePath)
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->trustProxies(at: ['127.0.0.1']);
+        $middleware->trustProxies(at: '*');
         $middleware->throttleWithRedis();
         $middleware->statefulApi();
         $middleware->redirectGuestsTo('/login');
@@ -49,11 +49,11 @@ $app = Application::configure(basePath: $basePath)
         $exceptions->render(fn (NoPrefixedModelFound $e) => abort(404));
     })
     ->withCommands([
-        \Support\Scout\Commands\SyncIndexes::class,
-        \Support\Structures\Commands\RefreshStructures::class,
         \Foundation\Console\Commands\AppInstall::class,
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
+        \Support\Scout\Commands\SyncIndexes::class,
+        \Support\Structures\Commands\RefreshStructures::class,
         \Domain\Tags\Commands\CreateTag::class,
         \Domain\Tags\Commands\SortTags::class,
         \Domain\Videos\Commands\CleanVideos::class,
