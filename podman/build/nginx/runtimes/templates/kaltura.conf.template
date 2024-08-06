@@ -1,11 +1,15 @@
 server {
-    listen 1935;
-    listen [::]:1935;
+    listen 1935 ssl reuseport;
+    listen [::]:1935 ssl reuseport;
     http2 on;
 
     server_name localhost;
     set $base /var/www;
     root $base/html;
+
+    # ssl
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
 
     # index
     index index.html;
@@ -46,7 +50,7 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://app/api/v1/videos/subscription;
+        proxy_pass https://app/api/v1/videos/subscription;
         proxy_pass_request_body off;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
@@ -59,7 +63,7 @@ server {
     # json
     location ~ /json/[^/]+/(.*) {
         internal;
-        proxy_pass http://app/$1;
+        proxy_pass https://app/$1;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
         proxy_set_header Host ${NGINX_HOST};

@@ -1,14 +1,38 @@
-# Resolver
 resolver ${NGINX_LOCAL_RESOLVERS} valid=300s;
 
+upstream octane {
+    server systemd-hub-app:8000 weight=5 max_fails=3 fail_timeout=30s;
+}
+
+upstream reverb {
+    server systemd-hub-app:6001 weight=3 max_fails=3 fail_timeout=30s;
+}
+
+upstream app {
+    server localhost:4443 weight=5 max_fails=3 fail_timeout=30s;
+}
+
+upstream kaltura {
+    server localhost:1935 weight=4 max_fails=0;
+    keepalive 16;
+}
+
+upstream vod {
+    server localhost:1936 weight=4 max_fails=0;
+    keepalive 16;
+}
+
 server {
-    listen ${NGINX_PORT};
-    listen [::]:${NGINX_PORT};
-    http2 on;
+    listen 4443 ssl http2;
+    listen [::]:4443 ssl http2;
 
     server_name ${NGINX_HOST};
     set $base /app;
     root $base/public;
+
+    # ssl
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
 
     # security
     include /etc/nginx/config/security.conf;
@@ -24,7 +48,7 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://vod/;
+        proxy_pass https://vod/;
         proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
@@ -36,7 +60,7 @@ server {
 
     # assets, media
     location ~ ^/(build/assets|storage)/ {
-        expires 30d;
+        expires 7d;
         access_log off;
         add_header Cache-Control public;
         break;
@@ -74,18 +98,21 @@ server {
     include /etc/nginx/config/php_fastcgi.conf;
 }
 
-# WebSocket
+# websocket
 server {
-    listen ${NGINX_PORT};
-    listen [::]:${NGINX_PORT};
-    http2 on;
+    listen 4443 ssl http2;
+    listen [::]:4443 ssl http2;
 
     server_name ws.${NGINX_HOST};
+
+    # ssl
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
 
     # root
     location / {
         proxy_pass http://reverb;
-        proxy_set_header Host $http_host;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 }

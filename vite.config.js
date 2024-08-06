@@ -9,8 +9,8 @@ export default defineConfig(({ mode }) => {
 
   if (mode === "development") {
     https = {
-      cert: readFileSync("/etc/certs/cert.pem"),
-      key: readFileSync("/etc/certs/key.pem"),
+      cert: readFileSync("/run/secrets/cert.pem"),
+      key: readFileSync("/run/secrets/key.pem"),
     };
   }
 

@@ -11,17 +11,17 @@ Restart=always
 [Container]
 Image=localhost/hub-app:latest
 AutoUpdate=local
+Volume=${APP_PATH}:/app:rw,z,U
+Volume=${APP_MEDIA_PATH}:/app/storage/app/media:rw,z,U
+Secret=tlscert,target=/run/secrets/cert.pem,uid=${APP_UID},gid=${APP_GID}
+Secret=tlskey,target=/run/secrets/key.pem,uid=${APP_UID},gid=${APP_GID}
 User=${APP_UID}
 Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
-Volume=${APP_PATH}:/app:rw,z,U
-Volume=${APP_MEDIA_PATH}:/app/storage/app/media:rw,z,U
 Network=hub.network
 ExposeHostPort=6001
 ExposeHostPort=9000
 PublishPort=5173:5173
-Secret=tlscert,target=/etc/certs/cert.pem,uid=${APP_UID},gid=${APP_GID},mode=0600
-Secret=tlskey,target=/etc/certs/key.pem,uid=${APP_UID},gid=${APP_GID},mode=0600
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=multi-user.target

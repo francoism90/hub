@@ -2,5 +2,5 @@ tls:
   stores:
     default:
       defaultCertificate:
-        certFile: /etc/certs/cert.pem
-        keyFile: /etc/certs/key.pem
+        certFile: /run/secrets/cert.pem
+        keyFile: /run/secrets/key.pem

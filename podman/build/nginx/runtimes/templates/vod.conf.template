@@ -1,11 +1,15 @@
 server {
-    listen 1936;
-    listen [::]:1936;
+    listen 1936 ssl reuseport;
+    listen [::]:1936 ssl reuseport;
     http2 on;
 
     server_name localhost;
     set $base /var/www;
     root $base/html;
+
+    # ssl
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
 
     # index
     index index.html;
@@ -17,7 +21,7 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://app/api/v1/videos/subscription;
+        proxy_pass https://app/api/v1/videos/subscription;
         proxy_pass_request_body off;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
@@ -29,14 +33,14 @@ server {
 
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
-        proxy_pass http://kaltura;
+        proxy_pass https://kaltura;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri";
         include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
-        proxy_pass http://kaltura;
+        proxy_pass https://kaltura;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri";
         include /etc/nginx/config/proxy.conf;
@@ -44,7 +48,7 @@ server {
 
     # DASH init segment
     location ~ ^.*/init-[^/]+\.mp4$ {
-        proxy_pass http://kaltura;
+        proxy_pass https://kaltura;
         proxy_cache long-zone;
         proxy_cache_key "$host$request_uri";
         include /etc/nginx/config/proxy.conf;
@@ -52,7 +56,7 @@ server {
 
     # DASH manifest
     location ~ ^.*\.mpd$ {
-        proxy_pass http://kaltura;
+        proxy_pass https://kaltura;
         proxy_cache long-zone;
         proxy_cache_key "$host$request_uri";
         include /etc/nginx/config/proxy.conf;
@@ -60,7 +64,7 @@ server {
 
     # default proxy to origin (no cache)
     location / {
-        proxy_pass http://kaltura;
+        proxy_pass https://kaltura;
         include /etc/nginx/config/proxy.conf;
     }
 

@@ -15,4 +15,4 @@ PublishPort=9000:9000
 PublishPort=8900:8900
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=multi-user.target

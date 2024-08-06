@@ -15,8 +15,8 @@ Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z
 Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,Z
 Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
 SecurityLabelType=container_runtime_t
-Secret=tlscert,target=/etc/certs/cert.pem,mode=0600
-Secret=tlskey,target=/etc/certs/key.pem,mode=0600
+Secret=tlscert,target=/run/secrets/cert.pem
+Secret=tlskey,target=/run/secrets/key.pem
 Environment=TRAEFIK_TZ=${TRAEFIK_TZ}
 Network=traefik.network
 PublishPort=80:80
@@ -24,4 +24,4 @@ PublishPort=443:443
 PublishPort=8080:8080
 
 [Install]
-WantedBy=multi-user.target default.target
+WantedBy=multi-user.target
