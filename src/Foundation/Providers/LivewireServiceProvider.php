@@ -7,7 +7,6 @@ use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentCollectionSynth;
 use Foxws\WireUse\Support\Livewire\LegacyModels\EloquentModelSynth;
 use Foxws\WireUse\Support\Livewire\Models\CollectionSynth;
 use Foxws\WireUse\Support\Livewire\Models\ModelSynth;
-use Foxws\WireUse\Support\Livewire\ModelStateObjects\ModelStateObjectSynth;
 use Illuminate\Support\ServiceProvider;
 
 class LivewireServiceProvider extends ServiceProvider
@@ -25,7 +24,6 @@ class LivewireServiceProvider extends ServiceProvider
             CollectionSynth::class,
             EloquentModelSynth::class,
             EloquentCollectionSynth::class,
-            ModelStateObjectSynth::class,
         ]);
     }
 
