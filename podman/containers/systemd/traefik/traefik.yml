@@ -5,9 +5,6 @@ api:
   dashboard: true
   insecure: true
 
-serversTransport:
-  insecureSkipVerify: true
-
 providers:
   docker:
     network: podman
