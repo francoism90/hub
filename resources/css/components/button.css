@@ -16,7 +16,7 @@
         }
 
         &-inline {
-            @apply w-none rounded-none p-0;
+            @apply rounded-none p-0;
         }
 
         &-ghost {

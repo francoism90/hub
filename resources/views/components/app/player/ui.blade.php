@@ -1,4 +1,3 @@
-
 @script
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
@@ -12,9 +11,8 @@
         duration: 0.0,
         currentTime: 0.0,
         fullscreen: false,
+        textTrack: $wire.entangle('caption'),
         overlay: true,
-        dialog: false,
-        section: 0,
         idle: 0.0,
 
         async init() {
@@ -26,6 +24,9 @@
 
             // Load manifest
             await this.load(manifest, startsAt);
+
+            // Create watchers
+            this.$watch('textTrack', () => this.setTextTrack());
         },
 
         async destroy() {
@@ -84,26 +85,18 @@
                 const container = this.$refs.container;
                 const video = this.$refs.video;
 
-                // Set text displayer
-                await this.instance.setVideoContainer(container)
-
                 // Load manifest
                 await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
 
-                // Set default tracks
-                if ($wire !== undefined && $wire.caption?.length) {
-                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
-                    await this.instance.setTextTrackVisibility(true)
-                }
+                // Set tracks
+                await this.setTextTrack(this.textTrack);
 
                 // Attach event listeners
                 const onBuffering = (event) => {
-                    const stats = this.instance.getStats();
-
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
-                    this.stats = window.pick(stats, ['width', 'height', 'streamBandwidth']);
+                    this.stats = this.instance.getStats();
                 };
 
                 this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
@@ -178,14 +171,16 @@
             this.instance.getMediaElement().currentTime += 10;
         },
 
-        async setTextTrack(trackId = 0) {
-            if (trackId < 0) {
-                return;
-            }
+        async getTextTracks() {
+            return this.instance?.getTextTracks() || [];
+        },
+
+        async setTextTrack() {
+            this.textTrack = parseInt(this.textTrack || -1);
 
             try {
-                await this.instance.selectTextTrack(trackId)
-                await this.instance.setTextTrackVisibility(true)
+                await this.instance.selectTextTrack(this.textTrack)
+                await this.instance.setTextTrackVisibility(this.textTrack >= 0);
             } catch (e) {}
         }
     }));
