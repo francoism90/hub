@@ -7,6 +7,10 @@ import theme from "./resources/support/tailwind.config.preset";
 export default {
   presets: [preset, theme],
   relative: true,
-  content: ["./resources/**/*.blade.php", "./src/**/*.php", "./vendor/foxws/wireuse/src/**/*.php"],
+  content: [
+    "./resources/**/*.{blade.php,js}",
+    "./src/**/*.{blade.php,js}",
+    "./vendor/foxws/wireuse/src/**/*.{php,js}",
+  ],
   plugins: [forms, typography],
 };

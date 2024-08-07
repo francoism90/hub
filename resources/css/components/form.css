@@ -8,6 +8,6 @@
     }
 
     .label {
-        @apply block cursor-pointer select-none;
+        @apply inline-flex cursor-pointer select-none items-center;
     }
 }

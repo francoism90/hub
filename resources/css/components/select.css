@@ -1,15 +1,23 @@
 @layer components {
     .select {
-        @apply inline-flex appearance-none items-center border-none bg-transparent p-0 focus:outline-none;
+        @apply flex h-10 min-h-10 w-full appearance-none items-center border border-secondary-500/50 bg-transparent px-3 focus:ring-0;
+
+        > option {
+            @apply inline-flex h-10 min-h-10 w-full items-center;
+        }
 
         &:focus {
             @apply appearance-none bg-black text-secondary-50;
         }
 
+        &-ghost {
+            @apply border-none;
+        }
+
         &-multiple,
         &[multiple],
         &[size]&:not([size="1"]) {
-            @apply appearance-none bg-black text-secondary-50;
+            @apply h-10 min-h-10 appearance-none bg-black text-secondary-50;
         }
     }
 }

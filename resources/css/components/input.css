@@ -1,9 +1,9 @@
 @layer components {
     .input {
-        @apply flex h-10 min-h-10 w-full appearance-none items-center bg-transparent px-3 focus:outline-none;
+        @apply flex h-10 min-h-10 w-full appearance-none items-center border border-secondary-500/50 bg-transparent px-3 focus:ring-0;
 
-        &-bordered {
-            @apply border border-secondary-500/50;
+        &-ghost {
+            @apply border-none;
         }
     }
 }

@@ -38,26 +38,26 @@
 
         html()->div()->class('form-control')->children([
             html()->label('Name', 'form.name')->class('label'),
-            html()->text()->wireModel('form.name')->placeholder('Name')->class('input input-bordered'),
+            html()->text()->wireModel('form.name')->placeholder('Name')->class('input'),
             html()->validate('form.name'),
         ]),
 
         html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-3')->children([
             html()->div()->class('form-control')->children([
                 html()->label('Episode')->for('form.episode')->class('label'),
-                html()->text()->wireModel('form.episode')->placeholder('E01')->class('input input-bordered'),
+                html()->text()->wireModel('form.episode')->placeholder('E01')->class('input'),
                 html()->validate('form.episode'),
             ]),
 
             html()->div()->class('form-control')->children([
                 html()->label('Season')->for('form.season')->class('label'),
-                html()->text()->wireModel('form.season')->placeholder('S01')->class('input input-bordered'),
+                html()->text()->wireModel('form.season')->placeholder('S01')->class('input'),
                 html()->validate('form.season'),
             ]),
 
             html()->div()->class('form-control')->children([
                 html()->label('Part')->for('form.part')->class('label'),
-                html()->text()->wireModel('form.part')->placeholder('1')->class('input input-bordered'),
+                html()->text()->wireModel('form.part')->placeholder('1')->class('input'),
                 html()->validate('form.part'),
             ]),
         ]),
@@ -65,13 +65,13 @@
         html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-2')->children([
             html()->div()->class('form-control')->children([
                 html()->label('Released At')->for('form.released_at')->class('label'),
-                html()->date()->wireModel('form.released_at')->class('input input-bordered'),
+                html()->date()->wireModel('form.released_at')->class('input'),
                 html()->validate('form.released_at'),
             ]),
 
             html()->div()->class('form-control')->children([
                 html()->label('Snapshot')->for('form.snapshot')->class('label'),
-                html()->text()->wireModel('form.snapshot')->placeholder('1.0')->class('input input-bordered'),
+                html()->text()->wireModel('form.snapshot')->placeholder('1.0')->class('input'),
                 html()->validate('form.snapshot'),
             ]),
         ]),
@@ -87,7 +87,7 @@
                     'x-on:click.outside' => 'open = false',
                 ])
                 ->placeholder('Filter tags...')
-                ->class('input input-bordered')
+                ->class('input')
                 ->autocomplete('off'),
 
             html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->tags, fn ($item) => html()
