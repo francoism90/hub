@@ -20,7 +20,7 @@
                 'x-ref' => 'video',
                 'x-on:timeupdate.throttle.1500ms' => 'sync',
                 'playsinline',
-                // 'autoplay',
+                'autoplay',
             ]),
 
         html()->div()->class('absolute z-10 inset-0 size-full')->children([
