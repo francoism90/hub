@@ -86,7 +86,7 @@
                                             html()->div()->children([
                                                 html()->label('Caption', 'cc')->class('label'),
 
-                                                html()->select()->id('cc')->attributes(['x-model' => 'textTrack',  'wire:model' => 'caption'])->class('select')->children([
+                                                html()->select()->id('cc')->attributes(['x-model' => 'textTrack',  'wire:model.live' => 'caption'])->class('select')->children([
                                                     html()->option()->attributes([':value' => '-1'])->text('Off'),
                                                     html()->element('template')->attributes(['x-for' => 'track in getTextTracks()', ':key' => 'track.id'])->children([
                                                         html()->option()->attributes([':value' => 'track.id', ':selected' => 'track.id == textTrack', 'x-text' => 'track.label']),
