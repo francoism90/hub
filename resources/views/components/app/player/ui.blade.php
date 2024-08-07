@@ -11,7 +11,7 @@
         duration: 0.0,
         currentTime: 0.0,
         fullscreen: false,
-        textTrack: undefined,
+        textTrack: $wire.entangle('caption'),
         overlay: true,
         idle: 0.0,
 
@@ -26,7 +26,7 @@
             await this.load(manifest, startsAt);
 
             // Create watchers
-            this.$watch('textTrack', (value) => this.setTextTrack(value));
+            this.$watch('textTrack', () => this.setTextTrack());
         },
 
         async destroy() {
@@ -90,7 +90,7 @@
                 await this.instance.load(manifest, startsAt);
 
                 // Set tracks
-                await this.setTextTrack($wire?.caption);
+                await this.setTextTrack(this.textTrack);
 
                 // Attach event listeners
                 const onBuffering = (event) => {
@@ -174,11 +174,11 @@
         },
 
         async getTextTracks() {
-            return this.instance?.getTextTracks();
+            return this.instance?.getTextTracks() || [];
         },
 
-        async setTextTrack(id = undefined) {
-            this.textTrack = parseInt(id || -1);
+        async setTextTrack() {
+            this.textTrack = parseInt(this.textTrack || -1);
 
             try {
                 await this.instance.selectTextTrack(this.textTrack)

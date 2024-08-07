@@ -1,5 +1,5 @@
 @layer components {
     .select {
-        @apply inline-flex min-h-10 appearance-none items-center border-none bg-transparent p-0 focus:outline-none;
+        @apply inline-flex appearance-none items-center border-none bg-transparent p-0 focus:outline-none;
     }
 }
