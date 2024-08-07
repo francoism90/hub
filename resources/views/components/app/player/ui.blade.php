@@ -24,6 +24,9 @@
 
             // Load manifest
             await this.load(manifest, startsAt);
+
+            // Watchers
+            this.$watch('textTrack', (value) => this.setTextTrack(value));
         },
 
         async destroy() {
@@ -82,18 +85,9 @@
                 const container = this.$refs.container;
                 const video = this.$refs.video;
 
-                // Set text displayer
-                await this.instance.setVideoContainer(container)
-
                 // Load manifest
                 await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
-
-                // Set default tracks
-                if ($wire !== undefined && $wire.caption?.length) {
-                    await this.instance.selectTextLanguage($wire.caption, 'subtitle')
-                    await this.instance.setTextTrackVisibility(true)
-                }
 
                 // Attach event listeners
                 const onBuffering = (event) => {
@@ -182,8 +176,9 @@
             return this.instance?.getTextTracks();
         },
 
-        async setTextTrack(id = 0) {
-            if (id < 0) {
+        async setTextTrack(id) {
+            if (Number.isInteger(parseInt(id)) === false) {
+                await this.instance.setTextTrackVisibility(false)
                 return;
             }
 
