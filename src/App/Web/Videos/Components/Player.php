@@ -13,7 +13,7 @@ class Player extends Component
 {
     use WithVideo;
 
-    #[Session]
+    #[Session(key: 'caption')]
     public int|string|null $caption = null;
 
     public function render(): View

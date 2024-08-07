@@ -25,7 +25,7 @@
             // Load manifest
             await this.load(manifest, startsAt);
 
-            // Watchers
+            // Create watchers
             this.$watch('textTrack', (value) => this.setTextTrack(value));
         },
 
@@ -89,11 +89,12 @@
                 await this.instance.attach(video);
                 await this.instance.load(manifest, startsAt);
 
+                // Set tracks
+                await this.setTextTrack($wire?.caption);
+
                 // Attach event listeners
                 const onBuffering = (event) => {
                     const stats = this.instance.getStats();
-
-                    console.log(this.instance.getTextTracks());
 
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
@@ -176,15 +177,12 @@
             return this.instance?.getTextTracks();
         },
 
-        async setTextTrack(id) {
-            if (Number.isInteger(parseInt(id)) === false) {
-                await this.instance.setTextTrackVisibility(false)
-                return;
-            }
+        async setTextTrack(id = undefined) {
+            this.textTrack = parseInt(id || -1);
 
             try {
-                await this.instance.selectTextTrack(id)
-                await this.instance.setTextTrackVisibility(true)
+                await this.instance.selectTextTrack(this.textTrack)
+                await this.instance.setTextTrackVisibility(this.textTrack >= 0);
             } catch (e) {}
         }
     }));
