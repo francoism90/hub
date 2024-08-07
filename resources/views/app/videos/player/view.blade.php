@@ -70,7 +70,7 @@
                         ]),
 
                         html()->div()->class('flex w-2/4 items-center justify-end gap-x-3')->children([
-                            html()->div()->class('inline-flex')->attribute('x-data', '{ open: true, textTrack: 0 }')->children([
+                            html()->div()->class('inline-flex')->attribute('x-data', '{ open: true }')->children([
                                 html()->button()->class('btn btn-inline')->attributes(['x-on:click' => 'open = true', 'x-trap' => 'open'])->children([
                                     html()->icon()->svg('heroicon-o-cog-6-tooth', 'size-6'),
                                     html()->div()->attribute('x-text', 'textTrack'),

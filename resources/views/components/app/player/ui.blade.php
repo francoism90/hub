@@ -11,6 +11,7 @@
         duration: 0.0,
         currentTime: 0.0,
         fullscreen: false,
+        textTrack: undefined,
         overlay: true,
         idle: 0.0,
 
