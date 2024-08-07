@@ -176,11 +176,19 @@
         },
 
         async setTextTrack() {
-            this.textTrack = parseInt(this.textTrack || -1);
+            this.textTrack = parseInt(this.textTrack || -1)
+
+            const tracks = await this.getTextTracks();
+            const track = tracks.find(o => o.id === this.textTrack);
 
             try {
-                await this.instance.selectTextTrack(this.textTrack)
-                await this.instance.setTextTrackVisibility(this.textTrack >= 0);
+                await this.instance.selectTextTrack(0);
+                await this.instance.setTextTrackVisibility(false);
+
+                if (track?.id) {
+                    await this.instance.selectTextTrack(track.id);
+                    await this.instance.setTextTrackVisibility(true);
+                }
             } catch (e) {}
         }
     }));

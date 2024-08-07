@@ -1,5 +1,15 @@
 @layer components {
     .select {
         @apply inline-flex appearance-none items-center border-none bg-transparent p-0 focus:outline-none;
+
+        &:focus {
+            @apply appearance-none bg-black text-secondary-50;
+        }
+
+        &-multiple,
+        &[multiple],
+        &[size]&:not([size="1"]) {
+            @apply appearance-none bg-black text-secondary-50;
+        }
     }
 }
