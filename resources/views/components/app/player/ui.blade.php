@@ -13,8 +13,6 @@
         currentTime: 0.0,
         fullscreen: false,
         overlay: true,
-        dialog: false,
-        section: 0,
         idle: 0.0,
 
         async init() {
@@ -147,7 +145,7 @@
             clearTimeout(this.idle);
 
             this.overlay = true;
-            this.idle = setTimeout(() => (this.overlay = false), 2500);
+            // this.idle = setTimeout(() => (this.overlay = false), 2500);
         },
 
         async forceOverlay() {
