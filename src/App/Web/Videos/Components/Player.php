@@ -14,7 +14,7 @@ class Player extends Component
     use WithVideo;
 
     #[Session]
-    public ?string $caption = 'en';
+    public int|string|null $caption = null;
 
     public function render(): View
     {

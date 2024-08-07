@@ -1,4 +1,3 @@
-
 @script
 <script>
     Alpine.data("play", (manifest = null, startsAt = 0) => ({
@@ -99,6 +98,8 @@
                 const onBuffering = (event) => {
                     const stats = this.instance.getStats();
 
+                    console.log(this.instance.getTextTracks());
+
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
                     this.stats = window.pick(stats, ['width', 'height', 'streamBandwidth']);
@@ -176,13 +177,17 @@
             this.instance.getMediaElement().currentTime += 10;
         },
 
-        async setTextTrack(trackId = 0) {
-            if (trackId < 0) {
+        async getTextTracks() {
+            return this.instance?.getTextTracks();
+        },
+
+        async setTextTrack(id = 0) {
+            if (id < 0) {
                 return;
             }
 
             try {
-                await this.instance.selectTextTrack(trackId)
+                await this.instance.selectTextTrack(id)
                 await this.instance.setTextTrackVisibility(true)
             } catch (e) {}
         }
