@@ -70,16 +70,16 @@
                         ]),
 
                         html()->div()->class('flex w-2/4 items-center justify-end gap-x-3')->children([
-                            html()->div()->class('inline-flex')->attribute('x-data', '{ open: true }')->children([
-                                html()->button()->class('btn btn-inline')->attributes(['x-on:click' => 'open = true', 'x-trap' => 'open'])->children([
+                            html()->div()->class('inline-flex')->attribute('x-data', '{ open: false }')->children([
+                                html()->button()->class('btn btn-inline')->attributes(['x-on:click' => 'open = true', 'x-trap.inert' => 'open'])->children([
                                     html()->icon()->svg('heroicon-o-cog-6-tooth', 'size-6'),
 
-                                    html()->div()->attributes(['x-cloak', 'x-show' => 'open', 'x-transition.opacity'])->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded')->children([
+                                    html()->div()->attributes(['x-cloak', 'x-show' => 'open', 'x-transition.opacity', 'x-on:click.outside' => 'open = false'])->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded')->children([
                                         html()->div()->class('flex flex-col px-3 py-2 gap-y-1.5 *:flex *:items-center *:justify-between *:gap-x-3')->children([
-                                            html()->div()->children([
+                                            html()->div()->attribute('x-show', 'stats?.width && stats?.height')->children([
                                                 html()->label('Quality', 'quality')->class('label'),
                                                 html()->select()->id('quality')->class('select')->children([
-                                                    html()->option()->text('Auto'),
+                                                    html()->option()->attribute('x-text', 'stats?.width + "x" + stats?.height'),
                                                 ]),
                                             ]),
 
@@ -89,7 +89,7 @@
                                                 html()->select()->id('cc')->attributes(['x-model' => 'textTrack',  'wire:model.live' => 'caption'])->class('select')->children([
                                                     html()->option()->attributes([':value' => '-1'])->text('Off'),
                                                     html()->element('template')->attributes(['x-for' => 'track in getTextTracks()', ':key' => 'track.id'])->children([
-                                                        html()->option()->attributes([':value' => 'track.id', ':selected' => 'track.id === textTrack', 'x-text' => 'track.language']),
+                                                        html()->option()->attributes([':value' => 'track.id', ':selected' => 'track.id === textTrack', 'x-text' => 'track.label']),
                                                     ]),
                                                 ]),
                                             ]),

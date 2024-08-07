@@ -94,11 +94,9 @@
 
                 // Attach event listeners
                 const onBuffering = (event) => {
-                    const stats = this.instance.getStats();
-
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
-                    this.stats = window.pick(stats, ['width', 'height', 'streamBandwidth']);
+                    this.stats = this.instance.getStats();
                 };
 
                 this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
@@ -142,7 +140,7 @@
             clearTimeout(this.idle);
 
             this.overlay = true;
-            // this.idle = setTimeout(() => (this.overlay = false), 2500);
+            this.idle = setTimeout(() => (this.overlay = false), 2500);
         },
 
         async forceOverlay() {
