@@ -116,8 +116,12 @@ class Tag extends BaseTag implements HasMedia
     /**
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn($event): array
+    public function broadcastOn(string $event): array
     {
+        if ($event === 'deleted') {
+            return [];
+        }
+
         return [
             new PrivateChannel('tag.'.$this->getRouteKey()),
         ];
