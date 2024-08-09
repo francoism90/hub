@@ -15,7 +15,7 @@
     ->children([
         html()
             ->element('video')
-            ->class('absolute z-0 inset-0 size-full bg-black')
+            ->class('absolute z-0 inset-0 size-full bg-inherit')
             ->attributes([
                 'x-ref' => 'video',
                 'x-on:timeupdate.throttle.1500ms' => 'sync',

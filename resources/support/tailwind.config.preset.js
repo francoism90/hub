@@ -21,6 +21,10 @@ export default {
         center: true,
         padding: "1rem",
       },
+      brightness: {
+        80: ".8",
+        85: ".85",
+      },
     },
   },
 };

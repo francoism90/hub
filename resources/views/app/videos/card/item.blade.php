@@ -35,14 +35,14 @@
             html()
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
-                ->class('absolute inset-0 z-10 shrink-0 size-full rounded object-fill brightness-75')
+                ->class('absolute inset-0 z-10 shrink-0 size-full rounded object-fill brightness-80')
                 ->loading('lazy')
                 ->crossorigin('use-credentials'),
 
             html()
                 ->element('video')
                 ->ignore()
-                ->class('absolute inset-0 z-20 shrink-0 size-full rounded object-fill brightness-90')
+                ->class('absolute inset-0 z-20 shrink-0 size-full rounded object-fill brightness-95')
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
@@ -51,6 +51,7 @@
                     'playsinline',
                     'autoplay',
                     'muted',
+                    'loop',
                 ]),
         ]),
 
