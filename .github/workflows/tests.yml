@@ -32,7 +32,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          extensions: dom, curl, fileinfo, libxml, mbstring, zip, redis, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
 
       - name: Setup Node
@@ -46,7 +46,7 @@ jobs:
       - name: Build application
         run: |
           cp .env.ci .env
-          composer install -n --prefer-dist
+          composer install --no-progress --prefer-dist --optimize-autoloader
           php artisan key:generate
           php artisan storage:link
           yarn install && yarn build
