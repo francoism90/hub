@@ -127,11 +127,18 @@
         },
 
         async toggleFullscreen() {
-            const element = this.$refs.container;
+            try {
+                const element = this.$refs.container;
 
-            document.fullscreenElement
-                ? await document.exitFullscreen()
-                : await element.requestFullscreen();
+                if (document.fullscreenElement) {
+                    await document.exitFullscreen();
+                    await screen.orientation.unlock();
+                } else {
+                    await element.requestFullscreen();
+                    await screen.orientation.lock('landscape');
+                }
+            } catch (e) {}
+
 
             this.fullscreen = document.fullscreenElement;
         },
