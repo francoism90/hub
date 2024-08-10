@@ -51,6 +51,9 @@ jobs:
           php artisan storage:link
           yarn install && yarn build
 
+      - name: Clear Config
+        run: php artisan config:clear
+
       - name: Execute tests
         run: |
           npm run test
