@@ -11,7 +11,7 @@ return [
         'defaults' => [
             'title' => 'Hub', // set false to total remove
             'titleBefore' => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description' => false, // set false to total remove
+            'description' => '', // set false to total remove
             'separator' => ' - ',
             'keywords' => [],
             'canonical' => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
