@@ -40,7 +40,7 @@ class AppOptimize extends Command implements Isolatable
 
         // Restart services
         $this->call('octane:reload');
+        $this->call('reverb:restart');
         $this->call('horizon:terminate');
-        $this->call('pulse:restart');
     }
 }

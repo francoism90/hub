@@ -1,6 +1,11 @@
 **/.git
 **/.hg
 **/.svn
+*.log
+*.log.*
+*.sql
+*.sqlite
+*.sql.gz
 /node_modules
 /public
 /storage
