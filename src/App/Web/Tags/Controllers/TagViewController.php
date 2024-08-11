@@ -29,6 +29,7 @@ class TagViewController extends Page
     {
         return $this->tag
             ->videos()
+            ->tagged(60 * 60 * 24 * 72)
             ->simplePaginate(12 * 4);
     }
 

@@ -29,6 +29,13 @@ class VideoQueryBuilder extends Builder
             ->randomSeed('videos-random', $ttl);
     }
 
+    public function tagged(int $ttl = 60 * 20): self
+    {
+        return $this
+            ->published()
+            ->randomSeed('videos-tagged', $ttl);
+    }
+
     public function similar(Video $model): self
     {
         $items = app(GetSimilarVideos::class)->execute($model);
