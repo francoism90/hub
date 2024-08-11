@@ -79,7 +79,7 @@ systemctl --user restart hub-app hub
 
 Hub comes with a shell utility called `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments for Podman Quadlet.
 
-To install, create a `alias`, e.g. using Fish-shell:
+To install, create a `alias`, e.g. using [Fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```bash
 alias --save hub '~/path/to/hub/bin/quadlet'
