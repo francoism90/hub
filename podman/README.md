@@ -4,14 +4,14 @@ The given instructions are tested on Fedora 40 Silverblue with Podman 5.1 (rootl
 
 We recommend running containers rootless:
 
--   <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
--   <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
+- <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
+- <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
 
 To learn more about Podman Quadlet, the following resources may be useful:
 
--   <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
--   <https://www.redhat.com/sysadmin/quadlet-podman>
--   <https://mo8it.com/blog/quadlet/>
+- <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
+- <https://www.redhat.com/sysadmin/quadlet-podman>
+- <https://mo8it.com/blog/quadlet/>
 
 ## Installation
 
@@ -75,16 +75,14 @@ Restart services:
 systemctl --user restart hub-app hub
 ```
 
-## Fish
+## Bash
 
-The following [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) may be useful:
+Hub comes with a shell utility called `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments for Podman Quadlet.
+
+To install, create a `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```bash
-$ cat ~/.config/fish/config.fish
-# system
-abbr -a -- sc 'sudo systemctl'
-abbr -a -- scu 'systemctl --user'
-
-# pods
-abbr -a -- hub 'podman exec -it systemd-hub-app'
+alias --save hub '~/path/to/hub/bin/quadlet'
 ```
+
+This allows to interact with the `systemd-hub-app` container using the same syntax like Sail, see `hub -h` for details.
