@@ -85,4 +85,4 @@ To install, create a `alias`, e.g. using [fish-shell](https://fishshell.com/docs
 alias --save hub '~/path/to/hub/bin/quadlet'
 ```
 
-This allows to interact with the `systemd-hub-app` container.
+This allows to interact with the `systemd-hub-app` container using the same syntax like Sail, see `hub -h` for details.
