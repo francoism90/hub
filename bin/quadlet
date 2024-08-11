@@ -131,8 +131,6 @@ export DB_PORT=${DB_PORT:-3306}
 export WWWUSER=${1000:-$UID}
 export WWWGROUP=${1000:-$(id -g)}
 
-export HUB_FILES=${HUB_FILES:-""}
-
 # Function that outputs Hub is not running...
 function hub_is_not_running {
     echo "${BOLD}Hub is not running.${NC}" >&2

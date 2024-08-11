@@ -82,5 +82,5 @@ Hub comes with a shell utility called `hub`, and is based on [Laravel Sail](http
 To install, create a `alias`, e.g. using Fish-shell:
 
 ```bash
-alias --save hub '~/path/to/hub/bin/hub'
+alias --save hub '~/path/to/hub/bin/quadlet'
 ```
