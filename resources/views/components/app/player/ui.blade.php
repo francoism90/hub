@@ -90,7 +90,7 @@
                 await this.instance.load(manifest, startsAt);
 
                 // Set tracks
-                await this.setTextTrack(this.textTrack);
+                await this.setTextTrack();
 
                 // Attach event listeners
                 const onBuffering = (event) => {
