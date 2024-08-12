@@ -36,9 +36,9 @@ class Playlist extends Model implements HasMedia, Sortable
     use InteractsWithUser;
     use LogsActivity;
     use Notifiable;
-    use SortableTrait;
     use Searchable;
     use SoftDeletes;
+    use SortableTrait;
 
     /**
      * @var array<int, string>
