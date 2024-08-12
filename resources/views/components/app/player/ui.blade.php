@@ -94,6 +94,10 @@
 
                 // Attach event listeners
                 const onBuffering = (event) => {
+                    if (this.instance === undefined) {
+                        return;
+                    }
+
                     this.buffering = this.instance.isBuffering();
                     this.buffered = this.instance.getBufferedInfo()?.total[0];
                     this.stats = this.instance.getStats();
@@ -175,7 +179,7 @@
         },
 
         async forward() {
-            this.instance.getMediaElement().currentTime += 10;
+            this.instance.getMediaElement().currentTime += 30;
         },
 
         async getTextTracks() {
@@ -192,7 +196,7 @@
                 await this.instance.selectTextTrack(0);
                 await this.instance.setTextTrackVisibility(false);
 
-                if (track?.id) {
+                if (tracks.length && track?.id) {
                     await this.instance.selectTextTrack(track.id);
                     await this.instance.setTextTrackVisibility(true);
                 }
