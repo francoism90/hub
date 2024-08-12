@@ -36,10 +36,8 @@ trait WithVideo
     protected function getVideoListeners(): array
     {
         return [
-            "echo-private:video.{$this->getVideoId()},.video.deleted" => 'onVideoDeleted',
-            "echo-private:video.{$this->getVideoId()},.video.updated" => 'onVideoUpdated',
             "echo-private:video.{$this->getVideoId()},.video.trashed" => 'onVideoDeleted',
-            "echo-private:video.{$this->getVideoId()},.video.restored" => 'onVideoUpdated',
+            "echo-private:video.{$this->getVideoId()},.video.updated" => 'onVideoUpdated',
         ];
     }
 }

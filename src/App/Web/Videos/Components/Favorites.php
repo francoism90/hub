@@ -6,7 +6,7 @@ use Domain\Playlists\Models\Playlist;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 
-class Watching extends Section
+class Favorites extends Section
 {
     public function boot(): void
     {
@@ -16,9 +16,10 @@ class Watching extends Section
     #[Computed(persist: true)]
     public function items(): Collection
     {
-        return $this->getPlaylist()->videos()
+        return $this->getPlaylist()
+            ->videos()
             ->published()
-            ->orderByDesc('videoables.updated_at')
+            ->randomSeed('videos-favorites', 60 * 10)
             ->take(24)
             ->get();
     }
@@ -32,14 +33,12 @@ class Watching extends Section
 
     protected function getTitle(): ?string
     {
-        return __('Continue Watching');
+        return __('Favorites');
     }
 
     protected function getPlaylist(): Playlist
     {
-        return static::getAuthUser()
-            ->playlists()
-            ->history();
+        return static::getAuthUser()->playlists()->favorites();
     }
 
     public function getListeners(): array
