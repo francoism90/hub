@@ -18,12 +18,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class Playlist extends Model implements HasMedia
+class Playlist extends Model implements HasMedia, Sortable
 {
     use BroadcastsEvents;
     use HasFactory;
@@ -34,6 +36,7 @@ class Playlist extends Model implements HasMedia
     use InteractsWithUser;
     use LogsActivity;
     use Notifiable;
+    use SortableTrait;
     use Searchable;
     use SoftDeletes;
 
