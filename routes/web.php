@@ -2,6 +2,7 @@
 
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
+use App\Web\Lists\Controllers\ListViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagViewController;
 use App\Web\Videos\Controllers\VideoIndexController;
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Lists
     Route::name('lists.')->prefix('lists')->group(function () {
         Route::get('/', ListIndexController::class)->name('index');
+        Route::get('/{playlist}', ListViewController::class)->name('view');
     });
 
     // Tags

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90c995007867ecf017768924390ec51b",
+    "content-hash": "0369c89579e06fb68c26de78d7ea5c13",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1999,16 +1999,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "1b31518b0cf16f5aa96036a1a8903b708edc11a4"
+                "reference": "c298c245cc7d62ccc30cce47aa2806af4d1fcc72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/1b31518b0cf16f5aa96036a1a8903b708edc11a4",
-                "reference": "1b31518b0cf16f5aa96036a1a8903b708edc11a4",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/c298c245cc7d62ccc30cce47aa2806af4d1fcc72",
+                "reference": "c298c245cc7d62ccc30cce47aa2806af4d1fcc72",
                 "shasum": ""
             },
             "require": {
@@ -2075,7 +2075,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.3.1"
+                "source": "https://github.com/foxws/wireuse/tree/v2.3.2"
             },
             "funding": [
                 {
@@ -2083,7 +2083,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-09T20:59:34+00:00"
+            "time": "2024-08-12T13:42:52+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -13737,16 +13737,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "5.0.1",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "2db5010a484d53ebf536087a70b4a5423c102372"
+                "reference": "2d3e04c3b4c1e84a5e7382221ad8883c8fbc4f53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2db5010a484d53ebf536087a70b4a5423c102372",
-                "reference": "2db5010a484d53ebf536087a70b4a5423c102372",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2d3e04c3b4c1e84a5e7382221ad8883c8fbc4f53",
+                "reference": "2d3e04c3b4c1e84a5e7382221ad8883c8fbc4f53",
                 "shasum": ""
             },
             "require": {
@@ -13757,7 +13757,7 @@
                 "sebastian/exporter": "^5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.3"
+                "phpunit/phpunit": "^10.4"
             },
             "type": "library",
             "extra": {
@@ -13802,7 +13802,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
                 "security": "https://github.com/sebastianbergmann/comparator/security/policy",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/5.0.1"
+                "source": "https://github.com/sebastianbergmann/comparator/tree/5.0.2"
             },
             "funding": [
                 {
@@ -13810,7 +13810,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-14T13:18:12+00:00"
+            "time": "2024-08-12T06:03:08+00:00"
         },
         {
             "name": "sebastian/complexity",

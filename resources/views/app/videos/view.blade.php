@@ -3,7 +3,7 @@
         <livewire:web.videos.player :$video />
     {{ html()->div()->close() }}
 
-    {{ html()->div()->class('container py-4')->children([
+    {{ html()->element('nav')->class('container py-3')->children([
         html()->element('h1')->text($video->title)->class('text-2xl capitalize line-clamp-2'),
         html()->element('dl')->class('dl text-sm text-secondary-100')
             ->childrenIf($video->duration, [
@@ -24,8 +24,18 @@
             ])
     ]) }}
 
+    {{ html()->element('nav')->class('container py-1.5 flex flex-nowrap gap-2')->children([
+        html()->button()->class('btn btn-inline')->attribute('wire:click', 'toggleFavorite')->child(
+            html()->icon()->svg($this->isFavorited ? 'heroicon-s-heart' : 'heroicon-o-heart', 'size-6 text-inherit')
+        ),
+
+        html()->button()->class('btn btn-inline')->attribute('wire:click', 'toggleWatchlist')->child(
+            html()->icon()->svg($this->isWatchlisted ? 'heroicon-s-clock' : 'heroicon-o-clock', 'size-6 text-inherit')
+        ),
+    ]) }}
+
     @if ($video->tags()->count())
-        {{ html()->div()->class('container py-2 flex flex-wrap gap-2')->open() }}
+        {{ html()->div()->class('container py-3 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->div()->wireKey($tag->getRouteKey())->child(
                     html()->a()->link('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name)
@@ -34,7 +44,7 @@
         {{ html()->div()->close() }}
     @endif
 
-    {{ html()->element('section')->attribute('x-data', 'player')->class('py-6')->open() }}
+    {{ html()->element('section')->attribute('x-data', 'player')->class('py-3')->open() }}
         <livewire:web.videos.next :$video lazy />
         <livewire:web.videos.recommended :$video lazy />
     {{ html()->element('section')->close() }}
