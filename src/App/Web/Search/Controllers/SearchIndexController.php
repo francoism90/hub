@@ -91,7 +91,7 @@ class SearchIndexController extends Page
     {
         return Tag::query()
             ->inRandomOrder()
-            ->limit(3)
+            ->limit(2)
             ->pluck('name')
             ->all();
     }
