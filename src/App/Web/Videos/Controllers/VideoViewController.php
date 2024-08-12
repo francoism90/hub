@@ -2,8 +2,10 @@
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Lists\Concerns\WithPlaylist;
 use App\Web\Videos\Concerns\WithVideo;
 use Domain\Playlists\Actions\MarkAsSeen;
+use Domain\Playlists\Jobs\MarkWatched;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
@@ -17,7 +19,7 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsSeen::class)->execute($user, $this->getVideo());
+        MarkWatched::dispatch($user, $this->video);
     }
 
     public function render(): View

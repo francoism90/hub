@@ -2,7 +2,7 @@
 
 namespace Domain\Playlists\Jobs;
 
-use Domain\Playlists\Actions\UpdatePlaylistHistory;
+use Domain\Playlists\Actions\SyncWatchHistory;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
@@ -40,7 +40,7 @@ class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
     /**
      * @var int
      */
-    public $uniqueFor = 60;
+    public $uniqueFor = 30;
 
     /**
      * @var bool
@@ -61,7 +61,7 @@ class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        app(UpdatePlaylistHistory::class)->execute($this->user, $this->video);
+        app(SyncWatchHistory::class)->execute($this->user, $this->video);
     }
 
     public function uniqueId(): string

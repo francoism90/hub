@@ -18,6 +18,10 @@
                 html()->element('dt')->text('Published')->class('sr-only'),
                 html()->element('dd')->text($video->published->format('M d, Y')),
             ])
+            ->childrenIf($video->published, [
+                html()->element('dt')->text('Favorite')->class('sr-only'),
+                html()->element('dd')->text($video->published->format('M d, Y')),
+            ])
             ->childrenIf(auth()->user()->can('update', $video), [
                 html()->element('dt')->text('Manage')->class('sr-only'),
                 html()->element('dd')->child(html()->a()->link('account.videos.edit', $video)->text('Edit')),

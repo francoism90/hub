@@ -5,7 +5,7 @@ namespace Domain\Playlists\Actions;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
-class UpdatePlaylistHistory
+class SyncWatchHistory
 {
     public function execute(User $user, Video $video, ?float $time = null): void
     {
@@ -15,7 +15,7 @@ class UpdatePlaylistHistory
 
         // Attach the video to the playlist history
         $model->attachVideo($video, [
-            'timestamp' => round($time, 2),
+            'timestamp' => round($time ?? 0, 2),
         ]);
 
         // Touch parent to trigger broadcast
