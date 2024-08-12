@@ -16,7 +16,7 @@
         }
 
         &-inline {
-            @apply rounded-none p-0;
+            @apply rounded-none bg-inherit p-0;
         }
 
         &-ghost {

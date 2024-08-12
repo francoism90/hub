@@ -5,11 +5,11 @@ namespace Domain\Playlists\Actions;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 
-class MarkAsFavorited
+class MarkAsWatchlisted
 {
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
-        $model = $user->playlists()->favorites();
+        $model = $user->playlists()->watchlist();
 
         if ($force === true) {
             $model->attachVideo($video);
@@ -18,7 +18,7 @@ class MarkAsFavorited
         }
 
         // Toggle favorite state
-        $video->isFavoritedBy($user)
+        $video->isWatchlistedBy($user)
             ? $model->detachVideo($video)
             : $model->attachVideo($video);
     }
