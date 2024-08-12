@@ -8,7 +8,6 @@ use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 
