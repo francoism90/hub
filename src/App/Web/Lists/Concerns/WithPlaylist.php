@@ -23,9 +23,14 @@ trait WithPlaylist
         $this->dispatch('$refresh');
     }
 
+    protected function getPlaylist(): ?Playlist
+    {
+        return $this->playlist;
+    }
+
     protected function getPlaylistId(): string
     {
-        return $this->playlist->getRouteKey();
+        return $this->getPlaylist()->getRouteKey();
     }
 
     protected function getPlaylistListeners(): array

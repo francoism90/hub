@@ -10,6 +10,7 @@ use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -138,5 +139,12 @@ class Playlist extends Model implements HasMedia
     public function broadcastAfterCommit(): bool
     {
         return true;
+    }
+
+    public function title(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => str($this->name)->apa()
+        )->shouldCache();
     }
 }

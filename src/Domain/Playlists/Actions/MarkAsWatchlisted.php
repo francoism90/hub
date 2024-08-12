@@ -21,5 +21,8 @@ class MarkAsWatchlisted
         $video->isWatchlistedBy($user)
             ? $model->detachVideo($video)
             : $model->attachVideo($video);
+
+        // Touch parent to trigger broadcast
+        $model->touch();
     }
 }

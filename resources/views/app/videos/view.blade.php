@@ -24,7 +24,7 @@
             ])
     ]) }}
 
-    {{ html()->element('nav')->class('container py-1.5 flex flex-nowrap gap-3')->children([
+    {{ html()->element('nav')->class('container py-1.5 flex flex-nowrap gap-2')->children([
         html()->button()->class('btn btn-inline')->attribute('wire:click', 'toggleFavorite')->child(
             html()->icon()->svg($this->isFavorited ? 'heroicon-s-heart' : 'heroicon-o-heart', 'size-6 text-inherit')
         ),

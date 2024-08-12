@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Web\Tags\Components;
+namespace App\Web\Lists\Components;
 
 use App\Web\Tags\Concerns\WithTag;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Item extends Component
+class Tag extends Component
 {
     use WithTag;
 
     public function render(): View
     {
-        return view('app.tags.card.item');
+        return view('app.lists.tag.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.tags.card.placeholder', $params);
+        return view('app.lists.tag.placeholder', $params);
     }
 }
