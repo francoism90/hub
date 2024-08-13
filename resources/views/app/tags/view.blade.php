@@ -9,7 +9,7 @@
         ])
         ->childrenIf(auth()->user()->can('update', $tag), [
             html()->element('dt')->text('ID')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->link('account.tags.edit', $tag)->text('Edit')),
+            html()->element('dd')->child(html()->a()->link('tags.edit', $tag)->text('Edit')),
         ])
     }}
 

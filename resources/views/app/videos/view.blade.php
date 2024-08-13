@@ -20,7 +20,7 @@
             ])
             ->childrenIf(auth()->user()->can('update', $video), [
                 html()->element('dt')->text('Manage')->class('sr-only'),
-                html()->element('dd')->child(html()->a()->link('account.videos.edit', $video)->text('Edit')),
+                html()->element('dd')->child(html()->a()->link('videos.edit', $video)->text('Edit')),
             ])
     ]) }}
 
