@@ -21,7 +21,7 @@ server {
         proxy_pass_request_body off;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
-        proxy_set_header Host ${NGINX_HOST};
+        proxy_set_header Host $http_host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $request_uri;
         include /etc/nginx/config/proxy.conf;
