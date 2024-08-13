@@ -175,11 +175,19 @@
         },
 
         async backward() {
-            this.instance.getMediaElement().currentTime -= 10;
+            const range = this.instance?.seekRange();
+
+            if (range !== undefined) {
+                this.instance.getMediaElement().currentTime -= 10;
+            }
         },
 
         async forward() {
-            this.instance.getMediaElement().currentTime += 30;
+            const range = this.instance?.seekRange();
+
+            if (range !== undefined) {
+                this.instance.getMediaElement().currentTime += 30;
+            }
         },
 
         async getTextTracks() {
