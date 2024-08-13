@@ -46,7 +46,7 @@ server {
     # vod
     location ^~ /vod/ {
         proxy_pass http://vod/;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -106,7 +106,7 @@ server {
     # root
     location / {
         proxy_pass http://reverb;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 }
