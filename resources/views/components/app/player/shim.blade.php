@@ -43,6 +43,9 @@
                 manifest: {
                     disableAudio: true,
                     disableThumbnails: true,
+                    dash: {
+                        autoCorrectDrift: true,
+                    },
                     retryParameters: {
                         baseDelay: 100,
                     },
