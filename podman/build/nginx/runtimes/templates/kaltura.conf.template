@@ -48,11 +48,11 @@ server {
         internal;
         proxy_pass http://app/api/v1/videos/subscription;
         proxy_pass_request_body off;
-        proxy_cache short-zone;
-        proxy_cache_key "$host$request_uri $cookie_hub_session";
-        proxy_set_header Host $http_host;
+        proxy_set_header Host $host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $request_uri;
+        proxy_cache short-zone;
+        proxy_cache_key "$host$request_uri $cookie_hub_session";
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -60,9 +60,9 @@ server {
     location ~ /json/[^/]+/(.*) {
         internal;
         proxy_pass http://app/$1;
+        proxy_set_header Host $host;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
-        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 

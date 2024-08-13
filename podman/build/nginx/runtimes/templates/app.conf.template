@@ -46,7 +46,7 @@ server {
     # vod
     location ^~ /vod/ {
         proxy_pass http://vod/;
-        proxy_set_header Host $http_host;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -86,7 +86,7 @@ server {
         }
 
         proxy_pass http://octane$suffix;
-        proxy_set_header Host $http_host;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
