@@ -10,7 +10,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
 {
     public function getUrl(): string
     {
-        return route('api.media.asset', [
+        return route('media.asset', [
             'media' => $this->media,
             'version' => $this->media?->updated_at?->timestamp,
         ]);
@@ -18,7 +18,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
 
     public function getTemporaryUrl(DateTimeInterface $expiration, array $options = []): string
     {
-        return URL::temporarySignedRoute('api.media.download', $expiration, [
+        return URL::temporarySignedRoute('media.download', $expiration, [
             'media' => $this->media,
             'version' => $this->media?->updated_at?->timestamp,
         ]);
@@ -26,7 +26,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
 
     public function getResponsiveImagesDirectoryUrl(): string
     {
-        $url = route('api.media.responsive', [
+        $url = route('media.responsive', [
             'media' => $this->media,
         ]);
 

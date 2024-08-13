@@ -1,10 +1,16 @@
 <?php
 
+use App\Api\Media\Controllers\AssetController;
+use App\Api\Media\Controllers\DownloadController;
+use App\Api\Media\Controllers\ResponsiveController;
+use App\Api\Videos\Controllers\ManifestController;
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Lists\Controllers\ListViewController;
 use App\Web\Search\Controllers\SearchIndexController;
+use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Tags\Controllers\TagViewController;
+use App\Web\Videos\Controllers\VideoEditController;
 use App\Web\Videos\Controllers\VideoIndexController;
 use App\Web\Videos\Controllers\VideoViewController;
 use Illuminate\Support\Facades\Route;
@@ -12,10 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
 
+    // Media
+    Route::name('media.')->prefix('assets')->group(function () {
+        Route::get('/{media}/{conversion?}', AssetController::class)->name('asset');
+        Route::get('/{media}/download/{conversion?}', DownloadController::class)->name('download');
+        Route::get('/{media}/responsive/{conversion?}', ResponsiveController::class)->name('responsive');
+    });
+
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
         Route::get('/', VideoIndexController::class)->name('index');
         Route::get('/{video}', VideoViewController::class)->name('view');
+        Route::get('/{video}/edit', VideoEditController::class)->name('edit');
+        Route::get('/{video}/manifest/{type}', ManifestController::class)->name('manifest');
     });
 
     // Library
@@ -37,5 +52,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Tags
     Route::name('tags.')->prefix('tags')->group(function () {
         Route::get('/{tag}', TagViewController::class)->name('view');
+        Route::get('/{tag}/edit', TagEditController::class)->name('edit');
     });
 });

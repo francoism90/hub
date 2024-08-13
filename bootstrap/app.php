@@ -20,7 +20,6 @@ $app = Application::configure(basePath: $basePath)
                 ->group(__DIR__.'/../routes/auth.php');
 
             Route::middleware('web')
-                ->prefix('me')
                 ->name('account.')
                 ->group(__DIR__.'/../routes/account.php');
         },
@@ -34,6 +33,8 @@ $app = Application::configure(basePath: $basePath)
         $middleware->alias([
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
             'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+            'cache' => \Foundation\Http\Middlewares\SetCacheHeaders::class,
+            'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
             'response_cache' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,

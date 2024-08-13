@@ -10,7 +10,7 @@ class GetManifestUrl
     {
         abort_if(! $video->hasMedia('clips'), 404);
 
-        $route = trim(route('api.videos.manifest', compact('video', 'type'), false), '/');
+        $route = trim(route('videos.manifest', compact('video', 'type'), false), '/');
 
         return implode('/', [$this->getVodUrl(), $route, 'manifest.mpd']);
     }

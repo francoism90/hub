@@ -17,7 +17,7 @@ class DownloadController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('signed'),
-            new Middleware('cache.headers:public;max_age=604800;etag'),
+            new Middleware('cache:public;max_age=604800;etag'),
         ];
     }
 
