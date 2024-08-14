@@ -32,11 +32,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, fileinfo, libxml, mbstring, igbinary, msgpack, lzf, zstd, lz4, zip, memcached, redis-phpredis/phpredis@6.0.2, pcntl, pdo, sqlite, pdo_sqlite
+          extensions: dom, curl, fileinfo, libxml, mbstring, igbinary, msgpack, lzf, zstd, lz4, zip, redis, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
-        env:
-          REDIS_CONFIGURE_OPTS: --enable-redis --enable-redis-igbinary --enable-redis-msgpack --enable-redis-lzf --with-liblzf --enable-redis-zstd --with-libzstd --enable-redis-lz4 --with-liblz4
-          REDIS_LIBS: liblz4-dev, liblzf-dev, libzstd-dev
 
       - name: Setup Node
         uses: actions/setup-node@v4
