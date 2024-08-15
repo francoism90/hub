@@ -14,7 +14,7 @@ class VideoIndexController extends Page
 
     protected function getTitle(): string
     {
-        return (string) 'Home';
+        return 'Home';
     }
 
     protected function getDescription(): string
