@@ -11,4 +11,14 @@ class VideoIndexController extends Page
     {
         return view('app.videos.index');
     }
+
+    protected function getTitle(): string
+    {
+        return (string) 'Home';
+    }
+
+    protected function getDescription(): string
+    {
+        return $this->getTitle();
+    }
 }
