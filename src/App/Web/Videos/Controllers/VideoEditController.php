@@ -96,6 +96,7 @@ class VideoEditController extends Page
         $this->form->name = str($this->getVideo()->name)
             ->replace('.', ' ')
             ->headline()
+            ->transliterate()
             ->squish()
             ->value();
     }

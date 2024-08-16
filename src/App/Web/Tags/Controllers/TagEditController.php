@@ -96,6 +96,7 @@ class TagEditController extends Page
         $this->form->name = str($this->getTag()->name)
             ->replace('.', ' ')
             ->headline()
+            ->transliterate()
             ->squish()
             ->value();
     }
