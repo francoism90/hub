@@ -29,7 +29,8 @@ class RelatedForm extends Form
     public function query(): string
     {
         return str($this->get('query', ''))
-            ->title()
+            ->headline()
+            ->transliterate()
             ->squish()
             ->value();
     }
