@@ -106,7 +106,7 @@ trait InteractsWithVod
     public function download(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->getFirstMediaUrl('clips')
+            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addMinutes(60 * 30))
         )->shouldCache();
     }
 

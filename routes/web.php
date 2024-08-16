@@ -19,10 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
 
     // Media
-    Route::name('media.')->prefix('assets')->group(function () {
-        Route::get('/{media}/{conversion?}', AssetController::class)->name('asset');
-        Route::get('/{media}/download/{conversion?}', DownloadController::class)->name('download');
-        Route::get('/{media}/responsive/{conversion?}', ResponsiveController::class)->name('responsive');
+    Route::name('media.')->group(function () {
+        Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
+        Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
+        Route::get('/responsive/{media}/{conversion?}', ResponsiveController::class)->name('responsive');
     });
 
     // Videos
