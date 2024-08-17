@@ -33,6 +33,11 @@ trait WithVideo
         return $this->getVideo()->getRouteKey();
     }
 
+    protected function getVideoKey(): string
+    {
+        return $this->getVideo()->getKey();
+    }
+
     protected function getVideoListeners(): array
     {
         return [

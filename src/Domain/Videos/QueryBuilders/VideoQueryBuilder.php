@@ -22,18 +22,18 @@ class VideoQueryBuilder extends Builder
             ->randomSeed('videos-recommended', $ttl);
     }
 
-    public function random(int $ttl = 60 * 10): self
-    {
-        return $this
-            ->published()
-            ->randomSeed('videos-random', $ttl);
-    }
-
     public function tagged(int $ttl = 60 * 20): self
     {
         return $this
             ->published()
             ->randomSeed('videos-tagged', $ttl);
+    }
+
+    public function random(): self
+    {
+        return $this
+            ->published()
+            ->inRandomOrder();
     }
 
     public function similar(Video $model): self

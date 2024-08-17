@@ -46,7 +46,7 @@
 
     {{ html()->element('section')->attribute('x-data', 'player')->class('py-3')->open() }}
         <livewire:web.videos.next :$video lazy />
-        <livewire:web.videos.recommended :$video lazy />
+        <livewire:web.videos.random :$video lazy />
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
 

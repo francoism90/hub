@@ -33,6 +33,11 @@ trait WithTag
         return $this->getTag()->getRouteKey();
     }
 
+    protected function getTagKey(): string
+    {
+        return $this->getTag()->getKey();
+    }
+
     protected function getTagListeners(): array
     {
         return [
