@@ -66,12 +66,12 @@ class VideoViewController extends Page
         app(MarkAsWatchlisted::class)->execute($user, $this->video);
     }
 
-    protected function getTitle(): string
+    protected function getTitle(): ?string
     {
         return (string) $this->video->title;
     }
 
-    protected function getDescription(): string
+    protected function getDescription(): ?string
     {
         return (string) $this->video->summary;
     }

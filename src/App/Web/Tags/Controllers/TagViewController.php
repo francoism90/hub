@@ -40,12 +40,12 @@ class TagViewController extends Page
         $this->dispatch('$refresh');
     }
 
-    protected function getTitle(): string
+    protected function getTitle(): ?string
     {
         return (string) $this->tag->name;
     }
 
-    protected function getDescription(): string
+    protected function getDescription(): ?string
     {
         return (string) $this->tag->description;
     }

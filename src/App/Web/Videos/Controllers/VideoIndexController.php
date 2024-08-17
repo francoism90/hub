@@ -12,13 +12,8 @@ class VideoIndexController extends Page
         return view('app.videos.index');
     }
 
-    protected function getTitle(): string
+    protected function getDescription(): ?string
     {
-        return 'Home';
-    }
-
-    protected function getDescription(): string
-    {
-        return $this->getTitle();
+        return __('Subscription service for video content.');
     }
 }

@@ -40,12 +40,12 @@ class ListViewController extends Page
         $this->dispatch('$refresh');
     }
 
-    protected function getTitle(): string
+    protected function getTitle(): ?string
     {
         return (string) $this->playlist->title;
     }
 
-    protected function getDescription(): string
+    protected function getDescription(): ?string
     {
         return (string) $this->playlist->content;
     }
