@@ -12,6 +12,11 @@ class VideoIndexController extends Page
         return view('app.videos.index');
     }
 
+    protected function getTitle(): ?string
+    {
+        return 'Stream Videos';
+    }
+
     protected function getDescription(): ?string
     {
         return __('Subscription service for video content.');
