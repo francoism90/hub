@@ -12,7 +12,7 @@ See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots
 
 ## Prerequisites
 
--   Linux (Fedora, Debian, Arch, Ubuntu)
+-   Linux (Fedora, Debian, Arch, Ubuntu) - WSL is untested
 -   [Podman 5.1](https://podman.io/) or higher (with SELinux support)
 
 ## Installation
@@ -45,11 +45,9 @@ You can use your own DNS-server (like Adguard), to expose Hub on your LAN.
 
 ### Podman Quadlet
 
-Please read the dedicated [guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet (recommended).
+Please read the dedicated [guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet.
 
-### Usage
-
-#### First run
+## Usage
 
 Start Hub:
 
@@ -57,16 +55,18 @@ Start Hub:
 systemctl --user start hub-app hub
 ```
 
-Enter the `systemd-hub-app` container, and execute the followings commands:
+On first run, enter the `systemd-hub-app` container, and execute the followings commands:
 
 ```bash
-$ podman exec -it systemd-hub-app sh
+$ hub shell
 composer install
 php artisan key:generate
 php artisan storage:link
 yarn install && yarn run build
 php artisan app:install
 ```
+
+### Usage
 
 The Hub instance should be available at <https://hub.lan> when using Traefik.
 
@@ -76,7 +76,9 @@ The following Laravel services are available:
 -   <https://hub.lan/pulse> - Laravel Pulse
 -   <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
 
-#### Updating
+### Updating
+
+> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
 
 To retrieve the latest changes:
 
@@ -84,8 +86,6 @@ To retrieve the latest changes:
 cd ~/Code/hub
 git pull
 ```
-
-> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
 
 Depending on the changes, you may need to rebuild the images:
 
@@ -97,7 +97,7 @@ cd ~/Code/hub/podman
 To update the application:
 
 ```bash
-$ podman exec -it systemd-hub-app sh
+$ hub shell
 composer install
 yarn install && yarn run build
 php artisan app:update
@@ -105,28 +105,24 @@ php artisan app:update
 
 #### Manage application
 
-The following [abbreviations](https://fishshell.com/docs/current/cmds/abbr.html) may be useful:
-
-```bash
-$ cat ~/.config/fish/config.fish
-# system
-abbr -a -- sc 'sudo systemctl'
-abbr -a -- scu 'systemctl --user'
-
-# containers
-abbr -a -- hub 'podman exec -it systemd-hub-app'
-```
-
 To import videos:
 
 ```bash
 cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
 chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
-hub php artisan videos:import
+hub a videos:import
 ```
 
 To force removing of soft-deleted videos:
 
 ```bash
-hub php artisan videos:clean
+hub a videos:clean
 ```
+
+To create a tag:
+
+```bash
+hub a tags:create
+```
+
+> **NOTE:** More commands available by running `hub a` and `hub help`.
