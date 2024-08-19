@@ -39,7 +39,9 @@ To access Hub on your local machine, add the following `/etc/hosts` entries:
 ::1 hub.lan ws.hub.lan
 ```
 
-You can use your own DNS-server (like Adguard), to expose Hub on your LAN.
+You may want to use your own DNS-server (like [AdGuard Home](https://adguard.com/en/adguard-home/overview.html), to expose Hub on your LAN.
+
+It is also possible to run Hub on a VPS, but please make sure the following best practices and protect it against unwanted access/usage. The given configuration examples assume you want to run Hub locally/selfhosted.
 
 ### Podman Quadlet
 
