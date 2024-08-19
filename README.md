@@ -8,10 +8,20 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots.
 
+## Stack
+
+Hub uses a subset of the following:
+
+- [nginx-vod-module](https://github.com/kaltura/nginx-vod-module)
+- [Laravel 11.x](https://laravel.com/)
+- [Livewire 3.x](https://livewire.laravel.com/)
+- [Podman](https://podman.io/)
+- [Meilisearch](https://www.meilisearch.com/)
+
 ## Prerequisites
 
--   Linux (Fedora, Debian, Arch, Ubuntu) - WSL is untested
--   [Podman 5.1](https://podman.io/) or higher (with SELinux support)
+- Linux (Fedora, Debian, Ubuntu, CentOS, Arch ..) - WSL is untested
+- [Podman 5.1](https://podman.io/) or higher (with SELinux support)
 
 ## Installation
 
@@ -39,7 +49,7 @@ To access Hub on your local machine, add the following `/etc/hosts` entries:
 ::1 hub.lan ws.hub.lan
 ```
 
-You may want to use your own DNS-server (like [AdGuard Home](https://adguard.com/en/adguard-home/overview.html), to expose Hub on your LAN.
+You may want to use your own DNS-server (like [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)), to expose Hub on your LAN.
 
 It is also possible to run Hub on a VPS, but please make sure the following best practices and protect it against unwanted access/usage. The given configuration examples assume you want to run Hub locally/selfhosted.
 
@@ -70,9 +80,9 @@ The Hub instance should be available at <https://hub.lan> when using the given e
 
 The following Laravel services are available, and can be accessed when logged-in as super-admin:
 
--   <https://hub.lan/horizon> - Laravel Horizon
--   <https://hub.lan/pulse> - Laravel Pulse
--   <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
+- <https://hub.lan/horizon> - Laravel Horizon
+- <https://hub.lan/pulse> - Laravel Pulse
+- <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
 
 ### Manage application
 
