@@ -4,9 +4,7 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** This is a personal project, please do not expect a production ready product. It is mainly intended for learning and testing the latest Laravel features.
-
-You can fork the project and make your own adjustments based on my changes.
+> **NOTE:** This is a personal project, please do not expect a production ready product. It is mainly intended for learning and testing the latest Laravel features. You can fork the project and make your own adjustments based on my changes.
 
 See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots.
 
@@ -66,19 +64,43 @@ yarn install && yarn run build
 php artisan app:install
 ```
 
-### Usage
+The Hub instance should be available at <https://hub.lan> when using the given examples.
 
-The Hub instance should be available at <https://hub.lan> when using Traefik.
-
-The following Laravel services are available:
+The following Laravel services are available, and can be accessed when logged-in as super-admin:
 
 -   <https://hub.lan/horizon> - Laravel Horizon
 -   <https://hub.lan/pulse> - Laravel Pulse
 -   <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
 
-### Updating
+### Manage application
 
-> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing on the Docker images.
+> **NOTE:** Run `hub a` and `hub help` for all available commands.
+
+To import videos:
+
+```bash
+cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
+chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
+hub a videos:import
+```
+
+To create a tag:
+
+```bash
+hub a tags:create
+```
+
+To force removing of soft-deleted videos:
+
+> **WARNING:** Only run command when you don't want to restore all deleted videos!
+
+```bash
+hub a videos:clean
+```
+
+## Updating
+
+> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing containers.
 
 To retrieve the latest changes:
 
@@ -87,11 +109,12 @@ cd ~/Code/hub
 git pull
 ```
 
-Depending on the changes, you may need to rebuild the images:
+It is recommended to rebuild the Docker containers at least weekly:
 
 ```bash
 cd ~/Code/hub/podman
 ./update
+systemctl --user restart hub-app hub
 ```
 
 To update the application:
@@ -102,27 +125,3 @@ composer install
 yarn install && yarn run build
 php artisan app:update
 ```
-
-#### Manage application
-
-To import videos:
-
-```bash
-cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
-chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
-hub a videos:import
-```
-
-To force removing of soft-deleted videos:
-
-```bash
-hub a videos:clean
-```
-
-To create a tag:
-
-```bash
-hub a tags:create
-```
-
-Run `hub a` and `hub help` for more available commands.
