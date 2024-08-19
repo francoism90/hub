@@ -125,4 +125,4 @@ To create a tag:
 hub a tags:create
 ```
 
-> **NOTE:** More commands available by running `hub a` and `hub help`.
+Run `hub a` and `hub help` for more available commands.
