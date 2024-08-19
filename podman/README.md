@@ -2,7 +2,7 @@
 
 The given instructions are tested on Fedora 40 Silverblue with Podman 5.1 (rootless).
 
-We recommend running containers rootless:
+It's recommend running containers rootless:
 
 - <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
 - <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
@@ -24,30 +24,30 @@ cd hub/podman
 
 Copy the `systemd` directory to `~/.config/containers`, verify `~/.config/containers/systemd/hub.container` exists.
 
-Adjust environment files in `~/.config/containers/systemd/hub`. Values should reflect the settings used in the Hub-project `.env`.
+Adjust environment files in `~/.config/containers/systemd/hub`. Values should reflect the settings used in the Hub-project `~/Code/hub/.env`.
 
-### Configure Proxy (optional)
+### Configure Proxy
 
 [Traefik](https://doc.traefik.io/traefik/) is used as proxy. However you are free to use something else, or not even proxy at all.
 
-> **TIP:** See <https://doc.traefik.io/traefik/middlewares/http/basicauth> for generating a basic-auth password.
+> **NOTE:** See <https://doc.traefik.io/traefik/middlewares/http/basicauth> for generating a basic-auth password.
 
-It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificates](https://doc.traefik.io/traefik/https/tls/) for local development.
+> **TIP:** Checkout [mkcert](https://github.com/FiloSottile/mkcert) for using TLS/HTTPS locally.
+
+It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificates](https://doc.traefik.io/traefik/https/tls/) for local instances. The given configuration assumes you use an own generated certifcate by `mkcert` and run Hub locally.
 
 Adjust the configuration files in `~/.config/containers/systemd/traefik`, and make sure `podman.socket` is enabled (`systemctl --user enable podman.socket --now`).
 
-To import certificates, it is recommended to use [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
+To import your certificates, use [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
 
 ```bash
 podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
 podman secret create tlskey ~/.config/containers/systemd/traefik/certs/key.pem
 ```
 
-> **TIP:** Checkout [mkcert](https://github.com/FiloSottile/mkcert) for using TLS locally.
-
 ## Usage
 
-To apply container changes:
+To apply any container changes:
 
 ```bash
 systemctl --user daemon-reload
@@ -82,7 +82,7 @@ Hub comes with a shell utility called `hub`, and is based on [Laravel Sail](http
 To install, create a `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```bash
-alias --save hub '~/path/to/hub/bin/quadlet'
+alias --save hub '~/path/of/hub/bin/quadlet'
 ```
 
-This allows to interact with the `systemd-hub-app` container using the same syntax like Sail, see `hub -h` for details.
+This allows to interact with the `systemd-hub-app` container using the same syntax like Laravel Sail. Run `hub help` for details.
