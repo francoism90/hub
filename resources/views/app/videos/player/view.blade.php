@@ -1,7 +1,7 @@
 {{ html()
     ->element('main')
     ->ignore()
-    ->class('relative size-full bg-black')
+    ->class('relative size-full')
     ->attributes([
         'x-data' => "play('{$manifest}', {$startsAt})",
         'x-cloak',
@@ -15,18 +15,18 @@
     ->children([
         html()
             ->element('video')
-            ->class('absolute z-0 inset-0 size-full bg-inherit')
+            ->class('absolute z-0 inset-0 size-full bg-black')
             ->attributes([
                 'x-ref' => 'video',
-                'x-on:timeupdate.throttle.1000ms' => 'sync',
+                'x-on:timeupdate.throttle.950ms' => 'sync',
                 'playsinline',
                 'autoplay',
             ]),
 
         html()->div()->class('absolute z-10 inset-0 size-full')->children([
             html()->div()->class('size-full grid grid-cols-2 gap-x-4')->children([
-                html()->div()->attribute('x-on:dblclick.debounce', 'backward'),
-                html()->div()->attribute('x-on:dblclick.debounce', 'forward'),
+                html()->div()->attribute('x-on:dblclick.throttle', 'backward'),
+                html()->div()->attribute('x-on:dblclick.throttle', 'forward'),
             ]),
 
             html()->div()->attributes(['x-cloak', 'x-show' => 'overlay', 'x-transition.opacity'])->class('absolute z-20 bottom-3 inset-x-4')->child(
@@ -48,7 +48,7 @@
 
                         html()->input('range')->class('range range-primary absolute inset-0 z-30')->attributes([
                             'x-model' => 'currentTime',
-                            'x-on:input' => 'seekTo',
+                            'x-on:input.throttle' => 'seekTo',
                             ':min' => 0,
                             ':max' => 'duration',
                             'step' => 'any'
