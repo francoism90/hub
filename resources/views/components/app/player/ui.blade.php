@@ -122,7 +122,7 @@
         },
 
         async sync() {
-            const currentTime = this.instance?.getMediaElement().currentTime;
+            const currentTime = this.instance?.getMediaElement()?.currentTime;
 
             if (currentTime >= 0 && $wire?.updateHistory !== undefined) {
                 await $wire.updateHistory(currentTime);
@@ -141,7 +141,6 @@
                     await screen.orientation.lock('landscape');
                 }
             } catch (e) {}
-
 
             this.fullscreen = document.fullscreenElement;
         },
