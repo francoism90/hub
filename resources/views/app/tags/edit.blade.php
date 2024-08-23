@@ -27,9 +27,9 @@
             html()->element('dd')->child(html()->a()->link('tags.view', $tag)->text('View')),
         ]),
 
-    html()->wireForm($form, 'submit')->class('flex flex-col py-3 gap-y-6')->children([
+    html()->wireForm($form, 'submit')->class('flex flex-col gap-y-6')->children([
         html()->div()
-            ->classIf(flash()->message, ['alert', flash()->class])
+            ->classIf(flash()->message, ['alert mt-6', flash()->class])
             ->textIf(flash()->message, flash()->message),
 
         html()->div()->class('form-control')->children([
