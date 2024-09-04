@@ -2,8 +2,20 @@
     .input {
         @apply flex h-10 min-h-10 w-full appearance-none items-center border border-secondary-500/50 bg-transparent px-3 focus:ring-0;
 
+        &-md {
+            @apply h-11 min-h-11;
+        }
+
+        &-lg {
+            @apply h-12 min-h-12;
+        }
+
         &-ghost {
             @apply border-none;
+        }
+
+        &-rounded {
+            @apply rounded border-none;
         }
     }
 }
