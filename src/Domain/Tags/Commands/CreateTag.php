@@ -2,8 +2,8 @@
 
 namespace Domain\Tags\Commands;
 
+use Domain\Tags\Actions\CreateTag as CreateAction;
 use Domain\Tags\Enums\TagType;
-use Domain\Tags\Models\Tag;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 
@@ -35,8 +35,8 @@ class CreateTag extends Command implements Isolatable
             required: true,
         );
 
-        $model = Tag::firstOrCreate(compact('name', 'type'));
+        app(CreateAction::class)->execute(compact('name', 'type'));
 
-        $this->info("Tag has been created successfully ({$model->getKey()}).");
+        $this->info('Tag has been created successfully.');
     }
 }

@@ -18,7 +18,7 @@ class SetTagsOrder
 
         Tag::setNewOrder($items->pluck('id')->all());
 
-        cache()->forget('tags');
+        app(RefreshTags::class)->execute();
     }
 
     protected function getTags(TagType $value): LazyCollection

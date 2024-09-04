@@ -11,7 +11,7 @@ class SortTags extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'tags:sort {--force=true}';
+    protected $signature = 'tags:sort';
 
     /**
      * @var string
@@ -20,8 +20,6 @@ class SortTags extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to sort tags?'));
-
         app(SetTagsOrder::class)->execute();
 
         $this->info('Tags have been sorted successfully.');
