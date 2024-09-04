@@ -35,6 +35,13 @@ class Section extends Component
         return view('app.lists.tags.placeholder', $params);
     }
 
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
     protected function getPageItems(?int $page = null): LengthAwarePaginator
     {
         $page ??= $this->getPage();
@@ -42,7 +49,7 @@ class Section extends Component
         return $this->getQuery()
             ->withCount('videos')
             ->type($this->type)
-            ->random()
+            ->orderByDesc('videos_count')
             ->paginate(perPage: 9, page: $page);
     }
 
@@ -61,8 +68,8 @@ class Section extends Component
         $id = static::getAuthKey();
 
         return [
-            "echo-private:user.{$id},.video.trashed" => '$refresh',
-            "echo-private:user.{$id},.video.updated" => '$refresh',
+            "echo-private:user.{$id},.video.trashed" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
         ];
     }
 }

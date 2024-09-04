@@ -1,4 +1,6 @@
 @php
+    $items = Number::abbreviate($playlist->videos_count);
+
     $icon = match ($playlist->name) {
         'favorites' => 'heroicon-s-heart',
         'history' => 'heroicon-s-eye',
@@ -18,8 +20,8 @@
         ->children([
             html()->icon()->svg($icon, 'p-3 size-12 bg-gradient-to-tl from-indigo-500 via-purple-500 to-primary-500'),
             html()->div()->class('flex flex-col')->children([
-                html()->span(str($playlist->name)->apa())->class('text-secondary-100'),
-                html()->span("{$playlist->videos_count} videos")->class('text-sm text-secondary-300'),
+                html()->span(str($playlist->name)->title())->class('text-secondary-100'),
+                html()->span("{$items} videos")->class('text-sm text-secondary-300'),
             ]),
         ])
     )
