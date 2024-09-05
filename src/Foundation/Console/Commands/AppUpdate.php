@@ -35,7 +35,7 @@ class AppUpdate extends Command implements Isolatable
         $this->call('app:optimize');
 
         // Reset pulse
-        $this->call('pulse:clear');
+        $this->call('pulse:clear', ['--force' => true]);
         $this->call('pulse:restart');
     }
 }
