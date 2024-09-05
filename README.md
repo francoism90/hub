@@ -10,7 +10,7 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 A basic demo is available at <https://hub.foxws.nl/>.
 
-Use the following login details:
+Use the following login credentials:
 
 - Email: `demo@example.com`
 - Password: `password`
