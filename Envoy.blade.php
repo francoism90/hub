@@ -6,16 +6,24 @@
 
 @servers(['remote' => 'hub'])
 
-@story('deploy')
-    maintenance-mode
+@story('setup')
+    setup-environment
+@endstory
+
+@story('build')
     update-repository
     build-containers
     restart-containers
+@endstory
+
+@story('deploy')
+    maintenance-mode
+    update-repository
     install-dependencies
     clear-caches
     update-application
-    build-assets
-    restart-services
+    generate-assets
+    finish-deploy
 @endstory
 
 @task('setup-environment', ['on' => 'remote'])
@@ -61,13 +69,13 @@
     ";
 @endtask
 
-@task('build-assets', ['on' => 'remote'])
+@task('generate-assets', ['on' => 'remote'])
     podman exec -it systemd-hub-app sh -c "
         yarn run build;
     ";
 @endtask
 
-@task('restart-services', ['on' => 'remote'])
+@task('finish-deploy', ['on' => 'remote'])
     podman exec -it systemd-hub-app sh -c "
         php artisan up;
     ";
