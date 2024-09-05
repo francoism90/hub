@@ -17,10 +17,10 @@ class CreateNewUser
                 $attributes['password'] ?? Str::random()
             );
 
-            $model = User::firstOrCreate([
+            $model = User::firstOrCreate(
                 Arr::only($attributes, ['email']),
                 Arr::only($attributes, app(User::class)->getFillable()),
-            ]);
+            );
 
             app(RegenerateUser::class)->execute($model);
         });

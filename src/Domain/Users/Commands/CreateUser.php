@@ -32,7 +32,12 @@ class CreateUser extends Command implements Isolatable
             required: true,
         );
 
-        app(CreateNewUser::class)->execute(compact('name', 'email'));
+        $password = text(
+            label: 'Password',
+            required: true,
+        );
+
+        app(CreateNewUser::class)->execute(compact('name', 'email', 'password'));
 
         $this->info('User has been created successfully.');
     }
