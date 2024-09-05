@@ -57,6 +57,7 @@ $app = Application::configure(basePath: $basePath)
         \Support\Structures\Commands\RefreshStructures::class,
         \Domain\Tags\Commands\CreateTag::class,
         \Domain\Tags\Commands\SortTags::class,
+        \Domain\Users\Commands\CreateUser::class,
         \Domain\Videos\Commands\CleanVideos::class,
         \Domain\Videos\Commands\ImportVideos::class,
     ])
