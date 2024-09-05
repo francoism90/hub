@@ -15,7 +15,7 @@
         "guzzlehttp/guzzle": "^7.9.2",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.22.0",
-        "laravel/horizon": "^5.28.0",
+        "laravel/horizon": "^5.28.1",
         "laravel/octane": "^2.5.4",
         "laravel/pulse": "^1.2.5",
         "laravel/reverb": "^1.3",
