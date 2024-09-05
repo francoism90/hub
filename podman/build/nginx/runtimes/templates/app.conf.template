@@ -100,7 +100,7 @@ server {
     listen [::]:8080;
     http2 on;
 
-    server_name ws.${NGINX_HOST};
+    server_name ${NGINX_WS_HOST};
 
     # root
     location / {
