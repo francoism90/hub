@@ -4,7 +4,7 @@
     $baseDir = '/home/foxws/hub';
 @endsetup
 
-@servers(['remote' => 'hub'])
+@servers(['remote' => 'foxws'])
 
 @story('setup')
     setup-environment

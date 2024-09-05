@@ -10,7 +10,7 @@ class AppOptimize extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:optimize {--force}';
+    protected $signature = 'app:optimize';
 
     /**
      * @var string
@@ -19,8 +19,6 @@ class AppOptimize extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to optimize the application?'));
-
         // Clear caches
         $this->call('optimize:clear');
         $this->call('permission:cache-reset');
