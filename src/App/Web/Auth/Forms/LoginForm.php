@@ -35,11 +35,18 @@ class LoginForm extends Form
     protected function handle(): void
     {
         if (! Auth::attempt($this->only('email', 'password'), $this->remember)) {
-            $this->addError('email', __('These credentials do not match our records'));
+            flash()->error(__('These credentials do not match our records.'));
 
             return;
         }
 
         session()->regenerate();
+
+        $this->redirect();
+    }
+
+    protected function redirect(): void
+    {
+        $this->getComponent()->redirectIntended();
     }
 }

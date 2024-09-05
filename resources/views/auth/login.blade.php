@@ -3,7 +3,9 @@
         html()->element('h1')->text('Log In')->class('text-3xl hyphens-auto line-clamp-2'),
 
         html()->wireForm($form, 'submit')->class('flex flex-col py-3 gap-y-6')->children([
-            html()->div()->classIf(flash()->message, 'form-message')->textIf(flash()->message, flash()->message),
+            html()->div()
+                ->classIf(flash()->message, ['alert mt-6', flash()->class])
+                ->textIf(flash()->message, flash()->message),
 
             html()->div()->class('form-control')->children([
                 html()->label('Email', 'form.email')->class('label'),

@@ -27,8 +27,6 @@ class LoginController extends Page
     public function submit(): void
     {
         $this->form->submit();
-
-        $this->redirectIntended();
     }
 
     protected function getTitle(): ?string
