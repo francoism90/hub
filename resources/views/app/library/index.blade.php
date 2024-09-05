@@ -7,7 +7,7 @@
         ->text($item['label'])
         ->attribute('wire:click', "setType('{$item['key']}')")
         ->class([
-            'btn font-medium text-sm px-2 py-1',
+            'btn btn-sm',
             'btn-secondary' => ! $form->is('type', $item['key']),
             'btn-primary' => $form->is('type', $item['key']),
         ])
@@ -15,7 +15,7 @@
 
     {{ html()->element('section')->attribute('wire.poll.900s', 'refresh')->class('grid grow grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $video)
-            {{ html()->div()->wireKey($video->getRouteKey())->class('snap-start scroll-mx-6 shrink-0 sm:max-w-80')->open() }}
+            {{ html()->div()->wireKey($video->getRouteKey())->open() }}
                 <livewire:web.videos.item :$video :key="$video->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach

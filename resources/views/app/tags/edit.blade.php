@@ -64,7 +64,7 @@
                 ->a()
                 ->href('#')
                 ->attribute('wire:click.prevent', "toggleRelated('{$item['id']}')")
-                ->class('btn btn-secondary text-sm px-2 py-1')
+                ->class('btn btn-sm btn-secondary')
                 ->text($item['name'])
             ),
 
@@ -85,6 +85,6 @@
             html()->validate('form.description'),
         ]),
 
-        html()->button()->type('submit')->text('Save Changes')->class('btn btn-secondary')
+        html()->button()->type('submit')->text('Save Changes')->class('btn btn-primary')
     ])
 ]) }}

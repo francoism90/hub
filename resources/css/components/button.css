@@ -1,14 +1,22 @@
 @layer components {
     .btn {
-        @apply inline-flex w-fit shrink-0 cursor-pointer items-center rounded px-3 py-1.5 focus:outline-none;
+        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer items-center rounded px-3 font-medium focus:outline-none;
+
+        &-sm {
+            @apply h-7 px-2.5 text-sm;
+        }
+
+        &-lg {
+            @apply h-11 px-3.5;
+        }
 
         &-primary,
         &-active {
-            @apply bg-secondary-300/50 text-secondary-100 hover:text-secondary-100;
+            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50;
         }
 
         &-secondary {
-            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50;
+            @apply bg-secondary-400/50 text-secondary-100 hover:text-secondary-100;
 
             &.link-active {
                 @apply text-secondary-200;
@@ -20,7 +28,7 @@
         }
 
         &-ghost {
-            @apply bg-transparent;
+            @apply border-none bg-transparent;
         }
     }
 }

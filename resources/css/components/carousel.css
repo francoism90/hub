@@ -1,0 +1,31 @@
+@layer components {
+    .carousel {
+        @apply flex snap-x snap-mandatory overflow-x-auto scroll-smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+            @apply hidden;
+        }
+
+        &-vertical {
+            @apply snap-y flex-col overflow-y-scroll;
+        }
+
+        &-item {
+            @apply box-content flex flex-none snap-start;
+        }
+
+        &-start .carousel-item {
+            @apply snap-start;
+        }
+
+        &-center .carousel-item {
+            @apply snap-center;
+        }
+
+        &-end .carousel-item {
+            @apply snap-end;
+        }
+    }
+}

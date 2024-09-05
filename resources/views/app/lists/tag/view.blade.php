@@ -4,7 +4,7 @@
 
 {{ html()
     ->element('article')
-    ->class('h-12 min-h-12 max-h-12 w-full')
+    ->class('card h-12 min-h-12 max-h-12 w-full')
     ->child(html()
         ->a()
         ->link('tags.view', $tag)

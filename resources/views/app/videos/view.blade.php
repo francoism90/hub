@@ -38,7 +38,7 @@
         {{ html()->div()->class('container py-3 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->div()->wireKey($tag->getRouteKey())->child(
-                    html()->a()->link('tags.view', $tag)->class('btn btn-secondary px-3 py-1.5 rounded')->text($tag->name)
+                    html()->a()->link('tags.view', $tag)->class('btn btn-md btn-secondary font-normal')->text($tag->name)
                 ) }}
             @endforeach
         {{ html()->div()->close() }}
