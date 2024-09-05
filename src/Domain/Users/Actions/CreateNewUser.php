@@ -4,20 +4,25 @@ namespace Domain\Users\Actions;
 
 use Domain\Users\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class CreateNewUser
 {
-    public function executue(array $attributes): User
+    public function execute(array $attributes): void
     {
-        $attributes['password'] = Hash::make(
-            $attributes['password'] ?? Str::random()
-        );
+        DB::transaction(function () use ($attributes) {
+            $attributes['password'] = Hash::make(
+                $attributes['password'] ?? Str::random()
+            );
 
-        return User::firstOrCreate([
-            Arr::only($attributes, ['email']),
-            Arr::only($attributes, app(User::class)->getFillable()),
-        ]);
+            $model = User::firstOrCreate([
+                Arr::only($attributes, ['email']),
+                Arr::only($attributes, app(User::class)->getFillable()),
+            ]);
+
+            app(RegenerateUser::class)->execute($model);
+        });
     }
 }

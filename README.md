@@ -74,6 +74,7 @@ php artisan key:generate
 php artisan storage:link
 yarn install && yarn run build
 php artisan app:install
+php artisan users:create
 ```
 
 The Hub instance should be available at <https://hub.lan> when using the given examples.

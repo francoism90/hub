@@ -2,7 +2,7 @@
 
 namespace Domain\Tags\Commands;
 
-use Domain\Tags\Actions\CreateTag as CreateAction;
+use Domain\Tags\Actions\CreateNewTag;
 use Domain\Tags\Enums\TagType;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
@@ -35,7 +35,7 @@ class CreateTag extends Command implements Isolatable
             required: true,
         );
 
-        app(CreateAction::class)->execute(compact('name', 'type'));
+        app(CreateNewTag::class)->execute(compact('name', 'type'));
 
         $this->info('Tag has been created successfully.');
     }

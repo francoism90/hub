@@ -3,7 +3,6 @@
 namespace Domain\Playlists\Actions;
 
 use Domain\Playlists\Enums\PlaylistType;
-use Domain\Playlists\States\Verified;
 use Domain\Users\Models\User;
 
 class InitializePlaylists
@@ -17,11 +16,7 @@ class InitializePlaylists
         ]);
 
         $items->each(function (array $item) use ($user) {
-            $playlist = app(CreatePlaylist::class)->execute($user, $item);
-
-            if ($playlist->state->canTransitionTo(Verified::class)) {
-                $playlist->state->transitionTo(Verified::class);
-            }
+            app(CreatePlaylist::class)->execute($user, $item);
         });
     }
 }

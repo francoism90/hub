@@ -6,7 +6,7 @@ use Domain\Tags\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
-class CreateTag
+class CreateNewTag
 {
     public function execute(array $attributes): void
     {
