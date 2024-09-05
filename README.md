@@ -15,7 +15,7 @@ Use the following login credentials:
 - Email: `demo@example.com`
 - Password: `password`
 
-Currently the UI and it's features are quite limited, the intention is to expand this gradually.
+Please note it's a low-tier VPS, expect slowness. :)
 
 ## Stack
 
