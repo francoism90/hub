@@ -6,7 +6,16 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 > **NOTE:** This is a personal project, please do not expect a production ready product. It is mainly intended for learning and testing the latest Laravel features. You can fork the project and make your own adjustments based on my changes.
 
-See <https://github.com/francoism90/.github/tree/main/hub> for (WIP) screenshots.
+## Demo
+
+A basic demo is available at <https://hub.foxws.nl/>.
+
+Use the following login details:
+
+- Email: `demo@example.com`
+- Password: `password`
+
+Currently the UI and it's features are quite limited, the intention is to expand this gradually.
 
 ## Stack
 

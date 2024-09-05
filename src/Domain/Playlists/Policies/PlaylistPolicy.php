@@ -9,7 +9,7 @@ class PlaylistPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('super-admin');
+        return true;
     }
 
     public function view(User $user, Playlist $playlist): bool
