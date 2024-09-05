@@ -21,8 +21,8 @@
     update-repository
     install-dependencies
     clear-caches
-    update-application
     generate-assets
+    update-application
     finish-deploy
 @endstory
 
