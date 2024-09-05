@@ -2,7 +2,7 @@
     .carousel {
         @apply flex snap-x snap-mandatory overflow-x-auto scroll-smooth;
         -ms-overflow-style: none;
-        scrollbar-width: thin;
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
             @apply hidden;
