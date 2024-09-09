@@ -17,7 +17,7 @@
         "axios": "^1.7.7",
         "chokidar": "^3.6.0",
         "cssnano": "^7.0.6",
-        "eslint": "^9.9",
+        "eslint": "^9.10",
         "globals": "^15.9.0",
         "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0.5",
