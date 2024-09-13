@@ -9,6 +9,6 @@ trait InteractsWithPlaylists
 {
     public function playlists(): HasMany
     {
-        return $this->hasMany(Playlist::class);
+        return $this->hasMany(Playlist::class)->chaperone();
     }
 }

@@ -3,7 +3,9 @@
 namespace Domain\Tags\Models;
 
 use Database\Factories\TagFactory;
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Relates\Concerns\HasRelated;
+use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
@@ -18,10 +20,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
 
@@ -32,6 +32,7 @@ class Tag extends BaseTag implements HasMedia
     use HasFactory;
     use HasPrefixedId;
     use HasRelated;
+    use InteractsWithActivity;
     use InteractsWithMedia;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
@@ -103,14 +104,6 @@ class Tag extends BaseTag implements HasMedia
                 'image/png',
                 'image/webp',
             ]);
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     /**

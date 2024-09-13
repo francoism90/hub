@@ -4,13 +4,12 @@ namespace Domain\Media\Models;
 
 use Domain\Media\Collections\MediaCollection;
 use Domain\Media\QueryBuilders\MediaQueryBuilder;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Domain\Shared\Concerns\InteractsWithActivity;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 class Media extends BaseMedia
 {
-    use LogsActivity;
+    use InteractsWithActivity;
 
     /**
      * @var array<int, string>
@@ -59,13 +58,5 @@ class Media extends BaseMedia
     public function getRouteKeyName(): string
     {
         return 'uuid';
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 }

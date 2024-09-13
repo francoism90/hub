@@ -2,10 +2,12 @@
 
 namespace Domain\Playlists\Models;
 
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Playlists\Collections\PlaylistCollection;
 use Domain\Playlists\Enums\PlaylistType;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\States\PlaylistState;
+use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -16,12 +18,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
@@ -32,6 +32,7 @@ class Playlist extends Model implements HasMedia, Sortable
     use HasPrefixedId;
     use HasStates;
     use HasVideos;
+    use InteractsWithActivity;
     use InteractsWithMedia;
     use InteractsWithUser;
     use LogsActivity;
@@ -96,14 +97,6 @@ class Playlist extends Model implements HasMedia, Sortable
             'created' => $this->created_at,
             'updated' => $this->updated_at,
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     /**

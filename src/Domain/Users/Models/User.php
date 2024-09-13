@@ -3,7 +3,9 @@
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Playlists\Concerns\InteractsWithPlaylists;
+use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
@@ -19,10 +21,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
@@ -35,6 +35,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
+    use InteractsWithActivity;
     use InteractsWithCache;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
@@ -170,14 +171,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             'created' => $this->created_at,
             'updated' => $this->updated_at,
         ];
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     public function avatar(): Attribute

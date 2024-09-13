@@ -3,6 +3,7 @@
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
+use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
@@ -18,8 +19,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
@@ -37,12 +36,12 @@ class Video extends Model implements HasMedia
     use HasTags;
     use HasTranslatableSlug;
     use HasTranslations;
+    use InteractsWithActivity;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithVod;
-    use LogsActivity;
     use Searchable;
     use SoftDeletes;
 
@@ -175,14 +174,6 @@ class Video extends Model implements HasMedia
                 'image/png',
                 'image/webp',
             ]);
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logAll()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
     }
 
     /**
