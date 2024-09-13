@@ -8,8 +8,8 @@
         ->attribute('wire:click', "setType('{$item['key']}')")
         ->class([
             'btn btn-sm',
-            'btn-primary' => ! $form->is('type', $item['key']),
-            'btn-secondary' => $form->is('type', $item['key']),
+            'btn-primary' => $form->is('type', $item['key']),
+            'btn-secondary' => ! $form->is('type', $item['key']),
         ])
     ) }}
 

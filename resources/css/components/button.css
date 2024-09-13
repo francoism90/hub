@@ -12,11 +12,11 @@
 
         &-primary,
         &-active {
-            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50;
+            @apply bg-secondary-400/50 text-secondary-100 hover:bg-secondary-500/50 hover:text-secondary-50;
         }
 
         &-secondary {
-            @apply bg-secondary-400/50 text-secondary-100 hover:text-secondary-100;
+            @apply bg-secondary-600/50 text-secondary-100 hover:bg-secondary-500/50 hover:text-secondary-50;
 
             &.link-active {
                 @apply text-secondary-200;
