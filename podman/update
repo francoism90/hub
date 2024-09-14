@@ -1,11 +1,11 @@
 #!/bin/sh
 
 podman build \
-    -t hub-nginx \
-    --file=build/nginx/Dockerfile \
+    -t hub-nginx:latest \
+    -f build/nginx/Dockerfile \
     --no-cache
 
 podman build \
-    -t hub-app \
-    --file=build/app/Dockerfile \
+    -t hub-app:latest \
+    -f build/app/Dockerfile \
     --no-cache
