@@ -12,7 +12,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
         return route('media.asset', [
             'media' => $this->media,
             'conversion' => $this->conversion,
-            'version' => $this->media?->updated_at?->timestamp,
+            'version' => $this->media?->updated_at?->getTimestamp(),
         ]);
     }
 
@@ -21,7 +21,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
         return route('media.download', [
             'media' => $this->media,
             'conversion' => $this->conversion,
-            'version' => $this->media?->updated_at?->timestamp,
+            'version' => $this->media?->updated_at?->getTimestamp(),
         ]);
     }
 

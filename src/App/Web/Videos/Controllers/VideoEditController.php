@@ -73,7 +73,7 @@ class VideoEditController extends Page
     {
         $this->canUpdate($this->video);
 
-        $items = collect($this->form->tags);
+        $items = collect($this->form->get('tags', []));
 
         $items = $items->contains('id', $tag->getRouteKey())
             ? $items->reject(fn (array $item) => $item['id'] === $tag->getRouteKey())

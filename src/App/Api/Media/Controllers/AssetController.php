@@ -25,6 +25,6 @@ class AssetController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $model);
 
-        return $model->toResponse($request);
+        return $model->toInlineResponse($request);
     }
 }
