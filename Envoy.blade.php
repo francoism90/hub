@@ -16,6 +16,12 @@
     restart-containers
 @endstory
 
+@story('rebuild')
+    update-repository
+    rebuild-containers
+    restart-containers
+@endstory
+
 @story('deploy')
     maintenance-mode
     update-repository
@@ -43,6 +49,11 @@
 @task('build-containers', ['on' => 'remote'])
     cd {{ $baseDir }}/podman
     ./make
+@endtask
+
+@task('rebuild-containers', ['on' => 'remote'])
+    cd {{ $baseDir }}/podman
+    ./update
 @endtask
 
 @task('restart-containers', ['on' => 'remote'])
