@@ -5,10 +5,10 @@ Description=Redis container
 Restart=always
 
 [Container]
-Image=docker.io/library/redis:latest
+Image=docker.io/valkey/valkey:latest
 AutoUpdate=registry
 Volume=hub-redis:/data:rw,Z,U
-Exec=redis-server --save 60 1 --loglevel warning
+Exec=valkey-server --save 60 1 --loglevel warning
 Network=hub.network
 ExposeHostPort=6379
 
