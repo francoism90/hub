@@ -21,10 +21,10 @@ class AssetController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Media $model, Request $request): BinaryFileResponse|StreamedResponse
+    public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
     {
-        Gate::authorize('view', $model);
+        Gate::authorize('view', $media);
 
-        return $model->toInlineResponse($request);
+        return $media->toInlineResponse($request);
     }
 }
