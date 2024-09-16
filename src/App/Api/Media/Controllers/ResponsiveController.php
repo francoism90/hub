@@ -3,13 +3,12 @@
 namespace App\Api\Media\Controllers;
 
 use Domain\Media\Models\Media;
-use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class ResponsiveController extends AssetController implements HasMiddleware
+class ResponsiveController extends AssetController
 {
     public function __invoke(Media $media, Request $request): BinaryFileResponse|StreamedResponse
     {
