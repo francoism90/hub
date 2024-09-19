@@ -17,5 +17,9 @@
         &-rounded {
             @apply rounded border-none;
         }
+
+        &-error {
+            @apply border-red-500;
+        }
     }
 }

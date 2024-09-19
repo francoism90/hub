@@ -6,8 +6,4 @@
     .form-control-inline {
         @apply flex flex-row items-center gap-x-1.5;
     }
-
-    .label {
-        @apply inline-flex cursor-pointer select-none items-center;
-    }
 }

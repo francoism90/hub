@@ -35,14 +35,14 @@
         html()->div()->class('form-control')->children([
             html()->label('Name', 'form.name')->class('label'),
             html()->text()->wireModel('form.name')->placeholder('Name')->class('input input-bordered'),
-            html()->validate('form.name'),
+            html()->error('form.name'),
         ]),
 
         html()->div()->class('grid grid-cols-1 gap-3 sm:grid-cols-3')->child(
             html()->div()->class('form-control')->children([
                 html()->label('Type')->for('form.type')->class('label'),
                 html()->select(options: $types)->wireModel('form.type')->placeholder('Type')->class('select select-bordered'),
-                html()->validate('form.type'),
+                html()->error('form.type'),
             ]),
         ),
 
@@ -82,7 +82,7 @@
         html()->div()->class('form-control')->children([
             html()->label('Description')->for('form.description')->class('label'),
             html()->textarea()->wireModel('form.description')->placeholder('Description')->class('textarea textarea-bordered'),
-            html()->validate('form.description'),
+            html()->error('form.description'),
         ]),
 
         html()->button()->type('submit')->text('Save Changes')->class('btn btn-primary')

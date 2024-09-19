@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
         clientPort: 5173,
       },
       watch: {
-        ignored: ["**/storage/**", "**/vendor/**"],
+        ignored: ["**/storage/**"],
       },
     },
     resolve: {

@@ -3,7 +3,7 @@
 
     {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([
         html()->search()->wireModel('form.query')->autofocus()->class('input input-md input-rounded bg-secondary-500/25')->placeholder('Title, description, or tags'),
-        html()->validate('form.query'),
+        html()->error('form.query'),
     ]) }}
 
     @if (! $form->query() || ! $this->hasResults())
