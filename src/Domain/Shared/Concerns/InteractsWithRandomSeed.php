@@ -35,6 +35,8 @@ trait InteractsWithRandomSeed
     {
         $id = auth()->id() ?: session()->getId();
 
-        return sprintf('randomSeed-%s-%s', $id, $key);
+        $hash = hash('crc32c', serialize([$key, $id]));
+
+        return sprintf('randomseed-%s', $hash);
     }
 }
