@@ -1129,10 +1129,15 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@9.11.0", "@eslint/js@^9.11.0":
+"@eslint/js@9.11.0":
   version "9.11.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-9.11.0.tgz#fca7533ef33aa608770734786e02f1041847f9bb"
   integrity sha512-LPkkenkDqyzTFauZLLAPhIb48fj6drrfMvRGSL9tS3AcZBSVTllemLSNyCvHNNL2t797S/6DJNSIwRwXgMO/eQ==
+
+"@eslint/js@^9.11.1":
+  version "9.11.1"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-9.11.1.tgz#8bcb37436f9854b3d9a561440daf916acd940986"
+  integrity sha512-/qu+TWz8WwPWc7/HcIJKi+c+MOm46GdVaSlTTQcaqaL53+GsoA6MxWp5PtTx48qbSP7ylM1Kn7nhvkugfJvRSA==
 
 "@eslint/object-schema@^2.1.4":
   version "2.1.4"
@@ -3396,11 +3401,6 @@ normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==
-
-npm-check-updates@^17.1.2:
-  version "17.1.2"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-17.1.2.tgz#eacfbfe5ca13ff3dc211dd4b498e149c121d7368"
-  integrity sha512-k3osAbCNXIXqC7QAuF2uRHsKtTUS50KhOW1VAojRHlLdZRh/5EYfduvnVPGDWsbQXFakbSrSbWDdV8qIvDSUtA==
 
 nth-check@^2.0.1:
   version "2.1.1"
