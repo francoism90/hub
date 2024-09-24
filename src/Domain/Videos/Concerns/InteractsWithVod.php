@@ -3,8 +3,10 @@
 namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
+use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetManifestUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 trait InteractsWithVod
@@ -52,6 +54,13 @@ trait InteractsWithVod
             ->first();
 
         return $media?->getCustomProperty('duration') ?: 0;
+    }
+
+    public function timeCodeFor(?User $user = null): float
+    {
+        $value = $user?->storeValue($this->timecode) ?: 0;
+
+        return round(Number::clamp($value, 0, $this->duration), 2);
     }
 
     protected function clips(): Attribute
@@ -114,6 +123,13 @@ trait InteractsWithVod
     {
         return Attribute::make(
             get: fn () => $this->clips?->totalSizeInBytes()
+        )->shouldCache();
+    }
+
+    public function timecode(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => sprintf('timecode-%s', $this->getKey()),
         )->shouldCache();
     }
 }

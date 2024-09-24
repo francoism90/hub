@@ -3,8 +3,7 @@
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\GetVideoStartTime;
-use Domain\Playlists\Actions\MarkAsWatched;
+use Domain\Playlists\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
@@ -20,7 +19,7 @@ class Player extends Component
     {
         return view('app.videos.player.view')->with([
             'manifest' => $this->getManifest(),
-            'startsAt' => $this->getStartTime(),
+            'timecode' => $this->getTimeCode(),
         ]);
     }
 
@@ -35,7 +34,7 @@ class Player extends Component
             return;
         }
 
-        app(MarkAsWatched::class)->execute($user, $this->getVideo(), $time);
+        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string
@@ -43,12 +42,8 @@ class Player extends Component
         return $this->video->stream;
     }
 
-    protected function getStartTime(): ?float
+    protected function getTimeCode(): ?float
     {
-        if (! $user = auth()->user()) {
-            return null;
-        }
-
-        return app(GetVideoStartTime::class)->execute($user, $this->getVideo());
+        return $this->getVideo()->timeCodeFor(auth()->user());
     }
 }

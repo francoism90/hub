@@ -1,4 +1,4 @@
-{{ html()->div()->attribute('x-data', 'player')->class('container py-4')->open() }}
+{{ html()->div()->attribute('x-data', 'preview')->class('container py-4')->open() }}
     {{ html()->element('h1')->text('Search')->class('text-2xl') }}
 
     {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([

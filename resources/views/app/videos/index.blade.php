@@ -1,4 +1,4 @@
-{{ html()->element('main')->attribute('x-data', 'player')->open() }}
+{{ html()->element('main')->attribute('x-data', 'preview')->open() }}
     {{ html()->element('section')->class('py-6')->open() }}
         <livewire:web.videos.recommended lazy="on-load" />
         <livewire:web.videos.watching lazy="on-load" />

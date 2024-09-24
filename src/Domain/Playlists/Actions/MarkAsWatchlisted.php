@@ -4,25 +4,22 @@ namespace Domain\Playlists\Actions;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
+use Illuminate\Support\Facades\DB;
 
 class MarkAsWatchlisted
 {
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
-        $model = $user->playlists()->watchlist();
+        DB::transaction(function () use ($user, $video, $force) {
+            $model = $user->playlists()->watchlist();
 
-        if ($force === true) {
-            $model->attachVideo($video);
+            // Toggle favorite state
+            $force === true || ! $video->isWatchlistedBy($user)
+                ? $model->attachVideo($video)
+                : $model->detachVideo($video);
 
-            return;
-        }
-
-        // Toggle favorite state
-        $video->isWatchlistedBy($user)
-            ? $model->detachVideo($video)
-            : $model->attachVideo($video);
-
-        // Touch parent to trigger broadcast
-        $model->touch();
+            // Touch parent to trigger broadcast
+            $model->touch();
+        });
     }
 }

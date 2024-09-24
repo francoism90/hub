@@ -1,6 +1,6 @@
 @use('Domain\Tags\Models\Tag')
 
-{{ html()->div()->attribute('x-data', 'player')->class('container py-4')->open() }}
+{{ html()->div()->attribute('x-data', 'preview')->class('container py-4')->open() }}
     {{ html()->element('h1')->text($tag->name)->class('text-2xl') }}
     {{ html()->element('dl')->class('dl text-sm text-secondary-100')
         ->childrenIf($tag->type, [

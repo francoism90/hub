@@ -66,6 +66,6 @@ class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function uniqueId(): string
     {
-        return sprintf('watched:%s-%s', $this->user->getKey(), $this->video->getKey());
+        return sprintf('watched-%s-%s', $this->user->getKey(), $this->video->getKey());
     }
 }

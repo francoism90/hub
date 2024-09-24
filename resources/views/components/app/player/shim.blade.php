@@ -1,6 +1,6 @@
 @script
 <script>
-    Alpine.data("player", () => ({
+    Alpine.data("preview", () => ({
         instance: undefined,
         show: false,
 
@@ -65,13 +65,11 @@
                 );
         },
 
-        async load(video, manifest) {
-            if (this.instance === undefined) {
-                console.error('Player does not exists');
-                return;
-            }
-
+        async load(video = undefined, manifest = null) {
             try {
+                // Make sure player exists
+                await this.create();
+
                 // Load manifest
                 await this.instance.attach(video);
                 await this.instance.load(manifest);

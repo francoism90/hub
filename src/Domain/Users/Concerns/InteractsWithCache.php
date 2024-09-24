@@ -23,7 +23,9 @@ trait InteractsWithCache
 
     public function storeKey(string $key): string
     {
-        return sprintf('user:%s:%s', $this->getKey(), $key);
+        $hash = hash('crc32c', serialize([$this->getKey(), $key]));
+
+        return sprintf('user-%s', $hash);
     }
 
     public function storeSet(string $key, mixed $value = null, Carbon|int|null $ttl = null): bool

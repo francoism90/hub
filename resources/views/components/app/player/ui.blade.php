@@ -1,6 +1,6 @@
 @script
 <script>
-    Alpine.data("play", (manifest = null, startsAt = 0) => ({
+    Alpine.data("player", (manifest = null, timecode = 0) => ({
         instance: undefined,
         manager: undefined,
         ready: false,
@@ -23,7 +23,7 @@
             await this.create();
 
             // Load manifest
-            await this.load(manifest, startsAt);
+            await this.load(manifest, timecode);
 
             // Create watchers
             this.$watch('textTrack', () => this.setTextTrack());
@@ -74,19 +74,17 @@
                 );
         },
 
-        async load(manifest = null, startsAt = 0) {
-            if (this.instance === undefined) {
-                console.error('Player does not exists');
-                return;
-            }
-
+        async load(manifest = null, timecode = 0) {
             try {
                 const container = this.$refs.container;
                 const video = this.$refs.video;
 
+                // Make sure player exists
+                await this.create();
+
                 // Load manifest
                 await this.instance.attach(video);
-                await this.instance.load(manifest, startsAt);
+                await this.instance.load(manifest, timecode);
 
                 // Set tracks
                 await this.setTextTrack();

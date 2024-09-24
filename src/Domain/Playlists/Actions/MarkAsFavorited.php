@@ -4,25 +4,22 @@ namespace Domain\Playlists\Actions;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
+use Illuminate\Support\Facades\DB;
 
 class MarkAsFavorited
 {
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
-        $model = $user->playlists()->favorites();
+        DB::transaction(function () use ($user, $video, $force) {
+            $model = $user->playlists()->favorites();
 
-        if ($force === true) {
-            $model->attachVideo($video);
+            // Toggle favorite state
+            $force === true || ! $video->isFavoritedBy($user)
+                ? $model->attachVideo($video)
+                : $model->detachVideo($video);
 
-            return;
-        }
-
-        // Toggle favorite state
-        $video->isFavoritedBy($user)
-            ? $model->detachVideo($video)
-            : $model->attachVideo($video);
-
-        // Touch parent to trigger broadcast
-        $model->touch();
+            // Touch parent to trigger broadcast
+            $model->touch();
+        });
     }
 }

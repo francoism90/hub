@@ -44,7 +44,7 @@
         {{ html()->div()->close() }}
     @endif
 
-    {{ html()->element('section')->attribute('x-data', 'player')->class('py-3')->open() }}
+    {{ html()->element('section')->attribute('x-data', 'preview')->class('py-3')->open() }}
         <livewire:web.videos.next :$video lazy />
         <livewire:web.videos.random :$video lazy />
     {{ html()->element('section')->close() }}

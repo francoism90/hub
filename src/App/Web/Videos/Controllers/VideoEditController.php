@@ -6,7 +6,6 @@ use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Videos\Concerns\WithVideo;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
-use Domain\Playlists\Actions\GetVideoStartTime;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Actions\UpdateVideoDetails;
 use Foxws\WireUse\Views\Support\Page;
@@ -107,7 +106,7 @@ class VideoEditController extends Page
             return;
         }
 
-        $time = app(GetVideoStartTime::class)->execute(auth()?->user(), $this->getVideo());
+        $time = $this->getVideo()->timeCodeFor(auth()->user());
 
         if ($time !== null && $time > 0) {
             $this->form->snapshot = round($time, 2);

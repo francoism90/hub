@@ -3,7 +3,7 @@
     ->ignore()
     ->class('relative size-full')
     ->attributes([
-        'x-data' => "play('{$manifest}', {$startsAt})",
+        'x-data' => "player('{$manifest}', {$timecode})",
         'x-cloak',
         'x-ref' => 'container',
         'x-show' => 'ready',
