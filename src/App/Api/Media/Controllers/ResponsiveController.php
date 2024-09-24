@@ -3,8 +3,8 @@
 namespace App\Api\Media\Controllers;
 
 use Domain\Media\Models\Media;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
