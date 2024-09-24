@@ -20,9 +20,9 @@ Group=${APP_GID}
 UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
 Network=hub.network
 ExposeHostPort=6001
+ExposeHostPort=8000
 ExposeHostPort=9000
 PublishPort=5173:5173
-PublishPort=8000:8000
 
 [Install]
 WantedBy=multi-user.target

@@ -10,7 +10,7 @@ AutoUpdate=registry
 EnvironmentFile=%h/.config/containers/systemd/hub/meilisearch.env
 Volume=hub-meilisearch:/meili_data:rw,Z,U
 Network=hub.network
-PublishPort=7700:7700
+ExposeHostPort=7700
 
 [Install]
 WantedBy=multi-user.target
