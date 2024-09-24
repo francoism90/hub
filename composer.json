@@ -14,7 +14,7 @@
         "foxws/wireuse": "^2.4",
         "guzzlehttp/guzzle": "^7.9.2",
         "http-interop/http-factory-guzzle": "^1.2",
-        "laravel/framework": "^11.23.5",
+        "laravel/framework": "^11.24.0",
         "laravel/horizon": "^5.28.1",
         "laravel/octane": "^2.5.5",
         "laravel/pulse": "^1.2.5",
