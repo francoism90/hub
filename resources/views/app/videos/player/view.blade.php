@@ -74,39 +74,43 @@
                                 html()->button()->class('btn btn-inline')->attributes(['x-on:click' => 'open = true', 'x-trap.inert' => 'open'])->children([
                                     html()->icon()->svg('heroicon-o-cog-6-tooth', 'size-6'),
 
-                                    html()->div()->attributes(['x-cloak', 'x-show' => 'open', 'x-transition.opacity', 'x-on:click.outside' => 'open = false'])->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded')->children([
-                                        html()->div()->class('flex flex-col px-3 py-2 gap-y-1.5 *:flex *:flex-nowrap *:items-center *:justify-between *:gap-x-3')->children([
-                                            html()->div()->attribute('x-show', 'stats?.width && stats?.height')->children([
-                                                html()->label('Quality', 'quality')->class('label'),
-                                                html()->select()->id('quality')->class('select w-36 max-w-36')->children([
-                                                    html()->option()->attribute('x-text', 'stats?.width + "x" + stats?.height'),
+                                    html()
+                                        ->div()
+                                        ->attributes(['x-cloak', 'x-show' => 'open', 'x-trap.noscroll' => 'open', 'x-transition.opacity', 'x-on:click.outside' => 'open = false'])
+                                        ->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded')
+                                        ->children([
+                                            html()->div()->class('flex flex-col px-3 py-2 gap-y-1.5 *:flex *:flex-nowrap *:items-center *:justify-between *:gap-x-3')->children([
+                                                html()->div()->attribute('x-show', 'stats?.width && stats?.height')->children([
+                                                    html()->label('Quality', 'quality')->class('label'),
+                                                    html()->select()->id('quality')->class('select w-36 max-w-36')->children([
+                                                        html()->option()->attribute('x-text', 'stats?.width + "x" + stats?.height'),
+                                                    ]),
                                                 ]),
-                                            ]),
 
-                                            html()->div()->children([
-                                                html()->label('Caption', 'cc')->class('label'),
-                                                html()->select()->id('cc')->attributes(['x-model' => 'textTrack',  'wire:model.live' => 'caption'])->class('select w-36 max-w-36')->children([
-                                                    html()->option()->attributes([':value' => '-1'])->text('Off'),
-                                                    html()->element('template')->attributes(['x-for' => 'track in getTextTracks()', ':key' => 'track.id'])->children([
-                                                        html()->option()->attributes([':value' => 'track.id', ':selected' => 'track.id == textTrack', 'x-text' => 'track.label']),
+                                                html()->div()->children([
+                                                    html()->label('Caption', 'cc')->class('label'),
+                                                    html()->select()->id('cc')->attributes(['x-model' => 'textTrack',  'wire:model.live' => 'caption'])->class('select w-36 max-w-36')->children([
+                                                        html()->option()->attributes([':value' => '-1'])->text('Off'),
+                                                        html()->element('template')->attributes(['x-for' => 'track in getTextTracks()', ':key' => 'track.id'])->children([
+                                                            html()->option()->attributes([':value' => 'track.id', ':selected' => 'track.id == textTrack', 'x-text' => 'track.label']),
+                                                        ]),
                                                     ]),
                                                 ]),
                                             ]),
                                         ]),
                                     ]),
                                 ]),
-                            ]),
 
-                            html()->button()->class('btn btn-inline')->attribute('x-on:click', 'toggleFullscreen')->children([
-                                html()->icon()->svg('heroicon-o-arrows-pointing-in', 'size-6')->attributes(['x-cloak', 'x-show' => 'fullscreen']),
-                                html()->icon()->svg('heroicon-o-arrows-pointing-out', 'size-6')->attributes(['x-cloak', 'x-show' => '! fullscreen']),
+                                html()->button()->class('btn btn-inline')->attribute('x-on:click', 'toggleFullscreen')->children([
+                                    html()->icon()->svg('heroicon-o-arrows-pointing-in', 'size-6')->attributes(['x-cloak', 'x-show' => 'fullscreen']),
+                                    html()->icon()->svg('heroicon-o-arrows-pointing-out', 'size-6')->attributes(['x-cloak', 'x-show' => '! fullscreen']),
+                                ]),
                             ]),
-                        ]),
+                        ])
                     ])
-                ])
-            ),
+                ),
+            ])
         ])
-    ])
-}}
+    }}
 
 <x-app.player.ui />

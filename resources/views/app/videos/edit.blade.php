@@ -90,20 +90,18 @@
                 ->class('input')
                 ->autocomplete('off'),
 
-            html()->div()->class('flex flex-wrap items-center py-0.5 gap-1')->children($form->tags, fn ($item) => html()
-                ->a()
-                ->href('#')
+            html()->div()->class('min-h-0 flex flex-wrap items-center py-0.5 gap-1.5')->children($form->tags, fn ($item) => html()
+                ->button()
                 ->attribute('wire:click.prevent', "toggleTag('{$item['id']}')")
                 ->class('btn btn-sm btn-secondary')
                 ->text($item['name'])
             ),
 
-            html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
-                html()->div()->class('absolute inset-0 grid grid-cols-1 divide-y divide-secondary-400/50')->children($tags->results(), fn ($item) => html()
-                    ->a()
-                    ->href('#')
+            html()->div()->attributes(['x-cloak', 'x-show' => 'open', 'x-trap' => 'open'])->class('relative')->child(
+                html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900')->children($tags->results(), fn ($item) => html()
+                    ->button()
                     ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
-                    ->class('py-1 px-3 bg-secondary-500 hover:bg-secondary-600')
+                    ->class('btn btn-sm btn-secondary')
                     ->text($item->name)
                 ),
             ),
