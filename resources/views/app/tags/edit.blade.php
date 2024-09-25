@@ -61,7 +61,8 @@
                 ->autocomplete('off'),
 
             html()->div()->class('min-h-0 flex flex-wrap items-center py-0.5 gap-1')->children($form->related, fn (array $item) => html()
-                ->button()
+                ->a()
+                ->href('#')
                 ->attribute('wire:click.prevent', "toggleRelated('{$item['id']}')")
                 ->class('btn btn-sm btn-secondary')
                 ->text($item['name'])
@@ -71,7 +72,8 @@
                 html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit text-sm overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900 text-secondary-300')
                     ->textIf($related->results()->isEmpty(), 'No tags found')
                     ->children($related->results(), fn (Tag $item) => html()
-                        ->button()
+                        ->a()
+                        ->href('#')
                         ->attribute('wire:click.prevent', "toggleRelated('{$item->getRouteKey()}')")
                         ->class('btn btn-sm btn-secondary')
                         ->text($item->name)
