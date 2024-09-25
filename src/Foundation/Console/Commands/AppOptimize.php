@@ -21,8 +21,6 @@ class AppOptimize extends Command implements Isolatable
     {
         // Clear caches
         $this->call('optimize:clear');
-        $this->call('permission:cache-reset');
-        $this->call('structures:refresh');
 
         // Optimize packages
         $this->call('icons:cache');
@@ -33,12 +31,15 @@ class AppOptimize extends Command implements Isolatable
         $this->call('view:cache');
         $this->call('event:cache');
 
-        // Sync settings
-        $this->call('scout:sync-index-settings');
+        // Reload octane
+        $this->call('octane:reload');
 
         // Restart services
-        $this->call('octane:reload');
         $this->call('reverb:restart');
+        $this->call('pulse:restart');
         $this->call('horizon:terminate');
+
+        // Reset pulse
+        $this->call('pulse:clear', ['--force' => true]);
     }
 }

@@ -10,7 +10,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--force}';
+    protected $signature = 'app:update {--assets} {--sync}';
 
     /**
      * @var string
@@ -19,23 +19,30 @@ class AppUpdate extends Command implements Isolatable
 
     public function handle(): void
     {
-        throw_if(! $this->option('force') && ! $this->confirm('Are you sure to update the application?'));
+        // Clear package caches
+        $this->call('permission:cache-reset');
+        $this->call('structures:refresh');
 
-        // Clear caches
+        // Clear application caches
         $this->call('cache:clear');
         $this->call('optimize:clear');
 
         // Run migrations
         $this->call('migrate', ['--seed', '--force' => true]);
 
-        // Fetch assets
-        $this->call('google-fonts:fetch');
+        // Update assets
+        if ($this->option('assets')) {
+            $this->call('google-fonts:fetch');
+        }
 
-        // Optimize app
+        // Sync settings
+        $this->call('scout:sync-index-settings');
+
+        if ($this->option('sync')) {
+            $this->call('scout:sync');
+        }
+
+        // Optimize application
         $this->call('app:optimize');
-
-        // Reset pulse
-        $this->call('pulse:clear', ['--force' => true]);
-        $this->call('pulse:restart');
     }
 }
