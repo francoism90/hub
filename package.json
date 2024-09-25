@@ -24,7 +24,7 @@
         "postcss": "^8.4.47",
         "postcss-import": "^16.1.0",
         "prettier": "^3.3.3",
-        "prettier-plugin-tailwindcss": "^0.6.6",
+        "prettier-plugin-tailwindcss": "^0.6.8",
         "pusher-js": "^8.4.0-rc2",
         "shaka-player": "^4.11.5",
         "stylelint": "^16.9.0",
