@@ -97,7 +97,7 @@
                 ->text($item['name'])
             ),
 
-            html()->div()->attributes(['x-cloak', 'x-show' => 'open', 'x-trap' => 'open'])->class('relative')->child(
+            html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
                 html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900')->children($tags->results(), fn ($item) => html()
                     ->button()
                     ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
