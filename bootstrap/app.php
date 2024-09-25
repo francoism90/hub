@@ -60,6 +60,7 @@ $app = Application::configure(basePath: $basePath)
         \Domain\Users\Commands\CreateUser::class,
         \Domain\Videos\Commands\CleanVideos::class,
         \Domain\Videos\Commands\ImportVideos::class,
+        \Domain\Videos\Commands\RegenerateVideos::class,
     ])
     ->create();
 

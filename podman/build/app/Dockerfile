@@ -60,14 +60,6 @@ RUN usermod --non-unique --uid $UID www-data \
     && groupmod --non-unique --gid $GID www-data
 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/error_reporting = .*/error_reporting = E_ALL/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/display_errors = .*/display_errors = On/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/memory_limit = .*/memory_limit = 512M/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/post_max_size = .*/post_max_size = 100M/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/variables_order = .*/variables_order = EGPCS/" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/pcov.directory = .*/pcov.directory = ./" "$PHP_INI_DIR/php.ini" \
-    && sed -i "s/;date.timezone.*/date.timezone = UTC/" "$PHP_INI_DIR/php.ini" \
     && curl -sSLf \
     -o /usr/local/bin/install-php-extensions \
     https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
@@ -106,6 +98,7 @@ RUN setcap "cap_net_bind_service=+ep" $(which php) \
 
 RUN apk del .build-deps
 
+COPY --chown=$UID:$GID runtimes/php.ini "$PHP_INI_DIR/conf.d/xx-php-user.ini"
 COPY --chown=$UID:$GID runtimes/supervisord.conf /etc/supervisord.conf
 COPY --chown=$UID:$GID runtimes/www.conf /usr/local/etc/php-fpm.d/www.conf
 
