@@ -18,7 +18,6 @@ class QueryForm extends Form
     {
         return str($this->get('query', ''))
             ->title()
-            ->transliterate()
             ->squish()
             ->value();
     }

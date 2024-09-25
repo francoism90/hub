@@ -1,3 +1,4 @@
+@use('Domain\Tags\Models\Tag')
 @use('Illuminate\Support\Number')
 
 {{ html()->div()->class('container py-4')->children([
@@ -90,7 +91,7 @@
                 ->class('input')
                 ->autocomplete('off'),
 
-            html()->div()->class('min-h-0 flex flex-wrap items-center py-0.5 gap-1.5')->children($form->tags, fn ($item) => html()
+            html()->div()->class('min-h-0 flex flex-wrap items-center py-0.5 gap-1.5')->children($form->tags, fn (array $item) => html()
                 ->button()
                 ->attribute('wire:click.prevent', "toggleTag('{$item['id']}')")
                 ->class('btn btn-sm btn-secondary')
@@ -100,7 +101,7 @@
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
                 html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit text-sm overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900 text-secondary-300')
                     ->textIf($tags->results()->isEmpty(), 'No tags found')
-                    ->children($tags->results(), fn ($item) => html()
+                    ->children($tags->results(), fn (Tag $item) => html()
                         ->button()
                         ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
                         ->class('btn btn-sm btn-secondary')

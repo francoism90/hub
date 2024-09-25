@@ -22,7 +22,7 @@ class RelatedForm extends Form
         }
 
         return Tag::search($query)
-            ->take(5)
+            ->take(24)
             ->get();
     }
 
@@ -30,7 +30,6 @@ class RelatedForm extends Form
     {
         return str($this->get('query', ''))
             ->title()
-            ->transliterate()
             ->squish()
             ->value();
     }
@@ -41,7 +40,7 @@ class RelatedForm extends Form
         return Tag::query()
             ->withCount('videos')
             ->orderByDesc('videos_count')
-            ->take(5)
+            ->take(24)
             ->get();
     }
 }

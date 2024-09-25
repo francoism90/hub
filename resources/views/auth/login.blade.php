@@ -9,13 +9,13 @@
 
             html()->div()->class('form-control')->children([
                 html()->label('Email', 'form.email')->class('label'),
-                html()->text()->wireModel('form.email')->placeholder('Your Email')->class('input input-bordered'),
+                html()->email()->wireModel('form.email')->placeholder('Your Email')->class('input'),
                 html()->error('form.email'),
             ]),
 
             html()->div()->class('form-control')->children([
                 html()->label('Password', 'form.password')->class('label'),
-                html()->password()->wireModel('form.password')->placeholder('Your Password')->class('input input-bordered'),
+                html()->password()->wireModel('form.password')->placeholder('Your Password')->class('input'),
                 html()->error('form.password'),
             ]),
 
