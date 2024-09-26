@@ -18,7 +18,6 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->string('prefixed_id')->unique();
             $table->json('name');
-            $table->json('slug');
             $table->json('content')->nullable();
             $table->json('summary')->nullable();
             $table->json('titles')->nullable();

@@ -23,8 +23,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
-use Spatie\Sluggable\HasTranslatableSlug;
-use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
@@ -34,7 +32,6 @@ class Video extends Model implements HasMedia
     use HasPrefixedId;
     use HasStates;
     use HasTags;
-    use HasTranslatableSlug;
     use HasTranslations;
     use InteractsWithActivity;
     use InteractsWithMedia;
@@ -82,7 +79,6 @@ class Video extends Model implements HasMedia
      */
     protected $translatable = [
         'name',
-        'slug',
         'titles',
         'content',
         'summary',
@@ -115,13 +111,6 @@ class Video extends Model implements HasMedia
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
-    }
-
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
     }
 
     public function registerMediaCollections(): void

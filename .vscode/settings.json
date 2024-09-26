@@ -2,6 +2,7 @@
     "LaravelExtraIntellisense.basePathForCode": "/app",
     "LaravelExtraIntellisense.modelsPaths": ["app", "src"],
     "LaravelExtraIntellisense.phpCommand": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php -r \"{code}\"",
+    "intelephense.format.enable": false,
     "search.exclude": {
         "**/data": true,
         "**/storage/app": true

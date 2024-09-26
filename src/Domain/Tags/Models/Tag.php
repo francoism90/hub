@@ -172,13 +172,6 @@ class Tag extends BaseTag implements HasMedia
         return $query->with($this->with);
     }
 
-    public function responsive(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->videos()->first()?->responsive,
-        )->shouldCache();
-    }
-
     public function thumbnail(): Attribute
     {
         return Attribute::make(
