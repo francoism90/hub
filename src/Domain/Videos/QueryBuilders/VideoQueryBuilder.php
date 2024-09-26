@@ -15,24 +15,28 @@ class VideoQueryBuilder extends Builder
             ->whereState('state', Verified::class);
     }
 
+    public function recent(): self
+    {
+        return $this
+            ->orderByDesc('created_at')
+            ->orderByDesc('released_at');
+    }
+
     public function recommended(int $ttl = 60 * 20): self
     {
         return $this
-            ->published()
             ->randomSeed('videos-recommended', $ttl);
     }
 
     public function tagged(int $ttl = 60 * 20): self
     {
         return $this
-            ->published()
             ->randomSeed('videos-tagged', $ttl);
     }
 
     public function random(): self
     {
         return $this
-            ->published()
             ->inRandomOrder();
     }
 

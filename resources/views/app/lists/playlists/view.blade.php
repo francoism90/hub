@@ -10,6 +10,6 @@
     {{ html()->div()->close() }}
 
     @if ($this->hasMorePages())
-        {{ html()->button()->text('Load More')->class('btn btn-sm btn-secondary')->attribute('wire:click', 'fetch') }}
+        {{ html()->button()->text('View more')->class('btn btn-sm btn-secondary')->attribute('wire:click', 'fetch') }}
     @endif
 {{ html()->div()->close() }}

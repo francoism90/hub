@@ -14,6 +14,7 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
+            ->published()
             ->recommended()
             ->when($this->form->isStrict('type', 'untagged'), fn (Builder $query) => $query->whereDoesntHave('tags'))
             ->when($this->form->isStrict('type', 'new'), fn (Builder $query) => $query->whereDoesntHave('playlists.videos', fn (Builder $query) => $query

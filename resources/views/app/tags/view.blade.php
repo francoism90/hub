@@ -14,12 +14,23 @@
     }}
 
     @if ($tag->related->count())
-        {{ html()->div()->class('py-3 flex flex-wrap gap-2')->children($tag->related, fn (Tag $tag) =>
+        {{ html()->div()->class('pt-3 flex flex-nowrap gap-2 items-center overflow-x-auto')->children($tag->related, fn (Tag $tag) =>
             html()->div()->wireKey($tag->getRouteKey())->child(
-                html()->a()->link('tags.view', $tag)->class('btn btn-sm btn-secondary')->text($tag->name)
+                html()->a()->link('tags.view', $tag)->class('btn btn-sm btn-outlined')->text($tag->name)
         )) }}
     @endif
 
+    {{ html()->div()->class('pt-3 flex flex-nowrap gap-2 items-center overflow-x-auto')->children($types, fn (array $item) => html()
+        ->a()
+        ->href('#')
+        ->text($item['label'])
+        ->attribute('wire:click', "setType('{$item['key']}')")
+        ->class([
+            'btn btn-sm',
+            'btn-primary' => $form->is('type', $item['key']),
+            'btn-secondary' => ! $form->is('type', $item['key']),
+        ])
+    ) }}
 
     {{ html()->element('section')->attribute('wire.poll.900s', 'refresh')->class('pt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $video)
