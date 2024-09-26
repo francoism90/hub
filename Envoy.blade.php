@@ -76,7 +76,7 @@
 
 @task('update-application', ['on' => 'remote'])
     podman exec -it systemd-hub-app sh -c "
-        php artisan app:update --force;
+        php artisan app:update --assets;
     ";
 @endtask
 
