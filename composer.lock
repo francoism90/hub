@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11f41307cf0bec854e4a8f5f88d77d6d",
+    "content-hash": "b0e14160646e8bb397861b2850804ceb",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1999,16 +1999,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "097bb3a0e1518e93df5daf16f473623d0a03e91f"
+                "reference": "f76a53d9bc7289401220284293a4701ce6daa915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/097bb3a0e1518e93df5daf16f473623d0a03e91f",
-                "reference": "097bb3a0e1518e93df5daf16f473623d0a03e91f",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/f76a53d9bc7289401220284293a4701ce6daa915",
+                "reference": "f76a53d9bc7289401220284293a4701ce6daa915",
                 "shasum": ""
             },
             "require": {
@@ -2075,7 +2075,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.4.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.4.1"
             },
             "funding": [
                 {
@@ -2083,7 +2083,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-19T11:45:51+00:00"
+            "time": "2024-09-27T12:47:10+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -7752,16 +7752,16 @@
         },
         {
             "name": "spatie/laravel-model-states",
-            "version": "2.7.1",
+            "version": "2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-model-states.git",
-                "reference": "91e7dfcf2d1d471d3b7fec151465346e7db43e72"
+                "reference": "187a4708f977bb3f94e0a559c71901a32bfc8d87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/91e7dfcf2d1d471d3b7fec151465346e7db43e72",
-                "reference": "91e7dfcf2d1d471d3b7fec151465346e7db43e72",
+                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/187a4708f977bb3f94e0a559c71901a32bfc8d87",
+                "reference": "187a4708f977bb3f94e0a559c71901a32bfc8d87",
                 "shasum": ""
             },
             "require": {
@@ -7811,7 +7811,7 @@
                 "state"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-model-states/tree/2.7.1"
+                "source": "https://github.com/spatie/laravel-model-states/tree/2.7.2"
             },
             "funding": [
                 {
@@ -7823,7 +7823,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-07T07:05:22+00:00"
+            "time": "2024-09-27T07:54:08+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
