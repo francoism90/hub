@@ -28,6 +28,6 @@ class AppInstall extends Command implements Isolatable
         $this->call('storage:link');
 
         // Perform update
-        $this->call('app:update --assets --sync');
+        $this->call('app:update', ['--assets' => true, '--sync' => true]);
     }
 }

@@ -28,7 +28,7 @@ class AppUpdate extends Command implements Isolatable
         $this->call('optimize:clear');
 
         // Run migrations
-        $this->call('migrate', ['--seed', '--force' => true]);
+        $this->call('migrate', ['--force' => true, '--seed' => true]);
 
         // Update assets
         if ($this->option('assets')) {
