@@ -108,7 +108,7 @@ class VideoEditController extends Page
 
         $time = $this->getVideo()->timeCodeFor(auth()->user());
 
-        if ($time !== null && $time > 0) {
+        if (is_numeric($time) && $time > 0) {
             $this->form->snapshot = round($time, 2);
         }
     }
