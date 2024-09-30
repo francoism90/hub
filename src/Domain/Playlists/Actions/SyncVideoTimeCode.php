@@ -12,7 +12,7 @@ class SyncVideoTimeCode
     public function execute(User $user, Video $video, float $time = 0): void
     {
         // Get timestamp
-        $value = round(Number::clamp($time, 0, $video->duration), 2);
+        $value = Number::clamp($time, 0, $video->duration);
 
         // Cache current time
         $user->storeSet($video->timecode, $value, now()->addMonth());

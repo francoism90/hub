@@ -60,7 +60,7 @@ trait InteractsWithVod
     {
         $value = $user?->storeValue($this->timecode) ?: 0;
 
-        return round(Number::clamp($value, 0, $this->duration), 2);
+        return Number::clamp($value, 0, $this->duration);
     }
 
     protected function clips(): Attribute
