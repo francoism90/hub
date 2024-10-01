@@ -10,7 +10,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--assets} {--sync}';
+    protected $signature = 'app:update {--assets}';
 
     /**
      * @var string
@@ -37,10 +37,6 @@ class AppUpdate extends Command implements Isolatable
 
         // Sync settings
         $this->call('scout:sync-index-settings');
-
-        if ($this->option('sync')) {
-            $this->call('scout:sync');
-        }
 
         // Optimize application
         $this->call('app:optimize');

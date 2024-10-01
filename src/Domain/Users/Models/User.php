@@ -157,19 +157,20 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return 'user.'.$this->getRouteKey();
     }
 
-    public function searchableAs(): string
+    public function makeSearchableUsing(UserCollection $models): UserCollection
     {
-        return 'users';
+        return $models->loadMissing($this->with);
     }
 
     public function toSearchableArray(): array
     {
         return [
             'id' => (int) $this->getScoutKey(),
-            'name' => $this->name,
-            'email' => $this->email,
-            'created' => $this->created_at,
-            'updated' => $this->updated_at,
+            'name' => (string) $this->name,
+            'email' => (string) $this->email,
+            'state' => (string) $this->state,
+            'created' => (int) $this->created_at->getTimestamp(),
+            'updated' => (int) $this->updated_at->getTimestamp(),
         ];
     }
 

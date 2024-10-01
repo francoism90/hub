@@ -15,13 +15,6 @@ trait HasRelated
         return $this->morphMany(Relatable::class, 'model');
     }
 
-    protected function related(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->loadRelated()
-        )->shouldCache();
-    }
-
     public function loadRelated(): Collection
     {
         return $this->relatables
@@ -103,5 +96,12 @@ trait HasRelated
             'relate_id' => $item instanceof Model ? $item->getKey() : $item,
             'relate_type' => $item instanceof Model ? $item->getMorphClass() : $type,
         ];
+    }
+
+    protected function related(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->loadRelated()
+        )->shouldCache();
     }
 }

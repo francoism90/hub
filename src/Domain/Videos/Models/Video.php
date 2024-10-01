@@ -203,14 +203,9 @@ class Video extends Model implements HasMedia
         return true;
     }
 
-    public function searchableAs(): string
-    {
-        return 'videos';
-    }
-
     public function makeSearchableUsing(VideoCollection $models): VideoCollection
     {
-        return $models->loadMissing($this->with);
+        return $models->loadMissing('media', 'tags');
     }
 
     public function toSearchableArray(): array
@@ -236,7 +231,7 @@ class Video extends Model implements HasMedia
 
     protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
     {
-        return $query->with($this->with);
+        return $query->with(['media', 'tags']);
     }
 
     public function identifier(): Attribute

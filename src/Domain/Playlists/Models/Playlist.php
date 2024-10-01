@@ -82,23 +82,6 @@ class Playlist extends Model implements HasMedia, Sortable
         return 'prefixed_id';
     }
 
-    public function searchableAs(): string
-    {
-        return 'playlists';
-    }
-
-    public function toSearchableArray(): array
-    {
-        return [
-            'id' => $this->getScoutKey(),
-            'name' => $this->name,
-            'content' => $this->content,
-            'type' => $this->type,
-            'created' => $this->created_at,
-            'updated' => $this->updated_at,
-        ];
-    }
-
     /**
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
@@ -135,6 +118,29 @@ class Playlist extends Model implements HasMedia, Sortable
     public function broadcastAfterCommit(): bool
     {
         return true;
+    }
+
+    public function makeSearchableUsing(PlaylistCollection $models): PlaylistCollection
+    {
+        return $models->loadMissing($this->with);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->getScoutKey(),
+            'name' => (string) $this->name,
+            'content' => (string) $this->content,
+            'type' => (string) $this->type?->value,
+            'state' => (string) $this->state,
+            'created_at' => (int) $this->created_at->getTimestamp(),
+            'updated_at' => (int) $this->updated_at->getTimestamp(),
+        ];
+    }
+
+    protected function makeAllSearchableUsing(PlaylistQueryBuilder $query): PlaylistQueryBuilder
+    {
+        return $query->with($this->with);
     }
 
     public function title(): Attribute

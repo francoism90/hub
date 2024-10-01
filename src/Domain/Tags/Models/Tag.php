@@ -143,14 +143,9 @@ class Tag extends BaseTag implements HasMedia
         return true;
     }
 
-    public function searchableAs(): string
-    {
-        return 'tags';
-    }
-
     public function makeSearchableUsing(TagCollection $models): TagCollection
     {
-        return $models->loadMissing($this->with);
+        return $models->loadMissing('relatables');
     }
 
     public function toSearchableArray(): array
@@ -161,6 +156,8 @@ class Tag extends BaseTag implements HasMedia
             'description' => (string) $this->description,
             'type' => (string) $this->type?->value,
             'adult' => (bool) $this->adult,
+            'synonyms' => (string) $this->synonyms,
+            'related' => (array) $this->relatables->modelKeys(),
             'order' => (int) $this->order_column,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
@@ -169,13 +166,20 @@ class Tag extends BaseTag implements HasMedia
 
     protected function makeAllSearchableUsing(TagQueryBuilder $query): TagQueryBuilder
     {
-        return $query->with($this->with);
+        return $query->with(['relatables']);
     }
 
     public function thumbnail(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->videos()->first()?->thumbnail,
+        )->shouldCache();
+    }
+
+    public function synonyms(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => TagCollection::make($this->related)->translated(),
         )->shouldCache();
     }
 }
