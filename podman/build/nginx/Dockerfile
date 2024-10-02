@@ -13,10 +13,7 @@ RUN apk update --no-cache \
 
 RUN apk add --no-cache --virtual .build-deps \
     shadow \
-    alpine-sdk \
-    clang \
-    linux-headers \
-    python3
+    alpine-sdk
 
 RUN apk add --no-cache --virtual .run-deps \
     ca-certificates \

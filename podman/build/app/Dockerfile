@@ -15,15 +15,19 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     alpine-sdk
 
 RUN apk add --no-cache --virtual .run-deps \
+    brotli \
     ca-certificates \
     curl \
+    fdk-aac \
+    ffmpeg \
+    gifsicle \
     git \
     gnupg \
     gsm \
-    brotli \
-    ffmpeg \
+    jpegoptim \
     lame \
     libass \
+    libavif \
     libcap \
     libogg \
     libpng \
@@ -34,12 +38,10 @@ RUN apk add --no-cache --virtual .run-deps \
     libvorbis \
     libvpx \
     libwebp \
-    fdk-aac \
     mariadb-client \
     npm \
     numactl \
     opencore-amr \
-    jpegoptim \
     openjpeg \
     optipng \
     pngquant \
@@ -48,11 +50,11 @@ RUN apk add --no-cache --virtual .run-deps \
     supervisor \
     tzdata \
     unzip \
+    x264 \
+    x265 \
     xvidcore \
     yarn \
-    zip \
-    x264 \
-    x265
+    zip
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -67,6 +69,7 @@ RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
 
 RUN install-php-extensions \
     @composer \
+    apcu \
     bcmath \
     bz2 \
     calendar \
@@ -78,7 +81,6 @@ RUN install-php-extensions \
     igbinary \
     imap \
     intl \
-    ldap \
     msgpack \
     mysqli \
     opcache \
@@ -87,11 +89,10 @@ RUN install-php-extensions \
     pcov \
     pdo_mysql \
     redis \
-    soap \
     uv \
     zip
 
-RUN npm install -g svgo
+RUN yarn global add svgo
 
 RUN setcap "cap_net_bind_service=+ep" $(which php) \
     && setcap "cap_net_bind_service=+ep" $(which php-fpm)
