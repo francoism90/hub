@@ -112,6 +112,14 @@
             ),
         ]),
 
+         html()->div()->class('grid grid-cols-1 gap-3')->children([
+            html()->div()->class('form-control')->children([
+                html()->label('Summary')->for('form.summary')->class('label'),
+                html()->textarea()->wireModel('form.summary')->class('textarea'),
+                html()->error('form.summary'),
+            ]),
+        ]),
+
         html()->button()->type('submit')->text('Save Changes')->class('btn btn-primary')
     ])
 ]) }}

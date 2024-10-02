@@ -20,11 +20,14 @@ class GeneralForm extends Form
     #[Validate('nullable|string|min:1|max:255')]
     public ?string $part = null;
 
+    #[Validate('nullable|string|min:1|max:8096')]
+    public ?string $summary = null;
+
+    #[Validate('nullable|decimal:0,2')]
+    public ?float $snapshot = null;
+
     #[Validate('nullable|date')]
     public ?string $released_at = null;
-
-    #[Validate('nullable|decimal:0,4')]
-    public ?float $snapshot = null;
 
     #[Validate(['tags' => 'nullable|array', 'tags.*.id' => 'exists:tags,prefixed_id'])]
     public array $tags = [];
@@ -32,7 +35,7 @@ class GeneralForm extends Form
     protected function beforeValidate(): void
     {
         collect($this->all())
-            ->filter(fn (mixed $value) => filled($value) && is_string($value))
+            ->filter(fn (mixed $value) => is_string($value) && filled($value))
             ->each(fn (mixed $value, string $key) => data_set($this, $key, str($value)->squish()->value()));
     }
 
