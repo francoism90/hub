@@ -30,7 +30,7 @@ class Player extends Component
 
     public function updateHistory(?float $time = null): void
     {
-        if ($time === null || (! $user = auth()->user())) {
+        if ((! $user = auth()->user()) || is_numeric($time)) {
             return;
         }
 

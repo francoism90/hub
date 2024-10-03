@@ -74,7 +74,7 @@
                 );
         },
 
-        async load(manifest = null, timecode = 0) {
+        async load(manifest = null, timecode = null) {
             try {
                 const container = this.$refs.container;
                 const video = this.$refs.video;
@@ -122,7 +122,7 @@
         async sync() {
             const currentTime = this.instance?.getMediaElement()?.currentTime;
 
-            if (currentTime >= 0 && $wire?.updateHistory !== undefined) {
+            if ($wire?.updateHistory !== undefined && currentTime >= 0) {
                 await $wire.updateHistory(currentTime);
             }
         },

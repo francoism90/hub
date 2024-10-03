@@ -9,10 +9,10 @@ use Illuminate\Support\Number;
 
 class SyncVideoTimeCode
 {
-    public function execute(User $user, Video $video, float $time = 0): void
+    public function execute(User $user, Video $video, ?float $time = null): void
     {
         // Get timestamp
-        $value = Number::clamp($time, 0, $video->duration);
+        $value = Number::clamp($time ?? 0, 0, $video->duration);
 
         // Cache current time
         $user->storeSet($video->timecode, $value, now()->addMonth());
