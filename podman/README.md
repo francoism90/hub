@@ -1,11 +1,6 @@
 # Podman Quadlet
 
-The given instructions are tested on Fedora 40 Silverblue with Podman 5.1 (rootless).
-
-It's recommend running containers rootless:
-
-- <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
-- <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
+The given instructions are tested on Fedora 40 Silverblue with Podman 5.2 (rootless).
 
 To learn more about Podman Quadlet, the following resources may be useful:
 
@@ -13,32 +8,45 @@ To learn more about Podman Quadlet, the following resources may be useful:
 - <https://www.redhat.com/sysadmin/quadlet-podman>
 - <https://mo8it.com/blog/quadlet/>
 
+## Prerequisites
+
+- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch).
+- [Podman 5.1 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support.
+
+It's recommend running a rootless setup:
+
+- <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
+- <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
+
 ## Installation
 
-Build the Docker images:
+Build the Docker images (this may take some time):
 
 ```bash
 cd hub/podman
 ./make
 ```
 
-Copy the `systemd` directory to `~/.config/containers`, verify `~/.config/containers/systemd/hub.container` exists.
+Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists.
 
-Adjust environment files in `~/.config/containers/systemd/hub`. Values should reflect the settings used in the Hub-project `~/Code/hub/.env`.
+Adjust environment files in `~/.config/containers/systemd/hub/config`, and update `~/projects/hub/.env` when needed.
 
 ### Configure Proxy
 
 [Traefik](https://doc.traefik.io/traefik/) is used as proxy. However you are free to use something else, or not even proxy at all.
 
-> **NOTE:** See <https://doc.traefik.io/traefik/middlewares/http/basicauth> for generating a basic-auth password.
-
 > **TIP:** Checkout [mkcert](https://github.com/FiloSottile/mkcert) for using TLS/HTTPS locally.
 
-It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificates](https://doc.traefik.io/traefik/https/tls/) for local instances. The given configuration assumes you use an own generated certifcate by `mkcert` and run Hub locally.
+It is also possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificates](https://doc.traefik.io/traefik/https/tls/) for local instances. The given configuration assumes you use an own generated certifcate by `mkcert` and run Hub locally/in a homelab.
 
-Adjust the configuration files in `~/.config/containers/systemd/traefik`, and make sure `podman.socket` is enabled (`systemctl --user enable podman.socket --now`).
+Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
 
-To import your certificates, use [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
+```bash
+systemctl --user enable podman.socket --now`
+systemctl --user restart traefik.service
+```
+
+To import custom certificates, prefer the usage of [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
 
 ```bash
 podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
@@ -47,42 +55,46 @@ podman secret create tlskey ~/.config/containers/systemd/traefik/certs/key.pem
 
 ## Usage
 
-To apply any container changes:
+Make sure to reload systemd on configuration changes:
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user restart hub-app hub
+systemctl --user restart hub
 ```
 
-To start containers:
+To start Hub:
 
 ```bash
 systemctl --user start hub
 ```
 
-## Update
+To stop Hub:
+
+```bash
+systemctl --user stop hub
+```
 
 To update/rebuild the Docker images:
 
 ```bash
-cd hub/podman
+cd ~/projects/hub/podman
 ./update
-```
-
-Restart services:
-
-```bash
-systemctl --user restart hub-app hub
 ```
 
 ## Bash
 
-Hub comes with a shell utility called `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments for Podman Quadlet.
+Hub provides the shell utility named `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments made for Podman Quadlet.
 
-To install, create a `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
+To install, create a shell `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```bash
-alias --save hub '~/path/of/hub/bin/quadlet'
+alias --save hub '~/projects/hub/bin/quadlet'
 ```
 
-This allows to interact with the `systemd-hub-app` container using the same syntax like Laravel Sail. Run `hub help` for details.
+This allows to interact with the `systemd-hub-app` container using the same syntax like Laravel Sail:
+
+```fish
+hub help
+hub shell
+hub a app:update --assets
+```

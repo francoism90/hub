@@ -4,91 +4,91 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** This is a personal project, please do not expect a production ready product. It is mainly intended for learning and testing the latest Laravel features. You can fork the project and make your own adjustments based on my changes.
+> **NOTE:** This is a personal project, and may contain breaking changes. Use at your own risk.
 
 ## Demo
 
 A basic demo is available at <https://hub.foxws.nl/>.
 
-Use the following login credentials:
+Use the following login credentials (managing videos has been disabled):
 
 - Email: `demo@example.com`
 - Password: `password`
 
 Please note it's a low-tier VPS, expect slowness. :)
 
-## Stack
+## Details
 
-Hub uses a subset of the following:
+Hub has been build using the following stack:
 
-- [nginx-vod-module](https://github.com/kaltura/nginx-vod-module)
+- [nginx-vod-module (main)](https://github.com/kaltura/nginx-vod-module)
 - [Laravel 11.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
-- [Podman](https://podman.io/)
-- [Meilisearch](https://www.meilisearch.com/)
+- [Podman 5.x](https://podman.io/)
+- [Meilisearch 1.x](https://www.meilisearch.com/)
+
+This is the preferred stack, please submit a PR if you would like to support other solutions. :)
 
 ## Prerequisites
 
-- Linux (Fedora, Debian, Ubuntu, CentOS, Arch ..) - WSL is untested
-- [Podman 5.1](https://podman.io/) or higher (with SELinux support)
+- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested.
+- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags.
 
 ## Installation
 
 ### Clone repository
 
-Clone the repository, for example to `/home/<user>/Code/hub`:
+Clone the repository, for example to `/home/myuser/projects`:
 
 ```bash
-cd ~/Code
+cd ~/projects
 git https://github.com/francoism90/hub.git
 ```
 
-Configure Hub:
+Configure Hub with your favorite editor:
 
 ```bash
-cd ~/Code/hub
+cd ~/projects/hub
 cp .env.example .env
 vi .env
 ```
 
-To access Hub on your local machine, add the following `/etc/hosts` entries:
+To access Hub locally, make sure to create the following `/etc/hosts` entries:
 
 ```md
-127.0.0.1 hub.lan ws.hub.lan
-::1 hub.lan ws.hub.lan
+127.0.0.1 hub.lan ws.hub.lan s3.hub.lan mc.hub.lan
+::1 hub.lan ws.hub.lan s3.hub.lan mc.hub.lan
 ```
 
-You may want to use your own DNS-server (like [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)), to expose Hub on your LAN.
-
-It is also possible to run Hub on a VPS, but please make sure the following best practices and protect it against unwanted access/usage. The given configuration examples assume you want to run Hub locally/selfhosted.
+> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.lan` & `*.hub.lan` to your homelab server.
 
 ### Podman Quadlet
 
-Please read the dedicated [guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet.
+Please read the [dedicated guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet.
 
 ## Usage
 
 Start Hub:
 
 ```bash
-systemctl --user start hub-app hub
+systemctl --user start hub
 ```
 
-On first run, enter the `systemd-hub-app` container, and execute the followings commands:
+On first installation, enter the `systemd-hub-app` container (`hub shell`), and execute the followings commands:
 
 ```bash
-$ hub shell
+$ podman exec -it systemd-hub-app sh
 composer install
 php artisan key:generate
 php artisan storage:link
 yarn install && yarn run build
 php artisan app:install
-php artisan users:create
+php artisan user:create
 ```
 
-The Hub instance should be available at <https://hub.lan> when using the given examples.
+The Hub instance should now be available at <https://hub.lan>.
 
-The following Laravel services are available, and can be accessed when logged-in as super-admin:
+The following services are accessible when being a super-admin:
 
 - <https://hub.lan/horizon> - Laravel Horizon
 - <https://hub.lan/pulse> - Laravel Pulse
@@ -96,25 +96,35 @@ The following Laravel services are available, and can be accessed when logged-in
 
 ### Manage application
 
-> **NOTE:** Run `hub a` and `hub help` for all available commands.
+> **TIP:** Run `hub a` and `hub help` for all available commands.
+
+Make sure to set permissions:
+
+```bash
+chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
+```
 
 To import videos:
 
 ```bash
-cp -r /path/to/import/from/* ~/Code/hub/storage/app/import/
-chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
 hub a videos:import
 ```
 
 To create a tag:
 
 ```bash
-hub a tags:create
+hub a tag:create
 ```
 
-To force removing of soft-deleted videos:
+To create an user:
 
-> **WARNING:** Only run command when you don't want to restore all deleted videos!
+```bash
+hub a user:create
+```
+
+To force removal of soft-deleted videos:
+
+> **WARNING:** Only run this command when you don't want to restore deleted videos!
 
 ```bash
 hub a videos:clean
@@ -122,21 +132,21 @@ hub a videos:clean
 
 ## Updating
 
-> **NOTE:** See [guide](https://github.com/francoism90/hub/tree/main/podman) on managing containers.
+> **NOTE:** Please read the [guide](https://github.com/francoism90/hub/tree/main/podman) for more details.
 
 To retrieve the latest changes:
 
 ```bash
-cd ~/Code/hub
+cd ~/projects/hub
 git pull
 ```
 
-It is recommended to rebuild the Docker containers at least weekly:
+To rebuild the Docker containers:
 
 ```bash
-cd ~/Code/hub/podman
+cd ~/projects/hub/podman
 ./update
-systemctl --user restart hub-app hub
+systemctl --user restart hub
 ```
 
 To update the application:
@@ -145,5 +155,7 @@ To update the application:
 $ hub shell
 composer install
 yarn install && yarn run build
-php artisan app:update
+php artisan app:update --assets
 ```
+
+> **TIP:** See `Envoy.blade.php` for deploy details.

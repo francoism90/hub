@@ -4,16 +4,17 @@ Requires=podman.socket
 After=podman.socket
 
 [Service]
-EnvironmentFile=%h/.config/containers/systemd/traefik/proxy.env
+EnvironmentFile=%h/.config/containers/systemd/traefik/config/proxy.env
 TimeoutStartSec=900
 Restart=always
 
 [Container]
+ContainerName=systemd-traefik
 Image=docker.io/library/traefik:latest
 AutoUpdate=registry
 Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z
-Volume=./traefik/traefik.yml:/etc/traefik/traefik.yml:ro,Z
-Volume=./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
+Volume=%h/.config/containers/systemd/traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro,Z
+Volume=%h/.config/containers/systemd/traefik/config/dynamic.yml:/etc/traefik/dynamic.yml:ro,Z
 SecurityLabelType=container_runtime_t
 Secret=tlscert,target=/run/secrets/cert.pem
 Secret=tlskey,target=/run/secrets/key.pem

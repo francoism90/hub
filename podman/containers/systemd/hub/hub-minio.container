@@ -1,0 +1,32 @@
+[Unit]
+Description=Minio container
+Requires=traefik.service
+After=traefik.service
+
+[Service]
+Restart=always
+
+[Container]
+Image=docker.io/minio/minio:latest
+AutoUpdate=registry
+EnvironmentFile=%h/.config/containers/systemd/hub/config/minio.env
+Volume=hub-minio:/data/minio:rw,Z,U
+Exec=minio server /data/minio --console-address ":8900"
+Network=hub.network
+Network=traefik.network
+ExposeHostPort=8900
+ExposeHostPort=9000
+Label=traefik.enable=true
+Label=traefik.http.routers.minio.entrypoints=websecure
+Label=traefik.http.routers.minio.tls=true
+Label=traefik.http.routers.minio.rule="Host(`mc.hub.lan`)"
+Label=traefik.http.routers.minio.service="minio"
+Label=traefik.http.services.minio.loadbalancer.server.port="8900"
+Label=traefik.http.routers.s3.entrypoints=websecure
+Label=traefik.http.routers.s3.tls=true
+Label=traefik.http.routers.s3.rule="Host(`s3.hub.lan`)"
+Label=traefik.http.routers.s3.service="s3"
+Label=traefik.http.services.s3.loadbalancer.server.port="9000"
+
+[Install]
+WantedBy=multi-user.target
