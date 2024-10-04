@@ -17,11 +17,18 @@ Volume=%h/.config/containers/systemd/traefik/config/dynamic.yml:/etc/traefik/dyn
 SecurityLabelType=container_runtime_t
 Secret=tlscert,target=/run/secrets/cert.pem
 Secret=tlskey,target=/run/secrets/key.pem
+Secret=usersfile,target=/run/secrets/usersfile
 Environment=TRAEFIK_TZ=${TRAEFIK_TZ}
 Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
-PublishPort=8080:8080
+Label=traefik.enable=true
+Label=traefik.http.routers.mydashboard.rule="Host(`traefik.hub.lan`)"
+Label=traefik.http.routers.mydashboard.entrypoints=websecure
+Label=traefik.http.routers.mydashboard.tls=true
+Label=traefik.http.routers.mydashboard.service="api@internal"
+Label=traefik.http.routers.mydashboard.middlewares=myauth
+Label=traefik.http.middlewares.myauth.basicauth.usersfile=/run/secrets/usersfile
 
 [Install]
 WantedBy=multi-user.target
