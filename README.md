@@ -4,13 +4,13 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** This is a personal project, please do not expect a production ready product. It is mainly intended for learning and testing the latest Laravel features. You can fork the project and make your own adjustments based on my changes.
+> **NOTE:** This is a personal project, and may contain breaking changes. Use at your own risk.
 
 ## Demo
 
 A basic demo is available at <https://hub.foxws.nl/>.
 
-Use the following login credentials (editing is disabled):
+Use the following login credentials (managing videos has been disabled):
 
 - Email: `demo@example.com`
 - Password: `password`
@@ -24,15 +24,15 @@ Hub has been build using the following stack:
 - [nginx-vod-module (main)](https://github.com/kaltura/nginx-vod-module)
 - [Laravel 11.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
-- [Podman 5.2.x](https://podman.io/)
-- [Meilisearch 1.10.x](https://www.meilisearch.com/)
+- [Podman 5.x](https://podman.io/)
+- [Meilisearch 1.x](https://www.meilisearch.com/)
 
-This is the preferred stack, please submit a PR if you want to provide other solutions. :)
+This is the preferred stack, please submit a PR if you would like to support other solutions. :)
 
 ## Prerequisites
 
-- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested
-- [Podman 5.2](https://podman.io/) or higher (with Quadlet/systemd + SELinux support) - Docker is untested
+- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested.
+- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags.
 
 ## Installation
 
@@ -74,7 +74,7 @@ Start Hub:
 systemctl --user start hub
 ```
 
-On first installation, enter the `systemd-hub-app` container, and execute the followings commands:
+On first installation, enter the `systemd-hub-app` container (`hub shell`), and execute the followings commands:
 
 ```bash
 $ podman exec -it systemd-hub-app sh
@@ -116,6 +116,12 @@ To create a tag:
 hub a tag:create
 ```
 
+To create an user:
+
+```bash
+hub a user:create
+```
+
 To force removal of soft-deleted videos:
 
 > **WARNING:** Only run this command when you don't want to restore deleted videos!
@@ -126,7 +132,7 @@ hub a videos:clean
 
 ## Updating
 
-> **NOTE:** Please read the [following guide](https://github.com/francoism90/hub/tree/main/podman) for more details.
+> **NOTE:** Please read the [guide](https://github.com/francoism90/hub/tree/main/podman) for more details.
 
 To retrieve the latest changes:
 
@@ -149,7 +155,7 @@ To update the application:
 $ hub shell
 composer install
 yarn install && yarn run build
-php artisan app:update
+php artisan app:update --assets
 ```
 
 > **TIP:** See `Envoy.blade.php` for deploy details.
