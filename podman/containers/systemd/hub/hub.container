@@ -4,25 +4,27 @@ Requires=hub-app.service
 After=hub-app.service
 
 [Service]
-EnvironmentFile=%h/.config/containers/systemd/hub/app.env
+EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
 TimeoutStartSec=900
 Restart=always
 
 [Container]
+ContainerName=systemd-hub-nginx
 Image=localhost/hub-nginx:latest
 AutoUpdate=local
-EnvironmentFile=%h/.config/containers/systemd/hub/nginx.env
-Volume=${APP_PATH}:/app:ro,z
-Volume=${APP_MEDIA_PATH}:/app/storage/app/media:ro,z
-User=${APP_UID}
-Group=${APP_GID}
-UserNS=keep-id:uid=${APP_UID},gid=${APP_GID}
+EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
+Volume=${PATH}:/app:ro,z
+Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
+User=${UID}
+Group=${GID}
+UserNS=keep-id:uid=${UID},gid=${GID}
 Network=hub.network
 Network=traefik.network
 Label=traefik.enable=true
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true
 Label=traefik.http.routers.hub.rule="Host(`hub.lan`) || Host(`ws.hub.lan`)"
+Label=traefik.http.routers.hub.service="hub"
 Label=traefik.http.services.hub.loadbalancer.server.port="8080"
 
 [Install]
