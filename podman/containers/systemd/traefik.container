@@ -9,7 +9,6 @@ TimeoutStartSec=900
 Restart=always
 
 [Container]
-ContainerName=systemd-traefik
 Image=docker.io/library/traefik:latest
 AutoUpdate=registry
 Volume=${PODMAN_SOCKET}:/var/run/docker.sock:ro,z

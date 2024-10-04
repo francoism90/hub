@@ -9,7 +9,6 @@ TimeoutStartSec=900
 Restart=always
 
 [Container]
-ContainerName=systemd-hub-nginx
 Image=localhost/hub-nginx:latest
 AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
