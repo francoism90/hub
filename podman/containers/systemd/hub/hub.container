@@ -19,7 +19,6 @@ User=${UID}
 Group=${GID}
 UserNS=keep-id:uid=${UID},gid=${GID}
 Network=hub.network
-Network=traefik.network
 Label=traefik.enable=true
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true
