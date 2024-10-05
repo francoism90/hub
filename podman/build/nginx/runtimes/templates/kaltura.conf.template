@@ -66,13 +66,6 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
-    location ~ /proxy/([^/]+)/(.*) {
-        internal;
-        proxy_pass $1://$2;
-        proxy_set_header Host $host;
-        include /etc/nginx/config/proxy.conf;
-    }
-
     # dash
     location /dash/ {
         vod dash;
