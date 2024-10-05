@@ -13,17 +13,13 @@ upstream app {
 }
 
 upstream kaltura {
-    server localhost:1935 weight=4 max_fails=0;
-    keepalive 16;
-}
-
-upstream vod {
     server localhost:1936 weight=4 max_fails=0;
     keepalive 16;
 }
 
 server {
     listen 8080;
+    listen [::]:8080;
     http2 on;
 
     server_name ${NGINX_HOST};
@@ -44,7 +40,7 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://vod/;
+        proxy_pass http://kaltura/;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }

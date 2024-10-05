@@ -16,16 +16,16 @@ class ManifestController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('private'),
+            // new Middleware('private'),
             new Middleware('throttle:none'),
-            new Middleware('auth:sanctum'),
-            new Middleware('response_cache:600'),
+            // new Middleware('auth:sanctum'),
+            // new Middleware('response_cache:600'),
         ];
     }
 
     public function __invoke(Video $model, string $type): JsonResponse
     {
-        Gate::authorize('view', $model);
+        // Gate::authorize('view', $model);
 
         return response()->json(
             match ($type) {
