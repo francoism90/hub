@@ -67,7 +67,7 @@ server {
     }
 
     # dash
-    location /dash/ {
+    location ~ ^/dash/ {
         vod dash;
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
