@@ -28,6 +28,7 @@ class ManifestController extends Controller implements HasMiddleware
         // Gate::authorize('view', $model);
 
         logger('hit manafest');
+        logger($type);
 
         return response()->json(
             match ($type) {

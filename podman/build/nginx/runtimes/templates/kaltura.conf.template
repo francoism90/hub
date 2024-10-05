@@ -12,14 +12,6 @@ server {
 
     error_page 404 /index.html;
 
-    # vod
-    vod_mode mapped;
-    vod_upstream_location /json;
-
-    # vod path
-    vod_base_url ${NGINX_VOD_URL};
-    vod_segments_base_url ${NGINX_VOD_URL};
-
     # vod security
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
@@ -28,14 +20,25 @@ server {
         internal;
         proxy_pass http://app/$1;
         proxy_set_header Host $http_host;
-        proxy_cache short-zone;
-        proxy_cache_key "$host$request_uri $cookie_hub_session";
+        # proxy_cache short-zone;
+        # proxy_cache_key "$host$request_uri $cookie_hub_session";
         include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ /proxy/([^/]+)/(.*) {
+        internal;
+        proxy_pass http://app/$1;
+        proxy_set_header Host $http_host;
     }
 
     # dash
     location /dash/ {
         vod dash;
+        vod_mode mapped;
+        vod_base_url ${NGINX_VOD_URL};
+        vod_upstream_location /json;
+        vod_upstream_extra_args $args;
+        vod_segments_base_url ${NGINX_VOD_URL};
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
         vod_manifest_duration_policy min;
@@ -43,11 +46,13 @@ server {
         include /etc/nginx/config/cors.conf;
     }
 
-    # dash
+    # remote - dash
     location /remote/dash/ {
         vod dash;
+        vod_mode mapped;
+        vod_upstream_location /json;
+        vod_upstream_extra_args $args;
         vod_remote_upstream_location /proxy;
-        vod_upstream_extra_args "pathOnly=1";
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
         vod_manifest_duration_policy min;
