@@ -39,6 +39,7 @@ RUN apk add --no-cache --virtual .run-deps \
     libvpx \
     libwebp \
     mariadb-client \
+    minio-client \
     npm \
     numactl \
     opencore-amr \
