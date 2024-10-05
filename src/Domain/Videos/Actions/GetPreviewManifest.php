@@ -31,7 +31,10 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($media->getPath()),
+                (new Clip)
+                    ->type('source')
+                    ->path($media->getFullUrl())
+                    ->sourceType('http'),
             ])
         );
     }

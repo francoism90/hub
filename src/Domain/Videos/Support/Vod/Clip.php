@@ -6,9 +6,16 @@ use Illuminate\Support\Fluent;
 
 class Clip extends Fluent
 {
-    public function type(string $value): self
+    public function type(?string $value): self
     {
         $this->type = $value;
+
+        return $this;
+    }
+
+    public function sourceType(string $value): self
+    {
+        $this->sourceType = $value;
 
         return $this;
     }
