@@ -31,10 +31,10 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
+                // (new Clip)->type('source')->path($media->getFullUrl()),
                 (new Clip)
                     ->type('source')
-                    ->path($media->getFullUrl())
-                    ->sourceType('http'),
+                    ->path("/http/commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
             ])
         );
     }

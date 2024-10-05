@@ -11,8 +11,8 @@ server {
     index index.html;
 
     # authentication requests
-    auth_request /auth;
-    auth_request_set $auth_status $upstream_status;
+    # auth_request /auth;
+    # auth_request_set $auth_status $upstream_status;
 
     # auth
     location = /auth {
