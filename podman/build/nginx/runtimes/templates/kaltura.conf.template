@@ -15,22 +15,6 @@ server {
     # vod security
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
-    # json
-    location ~ /json/[^/]+/(.*) {
-        internal;
-        proxy_pass http://app/$1;
-        proxy_set_header Host $http_host;
-        # proxy_cache short-zone;
-        # proxy_cache_key "$host$request_uri $cookie_hub_session";
-        include /etc/nginx/config/proxy.conf;
-    }
-
-    location ~ /proxy/([^/]+)/(.*) {
-        internal;
-        proxy_pass http://app/$1;
-        proxy_set_header Host $http_host;
-    }
-
     # dash
     location /dash/ {
         vod dash;
@@ -46,6 +30,12 @@ server {
         include /etc/nginx/config/cors.conf;
     }
 
+    # thumb
+    # location ~ /thumb/[^/]+/(.*) {
+    #     vod thumb;
+    #     vod_thumb_accurate_positioning off;
+    # }
+
     # remote - dash
     location /remote/dash/ {
         vod dash;
@@ -60,11 +50,20 @@ server {
         include /etc/nginx/config/cors.conf;
     }
 
-    # thumb
-    # location ~ /thumb/[^/]+/(.*) {
-    #     vod thumb;
-    #     vod_thumb_accurate_positioning off;
-    # }
+    # json
+    location ^~ /json/dash/ {
+        internal;
+        proxy_pass http://app/;
+        proxy_set_header Host $http_host;
+        # proxy_cache short-zone;
+        # proxy_cache_key "$host$request_uri $cookie_hub_session";
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ /proxy/([^/]+)/(.*) {
+        internal;
+        proxy_pass $1://$2;
+    }
 
     # nginx status
     location = /nginx_status {
