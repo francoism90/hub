@@ -18,17 +18,6 @@ server {
     vod_remote_upstream_location /proxy;
     vod_upstream_extra_args $args;
 
-    # dash
-    location /dash/ {
-        vod dash;
-        vod_segment_duration 4000;
-        vod_dash_manifest_format segmenttemplate;
-        vod_manifest_duration_policy min;
-        vod_manifest_segment_durations_mode accurate;
-        include /etc/nginx/config/cors.conf;
-    }
-
-    # json
     location ^~ /json/dash/ {
         internal;
         proxy_pass http://app/;
@@ -40,15 +29,17 @@ server {
 
     location ~ /proxy/([^/]+)/(.*) {
         internal;
+        proxy_set_header Host $http_host;
         proxy_pass $1://$2;
     }
 
-    # nginx status
-    location = /nginx_status {
-        allow 127.0.0.1/32;
-        deny all;
-
-        stub_status on;
+    location ~ ^/dash/ {
+        vod dash;
+        vod_segment_duration 4000;
+        vod_dash_manifest_format segmenttemplate;
+        vod_manifest_duration_policy min;
+        vod_manifest_segment_durations_mode accurate;
+        include /etc/nginx/config/cors.conf;
     }
 
     # additional config

@@ -38,7 +38,7 @@ class GetPreviewManifest
 
     protected function convertPath(Media $media): string
     {
-        return str($media->getFullUrl())
+        return str($media->getUrl())
             ->replaceFirst('://', '/')
             ->prepend('/');
     }
