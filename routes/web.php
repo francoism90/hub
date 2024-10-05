@@ -19,9 +19,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', VideoIndexController::class)->name('home');
 
     // Media
-    Route::name('media.')->prefix('assets')->group(function () {
+    Route::name('media.')->group(function () {
+        Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
         Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
-        Route::get('/inline/{media}/{conversion?}', AssetController::class)->name('asset');
         Route::get('/responsive/{media}/{conversion?}', ResponsiveController::class)->name('responsive');
     });
 
