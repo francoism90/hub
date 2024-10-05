@@ -30,11 +30,15 @@ class ManifestController extends Controller implements HasMiddleware
         logger('hit manafest');
         logger($type);
 
-        return response()->json(
+        $foo = response()->json(
             match ($type) {
                 'preview' => app(GetPreviewManifest::class)->execute($model),
                 default => app(GetStreamManifest::class)->execute($model),
             }
-        );
+        , 200, [], JSON_UNESCAPED_SLASHES);
+
+        logger($foo);
+
+        return $foo;
     }
 }

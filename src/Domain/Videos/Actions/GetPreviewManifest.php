@@ -31,14 +31,14 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($this->convertPath($media)),
+                (new Clip)->type('source')->path($this->getClipUrl($media)),
             ])
         );
     }
 
-    protected function convertPath(Media $media): string
+    protected function getClipUrl(Media $media): string
     {
-        return str($media->getUrl())
+        return str($media->getFullUrl())
             ->replaceFirst('://', '/')
             ->prepend('/');
     }
