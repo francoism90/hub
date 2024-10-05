@@ -24,7 +24,7 @@ server {
 
     location ^~ /json/dash/ {
         internal;
-        proxy_pass http://app/;
+        proxy_pass http://octane/;
         proxy_set_header Host $http_host;
         # proxy_cache short-zone;
         # proxy_cache_key "$host$request_uri $cookie_hub_session";

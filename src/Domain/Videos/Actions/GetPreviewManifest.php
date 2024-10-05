@@ -38,8 +38,6 @@ class GetPreviewManifest
 
     protected function getClipUrl(Media $media): string
     {
-        return str($media->getFullUrl())
-            ->replaceFirst('://', '/')
-            ->prepend('/');
+        return '/http/systemd-hub-minio:9000/conversions/'.$media->getPath();
     }
 }
