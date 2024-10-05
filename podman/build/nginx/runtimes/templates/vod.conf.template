@@ -1,6 +1,5 @@
 server {
     listen 1936 reuseport;
-    listen [::]:1936 reuseport;
     http2 on;
 
     server_name localhost;
@@ -66,4 +65,5 @@ server {
 
     # additional config
     include /etc/nginx/config/general.conf;
+    include /etc/nginx/config/vod.conf;
 }

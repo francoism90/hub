@@ -1,4 +1,4 @@
-resolver ${NGINX_LOCAL_RESOLVERS} valid=300s;
+resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
 
 upstream octane {
     server systemd-hub-app:8000 weight=5 max_fails=3 fail_timeout=30s;
@@ -24,7 +24,6 @@ upstream vod {
 
 server {
     listen 8080;
-    listen [::]:8080;
     http2 on;
 
     server_name ${NGINX_HOST};
@@ -92,12 +91,12 @@ server {
 
     # additional config
     include /etc/nginx/config/general.conf;
+    include /etc/nginx/config/vod.conf;
 }
 
 # websocket
 server {
     listen 8080;
-    listen [::]:8080;
     http2 on;
 
     server_name ${NGINX_WS_HOST};
