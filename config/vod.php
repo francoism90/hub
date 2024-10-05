@@ -24,7 +24,10 @@ return [
 
     'dash' => [
         'url' => env('VOD_DASH_URL'),
+
         'path' => env('VOD_DASH_PATH', 'dash'),
+
+        'remote_path' => env('VOD_DASH_REMOTE_PATH', 'remote/dash'),
     ],
 
 ];

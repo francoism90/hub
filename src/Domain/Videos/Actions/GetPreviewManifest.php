@@ -31,15 +31,12 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($this->getClipUrl($media)),
-                // (new Clip)
-                //     ->type('source')
-                //     ->path("/http/commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
+                (new Clip)->type('source')->path($this->convertPath($media)),
             ])
         );
     }
 
-    protected function getClipUrl(Media $media): string
+    protected function convertPath(Media $media): string
     {
         return str($media->getFullUrl())
             ->replaceFirst('://', '/')
