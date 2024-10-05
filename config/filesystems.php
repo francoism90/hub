@@ -36,14 +36,6 @@ return [
             'throw' => true,
         ],
 
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => true,
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -55,7 +47,24 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'visibility' => 'private',
             'throw' => true,
-            'read-only' => true,
+            'read-only' => false,
+        ],
+
+        'public' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => 'assets',
+            'url' => env('AWS_URL') . '/assets',
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'visibility' => 'public',
+            'throw' => true,
+            'read-only' => false,
+            'options' => [
+                'CacheControl' => 'max-age=604800, public',
+            ],
         ],
 
         'conversions' => [
