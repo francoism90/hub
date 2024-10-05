@@ -23,19 +23,15 @@ class ManifestController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Video $model, string $type): JsonResponse
+    public function __invoke(Video $model, string $type)
     {
         Gate::authorize('view', $model);
 
-        $foo = response()->json(
+        return response()->json(
             match ($type) {
                 'preview' => app(GetPreviewManifest::class)->execute($model),
                 default => app(GetStreamManifest::class)->execute($model),
             }
         , 200, [], JSON_UNESCAPED_SLASHES);
-
-        logger($foo);
-
-        return $foo;
     }
 }

@@ -70,7 +70,8 @@ server {
     location ~ /proxy/([^/]+)/(.*) {
         internal;
         proxy_pass $1://$2;
-        resolver 8.8.8.8;
+        proxy_set_header Host $host;
+        include /etc/nginx/config/proxy.conf;
     }
 
     # dash
