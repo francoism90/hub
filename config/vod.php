@@ -13,6 +13,6 @@ return [
 
     'url' => env('VOD_URL'),
 
-    'path' => env('VOD_PATH', 'mapped/dash'),
+    'path' => env('VOD_PATH', 'dash'),
 
 ];
