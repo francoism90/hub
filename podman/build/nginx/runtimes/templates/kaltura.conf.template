@@ -15,7 +15,6 @@ server {
     # vod settings
     vod_mode mapped;
     vod_upstream_location /json;
-    vod_remote_upstream_location /proxy;
     vod_expires 1d;
     vod_expires_live 1d;
     vod_expires_live_time_dependent 1d;
@@ -41,8 +40,8 @@ server {
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
     # authentication requests
-    # auth_request /auth;
-    # auth_request_set $auth_status $upstream_status;
+    auth_request /auth;
+    auth_request_set $auth_status $upstream_status;
 
     # auth
     location = /auth {
