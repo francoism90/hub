@@ -48,7 +48,7 @@ server {
         internal;
         proxy_pass http://app/subscription;
         proxy_pass_request_body off;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $request_uri;
         proxy_cache short-zone;
@@ -60,9 +60,16 @@ server {
     location ~ /json/[^/]+/(.*) {
         internal;
         proxy_pass http://app/$1;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         proxy_cache_key "$host$request_uri $cookie_hub_session";
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # json
+    location ~ /proxy/[^/]+/(.*) {
+        internal;
+        proxy_pass $1://$2;
         include /etc/nginx/config/proxy.conf;
     }
 
