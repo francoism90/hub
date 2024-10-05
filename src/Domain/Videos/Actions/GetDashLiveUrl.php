@@ -4,7 +4,7 @@ namespace Domain\Videos\Actions;
 
 use Domain\Videos\Models\Video;
 
-class GetDashUrl
+class GetDashLiveUrl
 {
     public function execute(Video $video, string $type): string
     {
@@ -19,6 +19,6 @@ class GetDashUrl
 
     protected function getManifestUrl(): string
     {
-        return implode('/', [config('vod.url'), config('vod.dash.path')]);
+        return implode('/', [config('vod.live_url'), config('vod.dash.path')]);
     }
 }

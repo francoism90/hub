@@ -13,6 +13,8 @@ return [
 
     'url' => env('VOD_URL'),
 
+    'live_url' => env('VOD_LIVE_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | VOD DASH Parameters
@@ -23,11 +25,7 @@ return [
     */
 
     'dash' => [
-        'url' => env('VOD_DASH_URL'),
-
         'path' => env('VOD_DASH_PATH', 'dash'),
-
-        'remote_path' => env('VOD_DASH_REMOTE_PATH', 'remote/dash'),
     ],
 
 ];

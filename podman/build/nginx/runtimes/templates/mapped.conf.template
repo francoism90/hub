@@ -1,0 +1,62 @@
+server {
+    listen 1935 reuseport;
+    listen [::]:1935 reuseport;
+    http2 on;
+
+    server_name localhost;
+    set $base /var/www;
+    root $base/html;
+
+    # index
+    index index.html;
+
+    error_page 404 /index.html;
+
+    # vod settings
+    vod_mode mapped;
+    vod_upstream_location /json;
+    vod_upstream_extra_args $args;
+    vod_base_url ${NGINX_VOD_URL};
+    vod_segments_base_url ${NGINX_VOD_URL};
+
+    # vod security
+    vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
+
+    # dash
+    location /dash/ {
+        vod dash;
+        vod_segment_duration 4000;
+        vod_dash_manifest_format segmenttemplate;
+        vod_manifest_duration_policy min;
+        vod_manifest_segment_durations_mode accurate;
+        include /etc/nginx/config/cors.conf;
+    }
+
+    # thumb
+    # location ~ /thumb/[^/]+/(.*) {
+    #     vod thumb;
+    #     vod_thumb_accurate_positioning off;
+    # }
+
+    # json
+    location ^~ /json/dash/ {
+        internal;
+        proxy_pass http://app/;
+        proxy_set_header Host $http_host;
+        # proxy_cache short-zone;
+        # proxy_cache_key "$host$request_uri $cookie_hub_session";
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # nginx status
+    location = /nginx_status {
+        allow 127.0.0.1/32;
+        deny all;
+
+        stub_status on;
+    }
+
+    # additional config
+    include /etc/nginx/config/general.conf;
+    include /etc/nginx/config/vod.conf;
+}

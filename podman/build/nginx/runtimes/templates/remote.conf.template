@@ -1,6 +1,6 @@
 server {
-    listen 1935 reuseport;
-    listen [::]:1935 reuseport;
+    listen 1936 reuseport;
+    listen [::]:1936 reuseport;
     http2 on;
 
     server_name localhost;
@@ -13,44 +13,19 @@ server {
     error_page 404 /index.html;
 
     # vod settings
-    vod_base_url ${NGINX_VOD_URL};
-    vod_segments_base_url ${NGINX_VOD_URL};
-
-    # vod security
-    vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
+    vod_mode mapped;
+    vod_upstream_location /json;
+    vod_remote_upstream_location /proxy;
+    vod_upstream_extra_args $args;
 
     # dash
     location /dash/ {
         vod dash;
-        vod_mode mapped;
-        vod_upstream_location /json;
-        vod_upstream_extra_args $args;
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
         vod_manifest_duration_policy min;
         vod_manifest_segment_durations_mode accurate;
         include /etc/nginx/config/cors.conf;
-    }
-
-    # thumb
-    # location ~ /thumb/[^/]+/(.*) {
-    #     vod thumb;
-    #     vod_thumb_accurate_positioning off;
-    # }
-
-    # remote - dash
-    location /remote/dash/ {
-        vod dash;
-        vod_mode mapped;
-        vod_upstream_location /json;
-        vod_remote_upstream_location /proxy;
-        vod_upstream_extra_args $args;
-        vod_segment_duration 4000;
-        vod_dash_manifest_format segmenttemplate;
-        vod_manifest_duration_policy min;
-        vod_manifest_segment_durations_mode accurate;
-        include /etc/nginx/config/cors.conf;
-        rewrite ^/remote/dash(.*)$ $1 break;
     }
 
     # json

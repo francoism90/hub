@@ -12,13 +12,18 @@ upstream app {
     server localhost:8080 weight=5 max_fails=3 fail_timeout=30s;
 }
 
-upstream kaltura {
+upstream mapped {
     server localhost:1935 weight=4 max_fails=0;
     keepalive 16;
 }
 
-upstream vod {
+upstream remote {
     server localhost:1936 weight=4 max_fails=0;
+    keepalive 16;
+}
+
+upstream vod {
+    server localhost:8081 weight=4 max_fails=0;
     keepalive 16;
 }
 
@@ -45,7 +50,14 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://kaltura/;
+        proxy_pass http://vod/;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # remote
+    location ^~ /live/ {
+        proxy_pass http://remote/;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
