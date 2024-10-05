@@ -4,15 +4,27 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | VOD Parameters
+    | VOD URL
     |--------------------------------------------------------------------------
     |
-    | This configures the VOD parameters.
+    | This configures the VOD URL.
     |
     */
 
     'url' => env('VOD_URL'),
 
-    'path' => env('VOD_PATH', 'dash'),
+    /*
+    |--------------------------------------------------------------------------
+    | VOD DASH Parameters
+    |--------------------------------------------------------------------------
+    |
+    | This configures the VOD DASH parameters.
+    |
+    */
+
+    'dash' => [
+        'url' => env('VOD_DASH_URL'),
+        'path' => env('VOD_DASH_PATH', 'dash'),
+    ],
 
 ];

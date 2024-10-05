@@ -10,16 +10,26 @@ class GetManifestUrl
     {
         abort_if(! $video->hasMedia('clips'), 404);
 
-        $route = trim(route('videos.manifest', compact('video', 'type'), false), '/');
+        $path = str(route('videos.manifest', compact('video', 'type'), false))->trim('/');
 
-        return implode('/', [$this->getVodUrl(), $route, 'manifest.mpd']);
+        return implode('/', [$this->getVodUrl(), $path, 'manifest.mpd']);
     }
 
     protected function getVodUrl(): string
     {
         return implode('/', [
-            config('vod.url'),
-            config('vod.path'),
+            $this->getVodDashUrl(),
+            $this->getVodDashPath(),
         ]);
+    }
+
+    protected function getVodDashUrl(): string
+    {
+        return config('vod.dash.url') ?: config('vod.url');
+    }
+
+    protected function getVodDashPath(): string
+    {
+        return config('vod.dash.path');
     }
 }
