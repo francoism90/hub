@@ -4,6 +4,7 @@ Requires=traefik.service
 After=traefik.service
 
 [Service]
+TimeoutStartSec=300
 Restart=always
 
 [Container]
@@ -12,8 +13,8 @@ AutoUpdate=registry
 EnvironmentFile=%h/.config/containers/systemd/hub/config/minio.env
 Volume=hub-minio:/data/minio:rw,Z,U
 Exec=minio server /data/minio --console-address ":8900"
-Network=traefik.network
 Network=hub.network
+Network=traefik.network
 ExposeHostPort=8900
 ExposeHostPort=9000
 Label=traefik.enable=true
