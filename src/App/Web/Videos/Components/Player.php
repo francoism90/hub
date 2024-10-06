@@ -3,7 +3,6 @@
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
 use Livewire\Attributes\Session;
 use Livewire\Component;
@@ -26,15 +25,6 @@ class Player extends Component
     public function placeholder(array $params = []): View
     {
         return view('app.videos.player.placeholder', $params);
-    }
-
-    public function updateHistory(?float $time = null): void
-    {
-        if ((! $user = auth()->user()) || ! is_numeric($time)) {
-            return;
-        }
-
-        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string

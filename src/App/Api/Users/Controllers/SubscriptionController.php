@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Api\Videos\Controllers;
+namespace App\Api\Users\Controllers;
 
+use App\Api\Users\Resources\UserResource;
 use Foundation\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
 
 class SubscriptionController extends Controller implements HasMiddleware
 {
@@ -19,10 +21,10 @@ class SubscriptionController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(): JsonResponse
+    public function __invoke(Request $request): UserResource
     {
-        // TODO: actually check subscription
+        Gate::authorize('update', $request->user());
 
-        return response()->json(['success' => true]);
+        return new UserResource($request->user());
     }
 }
