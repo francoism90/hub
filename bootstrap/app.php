@@ -50,7 +50,6 @@ $app = Application::configure(basePath: $basePath)
         $exceptions->render(fn (NoPrefixedModelFound $e) => abort(404));
     })
     ->withCommands([
-        \Foundation\Console\Commands\AppInstall::class,
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
         \Support\Scout\Commands\SyncIndexes::class,

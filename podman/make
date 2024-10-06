@@ -1,9 +1,0 @@
-#!/bin/sh
-
-podman build \
-    -t hub-nginx:latest \
-    -f build/nginx/Dockerfile
-
-podman build \
-    -t hub-app:latest \
-    -f build/app/Dockerfile
