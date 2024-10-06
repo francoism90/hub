@@ -23,6 +23,11 @@ upstream vod {
     keepalive 16;
 }
 
+upstream live {
+    server localhost:8082 weight=3 max_fails=0;
+    keepalive 16;
+}
+
 server {
     listen 8080;
     listen [::]:8080;
@@ -51,9 +56,9 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
-    # remote
+    # live
     location ^~ /live/ {
-        proxy_pass http://remote/;
+        proxy_pass http://live/;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }

@@ -1,6 +1,6 @@
 server {
-    listen 8081 reuseport;
-    listen [::]:8081 reuseport;
+    listen 8082 reuseport;
+    listen [::]:8082 reuseport;
     http2 on;
 
     server_name localhost;
@@ -27,34 +27,34 @@ server {
 
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
-        proxy_pass http://mapped;
-        proxy_cache long-zone;
+        proxy_pass http://remote;
+        proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
-        proxy_pass http://mapped;
+        proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH init segment
     location ~ ^.*/init-[^/]+\.mp4$ {
-        proxy_pass http://mapped;
-        proxy_cache long-zone;
+        proxy_pass http://remote;
+        proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH manifest
     location ~ ^.*\.mpd$ {
-        proxy_pass http://mapped;
-        proxy_cache long-zone;
+        proxy_pass http://remote;
+        proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # default proxy to origin (no cache)
     location / {
-        proxy_pass http://mapped;
+        proxy_pass http://remote;
         include /etc/nginx/config/proxy.conf;
     }
 
