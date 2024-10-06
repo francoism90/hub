@@ -16,29 +16,20 @@ class ManifestController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('private'),
+            new Middleware('private'),
             new Middleware('throttle:none'),
-            // new Middleware('auth:sanctum'),
-            // new Middleware('response_cache:600'),
+            new Middleware('auth:sanctum'),
+            new Middleware('response_cache:600'),
         ];
     }
 
     public function __invoke(Video $model, string $type): JsonResponse
     {
-        // Gate::authorize('view', $model);
+        Gate::authorize('view', $model);
 
-        logger('hit manafest');
-        logger($type);
-
-        $foo = response()->json(
-            match ($type) {
-                'preview' => app(GetPreviewManifest::class)->execute($model),
-                default => app(GetStreamManifest::class)->execute($model),
-            }
-        , 200, [], JSON_UNESCAPED_SLASHES);
-
-        logger($foo);
-
-        return $foo;
+        return response()->json(match ($type) {
+            'preview' => app(GetPreviewManifest::class)->execute($model),
+            default => app(GetStreamManifest::class)->execute($model),
+        }, 200, [], JSON_UNESCAPED_SLASHES);
     }
 }

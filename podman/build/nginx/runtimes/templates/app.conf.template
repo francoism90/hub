@@ -106,6 +106,7 @@ server {
 # websocket
 server {
     listen 8080;
+    listen [::]:8080;
     http2 on;
 
     server_name ${NGINX_WS_HOST};

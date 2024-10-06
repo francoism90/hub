@@ -8,7 +8,6 @@ use Domain\Videos\Support\Vod\Clip;
 use Domain\Videos\Support\Vod\Manifest;
 use Domain\Videos\Support\Vod\Sequence;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 
 class GetPreviewManifest
 {
