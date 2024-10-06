@@ -90,13 +90,6 @@ To stop Hub:
 systemctl --user stop hub
 ```
 
-To update/rebuild the Docker images:
-
-```bash
-cd ~/projects/hub/podman
-./update
-```
-
 ## Shell utility
 
 Hub provides the shell utility named `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments made for Podman Quadlet.
