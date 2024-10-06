@@ -35,3 +35,12 @@ mc mb myminio/local
 mc anonymous set download myminio/assets
 mc anonymous set download myminio/conversions
 ```
+
+## Migrate to MinIO
+
+To copy any local generated conversions:
+
+```bash
+cd ~/projects/hub/storage/app
+mc cp --recursive conversions/ myminio/conversions/ --insecure
+```
