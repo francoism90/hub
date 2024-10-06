@@ -32,12 +32,12 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($this->getS3Url($media)),
+                (new Clip)->type('source')->path($this->convertUrl($media)),
             ])
         );
     }
 
-    protected function getS3Url(Media $media): string
+    protected function convertUrl(Media $media): string
     {
         $url = config('filesystems.disks.conversions.endpoint');
 
