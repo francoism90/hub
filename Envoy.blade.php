@@ -97,8 +97,8 @@
 
 @task('build-containers', ['on' => 'remote'])
     cd {{ $remotePath }}/build-tools/podman/images
-    podman build -t hub-app:latest -f app/Dockerfile --no-cache
-    podman build -t hub-nginx:latest -f nginx/Dockerfile --no-cache
+    podman build -t hub-app:latest -f app/Dockerfile {{ $args }}
+    podman build -t hub-nginx:latest -f nginx/Dockerfile {{ $args }}
 @endtask
 
 @task('restart-containers', ['on' => 'remote'])
