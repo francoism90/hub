@@ -31,8 +31,19 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($media->getPath()),
+                (new Clip)->type('source')->path($this->convertPath($media)),
             ])
         );
+    }
+
+    protected function convertPath(Media $media): string
+    {
+        $url = config('filesystems.disks.conversions.endpoint');
+
+        $bucket = config('filesystems.disks.conversions.bucket');
+
+        return str("/{$bucket}/{$media->getPath()}")
+            ->prepend($url)
+            ->replaceFirst('http://', '/http/');
     }
 }

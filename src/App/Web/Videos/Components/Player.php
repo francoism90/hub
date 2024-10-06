@@ -5,6 +5,7 @@ namespace App\Web\Videos\Components;
 use App\Web\Videos\Concerns\WithVideo;
 use Domain\Playlists\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
+use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;
 use Livewire\Component;
 
@@ -28,9 +29,10 @@ class Player extends Component
         return view('app.videos.player.placeholder', $params);
     }
 
-    public function updateHistory(?float $time = null): void
+    #[Renderless]
+    public function syncSession(?float $time = null): void
     {
-        if ((! $user = auth()->user()) || ! is_numeric($time)) {
+        if ((! $user = auth()->user())) {
             return;
         }
 

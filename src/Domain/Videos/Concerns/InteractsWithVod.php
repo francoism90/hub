@@ -4,7 +4,7 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
 use Domain\Users\Models\User;
-use Domain\Videos\Actions\GetManifestUrl;
+use Domain\Videos\Actions\GetDashUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -98,17 +98,17 @@ trait InteractsWithVod
         )->shouldCache();
     }
 
-    public function preview(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => app(GetManifestUrl::class)->execute($this, 'preview')
-        )->shouldCache();
-    }
-
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetManifestUrl::class)->execute($this, 'stream')
+            get: fn () => app(GetDashUrl::class)->execute($this, type: 'stream')
+        )->shouldCache();
+    }
+
+    public function preview(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => app(GetDashUrl::class)->execute($this, type: 'preview', live: true)
         )->shouldCache();
     }
 

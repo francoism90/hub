@@ -13,6 +13,13 @@ class Clip extends Fluent
         return $this;
     }
 
+    public function sourceType(string $value): self
+    {
+        $this->sourceType = $value;
+
+        return $this;
+    }
+
     public function path(string $value): self
     {
         $this->path = $value;

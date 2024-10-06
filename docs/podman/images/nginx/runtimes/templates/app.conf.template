@@ -1,0 +1,124 @@
+resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
+
+upstream octane {
+    server systemd-hub-app:8000 weight=5 max_fails=3 fail_timeout=30s;
+}
+
+upstream reverb {
+    server systemd-hub-app:6001 weight=4 max_fails=3 fail_timeout=30s;
+}
+
+upstream mapped {
+    server localhost:1935 weight=3 max_fails=0;
+    keepalive 16;
+}
+
+upstream remote {
+    server localhost:1936 weight=3 max_fails=0;
+    keepalive 16;
+}
+
+upstream vod {
+    server localhost:8081 weight=3 max_fails=0;
+    keepalive 16;
+}
+
+upstream live {
+    server localhost:8082 weight=3 max_fails=0;
+    keepalive 16;
+}
+
+server {
+    listen 8080;
+    listen [::]:8080;
+    http2 on;
+
+    server_name ${NGINX_HOST};
+    set $base /app;
+    root $base/public;
+
+    # security
+    include /etc/nginx/config/security.conf;
+
+    # index
+    index index.php;
+
+    # error
+    error_page 404 /index.php;
+
+    # service worker
+    add_header Service-Worker-Allowed /;
+
+    # vod
+    location ^~ /vod/ {
+        proxy_pass http://vod/;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # live
+    location ^~ /live/ {
+        proxy_pass http://live/;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # livewire
+    location ^~ /livewire {
+        try_files $uri $uri/ @octane;
+    }
+
+    # assets, media
+    location ~ ^/(build/assets|storage)/ {
+        expires 7d;
+        access_log off;
+        add_header Cache-Control public;
+        break;
+    }
+
+    # pwa
+    location /manifest.webmanifest {
+        types { } default_type "application/manifest+json webmanifest;";
+        return 301 $scheme://$http_host/build/manifest.webmanifest;
+    }
+
+    # octane
+    location /index.php {
+        try_files /not_exists @octane;
+    }
+
+    location / {
+        try_files $uri $uri/ @octane;
+    }
+
+    location @octane {
+        set $suffix "";
+
+        if ($uri = /index.php) {
+            set $suffix ?$query_string;
+        }
+
+        proxy_pass http://octane$suffix;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # additional config
+    include /etc/nginx/config/general.conf;
+}
+
+# websocket
+server {
+    listen 8080;
+    listen [::]:8080;
+    http2 on;
+
+    server_name ${NGINX_WS_HOST};
+
+    # root
+    location / {
+        proxy_pass http://reverb;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+}

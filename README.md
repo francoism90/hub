@@ -4,7 +4,7 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** This is a personal project, and may contain breaking changes. Use at your own risk.
+> **NOTE:** This is a personal project, and is still in development. Use at your own risk!
 
 ## Demo
 
@@ -38,7 +38,7 @@ This is the preferred stack, please submit a PR if you would like to support oth
 
 ### Clone repository
 
-Clone the repository, for example to `/home/myuser/projects`:
+Clone the repository, for example to `~/projects`:
 
 ```bash
 cd ~/projects
@@ -64,17 +64,22 @@ To access Hub locally, make sure to create the following `/etc/hosts` entries:
 
 ### Podman Quadlet
 
-Please read the [dedicated guide](https://github.com/francoism90/hub/tree/main/podman) for usage with Podman Quadlet.
+Please read the [following guide](docs/podman/README.md) for usage with Podman Quadlet.
 
-## Usage
+### MinIO
 
-Start Hub:
+Please read the [following guide](docs/minio/README.md) for usage with MinIO.
+
+### First run
+
+Make sure Hub is up-and-running:
 
 ```bash
-systemctl --user start hub
+systemctl --user restart hub
+systemctl --user status hub
 ```
 
-On first installation, enter the `systemd-hub-app` container (`hub shell`), and execute the followings commands:
+Enter the `systemd-hub-app` container (`hub shell`), and execute the followings commands:
 
 ```bash
 $ podman exec -it systemd-hub-app sh
@@ -86,9 +91,11 @@ php artisan app:install
 php artisan user:create
 ```
 
-The Hub instance should now be available at <https://hub.lan>.
+## Usage
 
-The following services are accessible when being a super-admin:
+The Hub instance should be available at <https://hub.lan>.
+
+The following services are only accessible when being a super-admin:
 
 - <https://hub.lan/horizon> - Laravel Horizon
 - <https://hub.lan/pulse> - Laravel Pulse
@@ -98,10 +105,10 @@ The following services are accessible when being a super-admin:
 
 > **TIP:** Run `hub a` and `hub help` for all available commands.
 
-Make sure to set permissions:
+Make sure to set correct permissions:
 
 ```bash
-chcon -Rt container_file_t ~/Code/hub/storage/app/import/*
+chcon -Rt container_file_t ~/project/hub/storage/app/import/*
 ```
 
 To import videos:
@@ -122,40 +129,18 @@ To create an user:
 hub a user:create
 ```
 
-To force removal of soft-deleted videos:
+To force the removal of soft-deleted videos:
 
-> **WARNING:** Only run this command when you don't want to restore deleted videos!
+> **WARNING:** Only run this command when you don't want to restore any deleted videos!
 
 ```bash
 hub a videos:clean
 ```
 
-## Updating
+## Upgrading
 
-> **NOTE:** Please read the [guide](https://github.com/francoism90/hub/tree/main/podman) for more details.
+See [UPGRADING.md](UPGRADING.md)
 
-To retrieve the latest changes:
+## Deployment
 
-```bash
-cd ~/projects/hub
-git pull
-```
-
-To rebuild the Docker containers:
-
-```bash
-cd ~/projects/hub/podman
-./update
-systemctl --user restart hub
-```
-
-To update the application:
-
-```bash
-$ hub shell
-composer install
-yarn install && yarn run build
-php artisan app:update --assets
-```
-
-> **TIP:** See `Envoy.blade.php` for deploy details.
+See [Envoy.blade.php](Envoy.blade.php) for deployment details.

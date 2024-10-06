@@ -27,11 +27,9 @@ class ManifestController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $model);
 
-        return response()->json(
-            match ($type) {
-                'preview' => app(GetPreviewManifest::class)->execute($model),
-                default => app(GetStreamManifest::class)->execute($model),
-            }
-        );
+        return response()->json(match ($type) {
+            'preview' => app(GetPreviewManifest::class)->execute($model),
+            default => app(GetStreamManifest::class)->execute($model),
+        }, 200, [], JSON_UNESCAPED_SLASHES);
     }
 }

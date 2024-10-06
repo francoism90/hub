@@ -2,7 +2,7 @@
 <script>
     Alpine.data("preview", () => ({
         instance: undefined,
-        show: false,
+        ready: false,
 
         async init() {
             // Make sure polyfills are always installed
@@ -13,7 +13,7 @@
         },
 
         async destroy() {
-            this.show = false;
+            this.ready = false;
 
             await this.unload();
         },
@@ -76,7 +76,7 @@
             } catch (e) {}
 
             // Set ready state
-            this.show = true;
+            this.ready = true;
         },
 
         async unload() {
