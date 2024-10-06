@@ -31,12 +31,12 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($this->convertUrl($media)),
+                (new Clip)->type('source')->path($this->convertPath($media)),
             ])
         );
     }
 
-    protected function convertUrl(Media $media): string
+    protected function convertPath(Media $media): string
     {
         $url = config('filesystems.disks.conversions.endpoint');
 
