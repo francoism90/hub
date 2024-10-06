@@ -19,6 +19,8 @@ server {
         internal;
         proxy_pass http://octane/api/v1/subscription;
         proxy_pass_request_body off;
+        proxy_cache short-zone;
+        proxy_cache_key "$http_authorization$cookie_hub_session";
         proxy_set_header Host $host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
