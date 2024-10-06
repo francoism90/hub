@@ -14,7 +14,6 @@
     generate-assets
     update-application
     optimize-application
-    restart-services
     finish-deploy
 @endstory
 
@@ -22,7 +21,6 @@
     maintenance-mode
     update-repository
     build-containers
-    restart-services
     finish-deploy
 @endstory
 
@@ -51,37 +49,13 @@
 
 @task('update-application', ['on' => 'remote'])
     podman exec -it systemd-hub-app sh -c "
-        php artisan optimize:clear;
-        php artisan storage:link;
-        php artisan migrate --force --seed;
-        php artisan permission:cache-reset;
-        php artisan structures:refresh;
-        php artisan scout:sync-index-settings;
-
-        @if ($assets)
-            php artisan google-fonts:fetch
-        @endif
+        php artisan app:update;
     ";
 @endtask
 
 @task('optimize-application', ['on' => 'remote'])
     podman exec -it systemd-hub-app sh -c "
-        php artisan optimize;
-        php artisan icons:cache;
-        php artisan config:cache;
-        php artisan route:cache;
-        php artisan view:cache;
-        php artisan event:cache;
-    ";
-@endtask
-
-@task('restart-services', ['on' => 'remote'])
-    podman exec -it systemd-hub-app sh -c "
-        php artisan octane:reload;
-        php artisan horizon:terminate;
-        php artisan reverb:restart;
-        php artisan pulse:restart;
-        php artisan pulse:clear --force;
+        php artisan app:optimize;
     ";
 @endtask
 
