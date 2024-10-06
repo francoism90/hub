@@ -4,7 +4,6 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
 use Domain\Users\Models\User;
-use Domain\Videos\Actions\GetDashLiveUrl;
 use Domain\Videos\Actions\GetDashUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
@@ -109,7 +108,7 @@ trait InteractsWithVod
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetDashLiveUrl::class)->execute($this, type: 'preview')
+            get: fn () => app(GetDashUrl::class)->execute($this, type: 'preview', live: true)
         )->shouldCache();
     }
 

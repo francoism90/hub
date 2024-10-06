@@ -3,11 +3,10 @@
     ->ignore()
     ->class('relative size-full')
     ->attributes([
-        'x-data' => "player('{$manifest}', {$timecode})",
+        'x-data' => 'player',
         'x-cloak',
         'x-ref' => 'container',
-        'x-show' => 'ready',
-        'x-transition.opacity',
+        'x-intersect' => "load('{$manifest}', '{$timecode}')",
         'x-on:click' => 'showOverlay',
         'x-on:mousemove' => 'showOverlay',
         'x-on:touchmove' => 'showOverlay',
@@ -18,7 +17,8 @@
             ->class('absolute z-0 inset-0 size-full bg-black')
             ->attributes([
                 'x-ref' => 'video',
-                'x-on:timeupdate.throttle.750ms' => 'sync',
+                'x-show' => 'ready',
+                'x-transition.opacity',
                 'playsinline',
                 'autoplay',
             ]),

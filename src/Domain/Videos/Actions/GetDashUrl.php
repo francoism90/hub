@@ -6,19 +6,21 @@ use Domain\Videos\Models\Video;
 
 class GetDashUrl
 {
-    public function execute(Video $video, string $type): string
+    public function execute(Video $video, string $type, ?bool $live = false): string
     {
         abort_if(! $video->hasMedia('clips'), 404);
 
-        $url = $this->getManifestUrl();
+        $url = $this->getManifestUrl($live);
 
-        $path = str(route('videos.manifest', compact('video', 'type'), false))->trim('/');
+        $path = str(route('api.videos.manifest', compact('video', 'type'), false))->trim('/');
 
         return implode('/', [$url, $path, 'manifest.mpd']);
     }
 
-    protected function getManifestUrl(): string
+    protected function getManifestUrl(?bool $live = false): string
     {
-        return implode('/', [config('vod.url'), config('vod.dash.path')]);
+        $url = $live ? config('vod.live_url') : config('vod.url');
+
+        return implode('/', [$url, config('vod.dash.path')]);
     }
 }

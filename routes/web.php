@@ -3,7 +3,6 @@
 use App\Api\Media\Controllers\AssetController;
 use App\Api\Media\Controllers\DownloadController;
 use App\Api\Media\Controllers\ResponsiveController;
-use App\Api\Videos\Controllers\ManifestController;
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Lists\Controllers\ListViewController;
@@ -16,6 +15,7 @@ use App\Web\Videos\Controllers\VideoViewController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Home
     Route::get('/', VideoIndexController::class)->name('home');
 
     // Media
@@ -30,7 +30,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', VideoIndexController::class)->name('index');
         Route::get('/{video}', VideoViewController::class)->name('view');
         Route::get('/{video}/edit', VideoEditController::class)->name('edit');
-        Route::get('/{video}/manifest/{type}', ManifestController::class)->name('manifest');
     });
 
     // Library

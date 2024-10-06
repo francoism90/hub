@@ -2,16 +2,15 @@
 
 {{ html()
     ->element('article')
-    ->attribute('x-data')
+    ->data('manifest', $video->preview)
+    ->attribute('x-data', '{ manifest: $el.dataset.manifest }')
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->children([
         html()->a()->link('videos.view', $video)->class('relative block w-full h-48 min-h-48 max-h-48')->children([
             html()
                 ->div()
                 ->class('absolute inset-0 z-30 shrink-0 size-full bg-transparent')
-                ->data('manifest', $video->preview)
                 ->attributes([
-                    'x-data' => '{ manifest: $el.dataset.manifest }',
                     'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
                     'x-on:mouseleave' => 'unload()',
                     'x-on:touchstart.passive' => 'load($refs.video, manifest)',
@@ -46,7 +45,7 @@
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
-                    'x-show' => 'show',
+                    'x-show' => 'ready',
                     'x-transition.opacity',
                     'playsinline',
                     'autoplay',

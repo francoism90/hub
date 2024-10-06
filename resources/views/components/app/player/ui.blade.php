@@ -1,6 +1,6 @@
 @script
 <script>
-    Alpine.data("player", (manifest = null, timecode = 0) => ({
+    Alpine.data("player", () => ({
         instance: undefined,
         manager: undefined,
         ready: false,
@@ -10,8 +10,8 @@
         buffered: undefined,
         duration: 0.0,
         currentTime: 0.0,
-        fullscreen: false,
         textTrack: $wire.entangle('caption'),
+        fullscreen: false,
         overlay: true,
         idle: 0.0,
 
@@ -22,10 +22,7 @@
             // Create instances
             await this.create();
 
-            // Load manifest
-            await this.load(manifest, timecode);
-
-            // Create watchers
+            // Init watchers
             this.$watch('textTrack', () => this.setTextTrack());
         },
 
@@ -78,6 +75,7 @@
             try {
                 const container = this.$refs.container;
                 const video = this.$refs.video;
+                const h = Alpine.throttle(() => this.sync(), 750);
 
                 // Make sure player exists
                 await this.create();
@@ -100,10 +98,15 @@
                     this.stats = this.instance.getStats();
                 };
 
+                const onTimeUpdate = (event) => {
+                    this.currentTime = event.target.currentTime;
+                    h();
+                };
+
                 this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
                 this.manager.listen(this.instance, 'statechanged', (event) => this.state = event.newstate);
                 this.manager.listen(video, 'durationchange', (event) => this.duration = event.target.duration);
-                this.manager.listen(video, 'timeupdate', (event) => this.currentTime = event.target.currentTime);
+                this.manager.listen(video, 'timeupdate', onTimeUpdate);
                 this.manager.listen(video, 'progress', onBuffering);
                 this.manager.listen(video, 'waiting', onBuffering);
 
@@ -120,11 +123,11 @@
         },
 
         async sync() {
-            const currentTime = this.instance?.getMediaElement()?.currentTime;
-
-            if ($wire?.updateHistory !== undefined && currentTime >= 0) {
-                await $wire.updateHistory(currentTime);
+            if ($wire.syncSession === undefined) {
+                return;
             }
+
+            await $wire.syncSession(this.currentTime);
         },
 
         async toggleFullscreen() {
