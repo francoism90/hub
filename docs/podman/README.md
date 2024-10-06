@@ -1,7 +1,5 @@
 # Podman Quadlet
 
-The given instructions are tested on Fedora 40 Silverblue with Podman 5.2 (rootless).
-
 To learn more about Podman Quadlet, the following resources may be useful:
 
 - <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
@@ -20,16 +18,20 @@ It's recommend running a rootless setup:
 
 ## Installation
 
+### Build containers
+
 Build the Docker images (this may take some time):
 
 ```bash
-cd hub/podman
-./make
+cd ~/projects/hub
+./docs/podman/make
 ```
+
+### Systemd units
 
 Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists.
 
-Adjust environment files in `~/.config/containers/systemd/hub/config`, and update `~/projects/hub/.env` when needed.
+Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/projects/hub/.env` to reflect any systemd unit changes.
 
 ### Configure Proxy
 
@@ -37,7 +39,7 @@ Adjust environment files in `~/.config/containers/systemd/hub/config`, and updat
 
 It is possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificate](https://doc.traefik.io/traefik/https/tls/).
 
-The given configuration assumes you use a generated certifcate by [mkcert](https://github.com/FiloSottile/mkcert), and run Hub in a homelab.
+The given configuration assumes you use a generated certifcate by [mkcert](https://github.com/FiloSottile/mkcert), and you run Hub in a homelab.
 
 Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
 
@@ -95,7 +97,7 @@ cd ~/projects/hub/podman
 ./update
 ```
 
-## Bash
+## Shell utility
 
 Hub provides the shell utility named `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments made for Podman Quadlet.
 
@@ -110,5 +112,5 @@ This allows to interact with the `systemd-hub-app` container using the same synt
 ```fish
 hub help
 hub shell
-hub a app:update --assets
+hub a videos:import
 ```

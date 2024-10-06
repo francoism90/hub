@@ -1,0 +1,4 @@
+#!/bin/sh
+
+podman build -t hub-app:latest -f ./docs/podman/images/app/Dockerfile "$@"
+podman build -t hub-nginx:latest -f ./docs/podman/images/nginx/Dockerfile "$@"
