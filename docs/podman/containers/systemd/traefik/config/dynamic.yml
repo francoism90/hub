@@ -1,0 +1,6 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /run/secrets/cert.pem
+        keyFile: /run/secrets/key.pem
