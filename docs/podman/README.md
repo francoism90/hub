@@ -1,6 +1,6 @@
 # Podman Quadlet
 
-To learn more about Podman Quadlet, the following resources may be useful:
+To learn more about Podman Quadlet, consider reading the following resources:
 
 - <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
 - <https://www.redhat.com/sysadmin/quadlet-podman>
