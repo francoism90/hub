@@ -8,6 +8,7 @@ use Domain\Videos\Support\Vod\Clip;
 use Domain\Videos\Support\Vod\Manifest;
 use Domain\Videos\Support\Vod\Sequence;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class GetPreviewManifest
 {
@@ -31,13 +32,19 @@ class GetPreviewManifest
             ->id($media->getRouteKey())
             ->label($media->getRouteKey())
             ->clips([
-                (new Clip)->type('source')->path($this->getClipUrl($media)),
+                (new Clip)->type('source')->path($this->getS3Url($media)),
             ])
         );
     }
 
-    protected function getClipUrl(Media $media): string
+    protected function getS3Url(Media $media): string
     {
-        return '/http/systemd-hub-minio:9000/conversions/'.$media->getPath();
+        $url = config('filesystems.disks.conversions.endpoint');
+
+        $bucket = config('filesystems.disks.conversions.bucket');
+
+        return str("/{$bucket}/{$media->getPath()}")
+            ->prepend($url)
+            ->replaceFirst('http://', '/http/');
     }
 }
