@@ -6,23 +6,23 @@ use App\Web\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
-class NotificationsController extends Page
+class SubscribeController extends Page
 {
     use WithAuthentication;
 
     public function render(): View
     {
-        return view('app.account.notifications');
+        return view('app.account.subscribe');
     }
 
     protected function getTitle(): ?string
     {
-        return __('Notifications');
+        return __('Choose your plan');
     }
 
     protected function getDescription(): ?string
     {
-        return __('Manage your notifications and preferences.');
+        return __("Choose a subscription plan that's right for you.");
     }
 
     public function getListeners(): array

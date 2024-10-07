@@ -7,13 +7,22 @@ use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\IpUtils;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
-class IsPrivateSubnet extends Middleware
+class EnsureRequestIsPrivateSubnet extends Middleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ?string $redirectToRoute = null): Response|RedirectResponse
     {
-        abort_unless(IpUtils::isPrivateIp($request->ip()), 403);
+        $isPrivateIp = IpUtils::isPrivateIp($request->ip());
 
-        return $next($request);
+        if ($isPrivateIp) {
+            return $next($request);
+        }
+
+        return $request->expectsJson()
+            ? abort(403, 'Unauthorized')
+            : Redirect::guest(URL::route($redirectToRoute ?: 'home'));
     }
 }

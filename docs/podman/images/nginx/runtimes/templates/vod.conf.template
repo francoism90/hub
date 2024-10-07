@@ -12,6 +12,7 @@ server {
 
     # authentication requests
     auth_request /auth;
+    auth_request_set $auth_header $upstream_http_authorization;
     auth_request_set $auth_cookie $upstream_http_set_cookie;
 
     # auth

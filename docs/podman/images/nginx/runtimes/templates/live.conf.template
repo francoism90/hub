@@ -12,6 +12,7 @@ server {
 
     # authentication requests
     auth_request /auth;
+    auth_request_set $auth_header $upstream_http_authorization;
     auth_request_set $auth_cookie $upstream_http_set_cookie;
 
     # auth
@@ -22,7 +23,7 @@ server {
         proxy_set_header Host $host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
-        proxy_cache short-zone;
+        proxy_cache auth-zone;
         proxy_cache_key "$http_authorization$cookie_hub_session";
         proxy_ignore_headers Set-Cookie Expires Cache-Control X-Accel-Expires;
         include /etc/nginx/config/proxy.conf;

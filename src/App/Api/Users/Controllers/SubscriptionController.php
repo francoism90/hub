@@ -14,16 +14,14 @@ class SubscriptionController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('private'),
-            new Middleware('throttle:none'),
             new Middleware('auth:sanctum'),
-            new Middleware('response_cache:600,user-'.auth()->id()),
+            new Middleware('subscribed'),
         ];
     }
 
     public function __invoke(Request $request): UserResource
     {
-        Gate::authorize('update', $request->user());
+        Gate::authorize('view', $request->user());
 
         return new UserResource($request->user());
     }
