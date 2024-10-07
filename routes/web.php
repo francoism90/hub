@@ -1,8 +1,8 @@
 <?php
 
-use App\Api\Media\Controllers\AssetController;
-use App\Api\Media\Controllers\DownloadController;
-use App\Api\Media\Controllers\ResponsiveController;
+use App\Web\Account\Controllers\NotificationsController;
+use App\Web\Account\Controllers\ProfileController;
+use App\Web\Account\Controllers\SubscribeController;
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Lists\Controllers\ListViewController;
@@ -18,11 +18,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Home
     Route::get('/', VideoIndexController::class)->name('home');
 
-    // Media
-    Route::name('media.')->group(function () {
-        Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
-        Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
-        Route::get('/responsive/{media}/{conversion?}', ResponsiveController::class)->name('responsive');
+    // Account
+    Route::name('account.')->group(function () {
+        Route::get('/profile', ProfileController::class)->name('profile');
+        Route::get('/notifications', NotificationsController::class)->name('notifications');
+        Route::get('/subscribe', SubscribeController::class)->name('subscribe');
     });
 
     // Videos

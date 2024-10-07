@@ -17,11 +17,10 @@ $app = Application::configure(basePath: $basePath)
         health: '/up',
         then: function () {
             Route::middleware('web')
-                ->group(__DIR__.'/../routes/auth.php');
+                ->group(__DIR__.'/../routes/shared.php');
 
             Route::middleware('web')
-                ->name('account.')
-                ->group(__DIR__.'/../routes/account.php');
+                ->group(__DIR__.'/../routes/auth.php');
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -34,12 +33,12 @@ $app = Application::configure(basePath: $basePath)
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
             'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
             'cache' => \Foundation\Http\Middlewares\SetCacheHeaders::class,
-            'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
+            'private' => \Foundation\Http\Middlewares\EnsureRequestHasPrivateSubnet::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
-            'private' => \Foundation\Http\Middlewares\IsPrivateSubnet::class,
             'response_cache' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'subscribed' => \App\Api\Users\Middlewares\EnsureUserHasSubscription::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

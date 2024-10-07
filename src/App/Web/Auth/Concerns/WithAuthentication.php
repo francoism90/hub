@@ -31,7 +31,7 @@ trait WithAuthentication
         return $this->getUser()->getRouteKey();
     }
 
-    protected function geAuthListeners(): array
+    protected function getAuthListeners(): array
     {
         return [
             "echo-private:user.{$this->getUserId()},.user.trashed" => 'onUserDeleted',

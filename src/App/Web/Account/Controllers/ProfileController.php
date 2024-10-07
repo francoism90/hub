@@ -28,7 +28,7 @@ class ProfileController extends Page
     public function getListeners(): array
     {
         return [
-            ...$this->geAuthListeners(),
+            ...$this->getAuthListeners(),
         ];
     }
 }

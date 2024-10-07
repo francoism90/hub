@@ -14,7 +14,7 @@
                 html()->icon()->svg('heroicon-o-magnifying-glass', 'size-6 text-inherit'),
             ),
 
-            html()->a()->link('account.notifications.index')->attribute('aria-label', __('Notifications'))->child(
+            html()->a()->link('account.notifications')->attribute('aria-label', __('Notifications'))->child(
                 html()->icon()->svg('heroicon-o-bell', 'size-6 text-inherit'),
             ),
         ]),

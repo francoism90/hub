@@ -13,8 +13,8 @@ class UserResource extends JsonResource
             'avatar' => $this->whenAppended('avatar'),
             $this->mergeWhen($request->user()->hasRole('super-admin'), [
                 'email' => $this->whenAppended('email'),
-                'permissions' => $this->getAllPermissions()->pluck('name'),
-                'roles' => $this->getRoleNames(),
+                'permissions' => $this->whenAppended('permissions', $this->getAllPermissions()->pluck('name')),
+                'roles' => $this->whenAppended('roles', $this->getRoleNames()),
                 'settings' => $this->whenAppended('settings'),
                 'created_at' => $this->whenAppended('created_at'),
                 'updated_at' => $this->whenAppended('updated_at'),
