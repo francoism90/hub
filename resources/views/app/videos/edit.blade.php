@@ -57,7 +57,7 @@
             ]),
 
             html()->div()->class('form-control')->children([
-                html()->label('Part')->for('form.part')->class('label'),
+                html()->label('Scene')->for('form.part')->class('label'),
                 html()->text()->wireModel('form.part')->placeholder('1')->class('input'),
                 html()->error('form.part'),
             ]),
