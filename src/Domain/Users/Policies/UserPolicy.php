@@ -7,7 +7,7 @@ use Domain\Users\Models\User as UserModel;
 
 class UserPolicy
 {
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return $user->hasRole('super-admin');
     }

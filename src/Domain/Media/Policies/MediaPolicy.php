@@ -7,12 +7,12 @@ use Domain\Users\Models\User;
 
 class MediaPolicy
 {
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return $user->hasRole('super-admin');
     }
 
-    public function view(User $user, Media $media): bool
+    public function view(?User $user, Media $media): bool
     {
         if ($user && $user->hasRole('super-admin')) {
             return true;
@@ -20,6 +20,7 @@ class MediaPolicy
 
         return in_array($media->collection_name, [
             'avatar',
+            'placeholder',
             'thumbnail',
         ]);
     }
