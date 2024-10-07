@@ -18,6 +18,9 @@ $app = Application::configure(basePath: $basePath)
         then: function () {
             Route::middleware('web')
                 ->group(__DIR__.'/../routes/shared.php');
+
+            Route::middleware('web')
+                ->group(__DIR__.'/../routes/auth.php');
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
