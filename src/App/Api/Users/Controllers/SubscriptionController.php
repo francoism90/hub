@@ -23,6 +23,7 @@ class SubscriptionController extends Controller implements HasMiddleware
 
     public function __invoke(Request $request): UserResource
     {
+        logger('hit');
         Gate::authorize('view', $request->user());
 
         return new UserResource($request->user());
