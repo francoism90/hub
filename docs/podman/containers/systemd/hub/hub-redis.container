@@ -7,8 +7,9 @@ Restart=always
 [Container]
 Image=docker.io/valkey/valkey:latest
 AutoUpdate=registry
-Volume=hub-redis:/data:rw,Z,U
 Exec=valkey-server --save 60 1 --loglevel warning
+Volume=hub-redis:/data:rw,Z,U
+LogDriver=none
 Network=hub.network
 ExposeHostPort=6379
 

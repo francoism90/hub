@@ -108,7 +108,7 @@ The following services are only accessible when being a super-admin:
 Make sure to set correct permissions:
 
 ```bash
-chcon -Rt container_file_t ~/project/hub/storage/app/import/*
+chcon -Rt container_file_t ~/projects/hub/storage/app/import/*
 ```
 
 To import videos:

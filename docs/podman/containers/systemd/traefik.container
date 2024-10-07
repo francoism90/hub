@@ -19,6 +19,7 @@ Secret=tlscert,target=/run/secrets/cert.pem
 Secret=tlskey,target=/run/secrets/key.pem
 Secret=usersfile,target=/run/secrets/usersfile
 Environment=TRAEFIK_TZ=${TRAEFIK_TZ}
+LogDriver=none
 Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
