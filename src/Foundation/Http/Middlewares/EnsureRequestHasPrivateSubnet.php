@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpFoundation\IpUtils;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureRequestIsPrivateSubnet extends Middleware
+class EnsureRequestHasPrivateSubnet extends Middleware
 {
     public function handle(Request $request, Closure $next, ?string $redirectToRoute = null): Response|RedirectResponse
     {
