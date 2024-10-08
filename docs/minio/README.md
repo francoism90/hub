@@ -19,7 +19,7 @@ To learn more about MinIO, consider reading the following resources:
 2. Setup connection:
 
 ```bash
-mc alias set myminio https://s3.hub.lan ACCESS_KEY SECRET_KEY
+mc alias set myminio https://s3.hub.lan AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 mc admin info myminio
 ```
 
