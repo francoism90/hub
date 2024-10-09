@@ -18,7 +18,7 @@
         "chokidar": "^4.0.1",
         "cssnano": "^7.0.6",
         "eslint": "^9.12",
-        "globals": "^15.10.0",
+        "globals": "^15.11.0",
         "laravel-echo": "^1.16.1",
         "laravel-vite-plugin": "^1.0.5",
         "postcss": "^8.4.47",
