@@ -1,6 +1,12 @@
 @layer components {
     .btn {
-        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer items-center rounded px-3 font-medium focus:outline-none;
+        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer select-none items-center rounded px-3 font-medium focus:outline-none;
+
+        &-disabled,
+        &[disabled],
+        &:disabled {
+            @apply pointer-events-none text-secondary-500;
+        }
 
         &-sm {
             @apply h-7 px-2.5 text-sm;
@@ -36,6 +42,10 @@
             &.link-active {
                 @apply text-primary-100 hover:text-secondary-100;
             }
+        }
+
+        &-square {
+            @apply rounded-none;
         }
 
         &-inline {
