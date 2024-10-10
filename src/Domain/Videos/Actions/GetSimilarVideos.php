@@ -14,6 +14,7 @@ class GetSimilarVideos
         return LazyCollection::make([
             ...$this->phrases($model),
             ...$this->tagged($model),
+            ...$this->random($model),
         ])->take($limit);
     }
 
@@ -63,6 +64,16 @@ class GetSimilarVideos
             ])
             ->whereKeyNot($model)
             ->randomSeed('similar-tagged', 60 * 20)
+            ->take(12)
+            ->cursor();
+    }
+
+    protected function random(Video $model): LazyCollection
+    {
+        return Video::query()
+            ->published()
+            ->whereKeyNot($model)
+            ->randomSeed('similar-random', 60 * 20)
             ->take(12)
             ->cursor();
     }
