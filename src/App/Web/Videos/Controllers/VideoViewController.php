@@ -16,7 +16,7 @@ class VideoViewController extends Page
 
     public function mount(): void
     {
-        if (! $user = static::getAuthUser()) {
+        if (! $user = $this->getAuthModel()) {
             return;
         }
 
@@ -31,7 +31,7 @@ class VideoViewController extends Page
     #[Computed]
     public function isFavorited(): bool
     {
-        if (! $user = static::getAuthUser()) {
+        if (! $user = $this->getAuthModel()) {
             return false;
         }
 
@@ -41,7 +41,7 @@ class VideoViewController extends Page
     #[Computed]
     public function isWatchlisted(): bool
     {
-        if (! $user = static::getAuthUser()) {
+        if (! $user = $this->getAuthModel()) {
             return false;
         }
 
@@ -50,7 +50,7 @@ class VideoViewController extends Page
 
     public function toggleFavorite(): void
     {
-        if (! $user = static::getAuthUser()) {
+        if (! $user = $this->getAuthModel()) {
             return;
         }
 
@@ -59,7 +59,7 @@ class VideoViewController extends Page
 
     public function toggleWatchlist(): void
     {
-        if (! $user = static::getAuthUser()) {
+        if (! $user = $this->getAuthModel()) {
             return;
         }
 

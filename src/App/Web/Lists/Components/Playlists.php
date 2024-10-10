@@ -39,14 +39,14 @@ class Playlists extends Component
             ->paginate(perPage: 9, page: $page);
     }
 
-    protected static function getModelClass(): ?string
+    protected function getModelClass(): ?string
     {
         return Playlist::class;
     }
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
+        $id = $this->getAuthKey();
 
         return [
             "echo-private:user.{$id},.playlist.trashed" => '$refresh',

@@ -126,7 +126,7 @@ class TagViewController extends Page
         return (string) $this->tag->description;
     }
 
-    protected static function getModelClass(): ?string
+    protected function getModelClass(): ?string
     {
         return Video::class;
     }

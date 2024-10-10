@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18a5b53009ddf162387b9d094dd48ae8",
+    "content-hash": "8e56525e149093461645e05e52bb52a5",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2156,16 +2156,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.4.1",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "f76a53d9bc7289401220284293a4701ce6daa915"
+                "reference": "324ea21cd1a6153ae626a82624d37c0e3924951e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/f76a53d9bc7289401220284293a4701ce6daa915",
-                "reference": "f76a53d9bc7289401220284293a4701ce6daa915",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/324ea21cd1a6153ae626a82624d37c0e3924951e",
+                "reference": "324ea21cd1a6153ae626a82624d37c0e3924951e",
                 "shasum": ""
             },
             "require": {
@@ -2176,7 +2176,7 @@
                 "laravel/scout": "^10.0|^11.0",
                 "livewire/livewire": "^3.4",
                 "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.16.4"
+                "spatie/laravel-package-tools": "^1.16.5"
             },
             "require-dev": {
                 "blade-ui-kit/blade-icons": "^1.6.0",
@@ -2232,7 +2232,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.4.1"
+                "source": "https://github.com/foxws/wireuse/tree/v2.5.0"
             },
             "funding": [
                 {
@@ -2240,7 +2240,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-27T12:47:10+00:00"
+            "time": "2024-10-10T17:13:52+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -4661,16 +4661,16 @@
         },
         {
             "name": "maennchen/zipstream-php",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maennchen/ZipStream-PHP.git",
-                "reference": "b8174494eda667f7d13876b4a7bfef0f62a7c0d1"
+                "reference": "6187e9cc4493da94b9b63eb2315821552015fca9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/b8174494eda667f7d13876b4a7bfef0f62a7c0d1",
-                "reference": "b8174494eda667f7d13876b4a7bfef0f62a7c0d1",
+                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/6187e9cc4493da94b9b63eb2315821552015fca9",
+                "reference": "6187e9cc4493da94b9b63eb2315821552015fca9",
                 "shasum": ""
             },
             "require": {
@@ -4726,19 +4726,15 @@
             ],
             "support": {
                 "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/3.1.0"
+                "source": "https://github.com/maennchen/ZipStream-PHP/tree/3.1.1"
             },
             "funding": [
                 {
                     "url": "https://github.com/maennchen",
                     "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/zipstream",
-                    "type": "open_collective"
                 }
             ],
-            "time": "2023-06-21T14:59:35+00:00"
+            "time": "2024-10-10T12:33:01+00:00"
         },
         {
             "name": "meilisearch/meilisearch-php",
@@ -14985,12 +14981,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

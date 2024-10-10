@@ -37,14 +37,14 @@ class Watching extends Section
 
     protected function getPlaylist(): Playlist
     {
-        return static::getAuthUser()
+        return $this->getAuthModel()
             ->playlists()
             ->history();
     }
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
+        $id = $this->getAuthKey();
 
         return [
             "echo-private:user.{$id},.playlist.trashed" => 'refresh',

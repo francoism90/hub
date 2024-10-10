@@ -100,14 +100,14 @@ class LibraryIndexController extends Page
         return __('Browse and watch videos');
     }
 
-    protected static function getModelClass(): ?string
+    protected function getModelClass(): ?string
     {
         return Video::class;
     }
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
+        $id = $this->getAuthKey();
 
         return [
             "echo-private:user.{$id},.video.trashed" => 'refresh',

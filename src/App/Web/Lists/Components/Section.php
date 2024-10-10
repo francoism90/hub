@@ -58,14 +58,14 @@ class Section extends Component
         return $this->type->label();
     }
 
-    protected static function getModelClass(): ?string
+    protected function getModelClass(): ?string
     {
         return Tag::class;
     }
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
+        $id = $this->getAuthKey();
 
         return [
             "echo-private:user.{$id},.video.trashed" => 'refresh',

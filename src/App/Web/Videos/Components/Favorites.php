@@ -38,12 +38,12 @@ class Favorites extends Section
 
     protected function getPlaylist(): Playlist
     {
-        return static::getAuthUser()->playlists()->favorites();
+        return $this->getAuthModel()->playlists()->favorites();
     }
 
     public function getListeners(): array
     {
-        $id = static::getAuthKey();
+        $id = $this->getAuthKey();
 
         return [
             "echo-private:user.{$id},.playlist.trashed" => 'refresh',
