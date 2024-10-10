@@ -14,6 +14,7 @@ AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/dev.env
 LogDriver=none
 Volume=${PATH}:/app:rw,z
+Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z
 Secret=tlscert,target=/run/secrets/cert.pem,uid=${UID},gid=${GID}
 Secret=tlskey,target=/run/secrets/key.pem,uid=${UID},gid=${GID}
