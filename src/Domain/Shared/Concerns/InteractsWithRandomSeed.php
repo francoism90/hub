@@ -15,19 +15,19 @@ trait InteractsWithRandomSeed
             ->inRandomOrder($this->getRandomSeed($key, $ttl));
     }
 
+    public function forgetRandomSeed(string $key): mixed
+    {
+        return Cache::forget(
+            $this->getRandomSeedKey($key)
+        );
+    }
+
     protected function getRandomSeed(string $key, int|Carbon $ttl = 300): mixed
     {
         return Cache::remember(
             $this->getRandomSeedKey($key),
             $ttl,
             fn () => time()
-        );
-    }
-
-    protected function forgetRandomSeed(string $key): mixed
-    {
-        return Cache::forget(
-            $this->getRandomSeedKey($key)
         );
     }
 

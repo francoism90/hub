@@ -2,6 +2,7 @@
 
 namespace App\Web\Tags\Forms;
 
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
@@ -16,6 +17,11 @@ class QueryForm extends Form
 
     #[Validate('nullable|string|in:recent,longest,shortest')]
     public string $type = '';
+
+    protected function beforeValidate(): void
+    {
+        app(Video::class)->forgetRandomSeed('videos-tagged');
+    }
 
     public function query(): string
     {

@@ -57,8 +57,6 @@ class TagViewController extends Page
 
     public function setType(string $type = ''): void
     {
-        $this->authorize('viewAny', $this->getModelClass());
-
         $this->form->type = $type;
 
         $this->submit();

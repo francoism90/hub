@@ -51,8 +51,6 @@ class LibraryIndexController extends Page
 
     public function setType(string $type = ''): void
     {
-        $this->authorize('viewAny', $this->getModelClass());
-
         $this->form->type = $type;
 
         $this->submit();
@@ -65,13 +63,6 @@ class LibraryIndexController extends Page
         $this->refresh();
 
         $this->resetPage();
-    }
-
-    public function clear(): void
-    {
-        $this->form->forget();
-
-        $this->form->clear();
     }
 
     public function refresh(): void
