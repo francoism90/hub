@@ -21,8 +21,7 @@
     @endif
 
     {{ html()->div()->class('pt-3 flex flex-nowrap gap-2 items-center overflow-x-auto')->children($types, fn (array $item) => html()
-        ->a()
-        ->href('#')
+        ->button()
         ->text($item['label'])
         ->attribute('wire:click', "setType('{$item['key']}')")
         ->class([

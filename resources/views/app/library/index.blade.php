@@ -2,8 +2,7 @@
     {{ html()->element('h1')->text('Library')->class('text-2xl') }}
 
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center overflow-x-auto')->children($types, fn (array $item) => html()
-        ->a()
-        ->href('#')
+        ->button()
         ->text($item['label'])
         ->attribute('wire:click', "setType('{$item['key']}')")
         ->class([
