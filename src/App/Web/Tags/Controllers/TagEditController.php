@@ -37,6 +37,11 @@ class TagEditController extends Page
         $this->canUpdate($this->tag);
     }
 
+    public function updatedForm(): void
+    {
+        $this->form->validate();
+    }
+
     public function submit(): void
     {
         $this->authorize('update', $model = $this->tag);

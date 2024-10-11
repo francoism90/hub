@@ -34,6 +34,11 @@ class VideoEditController extends Page
         $this->canUpdate($this->video);
     }
 
+    public function updatedForm(): void
+    {
+        $this->form->validate();
+    }
+
     public function submit(): void
     {
         $this->authorize('update', $model = $this->video);

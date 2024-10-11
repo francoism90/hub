@@ -2,6 +2,7 @@
 
 namespace App\Web\Tags\Forms;
 
+use App\Web\Shared\Concerns\WithFormTranslations;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
@@ -10,6 +11,8 @@ use Livewire\Attributes\Validate;
 
 class GeneralForm extends Form
 {
+    use WithFormTranslations;
+
     #[Validate]
     public string $name = '';
 
@@ -22,13 +25,6 @@ class GeneralForm extends Form
     #[Validate(['related' => 'nullable|array', 'related.*.id' => 'exists:tags,prefixed_id'])]
     public array $related = [];
 
-    protected function beforeValidate(): void
-    {
-        collect($this->all())
-            ->filter(fn (mixed $value) => filled($value) && is_string($value))
-            ->each(fn (mixed $value, string $key) => data_set($this, $key, str($value)->squish()->value()));
-    }
-
     public function rules(): array
     {
         return [
@@ -38,11 +34,14 @@ class GeneralForm extends Form
         ];
     }
 
+    protected function beforeValidate(): void
+    {
+        $this->setTranslations();
+    }
+
     protected function beforeFill(Tag $model): array
     {
-        $translations = collect($model->getTranslations())
-            ->map(fn (?array $item) => data_get($item, app()->getLocale(), ''))
-            ->toArray();
+        $translations = $this->getModelTranslations($model);
 
         $values = [...$model->toArray(), ...$translations];
 
