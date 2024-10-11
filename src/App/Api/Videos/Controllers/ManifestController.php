@@ -18,7 +18,7 @@ class ManifestController extends Controller implements HasMiddleware
         return [
             new Middleware('private'),
             new Middleware('throttle:none'),
-            new Middleware('response_cache:600'),
+            new Middleware('cache_model:600,video'),
         ];
     }
 

@@ -11,12 +11,12 @@ trait InteractsWithCache
 {
     public static function bootInteractsWithCache(): void
     {
-        static::updated(fn (User $model) => static::forgetResponseCache($model));
+        static::updated(fn (User $model) => static::clearResponseCache($model));
 
-        static::deleted(fn (User $model) => static::forgetResponseCache($model));
+        static::deleted(fn (User $model) => static::clearResponseCache($model));
     }
 
-    public static function forgetResponseCache(User $model): void
+    public static function clearResponseCache(User $model): void
     {
         ResponseCache::clear(['user-'.$model->getKey()]);
     }

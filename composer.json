@@ -26,7 +26,7 @@
         "laravel/tinker": "^2.10.0",
         "league/flysystem-aws-s3-v3": "^3.29",
         "league/flysystem-read-only": "^3.28",
-        "livewire/livewire": "^3.5.9",
+        "livewire/livewire": "^3.5.10",
         "meilisearch/meilisearch-php": "^1.10.1",
         "php-ffmpeg/php-ffmpeg": "^1.2",
         "pusher/pusher-php-server": "^7.2.4",

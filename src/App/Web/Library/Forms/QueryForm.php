@@ -18,7 +18,6 @@ class QueryForm extends Form
     #[Validate('nullable|string|in:untagged,new')]
     public string $type = '';
 
-
     protected function beforeValidate(): void
     {
         app(Video::class)->forgetRandomSeed('videos-recommended');

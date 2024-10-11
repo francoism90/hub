@@ -12,7 +12,7 @@ class HomeController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('response_cache:600'),
+            new Middleware('cache_response:600'),
         ];
     }
 

@@ -8,6 +8,7 @@ use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
+use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithPlaylists;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
@@ -34,6 +35,7 @@ class Video extends Model implements HasMedia
     use HasTags;
     use HasTranslations;
     use InteractsWithActivity;
+    use InteractsWithCache;
     use InteractsWithMedia;
     use InteractsWithPlaylists;
     use InteractsWithRandomSeed;
