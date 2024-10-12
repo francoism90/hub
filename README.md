@@ -19,11 +19,12 @@ Please note it's a low-tier VPS, expect slowness. :)
 
 ## Details
 
-Hub has been build using the following stack:
+Hub uses the following stack:
 
 - [nginx-vod-module (main)](https://github.com/kaltura/nginx-vod-module)
 - [Laravel 11.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
+- [PostgreSQL 17.x](https://www.postgresql.org/)
 - [Podman 5.x](https://podman.io/)
 - [Meilisearch 1.x](https://www.meilisearch.com/)
 
