@@ -4,7 +4,9 @@ namespace App\Web\Videos\Forms;
 
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
@@ -18,7 +20,11 @@ class TagsForm extends Form
         $this->authorize('viewAny', Tag::class);
 
         if (! $query = $this->query()) {
-            return $this->popular();
+            $items = $this->popular();
+
+            return Tag::query()
+                ->whereIn('id', $items->pluck('id'))
+                ->get();
         }
 
         return Tag::search($query)
@@ -37,9 +43,11 @@ class TagsForm extends Form
     #[Computed(persist: true)]
     public function popular(): Collection
     {
-        return Tag::query()
-            ->withCount('videos')
-            ->orderByDesc('videos_count')
+        return DB::table('taggables')
+            ->selectRaw('id, name, count(tag_id) as tagged_count')
+            ->join('tags', 'tags.id', '=', 'taggables.tag_id')
+            ->groupBy('tags.id')
+            ->orderBy('tagged_count', 'desc')
             ->take(16)
             ->get();
     }
