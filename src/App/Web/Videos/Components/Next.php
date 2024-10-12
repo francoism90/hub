@@ -11,7 +11,7 @@ class Next extends Section
 {
     use WithVideo;
 
-    #[Computed]
+    #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
         return app(GetSimilarVideos::class)->execute($this->getVideo(), limit: 24)->collect();

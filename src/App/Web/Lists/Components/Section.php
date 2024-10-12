@@ -47,9 +47,7 @@ class Section extends Component
         $page ??= $this->getPage();
 
         return $this->getQuery()
-            ->withCount('videos')
             ->type($this->type)
-            ->orderByDesc('videos_count')
             ->paginate(perPage: 9, page: $page);
     }
 

@@ -7,11 +7,12 @@ use Livewire\Attributes\Computed;
 
 class Recommended extends Section
 {
-    #[Computed(persist: true)]
+    #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
         return $this->getQuery()
-            ->recommended()
+            ->published()
+            ->feed()
             ->take(24)
             ->get();
     }

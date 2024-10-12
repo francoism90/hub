@@ -2,10 +2,10 @@
 
 namespace App\Web\Videos\Forms;
 
+use Domain\Tags\Actions\GetPopularTags;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
 class TagsForm extends Form
@@ -34,13 +34,10 @@ class TagsForm extends Form
             ->value();
     }
 
-    #[Computed(persist: true)]
-    public function popular(): Collection
+    protected function popular(): Collection
     {
-        return Tag::query()
-            ->withCount('videos')
-            ->orderByDesc('videos_count')
-            ->take(16)
-            ->get();
+        $items = app()->make(GetPopularTags::class)->execute();
+
+        return $items->take(16);
     }
 }
