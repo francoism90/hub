@@ -5,7 +5,6 @@ namespace App\Web\Videos\Forms;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
@@ -38,13 +37,10 @@ class TagsForm extends Form
     #[Computed(persist: true)]
     public function popular(): Collection
     {
-        return DB::table('taggables')
-            ->selectRaw('id, count(tag_id) as tagged_count')
-            ->join('tags', 'tags.id', '=', 'taggables.tag_id')
-            ->groupBy('tags.id')
-            ->orderBy('tagged_count', 'desc')
+        return Tag::query()
+            ->withCount('videos')
+            ->orderByDesc('videos_count')
             ->take(16)
-            ->get()
-            ->map(fn (\stdClass $tag) => Tag::find($tag->id));
+            ->get();
     }
 }
