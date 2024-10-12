@@ -48,7 +48,6 @@ RUN apk add --no-cache --virtual .run-deps \
     pngquant \
     speex \
     minio-client \
-    mariadb-client \
     postgresql-client \
     sqlite \
     supervisor \
@@ -90,7 +89,6 @@ RUN install-php-extensions \
     openswoole \
     pcntl \
     pcov \
-    pdo_mysql \
     pdo_pgsql \
     redis \
     uv \
