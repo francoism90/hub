@@ -4,7 +4,6 @@ namespace App\Web\Videos\Forms;
 
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
@@ -15,16 +14,13 @@ class TagsForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
+    #[Computed]
     public function results(): Collection
     {
         $this->authorize('viewAny', Tag::class);
 
         if (! $query = $this->query()) {
-            $items = $this->popular();
-
-            return Tag::query()
-                ->whereIn('id', $items->pluck('id'))
-                ->get();
+            return $this->popular();
         }
 
         return Tag::search($query)
@@ -40,15 +36,19 @@ class TagsForm extends Form
             ->value();
     }
 
-    #[Computed(persist: true)]
-    public function popular(): Collection
+    protected function popular(): Collection
     {
         return DB::table('taggables')
-            ->selectRaw('id, name, count(tag_id) as tagged_count')
+            ->selectRaw('prefixed_id, name, count(tag_id) as tagged_count')
             ->join('tags', 'tags.id', '=', 'taggables.tag_id')
             ->groupBy('tags.id')
             ->orderBy('tagged_count', 'desc')
             ->take(16)
-            ->get();
+            ->get()
+            ->map(fn (\stdClass $item) => fluent([
+                'prefixed_id' => $item->prefixed_id,
+                'name' => json_decode($item->name)->en,
+                'count' => $item->tagged_count,
+            ]));
     }
 }

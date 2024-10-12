@@ -102,10 +102,10 @@
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
                 html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit text-sm overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900 text-secondary-300')
                     ->textIf($tags->results()->isEmpty(), 'No tags found')
-                    ->children($tags->results(), fn (Tag $item) => html()
+                    ->children($tags->results()->isNotEmpty(), fn ($item) => html()
                         ->a()
                         ->href('#')
-                        ->attribute('wire:click.prevent', "toggleTag('{$item->getRouteKey()}')")
+                        ->attribute('wire:click.prevent', "toggleTag('{$item->prefixed_id}')")
                         ->class('btn btn-sm btn-secondary')
                         ->text($item->name)
                 ),
