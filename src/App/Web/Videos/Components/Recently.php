@@ -7,11 +7,12 @@ use Livewire\Attributes\Computed;
 
 class Recently extends Section
 {
-    #[Computed(persist: true)]
+    #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
         return $this->getQuery()
-            ->latest()
+            ->published()
+            ->recent()
             ->take(24)
             ->get();
     }

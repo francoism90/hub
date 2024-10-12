@@ -10,12 +10,13 @@ class Random extends Section
 {
     use WithVideo;
 
-    #[Computed(persist: true)]
+    #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
         return $this->getQuery()
-            ->random()
             ->whereKeyNot($this->getVideoKey())
+            ->published()
+            ->feed()
             ->take(24)
             ->get();
     }

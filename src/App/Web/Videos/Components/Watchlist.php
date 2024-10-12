@@ -13,22 +13,15 @@ class Watchlist extends Section
         $this->authorize('view', $this->getPlaylist());
     }
 
-    #[Computed(persist: true)]
+    #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
         return $this->getPlaylist()
             ->videos()
             ->published()
-            ->randomSeed('videos-watchlist', 60 * 10)
+            ->orderByDesc('videoables.updated_at')
             ->take(24)
             ->get();
-    }
-
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
     }
 
     protected function getTitle(): ?string
