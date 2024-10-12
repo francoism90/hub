@@ -10,9 +10,13 @@ trait InteractsWithRandomSeed
 {
     public function scopeRandomSeed(Builder $query, string $key, int|Carbon $ttl = 300): Builder
     {
+        $seed = $this->getRandomSeed($key, $ttl);
+
+        logger($seed);
+
         return $query
             ->reorder()
-            ->inRandomOrder($this->getRandomSeed($key, $ttl));
+            ->inRandomOrder($seed);
     }
 
     public function forgetRandomSeed(string $key): mixed
@@ -27,7 +31,7 @@ trait InteractsWithRandomSeed
         return Cache::remember(
             $this->getRandomSeedKey($key),
             $ttl,
-            fn () => time()
+            fn () => round(mt_rand() / mt_getrandmax(), 1)
         );
     }
 
