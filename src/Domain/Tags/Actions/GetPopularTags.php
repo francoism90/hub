@@ -20,14 +20,14 @@ class GetPopularTags
         );
     }
 
-    protected function getModelKeys(int $limit = 40): Collection
+    protected function getModelKeys(): Collection
     {
         return DB::table('taggables')
             ->selectRaw('id, count(tag_id) as tagged_count')
             ->join('tags', 'tags.id', '=', 'taggables.tag_id')
             ->groupBy('tags.id')
             ->orderBy('tagged_count', 'desc')
-            ->take($limit)
+            ->take(48)
             ->pluck('id');
     }
 }
