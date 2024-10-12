@@ -59,8 +59,6 @@ trait HasVideos
         }
 
         return collect($values)
-            ->map(fn (Video|int $value) => $value instanceof Video
-                ? $value
-                : Video::find($value));
+            ->map(fn (Video|int $value) => $value instanceof Video ? $value : Video::find($value));
     }
 }
