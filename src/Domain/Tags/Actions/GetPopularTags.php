@@ -11,13 +11,17 @@ class GetPopularTags
 {
     public function execute(): mixed
     {
+        return Cache::remember('tags-popular', 60 * 10, fn () => $this->getModelCollection());
+    }
+
+    protected function getModelCollection(): Collection
+    {
         $keys = $this->getModelKeys();
 
-        return Cache::remember('tags-popular', 60 * 10, fn () => Tag::query()
+        return Tag::query()
             ->whereIn('id', $keys)
             ->get()
-            ->sortBy(fn (Tag $tag) => array_search($tag->getKey(), $keys->toArray()))
-        );
+            ->sortBy(fn (Tag $tag) => array_search($tag->getKey(), $keys->toArray()));
     }
 
     protected function getModelKeys(): Collection
