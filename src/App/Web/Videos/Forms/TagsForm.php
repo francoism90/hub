@@ -2,10 +2,10 @@
 
 namespace App\Web\Videos\Forms;
 
+use Domain\Tags\Actions\GetPopularTags;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
@@ -38,14 +38,8 @@ class TagsForm extends Form
 
     protected function popular(): Collection
     {
-        return Tag::query()
-            ->popular()
-            ->take(16)
-            ->get()
-            ->map(fn (\stdClass $item) => fluent([
-                'prefixed_id' => $item->prefixed_id,
-                'name' => json_decode($item->name)->en,
-                'count' => $item->tagged_count,
-            ]));
+        $items = app()->make(GetPopularTags::class)->execute();
+
+        return $items->take(16);
     }
 }

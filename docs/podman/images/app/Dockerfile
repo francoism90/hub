@@ -50,7 +50,6 @@ RUN apk add --no-cache --virtual .run-deps \
     minio-client \
     mariadb-client \
     postgresql-client \
-    pgloader \
     sqlite \
     supervisor \
     tzdata \
