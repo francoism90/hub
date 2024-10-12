@@ -11,7 +11,9 @@ class GetPopularTags
 {
     public function execute(): mixed
     {
-        return Cache::remember('tags-popular', 60 * 10, fn () => $this->getModelCollection());
+        return Cache::remember(
+            'tags-popular', 60 * 10, fn () => $this->getModelCollection()
+        );
     }
 
     protected function getModelCollection(): Collection
