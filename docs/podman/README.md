@@ -27,6 +27,13 @@ cd ~/projects/hub
 ./docs/podman/make
 ```
 
+To rebuild with no-cache (or any other args):
+
+```bash
+cd ~/projects/hub
+./docs/podman/make --no-cache
+```
+
 ### Systemd units
 
 Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists.
