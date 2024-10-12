@@ -6,7 +6,6 @@ use Domain\Tags\Actions\GetPopularTags;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 
 class TagsForm extends Form
@@ -14,7 +13,6 @@ class TagsForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    #[Computed]
     public function results(): Collection
     {
         $this->authorize('viewAny', Tag::class);
