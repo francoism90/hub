@@ -38,11 +38,8 @@ class TagsForm extends Form
 
     protected function popular(): Collection
     {
-        return DB::table('taggables')
-            ->selectRaw('prefixed_id, name, count(tag_id) as tagged_count')
-            ->join('tags', 'tags.id', '=', 'taggables.tag_id')
-            ->groupBy('tags.id')
-            ->orderBy('tagged_count', 'desc')
+        return Tag::query()
+            ->popular()
             ->take(16)
             ->get()
             ->map(fn (\stdClass $item) => fluent([
