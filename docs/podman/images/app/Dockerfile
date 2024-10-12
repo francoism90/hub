@@ -40,8 +40,6 @@ RUN apk add --no-cache --virtual .run-deps \
     libvorbis \
     libvpx \
     libwebp \
-    mariadb-client \
-    minio-client \
     npm \
     numactl \
     opencore-amr \
@@ -49,6 +47,10 @@ RUN apk add --no-cache --virtual .run-deps \
     optipng \
     pngquant \
     speex \
+    minio-client \
+    mariadb-client \
+    postgresql-client \
+    pgloader \
     sqlite \
     supervisor \
     tzdata \
@@ -85,12 +87,12 @@ RUN install-php-extensions \
     imap \
     intl \
     msgpack \
-    mysqli \
     opcache \
     openswoole \
     pcntl \
     pcov \
     pdo_mysql \
+    pdo_pgsql \
     redis \
     uv \
     zip
