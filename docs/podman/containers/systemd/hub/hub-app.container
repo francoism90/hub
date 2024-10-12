@@ -1,7 +1,7 @@
 [Unit]
 Description=App container
-Requires=traefik.service hub-redis.service hub-mariadb.service hub-meilisearch.service hub-mailpit.service hub-minio.service
-After=traefik.service hub-redis.service hub-mariadb.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+Requires=traefik.service hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+After=traefik.service hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
