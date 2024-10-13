@@ -48,9 +48,7 @@ class ProcessUser implements ShouldQueue
 
     public function handle(): void
     {
-        app(RegenerateUser::class)
-            ->onProgress(fn (string $progress) => logger($progress))
-            ->execute($this->model);
+        //
     }
 
     /**

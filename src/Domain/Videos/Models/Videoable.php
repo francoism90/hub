@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Models;
 
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
@@ -8,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Laravel\Scout\Searchable;
 
-class Videoable extends MorphPivot
+
+final class Videoable extends MorphPivot
 {
     use Searchable;
 
