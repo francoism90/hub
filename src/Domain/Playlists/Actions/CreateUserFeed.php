@@ -14,6 +14,10 @@ class CreateUserFeed
     {
         $model = $this->createPlaylist($user);
 
+        if ($model->videos()->count() && true !== $force) {
+            return;
+        }
+
         // Detach all videos from the playlist
         $model->videos()->detach();
 
