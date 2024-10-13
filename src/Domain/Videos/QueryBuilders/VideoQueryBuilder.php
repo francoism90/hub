@@ -19,18 +19,10 @@ class VideoQueryBuilder extends Builder
             ->orderByDesc('released_at');
     }
 
-    public function feed(int $ttl = 60 * 20): self
+    public function recommended(): self
     {
-        return $this->randomSeed('videos-feed', $ttl);
-    }
-
-    public function recommended(int $ttl = 60 * 20): self
-    {
-        return $this->randomSeed('videos-recommended', $ttl);
-    }
-
-    public function tagged(int $ttl = 60 * 20): self
-    {
-        return $this->randomSeed('videos-tagged', $ttl);
+        return $this
+            ->inRandomOrder()
+            ->take(12 * 3);
     }
 }

@@ -4,7 +4,8 @@ namespace App\Web\Library\Controllers;
 
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
-use Domain\Playlists\Actions\GenerateUserFeed;
+use App\Web\Playlists\Concerns\WithPlaylists;
+use Domain\Playlists\Enums\PlaylistMixer;
 use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -16,14 +17,10 @@ use Livewire\WithPagination;
 class LibraryIndexController extends Page
 {
     use WithPagination;
+    use WithPlaylists;
     use WithQueryBuilder;
 
     public QueryForm $form;
-
-    public function boot(): void
-    {
-        app(GenerateUserFeed::class)->execute($this->getAuthModel());
-    }
 
     public function mount(): void
     {
@@ -33,7 +30,7 @@ class LibraryIndexController extends Page
     public function render(): View
     {
         return view('app.library.index')->with([
-            'types' => $this->getTypes(),
+            'mixers' => $this->getMixers(),
         ]);
     }
 
@@ -76,15 +73,6 @@ class LibraryIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
-    }
-
-    protected function getTypes(): array
-    {
-        return [
-            ['key' => '', 'label' => __('All')],
-            ['key' => 'untagged', 'label' => __('Untagged')],
-            ['key' => 'new', 'label' => __('New to you')],
-        ];
     }
 
     protected function getTitle(): ?string
