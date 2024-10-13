@@ -20,6 +20,9 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
             $table
+                ->mediumText('content')
+                ->nullable();
+            $table
                 ->string('type')
                 ->nullable();
             $table->timestamps();
