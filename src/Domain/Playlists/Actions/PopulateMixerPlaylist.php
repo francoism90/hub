@@ -7,7 +7,7 @@ use Domain\Videos\Models\Video;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Illuminate\Support\Facades\DB;
 
-class PopulateMixedPlaylist
+class PopulateMixerPlaylist
 {
     public function execute(Playlist $model, ?bool $force = null): void
     {

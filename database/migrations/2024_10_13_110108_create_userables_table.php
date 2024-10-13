@@ -9,10 +9,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('userables', function (Blueprint $table) {
-            $table->foreignId('user_id')
+            $table
+                ->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
             $table->morphs('userable');
+            $table->integer('order_column')->nullable();
             $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['user_id', 'userable_id', 'userable_type']);

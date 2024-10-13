@@ -12,10 +12,10 @@ class FilterVideos
         protected readonly QueryForm $form,
     ) {}
 
-    public function __invoke(Eloquent $query): void
+    public function __invoke(Builder $query): void
     {
-        $query;
-            // ->query(fn (Eloquent $query) => $query->with('video', 'video.tags'))
+        $query
+            ->query(fn (Eloquent $query) => $query->with('video', 'video.tags'));
             // ->when($this->form->is('type', ''), fn (Builder $query) => $query->orderBy('updated_at', 'desc'));
     }
 }

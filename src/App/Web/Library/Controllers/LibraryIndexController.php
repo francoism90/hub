@@ -5,6 +5,8 @@ namespace App\Web\Library\Controllers;
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
 use App\Web\Playlists\Concerns\WithPlaylists;
+use Domain\Playlists\Actions\PopulateMixedPlaylist;
+use Domain\Playlists\Actions\PopulateMixerPlaylist;
 use Domain\Playlists\Enums\PlaylistMixer;
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
@@ -27,6 +29,8 @@ class LibraryIndexController extends Page
     public function mount(): void
     {
         $this->form->restore();
+
+        $this->populateMixer();
     }
 
     public function render(): View
@@ -49,7 +53,7 @@ class LibraryIndexController extends Page
     #[Computed]
     public function items(): Paginator
     {
-        return $this->getMixer()->videos()->getQuery()->tap(
+        return $this->getScout()->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(24);
     }
@@ -87,6 +91,15 @@ class LibraryIndexController extends Page
         return __('Browse and watch videos');
     }
 
+    protected function populateMixer(): void
+    {
+        $model = $this->getMixer();
+
+        $this->canUpdate($model);
+
+        app(PopulateMixerPlaylist::class)->execute($model);
+    }
+
     protected function getMixer(): ?Playlist
     {
         return Playlist::query()
@@ -98,7 +111,7 @@ class LibraryIndexController extends Page
 
     protected function getModelClass(): ?string
     {
-        return Video::class;
+        return Videoable::class;
     }
 
     public function getListeners(): array
