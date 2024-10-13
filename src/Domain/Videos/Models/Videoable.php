@@ -5,6 +5,7 @@ namespace Domain\Videos\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Support\Arr;
@@ -38,29 +39,40 @@ class Videoable extends MorphPivot
 
     public function toSearchableArray(): array
     {
-        if (! $attributes = $this->video?->toSearchableArray()) {
-            return [];
-        }
-
-        // Remove any conflicted attributes
-        $attributes = Arr::except($attributes, ['id', 'created_at', 'updated_at']);
-
-        return array_merge([
+        return [
             'id' => (int) $this->getScoutKey(),
             'video_id' => (int) $this->video_id,
             'videoable_id' => (int) $this->videoable_id,
             'videoable_type' => (string) $this->videoable_type,
-            'order_column' => (int) $this->order_column,
-        ], $attributes);
+            'created_at' => (int) $this->created_at->getTimestamp(),
+            'updated_at' => (int) $this->updated_at->getTimestamp(),
+        ];
+
+        // if (! $attributes = $this->video?->toSearchableArray()) {
+        //     return [];
+        // }
+
+        // // Remove any conflicted attributes
+        // $attributes = Arr::except($attributes, ['id', 'created_at', 'updated_at']);
+
+        // return array_merge([
+        //     'id' => (int) $this->getScoutKey(),
+        //     'video_id' => (int) $this->video_id,
+        //     'videoable_id' => (int) $this->videoable_id,
+        //     'videoable_type' => (string) $this->videoable_type,
+        // ], $attributes);
     }
 
-    // public function makeSearchableUsing(Collection $models): Collection
-    // {
-    //     return $models->loadMissing('video', 'video.tags');
-    // }
+    public function getScoutKey(): mixed
+    {
+        return $this->id;
+    }
 
-    // protected function makeAllSearchableUsing(Builder $query): Builder
-    // {
-    //     return $query->with(['video', 'tags']);
-    // }
+    /**
+     * Get the key name used to index the model.
+     */
+    public function getScoutKeyName(): mixed
+    {
+        return 'id';
+    }
 }

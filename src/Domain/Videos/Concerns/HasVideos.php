@@ -26,6 +26,7 @@ trait HasVideos
     public function attachVideos(array|ArrayAccess|Collection $videos, ?array $options = null): static
     {
         $videos = static::convertToVideos($videos);
+        logger($videos);
 
         $this->videos()->syncWithPivotValues(
             ids: $videos->pluck('id')->toArray(),
