@@ -5,7 +5,6 @@ namespace App\Web\Library\Controllers;
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
 use Domain\Playlists\Actions\GenerateUserFeed;
-use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
