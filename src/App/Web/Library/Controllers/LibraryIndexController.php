@@ -11,7 +11,9 @@ use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
+use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
@@ -48,11 +50,11 @@ class LibraryIndexController extends Page
     }
 
     #[Computed]
-    public function items(): Paginator
+    public function items(): Collection
     {
         return $this->getScout()->tap(
             new FilterVideos(form: $this->form)
-        )->simplePaginate(24);
+        )->get();
     }
 
     public function setType(string $type = ''): void

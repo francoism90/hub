@@ -23,14 +23,14 @@ trait HasVideos
         return $this->attachVideos([$model], $options);
     }
 
-    public function attachVideos(array|ArrayAccess|Collection $videos, ?array $options = null): static
+    public function attachVideos(array|ArrayAccess|Collection $videos, ?array $options = null, bool $detaching = false): static
     {
         $videos = static::convertToVideos($videos);
 
         $this->videos()->syncWithPivotValues(
             ids: $videos->pluck('id')->toArray(),
             values: ['options' => $options, 'updated_at' => now()],
-            detaching: false
+            detaching: $detaching,
         );
 
         return $this;

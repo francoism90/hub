@@ -23,6 +23,6 @@ class VideoQueryBuilder extends Builder
     {
         return $this
             ->inRandomOrder()
-            ->take(12 * 3);
+            ->take(12);
     }
 }

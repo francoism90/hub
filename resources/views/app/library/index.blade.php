@@ -21,8 +21,6 @@
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->element('section')->close() }}
-
-    {{ $this->items->links() }}
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

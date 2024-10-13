@@ -4,6 +4,7 @@ namespace Domain\Playlists\Actions;
 
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
+use Domain\Videos\Models\Videoable;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Illuminate\Support\Facades\DB;
 
@@ -22,16 +23,27 @@ class PopulateMixerPlaylist
                     break;
             }
 
-            // Trigger broadcast
-            $model->touch();
+            $this->syncVideoables($model);
         });
     }
 
     protected function populateDaily(Playlist $model): void
     {
-        $model->attachVideos(
-            $this->getBuilder()->recommended()->get()
-        );
+        $items = $this->getBuilder()
+            ->recommended()
+            ->get();
+
+        Videoable::withoutSyncingToSearch(function () use ($model, $items) {
+            $model->attachVideos($items, detaching: true);
+        });
+    }
+
+    protected function syncVideoables(Playlist $model): void
+    {
+        Videoable::query()
+            ->where('videoable_type', $model->getMorphClass())
+            ->where('videoable_id', $model->getKey())
+            ->each(fn (Videoable $videoable) => $videoable->searchable());
     }
 
     protected function getBuilder(): VideoQueryBuilder
