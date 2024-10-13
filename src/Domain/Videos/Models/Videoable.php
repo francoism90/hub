@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-
 final class Videoable extends MorphPivot
 {
     use Prunable;
@@ -40,6 +39,6 @@ final class Videoable extends MorphPivot
 
     public function prunable(): Builder
     {
-        return static::where('updated_at', '<=', now()->subWeek());
+        return self::where('updated_at', '<=', now()->subWeek());
     }
 }

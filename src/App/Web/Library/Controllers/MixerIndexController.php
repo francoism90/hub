@@ -11,9 +11,7 @@ use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 

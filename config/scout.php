@@ -4,7 +4,6 @@ use Domain\Playlists\Models\Playlist;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
-use Domain\Videos\Models\Videoable;
 
 return [
 
