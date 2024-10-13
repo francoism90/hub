@@ -16,7 +16,7 @@ class InitializePlaylists
         ]);
 
         $items->each(function (array $item) use ($user) {
-            app(CreatePlaylist::class)->execute($user, $item);
+            app(CreateNewPlaylist::class)->execute($user, $item);
         });
     }
 }

@@ -46,7 +46,7 @@ class LibraryIndexController extends Page
     {
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form)
-        )->simplePaginate(12 * 4);
+        )->simplePaginate(24);
     }
 
     public function setType(string $type = ''): void
