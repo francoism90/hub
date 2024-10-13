@@ -15,8 +15,6 @@ class PopulateMixerPlaylist
                 return;
             }
 
-            // TODO: check limit
-
             switch ($model->name) {
                 case 'daily':
                     $model->attachVideos(Video::query()->daily()->pluck('id'));
