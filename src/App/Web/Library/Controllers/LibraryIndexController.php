@@ -5,11 +5,8 @@ namespace App\Web\Library\Controllers;
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
 use App\Web\Playlists\Concerns\WithPlaylists;
-use Domain\Playlists\Actions\PopulateMixedPlaylist;
 use Domain\Playlists\Actions\PopulateMixerPlaylist;
-use Domain\Playlists\Enums\PlaylistMixer;
 use Domain\Playlists\Models\Playlist;
-use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -62,16 +59,11 @@ class LibraryIndexController extends Page
     {
         $this->form->type = $type;
 
-        $this->submit();
-    }
-
-    public function submit(): void
-    {
         $this->form->submit();
 
-        $this->refresh();
+        $this->populateMixer(true);
 
-        $this->resetPage();
+        $this->clear();
     }
 
     public function refresh(): void
@@ -79,6 +71,13 @@ class LibraryIndexController extends Page
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    public function clear(): void
+    {
+        $this->refresh();
+
+        $this->resetPage();
     }
 
     protected function getTitle(): ?string
@@ -91,13 +90,13 @@ class LibraryIndexController extends Page
         return __('Browse and watch videos');
     }
 
-    protected function populateMixer(): void
+    protected function populateMixer(?bool $force = null): void
     {
         $model = $this->getMixer();
 
         $this->canUpdate($model);
 
-        app(PopulateMixerPlaylist::class)->execute($model);
+        app(PopulateMixerPlaylist::class)->execute($model, $force);
     }
 
     protected function getMixer(): ?Playlist
