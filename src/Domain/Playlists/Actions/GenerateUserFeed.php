@@ -14,22 +14,10 @@ class GenerateUserFeed
     {
         $model = $this->createPlaylist($user);
 
-        $models = $this->getVideoables();
-
-        logger($models->pluck('id'));
-
-        // if ($model->videos()->count() && true !== $force) {
-        //     return;
-        // }
-
-        // Detach all videos from the playlist
-        // $model->videos()->detach();
-
-        // Attach the latest videos to the playlist
-        $model->attachVideos($models);
+        $model->attachVideos($this->getAttachables());
     }
 
-    protected function getVideoables(): Collection
+    protected function getAttachables(): Collection
     {
         return Video::query()
             ->inRandomOrder()

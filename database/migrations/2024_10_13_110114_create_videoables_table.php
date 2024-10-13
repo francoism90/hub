@@ -9,7 +9,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('videoables', function (Blueprint $table) {
-            $table->id();
             $table
                 ->foreignId('video_id')
                 ->constrained()

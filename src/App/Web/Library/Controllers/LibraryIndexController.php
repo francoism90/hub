@@ -23,7 +23,7 @@ class LibraryIndexController extends Page
 
     public function boot(): void
     {
-        // app(GenerateUserFeed::class)->execute($this->getAuthModel());
+        app(GenerateUserFeed::class)->execute($this->getAuthModel());
     }
 
     public function mount(): void
