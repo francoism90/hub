@@ -3,7 +3,8 @@
 namespace App\Web\Library\Scopes;
 
 use App\Web\Library\Forms\QueryForm;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as Eloquent;
+use Laravel\Scout\Builder;
 
 class FilterVideos
 {
@@ -14,11 +15,6 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->published()
-            ->recommended()
-            ->when($this->form->isStrict('type', 'untagged'), fn (Builder $query) => $query->whereDoesntHave('tags'))
-            ->when($this->form->isStrict('type', 'new'), fn (Builder $query) => $query->whereDoesntHave('playlists.videos', fn (Builder $query) => $query
-                ->where('playlists.user_id', auth()->id() ?? 0)
-            ));
+            ->query(fn (Eloquent $query) => $query->with('video'));
     }
 }

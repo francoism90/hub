@@ -46,7 +46,7 @@ class Videoable extends MorphPivot
         $attributes = Arr::except($attributes, ['id', 'created_at', 'updated_at']);
 
         return array_merge([
-            'id' => (string) $this->getScoutKey(),
+            'id' => (int) $this->getScoutKey(),
             'video_id' => (int) $this->video_id,
             'videoable_id' => (int) $this->videoable_id,
             'videoable_type' => (string) $this->videoable_type,
@@ -54,13 +54,13 @@ class Videoable extends MorphPivot
         ], $attributes);
     }
 
-    public function makeSearchableUsing(Collection $models): Collection
-    {
-        return $models->loadMissing('video', 'video.tags');
-    }
+    // public function makeSearchableUsing(Collection $models): Collection
+    // {
+    //     return $models->loadMissing('video', 'video.tags');
+    // }
 
-    protected function makeAllSearchableUsing(Builder $query): Builder
-    {
-        return $query->with(['video', 'tags']);
-    }
+    // protected function makeAllSearchableUsing(Builder $query): Builder
+    // {
+    //     return $query->with(['video', 'tags']);
+    // }
 }

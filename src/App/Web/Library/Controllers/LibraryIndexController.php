@@ -6,6 +6,7 @@ use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
 use Domain\Playlists\Actions\GenerateUserFeed;
 use Domain\Videos\Models\Video;
+use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
@@ -22,13 +23,11 @@ class LibraryIndexController extends Page
 
     public function boot(): void
     {
-
+        // app(GenerateUserFeed::class)->execute($this->getAuthModel());
     }
 
     public function mount(): void
     {
-        app(GenerateUserFeed::class)->execute($this->getAuthModel());
-
         $this->form->restore();
     }
 
@@ -49,10 +48,10 @@ class LibraryIndexController extends Page
         unset($this->items);
     }
 
-    #[Computed(persist: true)]
+    #[Computed]
     public function items(): Paginator
     {
-        return $this->getQuery()->tap(
+        return $this->getScout()->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(24);
     }
@@ -101,7 +100,7 @@ class LibraryIndexController extends Page
 
     protected function getModelClass(): ?string
     {
-        return Video::class;
+        return Videoable::class;
     }
 
     public function getListeners(): array
