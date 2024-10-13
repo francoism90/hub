@@ -49,7 +49,7 @@ class LibraryIndexController extends Page
         unset($this->items);
     }
 
-    #[Computed]
+    #[Computed(persist: true)]
     public function items(): Collection
     {
         return $this->getScout()->tap(
