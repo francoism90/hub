@@ -15,7 +15,7 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->query(fn (Eloquent $query) => $query->with('video', 'video.tags'));
+            ->query(fn (Eloquent $query) => $query->with('video', 'video.media', 'video.tags'));
             // ->when($this->form->is('type', ''), fn (Builder $query) => $query->orderBy('updated_at', 'desc'));
     }
 }
