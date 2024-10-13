@@ -19,6 +19,11 @@ class LibraryIndexController extends Page
 
     public QueryForm $form;
 
+    public function boot(): void
+    {
+        dd('boot');
+    }
+
     public function mount(): void
     {
         $this->form->restore();
