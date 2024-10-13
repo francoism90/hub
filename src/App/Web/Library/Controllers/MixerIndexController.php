@@ -17,7 +17,7 @@ use Laravel\Scout\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class LibraryIndexController extends Page
+class MixerIndexController extends Page
 {
     use WithPagination;
     use WithPlaylists;
@@ -84,7 +84,7 @@ class LibraryIndexController extends Page
 
     protected function getTitle(): ?string
     {
-        return __('Library');
+        return 'Stream Videos';
     }
 
     protected function getDescription(): ?string

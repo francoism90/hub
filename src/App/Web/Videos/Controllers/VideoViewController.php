@@ -16,11 +16,11 @@ class VideoViewController extends Page
 
     public function mount(): void
     {
-        if (! $user = $this->getAuthModel()) {
-            return;
-        }
+        // if (! $user = $this->getAuthModel()) {
+        //     return;
+        // }
 
-        MarkWatched::dispatch($user, $this->video);
+        // MarkWatched::dispatch($user, $this->video);
     }
 
     public function render(): View
@@ -35,7 +35,9 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $this->video->isFavoritedBy($user);
+        return false;
+
+        // return $this->video->isFavoritedBy($user);
     }
 
     #[Computed]
@@ -45,7 +47,9 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $this->video->isWatchlistedBy($user);
+        return false;
+
+        // return $this->video->isWatchlistedBy($user);
     }
 
     public function toggleFavorite(): void

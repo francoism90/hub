@@ -3,7 +3,7 @@
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
 use App\Web\Account\Controllers\SubscribeController;
-use App\Web\Library\Controllers\LibraryIndexController;
+use App\Web\Library\Controllers\MixerIndexController;
 use App\Web\Lists\Controllers\ListIndexController;
 use App\Web\Lists\Controllers\ListViewController;
 use App\Web\Search\Controllers\SearchIndexController;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Home
-    Route::get('/', VideoIndexController::class)->name('home');
+    Route::get('/', MixerIndexController::class)->name('home');
 
     // Account
     Route::name('account.')->group(function () {
@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Library
     Route::name('library.')->prefix('library')->group(function () {
-        Route::get('/', LibraryIndexController::class)->name('index');
+        Route::get('/', SearchIndexController::class)->name('index');
     });
 
     // Search
