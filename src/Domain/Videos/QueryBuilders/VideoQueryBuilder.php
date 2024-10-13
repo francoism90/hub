@@ -24,7 +24,7 @@ class VideoQueryBuilder extends Builder
     {
         return $this
             ->inRandomOrder()
-            ->take(12);
+            ->take(48);
     }
 
     public function discoverable(?User $user = null): self

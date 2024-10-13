@@ -15,16 +15,12 @@ class PopulateMixerPlaylist
                 return;
             }
 
-            $builder = Video::query()
-                ->published()
-                ->take(48);
-
             switch ($model->name) {
                 case 'daily':
-                    $model->attachVideos($builder->daily()->pluck('id'));
+                    $model->attachVideos(Video::query()->daily()->pluck('id'));
                     break;
                 case 'discover':
-                    $model->attachVideos($builder->daily()->pluck('id'));
+                    $model->attachVideos(Video::query()->daily()->pluck('id'));
                     break;
             }
         });
