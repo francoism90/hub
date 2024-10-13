@@ -291,10 +291,13 @@ return [
                 ],
 
                 'searchableAttributes' => [
-                    'id',
+                    'name',
                 ],
 
                 'sortableAttributes' => [
+                    'id',
+                    'videoable_id',
+                    'videoable_type',
                     'created_at',
                     'updated_at',
                 ],
