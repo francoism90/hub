@@ -12,7 +12,6 @@ class Recommended extends Section
     {
         return $this->getQuery()
             ->published()
-            ->feed()
             ->take(24)
             ->get();
     }
