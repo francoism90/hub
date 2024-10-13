@@ -15,6 +15,10 @@ class PopulateMixerPlaylist
                 return;
             }
 
+            if ($model->videos()->count() > $this->getLimit()) {
+                $model->videos()->detach();
+            }
+
             switch ($model->name) {
                 case 'daily':
                     $model->attachVideos(Video::query()->daily()->pluck('id'));
@@ -24,5 +28,10 @@ class PopulateMixerPlaylist
                     break;
             }
         });
+    }
+
+    protected function getLimit(): int
+    {
+        return config('library.mixer.limit', 48);
     }
 }
