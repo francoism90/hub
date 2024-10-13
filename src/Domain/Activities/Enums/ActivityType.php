@@ -8,6 +8,7 @@ enum ActivityType: string
     case Favorite = 'favorite';
     case Like = 'like';
     case Reaction = 'reaction';
+    case Viewed = 'viewed';
 
     public function label(): string
     {
@@ -16,6 +17,7 @@ enum ActivityType: string
             self::Favorite => __('Favorite'),
             self::Like => __('Like'),
             self::Reaction => __('Reaction'),
+            self::Viewed => __('Viewed'),
         };
     }
 }
