@@ -6,6 +6,7 @@ use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class PopulateMixerPlaylist
@@ -17,9 +18,14 @@ class PopulateMixerPlaylist
                 return;
             }
 
+            $builder = $this->getBuilder();
+
             switch ($model->name) {
                 case 'daily':
-                    $this->populateDaily($model);
+                    $this->attachVideos($model, $builder->daily()->get());
+                    break;
+                case 'discover':
+                    $this->attachVideos($model, $builder->discoverable()->get());
                     break;
             }
 
@@ -27,12 +33,8 @@ class PopulateMixerPlaylist
         });
     }
 
-    protected function populateDaily(Playlist $model): void
+    protected function attachVideos(Playlist $model, Collection $items): void
     {
-        $items = $this->getBuilder()
-            ->recommended()
-            ->get();
-
         Videoable::withoutSyncingToSearch(function () use ($model, $items) {
             $model->attachVideos($items, detaching: true);
         });

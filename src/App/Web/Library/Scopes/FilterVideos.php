@@ -16,6 +16,7 @@ class FilterVideos
     {
         $query
             ->query(fn (Eloquent $query) => $query->with('video', 'video.media', 'video.tags'))
-            ->when($this->form->is('type', 'daily'), fn (Builder $query) => $query->orderBy('created_at', 'desc'));
+            ->when($this->form->is('type', 'daily'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
+            ->when($this->form->is('type', 'discover'), fn (Builder $query) => $query->orderBy('created_at', 'desc'));
     }
 }
