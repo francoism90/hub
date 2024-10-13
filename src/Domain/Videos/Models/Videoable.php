@@ -23,7 +23,7 @@ class Videoable extends MorphPivot
 
     public function videoable(): MorphTo
     {
-        return $this->morphTo();
+        return $this->MorphTo();
     }
 
     public function video(): BelongsTo
