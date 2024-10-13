@@ -12,8 +12,6 @@ trait InteractsWithRandomSeed
     {
         $seed = $this->getRandomSeed($key, $ttl);
 
-        logger($seed);
-
         return $query
             ->reorder()
             ->inRandomOrder($seed);

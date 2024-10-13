@@ -10,7 +10,7 @@ class Userable extends MorphPivot
     /**
      * @var string
      */
-    protected $primaryKey = 'user_id';
+    protected $table = 'userables';
 
     protected function casts(): array
     {
