@@ -4,7 +4,7 @@ namespace App\Web\Library\Controllers;
 
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
-use Domain\Playlists\Actions\CreateUserFeed;
+use Domain\Playlists\Actions\GenerateUserFeed;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -22,11 +22,13 @@ class LibraryIndexController extends Page
 
     public function boot(): void
     {
-        app(CreateUserFeed::class)->execute($this->getAuthModel());
+
     }
 
     public function mount(): void
     {
+        app(GenerateUserFeed::class)->execute($this->getAuthModel());
+
         $this->form->restore();
     }
 

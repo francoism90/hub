@@ -1,7 +1,7 @@
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->element('h1')->text('Library')->class('text-2xl') }}
 
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center overflow-x-auto')->children($types, fn (array $item) => html()
+    {{-- {{ html()->div()->class('flex flex-nowrap gap-2 items-center overflow-x-auto')->children($types, fn (array $item) => html()
         ->button()
         ->text($item['label'])
         ->attribute('wire:click', "setType('{$item['key']}')")
@@ -20,7 +20,7 @@
         @endforeach
     {{ html()->element('section')->close() }}
 
-    {{ $this->items->links() }}
+    {{ $this->items->links() }} --}}
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

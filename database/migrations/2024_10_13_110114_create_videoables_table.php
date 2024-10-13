@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['video_id', 'videoable_id', 'videoable_type']);
+            $table->index(['videoable_id', 'videoable_type']);
         });
     }
 

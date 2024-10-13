@@ -56,11 +56,11 @@ class Videoable extends MorphPivot
 
     public function makeSearchableUsing(Collection $models): Collection
     {
-        return $models->loadMissing('video');
+        return $models->loadMissing('video', 'video.tags');
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->with('video');
+        return $query->with(['video', 'tags']);
     }
 }

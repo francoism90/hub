@@ -17,6 +17,7 @@ return new class extends Migration
             $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['user_id', 'userable_id', 'userable_type']);
+            $table->index(['userable_id', 'userable_type']);
         });
     }
 

@@ -8,7 +8,7 @@ use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
 
-class CreateUserFeed
+class GenerateUserFeed
 {
     public function execute(User $user, ?bool $force = null): void
     {
@@ -30,8 +30,7 @@ class CreateUserFeed
     protected function getVideoables(): Collection
     {
         return Video::query()
-            ->inRandomOrder()
-            ->take(24 * 6)
+            ->take(12)
             ->get();
     }
 
