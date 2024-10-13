@@ -40,6 +40,6 @@ final class Videoable extends MorphPivot
 
     public function prunable(): Builder
     {
-        return static::where('created_at', '<=', now()->subWeek());
+        return static::where('updated_at', '<=', now()->subWeek());
     }
 }
