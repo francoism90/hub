@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Laravel\Scout\Searchable;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
@@ -55,6 +56,11 @@ class Activity extends Model
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
+    }
+
+    public function model(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     /**
