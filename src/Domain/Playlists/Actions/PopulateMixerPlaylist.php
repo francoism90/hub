@@ -12,7 +12,7 @@ class PopulateMixerPlaylist
     public function execute(Playlist $model, ?bool $force = null): void
     {
         DB::transaction(function () use ($model, $force) {
-            if ($force === false && $model->videos()->exists()) {
+            if (! $force && $model->videos()->exists()) {
                 return;
             }
 
