@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class PopulateMixerPlaylist
 {
-    public function execute(Playlist $model, int $limit = 48): void
+    public function execute(Playlist $model, ?bool $force = null): void
     {
-        DB::transaction(function () use ($model, $limit) {
+        DB::transaction(function () use ($model, $force) {
+            if (! $force && $model->videos()->exists()) {
+                return;
+            }
+
             // TODO: check limit
 
             switch ($model->name) {

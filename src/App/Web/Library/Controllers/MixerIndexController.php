@@ -63,7 +63,7 @@ class MixerIndexController extends Page
 
         $this->form->submit();
 
-        $this->populateMixer(true);
+        $this->populateMixer(force: true);
 
         $this->clear();
     }
