@@ -6,6 +6,8 @@ use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
 use App\Web\Playlists\Concerns\WithPlaylists;
 use Domain\Playlists\Enums\PlaylistMixer;
+use Domain\Playlists\Models\Playlist;
+use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -47,7 +49,7 @@ class LibraryIndexController extends Page
     #[Computed]
     public function items(): Paginator
     {
-        return $this->getScout()->tap(
+        return $this->getMixer()->videos()->getQuery()->tap(
             new FilterVideos(form: $this->form)
         )->simplePaginate(24);
     }
@@ -85,9 +87,18 @@ class LibraryIndexController extends Page
         return __('Browse and watch videos');
     }
 
+    protected function getMixer(): ?Playlist
+    {
+        return Playlist::query()
+            ->mixer()
+            ->where('user_id', $this->getAuthId())
+            ->where('name', $this->form->type)
+            ->first();
+    }
+
     protected function getModelClass(): ?string
     {
-        return Videoable::class;
+        return Video::class;
     }
 
     public function getListeners(): array

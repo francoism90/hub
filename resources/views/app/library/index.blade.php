@@ -14,15 +14,15 @@
         ])
     ) }}
 
-    {{-- {{ html()->element('section')->attribute('wire.poll.900s', 'refresh')->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
+    {{ html()->element('section')->attribute('wire.poll.900s', 'refresh')->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
         @foreach ($this->items as $item)
             {{ html()->div()->wireKey($item->video->getRouteKey())->open() }}
                 <livewire:web.videos.item :video="$item->video" :key="$item->video->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
-    {{ html()->element('section')->close() }} --}}
+    {{ html()->element('section')->close() }}
 
-    {{-- {{ $this->items->links() }} --}}
+    {{ $this->items->links() }}
 {{ html()->div()->close() }}
 
 <x-app.player.shim />
