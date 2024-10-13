@@ -3,6 +3,7 @@
 namespace Domain\Activities\Models;
 
 use Domain\Activities\Collections\ActivityCollection;
+use Domain\Activities\Enums\ActivityType;
 use Domain\Activities\QueryBuilders\ActivityQueryBuilder;
 use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -27,6 +28,8 @@ class Activity extends Model
      */
     protected $fillable = [
         'user_id',
+        'options',
+        'type',
     ];
 
     /**
@@ -40,6 +43,7 @@ class Activity extends Model
     {
         return [
             'options' => AsArrayObject::class,
+            'type' => ActivityType::class,
         ];
     }
 
