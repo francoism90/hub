@@ -3,8 +3,7 @@
 namespace App\Web\Library\Scopes;
 
 use App\Web\Library\Forms\QueryForm;
-use Illuminate\Database\Eloquent\Builder as Eloquent;
-use Laravel\Scout\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 class FilterVideos
 {
@@ -15,8 +14,8 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->query(fn (Eloquent $query) => $query->with('video', 'video.media', 'video.tags'))
-            ->when($this->form->is('type', 'daily'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
-            ->when($this->form->is('type', 'discover'), fn (Builder $query) => $query->orderBy('created_at', 'desc'));
+            ->with('video', 'video.media', 'video.tags')
+            ->when($this->form->is('type', 'daily'), fn (Builder $query) => $query->orderByDesc('created_at'))
+            ->when($this->form->is('type', 'discover'), fn (Builder $query) => $query->orderByDesc('created_at'));
     }
 }

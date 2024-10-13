@@ -50,11 +50,11 @@ class MixerIndexController extends Page
     }
 
     #[Computed(persist: true)]
-    public function items(): Collection
+    public function items(): Paginator
     {
-        return $this->getScout()->tap(
+        return $this->getQuery()->tap(
             new FilterVideos(form: $this->form)
-        )->get();
+        )->simplePaginate(12);
     }
 
     public function setType(string $type = ''): void

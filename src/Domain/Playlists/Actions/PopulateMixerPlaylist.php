@@ -2,6 +2,7 @@
 
 namespace Domain\Playlists\Actions;
 
+use ArrayAccess;
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
@@ -18,25 +19,21 @@ class PopulateMixerPlaylist
                 return;
             }
 
-            $builder = $this->getBuilder();
-
             switch ($model->name) {
                 case 'daily':
-                    $this->attachVideos($model, $builder->daily()->get());
+                    $this->attachVideos($model, $this->getBuilder()->daily()->pluck('id'));
                     break;
                 case 'discover':
-                    $this->attachVideos($model, $builder->discoverable()->get());
+                    $this->attachVideos($model, $this->getBuilder()->daily()->pluck('id'));
                     break;
             }
-
-            $this->syncVideoables($model);
         });
     }
 
-    protected function attachVideos(Playlist $model, Collection $items): void
+    protected function attachVideos(Playlist $model, array|ArrayAccess|Collection $items): void
     {
         Videoable::withoutSyncingToSearch(function () use ($model, $items) {
-            $model->attachVideos($items, detaching: true);
+            $model->attachVideos($items);
         });
     }
 
@@ -51,6 +48,7 @@ class PopulateMixerPlaylist
     protected function getBuilder(): VideoQueryBuilder
     {
         return Video::query()
-            ->published();
+            ->published()
+            ->take(48);
     }
 }
