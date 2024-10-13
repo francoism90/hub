@@ -10,7 +10,7 @@ enum PlaylistMixer: string
     public function label(): string
     {
         return match ($this) {
-            self::Daily => __('Daily'),
+            self::Daily => __('Everything'),
             self::Discover => __('New to you'),
         };
     }
