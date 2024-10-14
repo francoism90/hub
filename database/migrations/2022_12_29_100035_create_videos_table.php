@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->nullableMorphs('model');
             $table
                 ->foreignId('user_id')
                 ->constrained()
