@@ -50,18 +50,17 @@ trait InteractsWithVod
 
     public function durationInSeconds(): float
     {
-        return 0;
-        // $media = $this
-        //     ->getMedia('clips')
-        //     ->sortByDesc(fn (Media $media) => $media->getCustomProperty('duration', 0))
-        //     ->first();
+        $media = $this
+            ->getMedia('clips')
+            ->sortByDesc(fn (Media $media) => $media->getCustomProperty('duration', 0))
+            ->first();
 
-        // return $media?->getCustomProperty('duration') ?: 0;
+        return (float) $media?->getCustomProperty('duration') ?: 0;
     }
 
     public function timeCodeFor(?User $user = null): float
     {
-        $value = $user?->storeValue($this->timecode) ?: 0;
+        $value = (float) $user?->storeValue($this->timecode) ?: 0;
 
         return Number::clamp($value, 0, $this->duration);
     }

@@ -16,7 +16,6 @@ class SyncVideoTimeCode
             $user->storeSet($video->timecode, $timeCode, now()->addMonth());
         }
 
-        ProcessViewed::dispatch($user, $video, $options)
-            ->delay(now()->addSeconds(10));
+        ProcessViewed::dispatch($user, $video, $options);
     }
 }
