@@ -13,6 +13,11 @@ class LibraryIndexController extends Page
 {
     public QueryForm $form;
 
+    public function mount(): void
+    {
+        $this->form->restore();
+    }
+
     public function render(): View
     {
         return view('app.library.index')->with([

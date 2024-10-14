@@ -11,6 +11,6 @@ trait InteractsWithGroups
 {
     public function groups(): MorphToMany
     {
-        return $this->morphedByMany(Group::class, 'videoable')->chaperone();
+        return $this->morphedByMany(Group::class, 'videoable');
     }
 }

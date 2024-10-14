@@ -35,6 +35,8 @@ class PopulateGroupDiscover
     {
         return Video::query()
             ->whereDoesntHave('activities', fn (Builder $query) => $query->where('user_id', $user->getKey()))
+            ->inRandomOrder()
+            ->take($this->getLimit())
             ->cursor();
     }
 

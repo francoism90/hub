@@ -75,7 +75,7 @@ class Feed extends Component
     {
         return $this->getQuery()
             ->where('user_id', $this->getAuthId())
-            ->where('name', GroupCategory::Daily->value)
+            ->where('name', $this->form->type)
             ->first();
     }
 
