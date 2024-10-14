@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 
-trait HasRelated
+trait HasRelates
 {
     public function relatables(): MorphMany
     {
-        return $this->morphMany(Relatable::class, 'model');
+        return $this->morphMany(Relatable::class, 'model')->chaperone();
     }
 
     public function loadRelated(): Collection

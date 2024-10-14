@@ -8,6 +8,7 @@ use Domain\Groups\Enums\GroupCategory;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 
@@ -26,15 +27,14 @@ class PopulateGroupDiscover
                 return;
             }
 
-            $model->attachVideos($this->getCollection()->collect(), detach: true);
+            $model->attachVideos($this->getCollection($user)->collect(), detach: true);
         });
     }
 
-    protected function getCollection(): LazyCollection
+    protected function getCollection(User $user): LazyCollection
     {
         return Video::query()
-            ->inRandomOrder()
-            ->take($this->getLimit())
+            ->whereDoesntHave('activities', fn (Builder $query) => $query->where('user_id', $user->getKey()))
             ->cursor();
     }
 

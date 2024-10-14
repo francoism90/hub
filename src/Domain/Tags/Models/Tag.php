@@ -6,7 +6,7 @@ namespace Domain\Tags\Models;
 
 use Database\Factories\TagFactory;
 use Domain\Media\Concerns\InteractsWithMedia;
-use Domain\Relates\Concerns\HasRelated;
+use Domain\Relates\Concerns\HasRelates;
 use Domain\Tags\Collections\TagCollection;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\QueryBuilders\TagQueryBuilder;
@@ -30,7 +30,7 @@ class Tag extends BaseTag implements HasMedia
     use BroadcastsEvents;
     use HasFactory;
     use HasPrefixedId;
-    use HasRelated;
+    use HasRelates;
     use InteractsWithMedia;
     use InteractsWithUser;
     use Searchable;

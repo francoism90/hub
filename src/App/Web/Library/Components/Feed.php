@@ -6,6 +6,7 @@ namespace App\Web\Library\Components;
 
 use App\Web\Library\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDaily;
+use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Enums\GroupCategory;
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
@@ -29,9 +30,7 @@ class Feed extends Component
 
     public function boot(): void
     {
-        app(PopulateGroupDaily::class)->execute(
-            user: $this->getAuthModel(),
-        );
+        $this->populateFeed();
     }
 
     public function render(): View
@@ -49,6 +48,18 @@ class Feed extends Component
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    protected function populateFeed(): void
+    {
+        switch ($this->form->type) {
+            case GroupCategory::Daily->value:
+                app(PopulateGroupDaily::class)->execute($this->getAuthModel());
+                break;
+            default:
+                app(PopulateGroupDiscover::class)->execute($this->getAuthModel());
+                break;
+        }
     }
 
     protected function getPageItems(?int $page = null): LengthAwarePaginator
