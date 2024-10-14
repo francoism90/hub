@@ -20,17 +20,9 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
-            $table
-                ->string('name')
-                ->index()
-                ->nullable();
-            $table
-                ->mediumText('content')
-                ->nullable();
-            $table
-                ->string('type')
-                ->nullable()
-                ->index();
+            $table->string('name')->index()->nullable();
+            $table->mediumText('content')->nullable();
+            $table->string('type')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
         });
