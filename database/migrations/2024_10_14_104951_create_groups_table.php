@@ -19,23 +19,12 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->string('name');
-            $table
-                ->string('title')
-                ->nullable();
-            $table
-                ->text('content')
-                ->nullable();
-            $table
-                ->string('type')
-                ->nullable()
-                ->index();
-            $table
-                ->string('state')
-                ->index();
-            $table
-                ->integer('order_column')
-                ->nullable();
+            $table->string('name')->index();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+            $table->string('type')->nullable()->index();
+            $table->string('state')->index();
+            $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
         });

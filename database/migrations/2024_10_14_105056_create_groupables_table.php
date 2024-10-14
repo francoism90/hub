@@ -15,7 +15,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->morphs('groupable');
-            $table->integer('order_column')->nullable();
+            $table->unsignedInteger('order_column')->nullable()->index();
             $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['group_id', 'groupable_id', 'groupable_type']);
