@@ -4,23 +4,19 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
-use Domain\Groups\Jobs\MarkWatched;
+use Domain\Activities\Jobs\ProcessViewed;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
-use Illuminate\Support\Number;
 
 class SyncVideoTimeCode
 {
-    public function execute(User $user, Video $video, ?float $time = null): void
+    public function execute(User $user, Video $video, ?array $options = null): void
     {
-        // Get timestamp
-        $value = Number::clamp($time ?? 0, 0, $video->duration);
+        if ($timeCode = data_get($options, 'time')) {
+            $user->storeSet($video->timecode, $timeCode, now()->addMonth());
+        }
 
-        // Cache current time
-        $user->storeSet($video->timecode, $value, now()->addMonth());
-
-        // Persist to database
-        MarkWatched::dispatch($user, $video)
+        ProcessViewed::dispatch($user, $video, $options)
             ->delay(now()->addSeconds(10));
     }
 }

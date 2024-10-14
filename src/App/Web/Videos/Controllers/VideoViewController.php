@@ -8,8 +8,6 @@ use App\Web\Videos\Concerns\WithVideo;
 use Domain\Activities\Actions\MarkAsViewed;
 use Domain\Groups\Actions\MarkAsFavorited;
 use Domain\Groups\Actions\MarkAsWatchlisted;
-use Domain\Groups\Jobs\MarkWatched;
-use Domain\Videos\Actions\SyncWatchHistory;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

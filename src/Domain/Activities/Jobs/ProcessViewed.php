@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Activities\Jobs;
 
 use Domain\Activities\Actions\MarkAsViewed;
-use Domain\Activities\Enums\ActivityType;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
