@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Videos\QueryBuilders;
 
-use Domain\Users\Models\User;
 use Domain\Videos\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
 

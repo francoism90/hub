@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
-use Domain\Shared\Concerns\InteractsWithActivity;
-use Domain\Shared\Concerns\InteractsWithRandomSeed;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
@@ -36,11 +34,9 @@ class Video extends Model implements HasMedia
     use HasStates;
     use HasTags;
     use HasTranslations;
-    use InteractsWithActivity;
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
-    use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithVod;
     use Searchable;
