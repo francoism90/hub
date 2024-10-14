@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -13,9 +13,9 @@ class SyncWatchHistory
         DB::transaction(function () use ($user, $video, $time) {
             $time ??= $video->timeCodeFor($user);
 
-            $model = $user->playlists()->history();
+            $model = $user->groups()->history();
 
-            // Attach the video to the playlist history
+            // Attach the video to the group history
             $model->attachVideo($video, [
                 'timestamp' => $time,
             ]);

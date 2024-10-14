@@ -1,20 +1,20 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 
-class MarkAsFavorited
+class MarkAsWatchlisted
 {
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $force) {
-            $model = $user->playlists()->favorites();
+            $model = $user->groups()->watchlist();
 
             // Toggle favorite state
-            $force === true || ! $video->isFavoritedBy($user)
+            $force === true || ! $video->isWatchlistedBy($user)
                 ? $model->attachVideo($video)
                 : $model->detachVideo($video);
 

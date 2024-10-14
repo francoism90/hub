@@ -1,12 +1,12 @@
 <?php
 
-namespace Domain\Playlists\Models;
+namespace Domain\Groups\Models;
 
 use Domain\Media\Concerns\InteractsWithMedia;
-use Domain\Playlists\Collections\PlaylistCollection;
-use Domain\Playlists\Enums\PlaylistType;
-use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
-use Domain\Playlists\States\PlaylistState;
+use Domain\Groups\Collections\GroupCollection;
+use Domain\Groups\Enums\GroupType;
+use Domain\Groups\QueryBuilders\GroupQueryBuilder;
+use Domain\Groups\States\GroupState;
 use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
@@ -25,7 +25,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
-class Playlist extends Model implements HasMedia, Sortable
+class Group extends Model implements HasMedia, Sortable
 {
     use BroadcastsEvents;
     use HasFactory;
@@ -62,19 +62,19 @@ class Playlist extends Model implements HasMedia, Sortable
     protected function casts(): array
     {
         return [
-            'state' => PlaylistState::class,
-            'type' => PlaylistType::class,
+            'state' => GroupState::class,
+            'type' => GroupType::class,
         ];
     }
 
-    public function newEloquentBuilder($query): PlaylistQueryBuilder
+    public function newEloquentBuilder($query): GroupQueryBuilder
     {
-        return new PlaylistQueryBuilder($query);
+        return new GroupQueryBuilder($query);
     }
 
-    public function newCollection(array $models = []): PlaylistCollection
+    public function newCollection(array $models = []): GroupCollection
     {
-        return new PlaylistCollection($models);
+        return new GroupCollection($models);
     }
 
     public function getRouteKeyName(): string
@@ -93,14 +93,14 @@ class Playlist extends Model implements HasMedia, Sortable
 
         return [
             new PrivateChannel('user.'.$this->user->getRouteKey()),
-            new PrivateChannel('playlist.'.$this->getRouteKey()),
+            new PrivateChannel('group.'.$this->getRouteKey()),
         ];
     }
 
     public function broadcastAs(string $event): ?string
     {
         return str($event)
-            ->prepend('playlist.')
+            ->prepend('group.')
             ->trim('.')
             ->value();
     }
@@ -120,7 +120,7 @@ class Playlist extends Model implements HasMedia, Sortable
         return true;
     }
 
-    public function makeSearchableUsing(PlaylistCollection $models): PlaylistCollection
+    public function makeSearchableUsing(GroupCollection $models): GroupCollection
     {
         return $models->loadMissing($this->with);
     }
@@ -138,7 +138,7 @@ class Playlist extends Model implements HasMedia, Sortable
         ];
     }
 
-    protected function makeAllSearchableUsing(PlaylistQueryBuilder $query): PlaylistQueryBuilder
+    protected function makeAllSearchableUsing(GroupQueryBuilder $query): GroupQueryBuilder
     {
         return $query->with($this->with);
     }

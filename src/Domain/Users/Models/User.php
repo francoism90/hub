@@ -4,7 +4,7 @@ namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
 use Domain\Media\Concerns\InteractsWithMedia;
-use Domain\Playlists\Concerns\InteractsWithPlaylists;
+use Domain\Groups\Concerns\InteractsWithGroups;
 use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
@@ -38,7 +38,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use InteractsWithActivity;
     use InteractsWithCache;
     use InteractsWithMedia;
-    use InteractsWithPlaylists;
+    use InteractsWithGroups;
     use InteractsWithVideos;
     use LogsActivity;
     use Notifiable;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
-use Domain\Playlists\Jobs\MarkWatched;
+use Domain\Groups\Jobs\MarkWatched;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Number;

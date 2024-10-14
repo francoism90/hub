@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Playlists\States;
+namespace Domain\Groups\States;
 
 use Spatie\ModelStates\State;
 use Spatie\ModelStates\StateConfig;
 
-abstract class PlaylistState extends State
+abstract class GroupState extends State
 {
     abstract public function label(): string;
 

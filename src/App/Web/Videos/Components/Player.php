@@ -3,7 +3,7 @@
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\SyncVideoTimeCode;
+use Domain\Groups\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;

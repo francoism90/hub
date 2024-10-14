@@ -2,13 +2,13 @@
 
 namespace Foundation\Broadcasting;
 
-use Domain\Playlists\Models\Playlist;
-use Domain\Playlists\States\Verified;
+use Domain\Groups\Models\Group;
+use Domain\Groups\States\Verified;
 use Domain\Users\Models\User;
 
-class PlaylistChannel
+class GroupChannel
 {
-    public function join(User $user, Playlist $model): bool
+    public function join(User $user, Group $model): bool
     {
         return $model->state->equals(Verified::class) ?? $user->hasRole('super-admin');
     }

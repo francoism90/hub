@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+use Domain\Groups\Models\Group;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-final class Videoable extends MorphPivot
+final class Groupable extends MorphPivot
 {
-    use Prunable;
-
     /**
      * @var string
      */
-    protected $table = 'videoables';
+    protected $table = 'groupables';
 
     protected function casts(): array
     {
@@ -27,18 +24,13 @@ final class Videoable extends MorphPivot
         ];
     }
 
-    public function videoable(): MorphTo
+    public function groupable(): MorphTo
     {
         return $this->MorphTo();
     }
 
-    public function video(): BelongsTo
+    public function group(): BelongsTo
     {
-        return $this->belongsTo(Video::class, 'video_id');
-    }
-
-    public function prunable(): Builder
-    {
-        return self::where('updated_at', '<=', now()->subWeek());
+        return $this->belongsTo(Group::class, 'group_id');
     }
 }

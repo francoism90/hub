@@ -5,7 +5,7 @@ namespace Foundation\Providers;
 use Domain\Activities\Models\Activity;
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             'activity' => Activity::class,
             'import' => Import::class,
             'media' => Media::class,
-            'playlist' => Playlist::class,
+            'playlist' => Group::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,
             'user' => User::class,
@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
 
         PrefixedIds::registerModels([
             'activity-' => Activity::class,
-            'playlist-' => Playlist::class,
+            'playlist-' => Group::class,
             'tag-' => Tag::class,
             'user-' => User::class,
             'video-' => Video::class,

@@ -1,26 +1,26 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
-use Domain\Playlists\Enums\PlaylistMixer;
-use Domain\Playlists\Enums\PlaylistType;
+use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class CreateMixedPlaylists
+class CreateMixedGroups
 {
     public function execute(User $user): Collection
     {
         return DB::transaction(function () use ($user) {
-            $mixers = PlaylistMixer::cases();
+            $mixers = GroupMixer::cases();
 
             $items = collect();
 
             foreach ($mixers as $mixer) {
-                $model = app(CreateNewPlaylist::class)->execute($user, [
+                $model = app(CreateNewGroup::class)->execute($user, [
                     'name' => $mixer->value,
-                    'type' => PlaylistType::Mixer,
+                    'type' => GroupType::Mixer,
                 ]);
 
                 $items->push($model);

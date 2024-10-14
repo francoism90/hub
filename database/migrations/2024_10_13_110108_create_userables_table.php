@@ -12,6 +12,7 @@ return new class extends Migration
             $table
                 ->foreignId('user_id')
                 ->constrained()
+                ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->morphs('userable');
             $table->integer('order_column')->nullable();

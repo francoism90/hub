@@ -1,12 +1,12 @@
 <?php
 
-namespace Domain\Playlists\QueryBuilders;
+namespace Domain\Groups\QueryBuilders;
 
-use Domain\Playlists\Enums\PlaylistType;
-use Domain\Playlists\States\Verified;
+use Domain\Groups\Enums\GroupType;
+use Domain\Groups\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
 
-class PlaylistQueryBuilder extends Builder
+class GroupQueryBuilder extends Builder
 {
     public function published(): self
     {
@@ -17,12 +17,12 @@ class PlaylistQueryBuilder extends Builder
     public function mixer(): self
     {
         return $this
-            ->where('type', PlaylistType::Mixer);
+            ->where('type', GroupType::Mixer);
     }
 
     public function personal(): self
     {
         return $this
-            ->whereIn('type', [PlaylistType::Private, PlaylistType::Public]);
+            ->whereIn('type', [GroupType::Private, GroupType::Public]);
     }
 }

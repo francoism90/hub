@@ -2,12 +2,12 @@
 
 namespace App\Web\Lists\Concerns;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 
-trait WithPlaylists
+trait WithGroups
 {
-    public function bootWithPlaylists(): void
+    public function bootWithGroups(): void
     {
-        $this->authorize('viewAny', Playlist::class);
+        $this->authorize('viewAny', Group::class);
     }
 }

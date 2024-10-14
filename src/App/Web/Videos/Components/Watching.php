@@ -2,7 +2,7 @@
 
 namespace App\Web\Videos\Components;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 
@@ -10,13 +10,13 @@ class Watching extends Section
 {
     public function boot(): void
     {
-        $this->authorize('view', $this->getPlaylist());
+        $this->authorize('view', $this->getGroup());
     }
 
     #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
-        return $this->getPlaylist()
+        return $this->getGroup()
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
@@ -29,10 +29,10 @@ class Watching extends Section
         return __('Continue Watching');
     }
 
-    protected function getPlaylist(): Playlist
+    protected function getGroup(): Group
     {
         return $this->getAuthModel()
-            ->playlists()
+            ->groups()
             ->history();
     }
 

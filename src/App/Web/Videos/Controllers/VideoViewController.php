@@ -3,9 +3,9 @@
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\MarkAsFavorited;
-use Domain\Playlists\Actions\MarkAsWatchlisted;
-use Domain\Playlists\Jobs\MarkWatched;
+use Domain\Groups\Actions\MarkAsFavorited;
+use Domain\Groups\Actions\MarkAsWatchlisted;
+use Domain\Groups\Jobs\MarkWatched;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

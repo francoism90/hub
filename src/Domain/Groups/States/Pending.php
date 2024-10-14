@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Playlists\States;
+namespace Domain\Groups\States;
 
-class Pending extends PlaylistState
+class Pending extends GroupState
 {
     public static $name = 'pending';
 

@@ -2,7 +2,7 @@
 
 namespace App\Web\Lists\Components;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -11,7 +11,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 
-class Playlists extends Component
+class Groups extends Component
 {
     use WithAuthentication;
     use WithoutUrlPagination;
@@ -20,12 +20,12 @@ class Playlists extends Component
 
     public function render(): View
     {
-        return view('app.lists.playlists.view');
+        return view('app.lists.groups.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.lists.playlists.placeholder', $params);
+        return view('app.lists.groups.placeholder', $params);
     }
 
     protected function getPageItems(?int $page = null): LengthAwarePaginator
@@ -41,7 +41,7 @@ class Playlists extends Component
 
     protected function getModelClass(): ?string
     {
-        return Playlist::class;
+        return Group::class;
     }
 
     public function getListeners(): array

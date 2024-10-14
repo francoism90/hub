@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Playlists\States;
+namespace Domain\Groups\States;
 
-class Verified extends PlaylistState
+class Verified extends GroupState
 {
     public static $name = 'verified';
 

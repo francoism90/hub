@@ -2,7 +2,7 @@
 
 namespace App\Web\Lists\Controllers;
 
-use App\Web\Lists\Concerns\WithPlaylist;
+use App\Web\Lists\Concerns\WithGroup;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 class ListViewController extends Page
 {
     use WithPagination;
-    use WithPlaylist;
+    use WithGroup;
 
     public function render(): View
     {
@@ -27,13 +27,13 @@ class ListViewController extends Page
     #[Computed(persist: true)]
     public function items(): Paginator
     {
-        return $this->getPlaylist()
+        return $this->getGroup()
             ->videos()
             ->orderByDesc('videoables.updated_at')
             ->simplePaginate(12 * 4);
     }
 
-    public function onPlaylistUpdated(): void
+    public function onGroupUpdated(): void
     {
         unset($this->items);
 
@@ -53,7 +53,7 @@ class ListViewController extends Page
     public function getListeners(): array
     {
         return [
-            ...$this->getPlaylistListeners(),
+            ...$this->getGroupListeners(),
         ];
     }
 }

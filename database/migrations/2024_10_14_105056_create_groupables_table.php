@@ -8,22 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('videoables', function (Blueprint $table) {
+        Schema::create('groupables', function (Blueprint $table) {
             $table
-                ->foreignId('video_id')
+                ->foreignId('group_id')
                 ->constrained()
+                ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->morphs('videoable');
+            $table->morphs('groupable');
             $table->integer('order_column')->nullable();
             $table->json('options')->nullable();
             $table->timestamps();
-            $table->unique(['video_id', 'videoable_id', 'videoable_type']);
-            $table->index(['videoable_id', 'videoable_type']);
+            $table->unique(['group_id', 'groupable_id', 'groupable_type']);
+            $table->index(['groupable_id', 'groupable_type']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('videoables');
+        Schema::dropIfExists('groupables');
     }
 };

@@ -2,16 +2,16 @@
 
 namespace Domain\Videos\Concerns;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-trait InteractsWithPlaylists
+trait InteractsWithGroups
 {
-    public function playlists(): MorphToMany
+    public function groups(): MorphToMany
     {
-        return $this->morphedByMany(Playlist::class, 'videoable');
+        return $this->morphedByMany(Group::class, 'videoable');
     }
 
     public function isFavoritedBy(?User $user = null): bool
@@ -19,7 +19,7 @@ trait InteractsWithPlaylists
         $user ??= auth()->user();
 
         return $user
-            ->playlists()
+            ->groups()
             ->favorites()
             ->videos()
             ->where('video_id', $this->getKey())
@@ -31,7 +31,7 @@ trait InteractsWithPlaylists
         $user ??= auth()->user();
 
         return $user
-            ->playlists()
+            ->groups()
             ->watchlist()
             ->videos()
             ->where('video_id', $this->getKey())

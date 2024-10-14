@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Playlists\Jobs;
+namespace Domain\Groups\Jobs;
 
-use Domain\Playlists\Actions\SyncWatchHistory;
+use Domain\Groups\Actions\SyncWatchHistory;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;

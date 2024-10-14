@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Web\Playlists\Concerns;
+namespace App\Web\Groups\Concerns;
 
-use Domain\Playlists\Actions\CreateMixedPlaylists;
-use Domain\Playlists\Enums\PlaylistMixer;
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Actions\CreateMixedGroups;
+use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Models\Group;
 
-trait WithPlaylists
+trait WithGroups
 {
-    public function bootWithPlaylists(): void
+    public function bootWithGroups(): void
     {
-        $this->authorize('viewAny', Playlist::class);
+        $this->authorize('viewAny', Group::class);
 
-        app(CreateMixedPlaylists::class)->execute(auth()->user());
+        app(CreateMixedGroups::class)->execute(auth()->user());
     }
 
     protected function getMixers(): array
     {
-        return PlaylistMixer::cases();
+        return GroupMixer::cases();
     }
 }

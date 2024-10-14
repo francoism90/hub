@@ -1,14 +1,14 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 
-class PopulateMixerPlaylist
+class PopulateMixerGroup
 {
-    public function execute(Playlist $model, ?bool $force = null): void
+    public function execute(Group $model, ?bool $force = null): void
     {
         DB::transaction(function () use ($model, $force) {
             if (! $force && $model->videos()->exists()) {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Playlists\Enums;
+namespace Domain\Groups\Enums;
 
-enum PlaylistType: string
+enum GroupType: string
 {
     case Mixer = 'mixer';
     case Private = 'private';

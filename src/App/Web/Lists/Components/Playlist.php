@@ -2,13 +2,13 @@
 
 namespace App\Web\Lists\Components;
 
-use App\Web\Lists\Concerns\WithPlaylist;
+use App\Web\Lists\Concerns\WithGroup;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Playlist extends Component
+class Group extends Component
 {
-    use WithPlaylist;
+    use WithGroup;
 
     public function render(): View
     {

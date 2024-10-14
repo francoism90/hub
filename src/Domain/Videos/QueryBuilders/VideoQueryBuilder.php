@@ -33,8 +33,8 @@ class VideoQueryBuilder extends Builder
 
         // $user ??= auth()->user();
 
-        // return $this->whereDoesntHave('playlists.videos', fn (Builder $query) => $query
-        //     ->where('playlists.user_id', $user->getKey())
+        // return $this->whereDoesntHave('groups.videos', fn (Builder $query) => $query
+        //     ->where('groups.user_id', $user->getKey())
         // );
     }
 }

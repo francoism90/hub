@@ -1,43 +1,43 @@
 <?php
 
-namespace App\Web\Playlists\Concerns;
+namespace App\Web\Groups\Concerns;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 
-trait WithPlaylist
+trait WithGroup
 {
-    public Playlist $playlist;
+    public Group $playlist;
 
-    public function bootWithPlaylist(): void
+    public function bootWithGroup(): void
     {
         $this->authorize('view', $this->playlist);
     }
 
-    public function onPlaylistDeleted(): void
+    public function onGroupDeleted(): void
     {
         abort(404);
     }
 
-    public function onPlaylistUpdated(): void
+    public function onGroupUpdated(): void
     {
         $this->dispatch('$refresh');
     }
 
-    protected function getPlaylist(): ?Playlist
+    protected function getGroup(): ?Group
     {
         return $this->playlist;
     }
 
-    protected function getPlaylistId(): string
+    protected function getGroupId(): string
     {
-        return $this->getPlaylist()->getRouteKey();
+        return $this->getGroup()->getRouteKey();
     }
 
-    protected function getPlaylistListeners(): array
+    protected function getGroupListeners(): array
     {
         return [
-            "echo-private:playlist.{$this->getPlaylistId()},.playlist.trashed" => 'onPlaylistDeleted',
-            "echo-private:playlist.{$this->getPlaylistId()},.playlist.updated" => 'onPlaylistUpdated',
+            "echo-private:playlist.{$this->getGroupId()},.playlist.trashed" => 'onGroupDeleted',
+            "echo-private:playlist.{$this->getGroupId()},.playlist.updated" => 'onGroupUpdated',
         ];
     }
 }

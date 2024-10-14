@@ -4,9 +4,9 @@ namespace App\Web\Library\Controllers;
 
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
-use App\Web\Playlists\Concerns\WithPlaylists;
-use Domain\Playlists\Actions\PopulateMixerPlaylist;
-use Domain\Playlists\Models\Playlist;
+use App\Web\Groups\Concerns\WithGroups;
+use Domain\Groups\Actions\PopulateMixerGroup;
+use Domain\Groups\Models\Group;
 use Domain\Videos\Models\Videoable;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
@@ -18,7 +18,7 @@ use Livewire\WithPagination;
 class MixerIndexController extends Page
 {
     use WithPagination;
-    use WithPlaylists;
+    use WithGroups;
     use WithQueryBuilder;
 
     public QueryForm $form;
@@ -96,12 +96,12 @@ class MixerIndexController extends Page
 
         $this->canUpdate($model);
 
-        app(PopulateMixerPlaylist::class)->execute($model, $force);
+        app(PopulateMixerGroup::class)->execute($model, $force);
     }
 
-    protected function getMixer(): ?Playlist
+    protected function getMixer(): ?Group
     {
-        return Playlist::query()
+        return Group::query()
             ->mixer()
             ->where('user_id', $this->getAuthId())
             ->where('name', $this->form->type)

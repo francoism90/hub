@@ -1,21 +1,21 @@
 <?php
 
-namespace Domain\Playlists\Actions;
+namespace Domain\Groups\Actions;
 
-use Domain\Playlists\Models\Playlist;
-use Domain\Playlists\States\Verified;
+use Domain\Groups\Models\Group;
+use Domain\Groups\States\Verified;
 use Domain\Users\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
-class CreateNewPlaylist
+class CreateNewGroup
 {
-    public function execute(User $user, array $attributes): Playlist
+    public function execute(User $user, array $attributes): Group
     {
         return DB::transaction(function () use ($user, $attributes) {
-            $model = $user->playlists()->firstOrCreate(
+            $model = $user->groups()->firstOrCreate(
                 Arr::only($attributes, ['name', 'type']),
-                Arr::only($attributes, app(Playlist::class)->getFillable()),
+                Arr::only($attributes, app(Group::class)->getFillable()),
             );
 
             if ($model->state->canTransitionTo(Verified::class)) {
