@@ -29,7 +29,7 @@ class Feed extends Component
     #[Modelable]
     public QueryForm $form;
 
-    public function mount(): void
+    public function boot(): void
     {
         app(PopulateGroupDaily::class)->execute(
             user: $this->getAuthModel(),

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Library\Forms;
 
+use Domain\Groups\Actions\ResetCategoryGroups;
 use Foxws\WireUse\Forms\Support\Form;
 use Livewire\Attributes\Validate;
 
@@ -18,6 +19,11 @@ class QueryForm extends Form
 
     #[Validate('nullable|string|in:daily,discover')]
     public string $type = 'daily';
+
+    protected function handle(): void
+    {
+        app(ResetCategoryGroups::class)->execute(auth()->user());
+    }
 
     public function query(): string
     {
