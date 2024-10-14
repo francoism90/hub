@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace App\Web\Library\Components;
 
 use App\Web\Library\Forms\QueryForm;
+use Domain\Groups\Actions\PopulateGroupDaily;
+use Domain\Groups\Enums\GroupCategory;
+use Domain\Groups\Enums\GroupType;
+use Domain\Groups\Models\Group;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -24,6 +28,13 @@ class Feed extends Component
 
     #[Modelable]
     public QueryForm $form;
+
+    public function mount(): void
+    {
+        app(PopulateGroupDaily::class)->execute(
+            user: $this->getAuthModel(),
+        );
+    }
 
     public function render(): View
     {
@@ -46,13 +57,22 @@ class Feed extends Component
     {
         $page ??= $this->getPage();
 
-        return $this->getQuery()
+        return $this->getGroupModel()
+            ->videos()
             ->paginate(perPage: 12, page: $page);
+    }
+
+    protected function getGroupModel(): ?Group
+    {
+        return $this->getQuery()
+            ->where('user_id', $this->getAuthId())
+            ->where('name', GroupCategory::Daily->value)
+            ->first();
     }
 
     protected function getModelClass(): ?string
     {
-        return Video::class;
+        return Group::class;
     }
 
     public function getListeners(): array

@@ -4,16 +4,24 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use Domain\Groups\Models\Group;
+use Domain\Groups\Enums\GroupCategory;
+use Domain\Groups\Enums\GroupType;
+use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 
 class PopulateGroupDaily
 {
-    public function execute(Group $model, ?bool $force = null): void
+    public function execute(User $user, ?bool $force = null): void
     {
-        DB::transaction(function () use ($model, $force) {
+        DB::transaction(function () use ($user, $force) {
+            $model = app(CreateNewGroup::class)->execute($user, [
+                'name' => GroupCategory::Daily->value,
+                'title' => GroupCategory::Daily->label(),
+                'type' => GroupType::Mixer,
+            ]);
+
             if (! $force && $model->videos()->exists()) {
                 return;
             }
