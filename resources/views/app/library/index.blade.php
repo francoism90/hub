@@ -21,7 +21,7 @@
         ])
     ) }}
 
-    {{ html()->element('section')->attribute('x-data', 'preview')->class('py-3')->open() }}
+    {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
         {{ html()->div()->wireKey($form->type)->open() }}
             <livewire:web.library.feed :key="$form->type" :$form />
         {{ html()->div()->close() }}
