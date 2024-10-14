@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Imports\Models;
 
 use Database\Factories\ImportFactory;

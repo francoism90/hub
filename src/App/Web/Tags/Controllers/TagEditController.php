@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Tags\Controllers;
 
 use App\Web\Library\Controllers\LibraryIndexController;

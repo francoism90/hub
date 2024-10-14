@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Domain\Videos\Models;
+declare(strict_types=1);
+
+namespace Domain\Groups\Models;
 
 use Domain\Groups\Models\Group;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;

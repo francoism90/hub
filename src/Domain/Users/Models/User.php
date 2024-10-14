@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
-use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Groups\Concerns\InteractsWithGroups;
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
@@ -37,8 +39,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasStates;
     use InteractsWithActivity;
     use InteractsWithCache;
-    use InteractsWithMedia;
     use InteractsWithGroups;
+    use InteractsWithMedia;
     use InteractsWithVideos;
     use LogsActivity;
     use Notifiable;

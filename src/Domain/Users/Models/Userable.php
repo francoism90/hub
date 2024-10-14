@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Models;
 
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;

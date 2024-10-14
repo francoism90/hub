@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Groups\States;
 
 use Spatie\ModelStates\State;

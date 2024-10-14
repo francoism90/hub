@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Groups\Models;
 
-use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Groups\Collections\GroupCollection;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
 use Domain\Groups\States\GroupState;
+use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Shared\Concerns\InteractsWithActivity;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Relates\Models;
 
 use Domain\Relates\Collections\RelatedCollection;

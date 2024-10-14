@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Concerns;
 
 use Domain\Groups\Models\Group;

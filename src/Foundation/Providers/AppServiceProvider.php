@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
 use Domain\Activities\Models\Activity;
+use Domain\Groups\Models\Group;
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
-use Domain\Groups\Models\Group;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;

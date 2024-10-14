@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Api\Videos\Controllers;
 
 use Domain\Videos\Actions\GetPreviewManifest;

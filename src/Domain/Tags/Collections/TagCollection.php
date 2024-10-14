@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tags\Collections;
 
 use Domain\Tags\Enums\TagType;

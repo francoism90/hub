@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Lists\Controllers;
 
 use App\Web\Lists\Concerns\WithGroup;
@@ -11,8 +13,8 @@ use Livewire\WithPagination;
 
 class ListViewController extends Page
 {
-    use WithPagination;
     use WithGroup;
+    use WithPagination;
 
     public function render(): View
     {

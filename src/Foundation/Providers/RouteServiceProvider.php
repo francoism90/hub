@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
-use Domain\Media\Models\Media;
 use Domain\Groups\Models\Group;
+use Domain\Media\Models\Media;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;

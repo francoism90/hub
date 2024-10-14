@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Lists\Components;
 
 use App\Web\Tags\Concerns\WithTag;

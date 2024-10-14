@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
+use Domain\Groups\Models\Group;
+use Domain\Groups\Policies\GroupPolicy;
 use Domain\Imports\Models\Import;
 use Domain\Imports\Policies\ImportPolicy;
 use Domain\Media\Models\Media;
 use Domain\Media\Policies\MediaPolicy;
-use Domain\Groups\Models\Group;
-use Domain\Groups\Policies\GroupPolicy;
 use Domain\Tags\Models\Tag;
 use Domain\Tags\Policies\TagPolicy;
 use Domain\Users\Models\User;

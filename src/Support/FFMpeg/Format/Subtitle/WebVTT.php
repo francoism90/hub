@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Support\FFMpeg\Format\Subtitle;
 
 use FFMpeg\Format\Video\DefaultVideo;

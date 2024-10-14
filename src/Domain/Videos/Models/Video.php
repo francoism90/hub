@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
@@ -36,8 +38,8 @@ class Video extends Model implements HasMedia
     use HasTranslations;
     use InteractsWithActivity;
     use InteractsWithCache;
-    use InteractsWithMedia;
     use InteractsWithGroups;
+    use InteractsWithMedia;
     use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithVod;

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Library\Controllers;
 
+use App\Web\Groups\Concerns\WithGroups;
 use App\Web\Library\Forms\QueryForm;
 use App\Web\Library\Scopes\FilterVideos;
-use App\Web\Groups\Concerns\WithGroups;
 use Domain\Groups\Actions\PopulateMixerGroup;
 use Domain\Groups\Models\Group;
 use Domain\Videos\Models\Videoable;
@@ -17,8 +19,8 @@ use Livewire\WithPagination;
 
 class MixerIndexController extends Page
 {
-    use WithPagination;
     use WithGroups;
+    use WithPagination;
     use WithQueryBuilder;
 
     public QueryForm $form;

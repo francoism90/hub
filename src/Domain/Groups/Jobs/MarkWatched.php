@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Groups\Jobs;
 
 use Domain\Groups\Actions\SyncWatchHistory;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Activities\Models;
 
 use Domain\Activities\Collections\ActivityCollection;

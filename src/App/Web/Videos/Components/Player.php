@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;

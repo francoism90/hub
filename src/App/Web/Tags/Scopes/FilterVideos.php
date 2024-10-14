@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Tags\Scopes;
 
 use App\Web\Tags\Forms\QueryForm;

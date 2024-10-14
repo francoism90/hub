@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Search\Forms;
 
 use Foxws\WireUse\Forms\Support\Form;

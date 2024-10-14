@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Controllers;
 
 use Foxws\WireUse\Views\Support\Page;
