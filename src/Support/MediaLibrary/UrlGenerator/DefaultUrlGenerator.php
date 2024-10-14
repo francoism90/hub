@@ -34,7 +34,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
             'conversion' => $this->conversion,
         ]);
 
-        return str($url)->finish('/');
+        return str($url)->finish('/')->value();
     }
 
     public function getBaseMediaDirectoryUrl(): string

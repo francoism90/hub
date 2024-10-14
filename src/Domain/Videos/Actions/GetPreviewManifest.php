@@ -46,6 +46,7 @@ class GetPreviewManifest
 
         return str("/{$bucket}/{$media->getPath()}")
             ->prepend($url)
-            ->replaceFirst('http://', '/http/');
+            ->replaceFirst('http://', '/http/')
+            ->value();
     }
 }
