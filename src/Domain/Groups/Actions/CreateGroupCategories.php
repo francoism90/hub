@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Enums\GroupCategory;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class CreateMixedGroups
+class CreateGroupCategories
 {
     public function execute(User $user): Collection
     {
         return DB::transaction(function () use ($user) {
-            $mixers = GroupMixer::cases();
+            $mixers = GroupCategory::cases();
 
             $items = collect();
 
