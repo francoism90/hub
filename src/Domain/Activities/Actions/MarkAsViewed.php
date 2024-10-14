@@ -31,11 +31,16 @@ class MarkAsViewed
 
     protected function getAttributes(Model $model, ?array $options = null): array
     {
-        return [
+        $attributes = [
             'model_id' => $model->getKey(),
             'model_type' => $model->getMorphClass(),
-            'options' => $options,
             'type' => ActivityType::Viewed,
         ];
+
+        if (filled($options)) {
+            $attributes['options'] = $options;
+        }
+
+        return $attributes;
     }
 }

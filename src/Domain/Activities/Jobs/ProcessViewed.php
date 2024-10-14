@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Domain\Activities\Jobs;
 
-use Domain\Activities\Actions\CreateNewActivity;
+use Domain\Activities\Actions\MarkAsViewed;
+use Domain\Activities\Enums\ActivityType;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessActivity implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
+class ProcessViewed implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -55,25 +57,23 @@ class ProcessActivity implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function __construct(
         protected User $user,
-        protected array $attributes,
+        protected Model $model,
+        protected ?array $options = null,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        if (blank($this->attributes['type'])) {
-            $this->fail('Activity type is required.');
-        }
-
-        app(CreateNewActivity::class)->execute($this->user, $this->attributes);
+        app(MarkAsViewed::class)->execute($this->user, $this->model, $this->options);
     }
 
     public function uniqueId(): string
     {
-        return sprintf('watched-%d-%d',
+        return sprintf('watched-%s-%d-%d',
+            $this->model->getMorphClass(),
+            $this->model->getKey(),
             $this->user->getKey(),
-            $this->attributes['type'],
         );
     }
 }

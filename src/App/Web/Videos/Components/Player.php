@@ -6,6 +6,7 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
 use Domain\Activities\Actions\MarkAsViewed;
+use Domain\Activities\Jobs\ProcessViewed;
 use Domain\Groups\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
@@ -39,7 +40,7 @@ class Player extends Component
             return;
         }
 
-        app(MarkAsViewed::class)->execute($user, $this->getVideo(), [
+        ProcessViewed::dispatchSync($user, $this->getVideo(), [
             'caption' => $this->caption,
             'time' => $time,
         ]);
