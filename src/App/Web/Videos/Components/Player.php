@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Activities\Actions\MarkAsViewed;
 use Domain\Groups\Actions\SyncVideoTimeCode;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
@@ -38,7 +39,10 @@ class Player extends Component
             return;
         }
 
-        // app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
+        app(MarkAsViewed::class)->execute($user, $this->getVideo(), [
+            'caption' => $this->caption,
+            'time' => $time,
+        ]);
     }
 
     protected function getManifest(): ?string

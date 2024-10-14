@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('name')->index()->nullable();
             $table->mediumText('content')->nullable();
             $table->string('type')->nullable()->index();
+            $table->json('options')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

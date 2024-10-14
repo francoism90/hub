@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class MarkAsViewed
 {
-    public function execute(User $user, Model $model, array $attributes = []): Activity
+    public function execute(User $user, Model $model, ?array $options = null): Activity
     {
-        return DB::transaction(function () use ($user, $model, $attributes) {
-            $attributes = [...$attributes, ...$this->getAttributes($model)];
+        return DB::transaction(function () use ($user, $model, $options) {
+            $attributes = $this->getAttributes($model, $options);
 
             $model = $user->activities()->updateOrCreate(
                 Arr::only($attributes, ['model_id', 'model_type', 'name', 'type']),
@@ -29,11 +29,12 @@ class MarkAsViewed
         });
     }
 
-    protected function getAttributes(Model $model): array
+    protected function getAttributes(Model $model, ?array $options = null): array
     {
         return [
             'model_id' => $model->getKey(),
             'model_type' => $model->getMorphClass(),
+            'options' => $options,
             'type' => ActivityType::Viewed,
         ];
     }

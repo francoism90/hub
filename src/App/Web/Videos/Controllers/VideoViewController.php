@@ -62,7 +62,7 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsFavorited::class)->execute($user, $this->video);
+        // app(MarkAsFavorited::class)->execute($user, $this->video);
     }
 
     public function toggleWatchlist(): void
@@ -71,7 +71,7 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsWatchlisted::class)->execute($user, $this->video);
+        // app(MarkAsWatchlisted::class)->execute($user, $this->video);
     }
 
     protected function getTitle(): ?string
