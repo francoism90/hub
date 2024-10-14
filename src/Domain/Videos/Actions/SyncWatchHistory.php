@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Groups\Actions;
+namespace Domain\Videos\Actions;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;

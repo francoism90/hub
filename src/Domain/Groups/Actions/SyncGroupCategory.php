@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
+use Domain\Groups\Enums\GroupCategory;
 use Domain\Groups\Models\Group;
+use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 
-class PopulateMixerGroup
+class SyncGroupCategory
 {
-    public function execute(Group $model, ?bool $force = null): void
+    public function execute(User $user, GroupCategory $category): void
     {
-        DB::transaction(function () use ($model, $force) {
+        DB::transaction(function () use ($user, $category) {
             if (! $force && $model->videos()->exists()) {
                 return;
             }

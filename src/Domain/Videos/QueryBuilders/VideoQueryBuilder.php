@@ -21,22 +21,4 @@ class VideoQueryBuilder extends Builder
             ->orderByDesc('created_at')
             ->orderByDesc('released_at');
     }
-
-    public function daily(): self
-    {
-        return $this
-            ->inRandomOrder()
-            ->take(48);
-    }
-
-    public function discoverable(?User $user = null): self
-    {
-        return $this->daily();
-
-        // $user ??= auth()->user();
-
-        // return $this->whereDoesntHave('groups.videos', fn (Builder $query) => $query
-        //     ->where('groups.user_id', $user->getKey())
-        // );
-    }
 }
