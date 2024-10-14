@@ -1,6 +1,6 @@
 <?php
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -162,7 +162,7 @@ return [
                 ],
             ],
 
-            Playlist::class => [
+            Group::class => [
                 'filterableAttributes' => [
                     'id',
                     'state',

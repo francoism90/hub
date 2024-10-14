@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
             'activity' => Activity::class,
             'import' => Import::class,
             'media' => Media::class,
-            'playlist' => Group::class,
+            'group' => Group::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,
             'user' => User::class,
@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
 
         PrefixedIds::registerModels([
             'activity-' => Activity::class,
-            'playlist-' => Group::class,
+            'group-' => Group::class,
             'tag-' => Tag::class,
             'user-' => User::class,
             'video-' => Video::class,

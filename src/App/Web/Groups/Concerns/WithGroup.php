@@ -8,11 +8,11 @@ use Domain\Groups\Models\Group;
 
 trait WithGroup
 {
-    public Group $playlist;
+    public Group $group;
 
     public function bootWithGroup(): void
     {
-        $this->authorize('view', $this->playlist);
+        $this->authorize('view', $this->group);
     }
 
     public function onGroupDeleted(): void
@@ -27,7 +27,7 @@ trait WithGroup
 
     protected function getGroup(): ?Group
     {
-        return $this->playlist;
+        return $this->group;
     }
 
     protected function getGroupId(): string
@@ -38,8 +38,8 @@ trait WithGroup
     protected function getGroupListeners(): array
     {
         return [
-            "echo-private:playlist.{$this->getGroupId()},.playlist.trashed" => 'onGroupDeleted',
-            "echo-private:playlist.{$this->getGroupId()},.playlist.updated" => 'onGroupUpdated',
+            "echo-private:group.{$this->getGroupId()},.group.trashed" => 'onGroupDeleted',
+            "echo-private:group.{$this->getGroupId()},.group.updated" => 'onGroupUpdated',
         ];
     }
 }

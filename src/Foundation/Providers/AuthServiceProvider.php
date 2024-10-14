@@ -14,9 +14,9 @@ use Domain\Tags\Models\Tag;
 use Domain\Tags\Policies\TagPolicy;
 use Domain\Users\Models\User;
 use Domain\Users\Policies\UserPolicy;
+use Domain\Videos\Models\Groupable;
 use Domain\Videos\Models\Video;
-use Domain\Videos\Models\Videoable;
-use Domain\Videos\Policies\VideoablePolicy;
+use Domain\Videos\Policies\GroupablePolicy;
 use Domain\Videos\Policies\VideoPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -34,6 +34,5 @@ class AuthServiceProvider extends ServiceProvider
         Group::class => GroupPolicy::class,
         Tag::class => TagPolicy::class,
         Video::class => VideoPolicy::class,
-        Videoable::class => VideoablePolicy::class,
     ];
 }

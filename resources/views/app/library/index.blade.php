@@ -1,7 +1,7 @@
-@use('Domain\Playlists\Enums\PlaylistMixer')
+@use('Domain\Groups\Enums\GroupMixer')
 
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($mixers, fn (PlaylistMixer $mixer) => html()
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($mixers, fn (GroupMixer $mixer) => html()
         ->button()
         ->text($mixer->label())
         ->attribute('wire:click', "setType('{$mixer->value}')")

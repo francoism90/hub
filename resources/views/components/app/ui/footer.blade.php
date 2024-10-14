@@ -12,7 +12,7 @@
             html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->link('lists.index')->text('Playlists')->prependChild(
+        html()->a()->link('lists.index')->text('Groups')->prependChild(
             html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 

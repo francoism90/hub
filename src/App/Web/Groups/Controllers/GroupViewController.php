@@ -44,12 +44,12 @@ class GroupViewController extends Page
 
     protected function getTitle(): ?string
     {
-        return (string) $this->playlist->title;
+        return (string) $this->group->title;
     }
 
     protected function getDescription(): ?string
     {
-        return (string) $this->playlist->content;
+        return (string) $this->group->content;
     }
 
     public function getListeners(): array

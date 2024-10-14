@@ -21,7 +21,7 @@ class Favorites extends Section
         return $this->getGroup()
             ->videos()
             ->published()
-            ->orderByDesc('videoables.updated_at')
+            ->orderByDesc('groupables.updated_at')
             ->take(24)
             ->get();
     }
@@ -41,8 +41,8 @@ class Favorites extends Section
         $id = $this->getAuthKey();
 
         return [
-            "echo-private:user.{$id},.playlist.trashed" => 'refresh',
-            "echo-private:user.{$id},.playlist.updated" => 'refresh',
+            "echo-private:user.{$id},.group.trashed" => 'refresh',
+            "echo-private:user.{$id},.group.updated" => 'refresh',
             "echo-private:user.{$id},.video.trashed" => 'refresh',
             "echo-private:user.{$id},.video.updated" => 'refresh',
         ];

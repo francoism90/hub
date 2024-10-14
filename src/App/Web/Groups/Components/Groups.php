@@ -51,8 +51,8 @@ class Groups extends Component
         $id = $this->getAuthKey();
 
         return [
-            "echo-private:user.{$id},.playlist.trashed" => '$refresh',
-            "echo-private:user.{$id},.playlist.updated" => '$refresh',
+            "echo-private:user.{$id},.group.trashed" => '$refresh',
+            "echo-private:user.{$id},.group.updated" => '$refresh',
         ];
     }
 }

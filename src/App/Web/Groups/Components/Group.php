@@ -14,11 +14,11 @@ class Group extends Component
 
     public function render(): View
     {
-        return view('app.groups.playlist.view');
+        return view('app.groups.group.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.groups.playlist.placeholder', $params);
+        return view('app.groups.group.placeholder', $params);
     }
 }
