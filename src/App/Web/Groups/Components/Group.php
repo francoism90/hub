@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Lists\Components;
+namespace App\Web\Groups\Components;
 
-use App\Web\Lists\Concerns\WithGroup;
+use App\Web\Groups\Concerns\WithGroup;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -14,11 +14,11 @@ class Group extends Component
 
     public function render(): View
     {
-        return view('app.lists.playlist.view');
+        return view('app.groups.playlist.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.lists.playlist.placeholder', $params);
+        return view('app.groups.playlist.placeholder', $params);
     }
 }

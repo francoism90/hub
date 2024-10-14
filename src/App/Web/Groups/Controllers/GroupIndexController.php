@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Lists\Controllers;
+namespace App\Web\Groups\Controllers;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
@@ -10,11 +10,11 @@ use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
-class ListIndexController extends Page
+class GroupIndexController extends Page
 {
     public function render(): View
     {
-        return view('app.lists.index');
+        return view('app.groups.index');
     }
 
     #[Computed(cache: true, key: 'tags')]

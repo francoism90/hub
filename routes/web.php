@@ -3,9 +3,11 @@
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
 use App\Web\Account\Controllers\SubscribeController;
-use App\Web\Library\Controllers\MixerIndexController;
-use App\Web\Lists\Controllers\ListIndexController;
-use App\Web\Lists\Controllers\ListViewController;
+use App\Web\Groups\Controllers\GroupIndexController;
+use App\Web\Groups\Controllers\GroupViewController;
+use App\Web\Library\Controllers\LibraryIndexController;
+use App\Web\Groups\Controllers\ListIndexController;
+use App\Web\Groups\Controllers\ListViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Tags\Controllers\TagViewController;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Home
-    Route::get('/', MixerIndexController::class)->name('home');
+    Route::get('/', LibraryIndexController::class)->name('home');
 
     // Account
     Route::name('account.')->group(function () {
@@ -44,8 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Lists
     Route::name('lists.')->prefix('lists')->group(function () {
-        Route::get('/', ListIndexController::class)->name('index');
-        Route::get('/{playlist}', ListViewController::class)->name('view');
+        Route::get('/', GroupIndexController::class)->name('index');
+        Route::get('/{group}', GroupViewController::class)->name('view');
     });
 
     // Tags

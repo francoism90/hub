@@ -17,7 +17,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class MixerIndexController extends Page
+class LibraryIndexController extends Page
 {
     use WithGroups;
     use WithPagination;

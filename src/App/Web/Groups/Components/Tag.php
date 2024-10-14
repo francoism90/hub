@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Lists\Components;
+namespace App\Web\Groups\Components;
 
 use App\Web\Tags\Concerns\WithTag;
 use Illuminate\View\View;
@@ -14,11 +14,11 @@ class Tag extends Component
 
     public function render(): View
     {
-        return view('app.lists.tag.view');
+        return view('app.groups.tag.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.lists.tag.placeholder', $params);
+        return view('app.groups.tag.placeholder', $params);
     }
 }

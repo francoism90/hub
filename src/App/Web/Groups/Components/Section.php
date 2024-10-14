@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Lists\Components;
+namespace App\Web\Groups\Components;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
@@ -27,14 +27,14 @@ class Section extends Component
 
     public function render(): View
     {
-        return view('app.lists.tags.view')->with([
+        return view('app.groups.tags.view')->with([
             'title' => $this->getTitle(),
         ]);
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.lists.tags.placeholder', $params);
+        return view('app.groups.tags.placeholder', $params);
     }
 
     public function refresh(): void

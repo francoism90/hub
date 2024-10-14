@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Groups\Concerns;
 
 use Domain\Groups\Actions\CreateMixedGroups;
-use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Enums\GroupType;
 use Domain\Groups\Models\Group;
 
 trait WithGroups
@@ -17,8 +17,8 @@ trait WithGroups
         app(CreateMixedGroups::class)->execute(auth()->user());
     }
 
-    protected function getMixers(): array
+    protected function getGroupTypes(): array
     {
-        return GroupMixer::cases();
+        return GroupType::cases();
     }
 }

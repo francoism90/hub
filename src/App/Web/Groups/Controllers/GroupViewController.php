@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Lists\Controllers;
+namespace App\Web\Groups\Controllers;
 
-use App\Web\Lists\Concerns\WithGroup;
+use App\Web\Groups\Concerns\WithGroup;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class ListViewController extends Page
+class GroupViewController extends Page
 {
     use WithGroup;
     use WithPagination;
 
     public function render(): View
     {
-        return view('app.lists.view');
+        return view('app.groups.view');
     }
 
     public function updatedPage(): void
