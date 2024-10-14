@@ -15,16 +15,22 @@ return new class extends Migration
                 ->unique();
             $table
                 ->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
             $table
+                ->string('name')
+                ->index()
+                ->nullable();
+            $table
                 ->mediumText('content')
                 ->nullable();
             $table
                 ->string('type')
-                ->nullable();
+                ->nullable()
+                ->index();
             $table->timestamps();
             $table->softDeletes();
         });

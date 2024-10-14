@@ -17,6 +17,7 @@ return new class extends Migration
             $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['model_id', 'model_type', 'relate_id', 'relate_type']);
+            $table->index(['model_id', 'model_type']);
         });
     }
 

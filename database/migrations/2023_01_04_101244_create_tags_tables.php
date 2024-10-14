@@ -19,9 +19,9 @@ return new class extends Migration
             $table->json('name');
             $table->json('slug');
             $table->json('description')->nullable();
-            $table->string('type')->nullable();
-            $table->boolean('adult')->default(false);
-            $table->integer('order_column')->nullable();
+            $table->string('type')->nullable()->index();
+            $table->boolean('adult')->default(false)->index();
+            $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamps();
         });
 
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
             $table->morphs('taggable');
             $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
+            $table->index(['taggable_id', 'taggable_type']);
         });
     }
 

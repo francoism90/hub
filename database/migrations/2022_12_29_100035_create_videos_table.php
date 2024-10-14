@@ -20,12 +20,12 @@ return new class extends Migration
             $table->json('content')->nullable();
             $table->json('summary')->nullable();
             $table->json('titles')->nullable();
-            $table->string('season')->nullable();
-            $table->string('episode')->nullable();
-            $table->string('part')->nullable();
+            $table->string('season')->nullable()->index();
+            $table->string('episode')->nullable()->index();
+            $table->string('part')->nullable()->index();
+            $table->boolean('adult')->default(false)->index();
             $table->float('snapshot')->nullable();
-            $table->boolean('adult')->default(false);
-            $table->string('state');
+            $table->string('state')->index();
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

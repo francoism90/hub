@@ -15,17 +15,24 @@ return new class extends Migration
                 ->unique();
             $table
                 ->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('name');
             $table
+                ->string('title')
+                ->nullable();
+            $table
                 ->text('content')
                 ->nullable();
             $table
                 ->string('type')
-                ->nullable();
-            $table->string('state');
+                ->nullable()
+                ->index();
+            $table
+                ->string('state')
+                ->index();
             $table
                 ->integer('order_column')
                 ->nullable();
