@@ -13,9 +13,11 @@ use Illuminate\Support\LazyCollection;
 
 class PopulateGroupDaily
 {
-    public function execute(User $user, ?bool $force = null): void
+    public function execute(?User $user = null, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $force) {
+            $user ??= auth()->user();
+
             $model = app(CreateNewGroup::class)->execute($user, [
                 'name' => GroupCategory::Daily->value,
                 'title' => GroupCategory::Daily->label(),

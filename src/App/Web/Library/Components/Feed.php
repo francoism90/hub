@@ -7,7 +7,6 @@ namespace App\Web\Library\Components;
 use App\Web\Library\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDaily;
 use Domain\Groups\Actions\PopulateGroupDiscover;
-use Domain\Groups\Enums\GroupCategory;
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -53,11 +52,11 @@ class Feed extends Component
     protected function populateFeed(): void
     {
         switch ($this->form->type) {
-            case GroupCategory::Daily->value:
-                app(PopulateGroupDaily::class)->execute($this->getAuthModel());
+            case 'discover':
+                app(PopulateGroupDiscover::class)->execute();
                 break;
             default:
-                app(PopulateGroupDiscover::class)->execute($this->getAuthModel());
+                app(PopulateGroupDaily::class)->execute();
                 break;
         }
     }
