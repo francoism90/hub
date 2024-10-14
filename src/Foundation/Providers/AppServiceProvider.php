@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
 
         PrefixedIds::registerModels([
             'activity-' => Activity::class,
-            'group-' => Group::class,
+            'list-' => Group::class,
             'tag-' => Tag::class,
             'user-' => User::class,
             'video-' => Video::class,
