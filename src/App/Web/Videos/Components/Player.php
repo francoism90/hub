@@ -38,7 +38,7 @@ class Player extends Component
             return;
         }
 
-        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
+        // app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
     }
 
     protected function getManifest(): ?string

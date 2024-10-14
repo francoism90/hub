@@ -29,7 +29,10 @@ class Activity extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'model_type',
+        'model_id',
         'user_id',
+        'name',
         'options',
         'type',
     ];

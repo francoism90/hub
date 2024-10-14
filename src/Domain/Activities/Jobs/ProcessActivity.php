@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Domain\Groups\Jobs;
+namespace Domain\Activities\Jobs;
 
-use Domain\Groups\Actions\SyncWatchHistory;
+use Domain\Activities\Actions\CreateNewActivity;
 use Domain\Users\Models\User;
-use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
@@ -16,7 +15,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
+class ProcessActivity implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -56,18 +55,25 @@ class MarkWatched implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function __construct(
         protected User $user,
-        protected Video $video,
+        protected array $attributes,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(SyncWatchHistory::class)->execute($this->user, $this->video);
+        if (blank($this->attributes['type'])) {
+            $this->fail('Activity type is required.');
+        }
+
+        app(CreateNewActivity::class)->execute($this->user, $this->attributes);
     }
 
     public function uniqueId(): string
     {
-        return sprintf('watched-%s-%s', $this->user->getKey(), $this->video->getKey());
+        return sprintf('watched-%d-%d',
+            $this->user->getKey(),
+            $this->attributes['type'],
+        );
     }
 }

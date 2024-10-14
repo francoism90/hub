@@ -53,10 +53,10 @@ class Feed extends Component
     {
         switch ($this->form->type) {
             case 'discover':
-                app(PopulateGroupDiscover::class)->execute();
+                app(PopulateGroupDiscover::class)->execute($this->getAuthModel());
                 break;
             default:
-                app(PopulateGroupDaily::class)->execute();
+                app(PopulateGroupDaily::class)->execute($this->getAuthModel());
                 break;
         }
     }
