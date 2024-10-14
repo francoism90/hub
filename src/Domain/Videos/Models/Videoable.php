@@ -2,21 +2,19 @@
 
 declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Domain\Groups\Models;
+namespace Domain\Videos\Models;
 
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-final class Groupable extends MorphPivot
+final class Videoable extends MorphPivot
 {
     /**
      * @var string
      */
-    protected $table = 'groupables';
+    protected $table = 'videoables';
 
     protected function casts(): array
     {
@@ -25,13 +23,13 @@ final class Groupable extends MorphPivot
         ];
     }
 
-    public function groupable(): MorphTo
+    public function videoable(): MorphTo
     {
         return $this->MorphTo();
     }
 
-    public function group(): BelongsTo
+    public function video(): BelongsTo
     {
-        return $this->belongsTo(Group::class, 'group_id');
+        return $this->belongsTo(Video::class, 'video_id');
     }
 }
