@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Models;
 
-use Domain\Groups\Models\Group;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;

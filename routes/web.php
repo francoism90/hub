@@ -6,8 +6,6 @@ use App\Web\Account\Controllers\SubscribeController;
 use App\Web\Groups\Controllers\GroupIndexController;
 use App\Web\Groups\Controllers\GroupViewController;
 use App\Web\Library\Controllers\LibraryIndexController;
-use App\Web\Groups\Controllers\ListIndexController;
-use App\Web\Groups\Controllers\ListViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Tags\Controllers\TagViewController;
