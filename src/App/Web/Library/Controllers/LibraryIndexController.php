@@ -32,7 +32,10 @@ class LibraryIndexController extends Page
 
     protected function getCollection(): array
     {
-        return GroupSet::cases();
+        return [
+            GroupSet::Daily,
+            GroupSet::Discover,
+        ];
     }
 
     protected function getTitle(): ?string

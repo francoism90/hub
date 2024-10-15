@@ -32,7 +32,7 @@ trait HasVideos
 
         $this->videos()->syncWithPivotValues(
             ids: $videos->pluck('id')->toArray(),
-            values: ['options' => $data->toArray(), 'updated_at' => now()],
+            values: ['options' => $data?->toArray(), 'updated_at' => now()],
             detaching: $detach,
         );
 
