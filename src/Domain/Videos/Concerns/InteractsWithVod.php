@@ -124,14 +124,14 @@ trait InteractsWithVod
     public function fileSize(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->clips?->totalSizeInBytes()
+            get: fn () => $this->clips?->totalSizeInBytes(),
         )->shouldCache();
     }
 
     public function timecode(): Attribute
     {
         return Attribute::make(
-            get: fn () => sprintf('timecode-%s', $this->getKey()),
+            get: fn () => sprintf('timecode-%d', $this->getKey()),
         )->shouldCache();
     }
 }
