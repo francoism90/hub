@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Groups\Models;
 
 use Domain\Groups\Collections\GroupCollection;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
 use Domain\Groups\States\GroupState;
@@ -44,8 +45,8 @@ class Group extends Model implements HasMedia, Sortable
      */
     protected $fillable = [
         'user_id',
-        'name',
         'content',
+        'kind',
         'type',
         'order_column',
     ];
@@ -61,6 +62,7 @@ class Group extends Model implements HasMedia, Sortable
     {
         return [
             'state' => GroupState::class,
+            'kind' => GroupSet::class,
             'type' => GroupType::class,
         ];
     }
