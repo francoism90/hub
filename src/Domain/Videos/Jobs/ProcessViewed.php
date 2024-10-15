@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Activities\Jobs;
+namespace Domain\Videos\Jobs;
 
 use Domain\Activities\Actions\MarkAsViewed;
 use Domain\Users\Models\User;

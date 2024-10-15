@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\QueryBuilders;
 
+use Domain\Groups\Enums\GroupClass;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,5 +27,12 @@ class GroupQueryBuilder extends Builder
     {
         return $this
             ->whereIn('type', [GroupType::Private, GroupType::Public]);
+    }
+
+    public function history(): self
+    {
+        return $this
+            ->where('category', GroupClass::Viewed)
+            ->where('type', GroupType::Private);
     }
 }

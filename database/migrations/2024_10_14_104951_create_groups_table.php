@@ -10,18 +10,16 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table
-                ->string('prefixed_id')
-                ->unique();
+            $table->string('prefixed_id')->unique();
             $table
                 ->foreignId('user_id')
                 ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->string('name')->index();
-            $table->string('title')->nullable();
+            $table->string('name')->nullable();
             $table->text('content')->nullable();
+            $table->string('kind')->nullable()->index();
             $table->string('type')->nullable()->index();
             $table->string('state')->index();
             $table->unsignedInteger('order_column')->nullable()->index();

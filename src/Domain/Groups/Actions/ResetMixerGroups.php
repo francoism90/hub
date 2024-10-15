@@ -10,7 +10,7 @@ use Domain\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 
-class ResetCategoryGroups
+class ResetMixerGroups
 {
     public function execute(User $user): void
     {

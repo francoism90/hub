@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use Domain\Groups\Enums\GroupCategory;
+use Domain\Groups\Enums\GroupClass;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -17,8 +17,8 @@ class PopulateGroupDaily
     {
         DB::transaction(function () use ($user, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
-                'name' => GroupCategory::Daily->value,
-                'title' => GroupCategory::Daily->label(),
+                'name' => GroupClass::Daily->value,
+                'title' => GroupClass::Daily->label(),
                 'type' => GroupType::Mixer,
             ]);
 

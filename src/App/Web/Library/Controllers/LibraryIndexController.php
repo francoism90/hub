@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Library\Controllers;
 
 use App\Web\Library\Forms\QueryForm;
-use Domain\Groups\Enums\GroupCategory;
+use Domain\Groups\Enums\GroupClass;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
@@ -32,7 +32,7 @@ class LibraryIndexController extends Page
 
     protected function getCategories(): array
     {
-        return GroupCategory::cases();
+        return GroupClass::cases();
     }
 
     protected function getTitle(): ?string
