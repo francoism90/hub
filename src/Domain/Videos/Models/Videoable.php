@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Models;
 
-use Domain\Videos\DataObjects\VideoableOptions;
+use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -19,7 +19,7 @@ final class Videoable extends MorphPivot
     protected function casts(): array
     {
         return [
-            'options' => VideoableOptions::class,
+            'options' => VideoableData::class,
         ];
     }
 

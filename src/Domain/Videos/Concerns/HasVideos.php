@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use ArrayAccess;
+use Domain\Videos\DataObjects\VideoableData;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -20,18 +21,18 @@ trait HasVideos
             ->withTimestamps();
     }
 
-    public function attachVideo(Video $model, ?array $options = null): static
+    public function attachVideo(Video $model, ?VideoableData $data = null): static
     {
-        return $this->attachVideos([$model], $options);
+        return $this->attachVideos([$model], $data);
     }
 
-    public function attachVideos(array|ArrayAccess|Collection $videos, ?array $options = null, bool $detach = false): static
+    public function attachVideos(array|ArrayAccess|Collection $videos, ?VideoableData $data = null, bool $detach = false): static
     {
         $videos = static::convertToVideos($videos);
 
         $this->videos()->syncWithPivotValues(
             ids: $videos->pluck('id')->toArray(),
-            values: ['options' => $options, 'updated_at' => now()],
+            values: ['options' => $data->toArray(), 'updated_at' => now()],
             detaching: $detach,
         );
 
