@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Enums;
 
-enum GroupClass: string
+enum GroupSet: string
 {
     case Daily = 'daily';
     case Discover = 'discover';

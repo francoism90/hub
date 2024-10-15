@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Activities\Actions\MarkAsViewed;
 use Domain\Users\Models\User;
+use Domain\Videos\Actions\MarkAsWatched;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
@@ -64,13 +64,12 @@ class ProcessViewed implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        app(MarkAsViewed::class)->execute($this->user, $this->model, $this->options);
+        app(MarkAsWatched::class)->execute($this->user, $this->model, $this->options);
     }
 
     public function uniqueId(): string
     {
-        return sprintf('watched-%s-%d-%d',
-            $this->model->getMorphClass(),
+        return sprintf('watched-%d-%d',
             $this->model->getKey(),
             $this->user->getKey(),
         );

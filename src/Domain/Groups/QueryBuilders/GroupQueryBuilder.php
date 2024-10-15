@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\QueryBuilders;
 
-use Domain\Groups\Enums\GroupClass;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,14 +13,12 @@ class GroupQueryBuilder extends Builder
 {
     public function published(): self
     {
-        return $this
-            ->whereState('state', Verified::class);
+        return $this->whereState('state', Verified::class);
     }
 
     public function mixer(): self
     {
-        return $this
-            ->where('type', GroupType::Mixer);
+        return $this->where('type', GroupType::Mixer);
     }
 
     public function personal(): self
@@ -32,7 +30,7 @@ class GroupQueryBuilder extends Builder
     public function history(): self
     {
         return $this
-            ->where('category', GroupClass::Viewed)
+            ->where('kind', GroupSet::Watched)
             ->where('type', GroupType::Private);
     }
 }
