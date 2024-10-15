@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Library\Controllers;
 
 use App\Web\Library\Forms\QueryForm;
-use Domain\Groups\Enums\GroupClass;
+use Domain\Groups\Enums\GroupSet;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
@@ -21,7 +21,7 @@ class LibraryIndexController extends Page
     public function render(): View
     {
         return view('app.library.index')->with([
-            'categories' => $this->getCategories(),
+            'items' => $this->getCollection(),
         ]);
     }
 
@@ -30,9 +30,9 @@ class LibraryIndexController extends Page
         $this->form->submit();
     }
 
-    protected function getCategories(): array
+    protected function getCollection(): array
     {
-        return GroupClass::cases();
+        return GroupSet::cases();
     }
 
     protected function getTitle(): ?string
