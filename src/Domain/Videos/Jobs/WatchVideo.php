@@ -16,7 +16,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessViewed implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
+class WatchVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
