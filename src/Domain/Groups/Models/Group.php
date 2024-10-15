@@ -131,6 +131,7 @@ class Group extends Model implements HasMedia, Sortable
             'id' => $this->getScoutKey(),
             'name' => (string) $this->name,
             'content' => (string) $this->content,
+            'kind' => (string) $this->kind?->value,
             'type' => (string) $this->type?->value,
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
