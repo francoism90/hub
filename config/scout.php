@@ -175,6 +175,7 @@ return [
 
                 'searchableAttributes' => [
                     'content',
+                    'kind',
                 ],
 
                 'sortableAttributes' => [
