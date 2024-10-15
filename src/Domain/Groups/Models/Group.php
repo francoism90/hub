@@ -146,7 +146,7 @@ class Group extends Model implements HasMedia, Sortable
     public function title(): Attribute
     {
         return Attribute::make(
-            get: fn () => str($this->kind ?: $this->type)->apa()
+            get: fn () => str($this->name ?: $this->kind)->apa()
         )->shouldCache();
     }
 }
