@@ -185,6 +185,17 @@ return [
                     'created_at',
                     'updated_at',
                 ],
+
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 3,
+                        'twoTypos' => 5,
+                    ],
+                ],
+
+                'pagination' => [
+                    'maxTotalHits' => 32000,
+                ],
             ],
 
             Video::class => [
