@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Groups\Actions;
 
 use Domain\Groups\Enums\GroupClass;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -18,7 +19,7 @@ class PopulateGroupDiscover
     {
         DB::transaction(function () use ($user, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
-                'kind' => GroupClass::Discover,
+                'kind' => GroupSet::Discover,
                 'type' => GroupType::Mixer,
             ]);
 

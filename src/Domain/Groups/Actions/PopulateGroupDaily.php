@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use Domain\Groups\Enums\GroupClass;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -17,8 +17,7 @@ class PopulateGroupDaily
     {
         DB::transaction(function () use ($user, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
-                'name' => GroupClass::Daily->value,
-                'title' => GroupClass::Daily->label(),
+                'kind' => GroupSet::Daily->label(),
                 'type' => GroupType::Mixer,
             ]);
 
@@ -26,11 +25,11 @@ class PopulateGroupDaily
                 return;
             }
 
-            $model->attachVideos($this->getCollection()->collect(), detach: true);
+            $model->attachVideos($this->getCollection($user)->collect(), detach: true);
         });
     }
 
-    protected function getCollection(): LazyCollection
+    protected function getCollection(User $user): LazyCollection
     {
         return Video::query()
             ->inRandomOrder()
