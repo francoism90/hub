@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Activities\Actions\MarkAsViewed;
 use Domain\Groups\Actions\MarkAsFavorited;
 use Domain\Groups\Actions\MarkAsWatchlisted;
 use Foxws\WireUse\Views\Support\Page;
@@ -22,7 +21,7 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsViewed::class)->execute($user, $this->video);
+        // app(MarkAsViewed::class)->execute($user, $this->video);
     }
 
     public function render(): View

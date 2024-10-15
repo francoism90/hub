@@ -6,6 +6,7 @@ namespace Domain\Videos\Jobs;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\MarkAsWatched;
+use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
@@ -16,7 +17,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class WatchVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
+class StoreVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -57,19 +58,19 @@ class WatchVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
     public function __construct(
         protected User $user,
         protected Model $model,
-        protected ?array $options = null,
+        protected ?VideoableData $data = null,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(MarkAsWatched::class)->execute($this->user, $this->model, $this->options);
+        app(MarkAsWatched::class)->execute($this->user, $this->model, $this->data);
     }
 
     public function uniqueId(): string
     {
-        return sprintf('watched-%d-%d',
+        return sprintf('store-video-%d-%d',
             $this->model->getKey(),
             $this->user->getKey(),
         );

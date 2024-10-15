@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
-use Domain\Activities\Jobs\ProcessViewed;
 use Domain\Users\Models\User;
+use Domain\Videos\DataObjects\VideoableData;
+use Domain\Videos\Jobs\StoreVideo;
 use Domain\Videos\Models\Video;
 
 class SyncVideoTimeCode
 {
-    public function execute(User $user, Video $video, ?array $options = null): void
+    public function execute(User $user, Video $video, ?VideoableData $data = null): void
     {
-        if ($timeCode = data_get($options, 'time')) {
+        if ($timeCode = $data?->time) {
             $user->storeSet($video->timecode, $timeCode, now()->addMonth());
         }
 
-        ProcessViewed::dispatch($user, $video, $options);
+        StoreVideo::dispatch($user, $video, $data);
     }
 }
