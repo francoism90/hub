@@ -129,7 +129,6 @@ class Group extends Model implements HasMedia, Sortable
     {
         return [
             'id' => $this->getScoutKey(),
-            'name' => (string) $this->name,
             'content' => (string) $this->content,
             'kind' => (string) $this->kind?->value,
             'type' => (string) $this->type?->value,

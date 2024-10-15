@@ -165,6 +165,8 @@ return [
             Group::class => [
                 'filterableAttributes' => [
                     'id',
+                    'kind',
+                    'type',
                     'state',
                     'created_at',
                     'updated_at',
@@ -172,12 +174,13 @@ return [
                 ],
 
                 'searchableAttributes' => [
-                    'name',
                     'content',
                 ],
 
                 'sortableAttributes' => [
-                    'name',
+                    'id',
+                    'kind',
+                    'type',
                     'state',
                     'created_at',
                     'updated_at',
@@ -208,6 +211,7 @@ return [
                 ],
 
                 'sortableAttributes' => [
+                    'id',
                     'name',
                     'identifier',
                     'released',
@@ -298,6 +302,7 @@ return [
                 ],
 
                 'sortableAttributes' => [
+                    'id',
                     'name',
                     'type',
                     'adult',
