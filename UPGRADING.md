@@ -21,5 +21,5 @@ Update the application:
 $ hub shell
 composer install
 yarn install && yarn run build
-php artisan app:update --assets
+php artisan app:update --assets --regenerate
 ```
