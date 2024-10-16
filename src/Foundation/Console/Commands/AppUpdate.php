@@ -12,7 +12,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--assets}';
+    protected $signature = 'app:update {--assets} {--regenerate}';
 
     /**
      * @var string
@@ -37,6 +37,11 @@ class AppUpdate extends Command implements Isolatable
         // Update assets
         if ($this->option('assets')) {
             $this->call('google-fonts:fetch');
+        }
+
+        // Regenerate models
+        if ($this->option('regenerate')) {
+            $this->call('users:regenerate');
         }
 
         // Optimize application
