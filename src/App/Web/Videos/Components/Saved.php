@@ -28,7 +28,7 @@ class Saved extends Section
 
     protected function getUrl(): ?string
     {
-        return route('account.saved');
+        return 'account.saved';
     }
 
     protected function getTitle(): ?string

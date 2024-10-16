@@ -28,7 +28,7 @@ class Viewed extends Section
 
     protected function getUrl(): ?string
     {
-        return route('account.history');
+        return 'account.history';
     }
 
     protected function getTitle(): ?string

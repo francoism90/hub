@@ -28,7 +28,7 @@ class Favorites extends Section
 
     protected function getUrl(): ?string
     {
-        return route('account.favorites');
+        return 'account.favorites';
     }
 
     protected function getTitle(): ?string
