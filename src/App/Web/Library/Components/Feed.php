@@ -49,14 +49,23 @@ class Feed extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function populateFeed(): void
+    public function reload(): void
+    {
+        $this->populateFeed(force: true);
+
+        $this->clear();
+
+        $this->refresh();
+    }
+
+    protected function populateFeed(?bool $force = false): void
     {
         switch ($this->form->type) {
             case 'discover':
-                app(PopulateGroupDiscover::class)->execute($this->getAuthModel());
+                app(PopulateGroupDiscover::class)->execute($this->getAuthModel(), $force);
                 break;
             default:
-                app(PopulateGroupDaily::class)->execute($this->getAuthModel());
+                app(PopulateGroupDaily::class)->execute($this->getAuthModel(), $force);
                 break;
         }
     }
@@ -67,7 +76,7 @@ class Feed extends Component
 
         return $this->getGroupModel()
             ->videos()
-            ->paginate(perPage: 12, page: $page);
+            ->paginate(perPage: 1, page: $page);
     }
 
     protected function getGroupModel(): ?Group

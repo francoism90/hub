@@ -40,7 +40,7 @@ class LibraryIndexController extends Page
 
     protected function getTitle(): ?string
     {
-        return 'Stream Videos';
+        return __('Stream Videos');
     }
 
     protected function getDescription(): ?string

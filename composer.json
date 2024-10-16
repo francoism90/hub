@@ -11,7 +11,7 @@
         "php": "^8.2",
         "artesaos/seotools": "^1.3.1",
         "blade-ui-kit/blade-heroicons": "^2.4.0",
-        "foxws/wireuse": "^2.5.1",
+        "foxws/wireuse": "^2.5.2",
         "guzzlehttp/guzzle": "^7.9.2",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.28.0",

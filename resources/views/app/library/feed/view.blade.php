@@ -13,7 +13,19 @@
         {{ html()->div()->close() }}
     @endforeach
 
+
     @if ($this->hasMorePages())
-        {{ html()->div()->class('self-center loading loading-spinner')->attribute('x-intersect', '$wire.fetch()') }}
+        {{ html()->element('nav')->class('flex flex-nowrap items-center justify-center')->attribute('x-intersect', '$wire.fetch()')->child(html()
+            ->button(__('Processing...'))
+            ->class('hidden')
+        ) }}
     @endif
+
+    {{-- @if ($this->onLastPage()) --}}
+        {{ html()->element('nav')->class('flex flex-nowrap items-center justify-center')->attribute('x-intersect', '$wire.fetch()')->child(html()
+            ->button(__('Refresh'))
+            ->attribute('wire:click', 'reload')
+            ->class('btn btn-secondary btn-outlined')
+        ) }}
+    {{-- @endif --}}
 {{ html()->element('section')->close() }}
