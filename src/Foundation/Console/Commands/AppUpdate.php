@@ -36,11 +36,11 @@ class AppUpdate extends Command implements Isolatable
             $this->call('google-fonts:fetch');
         }
 
-        // Sync settings
-        $this->call('scout:sync-index-settings');
-
         // Optimize application
         $this->call('app:optimize');
+
+        // Sync settings
+        $this->call('scout:sync-index-settings');
 
         // Regenerate models
         if ($this->option('regenerate')) {
