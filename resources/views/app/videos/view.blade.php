@@ -45,8 +45,8 @@
     @endif
 
     {{ html()->element('section')->attribute('x-data', 'preview')->class('py-3')->open() }}
-        {{-- <livewire:web.videos.next :$video lazy /> --}}
-        {{-- <livewire:web.videos.random :$video lazy /> --}}
+        <livewire:web.videos.next :$video lazy />
+        <livewire:web.videos.random :$video lazy />
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
 

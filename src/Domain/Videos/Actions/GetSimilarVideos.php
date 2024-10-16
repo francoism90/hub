@@ -65,7 +65,7 @@ class GetSimilarVideos
                 ...$relatables,
             ])
             ->whereKeyNot($model)
-            ->feed()
+            ->inRandomOrder()
             ->take(12)
             ->cursor();
     }
@@ -75,7 +75,7 @@ class GetSimilarVideos
         return Video::query()
             ->published()
             ->whereKeyNot($model)
-            ->feed()
+            ->inRandomOrder()
             ->take(12)
             ->cursor();
     }

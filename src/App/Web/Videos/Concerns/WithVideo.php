@@ -35,7 +35,7 @@ trait WithVideo
         return $this->getVideo()->getRouteKey();
     }
 
-    protected function getVideoKey(): string
+    protected function getVideoKey(): int
     {
         return $this->getVideo()->getKey();
     }

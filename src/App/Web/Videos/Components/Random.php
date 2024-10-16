@@ -18,7 +18,7 @@ class Random extends Section
         return $this->getQuery()
             ->whereKeyNot($this->getVideoKey())
             ->published()
-            ->feed()
+            ->inRandomOrder()
             ->take(24)
             ->get();
     }
