@@ -49,13 +49,15 @@ class Feed extends Component
         $this->dispatch('$refresh');
     }
 
-    public function reload(): void
+    public function regenerate(): void
     {
         $this->populateFeed(force: true);
 
         $this->clear();
 
-        $this->refresh();
+        $this->fillPageItems();
+
+        $this->dispatch('$refresh');
     }
 
     protected function populateFeed(?bool $force = false): void
@@ -76,7 +78,7 @@ class Feed extends Component
 
         return $this->getGroupModel()
             ->videos()
-            ->paginate(perPage: 1, page: $page);
+            ->paginate(perPage: 12, page: $page);
     }
 
     protected function getGroupModel(): ?Group
