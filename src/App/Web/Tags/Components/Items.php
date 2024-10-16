@@ -30,12 +30,12 @@ class Items extends Component
 
     public function render(): View
     {
-        return view('app.tags.feed.view');
+        return view('app.tags.items.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.tags.feed.placeholder', $params);
+        return view('app.tags.items.placeholder', $params);
     }
 
     public function refresh(): void

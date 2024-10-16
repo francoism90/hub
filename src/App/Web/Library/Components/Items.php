@@ -34,12 +34,12 @@ class Items extends Component
 
     public function render(): View
     {
-        return view('app.library.feed.view');
+        return view('app.library.items.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.library.feed.placeholder', $params);
+        return view('app.library.items.placeholder', $params);
     }
 
     public function refresh(): void

@@ -12,7 +12,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
 {{ html()->div()->open() }}
     {{ html()
-        ->element('section')
+        ->element('main')
         ->attributes([
             'x-data' => '',
             'wire.poll.900s' => 'refresh',
@@ -25,7 +25,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                 <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
-    {{ html()->element('section')->close() }}
+    {{ html()->element('main')->close() }}
 
     {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
         @if ($this->hasMorePages())
