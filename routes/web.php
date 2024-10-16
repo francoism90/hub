@@ -6,6 +6,8 @@ use App\Web\Account\Controllers\SubscribeController;
 use App\Web\Groups\Controllers\GroupIndexController;
 use App\Web\Groups\Controllers\GroupViewController;
 use App\Web\Library\Controllers\LibraryIndexController;
+use App\Web\Playlists\Controllers\PlaylistIndexController;
+use App\Web\Playlists\Controllers\PlaylistViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Tags\Controllers\TagViewController;
@@ -26,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Videos
-    Route::name('videos.')->prefix('videos')->group(function () {
+    Route::name('videos.')->prefix('video')->group(function () {
         Route::get('/', VideoIndexController::class)->name('index');
         Route::get('/{video}', VideoViewController::class)->name('view');
         Route::get('/{video}/edit', VideoEditController::class)->name('edit');
@@ -37,20 +39,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', SearchIndexController::class)->name('index');
     });
 
-    // Search
-    Route::name('search.')->prefix('search')->group(function () {
-        Route::get('/', SearchIndexController::class)->name('index');
-    });
-
-    // Lists
-    Route::name('lists.')->prefix('lists')->group(function () {
-        Route::get('/', GroupIndexController::class)->name('index');
-        Route::get('/{group}', GroupViewController::class)->name('view');
+    // Groups
+    Route::name('playlists.')->prefix('playlist')->group(function () {
+        Route::get('/', PlaylistIndexController::class)->name('index');
+        Route::get('/{group}', PlaylistViewController::class)->name('view');
     });
 
     // Tags
-    Route::name('tags.')->prefix('tags')->group(function () {
+    Route::name('tags.')->prefix('tag')->group(function () {
         Route::get('/{tag}', TagViewController::class)->name('view');
         Route::get('/{tag}/edit', TagEditController::class)->name('edit');
+    });
+
+    // Search
+    Route::name('search.')->prefix('search')->group(function () {
+        Route::get('/', SearchIndexController::class)->name('index');
     });
 });

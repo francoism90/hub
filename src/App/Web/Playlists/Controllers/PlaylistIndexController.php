@@ -2,19 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Groups\Controllers;
+namespace App\Web\Playlists\Controllers;
 
+use App\Web\Groups\Concerns\WithGroups;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
-class GroupIndexController extends Page
+class PlaylistIndexController extends Page
 {
+    use WithGroups;
+
     public function render(): View
     {
-        return view('app.groups.index');
+        return view('app.playlists.index');
     }
 
     #[Computed(cache: true, key: 'tags')]

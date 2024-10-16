@@ -12,8 +12,8 @@
             html()->icon()->svg($isActive('library') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack', 'size-6'),
         ),
 
-        html()->a()->link('lists.index')->text('Groups')->prependChild(
-            html()->icon()->svg($isActive('lists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
+        html()->a()->link('playlists.index')->text('Playlists')->prependChild(
+            html()->icon()->svg($isActive('playlists') ? 'heroicon-s-bookmark' : 'heroicon-o-bookmark', 'size-6'),
         ),
 
         html()->a()->link('account.profile')->text('Me')->prependChild(

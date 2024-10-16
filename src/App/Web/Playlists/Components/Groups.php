@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Groups\Components;
+namespace App\Web\Playlists\Components;
 
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
@@ -22,12 +22,12 @@ class Groups extends Component
 
     public function render(): View
     {
-        return view('app.groups.groups.view');
+        return view('app.playlists.groups.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.groups.groups.placeholder', $params);
+        return view('app.playlists.groups.placeholder', $params);
     }
 
     protected function getPageItems(?int $page = null): LengthAwarePaginator

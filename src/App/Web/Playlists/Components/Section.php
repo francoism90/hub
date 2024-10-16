@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Groups\Components;
+namespace App\Web\Playlists\Components;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
@@ -27,14 +27,14 @@ class Section extends Component
 
     public function render(): View
     {
-        return view('app.groups.tags.view')->with([
+        return view('app.playlists.tags.view')->with([
             'title' => $this->getTitle(),
         ]);
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.groups.tags.placeholder', $params);
+        return view('app.playlists.tags.placeholder', $params);
     }
 
     public function refresh(): void

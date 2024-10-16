@@ -4,7 +4,7 @@
     {{ html()->div()->attribute('wire.poll.900s', 'refresh')->class('grid grid-cols-1 gap-3 w-full overflow-y-scroll sm:grid-cols-3')->attribute('wire:scroll')->open() }}
         @foreach ($this->items as $group)
             {{ html()->div()->wireKey($group->getRouteKey())->open() }}
-                <livewire:web.lists.group :$group :key="$group->getRouteKey()" />
+                <livewire:web.playlists.group :$group :key="$group->getRouteKey()" />
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->div()->close() }}

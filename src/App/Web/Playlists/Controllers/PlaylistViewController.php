@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Groups\Controllers;
+namespace App\Web\Playlists\Controllers;
 
 use App\Web\Groups\Concerns\WithGroup;
 use Foxws\WireUse\Views\Support\Page;
@@ -11,14 +11,14 @@ use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 
-class GroupViewController extends Page
+class PlaylistViewController extends Page
 {
     use WithGroup;
     use WithPagination;
 
     public function render(): View
     {
-        return view('app.groups.view');
+        return view('app.playlists.view');
     }
 
     public function updatedPage(): void
