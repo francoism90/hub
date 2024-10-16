@@ -6,7 +6,6 @@ namespace Domain\Videos\Jobs;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Actions\MarkAsViewed;
-use Domain\Videos\Actions\MarkAsWatched;
 use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
