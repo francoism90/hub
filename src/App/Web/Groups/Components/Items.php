@@ -49,7 +49,8 @@ class Items extends Component
     {
         $page ??= $this->getPage();
 
-        return $this->getQuery()
+        return $this->getGroup()
+            ->videos()
             ->tap(new FilterVideos($this->form, $this->group))
             ->take(12 * 8)
             ->paginate(perPage: 12, page: $page);

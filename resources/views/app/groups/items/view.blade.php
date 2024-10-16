@@ -1,15 +1,3 @@
-@php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
-@endphp
-
 {{ html()->div()->open() }}
     {{ html()
         ->element('main')
@@ -30,19 +18,6 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
         @if ($this->hasMorePages())
             {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
-        @endif
-
-        @if ($this->onLastPage())
-            {{ html()
-                ->button()
-                ->text('Roll Dice')
-                ->attributes([
-                    'x-on:click' => $scrollIntoViewJsSnippet,
-                    'wire:click' => 'regenerate',
-                    'wire:loading.attr' => 'disabled',
-                ])
-                ->class('btn btn-sm btn-secondary btn-outlined')
-            }}
         @endif
     {{ html()->element('nav')->close() }}
 {{ html()->div()->close() }}
