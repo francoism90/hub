@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Library\Scopes;
+namespace App\Web\Videos\Scopes;
 
-use App\Web\Library\Forms\QueryForm;
+use App\Web\Videos\Forms\QueryForm;
 use Illuminate\Database\Eloquent\Builder;
 
 class FilterVideos

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Library\Forms;
+namespace App\Web\Videos\Forms;
 
 use Domain\Groups\Actions\ResetMixerGroups;
 use Foxws\WireUse\Forms\Support\Form;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Library\Components;
+namespace App\Web\Videos\Components;
 
-use App\Web\Library\Forms\QueryForm;
+use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDaily;
 use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Models\Group;
@@ -34,12 +34,12 @@ class Items extends Component
 
     public function render(): View
     {
-        return view('app.library.items.view');
+        return view('app.videos.items.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.library.items.placeholder', $params);
+        return view('app.videos.items.placeholder', $params);
     }
 
     public function refresh(): void

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Home
-    Route::get('/', LibraryIndexController::class)->name('home');
+    Route::get('/', VideoIndexController::class)->name('home');
 
     // Account
     Route::name('account.')->group(function () {
@@ -30,14 +30,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('video')->group(function () {
-        Route::get('/', VideoIndexController::class)->name('index');
         Route::get('/{video}', VideoViewController::class)->name('view');
         Route::get('/{video}/edit', VideoEditController::class)->name('edit');
     });
 
     // Library
     Route::name('library.')->prefix('library')->group(function () {
-        Route::get('/', SearchIndexController::class)->name('index');
+        Route::get('/', LibraryIndexController::class)->name('index');
     });
 
     // Groups
