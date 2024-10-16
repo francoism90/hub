@@ -103,14 +103,12 @@ class TagViewController extends Page
     {
         return $this
             ->getTag()
-            ->videos()
-            ->tagged(60 * 60 * 24);
+            ->videos();
     }
 
     protected function getTypes(): array
     {
         return [
-            ['key' => '', 'label' => __('Recommended')],
             ['key' => 'recent', 'label' => __('Latest')],
             ['key' => 'longest', 'label' => __('Longest')],
         ];

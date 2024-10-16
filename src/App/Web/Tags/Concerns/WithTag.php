@@ -35,7 +35,7 @@ trait WithTag
         return $this->getTag()->getRouteKey();
     }
 
-    protected function getTagKey(): string
+    protected function getTagKey(): int
     {
         return $this->getTag()->getKey();
     }
