@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Playlists\Controllers;
+namespace App\Web\Tags\Controllers;
 
-use App\Web\Groups\Concerns\WithGroups;
+use App\Web\Tags\Concerns\WithTags;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
-class PlaylistIndexController extends Page
+class TagIndexController extends Page
 {
-    use WithGroups;
+    use WithTags;
 
     public function render(): View
     {
-        return view('app.playlists.index');
+        return view('app.tags.index');
     }
 
     #[Computed(cache: true, key: 'tags')]
@@ -30,11 +30,11 @@ class PlaylistIndexController extends Page
 
     protected function getTitle(): ?string
     {
-        return __('Lists');
+        return __('Tags');
     }
 
     protected function getDescription(): ?string
     {
-        return $this->getTitle();
+        return __('Browse all tags');
     }
 }

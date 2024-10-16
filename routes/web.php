@@ -10,6 +10,7 @@ use App\Web\Playlists\Controllers\PlaylistIndexController;
 use App\Web\Playlists\Controllers\PlaylistViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
+use App\Web\Tags\Controllers\TagIndexController;
 use App\Web\Tags\Controllers\TagViewController;
 use App\Web\Videos\Controllers\VideoEditController;
 use App\Web\Videos\Controllers\VideoIndexController;
@@ -47,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Tags
     Route::name('tags.')->prefix('tag')->group(function () {
+        Route::get('/', TagIndexController::class)->name('index');
         Route::get('/{tag}', TagViewController::class)->name('view');
         Route::get('/{tag}/edit', TagEditController::class)->name('edit');
     });
