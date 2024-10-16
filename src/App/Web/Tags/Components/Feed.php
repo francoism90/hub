@@ -7,7 +7,6 @@ namespace App\Web\Tags\Components;
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\QueryForm;
 use App\Web\Tags\Scopes\FilterVideos;
-use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
