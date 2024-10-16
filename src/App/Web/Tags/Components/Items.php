@@ -17,7 +17,7 @@ use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 
-class Feed extends Component
+class Items extends Component
 {
     use WithAuthentication;
     use WithoutUrlPagination;

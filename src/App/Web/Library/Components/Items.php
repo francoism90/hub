@@ -8,7 +8,6 @@ use App\Web\Library\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDaily;
 use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Models\Group;
-use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -18,7 +17,7 @@ use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 
-class Feed extends Component
+class Items extends Component
 {
     use WithAuthentication;
     use WithoutUrlPagination;
@@ -30,7 +29,7 @@ class Feed extends Component
 
     public function boot(): void
     {
-        $this->populateFeed();
+        $this->setItems();
     }
 
     public function render(): View
@@ -52,7 +51,7 @@ class Feed extends Component
 
     public function regenerate(): void
     {
-        $this->populateFeed(force: true);
+        $this->setItems(force: true);
 
         $this->clear();
 
@@ -61,7 +60,7 @@ class Feed extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function populateFeed(?bool $force = false): void
+    protected function setItems(?bool $force = false): void
     {
         switch ($this->form->type) {
             case 'discover':

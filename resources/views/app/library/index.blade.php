@@ -23,7 +23,7 @@
 
     {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
         {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.library.feed :key="$form->type" :$form />
+            <livewire:web.library.items :key="$form->type" :$form />
         {{ html()->div()->close() }}
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}

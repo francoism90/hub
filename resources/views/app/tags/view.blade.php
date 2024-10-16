@@ -45,7 +45,7 @@
 
     {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
         {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.tags.feed :key="$form->type" :$form :$tag />
+            <livewire:web.tags.items :key="$form->type" :$form :$tag />
         {{ html()->div()->close() }}
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}
