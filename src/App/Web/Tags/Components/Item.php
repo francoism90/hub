@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Playlists\Components;
+namespace App\Web\Tags\Components;
 
 use App\Web\Tags\Concerns\WithTag;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Tag extends Component
+class Item extends Component
 {
     use WithTag;
 
     public function render(): View
     {
-        return view('app.playlists.tag.view');
+        return view('app.tags.item.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.playlists.tag.placeholder', $params);
+        return view('app.tags.item.placeholder', $params);
     }
 }
