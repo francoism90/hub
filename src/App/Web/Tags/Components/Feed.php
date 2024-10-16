@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Library\Components;
+namespace App\Web\Tags\Components;
 
-use App\Web\Library\Forms\QueryForm;
-use Domain\Groups\Actions\PopulateGroupDaily;
-use Domain\Groups\Actions\PopulateGroupDiscover;
-use Domain\Groups\Models\Group;
+use App\Web\Tags\Concerns\WithTag;
+use App\Web\Tags\Forms\QueryForm;
+use App\Web\Tags\Scopes\FilterVideos;
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -24,23 +24,19 @@ class Feed extends Component
     use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
+    use WithTag;
 
     #[Modelable]
     public QueryForm $form;
 
-    public function boot(): void
-    {
-        $this->populateFeed();
-    }
-
     public function render(): View
     {
-        return view('app.library.feed.view');
+        return view('app.tags.feed.view');
     }
 
     public function placeholder(array $params = []): View
     {
-        return view('app.library.feed.placeholder', $params);
+        return view('app.tags.feed.placeholder', $params);
     }
 
     public function refresh(): void
@@ -50,49 +46,18 @@ class Feed extends Component
         $this->dispatch('$refresh');
     }
 
-    public function regenerate(): void
-    {
-        $this->populateFeed(force: true);
-
-        $this->clear();
-
-        $this->fillPageItems();
-
-        $this->dispatch('$refresh');
-    }
-
-    protected function populateFeed(?bool $force = false): void
-    {
-        switch ($this->form->type) {
-            case 'discover':
-                app(PopulateGroupDiscover::class)->execute($this->getAuthModel(), $force);
-                break;
-            default:
-                app(PopulateGroupDaily::class)->execute($this->getAuthModel(), $force);
-                break;
-        }
-    }
-
     protected function getPageItems(?int $page = null): LengthAwarePaginator
     {
         $page ??= $this->getPage();
 
-        return $this->getGroupModel()
-            ->videos()
+        return $this->getScout()
+            ->tap(new FilterVideos($this->form, $this->tag))
             ->paginate(perPage: 12, page: $page);
-    }
-
-    protected function getGroupModel(): ?Group
-    {
-        return $this->getQuery()
-            ->where('user_id', $this->getAuthId())
-            ->where('name', $this->form->type)
-            ->first();
     }
 
     protected function getModelClass(): ?string
     {
-        return Group::class;
+        return Video::class;
     }
 
     public function getListeners(): array
