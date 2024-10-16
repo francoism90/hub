@@ -24,7 +24,7 @@ class MarkAsViewed
             ]);
 
             // Toggle state
-            $force === true || ! $model->exists()
+            $force === true || ! $video->isViewedBy($user)
                 ? $model->attachVideo($video, $data)
                 : $model->detachVideo($video);
 

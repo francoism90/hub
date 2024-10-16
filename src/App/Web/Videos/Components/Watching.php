@@ -35,7 +35,7 @@ class Watching extends Section
     {
         return $this->getAuthModel()
             ->groups()
-            ->history();
+            ->saved();
     }
 
     public function getListeners(): array

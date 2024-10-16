@@ -24,7 +24,7 @@ class MarkAsSaved
             ]);
 
             // Toggle state
-            $force === true || ! $model->exists()
+            $force === true || ! $video->isSavedBy($user)
                 ? $model->attachVideo($video, $data)
                 : $model->detachVideo($video);
 

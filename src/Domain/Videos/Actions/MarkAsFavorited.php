@@ -24,7 +24,7 @@ class MarkAsFavorited
             ]);
 
             // Toggle state
-            $force === true || ! $model->exists()
+            $force === true || ! $video->isFavoritedBy($user)
                 ? $model->attachVideo($video, $data)
                 : $model->detachVideo($video);
 

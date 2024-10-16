@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Users\Models\User;
+use Domain\Videos\Actions\MarkAsViewed;
 use Domain\Videos\Actions\MarkAsWatched;
 use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\Bus\Batchable;
@@ -65,7 +66,7 @@ class StoreVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        app(MarkAsWatched::class)->execute($this->user, $this->model, $this->data);
+        app(MarkAsViewed::class)->execute($this->user, $this->model, $this->data);
     }
 
     public function uniqueId(): string

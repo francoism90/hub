@@ -29,8 +29,8 @@
             html()->icon()->svg($this->isFavorited ? 'heroicon-s-heart' : 'heroicon-o-heart', 'size-6 text-inherit')
         ),
 
-        html()->button()->class('btn btn-inline')->attributes(['wire:click' => 'toggleFavorite', 'wire:loading.attr' => 'disabled'])->child(
-            html()->icon()->svg($this->isWatchlisted ? 'heroicon-s-clock' : 'heroicon-o-clock', 'size-6 text-inherit')
+        html()->button()->class('btn btn-inline')->attributes(['wire:click' => 'toggleSave', 'wire:loading.attr' => 'disabled'])->child(
+            html()->icon()->svg($this->isSaved ? 'heroicon-s-clock' : 'heroicon-o-clock', 'size-6 text-inherit')
         ),
     ]) }}
 

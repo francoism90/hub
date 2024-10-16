@@ -27,21 +27,17 @@ class VideoViewController extends Page
             return false;
         }
 
-        return false;
-
-        // return $this->video->isFavoritedBy($user);
+        return $this->video->isFavoritedBy($user);
     }
 
     #[Computed]
-    public function isWatchlisted(): bool
+    public function isSaved(): bool
     {
         if (! $user = $this->getAuthModel()) {
             return false;
         }
 
-        return false;
-
-        // return $this->video->isWatchlistedBy($user);
+        return $this->video->isSavedBy($user);
     }
 
     public function toggleFavorite(): void
@@ -53,7 +49,7 @@ class VideoViewController extends Page
         app(MarkAsFavorited::class)->execute($user, $this->video);
     }
 
-    public function toggleWatchlist(): void
+    public function toggleSave(): void
     {
         if (! $user = $this->getAuthModel()) {
             return;
