@@ -6,8 +6,7 @@ use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
 use App\Web\Account\Controllers\SavedController;
 use App\Web\Account\Controllers\SubscribeController;
-use App\Web\Library\Controllers\LibraryIndexController;
-use App\Web\Library\Controllers\LibraryViewedController;
+use App\Web\Account\Controllers\LibraryController;
 use App\Web\Playlists\Controllers\PlaylistIndexController;
 use App\Web\Playlists\Controllers\PlaylistViewController;
 use App\Web\Search\Controllers\SearchIndexController;
@@ -28,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/profile', ProfileController::class)->name('profile');
         Route::get('/notifications', NotificationsController::class)->name('notifications');
         Route::get('/subscribe', SubscribeController::class)->name('subscribe');
+        Route::get('/library', LibraryController::class)->name('library');
         Route::get('/history', HistoryController::class)->name('history');
         Route::get('/favorites', FavoritesController::class)->name('favorites');
         Route::get('/saved', SavedController::class)->name('saved');
@@ -37,11 +37,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::name('videos.')->prefix('video')->group(function () {
         Route::get('/{video}', VideoViewController::class)->name('view');
         Route::get('/{video}/edit', VideoEditController::class)->name('edit');
-    });
-
-    // Library
-    Route::name('library.')->prefix('library')->group(function () {
-        Route::get('/', LibraryIndexController::class)->name('index');
     });
 
     // Groups

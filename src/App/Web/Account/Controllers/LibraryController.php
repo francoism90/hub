@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Web\Library\Controllers;
+namespace App\Web\Account\Controllers;
 
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
-class LibraryIndexController extends Page
+class LibraryController extends Page
 {
     public function render(): View
     {
-        return view('app.library.index');
+        return view('app.account.library');
     }
 
     protected function getTitle(): ?string
