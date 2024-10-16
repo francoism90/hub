@@ -84,8 +84,9 @@ class Items extends Component
     protected function getGroupModel(): ?Group
     {
         return $this->getQuery()
+            ->mixer()
             ->where('user_id', $this->getAuthId())
-            ->where('name', $this->form->type)
+            ->where('kind', $this->form->type)
             ->first();
     }
 

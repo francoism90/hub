@@ -33,7 +33,7 @@ class PopulateGroupDiscover
     protected function getCollection(User $user): LazyCollection
     {
         return Video::query()
-            ->whereDoesntHave('activities', fn (Builder $query) => $query->where('user_id', $user->getKey()))
+            ->whereDoesntHave('groups', fn (Builder $query) => $query->where('groups.user_id', $user->getKey()))
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();

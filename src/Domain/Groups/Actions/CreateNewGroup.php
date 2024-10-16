@@ -16,7 +16,7 @@ class CreateNewGroup
     {
         return DB::transaction(function () use ($user, $attributes) {
             $model = $user->groups()->firstOrCreate(
-                Arr::only($attributes, ['name', 'type']),
+                Arr::only($attributes, ['name', 'kind', 'type']),
                 Arr::only($attributes, app(Group::class)->getFillable()),
             );
 

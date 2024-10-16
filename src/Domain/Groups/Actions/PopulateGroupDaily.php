@@ -17,7 +17,7 @@ class PopulateGroupDaily
     {
         DB::transaction(function () use ($user, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
-                'kind' => GroupSet::Daily->label(),
+                'kind' => GroupSet::Daily,
                 'type' => GroupType::Mixer,
             ]);
 
