@@ -1,14 +1,10 @@
 <?php
 
-use App\Web\Account\Controllers\FavoritesController;
-use App\Web\Account\Controllers\HistoryController;
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
-use App\Web\Account\Controllers\SavedController;
 use App\Web\Account\Controllers\SubscribeController;
 use App\Web\Account\Controllers\LibraryController;
-use App\Web\Playlists\Controllers\PlaylistIndexController;
-use App\Web\Playlists\Controllers\PlaylistViewController;
+use App\Web\Groups\Controllers\GroupViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
 use App\Web\Tags\Controllers\TagIndexController;
@@ -28,9 +24,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/notifications', NotificationsController::class)->name('notifications');
         Route::get('/subscribe', SubscribeController::class)->name('subscribe');
         Route::get('/library', LibraryController::class)->name('library');
-        Route::get('/history', HistoryController::class)->name('history');
-        Route::get('/favorites', FavoritesController::class)->name('favorites');
-        Route::get('/saved', SavedController::class)->name('saved');
     });
 
     // Videos
@@ -40,9 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Groups
-    Route::name('playlists.')->prefix('playlist')->group(function () {
-        Route::get('/', PlaylistIndexController::class)->name('index');
-        Route::get('/{group}', PlaylistViewController::class)->name('view');
+    Route::name('groups.')->prefix('groups')->group(function () {
+        Route::get('/{group}', GroupViewController::class)->name('view');
     });
 
     // Tags
