@@ -20,10 +20,10 @@ use Livewire\WithoutUrlPagination;
 class Items extends Component
 {
     use WithAuthentication;
+    use WithGroup;
     use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
-    use WithGroup;
 
     #[Modelable]
     public QueryForm $form;
@@ -49,8 +49,9 @@ class Items extends Component
     {
         $page ??= $this->getPage();
 
-        return $this->getScout()
+        return $this->getQuery()
             ->tap(new FilterVideos($this->form, $this->group))
+            ->take(12 * 8)
             ->paginate(perPage: 12, page: $page);
     }
 

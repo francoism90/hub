@@ -24,6 +24,7 @@ class GroupViewController extends Page
     public function render(): View
     {
         return view('app.groups.view')->with([
+            'title' => $this->getTitle(),
             'items' => $this->getCollection(),
         ]);
     }
@@ -37,8 +38,7 @@ class GroupViewController extends Page
     {
         return [
             GroupSet::Latest,
-            GroupSet::Longest,
-            GroupSet::Shortest,
+            GroupSet::Recommended,
         ];
     }
 
@@ -49,7 +49,7 @@ class GroupViewController extends Page
 
     protected function getDescription(): ?string
     {
-        return (string) $this->group->description;
+        return (string) $this->group->content;
     }
 
     public function getListeners(): array

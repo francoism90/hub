@@ -26,14 +26,14 @@ class Saved extends Section
             ->get();
     }
 
-    protected function getUrl(): ?string
-    {
-        return 'account.saved';
-    }
-
     protected function getTitle(): ?string
     {
         return __('On Watchlist');
+    }
+
+    protected function getUrl(): ?string
+    {
+        return route('groups.view', $this->getGroup());
     }
 
     protected function getGroup(): ?Group

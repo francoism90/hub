@@ -16,7 +16,7 @@ class QueryForm extends Form
     #[Validate('nullable|string|max:255')]
     public string $query = '';
 
-    #[Validate('nullable|string|in:latest,longest,shortest')]
+    #[Validate('nullable|string|in:latest,recommended')]
     public string $type = 'latest';
 
     public function query(): string

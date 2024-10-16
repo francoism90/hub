@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Groups
-    Route::name('groups.')->prefix('groups')->group(function () {
+    Route::name('groups.')->prefix('list')->group(function () {
         Route::get('/{group}', GroupViewController::class)->name('view');
     });
 

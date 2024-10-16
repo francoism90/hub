@@ -16,6 +16,7 @@ class CreateSystemGroups
         DB::transaction(function () use ($user) {
             collect($this->getCollection())->each(
                 fn (GroupSet $group) => app(CreateNewGroup::class)->execute($user, [
+                    'name' => $group->label(),
                     'kind' => $group,
                     'type' => GroupType::System,
                 ])

@@ -26,14 +26,14 @@ class Viewed extends Section
             ->get();
     }
 
-    protected function getUrl(): ?string
-    {
-        return 'account.history';
-    }
-
     protected function getTitle(): ?string
     {
         return __('Continue Watching');
+    }
+
+    protected function getUrl(): ?string
+    {
+        return route('groups.view', $this->getGroup());
     }
 
     protected function getGroup(): ?Group
