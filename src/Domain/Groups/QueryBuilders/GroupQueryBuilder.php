@@ -21,6 +21,11 @@ class GroupQueryBuilder extends Builder
         return $this->where('type', GroupType::Mixer);
     }
 
+    public function system(): self
+    {
+        return $this->where('type', GroupType::System);
+    }
+
     public function personal(): self
     {
         return $this
@@ -30,21 +35,21 @@ class GroupQueryBuilder extends Builder
     public function history(): self
     {
         return $this
-            ->where('kind', GroupSet::Viewed)
-            ->where('type', GroupType::Private);
+            ->system()
+            ->where('kind', GroupSet::Viewed);
     }
 
     public function favorites(): self
     {
         return $this
-            ->where('kind', GroupSet::Favorite)
-            ->where('type', GroupType::Private);
+            ->system()
+            ->where('kind', GroupSet::Favorite);
     }
 
     public function saved(): self
     {
         return $this
-            ->where('kind', GroupSet::Saved)
-            ->where('type', GroupType::Private);
+            ->system()
+            ->where('kind', GroupSet::Saved);
     }
 }

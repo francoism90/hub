@@ -50,7 +50,7 @@ class ProcessUser implements ShouldQueue
 
     public function handle(): void
     {
-        app(RegenerateUser::class)->execute($this->model);
+        //
     }
 
     /**

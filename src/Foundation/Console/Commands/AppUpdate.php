@@ -12,7 +12,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--assets} {--regenerate}';
+    protected $signature = 'app:update {--assets}';
 
     /**
      * @var string
@@ -41,10 +41,5 @@ class AppUpdate extends Command implements Isolatable
 
         // Sync settings
         $this->call('scout:sync-index-settings');
-
-        // Regenerate models
-        if ($this->option('regenerate')) {
-            $this->call('users:regenerate');
-        }
     }
 }
