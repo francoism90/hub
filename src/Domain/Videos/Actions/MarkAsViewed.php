@@ -17,11 +17,8 @@ class MarkAsViewed
     public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $data, $force) {
-            // Make sure group model exists
-            $model = app(CreateNewGroup::class)->execute($user, [
-                'kind' => GroupSet::Viewed,
-                'type' => GroupType::System,
-            ]);
+            // Get group model
+            $model = $user->groups()->viewed();
 
             // Toggle state
             $force === true || ! $video->isViewedBy($user)

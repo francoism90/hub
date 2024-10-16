@@ -17,11 +17,8 @@ class MarkAsSaved
     public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $data, $force) {
-            // Make sure group model exists
-            $model = app(CreateNewGroup::class)->execute($user, [
-                'kind' => GroupSet::Saved,
-                'type' => GroupType::System,
-            ]);
+            // Get group model
+            $model = $user->groups()->saved();
 
             // Toggle state
             $force === true || ! $video->isSavedBy($user)
