@@ -26,6 +26,11 @@ class Saved extends Section
             ->get();
     }
 
+    protected function getUrl(): ?string
+    {
+        return route('account.saved');
+    }
+
     protected function getTitle(): ?string
     {
         return __('On Watchlist');

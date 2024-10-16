@@ -26,6 +26,11 @@ class Favorites extends Section
             ->get();
     }
 
+    protected function getUrl(): ?string
+    {
+        return route('account.favorites');
+    }
+
     protected function getTitle(): ?string
     {
         return __('Favorites');

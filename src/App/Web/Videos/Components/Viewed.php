@@ -26,6 +26,11 @@ class Viewed extends Section
             ->get();
     }
 
+    protected function getUrl(): ?string
+    {
+        return route('account.history');
+    }
+
     protected function getTitle(): ?string
     {
         return __('Continue Watching');
