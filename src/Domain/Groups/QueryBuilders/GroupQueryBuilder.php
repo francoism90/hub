@@ -30,7 +30,21 @@ class GroupQueryBuilder extends Builder
     public function history(): self
     {
         return $this
-            ->where('kind', GroupSet::Watched)
+            ->where('kind', GroupSet::Viewed)
+            ->where('type', GroupType::Private);
+    }
+
+    public function favorites(): self
+    {
+        return $this
+            ->where('kind', GroupSet::Favorite)
+            ->where('type', GroupType::Private);
+    }
+
+    public function saved(): self
+    {
+        return $this
+            ->where('kind', GroupSet::Saved)
             ->where('type', GroupType::Private);
     }
 }

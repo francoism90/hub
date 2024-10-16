@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Groups\Actions\MarkAsFavorited;
-use Domain\Groups\Actions\MarkAsWatchlisted;
+use Domain\Videos\Actions\MarkAsFavorited;
+use Domain\Videos\Actions\MarkAsSaved;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -14,15 +14,6 @@ use Livewire\Attributes\Computed;
 class VideoViewController extends Page
 {
     use WithVideo;
-
-    public function mount(): void
-    {
-        if (! $user = $this->getAuthModel()) {
-            return;
-        }
-
-        // app(MarkAsViewed::class)->execute($user, $this->video);
-    }
 
     public function render(): View
     {
@@ -59,7 +50,7 @@ class VideoViewController extends Page
             return;
         }
 
-        // app(MarkAsFavorited::class)->execute($user, $this->video);
+        app(MarkAsFavorited::class)->execute($user, $this->video);
     }
 
     public function toggleWatchlist(): void
@@ -68,7 +59,7 @@ class VideoViewController extends Page
             return;
         }
 
-        // app(MarkAsWatchlisted::class)->execute($user, $this->video);
+        app(MarkAsSaved::class)->execute($user, $this->video);
     }
 
     protected function getTitle(): ?string
