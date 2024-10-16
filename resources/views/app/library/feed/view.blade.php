@@ -1,3 +1,15 @@
+@php
+if (! isset($scrollTo)) {
+    $scrollTo = 'body';
+}
+
+$scrollIntoViewJsSnippet = ($scrollTo !== false)
+    ? <<<JS
+       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
+    JS
+    : '';
+@endphp
+
 {{ html()->div()->open() }}
     {{ html()
         ->element('section')
@@ -15,18 +27,21 @@
         @endforeach
     {{ html()->element('section')->close() }}
 
-    @if ($this->hasMorePages())
-        {{ html()->element('nav')->class('w-full flex min-h-0 py-2 flex-nowrap items-center justify-center')->attribute('x-intersect', '$wire.fetch()')->child(html()
-            ->button(__('Processing...'))
-            ->class('hidden')
-        ) }}
-    @endif
+    {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
+        @if ($this->hasMorePages())
+            {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
+        @endif
 
-    @if ($this->onLastPage())
-        {{ html()->element('nav')->class('w-full flex py-2 flex-nowrap items-center justify-center')->child(html()
-            ->button(__('Refresh'))
-            ->attribute('wire:click', 'regenerate')
-            ->class('btn btn-secondary btn-outlined')
-        ) }}
-    @endif
+        @if ($this->onLastPage())
+            {{ html()
+                ->button(__('Refresh'))
+                ->attributes([
+                    'x-on:click' => $scrollIntoViewJsSnippet,
+                    'wire:click' => 'regenerate',
+                    'wire:loading.attr' => 'disabled',
+                ])
+                ->class('btn btn-secondary btn-outlined')
+            }}
+        @endif
+    {{ html()->element('nav')->close() }}
 {{ html()->div()->close() }}
