@@ -21,7 +21,7 @@ class Favorites extends Section
         return $this->getGroup()
             ->videos()
             ->published()
-            ->orderByDesc('groupables.updated_at')
+            ->orderByDesc('videoables.updated_at')
             ->take(24)
             ->get();
     }
@@ -33,7 +33,9 @@ class Favorites extends Section
 
     protected function getGroup(): ?Group
     {
-        return $this->getAuthModel()->groups()->favorites();
+        return $this->getAuthModel()
+            ->groups()
+            ->favorites();
     }
 
     public function getListeners(): array
