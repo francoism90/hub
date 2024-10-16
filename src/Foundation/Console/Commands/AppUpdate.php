@@ -31,20 +31,20 @@ class AppUpdate extends Command implements Isolatable
         // Run migrations
         $this->call('migrate', ['--force' => true, '--seed' => true]);
 
-        // Sync settings
-        $this->call('scout:sync-index-settings');
-
         // Update assets
         if ($this->option('assets')) {
             $this->call('google-fonts:fetch');
         }
 
+        // Sync settings
+        $this->call('scout:sync-index-settings');
+
+        // Optimize application
+        $this->call('app:optimize');
+
         // Regenerate models
         if ($this->option('regenerate')) {
             $this->call('users:regenerate');
         }
-
-        // Optimize application
-        $this->call('app:optimize');
     }
 }
