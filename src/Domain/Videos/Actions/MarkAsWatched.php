@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class MarkAsWatched
 {
-    public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void    {
+    public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void
+    {
         DB::transaction(function () use ($user, $video, $data, $force) {
             $model = $user->groups()->history();
 

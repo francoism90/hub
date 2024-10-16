@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use Domain\Groups\Enums\GroupClass;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;

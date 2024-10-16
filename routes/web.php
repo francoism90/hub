@@ -3,8 +3,6 @@
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
 use App\Web\Account\Controllers\SubscribeController;
-use App\Web\Groups\Controllers\GroupIndexController;
-use App\Web\Groups\Controllers\GroupViewController;
 use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Playlists\Controllers\PlaylistIndexController;
 use App\Web\Playlists\Controllers\PlaylistViewController;
