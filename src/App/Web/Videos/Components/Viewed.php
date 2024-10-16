@@ -8,7 +8,7 @@ use Domain\Groups\Models\Group;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 
-class Watching extends Section
+class Viewed extends Section
 {
     public function boot(): void
     {
@@ -21,7 +21,7 @@ class Watching extends Section
         return $this->getGroup()
             ->videos()
             ->published()
-            ->orderByDesc('groupables.updated_at')
+            ->orderByDesc('videoables.updated_at')
             ->take(24)
             ->get();
     }
@@ -31,11 +31,11 @@ class Watching extends Section
         return __('Continue Watching');
     }
 
-    protected function getGroup(): Group
+    protected function getGroup(): ?Group
     {
         return $this->getAuthModel()
             ->groups()
-            ->saved();
+            ->viewed();
     }
 
     public function getListeners(): array
