@@ -34,7 +34,8 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
         @if ($this->onLastPage())
             {{ html()
-                ->button(__('Refresh'))
+                ->button()
+                ->text('Refresh')
                 ->attributes([
                     'x-on:click' => $scrollIntoViewJsSnippet,
                     'wire:click' => 'regenerate',

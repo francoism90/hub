@@ -25,7 +25,12 @@
                 html()->error('form.remember'),
             ]),
 
-            html()->button()->type('submit')->text('Log In')->class('btn btn-secondary')
+            html()
+                ->button()
+                ->type('submit')
+                ->text('Log In')
+                ->class('btn btn-secondary')
+                ->attribute('wire:loading.attr', 'disabled')
         ])
     ])
 ) }}

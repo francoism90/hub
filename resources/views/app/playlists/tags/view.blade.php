@@ -11,7 +11,14 @@
 
     <nav class="flex items-center w-full">
         @if ($this->hasMorePages())
-            {{ html()->button()->text('View more')->class('btn btn-sm btn-secondary')->attribute('wire:click', 'fetch') }}
+            {{ html()
+                ->button()
+                ->text('View more')
+                ->class('btn btn-sm btn-secondary')
+                ->attributes([
+                    'wire:loading.attr' => 'disabled',
+                    'wire:click' => 'fetch',
+                ]) }}
         @endif
     </nav>
 {{ html()->div()->close() }}
