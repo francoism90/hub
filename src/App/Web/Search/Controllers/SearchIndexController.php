@@ -60,12 +60,14 @@ class SearchIndexController extends Page
     {
         $this->form->submit();
 
-        $this->refresh();
+        $this->clear();
 
-        $this->resetPage();
+        $this->fillPageItems();
+
+        $this->dispatch('$refresh');
     }
 
-    public function clear(): void
+    public function blank(): void
     {
         $this->form->forget();
 

@@ -1,6 +1,4 @@
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4')->open() }}
-    {{ html()->element('h1')->text('Search')->class('text-2xl') }}
-
     {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([
         html()->search()->wireModel('form.query')->autofocus()->class('input input-md input-rounded bg-secondary-500/25')->placeholder('Title, description, or tags'),
         html()->error('form.query'),

@@ -11,7 +11,7 @@ use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
@@ -45,7 +45,7 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function getPageItems(?int $page = null): LengthAwarePaginator
+    protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();
 
