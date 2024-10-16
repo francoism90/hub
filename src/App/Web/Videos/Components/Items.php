@@ -78,7 +78,7 @@ class Items extends Component
 
         return $this->getGroupModel()
             ->videos()
-            ->paginate(perPage: 12, page: $page);
+            ->simplePaginate(perPage: 12, page: $page);
     }
 
     protected function getGroupModel(): ?Group

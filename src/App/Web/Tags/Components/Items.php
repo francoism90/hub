@@ -51,7 +51,7 @@ class Items extends Component
 
         return $this->getScout()
             ->tap(new FilterVideos($this->form, $this->tag))
-            ->paginate(perPage: 12, page: $page);
+            ->simplePaginate(perPage: 12, page: $page);
     }
 
     protected function getModelClass(): ?string

@@ -20,17 +20,21 @@
     @endif
 
     @if ($this->hasResults())
-        {{ html()->element('section')->attribute('wire.poll.900s', 'refresh')->class('pt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
+        {{ html()->element('main')->attribute('wire.poll.900s', 'refresh')->class('pt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
             @foreach ($this->items as $video)
                 {{ html()->div()->wireKey($video->getRouteKey())->open() }}
                     <livewire:web.videos.item :$video :key="$video->getRouteKey()" />
                 {{ html()->div()->close() }}
             @endforeach
-        {{ html()->element('section')->close() }}
+        {{ html()->element('main')->close() }}
 
-        {{ $this->items->links() }}
+        {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
+            @if ($this->hasMorePages())
+                {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
+            @endif
+        {{ html()->element('nav')->close() }}
     @elseif ($form->query() && ! $this->hasResults())
-        {{ html()->div()->class('text-center text-secondary-300 py-4')->text('No results found.') }}
+        {{ html()->div()->class('py-4 text-center text-secondary-300')->text('No results found.') }}
     @endif
 {{ html()->div()->close() }}
 

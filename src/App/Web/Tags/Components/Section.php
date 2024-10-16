@@ -50,7 +50,7 @@ class Section extends Component
 
         return $this->getQuery()
             ->type($this->type)
-            ->paginate(perPage: 9, page: $page);
+            ->simplePaginate(perPage: 9, page: $page);
     }
 
     protected function getTitle(): ?string
