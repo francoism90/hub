@@ -16,11 +16,11 @@ class LibraryIndexController extends Page
 
     protected function getTitle(): ?string
     {
-        return __('Stream Videos');
+        return __('Library');
     }
 
     protected function getDescription(): ?string
     {
-        return __('Browse and watch videos');
+        return __('Browse and watch your videos');
     }
 }
