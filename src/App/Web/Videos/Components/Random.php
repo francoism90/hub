@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
@@ -16,7 +18,7 @@ class Random extends Section
         return $this->getQuery()
             ->whereKeyNot($this->getVideoKey())
             ->published()
-            ->feed()
+            ->inRandomOrder()
             ->take(24)
             ->get();
     }

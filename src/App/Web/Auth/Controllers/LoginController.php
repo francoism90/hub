@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Auth\Controllers;
 
 use App\Web\Auth\Forms\LoginForm;

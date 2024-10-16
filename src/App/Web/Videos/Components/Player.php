@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\SyncVideoTimeCode;
+use Domain\Videos\Actions\SyncVideoTimeCode;
+use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;
@@ -36,7 +39,10 @@ class Player extends Component
             return;
         }
 
-        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), $time);
+        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), VideoableData::from([
+            'caption' => $this->caption,
+            'time' => $time,
+        ]));
     }
 
     protected function getManifest(): ?string

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -10,7 +12,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--assets}';
+    protected $signature = 'app:update {--assets} {--regenerate}';
 
     /**
      * @var string
@@ -29,9 +31,6 @@ class AppUpdate extends Command implements Isolatable
         // Run migrations
         $this->call('migrate', ['--force' => true, '--seed' => true]);
 
-        // Sync settings
-        $this->call('scout:sync-index-settings');
-
         // Update assets
         if ($this->option('assets')) {
             $this->call('google-fonts:fetch');
@@ -39,5 +38,13 @@ class AppUpdate extends Command implements Isolatable
 
         // Optimize application
         $this->call('app:optimize');
+
+        // Sync settings
+        $this->call('scout:sync-index-settings');
+
+        // Regenerate models
+        if ($this->option('regenerate')) {
+            $this->call('users:regenerate');
+        }
     }
 }

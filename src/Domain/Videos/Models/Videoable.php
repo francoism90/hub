@@ -1,21 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Models;
 
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Domain\Videos\DataObjects\VideoableData;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Videoable extends MorphPivot
+final class Videoable extends MorphPivot
 {
     /**
      * @var string
      */
-    protected $primaryKey = 'video_id';
+    protected $table = 'videoables';
 
     protected function casts(): array
     {
         return [
-            'options' => AsArrayObject::class,
+            'options' => VideoableData::class,
         ];
+    }
+
+    public function videoable(): MorphTo
+    {
+        return $this->MorphTo();
+    }
+
+    public function video(): BelongsTo
+    {
+        return $this->belongsTo(Video::class, 'video_id');
     }
 }

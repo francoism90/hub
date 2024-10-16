@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Forms;
 
 use Domain\Tags\Actions\GetPopularTags;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Models;
 
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
@@ -10,7 +12,7 @@ class Userable extends MorphPivot
     /**
      * @var string
      */
-    protected $primaryKey = 'user_id';
+    protected $table = 'userables';
 
     protected function casts(): array
     {

@@ -1,6 +1,6 @@
 <?php
 
-use Foundation\Broadcasting\PlaylistChannel;
+use Foundation\Broadcasting\GroupChannel;
 use Foundation\Broadcasting\TagChannel;
 use Foundation\Broadcasting\UserChannel;
 use Foundation\Broadcasting\VideoChannel;
@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('user.{user}', UserChannel::class);
-Broadcast::channel('playlist.{playlist}', PlaylistChannel::class);
+Broadcast::channel('group.{group}', GroupChannel::class);
 Broadcast::channel('tag.{tag}', TagChannel::class);
 Broadcast::channel('video.{video}', VideoChannel::class);

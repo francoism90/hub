@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tags\Actions;
 
 use Domain\Tags\Models\Tag;
@@ -8,15 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class CreateNewTag
 {
-    public function execute(array $attributes): void
+    public function execute(array $attributes): Tag
     {
-        DB::transaction(function () use ($attributes) {
-            Tag::firstOrCreate(
+        return DB::transaction(function () use ($attributes) {
+            $model = Tag::firstOrCreate(
                 Arr::only($attributes, ['name', 'type']),
                 Arr::only($attributes, app(Tag::class)->getFillable()),
             );
 
             app(RefreshTags::class)->execute();
+
+            return $model;
         });
     }
 }

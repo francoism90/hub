@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Support\MediaLibrary\UrlGenerator;
 
 use DateTimeInterface;
@@ -32,7 +34,7 @@ class DefaultUrlGenerator extends BaseUrlGenerator
             'conversion' => $this->conversion,
         ]);
 
-        return str($url)->finish('/');
+        return str($url)->finish('/')->value();
     }
 
     public function getBaseMediaDirectoryUrl(): string

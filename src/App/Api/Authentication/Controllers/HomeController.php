@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Api\Authentication\Controllers;
 
 use Foundation\Http\Controllers\Controller;

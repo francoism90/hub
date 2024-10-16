@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Controllers;
 
-use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Videos\Concerns\WithVideo;
 use App\Web\Videos\Forms\GeneralForm;
 use App\Web\Videos\Forms\TagsForm;
@@ -61,7 +62,7 @@ class VideoEditController extends Page
 
         $this->video->deleteOrFail();
 
-        $this->redirect(LibraryIndexController::class, navigate: true);
+        $this->redirectRoute('home', navigate: true);
     }
 
     public function beautify(): void

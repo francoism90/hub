@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Media\Models;
 
 use Domain\Media\Collections\MediaCollection;
 use Domain\Media\QueryBuilders\MediaQueryBuilder;
-use Domain\Shared\Concerns\InteractsWithActivity;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 
 class Media extends BaseMedia
 {
-    use InteractsWithActivity;
-
     /**
      * @var array<int, string>
      */

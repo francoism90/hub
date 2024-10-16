@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Actions;
 
 use Domain\Media\Models\Media;
@@ -44,6 +46,7 @@ class GetPreviewManifest
 
         return str("/{$bucket}/{$media->getPath()}")
             ->prepend($url)
-            ->replaceFirst('http://', '/http/');
+            ->replaceFirst('http://', '/http/')
+            ->value();
     }
 }

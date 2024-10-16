@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tags\Commands;
 
 use Domain\Tags\Actions\CreateNewTag;
@@ -37,6 +39,6 @@ class CreateTag extends Command implements Isolatable
 
         app(CreateNewTag::class)->execute(compact('name', 'type'));
 
-        $this->info('Tag has been created successfully.');
+        $this->components->info('Tag has been created successfully.');
     }
 }

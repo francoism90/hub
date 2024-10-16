@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Components;
 
 use Domain\Videos\Models\Video;
@@ -20,6 +22,7 @@ abstract class Section extends Component
         return view('app.videos.section.view')->with([
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
+            'url' => $this->getUrl(),
         ]);
     }
 
@@ -42,6 +45,11 @@ abstract class Section extends Component
         unset($this->items);
 
         $this->dispatch('$refresh');
+    }
+
+    protected function getUrl(): ?string
+    {
+        return null;
     }
 
     protected function getTitle(): ?string

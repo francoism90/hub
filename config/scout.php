@@ -1,6 +1,6 @@
 <?php
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
@@ -162,9 +162,11 @@ return [
                 ],
             ],
 
-            Playlist::class => [
+            Group::class => [
                 'filterableAttributes' => [
                     'id',
+                    'kind',
+                    'type',
                     'state',
                     'created_at',
                     'updated_at',
@@ -172,15 +174,28 @@ return [
                 ],
 
                 'searchableAttributes' => [
-                    'name',
                     'content',
+                    'kind',
                 ],
 
                 'sortableAttributes' => [
-                    'name',
+                    'id',
+                    'kind',
+                    'type',
                     'state',
                     'created_at',
                     'updated_at',
+                ],
+
+                'typoTolerance' => [
+                    'minWordSizeForTypos' => [
+                        'oneTypo' => 3,
+                        'twoTypos' => 5,
+                    ],
+                ],
+
+                'pagination' => [
+                    'maxTotalHits' => 32000,
                 ],
             ],
 
@@ -208,6 +223,7 @@ return [
                 ],
 
                 'sortableAttributes' => [
+                    'id',
                     'name',
                     'identifier',
                     'released',
@@ -298,6 +314,7 @@ return [
                 ],
 
                 'sortableAttributes' => [
+                    'id',
                     'name',
                     'type',
                     'adult',

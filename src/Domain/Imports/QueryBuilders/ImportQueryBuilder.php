@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Imports\QueryBuilders;
 
 use Domain\Imports\States\Failed;

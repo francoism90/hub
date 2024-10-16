@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Api\Users\Controllers;
 
 use App\Api\Users\Resources\UserResource;

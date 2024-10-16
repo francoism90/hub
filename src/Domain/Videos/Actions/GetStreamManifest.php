@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Actions;
 
 use Domain\Media\Models\Media;

@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Providers;
 
+use Domain\Activities\Models\Activity;
+use Domain\Groups\Models\Group;
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
-use Domain\Playlists\Models\Playlist;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
@@ -44,9 +47,10 @@ class AppServiceProvider extends ServiceProvider
     protected function configureMorphMap(): void
     {
         Relation::enforceMorphMap([
+            'activity' => Activity::class,
             'import' => Import::class,
             'media' => Media::class,
-            'playlist' => Playlist::class,
+            'group' => Group::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,
             'user' => User::class,
@@ -59,7 +63,8 @@ class AppServiceProvider extends ServiceProvider
         PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
 
         PrefixedIds::registerModels([
-            'playlist-' => Playlist::class,
+            'activity-' => Activity::class,
+            'list-' => Group::class,
             'tag-' => Tag::class,
             'user-' => User::class,
             'video-' => Video::class,

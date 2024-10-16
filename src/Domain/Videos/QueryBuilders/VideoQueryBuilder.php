@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\QueryBuilders;
 
 use Domain\Videos\States\Verified;
@@ -17,20 +19,5 @@ class VideoQueryBuilder extends Builder
         return $this
             ->orderByDesc('created_at')
             ->orderByDesc('released_at');
-    }
-
-    public function feed(int $ttl = 60 * 20): self
-    {
-        return $this->randomSeed('videos-feed', $ttl);
-    }
-
-    public function recommended(int $ttl = 60 * 20): self
-    {
-        return $this->randomSeed('videos-recommended', $ttl);
-    }
-
-    public function tagged(int $ttl = 60 * 20): self
-    {
-        return $this->randomSeed('videos-tagged', $ttl);
     }
 }

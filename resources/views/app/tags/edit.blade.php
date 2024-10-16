@@ -87,6 +87,11 @@
             html()->error('form.description'),
         ]),
 
-        html()->button()->type('submit')->text('Save Changes')->class('btn btn-primary')
+        html()
+            ->button()
+            ->type('submit')
+            ->text('Save Changes')
+            ->class('btn btn-primary')
+            ->attribute('wire:loading.attr', 'disabled')
     ])
 ]) }}

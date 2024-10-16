@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Components;
 
-use Domain\Playlists\Models\Playlist;
+use Domain\Groups\Models\Group;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 
@@ -10,13 +12,13 @@ class Favorites extends Section
 {
     public function boot(): void
     {
-        $this->authorize('view', $this->getPlaylist());
+        $this->authorize('view', $this->getGroup());
     }
 
     #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
-        return $this->getPlaylist()
+        return $this->getGroup()
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
@@ -29,9 +31,16 @@ class Favorites extends Section
         return __('Favorites');
     }
 
-    protected function getPlaylist(): ?Playlist
+    protected function getUrl(): ?string
     {
-        return $this->getAuthModel()->playlists()->favorites();
+        return route('groups.view', $this->getGroup());
+    }
+
+    protected function getGroup(): ?Group
+    {
+        return $this->getAuthModel()
+            ->groups()
+            ->favorites();
     }
 
     public function getListeners(): array
@@ -39,8 +48,8 @@ class Favorites extends Section
         $id = $this->getAuthKey();
 
         return [
-            "echo-private:user.{$id},.playlist.trashed" => 'refresh',
-            "echo-private:user.{$id},.playlist.updated" => 'refresh',
+            "echo-private:user.{$id},.group.trashed" => 'refresh',
+            "echo-private:user.{$id},.group.updated" => 'refresh',
             "echo-private:user.{$id},.video.trashed" => 'refresh',
             "echo-private:user.{$id},.video.updated" => 'refresh',
         ];

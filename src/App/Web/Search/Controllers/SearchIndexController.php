@@ -1,22 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Forms\QueryForm;
 use App\Web\Search\Scopes\FilterVideos;
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
+use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
-use Livewire\Attributes\Computed;
-use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 class SearchIndexController extends Page
 {
-    use WithPagination;
+    use WithoutUrlPagination;
     use WithQueryBuilder;
+    use WithScroll;
 
     public QueryForm $form;
 
@@ -34,7 +37,7 @@ class SearchIndexController extends Page
 
     public function updatedForm(): void
     {
-        $this->form->validate();
+        $this->form->submit();
     }
 
     public function updatedPage(): void
@@ -42,26 +45,29 @@ class SearchIndexController extends Page
         unset($this->items);
     }
 
-    #[Computed(persist: true)]
-    public function items(): Paginator
+    protected function getPageItems(?int $page = null): Paginator
     {
+        $page ??= $this->getPage();
+
         $query = $this->form->query();
 
         return $this->getScout($query)->tap(
             new FilterVideos(form: $this->form)
-        )->simplePaginate(12 * 4);
+        )->simplePaginate(perPage: 12, page: $page);
     }
 
     public function submit(): void
     {
         $this->form->submit();
 
-        $this->refresh();
+        $this->clear();
 
-        $this->resetPage();
+        $this->fillPageItems();
+
+        $this->dispatch('$refresh');
     }
 
-    public function clear(): void
+    public function blank(): void
     {
         $this->form->forget();
 
@@ -77,7 +83,7 @@ class SearchIndexController extends Page
 
     public function hasResults(): bool
     {
-        return $this->form->query() && $this->items()->isNotEmpty();
+        return $this->form->query() && $this->getPageItems()->count();
     }
 
     public function setQuery(?string $query = null): void
@@ -103,7 +109,7 @@ class SearchIndexController extends Page
 
     protected function getDescription(): ?string
     {
-        return $this->getTitle();
+        return __('Search for videos');
     }
 
     protected function getModelClass(): ?string

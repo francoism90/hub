@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Videos\Actions;
 
 use Domain\Tags\Models\Tag;
@@ -63,7 +65,7 @@ class GetSimilarVideos
                 ...$relatables,
             ])
             ->whereKeyNot($model)
-            ->feed()
+            ->inRandomOrder()
             ->take(12)
             ->cursor();
     }
@@ -73,7 +75,7 @@ class GetSimilarVideos
         return Video::query()
             ->published()
             ->whereKeyNot($model)
-            ->feed()
+            ->inRandomOrder()
             ->take(12)
             ->cursor();
     }

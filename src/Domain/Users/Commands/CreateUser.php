@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Commands;
 
 use Domain\Users\Actions\CreateNewUser;
@@ -39,6 +41,6 @@ class CreateUser extends Command implements Isolatable
 
         app(CreateNewUser::class)->execute(compact('name', 'email', 'password'));
 
-        $this->info('User has been created successfully.');
+        $this->components->info('User has been created successfully.');
     }
 }

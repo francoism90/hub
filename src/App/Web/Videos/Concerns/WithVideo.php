@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Concerns;
 
 use Domain\Videos\Models\Video;
@@ -33,7 +35,7 @@ trait WithVideo
         return $this->getVideo()->getRouteKey();
     }
 
-    protected function getVideoKey(): string
+    protected function getVideoKey(): int
     {
         return $this->getVideo()->getKey();
     }

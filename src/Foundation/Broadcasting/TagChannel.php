@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foundation\Broadcasting;
 
 use Domain\Tags\Models\Tag;

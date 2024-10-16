@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Playlists\Actions\MarkAsFavorited;
-use Domain\Playlists\Actions\MarkAsWatchlisted;
-use Domain\Playlists\Jobs\MarkWatched;
+use Domain\Videos\Actions\MarkAsFavorited;
+use Domain\Videos\Actions\MarkAsSaved;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -13,15 +14,6 @@ use Livewire\Attributes\Computed;
 class VideoViewController extends Page
 {
     use WithVideo;
-
-    public function mount(): void
-    {
-        if (! $user = $this->getAuthModel()) {
-            return;
-        }
-
-        MarkWatched::dispatch($user, $this->video);
-    }
 
     public function render(): View
     {
@@ -39,13 +31,13 @@ class VideoViewController extends Page
     }
 
     #[Computed]
-    public function isWatchlisted(): bool
+    public function isSaved(): bool
     {
         if (! $user = $this->getAuthModel()) {
             return false;
         }
 
-        return $this->video->isWatchlistedBy($user);
+        return $this->video->isSavedBy($user);
     }
 
     public function toggleFavorite(): void
@@ -57,13 +49,13 @@ class VideoViewController extends Page
         app(MarkAsFavorited::class)->execute($user, $this->video);
     }
 
-    public function toggleWatchlist(): void
+    public function toggleSave(): void
     {
         if (! $user = $this->getAuthModel()) {
             return;
         }
 
-        app(MarkAsWatchlisted::class)->execute($user, $this->video);
+        app(MarkAsSaved::class)->execute($user, $this->video);
     }
 
     protected function getTitle(): ?string

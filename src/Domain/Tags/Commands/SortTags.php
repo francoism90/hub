@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tags\Commands;
 
 use Domain\Tags\Actions\SetTagsOrder;
@@ -22,6 +24,6 @@ class SortTags extends Command implements Isolatable
     {
         app(SetTagsOrder::class)->execute();
 
-        $this->info('Tags have been sorted successfully.');
+        $this->components->info('Tags have been sorted successfully.');
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Users\Jobs;
 
 use Domain\Users\Actions\RegenerateUser;
@@ -48,9 +50,7 @@ class ProcessUser implements ShouldQueue
 
     public function handle(): void
     {
-        app(RegenerateUser::class)
-            ->onProgress(fn (string $progress) => logger($progress))
-            ->execute($this->model);
+        app(RegenerateUser::class)->execute($this->model);
     }
 
     /**

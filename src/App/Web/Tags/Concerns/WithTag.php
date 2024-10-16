@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Tags\Concerns;
 
 use Domain\Tags\Models\Tag;
@@ -33,7 +35,7 @@ trait WithTag
         return $this->getTag()->getRouteKey();
     }
 
-    protected function getTagKey(): string
+    protected function getTagKey(): int
     {
         return $this->getTag()->getKey();
     }

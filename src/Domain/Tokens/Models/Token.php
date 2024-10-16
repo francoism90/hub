@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Tokens\Models;
 
 use Domain\Tokens\Collections\TokenCollection;

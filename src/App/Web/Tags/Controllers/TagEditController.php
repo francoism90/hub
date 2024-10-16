@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Tags\Controllers;
 
-use App\Web\Library\Controllers\LibraryIndexController;
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\GeneralForm;
 use App\Web\Tags\Forms\RelatedForm;
@@ -64,7 +65,7 @@ class TagEditController extends Page
 
         $this->tag->deleteOrFail();
 
-        $this->redirect(LibraryIndexController::class, navigate: true);
+        $this->redirectRoute('home', navigate: true);
     }
 
     public function beautify(): void
