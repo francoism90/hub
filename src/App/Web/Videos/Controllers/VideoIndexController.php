@@ -9,7 +9,7 @@ use Domain\Groups\Enums\GroupSet;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
-class videoIndexController extends Page
+class VideoIndexController extends Page
 {
     public QueryForm $form;
 

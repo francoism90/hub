@@ -26,6 +26,7 @@ class Items extends Component
 
     #[Modelable]
     public QueryForm $form;
+
     public function boot(): void
     {
         $this->setItems();

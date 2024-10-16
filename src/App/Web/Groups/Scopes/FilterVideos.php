@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Web\Groups\Scopes;
 
 use App\Web\Groups\Forms\QueryForm;
-use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Models\Group;
 use Illuminate\Database\Eloquent\Builder;
 

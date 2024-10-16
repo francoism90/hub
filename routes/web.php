@@ -1,9 +1,9 @@
 <?php
 
+use App\Web\Account\Controllers\LibraryController;
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;
 use App\Web\Account\Controllers\SubscribeController;
-use App\Web\Account\Controllers\LibraryController;
 use App\Web\Groups\Controllers\GroupViewController;
 use App\Web\Search\Controllers\SearchIndexController;
 use App\Web\Tags\Controllers\TagEditController;
