@@ -35,13 +35,13 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         @if ($this->onLastPage())
             {{ html()
                 ->button()
-                ->text('Refresh')
+                ->text('Roll Dice')
                 ->attributes([
                     'x-on:click' => $scrollIntoViewJsSnippet,
                     'wire:click' => 'regenerate',
                     'wire:loading.attr' => 'disabled',
                 ])
-                ->class('btn btn-secondary btn-outlined')
+                ->class('btn btn-sm btn-secondary btn-outlined')
             }}
         @endif
     {{ html()->element('nav')->close() }}
