@@ -39,6 +39,6 @@ class CreateTag extends Command implements Isolatable
 
         app(CreateNewTag::class)->execute(compact('name', 'type'));
 
-        $this->info('Tag has been created successfully.');
+        $this->components->info('Tag has been created successfully.');
     }
 }

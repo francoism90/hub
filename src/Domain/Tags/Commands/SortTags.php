@@ -24,6 +24,6 @@ class SortTags extends Command implements Isolatable
     {
         app(SetTagsOrder::class)->execute();
 
-        $this->info('Tags have been sorted successfully.');
+        $this->components->info('Tags have been sorted successfully.');
     }
 }
