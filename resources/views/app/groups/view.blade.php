@@ -6,17 +6,17 @@
         html()->element('h1')->text($title)->class('text-2xl'),
     ]) }}
 
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($items, fn (GroupSet $item) => html()->div()->children([
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
         html()
             ->radio('type')
-            ->id($item->value)
+            ->id("filter-{$item->value}")
             ->value($item->value)
             ->wireModel('form.type', 'live')
             ->class('hidden'),
 
         html()
             ->label()
-            ->for($item->value)
+            ->for("filter-{$item->value}")
             ->text($item->label())
             ->class([
                 'btn btn-sm',
@@ -26,7 +26,7 @@
         ])
     ) }}
 
-    {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
+    {{ html()->element('section')->open() }}
         {{ html()->div()->wireKey($form->type)->open() }}
             <livewire:web.groups.items :key="$form->type" :$form :$group />
         {{ html()->div()->close() }}

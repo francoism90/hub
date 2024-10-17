@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Forms\QueryForm;
-use Domain\Groups\Actions\PopulateGroupDaily;
-use Domain\Groups\Actions\PopulateGroupDiscover;
-use Domain\Groups\Models\Group;
+use App\Web\Videos\Scopes\FilterVideos;
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
@@ -26,11 +26,6 @@ class Items extends Component
 
     #[Modelable]
     public QueryForm $form;
-
-    public function boot(): void
-    {
-        $this->setItems();
-    }
 
     public function render(): View
     {
@@ -49,50 +44,18 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    public function regenerate(): void
-    {
-        $this->setItems(force: true);
-
-        $this->clear();
-
-        $this->fillPageItems();
-
-        $this->dispatch('$refresh');
-    }
-
-    protected function setItems(?bool $force = false): void
-    {
-        switch ($this->form->type) {
-            case 'discover':
-                app(PopulateGroupDiscover::class)->execute($this->getAuthModel(), $force);
-                break;
-            default:
-                app(PopulateGroupDaily::class)->execute($this->getAuthModel(), $force);
-                break;
-        }
-    }
-
     protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();
 
-        return $this->getGroupModel()
-            ->videos()
-            ->simplePaginate(perPage: 12, page: $page);
-    }
-
-    protected function getGroupModel(): ?Group
-    {
-        return $this->getQuery()
-            ->mixer()
-            ->where('user_id', $this->getAuthId())
-            ->where('kind', $this->form->type)
-            ->first();
+        return $this->getQuery()->tap(
+            new FilterVideos(form: $this->form, user: $this->getAuthModel())
+        )->simplePaginate(perPage: 12, page: $page);
     }
 
     protected function getModelClass(): ?string
     {
-        return Group::class;
+        return Video::class;
     }
 
     public function getListeners(): array

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Groups\Models;
 
 use Domain\Groups\Collections\GroupCollection;
+use Domain\Groups\DataObjects\GroupData;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
@@ -14,9 +15,11 @@ use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
@@ -36,6 +39,7 @@ class Group extends Model implements HasMedia, Sortable
     use InteractsWithMedia;
     use InteractsWithUser;
     use Notifiable;
+    use Prunable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
@@ -45,9 +49,11 @@ class Group extends Model implements HasMedia, Sortable
      */
     protected $fillable = [
         'user_id',
+        'name',
         'content',
         'kind',
         'type',
+        'options',
         'order_column',
     ];
 
@@ -64,6 +70,7 @@ class Group extends Model implements HasMedia, Sortable
             'state' => GroupState::class,
             'kind' => GroupSet::class,
             'type' => GroupType::class,
+            'options' => GroupData::class,
         ];
     }
 
@@ -120,6 +127,21 @@ class Group extends Model implements HasMedia, Sortable
         return true;
     }
 
+    public function buildSortQuery(): Builder
+    {
+        return static::query()
+            ->where('user_id', $this->user_id)
+            ->where('kind', $this->kind)
+            ->where('type', $this->type);
+    }
+
+    public function prunable(): Builder
+    {
+        return static::query()
+            ->mixer()
+            ->where('created_at', '<=', now()->subDay());
+    }
+
     public function makeSearchableUsing(GroupCollection $models): GroupCollection
     {
         return $models->loadMissing($this->with);
@@ -129,9 +151,11 @@ class Group extends Model implements HasMedia, Sortable
     {
         return [
             'id' => $this->getScoutKey(),
+            'name' => (string) $this->name,
             'content' => (string) $this->content,
             'kind' => (string) $this->kind?->value,
             'type' => (string) $this->type?->value,
+            'options' => (string) $this->options?->toJson(),
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),

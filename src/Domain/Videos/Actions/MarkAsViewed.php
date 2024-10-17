@@ -13,14 +13,12 @@ class MarkAsViewed
 {
     public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void
     {
-        DB::transaction(function () use ($user, $video, $data, $force) {
+        DB::transaction(function () use ($user, $video, $data) {
             // Get group model
             $model = $user->groups()->viewed();
 
-            // Toggle state
-            $force === true || ! $video->isViewedBy($user)
-                ? $model->attachVideo($video, $data)
-                : $model->detachVideo($video);
+            // Update videos
+            $model->attachVideo($video, $data);
 
             // Touch parent to trigger broadcast
             $model->touch();

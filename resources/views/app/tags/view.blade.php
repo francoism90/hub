@@ -17,23 +17,23 @@
     ]) }}
 
     @if ($tag->relatables()->exists())
-        {{ html()->div()->class('flex flex-nowrap gap-2 items-center overflow-x-auto')->children($tag->related, fn (Tag $tag) =>
+        {{ html()->div()->class('flex flex-nowrap gap-2 items-center overflow-x-auto *:shrink-0')->children($tag->related, fn (Tag $tag) =>
             html()->div()->wireKey($tag->getRouteKey())->child(
                 html()->a()->link('tags.view', $tag)->class('btn btn-sm btn-outlined')->text($tag->name)
         )) }}
     @endif
 
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($items, fn (GroupSet $item) => html()->div()->children([
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
         html()
             ->radio('type')
-            ->id($item->value)
+            ->id("filter-{$item->value}")
             ->value($item->value)
             ->wireModel('form.type', 'live')
             ->class('hidden'),
 
         html()
             ->label()
-            ->for($item->value)
+            ->for("filter-{$item->value}")
             ->text($item->label())
             ->class([
                 'btn btn-sm',
@@ -43,7 +43,7 @@
         ])
     ) }}
 
-    {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
+    {{ html()->element('section')->open() }}
         {{ html()->div()->wireKey($form->type)->open() }}
             <livewire:web.tags.items :key="$form->type" :$form :$tag />
         {{ html()->div()->close() }}

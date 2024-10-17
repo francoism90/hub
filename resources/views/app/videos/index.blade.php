@@ -1,31 +1,34 @@
-@use('Domain\Groups\Enums\GroupSet')
+@use('Illuminate\Support\Fluent')
 
-{{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($items, fn (GroupSet $item) => html()->div()->children([
-        html()
-            ->radio('type')
-            ->id($item->value)
-            ->value($item->value)
-            ->wireModel('form.type', 'live')
-            ->class('hidden'),
+{{ html()->div()->class('container py-4 flex flex-col gap-y-3')->open() }}
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
+        ->child(html()->button()->attribute('wire:click', 'reload')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
+        ->children($this->items, fn (Fluent $item) => html()->div()->wireKey("filter-{$item->id}")->children([
+            html()
+                ->radio('lists')
+                ->id("filter-{$item->key}")
+                ->value($item->key)
+                ->wireModel('form.list', 'live')
+                ->class('hidden'),
 
-        html()
-            ->label()
-            ->for($item->value)
-            ->text($item->label())
-            ->class([
-                'btn btn-sm',
-                'btn-primary' => $form->is('type', $item->value),
-                'btn-secondary' => ! $form->is('type', $item->value),
+            html()
+                ->label()
+                ->for("filter-{$item->key}")
+                ->text($item->label)
+                ->class([
+                    'btn btn-sm',
+                    'btn-primary' => $form->is('list', $item->key),
+                    'btn-secondary' => ! $form->is('list', $item->key),
+                ])
             ])
-        ])
     ) }}
 
-    {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
-        {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.videos.items :key="$form->type" :$form />
-        {{ html()->div()->close() }}
-    {{ html()->element('section')->close() }}
+
+    {{ html()->div()->open() }}
+        @if (filled($form->list))
+            <livewire:web.videos.items :$form :key="$this->hash()" />
+        @endif
+    {{ html()->div()->close() }}
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

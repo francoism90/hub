@@ -1,22 +1,7 @@
-@php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
-@endphp
-
-{{ html()->div()->open() }}
+{{ html()->div()->attribute('x-data', 'preview')->open() }}
     {{ html()
         ->element('main')
-        ->attributes([
-            'x-data' => '',
-            'wire.poll.900s' => 'refresh',
-        ])
+        ->attribute('wire:poll.900s')
         ->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
         ->open()
     }}
@@ -29,20 +14,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
     {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
         @if ($this->hasMorePages())
-            {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
-        @endif
-
-        @if ($this->onLastPage())
-            {{ html()
-                ->button()
-                ->text('Roll Dice')
-                ->attributes([
-                    'x-on:click' => $scrollIntoViewJsSnippet,
-                    'wire:click' => 'regenerate',
-                    'wire:loading.attr' => 'disabled',
-                ])
-                ->class('btn btn-sm btn-secondary btn-outlined')
-            }}
+            {{ html()->div()->attribute('x-intersect.full', '$wire.fetch()') }}
         @endif
     {{ html()->element('nav')->close() }}
 {{ html()->div()->close() }}
