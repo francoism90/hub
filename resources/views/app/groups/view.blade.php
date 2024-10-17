@@ -6,7 +6,7 @@
         html()->element('h1')->text($title)->class('text-2xl'),
     ]) }}
 
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("list-{$item->value}")->children([
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
         html()
             ->radio('type')
             ->id("filter-{$item->value}")
