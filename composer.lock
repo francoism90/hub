@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84c69153858046d5872d999368b430c4",
+    "content-hash": "671bcc368b42ff2497021b85fbb5c6c7",
     "packages": [
         {
             "name": "amphp/amp",
@@ -993,16 +993,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.324.4",
+            "version": "3.324.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4467374b1efda020b58adddd010f05949d9fa383"
+                "reference": "052c5d429ccd8775f7eed2855c2ca8cae2be52cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4467374b1efda020b58adddd010f05949d9fa383",
-                "reference": "4467374b1efda020b58adddd010f05949d9fa383",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/052c5d429ccd8775f7eed2855c2ca8cae2be52cb",
+                "reference": "052c5d429ccd8775f7eed2855c2ca8cae2be52cb",
                 "shasum": ""
             },
             "require": {
@@ -1085,9 +1085,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.324.4"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.324.5"
             },
-            "time": "2024-10-16T18:04:55+00:00"
+            "time": "2024-10-17T18:12:04+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -1160,16 +1160,16 @@
         },
         {
             "name": "blade-ui-kit/blade-icons",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blade-ui-kit/blade-icons.git",
-                "reference": "8f787baf09d88cdfd6ec4dbaba11ebfa885f0595"
+                "reference": "75a54a3f5a2810fcf6574ab23e91b6cc229a1b53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/8f787baf09d88cdfd6ec4dbaba11ebfa885f0595",
-                "reference": "8f787baf09d88cdfd6ec4dbaba11ebfa885f0595",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/75a54a3f5a2810fcf6574ab23e91b6cc229a1b53",
+                "reference": "75a54a3f5a2810fcf6574ab23e91b6cc229a1b53",
                 "shasum": ""
             },
             "require": {
@@ -1237,7 +1237,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2024-08-14T14:25:11+00:00"
+            "time": "2024-10-17T17:38:00+00:00"
         },
         {
             "name": "brick/math",
@@ -2203,16 +2203,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.5.2",
+            "version": "v2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "26deea5b863422bbb6f4d8af512ef74f23fc24ff"
+                "reference": "d684e672dda9bb84cbb12e911488c9389e9afefa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/26deea5b863422bbb6f4d8af512ef74f23fc24ff",
-                "reference": "26deea5b863422bbb6f4d8af512ef74f23fc24ff",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/d684e672dda9bb84cbb12e911488c9389e9afefa",
+                "reference": "d684e672dda9bb84cbb12e911488c9389e9afefa",
                 "shasum": ""
             },
             "require": {
@@ -2279,7 +2279,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.5.2"
+                "source": "https://github.com/foxws/wireuse/tree/v2.5.3"
             },
             "funding": [
                 {
@@ -2287,7 +2287,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-16T08:38:51+00:00"
+            "time": "2024-10-17T23:22:52+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -15043,12 +15043,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
