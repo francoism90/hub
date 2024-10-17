@@ -14,8 +14,6 @@ class CreateMixerGroups
 {
     public function execute(User $user, ?bool $force = null): void
     {
-        // $user->storeForget('mixers');
-
         if (! $force && $user->storeValue('mixers') !== null) {
             return;
         }

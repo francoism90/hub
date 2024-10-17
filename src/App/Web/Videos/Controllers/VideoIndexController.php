@@ -7,7 +7,6 @@ namespace App\Web\Videos\Controllers;
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\CreateMixerGroups;
 use Domain\Groups\Enums\GroupSet;
-use Domain\Groups\Models\Group;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
@@ -42,13 +41,13 @@ class VideoIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    public function mix(): void
+    public function renew(): void
     {
-        // $this->removeMixers();
+        $this->setupMixers(force: true);
 
-        // $this->setupMixers();
+        $this->form->reset('list');
 
-        // $this->refresh();
+        $this->refresh();
     }
 
     #[Computed(persist: true, seconds: 7200)]
@@ -73,9 +72,9 @@ class VideoIndexController extends Page
         return $items;
     }
 
-    protected function setupMixers(): void
+    protected function setupMixers(?bool $force = null): void
     {
-        app(CreateMixerGroups::class)->execute($this->getAuthModel());
+        app(CreateMixerGroups::class)->execute($this->getAuthModel(), $force);
     }
 
     protected function getTitle(): ?string

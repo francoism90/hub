@@ -24,22 +24,9 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         @endforeach
     {{ html()->element('main')->close() }}
 
-    {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
+    {{ html()->element('nav')->class('w-full min-h-0 flex flex-nowrap items-center justify-center')->open() }}
         @if ($this->hasMorePages())
             {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
-        @endif
-
-        @if ($this->onLastPage())
-            {{ html()
-                ->button()
-                ->text('Roll Dice')
-                ->attributes([
-                    'x-on:click' => $scrollIntoViewJsSnippet,
-                    'wire:click' => 'mix',
-                    'wire:loading.attr' => 'disabled',
-                ])
-                ->class('btn btn-sm btn-secondary btn-outlined')
-            }}
         @endif
     {{ html()->element('nav')->close() }}
 {{ html()->div()->close() }}
