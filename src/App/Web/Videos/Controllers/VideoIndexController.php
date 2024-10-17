@@ -50,7 +50,7 @@ class VideoIndexController extends Page
         $this->refresh();
     }
 
-    #[Computed(persist: true, seconds: 7200)]
+    #[Computed(persist: true)]
     public function items(): Collection
     {
         $items = collect($this->getAuthModel()->storeValue('mixers'));
