@@ -23,8 +23,6 @@
             ])
     ) }}
 
-    {{ $this->form->list }}
-
     <livewire:web.videos.items :key="$form->list" :$form />
 {{ html()->div()->close() }}
 
