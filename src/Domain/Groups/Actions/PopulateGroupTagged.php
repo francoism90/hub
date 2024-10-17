@@ -38,6 +38,6 @@ class PopulateGroupTagged
 
     protected function getLimit(): int
     {
-        return config('videos.mixer.limit', 72);
+        return config('videos.mixer.limit', 32);
     }
 }

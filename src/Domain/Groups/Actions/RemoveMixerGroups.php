@@ -16,7 +16,10 @@ class RemoveMixerGroups
     {
         DB::transaction(function () use ($user) {
             $this->getCollection($user)->each(
-                fn (Group $model) => $model->forceDelete()
+                function (Group $model) {
+                    $model->videos()->detach();
+                    $model->delete();
+                }
             );
         });
     }

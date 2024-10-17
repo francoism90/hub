@@ -47,9 +47,9 @@ class VideoIndexController extends Page
     {
         $this->removeMixers();
 
-        $this->setupMixers();
+        // $this->setupMixers();
 
-        $this->refresh();
+        // $this->refresh();
     }
 
     #[Computed(persist: true, seconds: 7200)]
