@@ -24,7 +24,7 @@
     ) }}
 
     @if (filled($form->list))
-        <livewire:web.videos.items :key="$this->hash()" :$form />
+        <livewire:web.videos.items :key="$form->list" :$form />
     @endif
 {{ html()->div()->close() }}
 
