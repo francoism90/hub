@@ -51,6 +51,7 @@ class Group extends Model implements HasMedia, Sortable
         'content',
         'kind',
         'type',
+        'options',
         'order_column',
     ];
 
@@ -137,6 +138,7 @@ class Group extends Model implements HasMedia, Sortable
             'content' => (string) $this->content,
             'kind' => (string) $this->kind?->value,
             'type' => (string) $this->type?->value,
+            'options' => (string) $this->options?->toJson(),
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),

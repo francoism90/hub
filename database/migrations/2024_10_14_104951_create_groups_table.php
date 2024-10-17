@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('kind')->nullable()->index();
             $table->string('type')->nullable()->index();
             $table->string('state')->index();
+            $table->json('options')->nullable();
             $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();

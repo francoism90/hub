@@ -33,7 +33,7 @@ class CreateMixerGroups
         $this->getTagMixers()->each(
             fn (Tag $tag) => app(CreateNewGroup::class)->execute($user, [
                 'name' => $tag->name,
-                'kind' => GroupSet::Recommended,
+                'kind' => GroupSet::Tagged,
                 'type' => GroupType::Mixer,
                 'options' => ['tag' => $tag->getKey()],
             ])

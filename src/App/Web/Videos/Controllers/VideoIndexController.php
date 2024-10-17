@@ -26,7 +26,7 @@ class VideoIndexController extends Page
     public function render(): View
     {
         return view('app.videos.index')->with([
-            'group' => $this->getModel(),
+            'group' => $this->getGroup(),
         ]);
     }
 
@@ -46,18 +46,16 @@ class VideoIndexController extends Page
             ->get();
     }
 
-    protected function setupMixers(): void
+    protected function getGroup(): ?Group
     {
-        app(CreateMixerGroups::class)->execute($this->getAuthModel());
+        return Group::findByPrefixedId(
+            $this->form->group
+        );
     }
 
-    protected function getModel(): ?Group
+    protected function setupMixers(): void
     {
-        $model = Group::firstWhere('prefixed_id', $this->form->group);
-
-        $this->authorize('view', $model);
-
-        return $model;
+        // app(CreateMixerGroups::class)->execute($this->getAuthModel());
     }
 
     protected function getTitle(): ?string

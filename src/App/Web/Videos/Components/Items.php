@@ -6,7 +6,9 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Groups\Concerns\WithGroup;
 use App\Web\Videos\Forms\QueryForm;
-use Domain\Groups\Models\Group;
+use Domain\Groups\Actions\PopulateGroupTagged;
+use Domain\Groups\Enums\GroupSet;
+use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -47,24 +49,32 @@ class Items extends Component
 
     public function regenerate(): void
     {
-        $this->setItems(force: true);
+        // $this->setItems(force: true);
 
-        $this->clear();
+        // $this->clear();
 
-        $this->fillPageItems();
+        // $this->fillPageItems();
 
-        $this->dispatch('$refresh');
+        // $this->dispatch('$refresh');
     }
 
     protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();
 
-        return $this->getGroup()
+        $model = $this->getGroup();
+
+        if ($model->kind === GroupSet::Tagged && ($tag = Tag::find($model->options?->tag))) {
+            app(PopulateGroupTagged::class)->execute($this->getAuthModel(), $tag);
+        }
+
+        return $model
             ->videos()
             ->take(72)
             ->simplePaginate(perPage: 12, page: $page);
     }
+
+
 
     protected function getModelClass(): ?string
     {

@@ -21,8 +21,8 @@
         ])
     ) }}
 
-    @if ($group)
-        {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
+    @if ($group instanceof Group)
+        {{ html()->element('section')->open() }}
             {{ html()->div()->wireKey($group->getRouteKey())->open() }}
                 <livewire:web.videos.items :key="$group->getRouteKey()" :$group :$form />
             {{ html()->div()->close() }}
