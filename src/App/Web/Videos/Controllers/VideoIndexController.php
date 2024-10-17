@@ -41,7 +41,7 @@ class VideoIndexController extends Page
         $this->dispatch('$refresh');
     }
 
-    public function renew(): void
+    public function reload(): void
     {
         $this->setupMixers(force: true);
 

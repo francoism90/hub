@@ -2,7 +2,7 @@
 
 {{ html()->div()->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
-        ->child(html()->button()->attribute('wire:click', 'renew')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
+        ->child(html()->button()->attribute('wire:click', 'reload')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
         ->children($this->items, fn (Fluent $item) => html()->div()->wireKey("filter-{$item->id}")->children([
             html()
                 ->radio('lists')
@@ -23,7 +23,9 @@
             ])
     ) }}
 
-    <livewire:web.videos.items :key="$form->list" :$form />
+    @if (filled($form->list))
+        <livewire:web.videos.items :key="$this->hash()" :$form />
+    @endif
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

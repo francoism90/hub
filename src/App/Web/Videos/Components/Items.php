@@ -6,19 +6,11 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Forms\QueryForm;
 use App\Web\Videos\Scopes\FilterVideos;
-use Domain\Groups\Actions\GetMixerDiscover;
-use Domain\Groups\Actions\GetMixerRecommended;
-use Domain\Groups\Actions\GetMixerTagged;
-use Domain\Groups\Actions\PopulateGroupDiscover;
-use Domain\Groups\Actions\PopulateGroupRecommended;
-use Domain\Groups\Actions\PopulateGroupTagged;
-use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\LazyCollection;
 use Illuminate\View\View;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
@@ -47,15 +39,6 @@ class Items extends Component
     public function refresh(): void
     {
         unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
-
-    public function mix(): void
-    {
-        $this->clear();
-
-        $this->fillPageItems();
 
         $this->dispatch('$refresh');
     }
