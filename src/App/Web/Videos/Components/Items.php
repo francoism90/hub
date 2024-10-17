@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Components;
 
+use App\Web\Groups\Concerns\WithGroup;
 use App\Web\Videos\Forms\QueryForm;
-use Domain\Groups\Actions\PopulateGroupDaily;
-use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Models\Group;
+use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -20,17 +20,13 @@ use Livewire\WithoutUrlPagination;
 class Items extends Component
 {
     use WithAuthentication;
+    use WithGroup;
     use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
 
     #[Modelable]
     public QueryForm $form;
-
-    public function boot(): void
-    {
-        $this->setItems();
-    }
 
     public function render(): View
     {
@@ -60,39 +56,19 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function setItems(?bool $force = false): void
-    {
-        switch ($this->form->type) {
-            case 'discover':
-                app(PopulateGroupDiscover::class)->execute($this->getAuthModel(), $force);
-                break;
-            default:
-                app(PopulateGroupDaily::class)->execute($this->getAuthModel(), $force);
-                break;
-        }
-    }
-
     protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();
 
-        return $this->getGroupModel()
+        return $this->getGroup()
             ->videos()
+            ->take(72)
             ->simplePaginate(perPage: 12, page: $page);
-    }
-
-    protected function getGroupModel(): ?Group
-    {
-        return $this->getQuery()
-            ->mixer()
-            ->where('user_id', $this->getAuthId())
-            ->where('kind', $this->form->type)
-            ->first();
     }
 
     protected function getModelClass(): ?string
     {
-        return Group::class;
+        return Video::class;
     }
 
     public function getListeners(): array
@@ -100,6 +76,8 @@ class Items extends Component
         $id = $this->getAuthKey();
 
         return [
+            "echo-private:user.{$id},.group.trashed" => 'refresh',
+            "echo-private:user.{$id},.group.updated" => 'refresh',
             "echo-private:user.{$id},.video.trashed" => 'refresh',
             "echo-private:user.{$id},.video.updated" => 'refresh',
         ];

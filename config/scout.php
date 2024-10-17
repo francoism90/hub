@@ -174,12 +174,13 @@ return [
                 ],
 
                 'searchableAttributes' => [
+                    'name',
                     'content',
-                    'kind',
                 ],
 
                 'sortableAttributes' => [
                     'id',
+                    'name',
                     'kind',
                     'type',
                     'state',

@@ -1,31 +1,33 @@
-@use('Domain\Groups\Enums\GroupSet')
+@use('Domain\Groups\Models\Group')
 
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($items, fn (GroupSet $item) => html()->div()->children([
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($this->items, fn (Group $item) => html()->div()->children([
         html()
-            ->radio('type')
-            ->id($item->value)
-            ->value($item->value)
-            ->wireModel('form.type', 'live')
+            ->radio('form.group')
+            ->id($item->getRouteKey())
+            ->value($item->getRouteKey())
+            ->wireModel('form.group', 'live')
             ->class('hidden'),
 
         html()
             ->label()
-            ->for($item->value)
-            ->text($item->label())
+            ->for($item->getRouteKey())
+            ->text($item->name)
             ->class([
                 'btn btn-sm',
-                'btn-primary' => $form->is('type', $item->value),
-                'btn-secondary' => ! $form->is('type', $item->value),
+                'btn-primary' => $form->is('group', $item->getRouteKey()),
+                'btn-secondary' => ! $form->is('group', $item->getRouteKey()),
             ])
         ])
     ) }}
 
-    {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
-        {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.videos.items :key="$form->type" :$form />
-        {{ html()->div()->close() }}
-    {{ html()->element('section')->close() }}
+    @if ($group)
+        {{ html()->element('section')->attribute('x-data', 'preview')->open() }}
+            {{ html()->div()->wireKey($group->getRouteKey())->open() }}
+                <livewire:web.videos.items :key="$group->getRouteKey()" :$group :$form />
+            {{ html()->div()->close() }}
+        {{ html()->element('section')->close() }}
+    @endif
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

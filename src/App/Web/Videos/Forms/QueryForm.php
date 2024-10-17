@@ -14,22 +14,11 @@ class QueryForm extends Form
 
     protected static bool $recoverable = true;
 
-    #[Validate('nullable|string|max:255')]
-    public string $query = '';
-
-    #[Validate('nullable|string|in:daily,discover')]
-    public string $type = 'daily';
+    #[Validate('nullable|string|exists:groups,prefixed_id')]
+    public string $group = '';
 
     protected function handle(): void
     {
         app(ResetMixerGroups::class)->execute(auth()->user());
-    }
-
-    public function query(): string
-    {
-        return str($this->get('query', ''))
-            ->title()
-            ->squish()
-            ->value();
     }
 }

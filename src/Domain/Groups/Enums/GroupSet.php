@@ -9,6 +9,7 @@ enum GroupSet: string
     case Daily = 'daily';
     case Discover = 'discover';
     case Viewed = 'viewed';
+    case Tagged = 'tagged';
     case Favorite = 'favorite';
     case Saved = 'saved';
     case Latest = 'latest';
@@ -22,6 +23,7 @@ enum GroupSet: string
             self::Daily => __('Everything'),
             self::Discover => __('New to you'),
             self::Viewed => __('History'),
+            self::Tagged => __('Tagged'),
             self::Favorite => __('Favorite'),
             self::Saved => __('Saved'),
             self::Latest => __('Latest'),

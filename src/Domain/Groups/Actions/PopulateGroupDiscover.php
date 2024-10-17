@@ -18,6 +18,7 @@ class PopulateGroupDiscover
     {
         DB::transaction(function () use ($user, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
+                'name' => GroupSet::Discover->label(),
                 'kind' => GroupSet::Discover,
                 'type' => GroupType::Mixer,
             ]);
@@ -34,6 +35,7 @@ class PopulateGroupDiscover
     {
         return Video::query()
             ->whereDoesntHave('groups', fn (Builder $query) => $query->where('groups.user_id', $user->getKey()))
+            ->published()
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();
@@ -41,6 +43,6 @@ class PopulateGroupDiscover
 
     protected function getLimit(): int
     {
-        return config('library.mixer.limit', 72);
+        return config('videos.mixer.limit', 72);
     }
 }

@@ -6,7 +6,7 @@ namespace App\Web\Groups\Controllers;
 
 use App\Web\Groups\Concerns\WithGroup;
 use App\Web\Groups\Forms\QueryForm;
-use Domain\Groups\Enums\GroupSet;
+use Domain\Groups\Enums\GroupMixer;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 

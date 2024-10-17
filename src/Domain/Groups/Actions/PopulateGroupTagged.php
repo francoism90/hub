@@ -6,19 +6,19 @@ namespace Domain\Groups\Actions;
 
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
+use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
-use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 
-class PopulateGroupDaily
+class PopulateGroupTagged
 {
-    public function execute(User $user, ?bool $force = null): void
+    public function execute(User $user, Tag $tag, ?bool $force = null): void
     {
-        DB::transaction(function () use ($user, $force) {
+        DB::transaction(function () use ($user, $tag, $force) {
             $model = app(CreateNewGroup::class)->execute($user, [
-                'name' => GroupSet::Daily->label(),
-                'kind' => GroupSet::Daily,
+                'name' => $tag->name,
+                'kind' => GroupSet::Tagged,
                 'type' => GroupType::Mixer,
             ]);
 
@@ -26,14 +26,14 @@ class PopulateGroupDaily
                 return;
             }
 
-            $model->attachVideos($this->getCollection($user)->collect(), detach: true);
+            $model->attachVideos($this->getCollection($user, $tag)->collect(), detach: true);
         });
     }
 
-    protected function getCollection(User $user): LazyCollection
+    protected function getCollection(User $user, Tag $tag): LazyCollection
     {
-        return Video::query()
-            ->published()
+        return $tag
+            ->videos()
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();
