@@ -10,13 +10,10 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     : '';
 @endphp
 
-{{ html()->div()->open() }}
+{{ html()->div()->attribute('x-data', 'preview')->open() }}
     {{ html()
         ->element('main')
-        ->attributes([
-            'x-data' => 'preview',
-            'wire.poll.900s' => 'refresh',
-        ])
+        ->attribute('wire.poll.900s', 'refresh')
         ->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
         ->open()
     }}

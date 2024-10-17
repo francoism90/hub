@@ -9,7 +9,6 @@ use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Actions\PopulateGroupRecommended;
 use Domain\Groups\Actions\PopulateGroupTagged;
-use Domain\Groups\Actions\ResetMixerGroups;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
@@ -32,7 +31,7 @@ class Items extends Component
     #[Modelable]
     public QueryForm $form;
 
-    public function boot(): void
+    public function mount(): void
     {
         $this->fillMixerItems();
     }
@@ -58,7 +57,11 @@ class Items extends Component
     {
         $this->fillMixerItems(force: true);
 
-        $this->refresh();
+        $this->clear();
+
+        $this->fillPageItems();
+
+        $this->dispatch('$refresh');
     }
 
     protected function fillMixerItems(?bool $force = null): void
@@ -98,8 +101,6 @@ class Items extends Component
         $id = $this->getAuthKey();
 
         return [
-            "echo-private:user.{$id},.group.trashed" => 'refresh',
-            "echo-private:user.{$id},.group.updated" => 'refresh',
             "echo-private:user.{$id},.video.trashed" => 'refresh',
             "echo-private:user.{$id},.video.updated" => 'refresh',
         ];

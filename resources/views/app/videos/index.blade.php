@@ -6,14 +6,14 @@
         ->children($this->items, fn (Group $item) => html()->div()->wireKey("filter-{$item->getRouteKey()}")->children([
             html()
                 ->radio('form.group')
-                ->id("select-{$item->getRouteKey()}")
+                ->id("filter-{$item->getRouteKey()}")
                 ->value($item->getRouteKey())
                 ->wireModel('form.group', 'live')
                 ->class('hidden'),
 
             html()
                 ->label()
-                ->for("select-{$item->getRouteKey()}")
+                ->for("filter-{$item->getRouteKey()}")
                 ->text($item->name)
                 ->class([
                     'btn btn-sm',
@@ -23,7 +23,7 @@
             ])
     ) }}
 
-    @if ($group)
+    @if ($group instanceof Group)
         <livewire:web.videos.items :key="$group->getRouteKey()" :$form :$group />
     @endif
 {{ html()->div()->close() }}

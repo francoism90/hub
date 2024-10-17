@@ -7,7 +7,6 @@ namespace App\Web\Videos\Controllers;
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\CreateMixerGroups;
 use Domain\Groups\Actions\RemoveMixerGroups;
-use Domain\Groups\Actions\ResetMixerGroups;
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
@@ -18,18 +17,11 @@ class VideoIndexController extends Page
 {
     public QueryForm $form;
 
-    public function boot(): void
-    {
-        $this->setupMixers();
-    }
-
     public function mount(): void
     {
-        $this->form->restore();
+        $this->setupMixers();
 
-        if (blank($this->form->group)) {
-            $this->form->group = $this->items()->first()?->prefixed_id;
-        }
+        $this->form->restore();
     }
 
     public function render(): View

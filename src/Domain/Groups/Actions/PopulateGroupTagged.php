@@ -29,10 +29,8 @@ class PopulateGroupTagged
 
     protected function getCollection(Group $model, ArrayAccess|array|int $value): LazyCollection
     {
-        $tags = Arr::wrap($value);
-
         return Video::query()
-            ->withWhereHas('tags', fn (Builder $query) => $query->whereIn('id', $tags))
+            ->withWhereHas('tags', fn (Builder $query) => $query->whereIn('id', Arr::wrap($value)))
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();
