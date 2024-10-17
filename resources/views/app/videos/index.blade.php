@@ -1,17 +1,17 @@
 @use('Domain\Groups\Models\Group')
 
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
-    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto')->children($this->items, fn (Group $item) => html()->div()->children([
+    {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($this->items, fn (Group $item) => html()->div()->children([
         html()
             ->radio('form.group')
-            ->id($item->getRouteKey())
+            ->id("filter-{$item->getRouteKey()}")
             ->value($item->getRouteKey())
             ->wireModel('form.group', 'live')
             ->class('hidden'),
 
         html()
             ->label()
-            ->for($item->getRouteKey())
+            ->for("filter-{$item->getRouteKey()}")
             ->text($item->name)
             ->class([
                 'btn btn-sm',

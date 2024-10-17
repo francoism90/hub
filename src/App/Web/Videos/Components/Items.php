@@ -53,17 +53,6 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    public function regenerate(): void
-    {
-        // $this->setItems(force: true);
-
-        // $this->clear();
-
-        // $this->fillPageItems();
-
-        // $this->dispatch('$refresh');
-    }
-
     protected function fillMixerItems(): void
     {
         $model = $this->getGroup();

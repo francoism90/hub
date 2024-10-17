@@ -8,6 +8,7 @@ use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\CreateMixerGroups;
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -16,10 +17,13 @@ class VideoIndexController extends Page
 {
     public QueryForm $form;
 
-    public function mount(): void
+    public function boot(): void
     {
         $this->setupMixers();
+    }
 
+    public function mount(): void
+    {
         $this->form->restore();
     }
 
@@ -43,15 +47,15 @@ class VideoIndexController extends Page
             ->mixer()
             ->published()
             ->orderBy('order_column')
-            ->take(5)
+            ->take(7)
             ->get();
     }
 
     protected function getGroup(): ?Group
     {
-        return Group::findByPrefixedId(
-            $this->form->group
-        );
+        return Group::query()
+            ->when($this->form->group, fn (Builder $query, string $value) => $query->where('prefixed_id', $value))
+            ->first();
     }
 
     protected function setupMixers(): void
