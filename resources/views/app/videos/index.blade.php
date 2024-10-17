@@ -1,31 +1,31 @@
-@use('Domain\Groups\Models\Group')
+@use('Illuminate\Support\Fluent')
 
 {{ html()->div()->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
         ->child(html()->button()->attribute('wire:click', 'mix')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
-        ->children($this->items, fn (Group $item) => html()->div()->wireKey("filter-{$item->getRouteKey()}")->children([
+        ->children($this->items, fn (Fluent $item) => html()->div()->children([
             html()
-                ->radio('form.group')
-                ->id("filter-{$item->getRouteKey()}")
-                ->value($item->getRouteKey())
-                ->wireModel('form.group', 'live')
+                ->radio('lists')
+                ->id("filter-{$item->key}")
+                ->value($item->key)
+                ->wireModel('form.list', 'live')
                 ->class('hidden'),
 
             html()
                 ->label()
-                ->for("filter-{$item->getRouteKey()}")
-                ->text($item->name)
+                ->for("filter-{$item->key}")
+                ->text($item->label)
                 ->class([
                     'btn btn-sm',
-                    'btn-primary' => $form->is('group', $item->getRouteKey()),
-                    'btn-secondary' => ! $form->is('group', $item->getRouteKey()),
+                    'btn-primary' => $form->is('list', $item->key),
+                    'btn-secondary' => ! $form->is('list', $item->key),
                 ])
             ])
     ) }}
 
-    @if ($group instanceof Group)
-        <livewire:web.videos.items :key="$group->getRouteKey()" :$form :$group />
-    @endif
+    {{ $this->form->list }}
+
+    <livewire:web.videos.items :key="$form->list" :$form />
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

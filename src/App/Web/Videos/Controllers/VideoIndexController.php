@@ -6,8 +6,9 @@ namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\CreateMixerGroups;
-use Domain\Groups\Actions\RemoveMixerGroups;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Models\Group;
+use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -26,9 +27,7 @@ class VideoIndexController extends Page
 
     public function render(): View
     {
-        return view('app.videos.index')->with([
-            'group' => $this->getGroup(),
-        ]);
+        return view('app.videos.index');
     }
 
     public function updatedForm(): void
@@ -45,7 +44,7 @@ class VideoIndexController extends Page
 
     public function mix(): void
     {
-        $this->removeMixers();
+        // $this->removeMixers();
 
         // $this->setupMixers();
 
@@ -55,23 +54,23 @@ class VideoIndexController extends Page
     #[Computed(persist: true, seconds: 7200)]
     public function items(): Collection
     {
-        return Group::query()
-            ->where('user_id', $this->getAuthId())
-            ->mixer()
-            ->published()
-            ->orderBy('order_column')
-            ->take(7)
-            ->get();
-    }
+        $items = collect($this->getAuthModel()->storeValue('mixers'));
 
-    protected function getGroup(): ?Group
-    {
-        return Group::findByPrefixedId($this->form->group) ?? $this->items()->first();
-    }
+        $items = $items->map(function (mixed $item) {
+            if (str($item)->startsWith('tag-')) {
+                $model = Tag::findByPrefixedId($item);
 
-    protected function removeMixers(): void
-    {
-        app(RemoveMixerGroups::class)->execute($this->getAuthModel());
+                return fluent(['key' => $model->getRouteKey(), 'label' => $model->name]);
+            }
+
+            if ($enum = GroupSet::from($item)) {
+                return fluent(['key' => $enum->value, 'label' => $enum->label()]);
+            }
+
+            return null;
+        });
+
+        return $items;
     }
 
     protected function setupMixers(): void

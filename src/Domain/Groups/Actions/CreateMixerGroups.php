@@ -5,43 +5,38 @@ declare(strict_types=1);
 namespace Domain\Groups\Actions;
 
 use Domain\Groups\Enums\GroupSet;
-use Domain\Groups\Enums\GroupType;
 use Domain\Tags\Models\Tag;
 use Domain\Users\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\LazyCollection;
 
 class CreateMixerGroups
 {
-    public function execute(User $user): void
+    public function execute(User $user, ?bool $force = null): void
     {
-        DB::transaction(function () use ($user) {
-            $this->createUserMixers($user);
-            $this->createTagMixers($user);
+        // $user->storeForget('mixers');
+
+        if (! $force && $user->storeValue('mixers') !== null) {
+            return;
+        }
+
+        $items = $this->getCollection()->map(function (mixed $item) {
+            if ($item instanceof Model) {
+                return $item->getRouteKey();
+            }
+
+            return $item instanceof \BackedEnum ? $item->value : $item;
         });
+
+        $user->storeSet('mixers', $items->all(), now()->addHour());
     }
 
-    protected function createUserMixers(User $user): void
+    protected function getCollection(): LazyCollection
     {
-        $this->getUserMixers()->each(
-            fn (GroupSet $group) => app(CreateNewGroup::class)->execute($user, [
-                'name' => $group->label(),
-                'kind' => $group,
-                'type' => GroupType::Mixer,
-            ])
-        );
-    }
-
-    protected function createTagMixers(User $user): void
-    {
-        $this->getTagMixers()->each(
-            fn (Tag $tag) => app(CreateNewGroup::class)->execute($user, [
-                'name' => $tag->name,
-                'kind' => GroupSet::Tagged,
-                'type' => GroupType::Mixer,
-                'options' => ['tag' => $tag->getKey()],
-            ])
-        );
+        return LazyCollection::make([
+            ...$this->getUserMixers(),
+            ...$this->getTagMixers(),
+        ]);
     }
 
     protected function getUserMixers(): LazyCollection
@@ -57,12 +52,7 @@ class CreateMixerGroups
         return Tag::query()
             ->whereHas('videos')
             ->inRandomOrder()
-            ->take($this->getLimit())
+            ->take(5)
             ->cursor();
-    }
-
-    protected function getLimit(): int
-    {
-        return config('videos.mixer.dynamic', 5);
     }
 }
