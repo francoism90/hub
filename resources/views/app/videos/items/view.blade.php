@@ -14,7 +14,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     {{ html()
         ->element('main')
         ->attributes([
-            'x-data' => '',
+            'x-data' => 'preview',
             'wire.poll.900s' => 'refresh',
         ])
         ->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
@@ -38,7 +38,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                 ->text('Roll Dice')
                 ->attributes([
                     'x-on:click' => $scrollIntoViewJsSnippet,
-                    'wire:click' => 'regenerate',
+                    'wire:click' => 'mix',
                     'wire:loading.attr' => 'disabled',
                 ])
                 ->class('btn btn-sm btn-secondary btn-outlined')

@@ -6,9 +6,10 @@ namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\CreateMixerGroups;
+use Domain\Groups\Actions\RemoveMixerGroups;
+use Domain\Groups\Actions\ResetMixerGroups;
 use Domain\Groups\Models\Group;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -25,6 +26,10 @@ class VideoIndexController extends Page
     public function mount(): void
     {
         $this->form->restore();
+
+        if (blank($this->form->group)) {
+            $this->form->group = $this->items()->first()?->prefixed_id;
+        }
     }
 
     public function render(): View
@@ -37,6 +42,22 @@ class VideoIndexController extends Page
     public function updatedForm(): void
     {
         $this->form->submit();
+    }
+
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
+    public function mix(): void
+    {
+        $this->removeMixers();
+
+        $this->setupMixers();
+
+        $this->refresh();
     }
 
     #[Computed(persist: true, seconds: 7200)]
@@ -53,9 +74,12 @@ class VideoIndexController extends Page
 
     protected function getGroup(): ?Group
     {
-        return Group::query()
-            ->when($this->form->group, fn (Builder $query, string $value) => $query->where('prefixed_id', $value))
-            ->first();
+        return Group::findByPrefixedId($this->form->group) ?? $this->items()->first();
+    }
+
+    protected function removeMixers(): void
+    {
+        app(RemoveMixerGroups::class)->execute($this->getAuthModel());
     }
 
     protected function setupMixers(): void

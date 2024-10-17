@@ -9,6 +9,7 @@ use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Actions\PopulateGroupDiscover;
 use Domain\Groups\Actions\PopulateGroupRecommended;
 use Domain\Groups\Actions\PopulateGroupTagged;
+use Domain\Groups\Actions\ResetMixerGroups;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
@@ -53,19 +54,26 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function fillMixerItems(): void
+    public function mix(): void
+    {
+        $this->fillMixerItems(force: true);
+
+        $this->refresh();
+    }
+
+    protected function fillMixerItems(?bool $force = null): void
     {
         $model = $this->getGroup();
 
         switch ($model->kind) {
             case GroupSet::Tagged:
-                app(PopulateGroupTagged::class)->execute($model);
+                app(PopulateGroupTagged::class)->execute($model, $force);
                 break;
             case GroupSet::Discover:
-                app(PopulateGroupDiscover::class)->execute($model);
+                app(PopulateGroupDiscover::class)->execute($model, $force);
                 break;
             default:
-                app(PopulateGroupRecommended::class)->execute($model);
+                app(PopulateGroupRecommended::class)->execute($model, $force);
                 break;
         }
     }
