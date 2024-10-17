@@ -46,7 +46,7 @@ class Section extends Component
 
     protected function getPageItems(?int $page = null): Paginator
     {
-        $page ??= $this->getPage();
+        $page ??= $this->getPage() ?? 1;
 
         return $this->getQuery()
             ->type($this->type)
