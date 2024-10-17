@@ -21,7 +21,7 @@
         {{ html()->element('main')->attribute('wire:poll.900s')->class('pt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')->open() }}
             @foreach ($this->items as $video)
                 {{ html()->div()->wireKey($video->getRouteKey())->open() }}
-                    <livewire:web.videos.item :$video :key="$video->getRouteKey()" />
+                    <livewire:web.videos.item :$video :key="$video->getRouteKey()" lazy />
                 {{ html()->div()->close() }}
             @endforeach
         {{ html()->element('main')->close() }}

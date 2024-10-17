@@ -45,7 +45,7 @@ class Items extends Component
 
     protected function getPageItems(?int $page = null): Paginator
     {
-        $page ??= $this->getPage();
+        $page ??= $this->getPage() ?? 1;
 
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form, user: $this->getAuthModel())
