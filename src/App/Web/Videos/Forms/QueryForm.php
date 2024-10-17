@@ -15,9 +15,4 @@ class QueryForm extends Form
 
     #[Validate('nullable|string|max:255')]
     public string $list = 'daily';
-
-    protected function handle(): void
-    {
-        // app(ResetMixerGroups::class)->execute(auth()->user());
-    }
 }
