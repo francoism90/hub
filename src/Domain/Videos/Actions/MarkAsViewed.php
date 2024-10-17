@@ -17,10 +17,8 @@ class MarkAsViewed
             // Get group model
             $model = $user->groups()->viewed();
 
-            // Toggle state
-            $force === true || ! $video->isViewedBy($user)
-                ? $model->attachVideo($video, $data)
-                : $model->detachVideo($video);
+            // Update videos
+            $model->attachVideo($video, $data);
 
             // Touch parent to trigger broadcast
             $model->touch();

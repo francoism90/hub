@@ -19,7 +19,7 @@ class FilterVideos
     {
         $query
             ->with('media', 'tags')
-            ->when($this->form->is('type', 'latest'), fn (Builder $query) => $query->orderByDesc('created_at'))
+            ->when($this->form->is('type', 'latest'), fn (Builder $query) => $query->orderByDesc('videoables.created_at'))
             ->when($this->form->is('type', 'recommended'), fn (Builder $query) => $query->inRandomOrder());
     }
 }

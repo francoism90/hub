@@ -52,7 +52,6 @@ class Items extends Component
         return $this->getGroup()
             ->videos()
             ->tap(new FilterVideos($this->form, $this->group))
-            ->take(72)
             ->simplePaginate(perPage: 12, page: $page);
     }
 
