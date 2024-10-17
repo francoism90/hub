@@ -23,9 +23,12 @@
             ])
     ) }}
 
-    @if (filled($form->list))
-        <livewire:web.videos.items :key="$form->list" :$form />
-    @endif
+
+    {{ html()->div()->open() }}
+        @if (filled($form->list))
+            <livewire:web.videos.items :$form :key="$this->hash()" />
+        @endif
+    {{ html()->div()->close() }}
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

@@ -12,6 +12,7 @@ use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;

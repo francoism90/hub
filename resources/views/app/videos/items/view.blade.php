@@ -1,15 +1,3 @@
-@php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
-@endphp
-
 {{ html()->div()->attribute('x-data', 'preview')->open() }}
     {{ html()
         ->element('main')
@@ -24,9 +12,9 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         @endforeach
     {{ html()->element('main')->close() }}
 
-    {{ html()->element('nav')->class('w-full min-h-0 flex flex-nowrap items-center justify-center')->open() }}
+    {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
         @if ($this->hasMorePages())
-            {{ html()->div()->attribute('x-intersect', '$wire.fetch()') }}
+            {{ html()->div()->attribute('x-intersect.full', '$wire.fetch()') }}
         @endif
     {{ html()->element('nav')->close() }}
 {{ html()->div()->close() }}
