@@ -42,6 +42,7 @@ class VideoIndexController extends Page
             ->where('user_id', $this->getAuthId())
             ->mixer()
             ->published()
+            ->orderBy('order_column')
             ->take(5)
             ->get();
     }
@@ -55,7 +56,7 @@ class VideoIndexController extends Page
 
     protected function setupMixers(): void
     {
-        // app(CreateMixerGroups::class)->execute($this->getAuthModel());
+        app(CreateMixerGroups::class)->execute($this->getAuthModel());
     }
 
     protected function getTitle(): ?string

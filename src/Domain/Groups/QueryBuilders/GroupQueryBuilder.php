@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\QueryBuilders;
 
-use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\Models\Group;
 use Domain\Groups\States\Verified;

@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Actions;
 
-use ArrayAccess;
-use Illuminate\Support\Arr;
 use Domain\Groups\Models\Group;
 use Domain\Videos\Models\Video;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\LazyCollection;
 
-class PopulateGroupTagged
+class PopulateGroupRecommended
 {
     public function execute(Group $model, ?bool $force = null): void
     {
@@ -21,18 +18,14 @@ class PopulateGroupTagged
                 return;
             }
 
-            throw_if(! $tag = $model->options?->tag);
-
-            $model->attachVideos($this->getCollection($model, $tag)->collect(), detach: true);
+            $model->attachVideos($this->getCollection()->collect(), detach: true);
         });
     }
 
-    protected function getCollection(Group $model, ArrayAccess|array|int $value): LazyCollection
+    protected function getCollection(): LazyCollection
     {
-        $tags = Arr::wrap($value);
-
         return Video::query()
-            ->withWhereHas('tags', fn (Builder $query) => $query->whereIn('id', $tags))
+            ->published()
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();

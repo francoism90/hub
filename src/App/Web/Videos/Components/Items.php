@@ -6,9 +6,10 @@ namespace App\Web\Videos\Components;
 
 use App\Web\Groups\Concerns\WithGroup;
 use App\Web\Videos\Forms\QueryForm;
+use Domain\Groups\Actions\PopulateGroupDiscover;
+use Domain\Groups\Actions\PopulateGroupRecommended;
 use Domain\Groups\Actions\PopulateGroupTagged;
 use Domain\Groups\Enums\GroupSet;
-use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -29,6 +30,11 @@ class Items extends Component
 
     #[Modelable]
     public QueryForm $form;
+
+    public function boot(): void
+    {
+        $this->fillMixerItems();
+    }
 
     public function render(): View
     {
@@ -58,23 +64,32 @@ class Items extends Component
         // $this->dispatch('$refresh');
     }
 
+    protected function fillMixerItems(): void
+    {
+        $model = $this->getGroup();
+
+        switch ($model->kind) {
+            case GroupSet::Tagged:
+                app(PopulateGroupTagged::class)->execute($model);
+                break;
+            case GroupSet::Discover:
+                app(PopulateGroupDiscover::class)->execute($model);
+                break;
+            default:
+                app(PopulateGroupRecommended::class)->execute($model);
+                break;
+        }
+    }
+
     protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();
 
-        $model = $this->getGroup();
-
-        if ($model->kind === GroupSet::Tagged && ($tag = Tag::find($model->options?->tag))) {
-            app(PopulateGroupTagged::class)->execute($this->getAuthModel(), $tag);
-        }
-
-        return $model
+        return $this->getGroup()
             ->videos()
             ->take(72)
             ->simplePaginate(perPage: 12, page: $page);
     }
-
-
 
     protected function getModelClass(): ?string
     {

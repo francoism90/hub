@@ -6,7 +6,7 @@ namespace App\Web\Tags\Controllers;
 
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\QueryForm;
-use Domain\Groups\Enums\GroupMixer;
+use Domain\Groups\Enums\GroupSet;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 

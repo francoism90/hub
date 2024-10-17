@@ -6,7 +6,6 @@ namespace Domain\Groups\Models;
 
 use Domain\Groups\Collections\GroupCollection;
 use Domain\Groups\DataObjects\GroupData;
-use Domain\Groups\Enums\GroupMixer;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
@@ -16,9 +15,11 @@ use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
@@ -38,6 +39,7 @@ class Group extends Model implements HasMedia, Sortable
     use InteractsWithMedia;
     use InteractsWithUser;
     use Notifiable;
+    use Prunable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
@@ -123,6 +125,21 @@ class Group extends Model implements HasMedia, Sortable
     public function broadcastAfterCommit(): bool
     {
         return true;
+    }
+
+    public function buildSortQuery(): Builder
+    {
+        return static::query()
+            ->where('user_id', $this->user_id)
+            ->where('kind', $this->kind)
+            ->where('type', $this->type);
+    }
+
+    public function prunable(): Builder
+    {
+        return static::query()
+            ->mixer()
+            ->where('created_at', '<=', now()->subDay());
     }
 
     public function makeSearchableUsing(GroupCollection $models): GroupCollection

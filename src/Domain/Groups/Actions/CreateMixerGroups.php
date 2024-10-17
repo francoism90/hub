@@ -23,9 +23,13 @@ class CreateMixerGroups
 
     protected function createUserMixers(User $user): void
     {
-        app(PopulateGroupDaily::class)->execute($user);
-
-        app(PopulateGroupDiscover::class)->execute($user);
+        $this->getUserMixers()->each(
+            fn (GroupSet $group) => app(CreateNewGroup::class)->execute($user, [
+                'name' => $group->label(),
+                'kind' => $group,
+                'type' => GroupType::Mixer,
+            ])
+        );
     }
 
     protected function createTagMixers(User $user): void
@@ -38,6 +42,14 @@ class CreateMixerGroups
                 'options' => ['tag' => $tag->getKey()],
             ])
         );
+    }
+
+    protected function getUserMixers(): LazyCollection
+    {
+        return LazyCollection::make([
+            GroupSet::Daily,
+            GroupSet::Discover,
+        ]);
     }
 
     protected function getTagMixers(): LazyCollection
