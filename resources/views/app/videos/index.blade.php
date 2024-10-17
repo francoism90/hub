@@ -24,7 +24,7 @@
     @if ($group instanceof Group)
         {{ html()->element('section')->open() }}
             {{ html()->div()->wireKey($group->getRouteKey())->open() }}
-                <livewire:web.videos.items :key="$group->getRouteKey()" :$group :$form />
+                <livewire:web.videos.items :key="$group->getRouteKey()" :$form :$group />
             {{ html()->div()->close() }}
         {{ html()->element('section')->close() }}
     @endif

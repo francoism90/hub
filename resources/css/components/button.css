@@ -1,6 +1,6 @@
 @layer components {
     .btn {
-        @apply inline-flex h-9 w-full shrink-0 cursor-pointer select-none items-center rounded px-3 font-medium focus:outline-none;
+        @apply inline-flex h-9 w-fit shrink-0 cursor-pointer select-none items-center rounded px-3 font-medium focus:outline-none;
 
         &-disabled,
         &[disabled],
