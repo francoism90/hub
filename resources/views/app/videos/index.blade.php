@@ -23,7 +23,6 @@
             ])
     ) }}
 
-
     {{ html()->div()->open() }}
         @if (filled($form->list))
             <livewire:web.videos.items :$form :key="$this->hash()" />
