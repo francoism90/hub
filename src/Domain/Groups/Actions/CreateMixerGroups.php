@@ -14,7 +14,7 @@ class CreateMixerGroups
 {
     public function execute(User $user, ?bool $force = null): void
     {
-        if (! $force && $user->storeValue('mixers') !== null) {
+        if (! $force && filled($user->storeValue('mixers'))) {
             return;
         }
 
