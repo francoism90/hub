@@ -48,9 +48,9 @@ class CreateMixerGroups
     protected function getTagMixers(): LazyCollection
     {
         return Tag::query()
-            ->whereHas('videos')
+            ->withWhereHas('videos')
             ->inRandomOrder()
-            ->take(5)
+            ->take(8)
             ->cursor();
     }
 }

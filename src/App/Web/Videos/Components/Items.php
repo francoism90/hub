@@ -49,7 +49,7 @@ class Items extends Component
 
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form, user: $this->getAuthModel())
-        )->simplePaginate(perPage: 12, page: $page);
+        )->simplePaginate(perPage: 16, page: $page);
     }
 
     protected function getModelClass(): ?string

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Foundation\Providers;
 
 use Domain\Users\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
@@ -17,7 +16,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         parent::boot();
     }
-    
+
     public function register(): void
     {
         parent::register();

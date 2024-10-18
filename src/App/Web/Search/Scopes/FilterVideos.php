@@ -16,6 +16,7 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
+            ->query(fn ($query) => $query->with('tags'))
             ->when(! $this->hasQuery(), fn (Builder $query) => $query->whereIn('id', [0]));
     }
 

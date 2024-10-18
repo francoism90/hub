@@ -36,7 +36,7 @@ class TagViewController extends Page
     protected function getCollection(): array
     {
         return [
-            GroupSet::Latest,
+            GroupSet::Newest,
             GroupSet::Longest,
             GroupSet::Shortest,
         ];

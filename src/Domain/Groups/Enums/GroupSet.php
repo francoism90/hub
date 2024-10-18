@@ -12,7 +12,8 @@ enum GroupSet: string
     case Tagged = 'tagged';
     case Favorite = 'favorite';
     case Saved = 'saved';
-    case Latest = 'latest';
+    case Newest = 'newest';
+    case Oldest = 'oldest';
     case Recommended = 'recommended';
     case Longest = 'longest';
     case Shortest = 'shortest';
@@ -26,7 +27,8 @@ enum GroupSet: string
             self::Tagged => __('Tagged'),
             self::Favorite => __('Favorite'),
             self::Saved => __('Saved'),
-            self::Latest => __('Latest'),
+            self::Newest => __('Newest'),
+            self::Oldest => __('Oldest'),
             self::Recommended => __('Recommended'),
             self::Longest => __('Longest'),
             self::Shortest => __('Shortest'),

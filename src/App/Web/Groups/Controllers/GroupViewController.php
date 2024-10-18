@@ -37,7 +37,8 @@ class GroupViewController extends Page
     protected function getCollection(): array
     {
         return [
-            GroupSet::Latest,
+            GroupSet::Newest,
+            GroupSet::Oldest,
             GroupSet::Recommended,
         ];
     }

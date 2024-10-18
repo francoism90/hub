@@ -52,7 +52,7 @@ class Items extends Component
         return $this->getGroup()
             ->videos()
             ->tap(new FilterVideos($this->form, $this->group))
-            ->simplePaginate(perPage: 12, page: $page);
+            ->simplePaginate(perPage: 16, page: $page);
     }
 
     protected function getModelClass(): ?string

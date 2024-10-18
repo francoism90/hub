@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Foundation\Providers;
 
 use Domain\Users\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\Horizon;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
