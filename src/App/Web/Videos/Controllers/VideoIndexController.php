@@ -105,7 +105,7 @@ class VideoIndexController extends Page
 
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form, user: $this->getAuthModel())
-        )->simplePaginate(perPage: 16, page: $page);
+        )->simplePaginate(perPage: 18, page: $page);
     }
 
     protected function getModelClass(): ?string
