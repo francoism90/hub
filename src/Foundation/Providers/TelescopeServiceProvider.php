@@ -13,6 +13,11 @@ use Laravel\Telescope\TelescopeApplicationServiceProvider;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 {
+    public function boot()
+    {
+        parent::boot();
+    }
+    
     public function register(): void
     {
         parent::register();
@@ -46,13 +51,6 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             'x-csrf-token',
             'x-xsrf-token',
         ]);
-    }
-
-    protected function authorization(): void
-    {
-        $this->gate();
-
-        Telescope::auth(fn (Request $request) => Gate::check('viewTelescope', [$request->user()]));
     }
 
     protected function gate(): void
