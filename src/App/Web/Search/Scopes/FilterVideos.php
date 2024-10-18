@@ -20,7 +20,7 @@ class FilterVideos
             ->when(! $this->hasQuery(), fn (Builder $query) => $query->whereIn('id', [0]))
             ->when($this->form->is('type', 'newest'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
             ->when($this->form->is('type', 'longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
-            ->when($this->form->is('type', 'shortest'), fn (Builder $query) => $query->orderBy('duration'));;
+            ->when($this->form->is('type', 'shortest'), fn (Builder $query) => $query->orderBy('duration'));
     }
 
     protected function hasQuery(): bool
