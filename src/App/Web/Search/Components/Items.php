@@ -43,6 +43,15 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
+    public function reload(): void
+    {
+        $this->clear();
+
+        $this->fetch();
+
+        $this->refresh();
+    }
+
     protected function getPageItems(?int $page = null): Paginator
     {
         $page ??= $this->getPage();

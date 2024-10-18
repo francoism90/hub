@@ -36,6 +36,13 @@ class Items extends Component
         return view('app.videos.items.placeholder', $params);
     }
 
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
     public function reload(): void
     {
         $this->clear();
@@ -43,13 +50,6 @@ class Items extends Component
         $this->fetch();
 
         $this->refresh();
-    }
-
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
     }
 
     protected function getPageItems(?int $page = null): Paginator
