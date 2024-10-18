@@ -8,11 +8,23 @@ use ArrayAccess;
 use Domain\Videos\DataObjects\VideoableData;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 
 trait HasVideos
 {
+    public static function bootHasVideos(): void
+    {
+        static::deleting(function (Model $model) {
+            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
+                return;
+            }
+
+            $model->videos()->detach();
+        });
+    }
+
     public function videos(): MorphToMany
     {
         return $this->morphToMany(Video::class, 'videoable')

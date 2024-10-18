@@ -7,11 +7,23 @@ namespace Domain\Users\Concerns;
 use ArrayAccess;
 use Domain\Users\Models\User;
 use Domain\Users\Models\Userable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 
 trait HasUsers
 {
+    public static function bootHasUsers(): void
+    {
+        static::deleting(function (Model $model) {
+            if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
+                return;
+            }
+
+            $model->users()->detach();
+        });
+    }
+
     public function users(): MorphToMany
     {
         return $this->morphToMany(User::class, 'userable')
