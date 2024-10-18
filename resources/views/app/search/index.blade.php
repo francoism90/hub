@@ -22,27 +22,40 @@
     @else
         {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
             ->child(html()->button()->attribute('wire:click', 'blank')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-backspace', 'size-4 text-white')))
-            ->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
+            ->children($types, fn (GroupSet $type) => html()->div()->wireKey("filter-{$type->value}")->children([
                 html()
                     ->radio('types')
-                    ->id("filter-{$item->value}")
-                    ->value($item->value)
+                    ->id("filter-{$type->value}")
+                    ->value($type->value)
                     ->wireModel('form.type', 'live')
                     ->class('hidden'),
 
                 html()
                     ->label()
-                    ->for("filter-{$item->value}")
-                    ->text($item->label())
+                    ->for("filter-{$type->value}")
+                    ->text($type->label())
                     ->class([
                         'btn btn-sm',
-                        'btn-primary' => $form->is('type', $item->value),
-                        'btn-secondary' => ! $form->is('type', $item->value),
+                        'btn-primary' => $form->is('type', $type->value),
+                        'btn-secondary' => ! $form->is('type', $type->value),
                     ])
                 ])
         ) }}
 
-        <livewire:web.search.items :key="$this->hash()" :$form />
+        {{ html()
+            ->element('main')
+            ->attribute('wire:poll.900s')
+            ->class('grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4')
+            ->open()
+        }}
+            @foreach ($this->items as $item)
+                {{ html()->div()->wireKey($item->getRouteKey())->open() }}
+                    <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" />
+                {{ html()->div()->close() }}
+            @endforeach
+        {{ html()->element('main')->close() }}
+
+        {{ $this->items->links() }}
     @endif
 {{ html()->div()->close() }}
 
