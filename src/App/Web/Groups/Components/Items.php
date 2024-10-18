@@ -9,21 +9,20 @@ use App\Web\Groups\Forms\QueryForm;
 use App\Web\Groups\Scopes\FilterVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
-use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class Items extends Component
 {
     use WithAuthentication;
     use WithGroup;
-    use WithoutUrlPagination;
     use WithQueryBuilder;
-    use WithScroll;
+    use WithPagination;
 
     #[Modelable]
     public QueryForm $form;
@@ -45,23 +44,13 @@ class Items extends Component
         $this->dispatch('$refresh');
     }
 
-    public function reload(): void
+    #[Computed(persist: true, seconds: 60 * 60 * 24)]
+    public function items(): Paginator
     {
-        $this->clear();
-
-        $this->fetch();
-
-        $this->refresh();
-    }
-
-    protected function getPageItems(?int $page = null): Paginator
-    {
-        $page ??= $this->getPage();
-
         return $this->getGroup()
             ->videos()
             ->tap(new FilterVideos($this->form, $this->group))
-            ->simplePaginate(perPage: 16, page: $page);
+            ->simplePaginate(perPage: 16);
     }
 
     protected function getModelClass(): ?string
