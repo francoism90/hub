@@ -26,10 +26,10 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'unpublish videos']);
 
         // Create roles and assign created permissions
-        $role = Role::firstOrCreate(['name' => 'moderator'])
+        Role::firstOrCreate(['name' => 'moderator'])
             ->syncPermissions(['publish videos', 'unpublish videos']);
 
-        $role = Role::firstOrCreate(['name' => 'super-admin']);
-        $role->syncPermissions(Permission::all());
+        Role::firstOrCreate(['name' => 'super-admin'])
+            ->syncPermissions(Permission::all());
     }
 }
