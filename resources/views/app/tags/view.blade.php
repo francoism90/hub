@@ -44,8 +44,8 @@
     ) }}
 
     {{ html()->element('section')->open() }}
-        {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.tags.items :key="$form->type" :$form :$tag />
+        {{ html()->div()->open() }}
+            <livewire:web.tags.items :key="$this->hash()" :$form :$tag />
         {{ html()->div()->close() }}
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}

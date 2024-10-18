@@ -1,13 +1,15 @@
 @use('Domain\Groups\Enums\GroupSet')
 
-{{ html()->div()->class('container py-4 flex flex-col gap-y-3')->open() }}
-    {{ html()->wireForm($form, 'submit')->class('block pt-2')->children([
-        html()->search()->wireModel('form.query')->autofocus()->class('input input-md input-rounded bg-secondary-500/25')->placeholder('Title, description, or tags'),
-        html()->error('form.query'),
+{{ html()->div()->class('container py-6 flex flex-col gap-y-3')->open() }}
+    {{ html()->wireForm($form, 'submit')->class('flex flex-col gap-y-3')->children([
+        html()->div()->class('form-control')->children([
+            html()->text()->wireModel('form.query')->autofocus()->placeholder('Name')->class('input'),
+            html()->error('form.query'),
+        ])
     ]) }}
 
     @if (! $form->query())
-        {{ html()->div()->class('flex flex-wrap items-center text-sm py-1.5 gap-1')
+        {{ html()->div()->class('flex flex-nowrap gap-1 items-center overflow-x-auto *:shrink-0')
             ->child(html()->span()->class('text-secondary-300')->text('Hint:')
             ->children($suggestions, fn (string $item) => html()
                 ->a()
@@ -17,9 +19,7 @@
                 ->text($item)
             )
         ) }}
-    @endif
-
-    @if ($form->query())
+    @else
         {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
             html()
                 ->radio('type')
@@ -41,8 +41,8 @@
         ) }}
 
         {{ html()->element('section')->open() }}
-            {{ html()->div()->wireKey($form->type)->open() }}
-                <livewire:web.search.items :key="$form->type" :$form />
+            {{ html()->div()->open() }}
+                <livewire:web.search.items :key="$this->hash()" :$form />
             {{ html()->div()->close() }}
         {{ html()->element('section')->close() }}
     @endif

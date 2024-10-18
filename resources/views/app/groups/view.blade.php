@@ -27,8 +27,8 @@
     ) }}
 
     {{ html()->element('section')->open() }}
-        {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.groups.items :key="$form->type" :$form :$group />
+        {{ html()->div()->open() }}
+            <livewire:web.groups.items :key="$this->hash()" :$form :$group />
         {{ html()->div()->close() }}
     {{ html()->element('section')->close() }}
 {{ html()->div()->close() }}

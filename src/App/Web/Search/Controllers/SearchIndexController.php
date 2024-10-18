@@ -51,6 +51,10 @@ class SearchIndexController extends Page
 
     protected function getSuggestions(): array
     {
+        if ($this->form->query()) {
+            return [];
+        }
+
         return Tag::query()
             ->inRandomOrder()
             ->limit(2)
