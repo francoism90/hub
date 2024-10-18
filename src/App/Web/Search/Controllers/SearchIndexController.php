@@ -84,6 +84,8 @@ class SearchIndexController extends Page
     public function setQuery(?string $query = null): void
     {
         $this->form->query = $query;
+
+        $this->submit();
     }
 
     protected function getSuggestions(): array
