@@ -14,7 +14,7 @@ use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -48,17 +48,6 @@ class VideoIndexController extends Page
         $this->reload();
     }
 
-    public function populate(): void
-    {
-        $this->setupMixers(force: true);
-
-        unset($this->lists);
-
-        $this->form->reset('list');
-
-        $this->refresh();
-    }
-
     public function refresh(): void
     {
         unset($this->items);
@@ -70,7 +59,18 @@ class VideoIndexController extends Page
     {
         $this->clear();
 
-        $this->fillCurrentPageItems();
+        $this->fillPageScrollItems();
+
+        $this->refresh();
+    }
+
+    public function populate(): void
+    {
+        $this->setupMixers(force: true);
+
+        unset($this->lists);
+
+        $this->form->reset('list');
 
         $this->refresh();
     }
@@ -80,7 +80,7 @@ class VideoIndexController extends Page
     {
         $items = collect($this->getAuthModel()->storeValue('mixers'));
 
-        $items = $items->map(function (mixed $item) {
+        return $items->map(function (mixed $item) {
             if (str($item)->startsWith('tag-')) {
                 $model = Tag::findByPrefixedId($item);
 
@@ -93,17 +93,13 @@ class VideoIndexController extends Page
 
             return null;
         });
-
-        return $items;
     }
 
-    protected function getPageItems(?int $page = null): Paginator
+    protected function getBuilder(): Builder
     {
-        $page ??= $this->getPage() ?? 1;
-
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form, user: $this->getAuthModel())
-        )->simplePaginate(perPage: 18, page: $page);
+        );
     }
 
     protected function getModelClass(): ?string

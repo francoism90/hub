@@ -9,7 +9,7 @@ use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -44,22 +44,28 @@ class Section extends Component
         $this->dispatch('$refresh');
     }
 
-    protected function getPageItems(?int $page = null): Paginator
+    protected function getBuilder(): Builder
     {
-        $page ??= $this->getPage() ?? 1;
-
-        return $this->getQuery()
-            ->type($this->type)
-            ->simplePaginate(perPage: 9, page: $page);
+        return $this->getQuery();
     }
 
-    protected function getTitle(): ?string
+    public function getScrollPerPage(): int
     {
-        return $this->type->label();
+        return 9;
+    }
+
+    public function getScrollPageLimit(): ?int
+    {
+        return 10;
     }
 
     protected function getModelClass(): ?string
     {
         return Tag::class;
+    }
+
+    protected function getTitle(): ?string
+    {
+        return $this->type->label();
     }
 }
