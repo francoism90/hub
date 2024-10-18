@@ -22,17 +22,17 @@ class SyncIndexes extends Command implements Isolatable
     public function handle(): void
     {
         if ($this->option('delete')) {
-            $this->call('scout:delete-all-index');
+            $this->call('scout:delete-all-indexes');
         }
 
-        // Sync settings
+        // Sync index settings
         $this->call('scout:sync-index-settings');
 
+        // Sync index models
         $driver = config('scout.driver');
 
         $indexes = (array) config('scout.'.$driver.'.index-settings', []);
 
-        // Sync models
         if (count($indexes)) {
             foreach ($indexes as $model => $settings) {
                 if (class_exists($model)) {
@@ -41,6 +41,6 @@ class SyncIndexes extends Command implements Isolatable
             }
         }
 
-        $this->info('Indexes synced successfully.');
+        $this->components->info('Indexes have been synced successfully.');
     }
 }

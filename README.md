@@ -138,6 +138,12 @@ To force the removal of soft-deleted videos:
 hub a videos:clean
 ```
 
+To force indexing of models:
+
+```bash
+hub a scout:sync
+```
+
 ## Upgrading
 
 See [UPGRADING.md](UPGRADING.md)
