@@ -6,10 +6,10 @@
     ->attribute('x-data', '{ manifest: $el.dataset.manifest }')
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->children([
-        html()->a()->link('videos.view', $video)->class('relative block w-full h-48 min-h-48 max-h-48')->children([
+        html()->a()->link('videos.view', $video)->class('relative shrink-0 block w-full h-48 min-h-48 max-h-48')->children([
             html()
                 ->div()
-                ->class('absolute inset-0 z-30 shrink-0 size-full bg-transparent')
+                ->class('absolute inset-0 z-20 size-full')
                 ->attributes([
                     'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
                     'x-on:mouseleave' => 'unload()',
@@ -34,14 +34,14 @@
             html()
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
-                ->class('absolute inset-0 z-10 shrink-0 size-full rounded object-fill brightness-80')
+                ->class('absolute inset-0 z-0 size-full rounded object-fill brightness-80')
                 ->loading('lazy')
                 ->crossorigin('use-credentials'),
 
             html()
                 ->element('video')
                 ->ignore()
-                ->class('absolute inset-0 z-20 shrink-0 size-full rounded object-fill brightness-95')
+                ->class('absolute inset-0 z-10 size-full rounded object-fill brightness-95')
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',

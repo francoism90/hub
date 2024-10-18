@@ -14,7 +14,7 @@ class Item extends Component
 
     public function render(): View
     {
-        return view('app.videos.card.item');
+        return view('app.videos.card.view');
     }
 
     public function placeholder(array $params = []): View
