@@ -12,10 +12,7 @@ class TagQueryBuilder extends Builder
     public function type(TagType|string $value): self
     {
         $type = $value instanceof TagType ? $value : TagType::tryFrom($value);
-        logger($type->value);
 
-        return $this->when($type, fn (Builder $query) => $query
-            ->where('type', $type)
-        );
+        return $this->when($type, fn (Builder $query) => $query->where('type', $type));
     }
 }

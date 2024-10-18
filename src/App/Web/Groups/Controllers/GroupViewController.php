@@ -56,8 +56,8 @@ class GroupViewController extends Page
     {
         return $this->getGroup()
             ->videos()
-            ->tap(new FilterVideos($this->form, $this->group))
-            ->simplePaginate(perPage: 18);
+            ->tap(new FilterVideos(form: $this->form, group: $this->group))
+            ->simplePaginate(perPage: 24);
     }
 
     public function refresh(): void
