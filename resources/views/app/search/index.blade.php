@@ -20,31 +20,29 @@
             )
         ) }}
     @else
-        {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
-            html()
-                ->radio('type')
-                ->id("filter-{$item->value}")
-                ->value($item->value)
-                ->wireModel('form.type', 'live')
-                ->class('hidden'),
+        {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
+            ->child(html()->button()->attribute('wire:click', 'blank')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-backspace', 'size-4 text-white')))
+            ->children($items, fn (GroupSet $item) => html()->div()->wireKey("filter-{$item->value}")->children([
+                html()
+                    ->radio('types')
+                    ->id("filter-{$item->value}")
+                    ->value($item->value)
+                    ->wireModel('form.type', 'live')
+                    ->class('hidden'),
 
-            html()
-                ->label()
-                ->for("filter-{$item->value}")
-                ->text($item->label())
-                ->class([
-                    'btn btn-sm',
-                    'btn-primary' => $form->is('type', $item->value),
-                    'btn-secondary' => ! $form->is('type', $item->value),
+                html()
+                    ->label()
+                    ->for("filter-{$item->value}")
+                    ->text($item->label())
+                    ->class([
+                        'btn btn-sm',
+                        'btn-primary' => $form->is('type', $item->value),
+                        'btn-secondary' => ! $form->is('type', $item->value),
+                    ])
                 ])
-            ])
         ) }}
 
-        {{ html()->element('section')->open() }}
-            {{ html()->div()->open() }}
-                <livewire:web.search.items :key="$this->hash()" :$form />
-            {{ html()->div()->close() }}
-        {{ html()->element('section')->close() }}
+        <livewire:web.search.items :key="$this->hash()" :$form />
     @endif
 {{ html()->div()->close() }}
 

@@ -43,11 +43,7 @@
         ])
     ) }}
 
-    {{ html()->element('section')->open() }}
-        {{ html()->div()->open() }}
-            <livewire:web.tags.items :key="$this->hash()" :$form :$tag />
-        {{ html()->div()->close() }}
-    {{ html()->element('section')->close() }}
+    <livewire:web.tags.items :key="$this->hash()" :$form :$tag />
 {{ html()->div()->close() }}
 
 <x-app.player.shim />
