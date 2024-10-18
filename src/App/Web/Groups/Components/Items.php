@@ -59,4 +59,14 @@ class Items extends Component
     {
         return Video::class;
     }
+
+    public function getListeners(): array
+    {
+        $id = $this->getAuthKey();
+
+        return [
+            "echo-private:user.{$id},.video.trashed" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
+        ];
+    }
 }
