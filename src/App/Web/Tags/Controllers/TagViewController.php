@@ -6,12 +6,22 @@ namespace App\Web\Tags\Controllers;
 
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\QueryForm;
+use App\Web\Tags\Scopes\FilterVideos;
 use Domain\Groups\Enums\GroupSet;
+use Domain\Videos\Models\Video;
+use Foxws\WireUse\Auth\Concerns\WithAuthentication;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\WithPagination;
 
 class TagViewController extends Page
 {
+    use WithAuthentication;
+    use WithPagination;
+    use WithQueryBuilder;
     use WithTag;
 
     public QueryForm $form;
@@ -24,13 +34,35 @@ class TagViewController extends Page
     public function render(): View
     {
         return view('app.tags.view')->with([
-            'items' => $this->getCollection(),
+            'types' => $this->getCollection(),
         ]);
     }
 
     public function updatedForm(): void
     {
         $this->form->submit();
+
+        $this->refresh();
+    }
+
+    public function updatedPage(): void
+    {
+        unset($this->items);
+    }
+
+    #[Computed(persist: true, seconds: 60 * 60 * 24)]
+    public function items(): Paginator
+    {
+        return $this->getScout()
+            ->tap(new FilterVideos($this->form, $this->tag))
+            ->simplePaginate(perPage: 18);
+    }
+
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
     }
 
     protected function getCollection(): array
@@ -50,6 +82,11 @@ class TagViewController extends Page
     protected function getDescription(): ?string
     {
         return (string) $this->tag->description;
+    }
+
+    protected function getModelClass(): ?string
+    {
+        return Video::class;
     }
 
     public function getListeners(): array

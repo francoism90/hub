@@ -5,13 +5,24 @@ declare(strict_types=1);
 namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Forms\QueryForm;
+use App\Web\Search\Scopes\FilterVideos;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Tags\Models\Tag;
+use Domain\Videos\Models\Video;
+use Foxws\WireUse\Auth\Concerns\WithAuthentication;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\WithPagination;
 
 class SearchIndexController extends Page
 {
+    use WithAuthentication;
+    use WithPagination;
+    use WithQueryBuilder;
+
     public QueryForm $form;
 
     public function mount(): void
@@ -22,7 +33,7 @@ class SearchIndexController extends Page
     public function render(): View
     {
         return view('app.search.index')->with([
-            'items' => $this->getCollection(),
+            'types' => $this->getCollection(),
             'suggestions' => $this->getSuggestions(),
         ]);
     }
@@ -30,11 +41,30 @@ class SearchIndexController extends Page
     public function updatedForm(): void
     {
         $this->form->submit();
+
+        $this->refresh();
+    }
+
+    public function updatedPage(): void
+    {
+        unset($this->items);
+    }
+
+    #[Computed(persist: true, seconds: 60 * 60 * 24)]
+    public function items(): Paginator
+    {
+        $query = $this->form->query();
+
+        return $this->getScout($query)
+            ->tap(new FilterVideos(form: $this->form))
+            ->simplePaginate(perPage: 18);
     }
 
     public function submit(): void
     {
         $this->form->submit();
+
+        $this->refresh();
     }
 
     public function blank(): void
@@ -42,6 +72,13 @@ class SearchIndexController extends Page
         $this->form->forget();
 
         $this->form->clear();
+    }
+
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
     }
 
     public function setQuery(?string $query = null): void
@@ -79,5 +116,20 @@ class SearchIndexController extends Page
     protected function getDescription(): ?string
     {
         return __('Search for videos');
+    }
+
+    protected function getModelClass(): ?string
+    {
+        return Video::class;
+    }
+
+    public function getListeners(): array
+    {
+        $id = $this->getAuthKey();
+
+        return [
+            "echo-private:user.{$id},.video.trashed" => 'refresh',
+            "echo-private:user.{$id},.video.updated" => 'refresh',
+        ];
     }
 }
