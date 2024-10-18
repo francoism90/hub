@@ -36,6 +36,15 @@ class Items extends Component
         return view('app.videos.items.placeholder', $params);
     }
 
+    public function reload(): void
+    {
+        $this->clear();
+
+        $this->fetch();
+
+        $this->refresh();
+    }
+
     public function refresh(): void
     {
         unset($this->items);
