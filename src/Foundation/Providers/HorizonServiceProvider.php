@@ -12,11 +12,13 @@ use Laravel\Horizon\HorizonApplicationServiceProvider;
 
 class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
-    protected function authorization(): void
+    public function boot(): void
     {
-        $this->gate();
+        parent::boot();
 
-        Horizon::auth(fn (Request $request) => Gate::check('viewHorizon', [$request->user()]));
+        // Horizon::routeSmsNotificationsTo('15556667777');
+        // Horizon::routeMailNotificationsTo('example@example.com');
+        // Horizon::routeSlackNotificationsTo('slack-webhook-url', '#channel');
     }
 
     protected function gate(): void
