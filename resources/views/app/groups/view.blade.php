@@ -26,11 +26,7 @@
         ])
     ) }}
 
-    {{ html()->element('section')->open() }}
-        {{ html()->div()->wireKey($form->type)->open() }}
-            <livewire:web.groups.items :key="$form->type" :$form :$group />
-        {{ html()->div()->close() }}
-    {{ html()->element('section')->close() }}
+    <livewire:web.groups.items :key="$this->hash()" :$form :$group />
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Web\Search\Components;
+
+use App\Web\Search\Forms\QueryForm;
+use App\Web\Search\Scopes\FilterVideos;
+use Domain\Videos\Models\Video;
+use Foxws\WireUse\Auth\Concerns\WithAuthentication;
+use Foxws\WireUse\Layout\Concerns\WithScroll;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Illuminate\Pagination\Paginator;
+use Illuminate\View\View;
+use Livewire\Attributes\Modelable;
+use Livewire\Component;
+use Livewire\WithoutUrlPagination;
+
+class Items extends Component
+{
+    use WithAuthentication;
+    use WithoutUrlPagination;
+    use WithQueryBuilder;
+    use WithScroll;
+
+    #[Modelable]
+    public QueryForm $form;
+
+    public function render(): View
+    {
+        return view('app.search.items.view');
+    }
+
+    public function placeholder(array $params = []): View
+    {
+        return view('app.search.items.placeholder', $params);
+    }
+
+    public function refresh(): void
+    {
+        unset($this->items);
+
+        $this->dispatch('$refresh');
+    }
+
+    protected function getPageItems(?int $page = null): Paginator
+    {
+        $page ??= $this->getPage();
+
+        $query = $this->form->query();
+
+        return $this->getScout($query)
+            ->tap(new FilterVideos(form: $this->form))
+            ->simplePaginate(perPage: 16, page: $page);
+    }
+
+    protected function getModelClass(): ?string
+    {
+        return Video::class;
+    }
+}

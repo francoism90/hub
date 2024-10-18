@@ -16,8 +16,11 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->query(fn ($query) => $query->with('tags'))
-            ->when(! $this->hasQuery(), fn (Builder $query) => $query->whereIn('id', [0]));
+            ->query(fn ($query) => $query->with(['media', 'tags']))
+            ->when(! $this->hasQuery(), fn (Builder $query) => $query->whereIn('id', [0]))
+            ->when($this->form->is('type', 'newest'), fn (Builder $query) => $query->orderBy('created_at', 'desc'))
+            ->when($this->form->is('type', 'longest'), fn (Builder $query) => $query->orderBy('duration', 'desc'))
+            ->when($this->form->is('type', 'shortest'), fn (Builder $query) => $query->orderBy('duration'));
     }
 
     protected function hasQuery(): bool

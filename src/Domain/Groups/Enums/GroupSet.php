@@ -15,6 +15,7 @@ enum GroupSet: string
     case Newest = 'newest';
     case Oldest = 'oldest';
     case Recommended = 'recommended';
+    case Relevant = 'relevant';
     case Longest = 'longest';
     case Shortest = 'shortest';
 
@@ -30,6 +31,7 @@ enum GroupSet: string
             self::Newest => __('Newest'),
             self::Oldest => __('Oldest'),
             self::Recommended => __('Recommended'),
+            self::Relevant => __('Relevant'),
             self::Longest => __('Longest'),
             self::Shortest => __('Shortest'),
         };
