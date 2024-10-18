@@ -4,22 +4,20 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Videos\Forms\QueryForm;
+use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Groups\Actions\CreateMixerGroups;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Tags\Models\Tag;
-use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
-use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Livewire\Attributes\Modelable;
-use Livewire\Component;
+use Livewire\Attributes\Computed;
 use Livewire\WithoutUrlPagination;
 
 class VideoIndexController extends Page

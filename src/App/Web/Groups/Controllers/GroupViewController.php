@@ -6,25 +6,23 @@ namespace App\Web\Groups\Controllers;
 
 use App\Web\Groups\Concerns\WithGroup;
 use App\Web\Groups\Forms\QueryForm;
-use Domain\Groups\Enums\GroupSet;
-use Foxws\WireUse\Views\Support\Page;
 use App\Web\Groups\Scopes\FilterVideos;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Modelable;
-use Livewire\Component;
 use Livewire\WithPagination;
 
 class GroupViewController extends Page
 {
     use WithAuthentication;
     use WithGroup;
-    use WithQueryBuilder;
     use WithPagination;
+    use WithQueryBuilder;
 
     public QueryForm $form;
 

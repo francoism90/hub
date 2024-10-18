@@ -1,6 +1,6 @@
 @use('Domain\Groups\Enums\GroupSet')
 
-{{ html()->div()->class('container py-6 flex flex-col gap-y-3')->open() }}
+{{ html()->div()->attribute('x-data', 'preview')->class('container py-6 flex flex-col gap-y-3')->open() }}
     {{ html()->wireForm($form, 'submit')->class('flex flex-col gap-y-3')->children([
         html()->div()->class('form-control')->children([
             html()->text()->wireModel('form.query')->autofocus()->placeholder('Name')->class('input'),
@@ -50,7 +50,7 @@
         }}
             @foreach ($this->items as $item)
                 {{ html()->div()->wireKey($item->getRouteKey())->open() }}
-                    <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" />
+                    <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" lazy />
                 {{ html()->div()->close() }}
             @endforeach
         {{ html()->element('main')->close() }}

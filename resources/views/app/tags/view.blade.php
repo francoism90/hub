@@ -51,7 +51,7 @@
     }}
         @foreach ($this->items as $item)
             {{ html()->div()->wireKey($item->getRouteKey())->open() }}
-                <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" />
+                <livewire:web.videos.item :video="$item" :key="$item->getRouteKey()" lazy />
             {{ html()->div()->close() }}
         @endforeach
     {{ html()->element('main')->close() }}

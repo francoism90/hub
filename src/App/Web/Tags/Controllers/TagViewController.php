@@ -6,12 +6,12 @@ namespace App\Web\Tags\Controllers;
 
 use App\Web\Tags\Concerns\WithTag;
 use App\Web\Tags\Forms\QueryForm;
-use Domain\Groups\Enums\GroupSet;
-use Foxws\WireUse\Views\Support\Page;
 use App\Web\Tags\Scopes\FilterVideos;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;

@@ -5,26 +5,23 @@ declare(strict_types=1);
 namespace App\Web\Search\Controllers;
 
 use App\Web\Search\Forms\QueryForm;
+use App\Web\Search\Scopes\FilterVideos;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Tags\Models\Tag;
-use Foxws\WireUse\Views\Support\Page;
-use Illuminate\View\View;
-use App\Web\Groups\Concerns\WithGroup;
-use App\Web\Search\Scopes\FilterVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
+use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Modelable;
-use Livewire\Component;
 use Livewire\WithPagination;
 
 class SearchIndexController extends Page
 {
     use WithAuthentication;
-    use WithQueryBuilder;
     use WithPagination;
+    use WithQueryBuilder;
 
     public QueryForm $form;
 
