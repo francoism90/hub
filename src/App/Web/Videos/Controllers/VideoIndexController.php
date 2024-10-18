@@ -47,7 +47,7 @@ class VideoIndexController extends Page
     {
         $this->form->submit();
 
-        $this->clear();
+        $this->reload();
     }
 
     public function populate(): void
@@ -72,7 +72,7 @@ class VideoIndexController extends Page
     {
         $this->clear();
 
-        $this->fetch();
+        $this->fillCurrentPageItems();
 
         $this->refresh();
     }

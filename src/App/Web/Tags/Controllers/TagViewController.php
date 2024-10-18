@@ -38,6 +38,13 @@ class TagViewController extends Page
         ]);
     }
 
+    public function updatedForm(): void
+    {
+        $this->form->submit();
+
+        $this->refresh();
+    }
+
     public function updatedPage(): void
     {
         unset($this->items);
@@ -58,11 +65,6 @@ class TagViewController extends Page
         $this->dispatch('$refresh');
     }
 
-    protected function getModelClass(): ?string
-    {
-        return Video::class;
-    }
-
     protected function getCollection(): array
     {
         return [
@@ -80,6 +82,11 @@ class TagViewController extends Page
     protected function getDescription(): ?string
     {
         return (string) $this->tag->description;
+    }
+
+    protected function getModelClass(): ?string
+    {
+        return Video::class;
     }
 
     public function getListeners(): array
