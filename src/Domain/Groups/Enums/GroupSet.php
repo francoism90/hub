@@ -6,7 +6,7 @@ namespace Domain\Groups\Enums;
 
 enum GroupSet: string
 {
-    case Daily = 'daily';
+    case All = 'all';
     case Discover = 'discover';
     case Viewed = 'viewed';
     case Tagged = 'tagged';
@@ -22,7 +22,7 @@ enum GroupSet: string
     public function label(): string
     {
         return match ($this) {
-            self::Daily => __('Everything'),
+            self::All => __('All'),
             self::Discover => __('New to you'),
             self::Viewed => __('History'),
             self::Tagged => __('Tagged'),

@@ -14,5 +14,5 @@ class QueryForm extends Form
     protected static bool $recoverable = true;
 
     #[Validate('nullable|string|max:255')]
-    public string $list = 'daily';
+    public string $list = 'all';
 }

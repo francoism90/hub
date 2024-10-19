@@ -21,7 +21,7 @@ class FilterVideos
         $query
             ->with(['media', 'tags'])
             ->when($this->filterByTag(), fn (Builder $query) => $this->tagged($query))
-            ->when($this->form->is('list', 'daily'), fn (Builder $query) => $this->recommended($query))
+            ->when($this->form->is('list', 'all'), fn (Builder $query) => $this->recommended($query))
             ->when($this->form->is('list', 'discover'), fn (Builder $query) => $this->discover($query));
     }
 
