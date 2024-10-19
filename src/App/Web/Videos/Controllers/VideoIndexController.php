@@ -6,9 +6,7 @@ namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
 use App\Web\Videos\Scopes\FilterVideos;
-use Domain\Groups\Actions\CreateMixerGroups;
-use Domain\Groups\Enums\GroupSet;
-use Domain\Tags\Models\Tag;
+use Domain\Groups\Actions\GetUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Layout\Concerns\WithScroll;
@@ -31,8 +29,6 @@ class VideoIndexController extends Page
 
     public function mount(): void
     {
-        $this->setupMixers();
-
         $this->form->restore();
     }
 
@@ -66,33 +62,17 @@ class VideoIndexController extends Page
 
     public function populate(): void
     {
-        $this->setupMixers(force: true);
-
         unset($this->lists);
 
         $this->form->reset('list');
 
-        $this->refresh();
+        $this->reload();
     }
 
     #[Computed(persist: true, seconds: 3600)]
     public function lists(): Collection
     {
-        $items = collect($this->getAuthModel()->storeValue('mixers'));
-
-        return $items->map(function (mixed $item) {
-            if (str($item)->startsWith('tag-')) {
-                $model = Tag::findByPrefixedId($item);
-
-                return fluent(['key' => $model->getRouteKey(), 'label' => $model->name]);
-            }
-
-            if ($enum = GroupSet::from($item)) {
-                return fluent(['key' => $enum->value, 'label' => $enum->label()]);
-            }
-
-            return null;
-        });
+        return app(GetUserSuggestions::class)->execute(user: $this->getAuthModel())->collect();
     }
 
     protected function getBuilder(): Builder
@@ -107,9 +87,9 @@ class VideoIndexController extends Page
         return Video::class;
     }
 
-    protected function setupMixers(?bool $force = null): void
+    protected function getScrollPageLimit(): ?int
     {
-        app(CreateMixerGroups::class)->execute($this->getAuthModel(), $force);
+        return 16;
     }
 
     protected function getTitle(): ?string

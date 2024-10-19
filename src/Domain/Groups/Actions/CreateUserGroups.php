@@ -9,12 +9,12 @@ use Domain\Groups\Enums\GroupType;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class CreateSystemGroups
+class CreateUserGroups
 {
     public function execute(User $user): void
     {
         DB::transaction(function () use ($user) {
-            collect($this->getCollection())->each(
+            collect($this->getGroups())->each(
                 fn (GroupSet $group) => app(CreateNewGroup::class)->execute($user, [
                     'name' => $group->label(),
                     'kind' => $group,
@@ -24,7 +24,7 @@ class CreateSystemGroups
         });
     }
 
-    protected function getCollection(): array
+    protected function getGroups(): array
     {
         return [
             GroupSet::Favorite,
