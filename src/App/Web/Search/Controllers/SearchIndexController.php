@@ -33,7 +33,7 @@ class SearchIndexController extends Page
     public function render(): View
     {
         return view('app.search.index')->with([
-            'types' => $this->getCollection(),
+            'types' => $this->getTypes(),
             'suggestions' => $this->getSuggestions(),
         ]);
     }
@@ -101,7 +101,7 @@ class SearchIndexController extends Page
             ->all();
     }
 
-    protected function getCollection(): array
+    protected function getTypes(): array
     {
         return [
             GroupSet::Relevant,

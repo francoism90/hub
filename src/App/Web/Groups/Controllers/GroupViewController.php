@@ -35,7 +35,7 @@ class GroupViewController extends Page
     {
         return view('app.groups.view')->with([
             'title' => $this->getTitle(),
-            'types' => $this->getCollection(),
+            'types' => $this->getTypes(),
         ]);
     }
 
@@ -67,7 +67,7 @@ class GroupViewController extends Page
         $this->dispatch('$refresh');
     }
 
-    protected function getCollection(): array
+    protected function getTypes(): array
     {
         return [
             GroupSet::Newest,

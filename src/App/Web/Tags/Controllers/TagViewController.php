@@ -34,7 +34,7 @@ class TagViewController extends Page
     public function render(): View
     {
         return view('app.tags.view')->with([
-            'types' => $this->getCollection(),
+            'types' => $this->getTypes(),
         ]);
     }
 
@@ -65,7 +65,7 @@ class TagViewController extends Page
         $this->dispatch('$refresh');
     }
 
-    protected function getCollection(): array
+    protected function getTypes(): array
     {
         return [
             GroupSet::Newest,
