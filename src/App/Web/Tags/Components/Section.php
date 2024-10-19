@@ -46,17 +46,14 @@ class Section extends Component
 
     protected function getBuilder(): Builder
     {
-        return $this->getQuery();
+        return $this->getQuery()
+            ->type($this->type)
+            ->ordered();
     }
 
     public function getScrollPerPage(): int
     {
         return 9;
-    }
-
-    public function getScrollPageLimit(): ?int
-    {
-        return 10;
     }
 
     protected function getModelClass(): ?string
