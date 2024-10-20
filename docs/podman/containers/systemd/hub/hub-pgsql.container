@@ -13,7 +13,6 @@ EnvironmentFile=%h/.config/containers/systemd/hub/config/postgres.env
 LogDriver=none
 ShmSize=100m
 Volume=hub-pgsql:/var/lib/postgresql/data:rw,Z,U
-Volume=${DUMP_PATH}:/dump:rw,Z,U
 Network=hub.network
 PublishPort=5432:5432
 
