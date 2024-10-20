@@ -2,6 +2,7 @@
 Description=Meilisearch container
 
 [Service]
+TimeoutStartSec=300
 Restart=always
 
 [Container]

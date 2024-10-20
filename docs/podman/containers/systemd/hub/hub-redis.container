@@ -2,6 +2,7 @@
 Description=Redis container
 
 [Service]
+TimeoutStartSec=300
 Restart=always
 
 [Container]
