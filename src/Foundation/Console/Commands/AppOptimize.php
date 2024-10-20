@@ -25,6 +25,7 @@ class AppOptimize extends Command implements Isolatable
         $this->call('optimize:clear');
 
         // Optimize packages
+        $this->call('data:cache-structures');
         $this->call('icons:cache');
 
         // Optimize caches

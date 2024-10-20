@@ -106,15 +106,18 @@ return [
      */
     'structure_caching' => [
         'enabled' => true,
-        'directories' => [app_path('Data')],
+
+        'directories' => [base_path('src')],
+
         'cache' => [
             'store' => env('CACHE_STORE', env('CACHE_DRIVER', 'file')),
             'prefix' => 'laravel-data',
             'duration' => null,
         ],
+
         'reflection_discovery' => [
             'enabled' => true,
-            'base_path' => base_path(),
+            'base_path' => base_path('src'),
             'root_namespace' => null,
         ],
     ],

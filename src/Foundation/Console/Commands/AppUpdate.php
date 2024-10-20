@@ -26,6 +26,7 @@ class AppUpdate extends Command implements Isolatable
         $this->call('structures:refresh');
 
         // Clear application caches
+        $this->call('cache:clear');
         $this->call('optimize:clear');
 
         // Run migrations
