@@ -13,6 +13,8 @@ class GetUserSuggestions
 {
     public function execute(?User $user = null): LazyCollection
     {
+        $this->forgetRandomSeed();
+
         return LazyCollection::make([
             ...$this->getUserMixers(),
             ...$this->getTagMixers(),
@@ -35,8 +37,8 @@ class GetUserSuggestions
     protected function getTagMixers(): LazyCollection
     {
         $items = Tag::query()
-            ->withWhereHas('videos')
             ->inRandomOrder()
+            ->withWhereHas('videos')
             ->take(10)
             ->cursor();
 
@@ -44,5 +46,10 @@ class GetUserSuggestions
             'key' => $item->getRouteKey(),
             'label' => $item->name,
         ]));
+    }
+
+    protected function forgetRandomSeed(): void
+    {
+        // Tag::forgetRandomSeed('taggables');
     }
 }

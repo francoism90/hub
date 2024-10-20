@@ -23,6 +23,7 @@ use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
+use Support\Eloquent\Concerns\InteractsWithRandomSeed;
 
 #[ScopedBy(OrderedScope::class)]
 class Tag extends BaseTag implements HasMedia
@@ -32,6 +33,7 @@ class Tag extends BaseTag implements HasMedia
     use HasPrefixedId;
     use HasRelates;
     use InteractsWithMedia;
+    use InteractsWithRandomSeed;
     use InteractsWithUser;
     use Searchable;
 

@@ -16,9 +16,9 @@ class Random extends Section
     public function items(): Collection
     {
         return $this->getQuery()
-            ->whereKeyNot($this->getVideoKey())
+            ->randomSeed('random', now()->addMinutes(15))
             ->published()
-            ->inRandomOrder()
+            ->whereKeyNot($this->getVideoKey())
             ->take(24)
             ->get();
     }

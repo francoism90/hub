@@ -26,6 +26,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStates\HasStates;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Translatable\HasTranslations;
+use Support\Eloquent\Concerns\InteractsWithRandomSeed;
 
 class Video extends Model implements HasMedia
 {
@@ -39,6 +40,7 @@ class Video extends Model implements HasMedia
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
+    use InteractsWithRandomSeed;
     use InteractsWithUser;
     use InteractsWithVod;
     use Searchable;
