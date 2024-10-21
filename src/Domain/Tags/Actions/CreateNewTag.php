@@ -18,8 +18,6 @@ class CreateNewTag
                 Arr::only($attributes, app(Tag::class)->getFillable()),
             );
 
-            app(RefreshTags::class)->execute();
-
             return $model;
         });
     }

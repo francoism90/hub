@@ -19,15 +19,12 @@ class SetTagsOrder
         }
 
         Tag::setNewOrder($items->pluck('id')->all());
-
-        app(RefreshTags::class)->execute();
     }
 
     protected function getTags(TagType $value): LazyCollection
     {
         return Tag::query()
             ->type($value)
-            ->orderBy('name')
             ->cursor()
             ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
     }

@@ -18,12 +18,10 @@ class UpdateTagDetails
             );
 
             if (array_key_exists('related', $attributes)) {
-                $relates = collect(data_get($attributes['related'], '*.id', []))->toModels();
+                $related = collect(data_get($attributes['related'], '*.id', []))->toModels();
 
-                $model->syncRelated($relates);
+                $model->syncRelated($related);
             }
-
-            app(RefreshTags::class)->execute();
         });
     }
 }
