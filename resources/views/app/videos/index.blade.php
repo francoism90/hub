@@ -18,9 +18,9 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         ->children($this->lists, fn (Fluent $list) => html()->div()->wireKey("filter-{$list->key}")->children([
             html()
                 ->radio('lists')
-                ->id("filter-{$list->key}")
                 ->value($list->key)
                 ->wireModel('form.list', 'live')
+                ->id("filter-{$list->key}")
                 ->class('hidden'),
 
             html()

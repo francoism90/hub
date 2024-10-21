@@ -9,9 +9,9 @@
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')->children($types, fn (GroupSet $type) => html()->div()->wireKey("filter-{$type->value}")->children([
         html()
             ->radio('type')
-            ->id("filter-{$type->value}")
-            ->value($type->value)
             ->wireModel('form.type', 'live')
+            ->value($type->value)
+            ->id("filter-{$type->value}")
             ->class('hidden'),
 
         html()

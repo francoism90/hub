@@ -25,9 +25,9 @@
             ->children($types, fn (GroupSet $type) => html()->div()->wireKey("filter-{$type->value}")->children([
                 html()
                     ->radio('types')
-                    ->id("filter-{$type->value}")
-                    ->value($type->value)
                     ->wireModel('form.type', 'live')
+                    ->value($type->value)
+                    ->id("filter-{$type->value}")
                     ->class('hidden'),
 
                 html()
