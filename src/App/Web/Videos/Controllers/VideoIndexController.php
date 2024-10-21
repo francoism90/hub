@@ -44,6 +44,14 @@ class VideoIndexController extends Page
         $this->reload();
     }
 
+    #[Computed(persist: true, seconds: 3600)]
+    public function lists(): Collection
+    {
+        return app(GetUserSuggestions::class)->execute(
+            user: $this->getAuthModel()
+        )->collect();
+    }
+
     public function refresh(): void
     {
         unset($this->items);
@@ -69,12 +77,6 @@ class VideoIndexController extends Page
         $this->reload();
     }
 
-    #[Computed(persist: true, seconds: 3600)]
-    public function lists(): Collection
-    {
-        return app(GetUserSuggestions::class)->execute(user: $this->getAuthModel())->collect();
-    }
-
     protected function getBuilder(): Builder
     {
         return $this->getQuery()->tap(
@@ -89,7 +91,7 @@ class VideoIndexController extends Page
 
     protected function getScrollPageLimit(): ?int
     {
-        return 16;
+        return 24;
     }
 
     protected function getTitle(): ?string
