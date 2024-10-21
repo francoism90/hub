@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffc27efeac2ae96643fe46d28b5d4e57",
+    "content-hash": "622f746c0a19cc8674a9f3d3d9142184",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2203,16 +2203,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "846417bbcb6689b28913d7fcb9cfd12c619a8e50"
+                "reference": "7b39ece68b8ba42f28f83e221c029fd8f0534c81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/846417bbcb6689b28913d7fcb9cfd12c619a8e50",
-                "reference": "846417bbcb6689b28913d7fcb9cfd12c619a8e50",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/7b39ece68b8ba42f28f83e221c029fd8f0534c81",
+                "reference": "7b39ece68b8ba42f28f83e221c029fd8f0534c81",
                 "shasum": ""
             },
             "require": {
@@ -2279,7 +2279,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.6.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.6.1"
             },
             "funding": [
                 {
@@ -2287,7 +2287,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-18T19:53:06+00:00"
+            "time": "2024-10-21T12:16:18+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -14861,12 +14861,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
