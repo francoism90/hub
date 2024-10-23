@@ -24,6 +24,7 @@ class GetUserSuggestions
         $items = LazyCollection::make([
             GroupSet::All,
             GroupSet::Discover,
+            GroupSet::Newest,
         ]);
 
         return $items->map(fn (GroupSet $item) => fluent([

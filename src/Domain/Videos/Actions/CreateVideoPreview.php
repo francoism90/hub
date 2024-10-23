@@ -38,7 +38,7 @@ class CreateVideoPreview
 
         $path = $temporaryDirectory->path('preview.mp4');
 
-        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration', 0);
+        $duration = (float) $ffmpeg->getFFProbe()->format($file)->get('duration', 0);
 
         $clips = $this->getSegments($duration)
             ->map(function (float $item, int $key) use ($temporaryDirectory, $video) {
