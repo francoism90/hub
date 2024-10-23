@@ -36,9 +36,9 @@ class CreateVideoThumbnail
 
         $path = $temporaryDirectory->path('thumb.jpg');
 
-        $duration = $ffmpeg->getFFProbe()->format($file)->get('duration');
+        $duration = (float) $ffmpeg->getFFProbe()->format($file)->get('duration');
 
-        $quantity = round($model->snapshot ?: ($duration / 2), 1);
+        $quantity = round((float) $model->snapshot ?: ($duration / 2), 1);
 
         $video
             ->filters()
