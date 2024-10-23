@@ -38,7 +38,7 @@ class GetUserSuggestions
         $items = Tag::query()
             ->withWhereHas('videos')
             ->inRandomOrder()
-            ->take(10)
+            ->take(14)
             ->cursor();
 
         return $items->map(fn (Tag $item) => fluent([
