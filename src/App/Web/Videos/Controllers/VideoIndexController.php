@@ -89,9 +89,14 @@ class VideoIndexController extends Page
         return Video::class;
     }
 
-    protected function getScrollPageLimit(): ?int
+    protected function getScrollPerPage(): int
     {
         return 24;
+    }
+
+    protected function getScrollPageLimit(): ?int
+    {
+        return 12;
     }
 
     protected function getTitle(): ?string

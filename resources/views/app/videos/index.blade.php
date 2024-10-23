@@ -53,7 +53,6 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             ->button()
             ->text('Refresh')
             ->class('btn btn-sm btn-secondary btn-outlined')
-            ->classIf(! $this->hasMorePages(), 'hidden')
             ->attributes([
                 'x-on:click' => $scrollIntoViewJsSnippet,
                 'wire:click' => 'reload',
