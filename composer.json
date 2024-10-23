@@ -49,6 +49,7 @@
         "barryvdh/laravel-ide-helper": "^3.2.0",
         "fakerphp/faker": "^1.23.1",
         "laravel/envoy": "^2.9",
+        "laravel/pail": "^1.2",
         "laravel/pint": "^1.18.1",
         "laravel/sail": "^1.36.0",
         "mockery/mockery": "^1.6.12",

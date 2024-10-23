@@ -1,3 +1,4 @@
+/.phpunit.cache
 /node_modules
 /public
 /storage
@@ -22,3 +23,4 @@ ray.config.js
 /.fleet
 /.idea
 /.vscode
+/.zed
