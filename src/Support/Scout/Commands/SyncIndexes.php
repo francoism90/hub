@@ -29,9 +29,7 @@ class SyncIndexes extends Command implements Isolatable
         $this->call('scout:sync-index-settings');
 
         // Sync index models
-        $driver = config('scout.driver');
-
-        $indexes = (array) config('scout.'.$driver.'.index-settings', []);
+        $indexes = $this->getIndexes();
 
         if (count($indexes)) {
             foreach ($indexes as $model => $settings) {
@@ -42,5 +40,12 @@ class SyncIndexes extends Command implements Isolatable
         }
 
         $this->components->info('Indexes have been synced successfully.');
+    }
+
+    protected function getIndexes(): array
+    {
+        $driver = config('scout.driver');
+
+        return (array) config('scout.'.$driver.'.index-settings', []);
     }
 }
