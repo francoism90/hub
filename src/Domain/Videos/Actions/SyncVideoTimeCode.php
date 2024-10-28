@@ -14,7 +14,7 @@ class SyncVideoTimeCode
     public function execute(User $user, Video $video, ?VideoableData $data = null): void
     {
         if ($timeCode = $data?->time) {
-            $user->storeSet($video->timecode, $timeCode, now()->addMonth());
+            $video->modelCache('timecode', $timeCode, now()->addMonth());
         }
 
         StoreVideo::dispatch($user, $video, $data);

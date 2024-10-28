@@ -14,6 +14,7 @@ use Domain\Videos\Concerns\InteractsWithGroups;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Domain\Videos\States\VideoState;
+use Foxws\ModelCache\Concerns\InteractsWithModelCache;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -39,6 +40,7 @@ class Video extends Model implements HasMedia
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
+    use InteractsWithModelCache;
     use InteractsWithUser;
     use InteractsWithVod;
     use Searchable;

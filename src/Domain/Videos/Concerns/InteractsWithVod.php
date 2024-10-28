@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
-use Domain\Users\Models\User;
 use Domain\Videos\Actions\GetDashUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
@@ -58,11 +57,15 @@ trait InteractsWithVod
         return (float) $media?->getCustomProperty('duration') ?: 0;
     }
 
-    public function timeCodeFor(?User $user = null): float
+    public function timeCode(): float
     {
-        $value = (float) $user?->storeValue($this->timecode) ?: 0;
+        if (! auth()->check()) {
+            return 0;
+        }
 
-        return Number::clamp($value, 0, $this->duration);
+        $timeCode = (float) $this->modelCached('timecode', 0);
+
+        return Number::clamp($timeCode, 0, $this->duration);
     }
 
     protected function clips(): Attribute
@@ -125,13 +128,6 @@ trait InteractsWithVod
     {
         return Attribute::make(
             get: fn () => $this->clips?->totalSizeInBytes(),
-        )->shouldCache();
-    }
-
-    public function timecode(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => sprintf('timecode-%d', $this->getKey()),
         )->shouldCache();
     }
 }

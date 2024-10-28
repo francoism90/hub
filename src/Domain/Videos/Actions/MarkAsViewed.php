@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class MarkAsViewed
 {
-    public function execute(User $user, Video $video, ?VideoableData $data = null, ?bool $force = null): void
+    public function execute(User $user, Video $video, ?VideoableData $data = null): void
     {
         DB::transaction(function () use ($user, $video, $data) {
             // Get group model

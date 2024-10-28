@@ -52,6 +52,6 @@ class Player extends Component
 
     protected function getTimeCode(): ?float
     {
-        return $this->getVideo()->timeCodeFor(auth()->user());
+        return $this->getVideo()->timeCode();
     }
 }

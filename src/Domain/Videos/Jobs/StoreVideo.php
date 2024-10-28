@@ -43,7 +43,7 @@ class StoreVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
     /**
      * @var int
      */
-    public $uniqueFor = 30;
+    public $uniqueFor = 60;
 
     /**
      * @var bool
