@@ -70,9 +70,8 @@ class StoreVideo implements ShouldBeEncrypted, ShouldBeUnique, ShouldQueue
 
     public function uniqueId(): string
     {
-        return sprintf('store-video-%d-%d',
-            $this->model->getKey(),
-            $this->user->getKey(),
-        );
+        return implode('-', [
+            'store-video', $this->model->getKey(), $this->user->getKey(),
+        ]);
     }
 }
