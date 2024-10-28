@@ -112,10 +112,10 @@ class VideoEditController extends Page
             return;
         }
 
-        $time = $this->getVideo()->timeCodeFor(auth()->user());
+        $timeCode = $this->getVideo()->timeCode();
 
-        if (is_numeric($time) && $time > 0) {
-            $this->form->snapshot = round($time, 2);
+        if (is_numeric($timeCode) && $timeCode > 0) {
+            $this->form->snapshot = round($timeCode, 2);
         }
     }
 

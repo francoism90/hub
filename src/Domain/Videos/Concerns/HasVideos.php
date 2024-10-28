@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use ArrayAccess;
-use Domain\Videos\DataObjects\VideoableData;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Models\Videoable;
 use Illuminate\Database\Eloquent\Model;
@@ -33,12 +32,12 @@ trait HasVideos
             ->withTimestamps();
     }
 
-    public function attachVideo(Video $model, ?VideoableData $data = null): static
+    public function attachVideo(Video $model, ?array $data = null): static
     {
         return $this->attachVideos([$model], $data);
     }
 
-    public function attachVideos(array|ArrayAccess|Collection $videos, ?VideoableData $data = null, bool $detach = false): static
+    public function attachVideos(array|ArrayAccess|Collection $videos, ?array $data = null, bool $detach = false): static
     {
         $videos = static::convertToVideos($videos);
 

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Videos\Actions\SyncVideoTimeCode;
-use Domain\Videos\DataObjects\VideoableData;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;
@@ -35,14 +33,11 @@ class Player extends Component
     #[Renderless]
     public function syncSession(?float $time = null): void
     {
-        if ((! $user = auth()->user())) {
+        if (! is_numeric($time) || ! auth()->check()) {
             return;
         }
 
-        app(SyncVideoTimeCode::class)->execute($user, $this->getVideo(), VideoableData::from([
-            'caption' => $this->caption,
-            'time' => $time,
-        ]));
+        $this->getVideo()->modelCache('timecode', $time, now()->addWeeks(2));
     }
 
     protected function getManifest(): ?string
@@ -52,6 +47,6 @@ class Player extends Component
 
     protected function getTimeCode(): ?float
     {
-        return $this->getVideo()->timeCodeFor(auth()->user());
+        return $this->getVideo()->timeCode();
     }
 }
