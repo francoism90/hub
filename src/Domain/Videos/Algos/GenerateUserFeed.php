@@ -11,7 +11,7 @@ use Domain\Videos\Models\Video;
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
 use Foxws\WireUse\Forms\Support\Form;
-use Illuminate\Support\LazyCollection;
+use Illuminate\Database\Eloquent\Collection;
 
 class GenerateUserFeed extends Algo
 {
@@ -25,7 +25,7 @@ class GenerateUserFeed extends Algo
     {
         return $this
             ->success()
-            ->with('ids', $this->getVideoIds());
+            ->with('items', $this->getCollection());
     }
 
     public function form(Form $form): static
@@ -49,11 +49,11 @@ class GenerateUserFeed extends Algo
         return $this;
     }
 
-    protected function getVideoIds(): LazyCollection
+    protected function getCollection(): Collection
     {
         return Video::query()->tap(
             new FilterVideos($this->form, $this->user, $this->getLimit())
-        )->select('id')->cursor()->pluck('id');
+        )->get();
     }
 
     protected function getLimit(): int

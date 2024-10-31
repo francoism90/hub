@@ -60,23 +60,12 @@ class VideoIndexController extends Page
 
     protected function getMergeCandidates(): Collection
     {
-        $candidateIds = $this->generateCandidates();
-
-        return $this->getQuery()
-            ->with(['media', 'tags'])
-            ->whereIn('id', $candidateIds)
-            ->get()
-            ->sortBy(fn (Video $video) => array_search($video->getKey(), $candidateIds));
-    }
-
-    protected function generateCandidates(): array
-    {
         $algo = GenerateUserFeed::make()
             ->form($this->form)
             ->model($this->getAuthModel())
             ->run();
 
-        return $algo->meta['ids']->toArray();
+        return $algo->meta['items']->collect();
     }
 
     protected function getModelClass(): ?string
