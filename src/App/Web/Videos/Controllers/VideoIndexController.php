@@ -63,6 +63,7 @@ class VideoIndexController extends Page
         $candidateIds = $this->generateCandidates();
 
         return $this->getQuery()
+            ->with(['media', 'tags'])
             ->whereIn('id', $candidateIds)
             ->get()
             ->sortBy(fn (Video $video) => array_search($video->getKey(), $candidateIds));
