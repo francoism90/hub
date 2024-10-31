@@ -26,7 +26,7 @@ class GenerateUserFeed extends Algo
         Video::modelClassCache(
             $hash,
             ['ids' => $this->getCollection()->toArray()],
-            now()->addMinutes($this->getLifeTime()),
+            now()->addSeconds($this->getLifeTime()),
         );
 
         return $this
