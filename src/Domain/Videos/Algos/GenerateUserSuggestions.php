@@ -13,9 +13,10 @@ use Illuminate\Support\LazyCollection;
 
 class GenerateUserSuggestions extends Algo
 {
-    protected ?User $user = null;
-
-    protected ?int $limit = null;
+    public function __construct(
+        protected ?User $user = null,
+        protected ?int $limit = null,
+    ) {}
 
     public function handle(): Result
     {
