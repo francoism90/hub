@@ -10,14 +10,14 @@
     {{ html()->div()->close() }}
 
     <nav class="flex items-center w-full">
-        @if ($this->hasMorePages())
+        @if ($this->isFetchable())
             {{ html()
                 ->button()
                 ->text('View more')
                 ->class('btn btn-sm btn-secondary')
                 ->attributes([
                     'wire:loading.attr' => 'disabled',
-                    'wire:click' => 'fetch',
+                    'wire:click' => 'nextPage',
                 ]) }}
         @endif
     </nav>
