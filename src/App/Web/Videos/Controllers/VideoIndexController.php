@@ -65,7 +65,7 @@ class VideoIndexController extends Page
             ->model($this->getAuthModel())
             ->run();
 
-        return $algo->meta['items']->collect();
+        return $algo->meta['items'];
     }
 
     protected function getModelClass(): ?string

@@ -62,7 +62,7 @@ class FilterVideos
     protected function tagged(Builder $query): Builder
     {
         return $query
-            ->withWhereHas('tags', fn ($query) => $query->where('tags.prefixed_id', $this->form->list))
+            ->whereHas('tags', fn ($query) => $query->where('tags.prefixed_id', $this->form->list))
             ->inRandomOrder();
     }
 }
