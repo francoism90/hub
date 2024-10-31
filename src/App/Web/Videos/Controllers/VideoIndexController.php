@@ -57,13 +57,9 @@ class VideoIndexController extends Page
 
     public function populate(): void
     {
-        unset($this->lists);
-
         $this->form->reset('list');
 
-        $this->refresh();
-
-        $this->fetch();
+        unset($this->lists);
     }
 
     protected function getBuilder(): Builder
