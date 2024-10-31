@@ -6,17 +6,13 @@ namespace App\Web\Videos\Controllers;
 
 use App\Web\Shared\Concerns\WithScroll;
 use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\Scopes\FilterVideos;
-use Domain\Groups\Actions\GetUserSuggestions;
 use Domain\Videos\Algos\GenerateUserFeed;
+use Domain\Videos\Algos\GenerateUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Fluent;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
@@ -42,17 +38,19 @@ class VideoIndexController extends Page
     {
         $this->form->submit();
 
-        $this->refresh();
-
         $this->fetch();
+
+        $this->refresh();
     }
 
     #[Computed(persist: true, seconds: 3600)]
     public function lists(): Collection
     {
-        return app(GetUserSuggestions::class)->execute(
-            user: $this->getAuthModel()
-        )->collect();
+        $algo = GenerateUserSuggestions::make()
+            ->model($this->getAuthModel())
+            ->run();
+
+        return $algo->meta['items'];
     }
 
     public function populate(): void
@@ -60,13 +58,6 @@ class VideoIndexController extends Page
         $this->form->reset('list');
 
         unset($this->lists);
-    }
-
-    protected function getBuilder(): Builder
-    {
-        return $this->getQuery()->tap(
-            new FilterVideos(form: $this->form, user: $this->getAuthModel())
-        );
     }
 
     protected function getMergeCandidates(): Collection

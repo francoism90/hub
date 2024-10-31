@@ -9,7 +9,6 @@ use Domain\Videos\Models\Video;
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
 use Illuminate\Support\LazyCollection;
-use Illuminate\Support\Str;
 
 class GenerateUserFeed extends Algo
 {
@@ -51,10 +50,5 @@ class GenerateUserFeed extends Algo
     protected function getLimit(): int
     {
         return $this->limit ?? 16;
-    }
-
-    protected function generateUniqueId(): string
-    {
-        return (string) Str::ulid();
     }
 }

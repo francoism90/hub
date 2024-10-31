@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Groups\Actions;
+namespace Domain\Videos\Algos;
 
 use Domain\Groups\Enums\GroupSet;
 use Domain\Tags\Models\Tag;
@@ -11,9 +11,13 @@ use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
 use Illuminate\Support\LazyCollection;
 
-class GetUserSuggestions extends Algo
+class GenerateUserSuggestions extends Algo
 {
-    public function handle(?User $user = null): Result
+    protected ?User $user = null;
+
+    protected ?int $limit = null;
+
+    public function handle(): Result
     {
         $items = collect([
             ...$this->getUserMixers(),
@@ -22,6 +26,20 @@ class GetUserSuggestions extends Algo
 
         return $this->success()
             ->with('items', $items);
+    }
+
+    public function model(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function limit(int $value): self
+    {
+        $this->limit = $value;
+
+        return $this;
     }
 
     protected function getUserMixers(): LazyCollection
