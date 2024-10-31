@@ -13,7 +13,7 @@
         "blade-ui-kit/blade-heroicons": "^2.4.0",
         "foxws/laravel-algos": "^0.0.4",
         "foxws/laravel-modelcache": "^0.0.4",
-        "foxws/wireuse": "^2.6.1",
+        "foxws/wireuse": "^2.7.0",
         "guzzlehttp/guzzle": "^7.9.2",
         "http-interop/http-factory-guzzle": "^1.2",
         "laravel/framework": "^11.30.0",
