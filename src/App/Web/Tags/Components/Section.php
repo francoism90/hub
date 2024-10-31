@@ -7,8 +7,8 @@ namespace App\Web\Tags\Components;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Models\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Models\Concerns\WithScroll;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -20,8 +20,8 @@ use Livewire\WithPagination;
 class Section extends Component
 {
     use WithAuthentication;
-    use WithPagination;
     use WithoutUrlPagination;
+    use WithPagination;
     use WithQueryBuilder;
     use WithScroll;
 

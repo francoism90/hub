@@ -9,8 +9,8 @@ use Domain\Videos\Algos\GenerateUserFeed;
 use Domain\Videos\Algos\GenerateUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Models\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Models\Concerns\WithScroll;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -19,8 +19,8 @@ use Livewire\Attributes\Computed;
 class VideoIndexController extends Page
 {
     use WithAuthentication;
-    use WithScroll;
     use WithQueryBuilder;
+    use WithScroll;
 
     public QueryForm $form;
 
