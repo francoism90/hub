@@ -10,8 +10,6 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 
-use function Pest\Laravel\instance;
-
 trait WithScroll
 {
     use WithRateLimiter;
@@ -74,6 +72,11 @@ trait WithScroll
         $this->models = collect();
 
         unset($this->items);
+    }
+
+    public function isFetchable(): bool
+    {
+        return is_null($this->getFetchLimits()) || $this->fetchCount < $this->getFetchLimits();
     }
 
     /**
