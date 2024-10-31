@@ -38,9 +38,9 @@ class VideoIndexController extends Page
     {
         $this->form->submit();
 
-        $this->fetch();
+        $this->clear();
 
-        $this->refresh();
+        $this->fetch();
     }
 
     #[Computed(persist: true, seconds: 3600)]
@@ -73,6 +73,7 @@ class VideoIndexController extends Page
     protected function generateCandidates(): array
     {
         $algo = GenerateUserFeed::make()
+            ->form($this->form)
             ->model($this->getAuthModel())
             ->run();
 

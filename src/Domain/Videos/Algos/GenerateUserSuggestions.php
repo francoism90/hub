@@ -28,14 +28,14 @@ class GenerateUserSuggestions extends Algo
             ->with('items', $items);
     }
 
-    public function model(User $user): self
+    public function model(User $user): static
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function limit(int $value): self
+    public function limit(int $value): static
     {
         $this->limit = $value;
 
