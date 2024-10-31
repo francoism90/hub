@@ -23,11 +23,9 @@ class GenerateUserFeed extends Algo
     {
         $hash = $this->generateUniqueId();
 
-        Video::modelClassCache(
-            $hash,
-            ['ids' => $this->getCollection()->toArray()],
-            now()->addSeconds($this->getLifeTime()),
-        );
+        Video::modelClassCache($hash, [
+            'videos' => $this->getVideoIds()->toArray(),
+        ], now()->addSeconds($this->getLifeTime()));
 
         return $this
             ->success()
@@ -48,13 +46,14 @@ class GenerateUserFeed extends Algo
         return $this;
     }
 
-    protected function getCollection(): LazyCollection
+    protected function getVideoIds(): LazyCollection
     {
         return Video::query()
             ->select('id')
             ->inRandomOrder()
             ->take($this->getLimit())
-            ->cursor();
+            ->cursor()
+            ->pluck('id');
     }
 
     protected function getLimit(): int
@@ -64,7 +63,7 @@ class GenerateUserFeed extends Algo
 
     protected function getLifeTime(): int
     {
-        return $this->lifetime ?? 900;
+        return $this->lifetime ?? 10;
     }
 
     protected function generateUniqueId(): string

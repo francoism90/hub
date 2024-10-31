@@ -8,6 +8,7 @@ use App\Web\Shared\Concerns\WithScroll;
 use App\Web\Videos\Forms\QueryForm;
 use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Groups\Actions\GetUserSuggestions;
+use Domain\Videos\Algos\GenerateUserFeed;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -68,6 +69,24 @@ class VideoIndexController extends Page
         return $this->getQuery()->tap(
             new FilterVideos(form: $this->form, user: $this->getAuthModel())
         );
+    }
+
+    protected function getMergeCandidates(): Collection
+    {
+        $candidates = $this->generateCandidates();
+
+        dd($candidates);
+
+        return $this->getBuilder()->get();
+    }
+
+    protected function generateCandidates(): Collection
+    {
+        $algo = GenerateUserFeed::make()
+            ->model($this->getAuthModel())
+            ->run();
+
+        return collect(Video::modelClassCached($algo->meta['hash']));
     }
 
     protected function getModelClass(): ?string
