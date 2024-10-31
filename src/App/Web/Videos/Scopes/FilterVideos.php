@@ -7,6 +7,7 @@ namespace App\Web\Videos\Scopes;
 use App\Web\Videos\Forms\QueryForm;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Users\Models\User;
+use Domain\Videos\Algos\GenerateUserFeed;
 use Illuminate\Database\Eloquent\Builder;
 
 class FilterVideos
@@ -33,6 +34,9 @@ class FilterVideos
 
     protected function recommended(Builder $query): Builder
     {
+        GenerateUserFeed::make()->model($this->user)->handle();
+
+
         return $query
             ->published()
             ->inRandomOrder();
