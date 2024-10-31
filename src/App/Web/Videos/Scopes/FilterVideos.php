@@ -34,7 +34,7 @@ class FilterVideos
 
     protected function recommended(Builder $query): Builder
     {
-        GenerateUserFeed::make()->model($this->user)->handle();
+        // GenerateUserFeed::make()->model($this->user)->handle();
 
 
         return $query
