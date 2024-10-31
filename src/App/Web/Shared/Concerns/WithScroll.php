@@ -57,6 +57,8 @@ trait WithScroll
     public function refresh(): void
     {
         unset($this->items);
+
+        $this->dispatch('$refresh');
     }
 
     /**

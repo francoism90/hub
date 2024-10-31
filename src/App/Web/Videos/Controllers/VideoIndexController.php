@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use App\Web\Shared\Concerns\WithScroll;
 use App\Web\Videos\Forms\QueryForm;
 use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Groups\Actions\GetUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\WithoutUrlPagination;
 
 class VideoIndexController extends Page
 {
     use WithAuthentication;
-    use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
 
@@ -41,7 +39,9 @@ class VideoIndexController extends Page
     {
         $this->form->submit();
 
-        $this->reload();
+        $this->refresh();
+
+        $this->fetch();
     }
 
     #[Computed(persist: true, seconds: 3600)]
@@ -52,29 +52,15 @@ class VideoIndexController extends Page
         )->collect();
     }
 
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
-
-    public function reload(): void
-    {
-        $this->clear();
-
-        $this->fillPageScrollItems();
-
-        $this->refresh();
-    }
-
     public function populate(): void
     {
         unset($this->lists);
 
         $this->form->reset('list');
 
-        $this->reload();
+        $this->refresh();
+
+        $this->fetch();
     }
 
     protected function getBuilder(): Builder
@@ -87,16 +73,6 @@ class VideoIndexController extends Page
     protected function getModelClass(): ?string
     {
         return Video::class;
-    }
-
-    protected function getScrollPerPage(): int
-    {
-        return 24;
-    }
-
-    protected function getScrollPageLimit(): ?int
-    {
-        return 12;
     }
 
     protected function getTitle(): ?string
