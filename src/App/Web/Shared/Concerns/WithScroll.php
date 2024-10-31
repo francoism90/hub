@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Web\Shared\Concerns;
 
-use Foxws\WireUse\Views\Concerns\WithRateLimiter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
@@ -12,8 +11,6 @@ use Livewire\Attributes\Locked;
 
 trait WithScroll
 {
-    use WithRateLimiter;
-
     #[Locked]
     public Collection $models;
 

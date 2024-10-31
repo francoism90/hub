@@ -26,6 +26,8 @@ class VideoIndexController extends Page
     use WithQueryBuilder;
     use WithScroll;
 
+    protected static int $maxAttempts = 0;
+
     public QueryForm $form;
 
     public function mount(): void
