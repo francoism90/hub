@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f03016a02903758a992e779f48b4ddf5",
+    "content-hash": "9bce96e973b55ec3866c4ee75d5ce33c",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2287,16 +2287,16 @@
         },
         {
             "name": "foxws/laravel-modelcache",
-            "version": "0.0.2",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/laravel-modelcache.git",
-                "reference": "7eba7fb68c2a98a46cc4a9d6d50f0c7628f2d96b"
+                "reference": "7ec4d060c32958577a34aad922476ab12d92d086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/laravel-modelcache/zipball/7eba7fb68c2a98a46cc4a9d6d50f0c7628f2d96b",
-                "reference": "7eba7fb68c2a98a46cc4a9d6d50f0c7628f2d96b",
+                "url": "https://api.github.com/repos/foxws/laravel-modelcache/zipball/7ec4d060c32958577a34aad922476ab12d92d086",
+                "reference": "7ec4d060c32958577a34aad922476ab12d92d086",
                 "shasum": ""
             },
             "require": {
@@ -2360,7 +2360,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/laravel-modelcache/issues",
-                "source": "https://github.com/foxws/laravel-modelcache/tree/0.0.2"
+                "source": "https://github.com/foxws/laravel-modelcache/tree/0.0.4"
             },
             "funding": [
                 {
@@ -2368,7 +2368,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-28T14:59:53+00:00"
+            "time": "2024-10-31T11:44:47+00:00"
         },
         {
             "name": "foxws/wireuse",
