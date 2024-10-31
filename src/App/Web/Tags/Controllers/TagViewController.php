@@ -9,7 +9,6 @@ use App\Web\Tags\Forms\QueryForm;
 use App\Web\Tags\Scopes\FilterVideos;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
@@ -19,7 +18,6 @@ use Livewire\WithPagination;
 
 class TagViewController extends Page
 {
-    use WithAuthentication;
     use WithPagination;
     use WithQueryBuilder;
     use WithTag;

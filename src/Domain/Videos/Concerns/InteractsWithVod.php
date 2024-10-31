@@ -37,7 +37,7 @@ trait InteractsWithVod
 
     public function hasCaptions(): bool
     {
-        if ($this->getCaptionCollection()->count()) {
+        if ($this->getCaptionCollection()->isNotEmpty()) {
             return true;
         }
 

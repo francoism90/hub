@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Web\Account\Controllers;
 
-use App\Web\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 
 class SubscribeController extends Page
 {
-    use WithAuthentication;
-
     public function render(): View
     {
         return view('app.account.subscribe');
@@ -25,12 +22,5 @@ class SubscribeController extends Page
     protected function getDescription(): ?string
     {
         return __("Choose a subscription plan that's right for you.");
-    }
-
-    public function getListeners(): array
-    {
-        return [
-            ...$this->getAuthListeners(),
-        ];
     }
 }

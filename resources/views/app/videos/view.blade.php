@@ -34,7 +34,7 @@
         ),
     ]) }}
 
-    @if ($video->tags()->count())
+    @if ($video->tags()->exists())
         {{ html()->div()->class('container py-3 flex flex-wrap gap-2')->open() }}
             @foreach ($video->tags as $tag)
                 {{ html()->div()->wireKey($tag->getRouteKey())->child(
