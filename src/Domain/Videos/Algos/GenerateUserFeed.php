@@ -17,19 +17,11 @@ class GenerateUserFeed extends Algo
 
     protected ?int $limit = null;
 
-    protected ?int $lifetime = null;
-
     public function handle(): Result
     {
-        $hash = $this->generateUniqueId();
-
-        Video::modelClassCache($hash, [
-            'ids' => $this->getVideoIds()->toArray(),
-        ], now()->addSeconds($this->getLifeTime()));
-
         return $this
             ->success()
-            ->with('hash', $hash);
+            ->with('ids', $this->getVideoIds());
     }
 
     public function model(User $user): self
@@ -39,9 +31,9 @@ class GenerateUserFeed extends Algo
         return $this;
     }
 
-    public function lifetime(int $value): self
+    public function limit(int $value): self
     {
-        $this->lifetime = $value;
+        $this->limit = $value;
 
         return $this;
     }
@@ -59,11 +51,6 @@ class GenerateUserFeed extends Algo
     protected function getLimit(): int
     {
         return $this->limit ?? 16;
-    }
-
-    protected function getLifeTime(): int
-    {
-        return $this->lifetime ?? 10;
     }
 
     protected function generateUniqueId(): string
