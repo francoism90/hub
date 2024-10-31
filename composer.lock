@@ -2372,16 +2372,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.7.0",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "c811a3402792bb7db4abbf3f78745cb6eb320b83"
+                "reference": "40d103159af71737efcc6b97ef97f4b2b65b2ce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/c811a3402792bb7db4abbf3f78745cb6eb320b83",
-                "reference": "c811a3402792bb7db4abbf3f78745cb6eb320b83",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/40d103159af71737efcc6b97ef97f4b2b65b2ce3",
+                "reference": "40d103159af71737efcc6b97ef97f4b2b65b2ce3",
                 "shasum": ""
             },
             "require": {
@@ -2452,7 +2452,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.7.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.7.1"
             },
             "funding": [
                 {
@@ -2460,7 +2460,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-31T16:47:21+00:00"
+            "time": "2024-10-31T17:55:34+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -15112,12 +15112,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

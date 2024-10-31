@@ -47,7 +47,7 @@ class Section extends Component
 
     public function isFetchable(): bool
     {
-        if (count($this->items) === 0) {
+        if ($this->items->isEmpty()) {
             return true;
         }
 
@@ -63,7 +63,10 @@ class Section extends Component
     {
         return $this->getQuery()
             ->type($this->type)
-            ->simplePaginate(perPage: $this->getCandidatesLimit(), page: $this->getPage());
+            ->simplePaginate(
+                perPage: $this->getCandidatesLimit(),
+                page: $this->getPage(),
+            );
     }
 
     protected function getCandidatesLimit(): int
