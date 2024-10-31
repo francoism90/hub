@@ -7,18 +7,21 @@ namespace App\Web\Tags\Components;
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Illuminate\Database\Eloquent\Builder;
+use Foxws\WireUse\Models\Concerns\WithScroll;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class Section extends Component
 {
     use WithAuthentication;
     use WithoutUrlPagination;
+    use WithPagination;
     use WithQueryBuilder;
     use WithScroll;
 
@@ -37,21 +40,36 @@ class Section extends Component
         return view('app.tags.section.placeholder', $params);
     }
 
-    public function refresh(): void
+    public function updatedPage(): void
     {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
+        $this->fetch();
     }
 
-    protected function getBuilder(): Builder
+    public function isFetchable(): bool
+    {
+        if ($this->items->isEmpty()) {
+            return true;
+        }
+
+        return $this->getBuilder()->hasMorePages();
+    }
+
+    protected function getMergeCandidates(): Collection
+    {
+        return $this->getBuilder()->getCollection();
+    }
+
+    protected function getBuilder(): Paginator
     {
         return $this->getQuery()
             ->type($this->type)
-            ->ordered();
+            ->simplePaginate(
+                perPage: $this->getCandidatesLimit(),
+                page: $this->getPage(),
+            );
     }
 
-    public function getScrollPerPage(): int
+    protected function getCandidatesLimit(): int
     {
         return 9;
     }

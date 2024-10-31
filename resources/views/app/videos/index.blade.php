@@ -48,22 +48,9 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         @endforeach
     {{ html()->element('main')->close() }}
 
-    {{ html()->element('nav')->class('w-full flex flex-nowrap items-center justify-center')->open() }}
-        {{ html()->div()->child(html()
-            ->button()
-            ->text('Refresh')
-            ->class('btn btn-sm btn-secondary btn-outlined')
-            ->attributes([
-                'x-on:click' => $scrollIntoViewJsSnippet,
-                'wire:click' => 'reload',
-                'wire:loading.attr' => 'disabled',
-            ]))
-        }}
-
-        @if ($this->hasMorePages())
-            {{ html()->div()->attribute('x-intersect.full', '$wire.fetch()') }}
-        @endif
-    {{ html()->element('nav')->close() }}
+    @if ($this->isFetchable())
+        {{ html()->div()->class('w-full h-0 min-h-0')->attribute('x-intersect.full', '$wire.fetch()') }}
+    @endif
 {{ html()->div()->close() }}
 
 <x-app.player.shim />

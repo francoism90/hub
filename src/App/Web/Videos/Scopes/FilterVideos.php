@@ -14,6 +14,7 @@ class FilterVideos
     public function __construct(
         protected readonly QueryForm $form,
         protected readonly User $user,
+        protected readonly int $limit,
     ) {}
 
     public function __invoke(Builder $query): void
@@ -23,7 +24,8 @@ class FilterVideos
             ->when($this->filterByTag(), fn (Builder $query) => $this->tagged($query))
             ->when($this->form->is('list', 'all'), fn (Builder $query) => $this->recommended($query))
             ->when($this->form->is('list', 'discover'), fn (Builder $query) => $this->discover($query))
-            ->when($this->form->is('list', 'newest'), fn (Builder $query) => $this->newest($query));
+            ->when($this->form->is('list', 'newest'), fn (Builder $query) => $this->newest($query))
+            ->limit($this->limit);
     }
 
     protected function filterByTag(): bool

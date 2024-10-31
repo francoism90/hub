@@ -5,23 +5,20 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\Scopes\FilterVideos;
-use Domain\Groups\Actions\GetUserSuggestions;
+use Domain\Videos\Algos\GenerateUserFeed;
+use Domain\Videos\Algos\GenerateUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
-use Foxws\WireUse\Layout\Concerns\WithScroll;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
+use Foxws\WireUse\Models\Concerns\WithScroll;
 use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
-use Livewire\WithoutUrlPagination;
 
 class VideoIndexController extends Page
 {
     use WithAuthentication;
-    use WithoutUrlPagination;
     use WithQueryBuilder;
     use WithScroll;
 
@@ -41,62 +38,51 @@ class VideoIndexController extends Page
     {
         $this->form->submit();
 
-        $this->reload();
+        $this->clear();
+
+        $this->fetch();
     }
 
     #[Computed(persist: true, seconds: 3600)]
     public function lists(): Collection
     {
-        return app(GetUserSuggestions::class)->execute(
-            user: $this->getAuthModel()
-        )->collect();
-    }
+        $algo = GenerateUserSuggestions::make()
+            ->model($this->getAuthModel())
+            ->run();
 
-    public function refresh(): void
-    {
-        unset($this->items);
-
-        $this->dispatch('$refresh');
-    }
-
-    public function reload(): void
-    {
-        $this->clear();
-
-        $this->fillPageScrollItems();
-
-        $this->refresh();
+        return $algo->meta['items'];
     }
 
     public function populate(): void
     {
-        unset($this->lists);
-
         $this->form->reset('list');
 
-        $this->reload();
+        unset($this->lists);
     }
 
-    protected function getBuilder(): Builder
+    protected function getMergeCandidates(): Collection
     {
-        return $this->getQuery()->tap(
-            new FilterVideos(form: $this->form, user: $this->getAuthModel())
-        );
+        $candidateIds = $this->generateCandidates();
+
+        return $this->getQuery()
+            ->whereIn('id', $candidateIds)
+            ->get()
+            ->sortBy(fn (Video $video) => array_search($video->getKey(), $candidateIds));
+    }
+
+    protected function generateCandidates(): array
+    {
+        $algo = GenerateUserFeed::make()
+            ->form($this->form)
+            ->model($this->getAuthModel())
+            ->run();
+
+        return $algo->meta['ids']->toArray();
     }
 
     protected function getModelClass(): ?string
     {
         return Video::class;
-    }
-
-    protected function getScrollPerPage(): int
-    {
-        return 24;
-    }
-
-    protected function getScrollPageLimit(): ?int
-    {
-        return 12;
     }
 
     protected function getTitle(): ?string
