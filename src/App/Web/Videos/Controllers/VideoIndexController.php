@@ -15,6 +15,8 @@ use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Fluent;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 
@@ -75,18 +77,19 @@ class VideoIndexController extends Page
     {
         $candidates = $this->generateCandidates();
 
-        dd($candidates);
-
-        return $this->getBuilder()->get();
+        return $this->getQuery()
+            ->whereIn('id', $candidates->ids)
+            ->get()
+            ->sortBy(fn (Video $video) => array_search($video->getKey(), $candidates->ids));
     }
 
-    protected function generateCandidates(): Collection
+    protected function generateCandidates(): Fluent
     {
         $algo = GenerateUserFeed::make()
             ->model($this->getAuthModel())
             ->run();
 
-        return collect(Video::modelClassCached($algo->meta['hash']));
+        return fluent(Video::modelClassCached($algo->meta['hash']));
     }
 
     protected function getModelClass(): ?string

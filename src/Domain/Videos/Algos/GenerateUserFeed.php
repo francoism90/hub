@@ -24,7 +24,7 @@ class GenerateUserFeed extends Algo
         $hash = $this->generateUniqueId();
 
         Video::modelClassCache($hash, [
-            'videos' => $this->getVideoIds()->toArray(),
+            'ids' => $this->getVideoIds()->toArray(),
         ], now()->addSeconds($this->getLifeTime()));
 
         return $this
@@ -58,7 +58,7 @@ class GenerateUserFeed extends Algo
 
     protected function getLimit(): int
     {
-        return $this->limit ?? 24;
+        return $this->limit ?? 16;
     }
 
     protected function getLifeTime(): int

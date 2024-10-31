@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\Web\Shared\Concerns;
 
 use Foxws\WireUse\Views\Concerns\WithRateLimiter;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+
+use function Pest\Laravel\instance;
 
 trait WithScroll
 {
@@ -80,12 +83,13 @@ trait WithScroll
     {
         $items = $items
             ->take($this->getCandidatesLimit())
+            ->reject(fn ($item) => ! $item instanceof Model)
             ->filter()
             ->all();
 
         $this->models = $this->models
             ->merge($items)
-            ->unique($this->getItemsUniqueKey());
+            ->unique($this->getItemUniqueKey());
 
         $this->refresh();
     }
