@@ -21,6 +21,7 @@ class FilterVideos
     {
         $query
             ->with(['media', 'tags'])
+            ->published()
             ->when($this->filterByTag(), fn (Builder $query) => $this->tagged($query))
             ->when($this->form->is('list', 'all'), fn (Builder $query) => $this->recommended($query))
             ->when($this->form->is('list', 'discover'), fn (Builder $query) => $this->discover($query))
@@ -35,15 +36,12 @@ class FilterVideos
 
     protected function recommended(Builder $query): Builder
     {
-        return $query
-            ->published()
-            ->inRandomOrder();
+        return $query->inRandomOrder();
     }
 
     protected function discover(Builder $query): Builder
     {
         return $query
-            ->published()
             ->whereDoesntHave('groups', fn (Builder $query) => $query
                 ->where('groups.user_id', $this->user->getKey())
                 ->where('groups.kind', GroupSet::Viewed)
@@ -54,7 +52,6 @@ class FilterVideos
     protected function newest(Builder $query): Builder
     {
         return $query
-            ->published()
             ->orWhereDoesntHave('tags')
             ->orderBy('videos.created_at', 'desc');
     }

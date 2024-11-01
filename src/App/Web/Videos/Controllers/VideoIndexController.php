@@ -5,20 +5,21 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Forms\QueryForm;
-use Domain\Videos\Algos\GenerateUserFeed;
+use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Videos\Algos\GenerateUserSuggestions;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\Models\Concerns\WithScroll;
+use Foxws\WireUse\Models\Concerns\WithPaginateScroll;
 use Foxws\WireUse\Views\Support\Page;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\WithoutUrlPagination;
 
 class VideoIndexController extends Page
 {
-    use WithQueryBuilder;
-    use WithScroll;
+    use WithoutUrlPagination;
+    use WithPaginateScroll;
 
     public QueryForm $form;
 
@@ -58,14 +59,14 @@ class VideoIndexController extends Page
         unset($this->lists);
     }
 
-    protected function getMergeCandidates(): Collection
+    protected function getBuilder(): Paginator
     {
-        $algo = GenerateUserFeed::make()
-            ->form($this->form)
-            ->model($this->getAuthModel())
-            ->run();
-
-        return $algo->meta['items'];
+        return $this->getQuery()
+            ->tap(new FilterVideos($this->form, $this->getAuthModel(), $this->getCandidatesLimit()))
+            ->simplePaginate(
+                perPage: $this->getCandidatesLimit(),
+                page: $this->getPage(),
+            );
     }
 
     protected function getModelClass(): ?string

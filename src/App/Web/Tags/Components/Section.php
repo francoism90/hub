@@ -6,22 +6,17 @@ namespace App\Web\Tags\Components;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
-use Foxws\WireUse\Models\Concerns\WithScroll;
+use Foxws\WireUse\Models\Concerns\WithPaginateScroll;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
-use Livewire\WithPagination;
 
 class Section extends Component
 {
     use WithoutUrlPagination;
-    use WithPagination;
-    use WithQueryBuilder;
-    use WithScroll;
+    use WithPaginateScroll;
 
     #[Locked]
     public TagType $type;
@@ -36,25 +31,6 @@ class Section extends Component
     public function placeholder(array $params = []): View
     {
         return view('app.tags.section.placeholder', $params);
-    }
-
-    public function updatedPage(): void
-    {
-        $this->fetch();
-    }
-
-    public function isFetchable(): bool
-    {
-        if ($this->items->isEmpty()) {
-            return true;
-        }
-
-        return $this->getBuilder()->hasMorePages();
-    }
-
-    protected function getMergeCandidates(): Collection
-    {
-        return $this->getBuilder()->getCollection();
     }
 
     protected function getBuilder(): Paginator
