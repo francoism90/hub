@@ -12,6 +12,6 @@ class GroupChannel
 {
     public function join(User $user, Group $model): bool
     {
-        return $model->state->equals(Verified::class) ?? $user->hasRole('super-admin');
+        return $model->state->equals(Verified::class) ?? $model->user()->is($user) ?? $user->hasRole('super-admin');
     }
 }

@@ -12,6 +12,6 @@ class VideoChannel
 {
     public function join(User $user, Video $model): bool
     {
-        return $model->state->equals(Verified::class) ?? $user->hasRole('super-admin');
+        return $model->state->equals(Verified::class) ?? $model->user()->is($user) ?? $user->hasRole('super-admin');
     }
 }
