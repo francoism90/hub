@@ -20,7 +20,7 @@ trait WithFormTranslations
         $locale ??= app()->getLocale();
 
         return collect($model->getTranslations())
-            ->map(fn (?array $item) => data_get($item, $locale))
+            ->map(fn (?array $item) => data_get($item, $locale, ''))
             ->toArray();
     }
 }
