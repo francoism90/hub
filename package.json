@@ -16,7 +16,7 @@
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.7",
         "chokidar": "^4.0.1",
-        "concurrently": "^9.0.1",
+        "concurrently": "^9.1.0",
         "cssnano": "^7.0.6",
         "eslint": "^9.13",
         "globals": "^15.11.0",
