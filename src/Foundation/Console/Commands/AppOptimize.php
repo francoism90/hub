@@ -21,18 +21,16 @@ class AppOptimize extends Command implements Isolatable
 
     public function handle(): void
     {
-        // Clear caches
-        $this->call('optimize:clear');
-
-        // Optimize packages
-        $this->call('data:cache-structures');
-        $this->call('icons:cache');
-
         // Optimize caches
         $this->call('config:cache');
         $this->call('route:cache');
         $this->call('view:cache');
         $this->call('event:cache');
+
+        // Optimize packages
+        $this->call('data:cache-structures');
+        $this->call('structures:cache');
+        $this->call('icons:cache');
 
         // Reload octane
         $this->call('octane:reload');

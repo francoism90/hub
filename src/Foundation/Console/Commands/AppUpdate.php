@@ -23,7 +23,7 @@ class AppUpdate extends Command implements Isolatable
     {
         // Clear package caches
         $this->call('permission:cache-reset');
-        $this->call('structures:refresh');
+        $this->call('structures:clear');
 
         // Clear application caches
         $this->call('cache:clear');

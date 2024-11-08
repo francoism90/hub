@@ -1,10 +1,13 @@
 {
-    "name": "laravel/laravel",
+    "name": "francoism90/hub",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "A video on demand (VOD) media distribution system.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "vod",
+        "video-on-demand",
+        "media"
     ],
     "license": "MIT",
     "require": {
@@ -38,9 +41,9 @@
         "spatie/laravel-flash": "^1.10",
         "spatie/laravel-google-fonts": "^1.4.1",
         "spatie/laravel-html": "^3.11.1",
-        "spatie/laravel-medialibrary": "^11.9.2",
+        "spatie/laravel-medialibrary": "^11.10.0",
         "spatie/laravel-model-states": "^2.7.2",
-        "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-permission": "^6.10",
         "spatie/laravel-prefixed-ids": "^1.4.0",
         "spatie/laravel-responsecache": "^7.6.0",
         "spatie/laravel-sluggable": "^3.6.0",

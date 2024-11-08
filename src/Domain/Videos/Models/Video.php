@@ -121,6 +121,8 @@ class Video extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('clips')
+            ->useDisk('media')
+            ->storeConversionsOnDisk('conversions')
             ->acceptsMimeTypes([
                 'video/av1',
                 'video/mp4',
@@ -135,6 +137,7 @@ class Video extends Model implements HasMedia
         $this
             ->addMediaCollection('captions')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->acceptsMimeTypes([
                 'text/plain',
                 'text/vtt',
@@ -143,6 +146,7 @@ class Video extends Model implements HasMedia
         $this
             ->addMediaCollection('previews')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->singleFile()
             ->acceptsMimeTypes([
                 'video/av1',
@@ -158,6 +162,7 @@ class Video extends Model implements HasMedia
         $this
             ->addMediaCollection('thumbnail')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->singleFile()
             ->withResponsiveImages()
             ->acceptsMimeTypes([

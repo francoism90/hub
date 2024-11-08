@@ -104,6 +104,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         $this
             ->addMediaCollection('avatar')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->singleFile()
             ->withResponsiveImages()
             ->acceptsMimeTypes([

@@ -91,6 +91,7 @@ class Tag extends BaseTag implements HasMedia
         $this
             ->addMediaCollection('thumbnail')
             ->useDisk('conversions')
+            ->storeConversionsOnDisk('conversions')
             ->singleFile()
             ->withResponsiveImages()
             ->acceptsMimeTypes([

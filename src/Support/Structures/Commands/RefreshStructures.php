@@ -14,18 +14,18 @@ class RefreshStructures extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'structures:refresh';
+    protected $signature = 'structures:clear';
 
     /**
      * @var string
      */
-    protected $description = 'Refresh Structure Scout indexes';
+    protected $description = 'Refresh component structures';
 
     public function handle(): void
     {
         ComponentScout::create()->clear();
         LivewireScout::create()->clear();
 
-        $this->info('Cached structures cleared successfully.');
+        $this->components->info('Structure cache cleared successfully.');
     }
 }

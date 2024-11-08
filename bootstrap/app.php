@@ -54,6 +54,7 @@ $app = Application::configure(basePath: $basePath)
         \Foundation\Console\Commands\AppUpdate::class,
         \Foundation\Console\Commands\AppOptimize::class,
         \Support\Scout\Commands\SyncIndexes::class,
+        \Support\Structures\Commands\CacheStructures::class,
         \Support\Structures\Commands\RefreshStructures::class,
         \Domain\Tags\Commands\CreateTag::class,
         \Domain\Tags\Commands\SortTags::class,
