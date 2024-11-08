@@ -6,7 +6,6 @@ namespace Domain\Tags\Actions;
 
 use Domain\Tags\Enums\TagType;
 use Domain\Tags\Models\Tag;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class CreateNewTag
