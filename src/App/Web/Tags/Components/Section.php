@@ -45,7 +45,7 @@ class Section extends Component
 
     protected function getCandidatesLimit(): int
     {
-        return 9;
+        return 12;
     }
 
     protected function getModelClass(): ?string

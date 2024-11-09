@@ -55,7 +55,7 @@ class SearchIndexController extends Page
 
         return $this->getScout($query)
             ->tap(new FilterVideos(form: $this->form))
-            ->simplePaginate(perPage: 24);
+            ->simplePaginate(perPage: 36);
     }
 
     public function submit(): void

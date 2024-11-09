@@ -69,6 +69,11 @@ class VideoIndexController extends Page
             );
     }
 
+    protected function getCandidatesLimit(): int
+    {
+        return 24;
+    }
+
     protected function getModelClass(): ?string
     {
         return Video::class;
