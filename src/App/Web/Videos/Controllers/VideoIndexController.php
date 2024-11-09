@@ -74,6 +74,11 @@ class VideoIndexController extends Page
         return 24;
     }
 
+    protected function getFetchLimits(): ?int
+    {
+        return 12 * $this->getCandidatesLimit();
+    }
+
     protected function getModelClass(): ?string
     {
         return Video::class;
