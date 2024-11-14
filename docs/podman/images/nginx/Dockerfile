@@ -87,7 +87,7 @@ RUN cd /usr/local/src \
     && make \
     && make install
 
-RUN apk del .build-deps
+RUN apk del .build-deps && rm -rf /usr/local/src/*
 
 COPY --chown=$UID:$GID runtimes/. /etc/nginx
 
