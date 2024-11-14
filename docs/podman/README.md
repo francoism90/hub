@@ -9,7 +9,7 @@ To learn more about Podman Quadlet, consider reading the following resources:
 ## Prerequisites
 
 - Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch).
-- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support.
+- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) and SELinux support.
 
 It's recommend running a rootless setup:
 

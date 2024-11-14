@@ -26,7 +26,7 @@
         "laravel/pulse": "^1.2.6",
         "laravel/reverb": "^1.4.3",
         "laravel/sanctum": "^4.0.3",
-        "laravel/scout": "^10.11.6",
+        "laravel/scout": "^10.11.7",
         "laravel/telescope": "^5.2.5",
         "laravel/tinker": "^2.10.0",
         "league/flysystem-aws-s3-v3": "^3.29",

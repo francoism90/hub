@@ -25,7 +25,7 @@ class CleanVideos extends Command implements Isolatable
         $items = Video::onlyTrashed()->lazy();
 
         if ($items->isEmpty()) {
-            $this->info('No videos found');
+            $this->components->info('No videos found for deletion');
 
             return;
         }
