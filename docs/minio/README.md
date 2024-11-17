@@ -8,34 +8,64 @@ To learn more about MinIO, consider reading the following resources:
 ## Prerequisites
 
 - Hub up-and-running
-- MinIO Client (`mc`)
+- MinIO Client `mcli` (included in app container)
 
 ## Usage
 
-> **NOTE:** Append `--insecure` to each `mc` command when using a self signed certificate.
-
 1. Create an (temporary) access key (<https://mc.hub.lan/access-keys>).
 
-2. Setup connection:
+2. Enter the app container:
 
 ```bash
-mc alias set myminio https://s3.hub.lan AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
-mc admin info myminio
+hub shell
 ```
 
-3. Create buckets:
+3. Setup connection:
 
 ```bash
-mc mb myminio/assets
-mc mb myminio/conversions
-mc mb myminio/local
+mcli alias set myminio http://systemd-hub-minio:9000 GENERATED_ACCESS_KEY
+mcli admin info myminio
 ```
 
-4. Set anonymous permissions:
+4. Create buckets:
 
 ```bash
-mc anonymous set download myminio/assets
-mc anonymous set download myminio/conversions
+mcli mb myminio/assets
+mcli mb myminio/conversions
+mcli mb myminio/local
+```
+
+5. Set anonymous permissions:
+
+```bash
+mcli anonymous set download myminio/assets
+mcli anonymous set download myminio/conversions
+```
+
+## Disable bucket listing
+
+The following steps are optional, but highly recommended on production.
+
+1. Export current bucket permissions:
+
+```bash
+cd /tmp
+mcli anonymous get-json myminio/assets > assets.json
+mcli anonymous get-json myminio/conversions > conversions.json
+```
+
+2. Remove the `"s3:ListBucket"` from the `Action` array in each `<bucket>.json` file:
+
+```bash
+vi assets.json
+vi conversions.json
+```
+
+3. Update the bucket policy:
+
+```bash
+mcli anonymous set-json assets.json myminio/assets
+mcli anonymous set-json conversions.json myminio/conversions
 ```
 
 ## Migrate data
@@ -43,24 +73,5 @@ mc anonymous set download myminio/conversions
 To copy any local stored generated conversions to a backup:
 
 ```bash
-cd ~/projects/hub/storage/app
-mc cp --recursive conversions/ myminio/conversions/
-```
-
-## Disable bucket listing
-
-To disable listing of buckets:
-
-```bash
-mc anonymous get-json myminio/assets > assets.json
-mc anonymous get-json myminio/conversions > conversions.json
-```
-
-Remove the `"s3:ListBucket"` from the `Action` array.
-
-Update the bucket policy:
-
-```bash
-mc anonymous set-json assets.json myminio/assets
-mc anonymous set-json conversions.json myminio/conversions
+mcli cp --recursive conversions/ myminio/conversions/
 ```
