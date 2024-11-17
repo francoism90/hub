@@ -93,13 +93,6 @@ return [
             ],
         ],
 
-        'import' => [
-            'driver' => 'local',
-            'root' => storage_path('app/import'),
-            'visibility' => 'private',
-            'throw' => true,
-        ],
-
         'media' => [
             'driver' => 'local',
             'root' => storage_path('app/media'),
@@ -107,9 +100,9 @@ return [
             'throw' => true,
         ],
 
-        'snapshots' => [
+        'import' => [
             'driver' => 'local',
-            'root' => database_path('snapshots'),
+            'root' => storage_path('app/import'),
             'visibility' => 'private',
             'throw' => true,
         ],
