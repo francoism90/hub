@@ -10,7 +10,7 @@ case "${UNAMEOUT}" in
 esac
 
 if [ "$MACHINE" == "UNKNOWN" ]; then
-    echo "Unsupported operating system [$(uname -s)]. Hub supports macOS, Linux, and Windows (WSL2)." >&2
+    echo "Unsupported operating system [$(uname -s)]. It supports macOS, Linux, and Windows (WSL2)." >&2
 
     exit 1
 fi
@@ -30,19 +30,12 @@ fi
 
 # Function that prints the available commands...
 function display_help {
-    echo "Hub"
+    echo "Podman Quadlet"
     echo
     echo "${YELLOW}Usage:${NC}" >&2
     echo "  hub COMMAND [options] [arguments]"
     echo
     echo "Unknown commands are passed to the podman binary."
-    echo
-    echo "${YELLOW}Podman Commands:${NC}"
-    echo "  ${GREEN}hub up${NC}        Start the application"
-    echo "  ${GREEN}hub up -d${NC}     Start the application in the background"
-    echo "  ${GREEN}hub stop${NC}      Stop the application"
-    echo "  ${GREEN}hub restart${NC}   Restart the application"
-    echo "  ${GREEN}hub ps${NC}        Display the status of all containers"
     echo
     echo "${YELLOW}Artisan Commands:${NC}"
     echo "  ${GREEN}hub artisan ...${NC}          Run an Artisan command"
@@ -65,23 +58,11 @@ function display_help {
     echo "  ${GREEN}hub npx${NC}            Run a npx command"
     echo "  ${GREEN}hub npm run prod${NC}"
     echo
-    echo "${YELLOW}PNPM Commands:${NC}"
-    echo "  ${GREEN}hub pnpm ...${NC}        Run a pnpm command"
-    echo "  ${GREEN}hub pnpx${NC}            Run a pnpx command"
-    echo "  ${GREEN}hub pnpm run prod${NC}"
-    echo
     echo "${YELLOW}Yarn Commands:${NC}"
     echo "  ${GREEN}hub yarn ...${NC}        Run a Yarn command"
     echo "  ${GREEN}hub yarn run prod${NC}"
     echo
-    echo "${YELLOW}Bun Commands:${NC}"
-    echo "  ${GREEN}hub bun ...${NC}        Run a bun command"
-    echo "  ${GREEN}hub bunx${NC}           Run a bunx command"
-    echo "  ${GREEN}hub bun run prod${NC}"
-    echo
     echo "${YELLOW}Database Commands:${NC}"
-    echo "  ${GREEN}hub mysql${NC}     Start a MySQL CLI session within the 'mysql' container"
-    echo "  ${GREEN}hub mariadb${NC}   Start a MySQL CLI session within the 'mariadb' container"
     echo "  ${GREEN}hub psql${NC}      Start a PostgreSQL CLI session within the 'pgsql' container"
     echo "  ${GREEN}hub redis${NC}     Start a Redis CLI session within the 'redis' container"
     echo
@@ -131,11 +112,9 @@ export DB_PORT=${DB_PORT:-3306}
 export WWWUSER=${1000:-$UID}
 export WWWGROUP=${1000:-$(id -g)}
 
-# Function that outputs Hub is not running...
-function hub_is_not_running {
-    echo "${BOLD}Hub is not running.${NC}" >&2
-    echo "" >&2
-    echo "${BOLD}You may Hub using the following commands:${NC} './vendor/bin/hub up' or './vendor/bin/hub up -d'" >&2
+# Function that outputs Foxws is not running...
+function container_is_not_running {
+    echo "${BOLD}Container is not running.${NC}" >&2
 
     exit 1
 }
@@ -145,7 +124,7 @@ PODMAIN=(podman)
 
 EXEC="yes"
 
-if [ -z "$HUB_SKIP_CHECKS" ]; then
+if [ -z "$INSTANCE_SKIP_CHECKS" ]; then
     # Ensure that Podman is running...
     if ! podman info > /dev/null 2>&1; then
         echo "${BOLD}Podman is not running.${NC}" >&2
@@ -153,9 +132,9 @@ if [ -z "$HUB_SKIP_CHECKS" ]; then
         exit 1
     fi
 
-    # Determine if Hub is currently up...
+    # Determine if container is currently up...
     if "${PODMAIN[@]}" ps "$APP_SERVICE" 2>&1 | grep 'Exit\|exited'; then
-        echo "${BOLD}Shutting down old Hub processes...${NC}" >&2
+        echo "${BOLD}Shutting down old container processes...${NC}" >&2
 
         "${PODMAIN[@]}" down > /dev/null 2>&1
 
@@ -174,9 +153,9 @@ if [ "$1" == "php" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" "php" "$@")
+        ARGS+=("$APP_SERVICE" "php")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy vendor binary commands on the application container...
@@ -184,11 +163,13 @@ elif [ "$1" == "bin" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
+        CMD=$1
+        shift 1
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" ./vendor/bin/"$@")
+        ARGS+=("$APP_SERVICE" ./vendor/bin/"$CMD")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy podman commands to the podman binary on the application container...
@@ -200,7 +181,7 @@ elif [ "$1" == "podman" ]; then
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=("$APP_SERVICE" "${PODMAIN[@]}")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy Composer commands to the "composer" binary on the application container...
@@ -210,9 +191,9 @@ elif [ "$1" == "composer" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" "composer" "$@")
+        ARGS+=("$APP_SERVICE" "composer")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy Artisan commands to the "artisan" binary on the application container...
@@ -222,9 +203,9 @@ elif [ "$1" == "artisan" ] || [ "$1" == "art" ] || [ "$1" == "a" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php artisan "$@")
+        ARGS+=("$APP_SERVICE" php artisan)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy the "debug" command to the "php artisan" binary on the application container with xdebug enabled...
@@ -234,9 +215,9 @@ elif [ "$1" == "debug" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it -e XDEBUG_TRIGGER=1)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php artisan "$@")
+        ARGS+=("$APP_SERVICE" php artisan)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy the "test" command to the "php artisan test" Artisan command...
@@ -246,9 +227,9 @@ elif [ "$1" == "test" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php artisan test "$@")
+        ARGS+=("$APP_SERVICE" php artisan test)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy the "phpunit" command to "php vendor/bin/phpunit"...
@@ -258,9 +239,9 @@ elif [ "$1" == "phpunit" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php vendor/bin/phpunit "$@")
+        ARGS+=("$APP_SERVICE" php vendor/bin/phpunit)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy the "pest" command to "php vendor/bin/pest"...
@@ -270,9 +251,9 @@ elif [ "$1" == "pest" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php vendor/bin/pest "$@")
+        ARGS+=("$APP_SERVICE" php vendor/bin/pest)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy the "pint" command to "php vendor/bin/pint"...
@@ -282,13 +263,13 @@ elif [ "$1" == "pint" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" php vendor/bin/pint "$@")
+        ARGS+=("$APP_SERVICE" php vendor/bin/pint)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Initiate a Laravel Tinker session within the application container...
-elif [ "$1" == "tinker" ] ; then
+elif [ "$1" == "tinker" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
@@ -296,7 +277,7 @@ elif [ "$1" == "tinker" ] ; then
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=("$APP_SERVICE" php artisan tinker)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy Node commands to the "node" binary on the application container...
@@ -306,9 +287,9 @@ elif [ "$1" == "node" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" node "$@")
+        ARGS+=("$APP_SERVICE" node)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy NPM commands to the "npm" binary on the application container...
@@ -318,9 +299,9 @@ elif [ "$1" == "npm" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" npm "$@")
+        ARGS+=("$APP_SERVICE" npm)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy NPX commands to the "npx" binary on the application container...
@@ -330,9 +311,9 @@ elif [ "$1" == "npx" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" npx "$@")
+        ARGS+=("$APP_SERVICE" npx)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy PNPM commands to the "pnpm" binary on the application container...
@@ -342,9 +323,9 @@ elif [ "$1" == "pnpm" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" pnpm "$@")
+        ARGS+=("$APP_SERVICE" pnpm)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy PNPX commands to the "pnpx" binary on the application container...
@@ -354,9 +335,9 @@ elif [ "$1" == "pnpx" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" pnpx "$@")
+        ARGS+=("$APP_SERVICE" pnpx)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Proxy Yarn commands to the "yarn" binary on the application container...
@@ -366,9 +347,9 @@ elif [ "$1" == "yarn" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec -it)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$APP_SERVICE" yarn "$@")
+        ARGS+=("$APP_SERVICE" yarn)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Initiate a MySQL CLI terminal session within the "mysql" container...
@@ -381,7 +362,7 @@ elif [ "$1" == "mysql" ]; then
         ARGS+=(systemd-hub-mysql bash -c)
         ARGS+=("MYSQL_PWD=\${DB_PASSWORD} mysql -u \${DB_USERNAME} \${DB_DATABASE}")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Initiate a MySQL CLI terminal session within the "mariadb" container...
@@ -394,7 +375,20 @@ elif [ "$1" == "mariadb" ]; then
         ARGS+=(systemd-hub-mariadb bash -c)
         ARGS+=("MYSQL_PWD=\${DB_PASSWORD} mariadb -u \${DB_USERNAME} \${DB_DATABASE}")
     else
-        hub_is_not_running
+        container_is_not_running
+    fi
+
+# Initiate a PostgreSQL CLI terminal session within the "pgsql" container...
+elif [ "$1" == "psql" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(systemd-hub-pgsql bash -c)
+        ARGS+=("PGPASSWORD=\${DB_PASSWORD} psql -U \${DB_USERNAME} \${DB_DATABASE}")
+    else
+        container_is_not_running
     fi
 
 # Initiate a Bash shell within the application container...
@@ -406,7 +400,7 @@ elif [ "$1" == "shell" ] || [ "$1" == "bash" ]; then
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=("$APP_SERVICE" sh "$@")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Initiate a root user Bash shell within the application container...
@@ -418,11 +412,11 @@ elif [ "$1" == "root-shell" ] || [ "$1" == "root-bash" ]; then
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=("$APP_SERVICE" sh "$@")
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
 # Initiate a Redis CLI terminal session within the "redis" container...
-elif [ "$1" == "redis" ] ; then
+elif [ "$1" == "redis" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
@@ -430,32 +424,10 @@ elif [ "$1" == "redis" ] ; then
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=(systemd-hub-redis sh)
     else
-        hub_is_not_running
+        container_is_not_running
     fi
 
-# Open the site...
-elif [ "$1" == "open" ]; then
-    shift 1
-
-    if [ "$EXEC" == "yes" ]; then
-
-        if [[ -n "$APP_PORT" && "$APP_PORT" != "443" ]]; then
-            FULL_URL="${APP_URL}:${APP_PORT}"
-        else
-            FULL_URL="$APP_URL"
-        fi
-
-        open "$FULL_URL"
-
-        exit
-    else
-        hub_is_not_running
-    fi
-
-# Pass unknown commands to the "podman" binary...
-else
-    ARGS+=("$@")
 fi
 
 # Run Podman with the defined arguments...
-"${PODMAIN[@]}" "${ARGS[@]}"
+"${PODMAIN[@]}" "${ARGS[@]}" "$@"
