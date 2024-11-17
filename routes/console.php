@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 use Domain\Groups\Models\Group;
 use Domain\Imports\Models\Import;
 use Illuminate\Auth\Console\ClearResetsCommand;

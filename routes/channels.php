@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Foundation\Broadcasting\GroupChannel;
 use Foundation\Broadcasting\TagChannel;
 use Foundation\Broadcasting\UserChannel;

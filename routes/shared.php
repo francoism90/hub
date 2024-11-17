@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Api\Media\Controllers\AssetController;
 use App\Api\Media\Controllers\DownloadController;
 use App\Api\Media\Controllers\ResponsiveController;

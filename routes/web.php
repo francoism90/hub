@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Web\Account\Controllers\LibraryController;
 use App\Web\Account\Controllers\NotificationsController;
 use App\Web\Account\Controllers\ProfileController;

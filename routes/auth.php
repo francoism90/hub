@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Web\Auth\Controllers\LoginController;
 use App\Web\Auth\Controllers\LogoutController;
 

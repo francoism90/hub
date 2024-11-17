@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Api\Authentication\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
