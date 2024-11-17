@@ -1,5 +1,5 @@
 [Unit]
-Description=Hub container
+Description=Nginx container
 Requires=hub-app.service
 After=hub-app.service
 
