@@ -54,7 +54,7 @@ Adjust the environment files in `~/.config/containers/systemd/traefik/config`, a
 systemctl --user enable podman.socket --now`
 ```
 
-To import the custom certificate, prefer the usage of [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
+To import a custom certificate, prefer the usage of [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
 
 ```bash
 podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
