@@ -103,7 +103,7 @@ Hub provides the shell utility named `hub`, and is based on [Laravel Sail](https
 
 To install, create a shell `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
-```bash
+```fish
 alias --save hub '~/projects/hub/bin/quadlet'
 ```
 
