@@ -14,20 +14,22 @@ To learn more about MinIO, consider reading the following resources:
 
 1. Create an (temporary) access key (<https://mc.hub.lan/access-keys>).
 
-2. Enter the app container:
+2. Update `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment keys.
+
+3. Enter the app container:
 
 ```bash
 hub shell
 ```
 
-3. Setup connection:
+4. Setup connection:
 
 ```bash
 mcli alias set myminio http://systemd-hub-minio:9000 GENERATED_ACCESS_KEY
 mcli admin info myminio
 ```
 
-4. Create buckets:
+5. Create buckets:
 
 ```bash
 mcli mb myminio/assets
@@ -35,7 +37,7 @@ mcli mb myminio/conversions
 mcli mb myminio/local
 ```
 
-5. Set anonymous permissions:
+6. Set anonymous permissions:
 
 ```bash
 mcli anonymous set download myminio/assets
@@ -66,6 +68,7 @@ vi conversions.json
 ```bash
 mcli anonymous set-json assets.json myminio/assets
 mcli anonymous set-json conversions.json myminio/conversions
+rm -rf assets.json conversions.json
 ```
 
 ## Migrate data
