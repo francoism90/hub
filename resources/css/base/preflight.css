@@ -23,13 +23,4 @@
         -moz-appearance: none;
         -webkit-appearance: none;
     }
-
-    ::-webkit-search-decoration,
-    ::-webkit-search-cancel-button,
-    ::-webkit-search-results-button,
-    ::-webkit-search-results-decoration {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-    }
 }
