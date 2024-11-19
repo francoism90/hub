@@ -36,7 +36,12 @@ cd ~/projects/hub
 
 ### Systemd units
 
-Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists.
+Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists:
+
+```bash
+cd ~/projects/hub
+cp -r docs/podman/containers/systemd ~/.config/containers/
+```
 
 Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/projects/hub/.env` to reflect any systemd unit changes.
 
