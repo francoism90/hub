@@ -32,7 +32,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, fileinfo, libxml, mbstring, igbinary, msgpack, lzf, zstd, lz4, zip, redis, pcntl, pdo, sqlite, pdo_sqlite
+          extensions: dom, curl, fileinfo, libxml, mbstring, igbinary, msgpack, zstd, lz4, zip, redis, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
 
       - name: Setup Node
