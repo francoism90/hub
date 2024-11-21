@@ -16,6 +16,7 @@ use Domain\Videos\Concerns\HasVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -70,7 +71,7 @@ class Group extends Model implements HasMedia, Sortable
             'state' => GroupState::class,
             'kind' => GroupSet::class,
             'type' => GroupType::class,
-            'options' => GroupData::class,
+            'options' => AsArrayObject::class,
         ];
     }
 
