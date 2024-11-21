@@ -14,7 +14,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
-        ->child(html()->button()->attribute('wire:click', 'populate')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
+        ->child(html()->button()->attributes(['wire:click' => 'populate', 'aria-label' => 'Refresh'])->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))
         ->children($this->lists, fn (Fluent $list) => html()->div()->wireKey("filter-{$list->key}")->children([
             html()
                 ->radio('lists')
