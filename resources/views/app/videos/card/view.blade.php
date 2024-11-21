@@ -27,6 +27,10 @@
                             ->childrenIf($video->identifier, [
                                 html()->element('dt')->text('ID')->class('sr-only'),
                                 html()->element('dd')->text($video->identifier)
+                            ])
+                            ->childrenIf($video->caption, [
+                                html()->element('dt')->text('Caption')->class('sr-only'),
+                                html()->element('dd')->text('CC')
                             ]),
                     ])
                 ),
