@@ -58,14 +58,12 @@ server {
     # vod
     location ^~ /vod/ {
         proxy_pass https://vod/;
-        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
     # live
     location ^~ /live/ {
         proxy_pass https://live/;
-        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
