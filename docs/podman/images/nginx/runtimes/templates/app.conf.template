@@ -52,6 +52,9 @@ server {
     # error
     error_page 404 /index.php;
 
+    # used to advertise the availability of HTTP/3
+    add_header Alt-Svc 'h3=":8443"; ma=86400';
+
     # service worker
     add_header Service-Worker-Allowed /;
 
@@ -102,6 +105,7 @@ server {
             set $suffix ?$query_string;
         }
 
+        proxy_redirect off;
         proxy_pass http://octane$suffix;
         include /etc/nginx/config/proxy.conf;
     }
