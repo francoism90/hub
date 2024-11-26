@@ -52,9 +52,6 @@ server {
     # error
     error_page 404 /index.php;
 
-    # used to advertise the availability of HTTP/3
-    add_header Alt-Svc 'h3=":8443"; ma=86400';
-
     # service worker
     add_header Service-Worker-Allowed /;
 
