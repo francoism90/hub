@@ -32,7 +32,7 @@ server {
 
     location ^~ /json/dash/ {
         internal;
-        proxy_pass https://octan/;
+        proxy_pass https://octane/;
         proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
