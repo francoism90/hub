@@ -1,8 +1,8 @@
 server {
-    listen 8080 quic reuseport;
-    listen 8080 ssl;
-    listen [::]:8080 quic reuseport;
-    listen [::]:8080 ssl;
+    listen 4443 quic reuseport;
+    listen 4443 ssl;
+    listen [::]:4443 quic reuseport;
+    listen [::]:4443 ssl;
 
     server_name ${NGINX_WS_HOST};
     root /usr/share/nginx/html;
