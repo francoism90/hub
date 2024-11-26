@@ -148,11 +148,8 @@ return [
     */
 
     'swoole' => [
-        'ssl' => true,
-        'options' => [
-            'ssl_cert_file' => '/run/secrets/cert.pem',
-            'ssl_key_file' => '/run/secrets/key.pem',
-        ],
+        'ssl' => false,
+        'options' => [],
     ],
 
     /*
