@@ -1,15 +1,23 @@
 server {
-    listen 1936 reuseport;
-    listen [::]:1936 reuseport;
-    http2 on;
+    listen 1936 ssl http2 reuseport;
+    listen 1936 http3;
+    listen [::]:1936 ssl http2 reuseport;
+    listen [::]:1936 http3;
 
     server_name localhost;
-    set $base /var/www;
-    root $base/html;
+    root /usr/share/nginx/html;
+
+    # SSL
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
+
+    # security
+    include /etc/nginx/config/security.conf;
 
     # index
     index index.html;
 
+    # error
     error_page 404 /index.html;
 
     # vod settings
@@ -20,9 +28,12 @@ server {
     vod_base_url ${NGINX_VOD_LIVE_URL};
     vod_segments_base_url ${NGINX_VOD_LIVE_URL};
 
+    # vod security
+    vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
+
     location ^~ /json/dash/ {
         internal;
-        proxy_pass http://octane/;
+        proxy_pass https://octane/;
         proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;

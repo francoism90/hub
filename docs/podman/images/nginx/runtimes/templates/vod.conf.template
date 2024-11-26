@@ -1,14 +1,24 @@
 server {
-    listen 8081 reuseport;
-    listen [::]:8081 reuseport;
-    http2 on;
+    listen 8081 ssl http2 reuseport;
+    listen 8081 http3;
+    listen [::]:8081 ssl http2 reuseport;
+    listen [::]:8081 http3;
 
     server_name localhost;
-    set $base /var/www;
-    root $base/html;
+    root /usr/share/nginx/html;
+
+    # SSL
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
+
+    # security
+    include /etc/nginx/config/security.conf;
 
     # index
     index index.html;
+
+    # error
+    error_page 404 /index.html;
 
     # authentication requests
     auth_request /auth;
@@ -18,7 +28,7 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://octane/api/v1/subscription;
+        proxy_pass https://octane/api/v1/subscription;
         proxy_pass_request_body off;
         proxy_set_header Host $host;
         proxy_set_header Content-Length "";
@@ -28,34 +38,34 @@ server {
 
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
-        proxy_pass http://mapped;
+        proxy_pass https://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
-        proxy_pass http://mapped;
+        proxy_pass https://mapped;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH init segment
     location ~ ^.*/init-[^/]+\.mp4$ {
-        proxy_pass http://mapped;
+        proxy_pass https://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH manifest
     location ~ ^.*\.mpd$ {
-        proxy_pass http://mapped;
+        proxy_pass https://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # default proxy to origin (no cache)
     location / {
-        proxy_pass http://mapped;
+        proxy_pass https://mapped;
         include /etc/nginx/config/proxy.conf;
     }
 
