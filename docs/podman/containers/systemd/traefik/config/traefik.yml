@@ -16,6 +16,9 @@ providers:
   file:
     filename: /etc/traefik/dynamic.yml
 
+serversTransport:
+  insecureSkipVerify: true
+
 entryPoints:
   web:
     address: ":80"
