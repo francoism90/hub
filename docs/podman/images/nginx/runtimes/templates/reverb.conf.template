@@ -4,7 +4,7 @@ server {
     listen [::]:4443 quic reuseport;
     listen [::]:4443 ssl;
 
-    server_name ${NGINX_WS_HOST};
+    server_name localhost;
     root /usr/share/nginx/html;
 
     # SSL
