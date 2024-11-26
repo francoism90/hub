@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', true),
+    'https' => env('OCTANE_HTTPS', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +149,6 @@ return [
 
     'swoole' => [
         'ssl' => false,
-        'options' => [],
     ],
 
     /*
