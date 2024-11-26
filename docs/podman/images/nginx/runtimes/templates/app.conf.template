@@ -105,7 +105,6 @@ server {
         }
 
         proxy_pass http://octane$suffix;
-        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
