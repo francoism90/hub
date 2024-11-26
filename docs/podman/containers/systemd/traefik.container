@@ -23,6 +23,7 @@ LogDriver=none
 Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
+PublishPort=443:443/udp
 Label=traefik.enable=true
 Label=traefik.http.routers.mydashboard.rule="Host(`traefik.lan`)"
 Label=traefik.http.routers.mydashboard.entrypoints=websecure

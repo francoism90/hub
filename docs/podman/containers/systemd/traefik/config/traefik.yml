@@ -16,6 +16,8 @@ log:
   format: common
 
 entryPoints:
+  name:
+    http3: {}
   web:
     address: ":80"
     http:
@@ -23,5 +25,6 @@ entryPoints:
         entryPoint:
           to: websecure
           scheme: https
+          permanent: true
   websecure:
-    address: ":443"
+    address: ":443/udp"
