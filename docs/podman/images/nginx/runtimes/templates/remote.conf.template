@@ -30,7 +30,7 @@ server {
 
     location ^~ /json/dash/ {
         internal;
-        proxy_pass https://octane/;
+        proxy_pass http://octane/;
         proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
