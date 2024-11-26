@@ -14,6 +14,8 @@ AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
+Secret=tlscert,target=/run/secrets/cert.pem,uid=${UID},gid=${GID}
+Secret=tlskey,target=/run/secrets/key.pem,uid=${UID},gid=${GID}
 User=${UID}
 Group=${GID}
 UserNS=keep-id:uid=${UID},gid=${GID}
@@ -25,7 +27,7 @@ Label=traefik.http.routers.hub.rule="Host(`hub.lan`) || Host(`ws.hub.lan`)"
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true
 Label=traefik.http.routers.hub.service="hub"
-Label=traefik.http.services.hub.loadbalancer.server.port="8080"
+Label=traefik.http.services.hub.loadbalancer.server.port="4443"
 
 [Install]
 WantedBy=multi-user.target
