@@ -28,7 +28,7 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://octane/api/v1/subscription;
+        proxy_pass https://octane/api/v1/subscription;
         proxy_pass_request_body off;
         proxy_set_header Host $host;
         proxy_set_header Content-Length "";

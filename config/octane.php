@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'https' => env('OCTANE_HTTPS', false),
+    'https' => env('OCTANE_HTTPS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +148,11 @@ return [
     */
 
     'swoole' => [
-        'ssl' => false,
+        'ssl' => true,
+        'options' => [
+            'ssl_cert_file' => '/run/secrets/cert.pem',
+            'ssl_key_file' => '/run/secrets/key.pem',
+        ],
     ],
 
     /*
