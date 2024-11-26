@@ -30,10 +30,10 @@ upstream live {
 }
 
 server {
-    listen 4443 ssl http2 reuseport;
-    listen 4443 http3;
-    listen [::]:4443 ssl http2 reuseport;
-    listen [::]:4443 http3;
+    listen 8443 quic reuseport;
+    listen 8443 ssl;
+    listen [::]:8443 quic reuseport;
+    listen [::]:8443 ssl;
 
     server_name ${NGINX_HOST};
     set $base /app;
@@ -57,14 +57,14 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://vod/;
+        proxy_pass https://vod/;
         proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
     # live
     location ^~ /live/ {
-        proxy_pass http://live/;
+        proxy_pass https://live/;
         proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
@@ -111,35 +111,4 @@ server {
 
     # additional config
     include /etc/nginx/config/general.conf;
-}
-
-# websocket
-server {
-    listen 4443 ssl http2 reuseport;
-    listen 4443 http3;
-    listen [::]:4443 ssl http2 reuseport;
-    listen [::]:4443 http3;
-
-    server_name ${NGINX_WS_HOST};
-    root /usr/share/nginx/html;
-
-    # SSL
-    ssl_certificate /run/secrets/cert.pem;
-    ssl_certificate_key /run/secrets/key.pem;
-
-    # security
-    include /etc/nginx/config/security.conf;
-
-    # index
-    index index.html;
-
-    # error
-    error_page 404 /index.html;
-
-    # root
-    location / {
-        proxy_pass http://reverb;
-        proxy_set_header Host $http_host;
-        include /etc/nginx/config/proxy.conf;
-    }
 }

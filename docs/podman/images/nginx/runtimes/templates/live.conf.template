@@ -1,8 +1,8 @@
 server {
-    listen 8082 ssl http2 reuseport;
-    listen 8082 http3;
-    listen [::]:8082 ssl http2 reuseport;
-    listen [::]:8082 http3;
+    listen 8082 quic reuseport;
+    listen 8082 ssl;
+    listen [::]:8082 quic reuseport;
+    listen [::]:8082 ssl;
 
     server_name localhost;
     root /usr/share/nginx/html;
