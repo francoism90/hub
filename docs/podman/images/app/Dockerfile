@@ -1,4 +1,4 @@
-FROM docker.io/php:8.4-fpm-alpine
+FROM docker.io/php:8.3-fpm-alpine
 
 ARG UID=1000
 ARG GID=$UID
@@ -86,11 +86,11 @@ RUN install-php-extensions \
     intl \
     msgpack \
     opcache \
-    openswoole \
     pcntl \
     pcov \
     pdo_pgsql \
     redis \
+    swoole \
     uv \
     zip
 
