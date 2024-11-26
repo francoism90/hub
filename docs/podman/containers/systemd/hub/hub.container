@@ -22,14 +22,14 @@ Group=${GID}
 UserNS=keep-id:uid=${UID},gid=${GID}
 Network=hub.network
 Network=traefik.network
-ExposeHostPort=4443
-ExposeHostPort=4443/udp
+ExposeHostPort=8443
+ExposeHostPort=8443/udp
 Label=traefik.enable=true
 Label=traefik.http.routers.hub.rule="Host(`hub.lan`) || Host(`ws.hub.lan`)"
 Label=traefik.http.routers.hub.entrypoints=websecure
 Label=traefik.http.routers.hub.tls=true
 Label=traefik.http.routers.hub.service="hub"
-Label=traefik.http.services.hub.loadbalancer.server.port="4443"
+Label=traefik.http.services.hub.loadbalancer.server.port="8443"
 
 [Install]
 WantedBy=multi-user.target
