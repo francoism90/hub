@@ -104,7 +104,7 @@ server {
             set $suffix ?$query_string;
         }
 
-        proxy_pass http://octane$suffix;
+        proxy_pass https://octan$suffix;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
