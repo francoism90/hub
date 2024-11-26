@@ -1,23 +1,22 @@
 global:
   sendAnonymousUsage: false
 
+log:
+  level: INFO
+  format: common
+
 api:
   dashboard: true
 
 providers:
   docker:
+    watch: true
     network: traefik
     exposedByDefault: false
   file:
     filename: /etc/traefik/dynamic.yml
 
-log:
-  level: INFO
-  format: common
-
 entryPoints:
-  name:
-    http3: {}
   web:
     address: ":80"
     http:
@@ -25,6 +24,6 @@ entryPoints:
         entryPoint:
           to: websecure
           scheme: https
-          permanent: true
   websecure:
-    address: ":443/udp"
+    address: ":443"
+    http3: {}
