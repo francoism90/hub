@@ -51,7 +51,16 @@ Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~
 
 It is possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificate](https://doc.traefik.io/traefik/https/tls/).
 
-The given configuration assumes you use a generated certifcate by [mkcert](https://github.com/FiloSottile/mkcert), and you run Hub in a homelab.
+The given configuration assumes you use a generated certifcate by [mkcert](https://github.com/FiloSottile/mkcert), and you run Hub in a homelab, e.g.:
+
+```bash
+mkcert -install && mkcert -key-file key.pem -cert-file cert.pem \
+  hub.lan *.hub.lan \
+  traefik.lan *.traefik.lan \
+  192.168.1.100 \
+  localhost \
+  127.0.0.1 ::1
+```
 
 Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
 
