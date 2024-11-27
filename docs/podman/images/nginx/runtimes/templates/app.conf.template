@@ -35,7 +35,7 @@ server {
     listen [::]:8443 quic reuseport;
     listen [::]:8443 ssl;
 
-    server_name ${NGINX_HOST};
+    server_name localhost;
     set $base /app;
     root $base/public;
 
