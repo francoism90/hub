@@ -11,7 +11,7 @@ api:
 providers:
   docker:
     watch: true
-    network: traefik
+    network: systemd-traefik
     exposedByDefault: false
   file:
     filename: /etc/traefik/dynamic.yml
