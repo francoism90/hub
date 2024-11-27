@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
         refresh: [...refreshPaths, "resources/**", "src/**"],
       }),
       VitePWA({
-        outDir: "public/build",
+        outDir: "public",
         base: "public",
         buildBase: "/build/",
         scope: "/",
@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
+          globDirectory: "/app/public",
           globPatterns: ["**/*.{js,css,html,svg,jpg,png,webp,ico,txt,woff,woff2}"],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
