@@ -58,12 +58,14 @@ server {
     # vod
     location ^~ /vod/ {
         proxy_pass https://vod/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
     # live
     location ^~ /live/ {
         proxy_pass https://live/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -102,8 +104,9 @@ server {
             set $suffix ?$query_string;
         }
 
-        proxy_redirect off;
         proxy_pass http://octane$suffix;
+        proxy_redirect off;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
