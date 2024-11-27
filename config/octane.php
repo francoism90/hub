@@ -55,6 +55,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Force TLS
+    |--------------------------------------------------------------------------
+    |
+    | This will force the usage of TLS for the requests when using Swoole.
+    |
+    */
+
+    'swoole' => [
+        'ssl' => env('OCTANE_SSL', true),
+        'options' => [
+            'ssl_cert_file' => env('OCTANE_SSL_CERT', '/run/secrets/cert.pem'),
+            'ssl_key_file' => env('OCTANE_SSL_KEY', '/run/secrets/key.pem'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Octane Listeners
     |--------------------------------------------------------------------------
     |
