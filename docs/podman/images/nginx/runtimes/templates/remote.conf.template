@@ -14,6 +14,9 @@ server {
     # security
     include /etc/nginx/config/security.conf;
 
+    # set Alt-Svc header to negotiate quic
+    add_header Alt-Svc 'h3-29=":1936"; ma=2592000, h3=":1936"; ma=2592000';
+
     # index
     index index.html;
 
