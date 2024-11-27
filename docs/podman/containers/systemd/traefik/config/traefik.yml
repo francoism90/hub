@@ -27,6 +27,8 @@ entryPoints:
         entryPoint:
           to: websecure
           scheme: https
+          permanent: true
   websecure:
     address: ":443"
-    http3: {}
+    http3:
+      advertisedPort: 443
