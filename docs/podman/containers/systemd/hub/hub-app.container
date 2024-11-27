@@ -11,7 +11,7 @@ Restart=always
 [Container]
 Image=localhost/hub-app:latest
 AutoUpdate=local
-# Environment=SUPERVISOR_PHP_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8000 --watch"
+EnvironmentFile=%h/.config/containers/systemd/hub/config/dev.env
 LogDriver=none
 Volume=${APP_PATH}:/app:rw,z,U
 Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U

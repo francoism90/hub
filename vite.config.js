@@ -41,8 +41,6 @@ export default defineConfig(({ mode }) => {
         refresh: [...refreshPaths, "resources/**", "src/**"],
       }),
       VitePWA({
-        outDir: "public/build",
-        base: "public",
         buildBase: "/build/",
         scope: "/",
         registerType: "autoUpdate",
@@ -50,10 +48,11 @@ export default defineConfig(({ mode }) => {
         workbox: {
           cleanupOutdatedCaches: true,
           directoryIndex: null,
+          globDirectory: "/app/public/build",
           globPatterns: ["**/*.{js,css,html,svg,jpg,png,webp,ico,txt,woff,woff2}"],
           maximumFileSizeToCacheInBytes: 4194304,
           navigateFallback: null,
-          navigateFallbackDenylist: [/\/[api,livewire,vod]+\/.*/],
+          navigateFallbackDenylist: [/\/[api,livewire,live,vod]+\/.*/],
         },
         manifest: {
           name: "Hub",

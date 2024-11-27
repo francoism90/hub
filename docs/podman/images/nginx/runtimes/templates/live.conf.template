@@ -1,14 +1,27 @@
 server {
-    listen 8082 reuseport;
-    listen [::]:8082 reuseport;
-    http2 on;
+    listen 8082 quic reuseport;
+    listen 8082 ssl;
+    listen [::]:8082 quic reuseport;
+    listen [::]:8082 ssl;
 
     server_name localhost;
-    set $base /var/www;
-    root $base/html;
+    root /usr/share/nginx/html;
+
+    # SSL
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
+
+    # security
+    include /etc/nginx/config/security.conf;
+
+    # set Alt-Svc header to negotiate quic
+    add_header Alt-Svc 'h3-29=":8082"; ma=2592000, h3=":8082"; ma=2592000';
 
     # index
     index index.html;
+
+    # error
+    error_page 404 /index.html;
 
     # authentication requests
     auth_request /auth;
@@ -20,7 +33,7 @@ server {
         internal;
         proxy_pass http://octane/api/v1/subscription;
         proxy_pass_request_body off;
-        proxy_set_header Host $host;
+        proxy_set_header Host $http_host;
         proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
         include /etc/nginx/config/proxy.conf;
@@ -28,34 +41,39 @@ server {
 
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
-        proxy_pass http://remote;
+        proxy_pass https://remote;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
-        proxy_pass http://remote;
+        proxy_pass https://remote;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH init segment
     location ~ ^.*/init-[^/]+\.mp4$ {
-        proxy_pass http://remote;
+        proxy_pass https://remote;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # DASH manifest
     location ~ ^.*\.mpd$ {
-        proxy_pass http://remote;
+        proxy_pass https://remote;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     # default proxy to origin (no cache)
     location / {
-        proxy_pass http://remote;
+        proxy_pass https://remote;
+        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 

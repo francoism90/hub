@@ -1,15 +1,26 @@
 server {
-    listen 1936 reuseport;
-    listen [::]:1936 reuseport;
-    http2 on;
+    listen 1936 quic reuseport;
+    listen 1936 ssl;
+    listen [::]:1936 quic reuseport;
+    listen [::]:1936 ssl;
 
     server_name localhost;
-    set $base /var/www;
-    root $base/html;
+    root /usr/share/nginx/html;
+
+    # SSL
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
+
+    # security
+    include /etc/nginx/config/security.conf;
+
+    # set Alt-Svc header to negotiate quic
+    add_header Alt-Svc 'h3-29=":1936"; ma=2592000, h3=":1936"; ma=2592000';
 
     # index
     index index.html;
 
+    # error
     error_page 404 /index.html;
 
     # vod settings

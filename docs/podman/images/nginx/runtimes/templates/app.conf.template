@@ -1,4 +1,5 @@
-resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
+resolver ${NGINX_LOCAL_RESOLVERS} valid=60s;
+resolver_timeout 5s;
 
 upstream octane {
     server systemd-hub-app:8000 weight=5 max_fails=3 fail_timeout=30s;
@@ -29,13 +30,18 @@ upstream live {
 }
 
 server {
-    listen 8080;
-    listen [::]:8080;
-    http2 on;
+    listen 8443 quic reuseport;
+    listen 8443 ssl;
+    listen [::]:8443 quic reuseport;
+    listen [::]:8443 ssl;
 
-    server_name ${NGINX_HOST};
+    server_name localhost;
     set $base /app;
     root $base/public;
+
+    # SSL
+    ssl_certificate /run/secrets/cert.pem;
+    ssl_certificate_key /run/secrets/key.pem;
 
     # security
     include /etc/nginx/config/security.conf;
@@ -51,15 +57,15 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://vod/;
-        proxy_set_header Host $http_host;
+        proxy_pass https://vod/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
     # live
     location ^~ /live/ {
-        proxy_pass http://live/;
-        proxy_set_header Host $http_host;
+        proxy_pass https://live/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -99,26 +105,11 @@ server {
         }
 
         proxy_pass http://octane$suffix;
-        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
     }
 
     # additional config
     include /etc/nginx/config/general.conf;
-}
-
-# websocket
-server {
-    listen 8080;
-    listen [::]:8080;
-    http2 on;
-
-    server_name ${NGINX_WS_HOST};
-
-    # root
-    location / {
-        proxy_pass http://reverb;
-        proxy_set_header Host $http_host;
-        include /etc/nginx/config/proxy.conf;
-    }
 }
