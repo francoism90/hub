@@ -1,17 +1,5 @@
 @use('Illuminate\Support\Fluent')
 
-@php
-if (! isset($scrollTo)) {
-    $scrollTo = 'body';
-}
-
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
-@endphp
-
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
         ->child(html()->button()->attributes(['wire:click' => 'populate', 'aria-label' => 'Refresh'])->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-arrow-path', 'size-4 text-white')))

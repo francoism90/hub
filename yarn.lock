@@ -2176,7 +2176,7 @@ electron-to-chromium@^1.5.41:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.65.tgz#e2b9d84d31e187a847e3ccdcfb415ddd4a3d1ea7"
   integrity sha512-PWVzBjghx7/wop6n22vS2MLU8tKGd4Q91aCEGhG/TYmW6PP5OcSXcdnxTe1NNt0T66N8D6jxh4kC8UsdzOGaIw==
 
-eme-encryption-scheme-polyfill@^2.1.5:
+eme-encryption-scheme-polyfill@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/eme-encryption-scheme-polyfill/-/eme-encryption-scheme-polyfill-2.1.6.tgz#7a0df1d3b64f7a5486ea1af2e1483e483a20d547"
   integrity sha512-SmQ8UxDkH/8hrjLo6ASo452hIe4dSJzqKmJyrNsvUciEJNxf4z9hewIwF1k/c7A5uRk4GApavPZ6dgqXqfvegw==
@@ -4229,12 +4229,12 @@ set-function-name@^2.0.2:
     functions-have-names "^1.2.3"
     has-property-descriptors "^1.0.2"
 
-shaka-player@^4.12.2:
-  version "4.12.2"
-  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.12.2.tgz#12f90d568a173ab2e6d74558b10d9cca92682070"
-  integrity sha512-WtOmrYtOSSKr1eZrKzvyE0JMBVKJeEOAnT/pjkYAqAO/lfAyu+YF/Y0GLsXKLu1JFlDSesKS8P78zdXCIkPk/Q==
+shaka-player@^4.12.3:
+  version "4.12.3"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-4.12.3.tgz#f807e75d4ea699ea4e2d476962c13fc56d76bca3"
+  integrity sha512-7lmRM/5YOCXP5SLm2y49D/7t59mM8kSmkqjIrhqi0BQWjEnZCZVvhicz/akJvJAvgNG+WCF1zkLuiKo8YtNdGw==
   dependencies:
-    eme-encryption-scheme-polyfill "^2.1.5"
+    eme-encryption-scheme-polyfill "^2.1.6"
 
 shebang-command@^2.0.0:
   version "2.0.0"
