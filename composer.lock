@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e8b9924e69de294f83b28c79a687bd2",
+    "content-hash": "fe97b4316144d1845f4344fa6226ccaf",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2325,16 +2325,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "f013ecb4f98b5eecf108cf45ffe44050ad3a9e16"
+                "reference": "19726f863ab2dd137c164e1e7108d090813a760f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/f013ecb4f98b5eecf108cf45ffe44050ad3a9e16",
-                "reference": "f013ecb4f98b5eecf108cf45ffe44050ad3a9e16",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/19726f863ab2dd137c164e1e7108d090813a760f",
+                "reference": "19726f863ab2dd137c164e1e7108d090813a760f",
                 "shasum": ""
             },
             "require": {
@@ -2406,7 +2406,7 @@
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.8.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.8.1"
             },
             "funding": [
                 {
@@ -2414,7 +2414,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-27T15:44:31+00:00"
+            "time": "2024-11-28T15:48:42+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -4770,16 +4770,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "3.5.14",
+            "version": "v3.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "97b02765e7daed77bb549f21baa44f3b6d624b91"
+                "reference": "e94a2cd1da95abc2c219190df09f1b34786dd00b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/97b02765e7daed77bb549f21baa44f3b6d624b91",
-                "reference": "97b02765e7daed77bb549f21baa44f3b6d624b91",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/e94a2cd1da95abc2c219190df09f1b34786dd00b",
+                "reference": "e94a2cd1da95abc2c219190df09f1b34786dd00b",
                 "shasum": ""
             },
             "require": {
@@ -4834,7 +4834,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/3.5.14"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.14"
             },
             "funding": [
                 {
@@ -4842,7 +4842,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-27T19:34:18+00:00"
+            "time": "2024-11-28T15:35:31+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
