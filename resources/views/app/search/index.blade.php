@@ -3,7 +3,13 @@
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-6 flex flex-col gap-y-3')->open() }}
     {{ html()->wireForm($form, 'submit')->class('flex flex-col gap-y-3')->children([
         html()->div()->class('form-control')->children([
-            html()->text()->wireModel('form.query')->autofocus()->placeholder('Name')->class('input'),
+            html()
+                ->text()
+                ->wireModel('form.query', 'live.debounce.250ms')
+                ->autofocus()
+                ->placeholder('Name')
+                ->class('input'),
+
             html()->error('form.query'),
         ])
     ]) }}
