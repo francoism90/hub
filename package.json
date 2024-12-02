@@ -28,7 +28,7 @@
         "prettier-plugin-tailwindcss": "^0.6.9",
         "pusher-js": "^8.4.0-rc2",
         "shaka-player": "^4.12.3",
-        "stylelint": "^16.10.0",
+        "stylelint": "^16.11.0",
         "stylelint-config-standard-scss": "^13.1.0",
         "tailwindcss": "^3.4.15",
         "vite": "^5.4.11",
