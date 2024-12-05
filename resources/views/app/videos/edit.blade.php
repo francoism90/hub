@@ -29,7 +29,7 @@
         ])
         ->children([
             html()->element('dt')->text('View')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->link('videos.view', $video)->text('View')),
+            html()->element('dd')->child(html()->a()->link('videos.view', $video, modifiers: 'exact')->text('View')),
         ]),
 
     html()->wireForm($form, 'submit')->class('flex flex-col gap-y-6')->children([
