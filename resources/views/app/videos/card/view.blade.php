@@ -38,7 +38,7 @@
             html()
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
-                ->class('absolute inset-0 z-0 size-full rounded object-fill brightness-80')
+                ->class('absolute inset-0 z-0 size-full rounded object-fill brightness-85')
                 ->loading('lazy')
                 ->crossorigin('use-credentials'),
 
