@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d71d34ff686d425c11398de76c4d9c6",
+    "content-hash": "dc18739fb3c5eefef0024d80c0eee42a",
     "packages": [
         {
             "name": "amphp/amp",
@@ -7880,16 +7880,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "11.10.1",
+            "version": "11.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "33c8406b9274af743f78057ae72065ef40a72073"
+                "reference": "fe3f17e8e5be30b056bd9fcc610e975d8199e154"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/33c8406b9274af743f78057ae72065ef40a72073",
-                "reference": "33c8406b9274af743f78057ae72065ef40a72073",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/fe3f17e8e5be30b056bd9fcc610e975d8199e154",
+                "reference": "fe3f17e8e5be30b056bd9fcc610e975d8199e154",
                 "shasum": ""
             },
             "require": {
@@ -7973,7 +7973,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.10.1"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.11.0"
             },
             "funding": [
                 {
@@ -7985,7 +7985,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-21T15:57:39+00:00"
+            "time": "2024-12-09T16:19:56+00:00"
         },
         {
             "name": "spatie/laravel-model-states",
@@ -8064,16 +8064,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.16.6",
+            "version": "1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "1f26942dc1e5c49eacfced34fdbc29ed234bd7b3"
+                "reference": "9ab30fd24f677e5aa370ea4cf6b41c517d16cf85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/1f26942dc1e5c49eacfced34fdbc29ed234bd7b3",
-                "reference": "1f26942dc1e5c49eacfced34fdbc29ed234bd7b3",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/9ab30fd24f677e5aa370ea4cf6b41c517d16cf85",
+                "reference": "9ab30fd24f677e5aa370ea4cf6b41c517d16cf85",
                 "shasum": ""
             },
             "require": {
@@ -8082,10 +8082,10 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.5",
-                "orchestra/testbench": "^7.7|^8.0",
-                "pestphp/pest": "^1.22",
-                "phpunit/phpunit": "^9.5.24",
-                "spatie/pest-plugin-test-time": "^1.1"
+                "orchestra/testbench": "^7.7|^8.0|^9.0",
+                "pestphp/pest": "^1.22|^2",
+                "phpunit/phpunit": "^9.5.24|^10.5",
+                "spatie/pest-plugin-test-time": "^1.1|^2.2"
             },
             "type": "library",
             "autoload": {
@@ -8112,7 +8112,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.16.6"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.17.0"
             },
             "funding": [
                 {
@@ -8120,7 +8120,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-18T15:02:02+00:00"
+            "time": "2024-12-09T16:29:14+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -8274,16 +8274,16 @@
         },
         {
             "name": "spatie/laravel-responsecache",
-            "version": "7.6.1",
+            "version": "7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-responsecache.git",
-                "reference": "008a12bb69478075f64e1cf4d9a09c7c1a28e959"
+                "reference": "2604409809f575511a4cc9333482a52a9e912358"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/008a12bb69478075f64e1cf4d9a09c7c1a28e959",
-                "reference": "008a12bb69478075f64e1cf4d9a09c7c1a28e959",
+                "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/2604409809f575511a4cc9333482a52a9e912358",
+                "reference": "2604409809f575511a4cc9333482a52a9e912358",
                 "shasum": ""
             },
             "require": {
@@ -8305,12 +8305,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Spatie\\ResponseCache\\ResponseCacheServiceProvider"
-                    ],
                     "aliases": {
                         "ResponseCache": "Spatie\\ResponseCache\\Facades\\ResponseCache"
-                    }
+                    },
+                    "providers": [
+                        "Spatie\\ResponseCache\\ResponseCacheServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -8341,7 +8341,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-responsecache/tree/7.6.1"
+                "source": "https://github.com/spatie/laravel-responsecache/tree/7.6.2"
             },
             "funding": [
                 {
@@ -8353,7 +8353,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-18T11:37:25+00:00"
+            "time": "2024-12-09T15:33:20+00:00"
         },
         {
             "name": "spatie/laravel-sluggable",
@@ -8416,16 +8416,16 @@
         },
         {
             "name": "spatie/laravel-tags",
-            "version": "4.7.1",
+            "version": "4.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-tags.git",
-                "reference": "65c07d04da77f4fb6c13dfc2b604d1bf7cf86228"
+                "reference": "e80170512a8697776b72112736f388e8a9475847"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/65c07d04da77f4fb6c13dfc2b604d1bf7cf86228",
-                "reference": "65c07d04da77f4fb6c13dfc2b604d1bf7cf86228",
+                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/e80170512a8697776b72112736f388e8a9475847",
+                "reference": "e80170512a8697776b72112736f388e8a9475847",
                 "shasum": ""
             },
             "require": {
@@ -8474,7 +8474,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-tags/issues",
-                "source": "https://github.com/spatie/laravel-tags/tree/4.7.1"
+                "source": "https://github.com/spatie/laravel-tags/tree/4.7.2"
             },
             "funding": [
                 {
@@ -8482,20 +8482,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-09T13:04:40+00:00"
+            "time": "2024-12-09T15:26:07+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.8.0",
+            "version": "6.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "0ef7e8e9d65bb834b7c68f22ec362a6179f50381"
+                "reference": "e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/0ef7e8e9d65bb834b7c68f22ec362a6179f50381",
-                "reference": "0ef7e8e9d65bb834b7c68f22ec362a6179f50381",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2",
+                "reference": "e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2",
                 "shasum": ""
             },
             "require": {
@@ -8505,6 +8505,7 @@
                 "spatie/laravel-package-tools": "^1.11"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.64",
                 "mockery/mockery": "^1.4",
                 "orchestra/testbench": "^7.0|^8.0|^9.0",
                 "pestphp/pest": "^1.20|^2.0"
@@ -8556,7 +8557,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-translatable/issues",
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.8.0"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.9.0"
             },
             "funding": [
                 {
@@ -8564,7 +8565,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-24T14:26:27+00:00"
+            "time": "2024-12-09T16:27:44+00:00"
         },
         {
             "name": "spatie/php-structure-discoverer",
@@ -11581,13 +11582,13 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
