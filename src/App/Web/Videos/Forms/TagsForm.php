@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Forms;
 
-use Domain\Tags\Actions\GetPopularTags;
+use Domain\Tags\Algos\GetPopularTags;
 use Domain\Tags\Models\Tag;
 use Foxws\WireUse\Forms\Support\Form;
 use Illuminate\Support\Collection;
@@ -20,7 +20,7 @@ class TagsForm extends Form
         $this->authorize('viewAny', Tag::class);
 
         if (! $query = $this->query()) {
-            return $this->popular();
+            return $this->popular()->take(16);
         }
 
         return Tag::search($query)
@@ -38,8 +38,13 @@ class TagsForm extends Form
 
     protected function popular(): Collection
     {
-        $items = app()->make(GetPopularTags::class)->execute();
+        $algo = GetPopularTags::make()->run();
 
-        return $items->take(16);
+        $keys = $algo->meta['items']->pluck('id');
+
+        return Tag::query()
+            ->whereIn('id', $keys)
+            ->get()
+            ->sortBy(fn (Tag $tag) => array_search($tag->getKey(), $keys->toArray()));
     }
 }

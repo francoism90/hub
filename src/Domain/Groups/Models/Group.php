@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Groups\Models;
 
 use Domain\Groups\Collections\GroupCollection;
-use Domain\Groups\DataObjects\GroupData;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
@@ -156,7 +155,7 @@ class Group extends Model implements HasMedia, Sortable
             'content' => (string) $this->content,
             'kind' => (string) $this->kind?->value,
             'type' => (string) $this->type?->value,
-            'options' => (string) $this->options?->toJson(),
+            'options' => (array) $this->options,
             'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),

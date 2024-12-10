@@ -53,7 +53,7 @@ class FilterVideos
     {
         return $query
             ->orWhereDoesntHave('tags')
-            ->orderBy('videos.created_at', 'desc');
+            ->orderByDesc('videos.created_at');
     }
 
     protected function tagged(Builder $query): Builder
