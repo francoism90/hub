@@ -17,6 +17,6 @@ abstract class GroupState extends State
     {
         return parent::config()
             ->default(Pending::class)
-            ->allowTransition(Pending::class, Verified::class);
+            ->allowAllTransitions();
     }
 }

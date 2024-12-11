@@ -19,7 +19,6 @@ abstract class VideoState extends State
     {
         return parent::config()
             ->default(Pending::class)
-            ->allowTransition(Pending::class, Verified::class)
-            ->allowTransition(Pending::class, Failed::class);
+            ->allowAllTransitions();
     }
 }

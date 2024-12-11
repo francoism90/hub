@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "098ae096967ebd801e3cd4cee1f5a227",
+    "content-hash": "778ccf3fb3f02555c94098a397feeb73",
     "packages": [
         {
             "name": "amphp/amp",
@@ -993,16 +993,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.334.2",
+            "version": "3.334.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "b19afc076bb1cc2617bdef76efd41587596109e7"
+                "reference": "6576a9fcfc6ae7c76aed3c6fa4c3864060f72d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b19afc076bb1cc2617bdef76efd41587596109e7",
-                "reference": "b19afc076bb1cc2617bdef76efd41587596109e7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6576a9fcfc6ae7c76aed3c6fa4c3864060f72d04",
+                "reference": "6576a9fcfc6ae7c76aed3c6fa4c3864060f72d04",
                 "shasum": ""
             },
             "require": {
@@ -1085,9 +1085,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.334.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.334.3"
             },
-            "time": "2024-12-09T19:30:23+00:00"
+            "time": "2024-12-10T19:41:55+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -7582,16 +7582,16 @@
         },
         {
             "name": "spatie/laravel-collection-macros",
-            "version": "7.14.1",
+            "version": "7.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-collection-macros.git",
-                "reference": "17dca9472ed115e270190ce2a21874673a99280c"
+                "reference": "4eb51aa510642e90ca3e8244a19bd578685851a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/17dca9472ed115e270190ce2a21874673a99280c",
-                "reference": "17dca9472ed115e270190ce2a21874673a99280c",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/4eb51aa510642e90ca3e8244a19bd578685851a1",
+                "reference": "4eb51aa510642e90ca3e8244a19bd578685851a1",
                 "shasum": ""
             },
             "require": {
@@ -7649,7 +7649,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.14.1"
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/7.14.2"
             },
             "funding": [
                 {
@@ -7657,7 +7657,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-02T13:39:03+00:00"
+            "time": "2024-12-11T09:10:16+00:00"
         },
         {
             "name": "spatie/laravel-flash",
@@ -7991,16 +7991,16 @@
         },
         {
             "name": "spatie/laravel-model-states",
-            "version": "2.7.2",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-model-states.git",
-                "reference": "187a4708f977bb3f94e0a559c71901a32bfc8d87"
+                "reference": "2ca065ef483db25b7aeb916cb8597cb1315e8d30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/187a4708f977bb3f94e0a559c71901a32bfc8d87",
-                "reference": "187a4708f977bb3f94e0a559c71901a32bfc8d87",
+                "url": "https://api.github.com/repos/spatie/laravel-model-states/zipball/2ca065ef483db25b7aeb916cb8597cb1315e8d30",
+                "reference": "2ca065ef483db25b7aeb916cb8597cb1315e8d30",
                 "shasum": ""
             },
             "require": {
@@ -8010,7 +8010,8 @@
                 "illuminate/database": "^8.73 | ^9.0 | ^10.0 | ^11.0",
                 "illuminate/support": "^8.73 | ^9.0 | ^10.0 | ^11.0",
                 "php": "^7.4|^8.0",
-                "spatie/laravel-package-tools": "^1.9"
+                "spatie/laravel-package-tools": "^1.9",
+                "spatie/php-structure-discoverer": "^2.2"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.23 | ^7.0 | ^8.0 | ^9.0",
@@ -8050,7 +8051,7 @@
                 "state"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-model-states/tree/2.7.2"
+                "source": "https://github.com/spatie/laravel-model-states/tree/2.8.0"
             },
             "funding": [
                 {
@@ -8062,7 +8063,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-27T07:54:08+00:00"
+            "time": "2024-12-11T09:58:12+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -8488,16 +8489,16 @@
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.9.0",
+            "version": "6.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2"
+                "reference": "a7c6aa171bd252dfef7729788a050a7346f83a5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2",
-                "reference": "e9cd8ee246d52b778f0b74059fd1d88e7c1c9ca2",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/a7c6aa171bd252dfef7729788a050a7346f83a5e",
+                "reference": "a7c6aa171bd252dfef7729788a050a7346f83a5e",
                 "shasum": ""
             },
             "require": {
@@ -8559,7 +8560,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-translatable/issues",
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.9.0"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.9.2"
             },
             "funding": [
                 {
@@ -8567,7 +8568,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-09T16:27:44+00:00"
+            "time": "2024-12-11T09:51:14+00:00"
         },
         {
             "name": "spatie/php-structure-discoverer",
