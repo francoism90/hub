@@ -6,17 +6,6 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 > **NOTE:** This is a personal project, and is still in development. Use at your own risk!
 
-## Demo
-
-A basic demo is available at <https://hub.foxws.nl/>.
-
-Use the following login credentials (managing videos has been disabled):
-
-- Email: `demo@example.com`
-- Password: `password`
-
-Please note it's a low-tier VPS, expect slowness. :)
-
 ## Details
 
 Hub uses the following stack:
@@ -33,7 +22,7 @@ This is the preferred stack, please submit a PR if you would like to support oth
 ## Prerequisites
 
 - Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested.
-- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags.
+- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags (ro, rw, U, Z, etc.).
 
 ## Installation
 
@@ -51,7 +40,7 @@ Configure Hub with your favorite editor:
 ```bash
 cd ~/projects/hub
 cp .env.example .env
-vi .env
+nano .env
 ```
 
 To access Hub locally, make sure to create the following `/etc/hosts` entries:
@@ -65,38 +54,34 @@ To access Hub locally, make sure to create the following `/etc/hosts` entries:
 
 ### Podman Quadlet
 
-Please read the [following guide](docs/podman/README.md) for usage with Podman Quadlet.
+Please read [following guide](docs/podman/README.md) to configure Podman Quadlet.
 
 ### MinIO
 
-Please read the [following guide](docs/minio/README.md) for usage with MinIO.
+Please read [following guide](docs/minio/README.md) to configure MinIO.
 
-### First run
+## Usage
 
-Make sure Hub is up-and-running:
+The Hub instance should be available at <https://hub.lan>, after running:
 
 ```bash
-systemctl --user restart hub
+systemctl --user start caddy hub
 systemctl --user status hub
 ```
 
-Enter the `systemd-hub-app` container (`hub shell`), and execute the followings commands:
+Enter the `systemd-hub-app` container, and execute the followings commands:
 
 ```bash
-$ podman exec -it systemd-hub-app sh
+$ podman exec -it systemd-hub-app sh # or hub shell
 composer install
 php artisan key:generate
 php artisan storage:link
 yarn install && yarn run build
 php artisan app:install
-php artisan user:create
+php artisan db:seed --class=UserSeeder:class
 ```
 
-## Usage
-
-The Hub instance should be available at <https://hub.lan>.
-
-The following services are only accessible when being a super-admin:
+The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
 
 - <https://hub.lan/horizon> - Laravel Horizon
 - <https://hub.lan/pulse> - Laravel Pulse
@@ -106,15 +91,10 @@ The following services are only accessible when being a super-admin:
 
 > **TIP:** Run `hub a` and `hub help` for all available commands.
 
-Make sure to set correct permissions:
-
-```bash
-chcon -Rt container_file_t ~/projects/hub/storage/app/import/*
-```
-
 To import videos:
 
 ```bash
+chcon -Rt container_file_t ~/projects/hub/storage/app/import/* # if running SELinux
 hub a videos:import
 ```
 
@@ -132,13 +112,13 @@ hub a user:create
 
 To force the removal of soft-deleted videos:
 
-> **WARNING:** Only run this command when you don't want to restore any deleted videos!
+> **WARNING:** This will remove any soft-deleted videos!
 
 ```bash
 hub a videos:clean
 ```
 
-To force indexing of models:
+To force (re-)indexing of models:
 
 ```bash
 hub a scout:sync

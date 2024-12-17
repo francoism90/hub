@@ -8,7 +8,7 @@ To learn more about MinIO, consider reading the following resources:
 ## Prerequisites
 
 - Hub up-and-running
-- MinIO Client `mcli` (included in app container)
+- MinIO Client `mcli` (included in the `hub-app` container)
 
 ## Usage
 
@@ -22,14 +22,14 @@ To learn more about MinIO, consider reading the following resources:
 hub shell
 ```
 
-4. Setup connection:
+4. Setup connection using the generated access keys:
 
 ```bash
-mcli alias set myminio http://systemd-hub-minio:9000 GENERATED_ACCESS_KEY
+mcli alias set myminio http://systemd-hub-minio:9000
 mcli admin info myminio
 ```
 
-5. Create buckets:
+5. Create required buckets:
 
 ```bash
 mcli mb myminio/assets
