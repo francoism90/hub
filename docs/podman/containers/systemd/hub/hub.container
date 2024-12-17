@@ -24,7 +24,6 @@ ExposeHostPort=8080
 ExposeHostPort=8443
 ExposeHostPort=8443/udp
 ExposeHostPort=2019
-PublishPort=5173:5173
 
 [Install]
 WantedBy=multi-user.target

@@ -19,6 +19,7 @@ Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
 User=${UID}
 Group=${UID}
 UserNS=keep-id:uid=${UID},gid=${GID}
+Network=caddy.network
 Network=hub.network
 ExposeHostPort=6001
 ExposeHostPort=8000
