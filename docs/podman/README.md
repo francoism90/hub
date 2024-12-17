@@ -11,12 +11,20 @@ To learn more about Podman Quadlet, consider reading the following resources:
 - Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch).
 - [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) and SELinux support.
 
-It's recommend running a rootless setup:
+This guide assumes you have a rootless setup:
 
 - <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
 - <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
 
 ## Installation
+
+### Enable podman socket
+
+Make sure the podman socket is enabled:
+
+```bash
+systemctl enable --user podman.socket --now
+```
 
 ### Build containers
 
@@ -27,7 +35,7 @@ cd ~/projects/hub
 ./docs/podman/make
 ```
 
-To rebuild with no-cache (or any other args):
+To rebuild or update the current images:
 
 ```bash
 cd ~/projects/hub
@@ -45,63 +53,40 @@ cp -r docs/podman/containers/systemd ~/.config/containers/
 
 Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/projects/hub/.env` to reflect any systemd unit changes.
 
-### Configure Proxy
-
-[Traefik](https://doc.traefik.io/traefik/) is used as proxy. However you are free to use something else, or not even proxy at all.
-
-It is possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificate](https://doc.traefik.io/traefik/https/tls/).
-
-The given configuration assumes you use a generated certifcate by [mkcert](https://github.com/FiloSottile/mkcert), and you run Hub in a homelab, e.g.:
-
-```bash
-mkcert -install && mkcert -key-file key.pem -cert-file cert.pem \
-  hub.lan *.hub.lan \
-  traefik.lan *.traefik.lan \
-  192.168.1.100 \
-  localhost \
-  127.0.0.1 ::1
-```
-
-Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
-
-```bash
-systemctl --user enable podman.socket --now`
-```
-
-To import a custom certificate, prefer the usage of [secrets](https://www.redhat.com/sysadmin/new-podman-secrets-command):
-
-```bash
-podman secret create tlscert ~/.config/containers/systemd/traefik/certs/cert.pem
-podman secret create tlskey ~/.config/containers/systemd/traefik/certs/key.pem
-```
-
-To passport protect the Traefik dashboard, generate an [user:password pair](https://doc.traefik.io/traefik/middlewares/http/basicauth/#usersfile):
-
-```bash
-echo -n $(htpasswd -nB user) > ./usersfile
-podman secret create usersfile ./usersfile
-```
-
-Finally restart Traefik:
-
-```bash
-systemctl --user restart traefik.service
-```
-
-You will now able to access <https://traefik.host.lan/> with the generated `user:password`, and the Hub-instance on <https://host.lan/>.
-
-## Usage
-
-Make sure to reload systemd on configuration changes:
+Make sure to always reload the systemd container on changes:
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user restart hub
 ```
+
+### Proxy
+
+[Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else (like Traefik or nginx).
+
+In this guide it uses Caddy's `tls internal` to provide a self-signed certificate.
+
+Start the proxy server:
+
+```bash
+systemctl --user start caddy
+```
+
+To export generated CA of the Caddy proxy:
+
+```bash
+podman cp systemd-caddy:/data/caddy/pki/authorities/local/root.crt ~/Documents`
+```
+
+You can import this CA to your devices and browser(s), and make it look trusted.
+
+## Usage
+
+> Follow the main README.md for installing Hub when running it first time.
 
 To start Hub:
 
 ```bash
+systemctl --user start caddy # or your proxy solution
 systemctl --user start hub
 ```
 
@@ -126,5 +111,13 @@ This allows to interact with the `systemd-hub-app` container using the same synt
 ```fish
 hub help
 hub shell
+hub a app:update
+hub a app:optimize
 hub a videos:import
+```
+
+To interact with the container without the `hub` utility:
+
+```bash
+podman exec -it systemd-hub-app php artisan app:optimize
 ```
