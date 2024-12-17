@@ -4,7 +4,7 @@ ARG UID=1000
 ARG GID=$UID
 
 ENV TZ=UTC
-ENV SUPERVISOR_PHP_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8000"
+ENV SUPERVISOR_PHP_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=localhost --port=8000"
 ENV SUPERVISOR_PHP_USER="www-data"
 
 RUN apk update --no-cache \
