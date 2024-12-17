@@ -74,7 +74,7 @@ systemctl --user start caddy
 To export generated CA of the Caddy proxy:
 
 ```bash
-podman cp systemd-caddy:/data/caddy/pki/authorities/local/root.crt ~/Documents
+podman cp systemd-caddy:/data/caddy/pki/authorities/local/root.crt ~/Documents/caddy.crt
 ```
 
 You can import this CA to your devices and browser(s), and make it look trusted.
