@@ -1,0 +1,15 @@
+hub.lan {
+    import tls
+    reverse_proxy http://systemd-hub:8080
+}
+
+s3.hub.lan {
+    import tls
+    import cors hub.lan
+    reverse_proxy http://systemd-hub-minio:9000
+}
+
+ws.hub.lan {
+    import tls
+    reverse_proxy systemd-hub-app:6001
+}
