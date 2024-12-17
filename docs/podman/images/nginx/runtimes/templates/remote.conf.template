@@ -1,21 +1,12 @@
 server {
-    listen 1936 quic reuseport;
-    listen 1936 ssl;
-    listen [::]:1936 quic reuseport;
-    listen [::]:1936 ssl;
+    listen 1936 reuseport;
+    listen [::]:1936 reuseport;
 
     server_name localhost;
     root /usr/share/nginx/html;
 
-    # SSL
-    ssl_certificate /run/secrets/cert.pem;
-    ssl_certificate_key /run/secrets/key.pem;
-
     # security
     include /etc/nginx/config/security.conf;
-
-    # set Alt-Svc header to negotiate quic
-    add_header Alt-Svc 'h3-29=":1936"; ma=2592000, h3=":1936"; ma=2592000';
 
     # index
     index index.html;

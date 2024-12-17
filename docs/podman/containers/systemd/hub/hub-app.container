@@ -1,7 +1,7 @@
 [Unit]
 Description=App container
-Requires=traefik.service hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
-After=traefik.service hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
@@ -16,8 +16,6 @@ LogDriver=none
 Volume=${APP_PATH}:/app:rw,z,U
 Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U
 Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
-Secret=tlscert,target=/run/secrets/cert.pem,uid=${UID},gid=${GID}
-Secret=tlskey,target=/run/secrets/key.pem,uid=${UID},gid=${GID}
 User=${UID}
 Group=${UID}
 UserNS=keep-id:uid=${UID},gid=${GID}

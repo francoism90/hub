@@ -1,7 +1,7 @@
 [Unit]
 Description=Nginx container
-Requires=traefik.service hub-app.service
-After=traefik.service hub-app.service
+Requires=hub-app.service
+After=hub-app.service
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
@@ -15,30 +15,16 @@ EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
 Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
-Secret=tlscert,target=/run/secrets/cert.pem,uid=${UID},gid=${GID}
-Secret=tlskey,target=/run/secrets/key.pem,uid=${UID},gid=${GID}
 User=${UID}
 Group=${GID}
 UserNS=keep-id:uid=${UID},gid=${GID}
+Network=caddy.network
 Network=hub.network
-Network=traefik.network
-ExposeHostPort=4443
-ExposeHostPort=4443/udp
+ExposeHostPort=8080
 ExposeHostPort=8443
 ExposeHostPort=8443/udp
-Label=traefik.enable=true
-Label=traefik.http.routers.hub.rule=Host(`hub.lan`)
-Label=traefik.http.routers.hub.entrypoints=websecure
-Label=traefik.http.routers.hub.tls=true
-Label=traefik.http.routers.hub.service=hub
-Label=traefik.http.services.hub.loadbalancer.server.port=8443
-Label=traefik.http.services.hub.loadbalancer.server.scheme=https
-Label=traefik.http.routers.hub-ws.rule=Host(`ws.hub.lan`)
-Label=traefik.http.routers.hub-ws.entrypoints=websecure
-Label=traefik.http.routers.hub-ws.tls=true
-Label=traefik.http.routers.hub-ws.service=hub-ws
-Label=traefik.http.services.hub-ws.loadbalancer.server.port=4443
-Label=traefik.http.services.hub-ws.loadbalancer.server.scheme=https
+ExposeHostPort=2019
+PublishPort=5173:5173
 
 [Install]
 WantedBy=multi-user.target
