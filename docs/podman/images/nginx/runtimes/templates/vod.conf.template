@@ -1,5 +1,5 @@
 server {
-    llisten 8081 reuseport;
+    listen 8081 reuseport;
     listen [::]:8081 reuseport;
 
     server_name localhost;
