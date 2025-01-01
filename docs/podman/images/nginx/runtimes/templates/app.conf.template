@@ -29,7 +29,7 @@ server {
     listen 8080 reuseport;
     listen [::]:8080 reuseport;
 
-    server_name localhost;
+    server_name hub.core.lan;
     set $base /app;
     root $base/public;
 
