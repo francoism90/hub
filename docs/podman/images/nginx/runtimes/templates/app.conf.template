@@ -26,10 +26,10 @@ upstream live {
 }
 
 server {
-    listen 8080 reuseport;
-    listen [::]:8080 reuseport;
+    listen 8085 reuseport;
+    listen [::]:8085 reuseport;
 
-    server_name hub.core.lan;
+    server_name localhost;
     set $base /app;
     root $base/public;
 
