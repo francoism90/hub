@@ -1,10 +1,6 @@
 [Unit]
 Description=Redis container
 
-[Service]
-TimeoutStartSec=300
-Restart=always
-
 [Container]
 Image=docker.io/valkey/valkey:latest
 AutoUpdate=registry
@@ -13,6 +9,10 @@ Volume=hub-redis:/data:rw,Z,U
 LogDriver=none
 Network=hub.network
 ExposeHostPort=6379
+
+[Service]
+TimeoutStartSec=300
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
