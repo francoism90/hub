@@ -1,9 +1,6 @@
 [Unit]
 Description=Mailpit container
 
-[Service]
-Restart=always
-
 [Container]
 Image=docker.io/axllent/mailpit:latest
 AutoUpdate=registry
@@ -16,6 +13,9 @@ Volume=hub-mailpit:/data:rw,Z,U
 Network=hub.network
 ExposeHostPort=1025
 PublishPort=8025:8025
+
+[Service]
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
