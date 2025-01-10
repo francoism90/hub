@@ -18,14 +18,6 @@ This guide assumes you have a rootless setup:
 
 ## Installation
 
-### Enable podman socket
-
-Make sure the podman socket is enabled:
-
-```bash
-systemctl enable --user podman.socket --now
-```
-
 ### Build containers
 
 Build the Docker images (this may take some time):
