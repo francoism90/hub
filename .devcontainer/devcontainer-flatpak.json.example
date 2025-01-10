@@ -1,5 +1,6 @@
 {
     "name": "hub-devcontainer",
+    "remoteUser": "vscode",
     "containerUser": "vscode",
     "containerEnv": {
         "HOME": "/home/vscode"
@@ -7,6 +8,8 @@
     "runArgs": [
         "-it",
         "--userns=keep-id",
+        "--security-opt=label=disable",
+        "--security-opt=seccomp=unconfined",
         "--network=systemd-hub"
     ],
     "build": {
