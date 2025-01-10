@@ -1,11 +1,3 @@
 {
-    "recommendations": [
-        "amiralizadeh9480.laravel-extra-intellisense",
-        "bmewburn.vscode-intelephense-client",
-        "bradlc.vscode-tailwindcss",
-        "dbaeumer.vscode-eslint",
-        "devsense.composer-php-vscode",
-        "esbenp.prettier-vscode",
-        "onecentlin.laravel-blade"
-    ]
+    "recommendations": ["ms-azuretools.vscode-docker", "ms-vscode-remote.remote-containers"]
 }

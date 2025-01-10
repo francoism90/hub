@@ -1,20 +1,20 @@
 {
-    "LaravelExtraIntellisense.basePathForCode": "/app",
-    "LaravelExtraIntellisense.modelsPaths": ["app", "src"],
-    "LaravelExtraIntellisense.phpCommand": "/app/tools/podman/bin/podman-remote exec -it systemd-hub-app php -r \"{code}\"",
-    "intelephense.format.enable": false,
-    "search.exclude": {
-        "**/data": true,
-        "**/storage/app": true
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "always"
     },
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.experimental.classRegex": [
-        ["class\\(.*?\\)(?!\\])", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-        ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-        ["@?class\\(([^)]*)\\)", "['|\"]([^'\"]*)['|\"]"],
-        ["data-.*-class=['\"]([^'\"]*)"],
-        "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
+        "(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]",
         ":\\s*?[\"'`]([^\"'`]*).*?,",
-        "(?:enter|leave)(?:from|to)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)"
+        "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
+        "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]",
+        "\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?",
+        "classList:\\s*{([\\s\\S]*?)}",
+        "(?:enter|leave)(?:From|To)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)",
+        ["@?class\\(([^)]*)\\)", "['|\"]([^'\"]*)['|\"]"],
+        ["classList.(?:add|remove|toggle)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+        ["classList={{([^;]*)}}", "\\s*?[\"'`]([^\"'`]*).*?:"],
+        ["Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]"]
     ]
 }
