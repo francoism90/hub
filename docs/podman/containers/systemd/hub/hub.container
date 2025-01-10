@@ -3,11 +3,6 @@ Description=Nginx container
 Requires=hub-app.service
 After=hub-app.service
 
-[Service]
-EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
-TimeoutStartSec=900
-Restart=always
-
 [Container]
 Image=localhost/hub-nginx:latest
 AutoUpdate=local
@@ -21,9 +16,15 @@ UserNS=keep-id:uid=${UID},gid=${GID}
 Network=caddy.network
 Network=hub.network
 ExposeHostPort=8080
+ExposeHostPort=8085
 ExposeHostPort=8443
 ExposeHostPort=8443/udp
 ExposeHostPort=2019
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
+TimeoutStartSec=900
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
