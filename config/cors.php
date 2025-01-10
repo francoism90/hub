@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:*', 'http://[::1]:*', 'https://hub.lan', 'https://hub.lan:5173'],
+    'allowed_origins' => ['http://localhost:*', 'http://[::1]:*', 'https://hub.dev.lan', 'https://hub.dev.lan:5173'],
 
     'allowed_origins_patterns' => [],
 

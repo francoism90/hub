@@ -43,14 +43,14 @@ cp .env.example .env
 nano .env
 ```
 
-To access Hub locally, make sure to create the following `/etc/hosts` entries:
+To access Hub locally (in this case `dev.lan`  is the development machine), make sure to create the following `/etc/hosts` entries:
 
 ```md
-127.0.0.1 hub.lan ws.hub.lan s3.hub.lan mc.hub.lan
-::1 hub.lan ws.hub.lan s3.hub.lan mc.hub.lan
+127.0.0.1 hub.dev.lan hub-ws.dev.lan hub-s3.dev.lan hub-mc.dev.lan
+::1 hub.dev.lan hub-ws.dev.lan hub-s3.dev.lan hub-mc.dev.lan
 ```
 
-> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.lan` & `*.hub.lan` to your homelab server.
+> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.dev.lan` & `*.hub.dev.lan` to your homelab server.
 
 ### Podman Quadlet
 
@@ -62,7 +62,7 @@ Please read [following guide](docs/minio/README.md) to configure MinIO.
 
 ## Usage
 
-The Hub instance should be available at <https://hub.lan>, after running:
+The Hub instance should be available at <https://hub.dev.lan>, after running:
 
 ```bash
 systemctl --user start caddy hub
@@ -83,9 +83,9 @@ php artisan db:seed --class=UserSeeder:class
 
 The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
 
-- <https://hub.lan/horizon> - Laravel Horizon
-- <https://hub.lan/pulse> - Laravel Pulse
-- <https://hub.lan/telescope> - Laravel Telescope (disabled by default)
+- <https://hub.dev.lan/horizon> - Laravel Horizon
+- <https://hub.dev.lan/pulse> - Laravel Pulse
+- <https://hub.dev.lan/telescope> - Laravel Telescope (disabled by default)
 
 ### Manage application
 

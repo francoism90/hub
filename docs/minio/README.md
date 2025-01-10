@@ -12,7 +12,7 @@ To learn more about MinIO, consider reading the following resources:
 
 ## Usage
 
-1. Create an access key (<https://mc.hub.lan/access-keys>).
+1. Create an access key (<https://hub-mc.dev.lan/access-keys>).
 
 2. Update `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment keys.
 
