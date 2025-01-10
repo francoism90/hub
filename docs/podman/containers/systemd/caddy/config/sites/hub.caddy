@@ -1,15 +1,24 @@
-hub.lan {
+hub.dev.lan {
     import tls
-    reverse_proxy http://systemd-hub:8080
+    reverse_proxy systemd-hub:8080
 }
 
-s3.hub.lan {
-    import tls
-    import cors hub.lan
-    reverse_proxy http://systemd-hub-minio:9000
+hub-ws.dev.lan {
+	import tls
+	reverse_proxy systemd-hub-app:6001
 }
 
-ws.hub.lan {
+hub-vite.dev.lan {
+	import tls
+	reverse_proxy systemd-hub:5173
+}
+
+hub-s3.dev.lan {
     import tls
-    reverse_proxy systemd-hub-app:6001
+    reverse_proxy systemd-hub-minio:9000
+}
+
+hub-mc.dev.lan {
+    import tls
+    reverse_proxy systemd-hub-minio:8900
 }
