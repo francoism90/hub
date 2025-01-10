@@ -1,6 +1,6 @@
 hub.dev.lan {
     import tls
-    reverse_proxy systemd-hub:8080
+    reverse_proxy systemd-hub:8085
 }
 
 hub-ws.dev.lan {
