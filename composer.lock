@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a75714c888ea3361da452fe5512eb88e",
+    "content-hash": "b80396269dc5bc9baa6c7efbe2719409",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2189,16 +2189,16 @@
         },
         {
             "name": "foxws/laravel-modelcache",
-            "version": "0.0.4",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/laravel-modelcache.git",
-                "reference": "7ec4d060c32958577a34aad922476ab12d92d086"
+                "reference": "130a53bf9a6ae9299cfc80f7fb264b3e03ab3c65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/laravel-modelcache/zipball/7ec4d060c32958577a34aad922476ab12d92d086",
-                "reference": "7ec4d060c32958577a34aad922476ab12d92d086",
+                "url": "https://api.github.com/repos/foxws/laravel-modelcache/zipball/130a53bf9a6ae9299cfc80f7fb264b3e03ab3c65",
+                "reference": "130a53bf9a6ae9299cfc80f7fb264b3e03ab3c65",
                 "shasum": ""
             },
             "require": {
@@ -2209,7 +2209,7 @@
                 "illuminate/support": "^10.0|^11.0",
                 "nesbot/carbon": "^2.63|^3.0",
                 "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.16"
+                "spatie/laravel-package-tools": "^1.17"
             },
             "require-dev": {
                 "larastan/larastan": "^2.9",
@@ -2255,14 +2255,16 @@
             "homepage": "https://github.com/foxws/laravel-modelcache",
             "keywords": [
                 "cache",
+                "caching",
                 "eloquent",
                 "foxws",
                 "laravel",
-                "laravel-modelcache"
+                "laravel-modelcache",
+                "model"
             ],
             "support": {
                 "issues": "https://github.com/foxws/laravel-modelcache/issues",
-                "source": "https://github.com/foxws/laravel-modelcache/tree/0.0.4"
+                "source": "https://github.com/foxws/laravel-modelcache/tree/1.0.1"
             },
             "funding": [
                 {
@@ -2270,7 +2272,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-31T11:44:47+00:00"
+            "time": "2024-12-27T14:49:08+00:00"
         },
         {
             "name": "foxws/wireuse",
@@ -14930,12 +14932,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
