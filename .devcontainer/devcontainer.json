@@ -1,5 +1,6 @@
 {
     "name": "hub-devcontainer",
+    "remoteUser": "vscode",
     "containerUser": "vscode",
     "containerEnv": {
         "HOME": "/home/vscode"
@@ -7,20 +8,22 @@
     "runArgs": [
         "-it",
         "--userns=keep-id",
+        "--security-opt=label=disable",
+        "--security-opt=seccomp=unconfined",
         "--network=systemd-hub"
     ],
     "build": {
         "dockerfile": "./Dockerfile",
         "context": ".",
         "options": [
-            "--format=docker"
+            "--format=docker" // Remove when using Docker
         ]
     },
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "username": "vscode",
-            "userUid": "1000",
-            "userGid": "1000",
+            "userUid": "1000", // Change this to your user UID (id -u)
+            "userGid": "1000", // Change this to your user GID (id -g)
             "upgradePackages": "true"
         }
     },
@@ -43,8 +46,7 @@
                 "editorconfig.editorconfig",
                 "esbenp.prettier-vscode",
                 "laravel.vscode-laravel",
-                "stylelint.vscode-stylelint",
-                "vue.volar"
+                "stylelint.vscode-stylelint"
             ]
         }
     }
