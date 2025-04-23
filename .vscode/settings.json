@@ -1,20 +1,28 @@
 {
     "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit",
-        "source.organizeImports": "always"
+        "source.fixAll": "explicit"
     },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "eslint.useFlatConfig": true,
+    "tailwindCSS.classAttributes": ["class", "ui"],
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.experimental.classRegex": [
-        "(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]",
         ":\\s*?[\"'`]([^\"'`]*).*?,",
         "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
         "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]",
-        "\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?",
-        "classList:\\s*{([\\s\\S]*?)}",
-        "(?:enter|leave)(?:From|To)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)",
+        ["(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]"],
         ["@?class\\(([^)]*)\\)", "['|\"]([^'\"]*)['|\"]"],
+        ["\\s*.className\\s*=\\s*['\\\"](.*?)['\\\"]"],
         ["classList.(?:add|remove|toggle)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-        ["classList={{([^;]*)}}", "\\s*?[\"'`]([^\"'`]*).*?:"],
-        ["Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]"]
-    ]
+        ["Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]"],
+    ],
+    "tailwindCSS.includeLanguages": {
+        "blade": "html",
+        "blade.php": "html",
+        "plaintext": "html",
+        "vue": "html",
+        "vue-html": "html"
+    }
 }
