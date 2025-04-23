@@ -49,7 +49,7 @@ return [
     'scout' => [
         'enabled' => true,
 
-        'cache_store' => null,
+        'cache_store' => false,
 
         'cache_lifetime' => 60 * 60 * 24 * 7,
     ],
