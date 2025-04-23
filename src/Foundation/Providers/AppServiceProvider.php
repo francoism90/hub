@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -25,23 +26,26 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->configureUrlScheme();
-        $this->configureStrictness();
+        $this->configureUrls();
+        $this->configureModels();
         $this->configureMorphMap();
         $this->configurePrefixedIds();
+        $this->configureCommands();
         $this->configureJsonResource();
         $this->configureMacros();
     }
 
-    protected function configureUrlScheme(): void
+    protected function configureUrls(): void
     {
         URL::forceRootUrl(config('app.url'));
-        URL::forceScheme('https');
+        URL::forceHttps();
     }
 
-    protected function configureStrictness(): void
+    protected function configureModels(): void
     {
-        Model::shouldBeStrict(! $this->app->environment('production'));
+        Model::automaticallyEagerLoadRelationships();
+
+        Model::shouldBeStrict();
     }
 
     protected function configureMorphMap(): void
@@ -69,6 +73,13 @@ class AppServiceProvider extends ServiceProvider
             'user-' => User::class,
             'video-' => Video::class,
         ]);
+    }
+
+    protected function configureCommands(): void
+    {
+        DB::prohibitDestructiveCommands(
+            $this->app->environment('production')
+        );
     }
 
     protected function configureJsonResource(): void

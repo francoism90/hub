@@ -23,9 +23,25 @@ class RefreshStructures extends Command implements Isolatable
 
     public function handle(): void
     {
+        $this->clearComponentCache();
+        $this->clearLivewireCache();
+    }
+
+    protected function clearComponentCache(): void
+    {
+        $this->components->info('Clearing component cache...');
+
         ComponentScout::create()->clear();
+
+        $this->components->info('Component cache cleared successfully.');
+    }
+
+    protected function clearLivewireCache(): void
+    {
+        $this->components->info('Clearing Livewire cache...');
+
         LivewireScout::create()->clear();
 
-        $this->components->info('Structure cache cleared successfully.');
+        $this->components->info('Livewire cache cleared successfully.');
     }
 }

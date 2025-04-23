@@ -18,9 +18,6 @@ $app = Application::configure(basePath: $basePath)
         health: '/up',
         then: function () {
             Route::middleware('web')
-                ->group(__DIR__.'/../routes/shared.php');
-
-            Route::middleware('web')
                 ->group(__DIR__.'/../routes/auth.php');
         },
     )

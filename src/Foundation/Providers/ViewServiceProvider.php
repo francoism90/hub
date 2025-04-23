@@ -12,8 +12,8 @@ class ViewServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->registerComponents();
         $this->configureMessages();
+        $this->registerComponents();
     }
 
     protected function configureMessages(): void
