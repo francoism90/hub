@@ -1,14 +1,8 @@
 [Unit]
-Description=Proxy Caddy container
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-Restart=always
-TimeoutStartSec=90
+Description=Caddy proxy container
 
 [Container]
-Image=docker.io/library/caddy:alpine
+Image=docker.io/library/caddy:latest
 AutoUpdate=registry
 LogDriver=none
 AddCapability=CAP_NET_BIND_SERVICE
@@ -19,6 +13,10 @@ Network=caddy.network
 PublishPort=80:80
 PublishPort=443:443
 PublishPort=443:443/udp
+
+[Service]
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
