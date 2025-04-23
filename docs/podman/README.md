@@ -24,14 +24,14 @@ Build the Docker images (this may take some time):
 
 ```bash
 cd ~/projects/hub
-./docs/podman/make
+./containers/make
 ```
 
 To rebuild or update the current images:
 
 ```bash
 cd ~/projects/hub
-./docs/podman/make --no-cache
+./containers/make --no-cache
 ```
 
 ### Systemd units

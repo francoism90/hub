@@ -12,7 +12,7 @@
         "--network=systemd-hub"
     ],
     "build": {
-        "dockerfile": "./../containers/dev.Dockerfile",
+        "dockerfile": "./../containers/app/Dockerfile",
         "context": "./../containers"
     },
     "customizations": {
@@ -35,8 +35,7 @@
                 "esbenp.prettier-vscode",
                 "laravel.vscode-laravel",
                 "ms-azuretools.vscode-docker",
-                "stylelint.vscode-stylelint",
-                "Vue.volar"
+                "stylelint.vscode-stylelint"
             ]
         }
     }
