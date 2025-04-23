@@ -18,4 +18,8 @@
     tls internal
 }
 
+(compress) {
+    encode zstd gzip
+}
+
 import /etc/caddy/sites/*.caddy

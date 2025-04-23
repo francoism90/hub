@@ -24,7 +24,7 @@ return [
     | may even configure multiple disks for the same driver. Examples for
     | most supported storage drivers are configured here for reference.
     |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
+    | Supported drivers: "local", "ftp", "sftp", "s3"
     |
     */
 
@@ -34,7 +34,8 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/private'),
             'serve' => true,
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
         'public' => [
@@ -42,7 +43,8 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
         's3' => [
@@ -55,7 +57,8 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'visibility' => 'private',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
             'read-only' => false,
         ],
 
@@ -69,7 +72,8 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'visibility' => 'public',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
             'read-only' => false,
             'options' => [
                 'CacheControl' => 'max-age=604800, public',
@@ -86,7 +90,8 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'visibility' => 'public',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
             'read-only' => false,
             'options' => [
                 'CacheControl' => 'max-age=604800, public',
@@ -97,14 +102,16 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/media'),
             'visibility' => 'private',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
         'import' => [
             'driver' => 'local',
             'root' => storage_path('app/import'),
             'visibility' => 'private',
-            'throw' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
     ],

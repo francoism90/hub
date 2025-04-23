@@ -17,6 +17,7 @@ use Domain\Users\Policies\UserPolicy;
 use Domain\Videos\Models\Video;
 use Domain\Videos\Policies\VideoPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,4 +34,14 @@ class AuthServiceProvider extends ServiceProvider
         Tag::class => TagPolicy::class,
         Video::class => VideoPolicy::class,
     ];
+
+    public function boot(): void
+    {
+        $this->configurePasswords();
+    }
+
+    protected function configurePasswords(): void
+    {
+        Password::defaults(fn (): ?Password => app()->isProduction() ? Password::min(12)->max(255)->uncompromised() : null);
+    }
 }

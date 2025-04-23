@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import basicSsl from "@vitejs/plugin-basic-ssl";
 import laravel, { refreshPaths } from "laravel-vite-plugin";
 
 // https://vite.dev/config/

@@ -1,24 +1,26 @@
-hub.dev.lan {
+hub.test {
     import tls
+    import compress
     reverse_proxy systemd-hub:8085
 }
 
-hub-ws.dev.lan {
+ws.hub.test {
 	import tls
+    import compress
 	reverse_proxy systemd-hub-app:6001
 }
 
-hub-vite.dev.lan {
+vite.hub.test {
 	import tls
 	reverse_proxy systemd-hub:5173
 }
 
-hub-s3.dev.lan {
+s3.hub.test {
     import tls
     reverse_proxy systemd-hub-minio:9000
 }
 
-hub-mc.dev.lan {
+mc.hub.test {
     import tls
     reverse_proxy systemd-hub-minio:8900
 }

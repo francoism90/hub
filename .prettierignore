@@ -12,4 +12,5 @@
 /data
 /vendor
 composer.lock
+package-lock.json
 yarn.lock

@@ -1,4 +1,4 @@
-FROM docker.io/php:8.3-fpm-alpine
+FROM docker.io/php:8.4-fpm-alpine
 
 ARG UID=1000
 ARG GID=$UID

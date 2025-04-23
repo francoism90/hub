@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\PrefixedIds\Exceptions\NoPrefixedModelFound;
@@ -18,23 +19,24 @@ $app = Application::configure(basePath: $basePath)
         health: '/up',
         then: function () {
             Route::middleware('web')
-                ->group(__DIR__.'/../routes/shared.php');
-
-            Route::middleware('web')
                 ->group(__DIR__.'/../routes/auth.php');
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR |
+        $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR |
             Request::HEADER_X_FORWARDED_HOST |
             Request::HEADER_X_FORWARDED_PORT |
             Request::HEADER_X_FORWARDED_PROTO |
             Request::HEADER_X_FORWARDED_AWS_ELB
         );
 
+        $middleware->web(append: [
+            AddLinkHeadersForPreloadedAssets::class,
+        ]);
+
         $middleware->throttleWithRedis();
         $middleware->statefulApi();
-        $middleware->redirectGuestsTo('/login');
+        $middleware->redirectGuestsTo(fn () => route('login'));
 
         $middleware->alias([
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,

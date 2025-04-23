@@ -23,9 +23,25 @@ class CacheStructures extends Command implements Isolatable
 
     public function handle(): void
     {
-        ComponentScout::create(app_path('Web'), 'App\\')->register();
-        LivewireScout::create(app_path('Web'), 'App\\')->register();
+        $this->createComponentCache();
+        $this->createLivewireCache();
+    }
 
-        $this->components->info('Component structure cached successfully.');
+    protected function createComponentCache(): void
+    {
+        $this->components->info('Creating component cache...');
+
+        ComponentScout::create()->register();
+
+        $this->components->info('Component cache created successfully.');
+    }
+
+    protected function createLivewireCache(): void
+    {
+        $this->components->info('Creating Livewire cache...');
+
+        LivewireScout::create()->register();
+
+        $this->components->info('Livewire cache created successfully.');
     }
 }

@@ -11,7 +11,7 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 Hub uses the following stack:
 
 - [nginx-vod-module (main)](https://github.com/kaltura/nginx-vod-module)
-- [Laravel 11.x](https://laravel.com/)
+- [Laravel 12.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
 - [PostgreSQL 17.x](https://www.postgresql.org/)
 - [Podman 5.x](https://podman.io/)
@@ -22,7 +22,7 @@ This is the preferred stack, please submit a PR if you would like to support oth
 ## Prerequisites
 
 - Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested.
-- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags (ro, rw, U, Z, etc.).
+- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags (ro, rw, U, Z, etc.).
 
 ## Installation
 
@@ -46,11 +46,11 @@ nano .env
 To access Hub locally (in this case `dev.lan`  is the development machine), make sure to create the following `/etc/hosts` entries:
 
 ```md
-127.0.0.1 hub.dev.lan hub-ws.dev.lan hub-s3.dev.lan hub-mc.dev.lan
-::1 hub.dev.lan hub-ws.dev.lan hub-s3.dev.lan hub-mc.dev.lan
+127.0.0.1 hub.test ws.hub.test s3.hub.test mc.hub.test
+::1 hub.test ws.hub.test s3.hub.test mc.hub.test
 ```
 
-> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.dev.lan` & `*.hub.dev.lan` to your homelab server.
+> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` to your homelab server.
 
 ### Podman Quadlet
 
@@ -62,7 +62,7 @@ Please read [following guide](docs/minio/README.md) to configure MinIO.
 
 ## Usage
 
-The Hub instance should be available at <https://hub.dev.lan>, after running:
+The Hub instance should be available at <https://hub.test>, after running:
 
 ```bash
 systemctl --user start caddy hub
@@ -83,9 +83,9 @@ php artisan db:seed --class=UserSeeder:class
 
 The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
 
-- <https://hub.dev.lan/horizon> - Laravel Horizon
-- <https://hub.dev.lan/pulse> - Laravel Pulse
-- <https://hub.dev.lan/telescope> - Laravel Telescope (disabled by default)
+- <https://hub.test/horizon> - Laravel Horizon
+- <https://hub.test/pulse> - Laravel Pulse
+- <https://hub.test/telescope> - Laravel Telescope (disabled by default)
 
 ### Manage application
 
