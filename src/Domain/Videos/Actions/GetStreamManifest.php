@@ -51,7 +51,7 @@ class GetStreamManifest
         );
     }
 
-    protected function getLocaleLabel(Media $media): ?string
+    protected function getLocaleLabel(Media $media): string
     {
         $locale = $media->getCustomProperty('locale');
 
