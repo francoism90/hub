@@ -11,9 +11,6 @@ server {
     # index
     index index.html;
 
-    # error
-    error_page 404 /index.html;
-
     # authentication requests
     auth_request /auth;
     auth_request_set $auth_header $upstream_http_authorization;
@@ -33,14 +30,12 @@ server {
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
         proxy_pass http://remote;
-        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
         proxy_pass http://remote;
-        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
@@ -48,7 +43,6 @@ server {
     # DASH init segment
     location ~ ^.*/init-[^/]+\.mp4$ {
         proxy_pass http://remote;
-        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
@@ -56,7 +50,6 @@ server {
     # DASH manifest
     location ~ ^.*\.mpd$ {
         proxy_pass http://remote;
-        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
@@ -64,7 +57,6 @@ server {
     # default proxy to origin (no cache)
     location / {
         proxy_pass http://remote;
-        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 
