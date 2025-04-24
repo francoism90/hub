@@ -66,5 +66,6 @@ RUN apt-get -y autoremove \
 EXPOSE 5173
 EXPOSE 6001
 EXPOSE 8000
+EXPOSE 8080
 
 ENTRYPOINT ["container-entrypoint.sh"]

@@ -5,9 +5,6 @@ server {
     server_name localhost;
     root /usr/share/nginx/html;
 
-    # security
-    include /etc/nginx/config/security.conf;
-
     # index
     index index.html;
 

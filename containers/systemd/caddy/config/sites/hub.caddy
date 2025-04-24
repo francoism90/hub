@@ -1,22 +1,18 @@
 hub.test {
     import tls
     import compress
-    reverse_proxy systemd-hub:8085
+    reverse_proxy systemd-hub:8000
 }
 
 ws.hub.test {
 	import tls
     import compress
-	reverse_proxy systemd-hub-app:6001
-}
-
-vite.hub.test {
-	import tls
-	reverse_proxy systemd-hub:5173
+	reverse_proxy systemd-hub-reverb:6001
 }
 
 s3.hub.test {
     import tls
+    import cors hub.test
     reverse_proxy systemd-hub-minio:9000
 }
 

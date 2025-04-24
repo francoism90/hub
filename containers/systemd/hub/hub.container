@@ -4,7 +4,7 @@ Requires=hub-worker.service
 After=hub-worker.service
 
 [Container]
-Image=localhost/hub-nginx:latest
+Image=localhost/hub-vod:latest
 AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
