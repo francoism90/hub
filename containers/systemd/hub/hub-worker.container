@@ -13,6 +13,7 @@ Volume=${APP_PATH}:/app:rw,z,U
 Network=proxy.network
 Network=hub.network
 ExposeHostPort=8080
+ExposeHostPort=5173
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env

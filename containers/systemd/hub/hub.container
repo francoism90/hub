@@ -4,7 +4,7 @@ Requires=hub-worker.service
 After=hub-worker.service
 
 [Container]
-Image=localhost/hub-vod:latest
+Image=localhost/hub-nginx:latest
 AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
@@ -13,11 +13,7 @@ Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=8080
-ExposeHostPort=8085
-ExposeHostPort=8443
-ExposeHostPort=8443/udp
-ExposeHostPort=2019
+ExposeHostPort=8000
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
