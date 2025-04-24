@@ -19,13 +19,13 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:*', 'http://[::1]:*', 'https://hub.test', 'https://hub.test:5173'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => ['Content-Length', 'Content-Range', 'Date', 'Precognition'],
+    'exposed_headers' => ['Content-Range', 'Date', 'Precognition'],
 
     'max_age' => 0,
 

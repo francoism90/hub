@@ -43,11 +43,18 @@ class GetStreamManifest
     {
         return $model->captions->map(fn (Media $media) => (new Sequence)
             ->id($media->getRouteKey())
-            ->label(locale_get_display_language($media->getCustomProperty('locale', 'eng')))
+            ->label($this->getLocaleLabel($media))
             ->language($media->getCustomProperty('locale', 'eng'))
             ->clips([
                 (new Clip)->type('source')->path($media->getPath()),
             ])
         );
+    }
+
+    protected function getLocaleLabel(Media $media): ?string
+    {
+        $locale = $media->getCustomProperty('locale');
+
+        return locale_get_display_language($locale) ?: 'eng';
     }
 }

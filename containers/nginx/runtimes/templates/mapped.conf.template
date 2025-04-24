@@ -34,7 +34,6 @@ server {
         vod_dash_manifest_format segmenttemplate;
         vod_manifest_duration_policy min;
         vod_manifest_segment_durations_mode accurate;
-        include /etc/nginx/config/cors.conf;
     }
 
     # additional config

@@ -22,7 +22,6 @@ server {
         proxy_pass http://octane/api/v1/subscription;
         proxy_pass_request_body off;
         proxy_set_header Host $http_host;
-        proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
         include /etc/nginx/config/proxy.conf;
     }
