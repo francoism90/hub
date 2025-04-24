@@ -1,5 +1,5 @@
 [Unit]
-Description=VOD container
+Description=Video-on-demand container
 Requires=hub-worker.service
 After=hub-worker.service
 
