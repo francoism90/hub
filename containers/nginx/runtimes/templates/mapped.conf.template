@@ -17,6 +17,9 @@ server {
     vod_upstream_extra_args $args;
     vod_base_url ${NGINX_VOD_URL};
     vod_segments_base_url ${NGINX_VOD_URL};
+    vod_ignore_edit_list on;
+    vod_max_mapping_response_size 64k;
+    vod_max_metadata_size 256m;
 
     # vod security
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
