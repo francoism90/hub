@@ -1,10 +1,10 @@
 [Unit]
 Description=Reverb container
-Requires=hub.service
-After=hub.service
+Requires=hub-worker.service
+After=hub-worker.service
 
 [Container]
-Image=localhost/hub:latest
+Image=localhost/hub-app:latest
 AutoUpdate=local
 LogDriver=none
 Exec=/usr/bin/php /app/artisan reverb:start

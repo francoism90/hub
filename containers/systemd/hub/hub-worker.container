@@ -1,11 +1,11 @@
 [Unit]
-Description=hub container
+Description=Hub container
 Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 Wants=hub-queue.service hub-schedule.service hub-reverb.service
 
 [Container]
-Image=localhost/hub:latest
+Image=localhost/hub-app:latest
 AutoUpdate=local
 LogDriver=none
 UserNS=keep-id
