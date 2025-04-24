@@ -9,53 +9,57 @@ WORKDIR /app
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=${TZ}
 ENV NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1
-ENV NGINX_USER="docker"
+ENV NGINX_USER="nginx"
+
+USER root
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
         build-essential \
-        clang-12 \
-        gcc-10 \
+        clang \
+        gcc \
         gnupg \
         curl \
         ca-certificates \
         zip \
         unzip \
         git \
-        libssl-dev \
         dnsutils \
         python3 \
-        libssl-dev \
-        libpcre3-dev \
-        libxml2-dev \
         unzip \
+        libssl-dev \
+        libpcre2-dev \
+        libxml2-dev  \
+        libavcodec-dev \
+        libswscale-dev \
+        libavfilter-dev \
+        ffmpeg \
+        zlib1g-dev \
         libopencore-amrwb0 \
         libopencore-amrnb0 \
         libass9 \
         libgsm1 \
         libmp3lame0 \
-        libjpeg9 \
+        libjpeg62 \
         libspeex1 \
         libtheora0 \
         libva2 \
-        libvpx6 \
+        libvpx7 \
         libxvidcore4 \
         libnuma1 \
         libvdpau1 \
-        libfdk-aac1 \
         libva-drm2 \
         libva-x11-2 \
         libvorbisfile3 \
         libopenjp2-7 \
         libzvbi0 \
-        libx264-155 \
-        libx265-179 \
+        libx264-164 \
+        libx265-199 \
         libxcb1-dev \
         libxcb-shm0-dev \
-        libvorbisenc2 \
-        ffmpeg
+        libvorbisenc2
 
 COPY runtimes/. /etc/nginx
 
@@ -64,7 +68,7 @@ RUN usermod --non-unique --uid ${UID} nginx \
 
 RUN mkdir -p /usr/local/src && rm -rf /usr/local/src/* \
     && cd /usr/local/src \
-    && wget "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" -O nginx.tar.gz \
+    && curl -sSL "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" -o nginx.tar.gz \
     && set -x \
     && tar xzvf nginx.tar.gz \
     && rm -rf nginx.tar.gz \
@@ -88,5 +92,7 @@ EXPOSE 8081
 EXPOSE 8082
 
 STOPSIGNAL SIGQUIT
+
+USER ${NGINX_USER}
 
 CMD ["nginx", "-g", "daemon off;"]
