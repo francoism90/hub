@@ -56,13 +56,6 @@
                     },
                 },
             });
-
-            // Configure networking
-            this.instance
-                .getNetworkingEngine()
-                .registerRequestFilter(
-                    async (type, request) => (request.allowCrossSiteCredentials = true)
-                );
         },
 
         async load(video = undefined, manifest = null) {

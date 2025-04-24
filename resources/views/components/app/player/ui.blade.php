@@ -41,33 +41,6 @@
             // Create instances
             this.instance = new window.shaka.Player();
             this.manager = new window.shaka.util.EventManager();
-
-            // Configure player
-            this.instance.configure({
-                streaming: {
-                    ignoreTextStreamFailures: true,
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                manifest: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                drm: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-            });
-
-            // Configure networking
-            this.instance
-                .getNetworkingEngine()
-                .registerRequestFilter(
-                    async (type, request) => (request.allowCrossSiteCredentials = true)
-                );
         },
 
         async load(manifest = null, timecode = null) {
@@ -198,15 +171,10 @@
             const tracks = await this.getTextTracks();
             const track = tracks.find(o => o.id === this.textTrack);
 
-            try {
-                await this.instance.selectTextTrack(0);
-                await this.instance.setTextTrackVisibility(false);
-
-                if (tracks.length && track?.id) {
-                    await this.instance.selectTextTrack(track.id);
-                    await this.instance.setTextTrackVisibility(true);
-                }
-            } catch (e) {}
+            if (tracks.length && track?.id) {
+                await this.instance.selectTextTrack(track.id);
+                await this.instance.setTextTrackVisibility(true);
+            }
         }
     }));
 </script>
