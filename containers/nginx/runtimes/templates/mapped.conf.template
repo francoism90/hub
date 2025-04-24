@@ -11,9 +11,6 @@ server {
     # index
     index index.html;
 
-    # error
-    error_page 404 /index.html;
-
     # vod settings
     vod_mode mapped;
     vod_upstream_location /json;

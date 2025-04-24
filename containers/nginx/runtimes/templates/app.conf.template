@@ -6,22 +6,22 @@ upstream octane {
 }
 
 upstream mapped {
-    server localhost:1935 weight=3 max_fails=0;
+    server localhost:1935 weight=4 max_fails=0;
     keepalive 16;
 }
 
 upstream remote {
-    server localhost:1936 weight=3 max_fails=0;
+    server localhost:1936 weight=4 max_fails=0;
     keepalive 16;
 }
 
 upstream vod {
-    server localhost:8081 weight=3 max_fails=0;
+    server localhost:8081 weight=4 max_fails=0;
     keepalive 16;
 }
 
 upstream live {
-    server localhost:8082 weight=3 max_fails=0;
+    server localhost:8082 weight=4 max_fails=0;
     keepalive 16;
 }
 
