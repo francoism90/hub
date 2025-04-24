@@ -55,6 +55,6 @@ class GetStreamManifest
     {
         $locale = $media->getCustomProperty('locale');
 
-        return locale_get_display_language($locale) ?: 'eng';
+        return locale_get_display_language($locale) ?: __('Unknown');
     }
 }
