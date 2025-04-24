@@ -53,8 +53,8 @@ class GetStreamManifest
 
     protected function getLocaleLabel(Media $media): string
     {
-        $locale = $media->getCustomProperty('locale');
+        $locale = $media->getCustomProperty('locale', 'eng');
 
-        return locale_get_display_language($locale ?: __('Native'));
+        return locale_get_display_language($locale) ?: __('Unknown');
     }
 }
