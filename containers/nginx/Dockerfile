@@ -1,64 +1,64 @@
-FROM docker.io/nginxinc/nginx-unprivileged:mainline-alpine
+FROM docker.io/nginxinc/nginx-unprivileged:mainline
 
 ARG UID=1000
 ARG GID=$UID
 ARG TZ=UTC
 
+WORKDIR /app
+
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=${TZ}
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 ENV NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1
-
-USER root
-
-RUN apk update --no-cache \
-    && apk upgrade --no-cache
-
-RUN apk add --no-cache --virtual .build-deps \
-    shadow \
-    alpine-sdk \
-    linux-headers \
-    python3
-
-RUN apk add --no-cache --virtual .run-deps \
-    ca-certificates \
-    curl \
-    brotli-dev \
-    ffmpeg-dev \
-    freetype \
-    fribidi \
-    git \
-    gmp \
-    gnu-libiconv \
-    gsm \
-    jpeg \
-    lame \
-    libass \
-    libcrypto3 \
-    libogg \
-    libpng \
-    librsvg \
-    libtheora \
-    libva \
-    libvdpau \
-    libvorbis \
-    libvpx \
-    libwebp \
-    libxml2-dev \
-    fdk-aac \
-    musl \
-    numactl \
-    opencore-amr \
-    openjpeg \
-    openssl-dev \
-    pcre2-dev \
-    speex \
-    tzdata \
-    unzip \
-    x264 \
-    x265 \
-    xvidcore \
-    zlib
+ENV NGINX_USER="docker"
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
+
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y \
+        build-essential \
+        clang-12 \
+        gcc-10 \
+        gnupg \
+        curl \
+        ca-certificates \
+        zip \
+        unzip \
+        git \
+        libssl-dev \
+        dnsutils \
+        python3 \
+        libssl-dev \
+        libpcre3-dev \
+        libxml2-dev \
+        unzip \
+        libopencore-amrwb0 \
+        libopencore-amrnb0 \
+        libass9 \
+        libgsm1 \
+        libmp3lame0 \
+        libjpeg9 \
+        libspeex1 \
+        libtheora0 \
+        libva2 \
+        libvpx6 \
+        libxvidcore4 \
+        libnuma1 \
+        libvdpau1 \
+        libfdk-aac1 \
+        libva-drm2 \
+        libva-x11-2 \
+        libvorbisfile3 \
+        libopenjp2-7 \
+        libzvbi0 \
+        libx264-155 \
+        libx265-179 \
+        libxcb1-dev \
+        libxcb-shm0-dev \
+        libvorbisenc2 \
+        ffmpeg
+
+COPY runtimes/. /etc/nginx
 
 RUN usermod --non-unique --uid ${UID} nginx \
     && groupmod --non-unique --gid ${GID} nginx
@@ -80,17 +80,15 @@ RUN cd /usr/local/src \
     && make \
     && make install
 
-RUN apk del .build-deps && rm -rf /usr/local/src/*
-
-COPY --chown=$UID:$GID runtimes/. /etc/nginx
-
-STOPSIGNAL SIGQUIT
+RUN apt-get -y autoremove \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8080
 EXPOSE 8081
 EXPOSE 8082
 EXPOSE 8085
 
-USER ${UID}
+STOPSIGNAL SIGQUIT
 
 CMD ["nginx", "-g", "daemon off;"]
