@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Videos\Actions\CreateVideoPreview;
-use Domain\Videos\Actions\ExtractVideoSubtitles;
+use Domain\Videos\Actions\ExtractVideoCaptions;
 use Domain\Videos\Actions\SetVideoMetadata;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
@@ -59,7 +59,7 @@ class ProcessVideo implements ShouldQueue
     {
         $actions = [
             SetVideoMetadata::class,
-            ExtractVideoSubtitles::class,
+            ExtractVideoCaptions::class,
             CreateVideoPreview::class,
         ];
 

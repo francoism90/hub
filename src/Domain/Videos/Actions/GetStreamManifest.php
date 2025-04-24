@@ -41,8 +41,8 @@ class GetStreamManifest
 
     protected function getCaptions(Video $model): Collection
     {
-        return $model->captions->map(fn (Media $media) => (new Sequence)
-            ->id($media->getRouteKey())
+        return $model->captions->map(fn (Media $media, int $key) => (new Sequence)
+            ->id(sprintf('CC%d', $key + 1))
             ->label($this->getLocaleLabel($media))
             ->language($media->getCustomProperty('locale', 'eng'))
             ->clips([
@@ -55,6 +55,6 @@ class GetStreamManifest
     {
         $locale = $media->getCustomProperty('locale');
 
-        return locale_get_display_language($locale) ?: __('Unknown');
+        return locale_get_display_language($locale ?: __('Native'));
     }
 }

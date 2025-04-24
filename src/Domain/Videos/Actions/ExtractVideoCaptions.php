@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\Support\TemporaryDirectory;
 use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
 use Support\FFMpeg\Format\Subtitle\WebVTT;
 
-class ExtractVideoSubtitles
+class ExtractVideoCaptions
 {
     public function execute(Video $model): void
     {
@@ -33,7 +33,7 @@ class ExtractVideoSubtitles
 
         $video = $ffmpeg->openAdvanced([$file]);
 
-        // Extract subtitles
+        // Build a collection of caption streams
         $collect = collect($ffmpeg->getFFProbe()->streams($file))
             ->filter(fn (Stream $stream) => $stream->get('codec_type') === 'subtitle')
             ->mapWithKeys(fn (Stream $stream) => [
@@ -50,10 +50,10 @@ class ExtractVideoSubtitles
             ));
 
         if ($collect->isNotEmpty()) {
-            // Output subtitles
+            // Process video captions
             $video->save();
 
-            // Import subtitles
+            // Import captions to the media library
             $collect->each(fn (string $path, int $key) => $model
                 ->addMedia($path)
                 ->withAttributes(['mime_type' => 'text/vtt'])
