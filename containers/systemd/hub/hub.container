@@ -1,19 +1,17 @@
 [Unit]
-Description=Nginx container
-Requires=hub-app.service
-After=hub-app.service
+Description=Hub container
+Requires=hub-worker.service
+After=hub-worker.service
 
 [Container]
 Image=localhost/hub-nginx:latest
 AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
+UserNS=keep-id
 Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
-User=${UID}
-Group=${GID}
-UserNS=keep-id:uid=${UID},gid=${GID}
-Network=caddy.network
+Network=proxy.network
 Network=hub.network
 ExposeHostPort=8080
 ExposeHostPort=8085
@@ -23,8 +21,8 @@ ExposeHostPort=2019
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
-TimeoutStartSec=900
-Restart=always
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

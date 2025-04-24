@@ -2,8 +2,9 @@ FROM docker.io/nginxinc/nginx-unprivileged:mainline-alpine
 
 ARG UID=1000
 ARG GID=$UID
+ARG TZ=UTC
 
-ENV TZ=UTC
+ENV TZ=${TZ}
 ENV NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1
 
 USER root
@@ -57,10 +58,10 @@ RUN apk add --no-cache --virtual .run-deps \
     xvidcore \
     zlib
 
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
-RUN usermod --non-unique --uid $UID nginx \
-    && groupmod --non-unique --gid $GID nginx
+RUN usermod --non-unique --uid ${UID} nginx \
+    && groupmod --non-unique --gid ${GID} nginx
 
 RUN mkdir -p /usr/local/src && rm -rf /usr/local/src/* \
     && cd /usr/local/src \
@@ -72,18 +73,10 @@ RUN mkdir -p /usr/local/src && rm -rf /usr/local/src/* \
     && CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p')
 
 RUN cd /usr/local/src \
-    && git clone --recursive --depth 1 https://github.com/google/ngx_brotli.git \
-    && MODULEDIR=$(pwd)/ngx_brotli \
-    && cd /usr/local/src/nginx \
-    && ./configure --with-compat $CONFARGS --add-dynamic-module=$MODULEDIR --with-cc-opt="-O3" \
-    && make \
-    && make install
-
-RUN cd /usr/local/src \
     && git clone --depth 1 https://github.com/kaltura/nginx-vod-module.git \
     && MODULEDIR=$(pwd)/nginx-vod-module \
     && cd /usr/local/src/nginx \
-    && ./configure --with-compat $CONFARGS --add-dynamic-module=$MODULEDIR --with-file-aio --with-threads --with-cc-opt="-O3 -mpopcnt" \
+    && ./configure --with-compat ${CONFARGS} --add-dynamic-module=${MODULEDIR} --with-file-aio --with-threads --with-cc-opt="-O3 -mpopcnt" \
     && make \
     && make install
 
@@ -98,6 +91,6 @@ EXPOSE 8081
 EXPOSE 8082
 EXPOSE 8085
 
-USER $UID
+USER ${UID}
 
 CMD ["nginx", "-g", "daemon off;"]

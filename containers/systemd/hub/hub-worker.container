@@ -1,29 +1,23 @@
 [Unit]
-Description=App container
+Description=hub container
 Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+Wants=hub-queue.service hub-schedule.service hub-reverb.service
 
 [Container]
-Image=localhost/hub-app:latest
+Image=localhost/hub:latest
 AutoUpdate=local
 LogDriver=none
+UserNS=keep-id
 Volume=${APP_PATH}:/app:rw,z,U
-Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
-# Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U
-User=${UID}
-Group=${UID}
-UserNS=keep-id:uid=${UID},gid=${GID}
-Network=caddy.network
+Network=proxy.network
 Network=hub.network
-ExposeHostPort=6001
-ExposeHostPort=8000
-ExposeHostPort=9000
-PublishPort=5173:5173
+ExposeHostPort=8080
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
-TimeoutStartSec=900
-Restart=always
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

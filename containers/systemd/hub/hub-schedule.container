@@ -1,0 +1,21 @@
+[Unit]
+Description=Schedule container
+Requires=hub.service
+After=hub.service
+
+[Container]
+Image=localhost/hub:latest
+AutoUpdate=local
+LogDriver=none
+Exec=/usr/bin/php /app/artisan schedule:work
+UserNS=keep-id
+Volume=${APP_PATH}:/app:rw,z
+Network=hub.network
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
+TimeoutStartSec=90
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

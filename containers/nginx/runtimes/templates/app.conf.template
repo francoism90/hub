@@ -45,6 +45,12 @@ server {
     # service worker
     add_header Service-Worker-Allowed /;
 
+    # pwa
+    location /manifest.webmanifest {
+        types { } default_type "application/manifest+json webmanifest;";
+        return 301 $scheme://$http_host/build/manifest.webmanifest;
+    }
+
     # vod
     location ^~ /vod/ {
         proxy_pass http://vod/;
@@ -70,12 +76,6 @@ server {
         access_log off;
         add_header Cache-Control public;
         break;
-    }
-
-    # pwa
-    location /manifest.webmanifest {
-        types { } default_type "application/manifest+json webmanifest;";
-        return 301 $scheme://$http_host/build/manifest.webmanifest;
     }
 
     # octane

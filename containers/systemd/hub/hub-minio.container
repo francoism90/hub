@@ -4,18 +4,18 @@ Description=Minio container
 [Container]
 Image=docker.io/minio/minio:latest
 AutoUpdate=registry
+LogDriver=none
 EnvironmentFile=%h/.config/containers/systemd/hub/config/minio.env
 Exec=minio server /data --console-address ":8900"
 Volume=hub-minio:/data:rw,Z,U
-LogDriver=none
-Network=caddy.network
+Network=proxy.network
 Network=hub.network
 ExposeHostPort=8900
 ExposeHostPort=9000
 
 [Service]
-TimeoutStartSec=300
-Restart=always
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

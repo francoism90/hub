@@ -4,15 +4,15 @@ Description=Meilisearch container
 [Container]
 Image=docker.io/getmeili/meilisearch:latest
 AutoUpdate=registry
+LogDriver=none
 EnvironmentFile=%h/.config/containers/systemd/hub/config/meilisearch.env
 Volume=hub-meilisearch:/meili_data:rw,Z,U
-LogDriver=none
 Network=hub.network
 ExposeHostPort=7700
 
 [Service]
-TimeoutStartSec=300
-Restart=always
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
