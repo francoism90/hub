@@ -23,7 +23,7 @@ server {
 
     location ^~ /json/dash/ {
         internal;
-        proxy_pass http://octane/;
+        proxy_pass http://hub/;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
