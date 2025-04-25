@@ -15,7 +15,7 @@
         "@tailwindcss/typography": "^0.5.16",
         "@vitejs/plugin-basic-ssl": "^2.0.0",
         "autoprefixer": "^10.4.21",
-        "axios": "^1.8.4",
+        "axios": "^1.9.0",
         "chokidar": "^4.0.3",
         "concurrently": "^9.1.2",
         "cssnano": "^7.0.6",
@@ -29,10 +29,10 @@
         "prettier-plugin-tailwindcss": "^0.6.11",
         "pusher-js": "^8.4.0",
         "shaka-player": "^4.14.9",
-        "stylelint": "^16.19.0",
+        "stylelint": "^16.19.1",
         "stylelint-config-standard-scss": "^14.0.0",
-        "tailwindcss": "^3.4.17",
-        "vite": "^6.3.2",
+        "tailwindcss": "^4.1.4",
+        "vite": "^6.3.3",
         "vite-plugin-pwa": "^1.0.0",
         "vitest": "^3.1.2"
     }
