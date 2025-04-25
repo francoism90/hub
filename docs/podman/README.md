@@ -87,13 +87,14 @@ systemctl --user daemon-reload
 systemctl --user restart hub
 ```
 
-To start hub:
+To start Hub:
 
 ```bash
+systemctl --user start proxy
 systemctl --user start hub
 ```
 
-To stop hub:
+To stop Hub:
 
 ```bash
 systemctl --user stop hub
@@ -114,6 +115,9 @@ This allows interacting with the `systemd-hub` container using the same logic li
 ```fish
 hub help
 hub shell
+hub a app:update
+hub a app:optimize
+hub a videos:import
 hub a migrate
 ```
 
