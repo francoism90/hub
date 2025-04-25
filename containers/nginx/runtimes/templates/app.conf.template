@@ -2,7 +2,7 @@ resolver ${NGINX_LOCAL_RESOLVERS} valid=60s;
 resolver_timeout 5s;
 
 upstream octane {
-    server systemd-hub:8080 weight=5 max_fails=3 fail_timeout=30s;
+    server systemd-hub-worker:8080 weight=5 max_fails=3 fail_timeout=30s;
 }
 
 upstream mapped {
