@@ -1,6 +1,13 @@
-# Podman Quadlet
+---
+title: Podman Quadlet
+order: 1
+tags:
+  - podman
+  - quadlet
+  - systemd
+---
 
-To learn more about Podman Quadlet, consider reading the following resources:
+To learn more about Podman Quadlet, please consider reading the following resources first:
 
 - <https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html>
 - <https://www.redhat.com/sysadmin/quadlet-podman>
@@ -8,10 +15,10 @@ To learn more about Podman Quadlet, consider reading the following resources:
 
 ## Prerequisites
 
-- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch).
-- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux support.
+- Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..).
+- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) and SELinux support.
 
-This guide assumes you have a rootless setup:
+It's recommend running a rootless setup:
 
 - <https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md>
 - <https://wiki.archlinux.org/title/Podman#Rootless_Podman>
@@ -23,15 +30,15 @@ This guide assumes you have a rootless setup:
 Build the Docker images (this may take some time):
 
 ```bash
-cd ~/projects/hub
-./containers/make
+cd ~/hub
+bin/build-containers
 ```
 
-To rebuild or update the current images:
+To rebuild with no-cache (append other args if needed):
 
 ```bash
-cd ~/projects/hub
-./containers/make --no-cache
+cd ~/hub
+bin/build-containers --no-cache
 ```
 
 ### Systemd units
@@ -39,50 +46,54 @@ cd ~/projects/hub
 Copy the `systemd` directory to `~/.config/containers`, verify the path `~/.config/containers/systemd/hub` exists:
 
 ```bash
-cd ~/projects/hub
-cp -r docs/podman/containers/systemd ~/.config/containers/
+mkdir -p ~/.config/containers/
+cp -r ~/hub/containers/systemd ~/.config/containers/
 ```
 
-Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/projects/hub/.env` to reflect any systemd unit changes.
-
-Make sure to always reload the systemd container on changes:
+Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/hub/.env` to reflect any systemd unit changes:
 
 ```bash
-systemctl --user daemon-reload
+cd ~/.config/containers/systemd/hub/config
+vi app.env postgres.env ..
 ```
 
-### Proxy
+### Configure Proxy
 
-[Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else (like Traefik or nginx).
+[Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else, or not even proxy at all.
 
-In this guide it uses Caddy's `tls internal` to provide a self-signed certificate.
+It is possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificate](https://doc.traefik.io/traefik/https/tls/).
 
-Start the proxy server:
+The given configuration assumes you use a TLS with Let's Encrypt.
+
+Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
 
 ```bash
-systemctl --user start caddy
+systemctl --user enable podman.socket --now`
+systemctl --user start proxy`
 ```
 
-To export generated CA of the Caddy proxy:
+To copy the generated Caddy CA:
 
 ```bash
-podman cp systemd-caddy:/data/caddy/pki/authorities/local/root.crt ~/Documents/caddy.crt
+podman cp systemd-proxy:/data/caddy/pki/authorities/local/root.crt ~/Downloads/proxy.crt
 ```
-
-You can import this CA to your devices and browser(s), and make it look trusted.
 
 ## Usage
 
-> Follow the main README.md for installing Hub when running it first time.
-
-To start Hub:
+Make sure to reload systemd on configuration changes:
 
 ```bash
-systemctl --user start caddy # or your proxy solution
+systemctl --user daemon-reload
+systemctl --user restart hub
+```
+
+To start hub:
+
+```bash
 systemctl --user start hub
 ```
 
-To stop Hub:
+To stop hub:
 
 ```bash
 systemctl --user stop hub
@@ -90,26 +101,24 @@ systemctl --user stop hub
 
 ## Shell utility
 
-Hub provides the shell utility named `hub`, and is based on [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments made for Podman Quadlet.
+Hub provides a shell utility, which is a copy of [Laravel Sail](https://github.com/laravel/sail/blob/1.x/bin/sail) with adjustments made for the usage with Podman Quadlet.
 
-To install, create a shell `alias`, e.g. using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
+To install, create a shell `alias`, e.g. when using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```fish
-alias --save hub '~/projects/hub/bin/quadlet'
+alias --save hub '~/hub/bin/quadlet'
 ```
 
-This allows to interact with the `systemd-hub-app` container using the same syntax like Laravel Sail:
+This allows interacting with the `systemd-hub` container using the same logic like Laravel Sail:
 
 ```fish
 hub help
 hub shell
-hub a app:update
-hub a app:optimize
-hub a videos:import
+hub a migrate
 ```
 
-To interact with the container without the `hub` utility:
+To interact with the container without the utility:
 
 ```bash
-podman exec -it systemd-hub-app php artisan app:optimize
+podman exec -it systemd-hub php artisan app:optimize
 ```
