@@ -5,13 +5,16 @@ server {
     server_name localhost;
     root /usr/share/nginx/html;
 
+    # security
+    include /etc/nginx/config/security.conf;
+
     # index
     index index.html;
 
     # authentication requests
-    auth_request /auth;
-    auth_request_set $auth_header $upstream_http_authorization;
-    auth_request_set $auth_cookie $upstream_http_set_cookie;
+    #auth_request /auth;
+    #auth_request_set $auth_header $upstream_http_authorization;
+    #auth_request_set $auth_cookie $upstream_http_set_cookie;
 
     # auth
     location = /auth {
@@ -29,12 +32,14 @@ server {
         proxy_pass http://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
         proxy_pass http://mapped;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # DASH init segment
@@ -42,6 +47,7 @@ server {
         proxy_pass http://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # DASH manifest
@@ -49,6 +55,7 @@ server {
         proxy_pass http://mapped;
         proxy_cache long-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # default proxy to origin (no cache)
