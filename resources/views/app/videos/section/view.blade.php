@@ -10,7 +10,7 @@
                 <livewire:web.videos.item :$video :key="$video->getRouteKey()" />
             {{ html()->div()->close() }}
         @empty
-            {{ html()->p()->class('text-sm text-secondary-300')->text('No videos found.') }}
+            {{ html()->p()->class('text-sm text-gray-300')->text('No videos found.') }}
         @endforelse
     {{ html()->div()->close() }}
 {{ html()->div()->close() }}

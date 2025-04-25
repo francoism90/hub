@@ -16,7 +16,7 @@
 
     @if (! $form->query())
         {{ html()->div()->class('flex flex-nowrap gap-1 items-center overflow-x-auto *:shrink-0')
-            ->child(html()->span()->class('text-secondary-300')->text('Hint:')
+            ->child(html()->span()->class('text-gray-300')->text('Hint:')
             ->children($suggestions, fn (string $item) => html()
                 ->a()
                 ->href('#')

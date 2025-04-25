@@ -1,17 +1,15 @@
-@layer components {
-    .card {
-        @apply relative flex flex-col;
+@utility card {
+  @apply relative flex flex-col;
 
-        &:focus {
-            @apply outline-none;
-        }
+  &:focus {
+    @apply outline-hidden;
+  }
 
-        &-body {
-            @apply flex;
+  &-body {
+    @apply flex;
 
-            :where(p) {
-                @apply flex-grow;
-            }
-        }
+    :where(p) {
+      @apply grow;
     }
+  }
 }

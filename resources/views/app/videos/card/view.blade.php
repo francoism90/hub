@@ -19,7 +19,7 @@
                 ->child(
                     html()->div()->class('absolute inset-x-1.5 bottom-1.5 flex flex-col-reverse gap-y-0.5')->children([
                         html()->element('h1')->text($video->title)->class('text-sm leading-none capitalize truncate'),
-                        html()->element('dl')->class('list text-xs text-secondary-300')
+                        html()->element('dl')->class('list text-xs text-gray-300')
                             ->childrenIf($video->duration, [
                                 html()->element('dt')->text('Time')->class('sr-only'),
                                 html()->element('dd')->text(duration($video->duration))
@@ -38,14 +38,14 @@
             html()
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
-                ->class('absolute inset-0 z-0 size-full rounded object-fill brightness-85')
+                ->class('absolute inset-0 z-0 size-full rounded-sm object-fill brightness-85')
                 ->loading('lazy')
                 ->crossorigin('use-credentials'),
 
             html()
                 ->element('video')
                 ->ignore()
-                ->class('absolute inset-0 z-10 size-full rounded object-fill brightness-95')
+                ->class('absolute inset-0 z-10 size-full rounded-sm object-fill brightness-95')
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
@@ -63,7 +63,7 @@
                 ->a()
                 ->link('tags.view', $tag)
                 ->text($tag->name)
-                ->class('text-sm text-secondary-400')
+                ->class('text-sm text-gray-400')
         ),
     ])
 }}

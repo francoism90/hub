@@ -1,26 +1,24 @@
-@layer components {
-    .progress {
-        @apply h-full w-full appearance-none bg-transparent;
+@utility progress {
+  @apply h-full w-full appearance-none bg-transparent;
 
-        &::-webkit-progress-bar,
-        &::-webkit-progress-value {
-            @apply appearance-none bg-transparent;
-        }
+  &::-webkit-progress-bar,
+  &::-webkit-progress-value {
+    @apply appearance-none bg-transparent;
+  }
 
-        &::-moz-progress-bar {
-            @apply appearance-none bg-transparent;
-        }
+  &::-moz-progress-bar {
+    @apply appearance-none bg-transparent;
+  }
 
-        &-primary {
-            &::-webkit-progress-value {
-                @apply bg-primary-500;
-            }
-        }
-
-        &-secondary {
-            &::-webkit-progress-value {
-                @apply bg-secondary-100/50;
-            }
-        }
+  &-primary {
+    &::-webkit-progress-value {
+      @apply bg-pink-500;
     }
+  }
+
+  &-secondary {
+    &::-webkit-progress-value {
+      @apply bg-gray-100/50;
+    }
+  }
 }

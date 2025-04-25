@@ -1,5 +1,3 @@
-@layer components {
-    .textarea {
-        @apply flex h-24 max-h-40 min-h-24 w-full appearance-none items-center border border-secondary-500/50 bg-transparent px-3 focus:ring-0;
-    }
+@utility textarea {
+  @apply flex h-24 max-h-40 min-h-24 w-full appearance-none items-center border border-gray-500/50 bg-transparent px-3 focus:ring-0;
 }

@@ -1,25 +1,23 @@
-@layer components {
-    .input {
-        @apply flex h-10 min-h-10 w-full appearance-none items-center border border-secondary-500/50 bg-transparent px-3 focus:ring-0;
+@utility input {
+  @apply flex h-10 min-h-10 w-full appearance-none items-center border border-gray-500/50 bg-transparent px-3 focus:ring-0;
 
-        &-md {
-            @apply h-11 min-h-11;
-        }
+  &-md {
+    @apply h-11 min-h-11;
+  }
 
-        &-lg {
-            @apply h-12 min-h-12;
-        }
+  &-lg {
+    @apply h-12 min-h-12;
+  }
 
-        &-ghost {
-            @apply border-none;
-        }
+  &-ghost {
+    @apply border-none;
+  }
 
-        &-rounded {
-            @apply rounded border-none;
-        }
+  &-rounded {
+    @apply rounded-sm border-none;
+  }
 
-        &-error {
-            @apply border-red-500;
-        }
-    }
+  &-error {
+    @apply border-red-500;
+  }
 }

@@ -5,7 +5,7 @@
 
     {{ html()->element('nav')->class('container py-3')->children([
         html()->element('h1')->text($video->title)->class('text-2xl capitalize line-clamp-2'),
-        html()->element('dl')->class('dl text-sm text-secondary-100')
+        html()->element('dl')->class('dl text-sm text-gray-100')
             ->childrenIf($video->duration, [
                 html()->element('dt')->text('Time')->class('sr-only'),
                 html()->element('dd')->text(duration($video->duration)),

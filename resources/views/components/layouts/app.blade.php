@@ -58,7 +58,7 @@
     @googlefonts('code')
 </head>
 
-<body class="h-screen min-h-screen relative flex flex-col overflow-x-hidden bg-secondary-950 text-secondary-50 antialiased">
+<body class="h-screen min-h-screen relative flex flex-col overflow-x-hidden bg-gray-950 text-gray-50 antialiased">
 
     <x-app.ui.header />
 

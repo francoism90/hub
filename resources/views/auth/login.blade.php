@@ -1,5 +1,5 @@
 {{ html()->div()->class('flex h-screen justify-center items-center')->child(
-    html()->div()->class('container w-[28rem] max-w-[28rem] bg-secondary-500/50 rounded px-8 py-5')->children([
+    html()->div()->class('container w-[28rem] max-w-[28rem] bg-gray-500/50 rounded-sm px-8 py-5')->children([
         html()->element('h1')->text('Log In')->class('text-3xl hyphens-auto line-clamp-2'),
 
         html()->wireForm($form, action: 'submit')->class('flex flex-col py-3 gap-y-6')->children([

@@ -3,7 +3,7 @@
 
 {{ html()->div()->class('container py-4')->children([
     html()->element('h1')->text($video->title)->class('text-3xl hyphens-auto line-clamp-2'),
-    html()->element('dl')->class('dl text-sm text-secondary-100')
+    html()->element('dl')->class('dl text-sm text-gray-100')
         ->childrenIf($video->created_at, [
             html()->element('dt')->text('Added')->class('sr-only'),
             html()->element('dd')->text($video->created_at->format('M d, Y')),
@@ -100,7 +100,7 @@
             ),
 
             html()->div()->attributes(['x-cloak', 'x-show' => 'open'])->class('relative')->child(
-                html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit text-sm overflow-y-scroll gap-1.5 p-1.5 bg-secondary-900 text-secondary-300')
+                html()->div()->class('absolute z-10 inset-0 input flex-wrap h-auto min-h-fit text-sm overflow-y-scroll gap-1.5 p-1.5 bg-gray-900 text-gray-300')
                     ->textIf($tags->results()->isEmpty(), 'No tags found')
                     ->children($tags->results(), fn (Tag $item) => html()
                         ->a()

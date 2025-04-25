@@ -63,7 +63,7 @@
     @googlefonts('code')
 </head>
 
-<body class="h-screen min-h-screen relative flex flex-col bg-secondary-950 text-secondary-50 antialiased">
+<body class="h-screen min-h-screen relative flex flex-col bg-gray-950 text-gray-50 antialiased">
 
     <div class="flex-1">
         {{ $slot }}

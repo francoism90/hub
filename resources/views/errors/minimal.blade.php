@@ -59,16 +59,16 @@
     @googlefonts('code')
 </head>
 
-<body class="h-viewport relative flex flex-col overscroll-none bg-secondary-950 text-secondary-50 antialiased">
+<body class="h-viewport relative flex flex-col overscroll-none bg-gray-950 text-gray-50 antialiased">
 
         <div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex items-center pt-8 sm:justify-start sm:pt-0">
-                    <div class="font-mono px-4 text-lg text-secondary-500 border-r border-secondary-400 tracking-wider">
+                    <div class="font-mono px-4 text-lg text-gray-500 border-r border-gray-400 tracking-wider">
                         @yield('code')
                     </div>
 
-                    <div class="font-serif ml-4 text-lg text-secondary-500 uppercase tracking-wider">
+                    <div class="font-serif ml-4 text-lg text-gray-500 uppercase tracking-wider">
                         @yield('message')
                     </div>
                 </div>

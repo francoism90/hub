@@ -5,7 +5,7 @@
     {{ html()->element('section')->children([
         html()->element('h1')->text($tag->name)->class('text-2xl'),
 
-        html()->element('dl')->class('dl text-sm text-secondary-100')
+        html()->element('dl')->class('dl text-sm text-gray-100')
         ->childrenIf($tag->type, [
             html()->element('dt')->text('Time')->class('sr-only'),
             html()->element('dd')->text($tag->type->label())

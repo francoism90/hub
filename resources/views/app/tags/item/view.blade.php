@@ -9,12 +9,12 @@
         ->a()
         ->link('tags.view', $tag)
         ->forgetAttribute('class')
-        ->class('flex flex-nowrap items-center gap-x-3 hover:bg-secondary-500/50')
+        ->class('flex flex-nowrap items-center gap-x-3 hover:bg-gray-500/50')
         ->children([
-            html()->icon()->svg('heroicon-s-tag', 'p-3 size-12 bg-gradient-to-tl from-indigo-500 via-purple-500 to-primary-500'),
+            html()->icon()->svg('heroicon-s-tag', 'p-3 size-12 bg-linear-to-tl from-indigo-500 via-purple-500 to-pink-500'),
             html()->div()->class('flex flex-col')->children([
-                html()->span($tag->name)->class('text-secondary-100'),
-                html()->span("{$items} videos")->class('text-sm text-secondary-300'),
+                html()->span($tag->name)->class('text-gray-100'),
+                html()->span("{$items} videos")->class('text-sm text-gray-300'),
             ]),
         ])
     )

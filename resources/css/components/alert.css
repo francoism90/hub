@@ -1,21 +1,19 @@
-@layer components {
-    .alert {
-        @apply grid w-full grid-flow-row content-start items-center justify-items-center gap-4 rounded bg-secondary-600/40 p-3 text-center sm:grid-flow-col sm:grid-cols-[auto_minmax(auto,1fr)] sm:justify-items-start sm:text-start;
+@utility alert {
+  @apply grid w-full grid-flow-row content-start items-center gap-4 rounded-sm bg-gray-600/40 p-3;
 
-        &-info {
-            @apply bg-info-300/40;
-        }
+  &-info {
+    @apply bg-blue-300/40;
+  }
 
-        &-success {
-            @apply bg-secondary-600/40;
-        }
+  &-success {
+    @apply bg-gray-600/40;
+  }
 
-        &-warning {
-            @apply bg-warning-500/40 text-white;
-        }
+  &-warning {
+    @apply bg-yellow-500/40 text-white;
+  }
 
-        &-error {
-            @apply bg-error-500/40 text-white;
-        }
-    }
+  &-error {
+    @apply bg-gray-500/40 text-white;
+  }
 }

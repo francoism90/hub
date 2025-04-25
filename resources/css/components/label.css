@@ -1,9 +1,7 @@
-@layer components {
-    .label {
-        @apply inline-flex cursor-pointer select-none items-center;
+@utility label {
+  @apply inline-flex cursor-pointer items-center select-none;
 
-        &-error {
-            @apply text-red-500;
-        }
-    }
+  &-error {
+    @apply text-red-500;
+  }
 }

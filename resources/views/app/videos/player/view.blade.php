@@ -31,7 +31,7 @@
 
             html()->div()->attributes(['x-cloak', 'x-show' => 'overlay', 'x-transition.opacity'])->class('absolute z-20 bottom-3 inset-x-4')->child(
                 html()->div()->class('flex flex-col flex-nowrap gap-y-3')->children([
-                    html()->div()->class('relative h-1.5 w-full bg-secondary-500/50')->children([
+                    html()->div()->class('relative h-1.5 w-full bg-gray-500/50')->children([
                         html()->element('progress')->class('progress progress-secondary absolute inset-0 z-10')->attributes([
                             'x-model' => 'bufferedPct(buffered, duration)',
                             ':min' => 0,
@@ -62,7 +62,7 @@
                                 html()->icon()->svg('heroicon-s-play', 'size-6')->attributes(['x-cloak', 'x-show' => "state !== 'playing'"]),
                             ]),
 
-                            html()->p()->class('inline-flex text-sm text-secondary-300 gap-x-1')->children([
+                            html()->p()->class('inline-flex text-sm text-gray-300 gap-x-1')->children([
                                 html()->span()->attribute('x-text', 'timeFormat(currentTime)'),
                                 html()->span()->text('/'),
                                 html()->span()->attribute('x-text', 'timeFormat(duration)'),
@@ -77,7 +77,7 @@
                                     html()
                                         ->div()
                                         ->attributes(['x-cloak', 'x-show' => 'open', 'x-trap.noscroll' => 'open', 'x-transition.opacity', 'x-on:click.outside' => 'open = false'])
-                                        ->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded')
+                                        ->class('absolute z-50 bottom-14 right-0 w-full min-w-52 max-w-64 bg-black/80 rounded-sm')
                                         ->children([
                                             html()->div()->class('flex flex-col px-3 py-2 gap-y-1.5 *:flex *:flex-nowrap *:items-center *:justify-between *:gap-x-3')->children([
                                                 html()->div()->attribute('x-show', 'stats?.width && stats?.height')->children([
