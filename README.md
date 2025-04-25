@@ -46,8 +46,8 @@ nano .env
 To access Hub locally (in this case `dev.lan`  is the development machine), make sure to create the following `/etc/hosts` entries:
 
 ```md
-127.0.0.1 hub.test ws.hub.test s3.hub.test mc.hub.test
-::1 hub.test ws.hub.test s3.hub.test mc.hub.test
+127.0.0.1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
+::1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
 ```
 
 > **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` to your homelab server.
@@ -72,13 +72,12 @@ systemctl --user status hub
 Enter the `systemd-hub-app` container, and execute the followings commands:
 
 ```bash
-$ podman exec -it systemd-hub-app sh # or hub shell
+$ podman exec -it systemd-hub-app /bin/bash # or hub shell
 composer install
 php artisan key:generate
 php artisan storage:link
-yarn install && yarn run build
+pnpm install && pnpm build
 php artisan app:install
-php artisan db:seed --class=UserSeeder:class
 ```
 
 The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
@@ -86,6 +85,12 @@ The following services are only accessible when being a super-admin (see `databa
 - <https://hub.test/horizon> - Laravel Horizon
 - <https://hub.test/pulse> - Laravel Pulse
 - <https://hub.test/telescope> - Laravel Telescope (disabled by default)
+
+To seed an example super-admin user:
+
+```bash
+php artisan db:seed --class=UserSeeder:class
+```
 
 ### Manage application
 
