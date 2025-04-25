@@ -1,7 +1,7 @@
 hub.test {
     import tls
     import compress
-    reverse_proxy systemd-hub:8000
+    reverse_proxy systemd-hub:8080
 }
 
 vite.hub.test {
