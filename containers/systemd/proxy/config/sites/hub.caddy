@@ -6,7 +6,14 @@ hub.test {
 
 vite.hub.test {
 	import tls
-	reverse_proxy systemd-hub-worker:5173
+    import compress
+	reverse_proxy systemd-hub:5173
+}
+
+play.hub.test {
+	import tls
+    import compress
+	reverse_proxy systemd-hub-vod:8080
 }
 
 ws.hub.test {

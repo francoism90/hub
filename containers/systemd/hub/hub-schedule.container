@@ -1,7 +1,7 @@
 [Unit]
 Description=Schedule container
-Requires=hub-worker.service
-After=hub-worker.service
+Requires=hub.service
+After=hub.service
 
 [Container]
 Image=localhost/hub-app:latest

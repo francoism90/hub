@@ -1,25 +1,25 @@
 [Unit]
 Description=Hub container
-Requires=hub-worker.service
-After=hub-worker.service
+Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+Wants=hub-queue.service hub-schedule.service hub-reverb.service hub-vod.service
 
 [Container]
-Image=localhost/hub-nginx:latest
+Image=localhost/hub-app:latest
 AutoUpdate=local
-EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
 UserNS=keep-id
-Volume=${APP_PATH}:/app:ro,z
-Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
+Volume=${APP_PATH}:/app:rw,z,U
+Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
+Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=8000
-ExposeHostPort=8081
-ExposeHostPort=8082
+ExposeHostPort=8080
+ExposeHostPort=5173
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
-TimeoutStartSec=90
+TimeoutStartSec=900
 Restart=on-failure
 
 [Install]

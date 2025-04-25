@@ -1,18 +1,21 @@
 [Unit]
-Description=Reverb container
+Description=Nginx container
 Requires=hub.service
 After=hub.service
 
 [Container]
-Image=localhost/hub-app:latest
+Image=localhost/hub-nginx:latest
 AutoUpdate=local
+EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
-Exec=/usr/bin/php /app/artisan reverb:start
 UserNS=keep-id
-Volume=${APP_PATH}:/app:rw,z
+Volume=${APP_PATH}:/app:ro,z
+Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=6001
+ExposeHostPort=8000
+ExposeHostPort=8081
+ExposeHostPort=8082
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
