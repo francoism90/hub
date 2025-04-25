@@ -13,7 +13,7 @@ Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=8000
+ExposeHostPort=8080
 ExposeHostPort=8081
 ExposeHostPort=8082
 
