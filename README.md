@@ -10,7 +10,7 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 Hub uses the following stack:
 
-- [nginx-vod-module (main)](https://github.com/kaltura/nginx-vod-module)
+- [nginx-vod-module (main branch)](https://github.com/kaltura/nginx-vod-module)
 - [Laravel 12.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
 - [PostgreSQL 17.x](https://www.postgresql.org/)
@@ -21,8 +21,10 @@ This is the preferred stack, please submit a PR if you would like to support oth
 
 ## Prerequisites
 
-- Linux (Fedora, CentOS Stream, Debian, Ubuntu, Arch) - WSLv2 is untested.
-- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) + SELinux support - Docker is untested, but should work without the SELinux mount flags (ro, rw, U, Z, etc.).
+- Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..). - WSLv2 is untested.
+- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux support.
+
+> **NOTE:** Docker is unsupported, but should work with a custom `docker-compose.yml` file. PRs are welcome. :)
 
 ## Installation
 
@@ -43,7 +45,7 @@ cp .env.example .env
 nano .env
 ```
 
-To access Hub locally (in this case `dev.lan`  is the development machine), make sure to create the following `/etc/hosts` entries:
+To access Hub locally, make sure to create the following `/etc/hosts` entries:
 
 ```md
 127.0.0.1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
@@ -54,25 +56,25 @@ To access Hub locally (in this case `dev.lan`  is the development machine), make
 
 ### Podman Quadlet
 
-Please read [following guide](docs/podman/README.md) to configure Podman Quadlet.
+Please read [following guide](docs/podman.md) to configure Podman Quadlet.
 
 ### MinIO
 
-Please read [following guide](docs/minio/README.md) to configure MinIO.
+Please read [following guide](docs/minio.md) to configure MinIO.
 
 ## Usage
 
 The Hub instance should be available at <https://hub.test>, after running:
 
 ```bash
-systemctl --user start caddy hub
+systemctl --user start proxy hub
 systemctl --user status hub
 ```
 
-Enter the `systemd-hub-app` container, and execute the followings commands:
+Enter the `systemd-hub` container, and execute the followings commands:
 
 ```bash
-$ podman exec -it systemd-hub-app /bin/bash # or hub shell
+$ podman exec -it systemd-hub /bin/bash # or hub shell
 composer install
 php artisan key:generate
 php artisan storage:link
@@ -83,7 +85,6 @@ php artisan app:install
 The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
 
 - <https://hub.test/horizon> - Laravel Horizon
-- <https://hub.test/pulse> - Laravel Pulse
 - <https://hub.test/telescope> - Laravel Telescope (disabled by default)
 
 To seed an example super-admin user:
@@ -115,7 +116,7 @@ To create an user:
 hub a user:create
 ```
 
-To force the removal of soft-deleted videos:
+To force the removal of deleted videos:
 
 > **WARNING:** This will remove any soft-deleted videos!
 
@@ -123,7 +124,7 @@ To force the removal of soft-deleted videos:
 hub a videos:clean
 ```
 
-To force (re-)indexing of models:
+To force (re-)indexing of all models:
 
 ```bash
 hub a scout:sync
@@ -132,7 +133,3 @@ hub a scout:sync
 ## Upgrading
 
 See [UPGRADING.md](UPGRADING.md)
-
-## Deployment
-
-See [Envoy.blade.php](Envoy.blade.php) for deployment details.

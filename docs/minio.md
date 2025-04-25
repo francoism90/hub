@@ -5,6 +5,7 @@ tags:
   - minio
   - s3
   - storage
+  - assets
 ---
 
 To learn more about MinIO, consider reading the following resources:

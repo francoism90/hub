@@ -5,6 +5,7 @@ tags:
   - podman
   - quadlet
   - systemd
+  - caddy
 ---
 
 To learn more about Podman Quadlet, please consider reading the following resources first:
@@ -30,15 +31,8 @@ It's recommend running a rootless setup:
 Build the Docker images (this may take some time):
 
 ```bash
-cd ~/hub
+cd ~/projects/hub
 bin/build-containers
-```
-
-To rebuild with no-cache (append other args if needed):
-
-```bash
-cd ~/hub
-bin/build-containers --no-cache
 ```
 
 ### Systemd units
@@ -50,7 +44,7 @@ mkdir -p ~/.config/containers/
 cp -r ~/hub/containers/systemd ~/.config/containers/
 ```
 
-Adjust environment files in `~/.config/containers/systemd/hub/config`, update `~/hub/.env` to reflect any systemd unit changes:
+Adjust all environment files in `~/.config/containers/systemd/hub/config`, update `~/projects/hub/.env` to reflect any changes:
 
 ```bash
 cd ~/.config/containers/systemd/hub/config
@@ -59,20 +53,18 @@ vi app.env postgres.env ..
 
 ### Configure Proxy
 
-[Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else, or not even proxy at all.
+[Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else.
 
-It is possible to use [Let's Encrypt](https://doc.traefik.io/traefik/https/acme/), or use your [own certificate](https://doc.traefik.io/traefik/https/tls/).
-
-The given configuration assumes you use a TLS with Let's Encrypt.
-
-Adjust the environment files in `~/.config/containers/systemd/traefik/config`, and make sure `podman.socket` is enabled:
+The given configuration assumes you want to use it in your homelab with a locally signed certificate.
 
 ```bash
+cd ~/.config/containers/systemd/proxy/config
+vi Caddyfile sites/hub.caddy
 systemctl --user enable podman.socket --now`
 systemctl --user start proxy`
 ```
 
-To copy the generated Caddy CA:
+To copy the generated Caddy CA that can be imported into your browsers keychain:
 
 ```bash
 podman cp systemd-proxy:/data/caddy/pki/authorities/local/root.crt ~/Downloads/proxy.crt
@@ -107,7 +99,7 @@ Hub provides a shell utility, which is a copy of [Laravel Sail](https://github.c
 To install, create a shell `alias`, e.g. when using [fish-shell](https://fishshell.com/docs/current/cmds/alias.html):
 
 ```fish
-alias --save hub '~/hub/bin/quadlet'
+alias --save hub '~/projects/hub/bin/quadlet'
 ```
 
 This allows interacting with the `systemd-hub` container using the same logic like Laravel Sail:
