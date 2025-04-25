@@ -10,14 +10,11 @@ LogDriver=none
 Exec=/usr/bin/php /app/artisan horizon
 UserNS=keep-id
 AddDevice=/dev/dri/:/dev/dri/
-Volume=${APP_PATH}:/app:rw,z,U
-Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
-# Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U
+Volume=${APP_PATH}:/app:rw,z
+Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z
+Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=6001
-ExposeHostPort=8000
-PublishPort=5173:5173
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env

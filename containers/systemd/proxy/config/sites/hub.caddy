@@ -4,6 +4,11 @@ hub.test {
     reverse_proxy systemd-hub:8000
 }
 
+vite.hub.test {
+	import tls
+	reverse_proxy systemd-hub-worker:5173
+}
+
 ws.hub.test {
 	import tls
     import compress

@@ -1,5 +1,5 @@
 [Unit]
-Description=Video-on-demand container
+Description=Hub container
 Requires=hub-worker.service
 After=hub-worker.service
 
@@ -14,6 +14,8 @@ Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network
 Network=hub.network
 ExposeHostPort=8000
+ExposeHostPort=8081
+ExposeHostPort=8082
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env

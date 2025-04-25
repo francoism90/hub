@@ -10,6 +10,8 @@ LogDriver=none
 Exec=/usr/bin/php /app/artisan schedule:work
 UserNS=keep-id
 Volume=${APP_PATH}:/app:rw,z
+Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z
+Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z
 Network=hub.network
 
 [Service]
