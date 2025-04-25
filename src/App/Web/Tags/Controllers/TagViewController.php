@@ -67,6 +67,7 @@ class TagViewController extends Page
     {
         return [
             GroupSet::Newest,
+            GroupSet::Ordered,
             GroupSet::Longest,
             GroupSet::Shortest,
         ];

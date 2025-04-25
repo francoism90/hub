@@ -9,6 +9,7 @@ enum GroupSet: string
     case All = 'all';
     case Discover = 'discover';
     case Favorite = 'favorite';
+    case Ordered = 'ordered';
     case Longest = 'longest';
     case Shortest = 'shortest';
     case Newest = 'newest';
@@ -23,6 +24,7 @@ enum GroupSet: string
     {
         return match ($this) {
             self::All => __('All'),
+            self::Ordered => __('Ordered'),
             self::Discover => __('New to you'),
             self::Favorite => __('Favorite'),
             self::Longest => __('Longest'),

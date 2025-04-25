@@ -21,6 +21,7 @@ class FilterVideos
             ->query(fn ($query) => $query->with(['media', 'tags']))
             ->whereIn('tagged', [$this->tag->getKey()])
             ->when($this->form->is('type', 'newest'), fn (Builder $query) => $query->orderByDesc('created_at'))
+            ->when($this->form->is('type', 'ordered'), fn (Builder $query) => $query->orderBy('name'))
             ->when($this->form->is('type', 'longest'), fn (Builder $query) => $query->orderByDesc('duration'))
             ->when($this->form->is('type', 'shortest'), fn (Builder $query) => $query->orderBy('duration'));
     }
