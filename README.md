@@ -17,50 +17,38 @@ Hub uses the following stack:
 - [Podman 5.x](https://podman.io/)
 - [Meilisearch 1.x](https://www.meilisearch.com/)
 
-This is the preferred stack, please submit a PR if you would like to support other solutions. :)
+This is the preferred stack, please submit a PR if you would like to support other solutions.
 
 ## Prerequisites
 
+- Any modern hardware (AArch64 is untested).
 - Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..). - WSLv2 is untested.
 - [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux support.
 
-> **NOTE:** Docker is unsupported, but should work with a custom `docker-compose.yml` file. PRs are welcome. :)
+> **NOTE:** Docker is unsupported, but should work with a `docker-compose.yml` file. PRs are welcome.
 
 ## Installation
 
 ### Clone repository
 
-Clone the repository, for example to `~/projects`:
+1. Clone the repository, for example to `~/projects`:
 
 ```bash
 cd ~/projects
 git https://github.com/francoism90/hub.git
 ```
 
-Configure Hub with your favorite editor:
+1. Configure Hub with your favorite editor:
 
 ```bash
 cd ~/projects/hub
 cp .env.example .env
-nano .env
+vi .env
 ```
 
-To access Hub locally, make sure to create the following `/etc/hosts` entries:
+1. See [Podman guide](docs/podman.md) to configure Podman Quadlet.
 
-```md
-127.0.0.1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
-::1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
-```
-
-> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` to your homelab server.
-
-### Podman Quadlet
-
-Please read [following guide](docs/podman.md) to configure Podman Quadlet.
-
-### MinIO
-
-Please read [following guide](docs/minio.md) to configure MinIO.
+1. See [MinIO guide](docs/minio.md) to configure MinIO.
 
 ## Usage
 

@@ -55,7 +55,7 @@ vi app.env postgres.env ..
 
 [Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else.
 
-The given configuration assumes you want to use it in your homelab with a locally signed certificate.
+The given configuration assumes you want to use self-signed certificates:
 
 ```bash
 cd ~/.config/containers/systemd/proxy/config
@@ -64,7 +64,17 @@ systemctl --user enable podman.socket --now`
 systemctl --user start proxy`
 ```
 
-To copy the generated Caddy CA that can be imported into your browsers keychain:
+To access Hub, make sure to append the following entries to your hosts (`/etc/hosts`) file:
+
+```text
+# hub
+127.0.0.1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
+::1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
+```
+
+> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` requests to your homelab server.
+
+To copy the generated Caddy CA that can be imported into your browsers certificate keychain:
 
 ```bash
 podman cp systemd-proxy:/data/caddy/pki/authorities/local/root.crt ~/Downloads/proxy.crt
