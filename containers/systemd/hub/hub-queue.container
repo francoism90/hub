@@ -18,7 +18,7 @@ Network=hub.network
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
-TimeoutStartSec=900
+TimeoutStartSec=90
 Restart=on-failure
 
 [Install]
