@@ -87,7 +87,7 @@ RUN apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 8000
+EXPOSE 8080
 EXPOSE 8081
 EXPOSE 8082
 
