@@ -36,10 +36,6 @@ class AppOptimize extends Command implements Isolatable
 
         // Restart services
         $this->call('reverb:restart');
-        $this->call('pulse:restart');
         $this->call('horizon:terminate');
-
-        // Reset pulse
-        $this->call('pulse:clear', ['--force' => true]);
     }
 }
