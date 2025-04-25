@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
+
+    // VOD
     Route::get('/subscription', SubscriptionController::class)->name('subscription');
 
     // Media

@@ -71,12 +71,12 @@ class VideoIndexController extends Page
 
     protected function getCandidatesLimit(): int
     {
-        return 24;
+        return 16;
     }
 
     protected function getFetchLimits(): ?int
     {
-        return 12 * $this->getCandidatesLimit();
+        return 24 * $this->getCandidatesLimit();
     }
 
     protected function getModelClass(): ?string
