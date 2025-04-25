@@ -12,18 +12,20 @@ server {
     index index.html;
 
     # authentication requests
-    #auth_request /auth;
-    #auth_request_set $auth_header $upstream_http_authorization;
-    #auth_request_set $auth_cookie $upstream_http_set_cookie;
+    auth_request /auth;
+    auth_request_set $auth_header $upstream_http_authorization;
+    auth_request_set $auth_cookie $upstream_http_set_cookie;
 
     # auth
     location = /auth {
         internal;
         proxy_pass http://hub/api/v1/subscription;
         proxy_pass_request_body off;
-        proxy_set_header Content-Length "";
+        proxy_cache auth-zone;
         proxy_set_header Host $http_host;
+        proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
+        proxy_ignore_headers Set-Cookie;
         include /etc/nginx/config/proxy.conf;
     }
 
