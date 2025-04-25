@@ -23,7 +23,6 @@
         "laravel/horizon": "^5.31.2",
         "laravel/octane": "^2.9.1",
         "laravel/prompts": "^0.3.5",
-        "laravel/pulse": "^1.4.1",
         "laravel/reverb": "^1.5.0",
         "laravel/sanctum": "^4.1.0",
         "laravel/scout": "^10.14.1",
