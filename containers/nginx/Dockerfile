@@ -77,7 +77,7 @@ RUN cd /usr/local/src \
 RUN usermod --non-unique --uid ${UID} nginx \
     && groupmod --non-unique --gid ${GID} nginx
 
-COPY --chown=${UID}:${GID} runtimes/. /etc/nginx
+COPY --chown=${UID}:${GID} runtimes/ /etc/nginx
 
 RUN apt-get -y autoremove \
     && apt-get clean \
