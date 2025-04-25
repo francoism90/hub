@@ -12,7 +12,10 @@ ENV NGINX_ENTRYPOINT_LOCAL_RESOLVERS=1
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN sed -i 's/^Components: main$/& contrib non-free/' /etc/apt/sources.list.d/debian.sources \
+    && apt-get update && apt-get upgrade -y
+
+RUN apt-get install -y \
     build-essential \
     clang \
     gcc \
@@ -23,14 +26,16 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     unzip \
     git \
     dnsutils \
-    python3 \
-    unzip \
+    python3-dev \
     libssl-dev \
     libpcre2-dev \
     libxml2-dev  \
+    libpng-dev \
     libavcodec-dev \
     libswscale-dev \
     libavfilter-dev \
+    libfdk-aac-dev \
+    fswatch \
     ffmpeg \
     zlib1g-dev \
     libopencore-amrwb0 \
@@ -79,8 +84,8 @@ RUN usermod --non-unique --uid ${UID} nginx \
 
 COPY --chown=${UID}:${GID} runtimes/ /etc/nginx
 
-RUN apt-get -y autoremove \
-    && apt-get clean \
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/local/src/*
 
 EXPOSE 8080

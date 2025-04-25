@@ -16,6 +16,10 @@ ENV OCTANE_USER="docker"
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
+RUN echo "Acquire::http::Pipeline-Depth 0;" > /etc/apt/apt.conf.d/99custom && \
+    echo "Acquire::http::No-Cache true;" >> /etc/apt/apt.conf.d/99custom && \
+    echo "Acquire::BrokenProxy    true;" >> /etc/apt/apt.conf.d/99custom
+
 RUN apt-get update && apt-get upgrade -y \
     && mkdir -p /etc/apt/keyrings \
     && apt-get install -y gnupg curl ca-certificates zip unzip git sqlite3 libcap2-bin libpng-dev python3 python3-pip dnsutils librsvg2-bin fswatch nano \
@@ -59,8 +63,8 @@ RUN userdel -r ubuntu
 RUN groupadd --force -g ${GID} docker \
     && useradd -ms /bin/bash --no-user-group -g ${GID} -u ${UID} docker
 
-RUN apt-get -y autoremove \
-    && apt-get clean \
+RUN apt-get -y autoremove -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 5173

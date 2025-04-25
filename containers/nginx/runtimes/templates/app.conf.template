@@ -43,6 +43,7 @@ server {
         proxy_pass http://vod/;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # live
@@ -50,6 +51,7 @@ server {
         proxy_pass http://live/;
         proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # index.html fallback

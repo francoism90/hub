@@ -34,14 +34,12 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
     }
 
     # DASH init segment
@@ -49,7 +47,6 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
     }
 
     # DASH manifest
@@ -57,7 +54,6 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
     }
 
     # default proxy to origin (no cache)
