@@ -33,9 +33,5 @@ class AppOptimize extends Command implements Isolatable
 
         // Reload octane
         $this->call('octane:reload');
-
-        // Restart services
-        $this->call('reverb:restart');
-        $this->call('horizon:terminate');
     }
 }

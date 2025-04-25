@@ -36,26 +36,17 @@
                     rebufferingGoal: 0.01,
                     segmentPrefetchLimit: 2,
                     updateIntervalSeconds: 0.1,
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
                 },
                 manifest: {
                     disableAudio: true,
                     disableThumbnails: true,
-                    dash: {
-                        autoCorrectDrift: true,
-                    },
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                drm: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
                 },
             });
+
+            // Configure networking
+            this.instance.getNetworkingEngine().registerRequestFilter(
+                async (type, request) => (request.allowCrossSiteCredentials = true)
+            );
         },
 
         async load(video = undefined, manifest = null) {

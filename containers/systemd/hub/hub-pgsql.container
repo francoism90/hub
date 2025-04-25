@@ -4,16 +4,16 @@ Description=PostgreSQL container
 [Container]
 Image=docker.io/library/postgres:latest
 AutoUpdate=registry
-EnvironmentFile=%h/.config/containers/systemd/hub/config/postgres.env
 LogDriver=none
+EnvironmentFile=%h/.config/containers/systemd/hub/config/postgres.env
 ShmSize=100m
 Volume=hub-pgsql:/var/lib/postgresql/data:rw,Z,U
 Network=hub.network
 PublishPort=5432:5432
 
 [Service]
-TimeoutStartSec=300
-Restart=always
+TimeoutStartSec=90
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

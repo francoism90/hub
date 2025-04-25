@@ -19,10 +19,13 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://octane/api/v1/subscription;
+        proxy_pass http://hub/api/v1/subscription;
         proxy_pass_request_body off;
+        proxy_cache auth-zone;
         proxy_set_header Host $http_host;
+        proxy_set_header Content-Length "";
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
+        proxy_ignore_headers Set-Cookie;
         include /etc/nginx/config/proxy.conf;
     }
 
@@ -31,12 +34,14 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # DASH init segment
@@ -44,6 +49,7 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # DASH manifest
@@ -51,6 +57,7 @@ server {
         proxy_pass http://remote;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
+        include /etc/nginx/config/cors.conf;
     }
 
     # default proxy to origin (no cache)

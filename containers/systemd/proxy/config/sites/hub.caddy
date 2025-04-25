@@ -1,0 +1,34 @@
+hub.test {
+    import tls
+    import compress
+    reverse_proxy systemd-hub:8080
+}
+
+vite.hub.test {
+	import tls
+    import compress
+	reverse_proxy systemd-hub:5173
+}
+
+play.hub.test {
+	import tls
+    import compress
+	reverse_proxy systemd-hub-vod:8080
+}
+
+ws.hub.test {
+	import tls
+    import compress
+	reverse_proxy systemd-hub-reverb:6001
+}
+
+s3.hub.test {
+    import tls
+    import cors hub.test
+    reverse_proxy systemd-hub-minio:9000
+}
+
+mc.hub.test {
+    import tls
+    reverse_proxy systemd-hub-minio:8900
+}

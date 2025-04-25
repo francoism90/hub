@@ -1,0 +1,23 @@
+[Unit]
+Description=Reverb container
+Requires=hub.service
+After=hub.service
+
+[Container]
+Image=localhost/hub-app:latest
+AutoUpdate=local
+LogDriver=none
+Exec=/usr/bin/php /app/artisan reverb:start
+UserNS=keep-id
+Volume=${APP_PATH}:/app:rw,z
+Network=proxy.network
+Network=hub.network
+ExposeHostPort=6001
+
+[Service]
+EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
+TimeoutStartSec=90
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

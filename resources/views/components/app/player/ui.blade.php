@@ -41,6 +41,11 @@
             // Create instances
             this.instance = new window.shaka.Player();
             this.manager = new window.shaka.util.EventManager();
+
+            // Configure networking
+            this.instance.getNetworkingEngine().registerRequestFilter(
+                async (type, request) => (request.allowCrossSiteCredentials = true)
+            );
         },
 
         async load(manifest = null, timecode = null) {

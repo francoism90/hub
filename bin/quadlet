@@ -107,7 +107,7 @@ fi
 
 # Define environment variables...
 export APP_PORT=${APP_PORT:-443}
-export APP_SERVICE=${APP_SERVICE:-"systemd-hub-app"}
+export APP_SERVICE=${APP_SERVICE:-"systemd-hub"}
 export DB_PORT=${DB_PORT:-3306}
 export WWWUSER=${1000:-$UID}
 export WWWGROUP=${1000:-$(id -g)}

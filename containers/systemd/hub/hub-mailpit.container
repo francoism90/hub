@@ -4,18 +4,19 @@ Description=Mailpit container
 [Container]
 Image=docker.io/axllent/mailpit:latest
 AutoUpdate=registry
+LogDriver=none
 Environment=MP_MAX_MESSAGES=5000
 Environment=MP_DATA_FILE=/data/mailpit.db
 Environment=MP_SMTP_AUTH_ACCEPT_ANY=1
 Environment=MP_SMTP_AUTH_ALLOW_INSECURE=1
-LogDriver=none
 Volume=hub-mailpit:/data:rw,Z,U
+Network=proxy.network
 Network=hub.network
 ExposeHostPort=1025
-PublishPort=8025:8025
+ExposeHostPort=8025
 
 [Service]
-Restart=always
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
