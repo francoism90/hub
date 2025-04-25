@@ -19,6 +19,7 @@ server {
     location ^~ /json/dash/ {
         internal;
         proxy_pass http://hub/;
+        proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
     }
