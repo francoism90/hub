@@ -24,7 +24,7 @@ importers:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
       axios:
-        specifier: ^1.8.4
+        specifier: ^1.9.0
         version: 1.9.0
       chokidar:
         specifier: ^4.0.3
@@ -75,7 +75,7 @@ importers:
         specifier: ^3.4.17
         version: 3.4.17
       vite:
-        specifier: ^6.3.2
+        specifier: ^6.3.3
         version: 6.3.3(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
       vite-plugin-pwa:
         specifier: ^1.0.0
@@ -2757,7 +2757,6 @@ packages:
 
   shaka-player@4.14.9:
     resolution: {integrity: sha512-0YZJ+UUHBz3meAzN/eOvjNoLH7eCG1yHP3BFH8ZnFbGf3K50DgLWNMoV6bm6pH4cndvXem+SdcQRXabItD4RBA==}
-    engines: {node: '>=18'}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
