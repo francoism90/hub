@@ -3,13 +3,16 @@
 {{ html()
     ->element('article')
     ->data('manifest', $video->preview)
-    ->attribute('x-data', '{ manifest: $el.dataset.manifest }')
+    ->attributes([
+        'x-data' => '{ shown: false, manifest: $el.dataset.manifest }',
+        'x-intersect.once' => 'shown = true',
+    ])
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->children([
         html()->a()->link('videos.view', $video)->class('relative shrink-0 block w-full h-48 min-h-48 max-h-48')->children([
             html()
                 ->div()
-                ->class('absolute inset-0 z-20 size-full')
+                ->class('absolute inset-0 z-20 size-full max-h-48')
                 ->attributes([
                     'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
                     'x-on:mouseleave' => 'unload()',
@@ -38,18 +41,19 @@
             html()
                 ->img($video->thumbnail, $video->title)
                 ->srcset($video->srcset)
-                ->class('absolute inset-0 z-0 size-full rounded object-fill brightness-85')
+                ->class('absolute inset-0 z-0 size-full max-h-48 rounded object-fill brightness-85')
                 ->loading('lazy')
-                ->crossorigin('use-credentials'),
+                ->crossorigin('use-credentials')
+                ->attribute('sizes', '(min-width: 768px) 768px, 320px'),
 
             html()
                 ->element('video')
                 ->ignore()
-                ->class('absolute inset-0 z-10 size-full rounded object-fill brightness-95')
+                ->class('absolute inset-0 z-10 size-full max-h-48 rounded object-fill brightness-95')
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
-                    'x-show' => 'ready',
+                    'x-show' => 'shown && ready',
                     'x-transition.opacity',
                     'playsinline',
                     'autoplay',
