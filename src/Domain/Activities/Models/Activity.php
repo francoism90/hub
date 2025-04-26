@@ -122,9 +122,4 @@ class Activity extends Model
             'updated_at' => (int) $this->updated_at->getTimestamp(),
         ];
     }
-
-    protected function makeAllSearchableUsing(ActivityQueryBuilder $query): ActivityQueryBuilder
-    {
-        return $query->with(['user']);
-    }
 }

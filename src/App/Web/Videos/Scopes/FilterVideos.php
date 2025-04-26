@@ -20,7 +20,6 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->with(['media', 'tags'])
             ->published()
             ->when($this->filterByTag(), fn (Builder $query) => $this->tagged($query))
             ->when($this->form->is('list', 'all'), fn (Builder $query) => $this->recommended($query))

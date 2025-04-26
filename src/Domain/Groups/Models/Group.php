@@ -142,11 +142,6 @@ class Group extends Model implements HasMedia, Sortable
             ->where('created_at', '<=', now()->subDay());
     }
 
-    public function makeSearchableUsing(GroupCollection $models): GroupCollection
-    {
-        return $models->loadMissing($this->with);
-    }
-
     public function toSearchableArray(): array
     {
         return [
@@ -160,11 +155,6 @@ class Group extends Model implements HasMedia, Sortable
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
         ];
-    }
-
-    protected function makeAllSearchableUsing(GroupQueryBuilder $query): GroupQueryBuilder
-    {
-        return $query->with($this->with);
     }
 
     public function title(): Attribute

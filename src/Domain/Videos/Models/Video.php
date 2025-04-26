@@ -238,11 +238,6 @@ class Video extends Model implements HasMedia
         ];
     }
 
-    protected function makeAllSearchableUsing(VideoQueryBuilder $query): VideoQueryBuilder
-    {
-        return $query->with(['media', 'tags']);
-    }
-
     public function identifier(): Attribute
     {
         return Attribute::make(
