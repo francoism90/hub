@@ -45,7 +45,6 @@
             // Configure player
             this.instance.configure({
                 streaming: {
-                    autoLowLatencyMode: true,
                     ignoreTextStreamFailures: true,
                     retryParameters: {
                         baseDelay: 100,

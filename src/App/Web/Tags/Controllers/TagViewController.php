@@ -53,7 +53,7 @@ class TagViewController extends Page
     {
         return $this->getScout()
             ->tap(new FilterVideos(form: $this->form, tag: $this->tag))
-            ->simplePaginate(perPage: 36);
+            ->simplePaginate(perPage: 24);
     }
 
     public function refresh(): void
