@@ -34,7 +34,7 @@ server {
 
     location ~ ^/dash/ {
         vod dash;
-        vod_segment_duration 4000;
+        vod_segment_duration 2000;
         vod_dash_manifest_format segmenttemplate;
         vod_manifest_duration_policy min;
         vod_manifest_segment_durations_mode accurate;

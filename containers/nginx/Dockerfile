@@ -17,8 +17,6 @@ RUN sed -i 's/^Components: main$/& contrib non-free/' /etc/apt/sources.list.d/de
 
 RUN apt-get install -y \
     build-essential \
-    clang \
-    gcc \
     gnupg \
     curl \
     ca-certificates \
@@ -35,9 +33,8 @@ RUN apt-get install -y \
     libswscale-dev \
     libavfilter-dev \
     libfdk-aac-dev \
-    fswatch \
-    ffmpeg \
     zlib1g-dev \
+    ffmpeg \
     libopencore-amrwb0 \
     libopencore-amrnb0 \
     libass9 \
@@ -72,7 +69,7 @@ RUN mkdir -p /usr/local/src && rm -rf /usr/local/src/* \
     && CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p')
 
 RUN cd /usr/local/src \
-    && git clone --depth 1 https://github.com/kaltura/nginx-vod-module.git \
+    && git clone --depth 1 https://github.com/diogoazevedos/nginx-vod-module.git \
     && MODULEDIR=$(pwd)/nginx-vod-module \
     && cd /usr/local/src/nginx \
     && ./configure --with-compat ${CONFARGS} --add-dynamic-module=${MODULEDIR} --with-file-aio --with-threads --with-cc-opt="-O3 -mpopcnt" \

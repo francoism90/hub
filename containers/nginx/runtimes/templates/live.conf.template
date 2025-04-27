@@ -29,6 +29,25 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
+    # HLS segments
+    location ~ ^(.*/seg\-)([1-3])([^0-9].*\.ts)$ {
+        proxy_pass http://remote;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ ^(.*/seg\-)(\d+)(.*\.ts)$ {
+        proxy_pass http://remote;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # HLS manifest
+    location ~ ^.*\.m3u8$ {
+        proxy_pass $scheme://origin-$scheme;
+        proxy_cache short-zone;
+    }
+
     # DASH segments
     location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
         proxy_pass http://remote;
@@ -60,6 +79,14 @@ server {
     location / {
         proxy_pass http://remote;
         include /etc/nginx/config/proxy.conf;
+    }
+
+    # vod status page
+    location = /vod_status {
+        allow 127.0.0.1/32;
+        deny all;
+
+        vod_status;
     }
 
     # nginx status page

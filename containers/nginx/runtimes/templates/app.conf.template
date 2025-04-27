@@ -2,27 +2,28 @@ resolver ${NGINX_LOCAL_RESOLVERS} valid=60s;
 resolver_timeout 5s;
 
 upstream hub {
-    server systemd-hub:8080 weight=5 max_fails=3 fail_timeout=30s;
+    server systemd-hub:8080 max_fails=3 fail_timeout=30s;
+    keepalive 32;
 }
 
 upstream mapped {
-    server localhost:1935 weight=4 max_fails=0;
-    keepalive 16;
+    server localhost:1935 max_fails=0;
+    keepalive 32;
 }
 
 upstream remote {
-    server localhost:1936 weight=4 max_fails=0;
-    keepalive 16;
+    server localhost:1936 max_fails=0;
+    keepalive 32;
 }
 
 upstream vod {
-    server localhost:8081 weight=4 max_fails=0;
-    keepalive 16;
+    server localhost:8081 max_fails=0;
+    keepalive 32;
 }
 
 upstream live {
-    server localhost:8082 weight=4 max_fails=0;
-    keepalive 16;
+    server localhost:8082  max_fails=0;
+    keepalive 32;
 }
 
 server {
