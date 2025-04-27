@@ -44,7 +44,7 @@ server {
 
     # HLS manifest
     location ~ ^.*\.m3u8$ {
-        proxy_pass $scheme://origin-$scheme;
+        proxy_pass http://mapped;
         proxy_cache long-zone;
     }
 
@@ -78,6 +78,7 @@ server {
     # default proxy to origin (no cache)
     location / {
         proxy_pass http://mapped;
+        proxy_set_header Host $http_host;
         include /etc/nginx/config/proxy.conf;
     }
 

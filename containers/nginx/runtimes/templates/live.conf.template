@@ -44,7 +44,7 @@ server {
 
     # HLS manifest
     location ~ ^.*\.m3u8$ {
-        proxy_pass $scheme://origin-$scheme;
+        proxy_pass http://remote;
         proxy_cache short-zone;
     }
 
