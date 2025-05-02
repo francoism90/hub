@@ -43,7 +43,7 @@ class GetStreamManifest
     {
         return $model->captions->map(fn (Media $media, int $key) => (new Sequence)
             ->id(sprintf('CC%d', $key + 1))
-            ->label(sprintf('%s (%d)', $this->parseLocaleLabel($media), $key + 1))
+            ->label(sprintf('%d - %s', $key + 1, $this->parseLocaleLabel($media)))
             ->language($media->getCustomProperty('locale', 'eng'))
             ->clips([
                 (new Clip)->type('source')->path($media->getPath()),
