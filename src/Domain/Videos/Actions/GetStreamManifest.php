@@ -43,7 +43,7 @@ class GetStreamManifest
     {
         return $model->captions->map(fn (Media $media, int $key) => (new Sequence)
             ->id(sprintf('CC%d', $key + 1))
-            ->label($this->getLocaleLabel($media))
+            ->label(sprintf('%s (%d)', $this->parseLocaleLabel($media), $key + 1))
             ->language($media->getCustomProperty('locale', 'eng'))
             ->clips([
                 (new Clip)->type('source')->path($media->getPath()),
@@ -51,10 +51,10 @@ class GetStreamManifest
         );
     }
 
-    protected function getLocaleLabel(Media $media): string
+    protected function parseLocaleLabel(Media $media): string
     {
         $locale = $media->getCustomProperty('locale', 'eng');
 
-        return locale_get_display_language($locale) ?: __('Unknown');
+        return locale_get_display_language($locale) ?: __('Native Language');
     }
 }
