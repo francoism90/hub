@@ -44,7 +44,11 @@
                 ->class('absolute inset-0 z-0 size-full max-h-48 rounded object-fill brightness-85')
                 ->loading('lazy')
                 ->crossorigin('use-credentials')
-                ->attribute('sizes', '(min-width: 768px) 768px, 320px'),
+                ->attributes([
+                    'x-cloak',
+                    'x-show' => 'shown',
+                    'sizes' => '(min-width: 768px) 768px, 320px',
+                ]),
 
             html()
                 ->element('video')
