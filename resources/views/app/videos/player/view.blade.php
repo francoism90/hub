@@ -6,7 +6,7 @@
         'x-data' => 'player',
         'x-cloak',
         'x-ref' => 'container',
-        'x-intersect' => "load('{$manifest}', '{$timecode}')",
+        'x-intersect.once' => "load('{$manifest}', '{$timecode}')",
         'x-on:click' => 'showOverlay',
         'x-on:mousemove' => 'showOverlay',
         'x-on:touchmove' => 'showOverlay',
