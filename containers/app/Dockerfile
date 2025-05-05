@@ -54,7 +54,7 @@ RUN ln -sf /usr/local/lib/python3.12/dist-packages/streamer_binaries/ffmpeg-linu
     && ln -sf /usr/local/lib/python3.12/dist-packages/streamer_binaries/ffprobe-linux-x64 /usr/local/bin/ffprobe
 
 COPY runtimes/container-entrypoint.sh /usr/local/bin/container-entrypoint.sh
-COPY runtimes/php-development.ini /usr/local/etc/php/conf.d/99-user.ini
+COPY runtimes/php-production.ini /usr/local/etc/php/conf.d/99-user.ini
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.4
 RUN chmod +x /usr/local/bin/container-entrypoint.sh

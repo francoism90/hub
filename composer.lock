@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81c27d03b7dfeb99a0fd803555959cb1",
+    "content-hash": "52c45fe421bce21c45b5674f413b997d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -2214,16 +2214,16 @@
         },
         {
             "name": "foxws/wireuse",
-            "version": "v2.9.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/foxws/wireuse.git",
-                "reference": "a622a8e5fe06091bb041122173ef8c125ff1020f"
+                "reference": "d0cfbb83289febf910a58f73c04869f5199c9266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxws/wireuse/zipball/a622a8e5fe06091bb041122173ef8c125ff1020f",
-                "reference": "a622a8e5fe06091bb041122173ef8c125ff1020f",
+                "url": "https://api.github.com/repos/foxws/wireuse/zipball/d0cfbb83289febf910a58f73c04869f5199c9266",
+                "reference": "d0cfbb83289febf910a58f73c04869f5199c9266",
                 "shasum": ""
             },
             "require": {
@@ -2283,17 +2283,17 @@
             "description": "Collection of Livewire traits and utilities",
             "homepage": "https://github.com/foxws/wireuse",
             "keywords": [
+                "components",
                 "concerns",
                 "helpers",
                 "laravel",
                 "livewire",
                 "traits",
-                "utilities",
-                "wireuse"
+                "utilities"
             ],
             "support": {
                 "issues": "https://github.com/foxws/wireuse/issues",
-                "source": "https://github.com/foxws/wireuse/tree/v2.9.0"
+                "source": "https://github.com/foxws/wireuse/tree/v2.9.1"
             },
             "funding": [
                 {
@@ -2301,7 +2301,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-23T18:39:37+00:00"
+            "time": "2025-05-05T15:46:48+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -3920,16 +3920,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.6.2",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "06c3b0bf2540338094575612f4a1778d0d2d5e94"
+                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/06c3b0bf2540338094575612f4a1778d0d2d5e94",
-                "reference": "06c3b0bf2540338094575612f4a1778d0d2d5e94",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
+                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
                 "shasum": ""
             },
             "require": {
@@ -3966,7 +3966,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.7-dev"
+                    "dev-main": "2.8-dev"
                 }
             },
             "autoload": {
@@ -4023,7 +4023,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-18T21:09:27+00:00"
+            "time": "2025-05-05T12:20:28+00:00"
         },
         {
             "name": "league/config",
