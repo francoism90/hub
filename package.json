@@ -32,7 +32,7 @@
         "stylelint": "^16.19.1",
         "stylelint-config-standard-scss": "^14.0.0",
         "tailwindcss": "^4.1.6",
-        "vite": "^6.3.5",
+        "vite": "^6.3.4",
         "vite-plugin-pwa": "^1.0.0",
         "vitest": "^3.1.3"
     }
