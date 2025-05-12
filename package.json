@@ -30,7 +30,7 @@
         "pusher-js": "^8.4.0",
         "shaka-player": "^4.14.11",
         "stylelint": "^16.19.1",
-        "stylelint-config-standard-scss": "^14.0.0",
+        "stylelint-config-standard-scss": "^15.0.0",
         "tailwindcss": "^3.4.17",
         "vite": "^6.3.5",
         "vite-plugin-pwa": "^1.0.0",
