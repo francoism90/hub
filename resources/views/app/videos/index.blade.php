@@ -37,7 +37,7 @@
     {{ html()->element('main')->close() }}
 
     @if ($this->isFetchable())
-        {{ html()->div()->class('w-full h-0 min-h-0')->attribute('x-intersect.full', '$wire.nextPage()') }}
+        {{ html()->div()->class('w-full h-0 min-h-0')->attribute('x-intersect', '$wire.nextPage()') }}
     @endif
 {{ html()->div()->close() }}
 
