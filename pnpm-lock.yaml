@@ -18,8 +18,8 @@ importers:
         specifier: ^1.9.0
         version: 1.9.0
       laravel-echo:
-        specifier: ^2.1.0
-        version: 2.1.0(pusher-js@8.4.0)(socket.io-client@4.8.1)
+        specifier: ^2.1.3
+        version: 2.1.3(pusher-js@8.4.0)(socket.io-client@4.8.1)
       pusher-js:
         specifier: ^8.4.0
         version: 8.4.0
@@ -53,7 +53,7 @@ importers:
         version: 16.1.0
       laravel-vite-plugin:
         specifier: ^1.2.0
-        version: 1.2.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
+        version: 1.2.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1))
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -74,13 +74,13 @@ importers:
         version: 14.0.0(postcss@8.5.3)(stylelint@16.19.1)
       vite:
         specifier: ^6.3.5
-        version: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+        version: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
       vite-plugin-pwa:
         specifier: ^1.0.0
-        version: 1.0.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))(workbox-build@7.3.0)(workbox-window@7.3.0)
+        version: 1.0.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1))(workbox-build@7.3.0)(workbox-window@7.3.0)
       vitest:
         specifier: ^3.1.3
-        version: 3.1.3(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+        version: 3.1.3(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
 
 packages:
 
@@ -1458,6 +1458,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.1:
+    resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
     engines: {node: '>=6'}
@@ -2160,8 +2169,8 @@ packages:
   known-css-properties@0.36.0:
     resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
 
-  laravel-echo@2.1.0:
-    resolution: {integrity: sha512-SuU2lG+0hfWr4FMpNo4WeuxT3IwB7NI7zaEDrOOsNbHgTYSZY6lwPCBNvSMOfFjIEc9aNx6pRBxHkSWAwxg1UA==}
+  laravel-echo@2.1.3:
+    resolution: {integrity: sha512-5Z9tj3v3YPjpWq6WM/CX+QmdNkt3CS9exzXh6MLcvLru6+KhGNJYBAcy7wTpzkpT8NEZMwgjVEEguklvYDEKjA==}
     engines: {node: '>=20'}
     peerDependencies:
       pusher-js: '*'
@@ -3155,8 +3164,8 @@ packages:
     resolution: {integrity: sha512-G13vtMYPT/J8A4X2SjdtBTphZlrp1gKv6hZiOjw14RCWg6GbHuQBGtjlx75xLbYV/wEc0D7G5K4rxKP/cXk8Bw==}
     engines: {node: '>=10'}
 
-  terser@5.39.0:
-    resolution: {integrity: sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw==}
+  terser@5.39.1:
+    resolution: {integrity: sha512-Mm6+uad0ZuDtcV8/4uOZQDQ8RuiC5Pu+iZRedJtF7yA/27sPL7d++In/AJKpWZlU3SYMPPkVfwetn6sgZ66pUA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -3570,7 +3579,7 @@ snapshots:
       '@babel/traverse': 7.27.1
       '@babel/types': 7.27.1
       convert-source-map: 2.0.0
-      debug: 4.4.0
+      debug: 4.4.1
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -3622,7 +3631,7 @@ snapshots:
       '@babel/core': 7.27.1
       '@babel/helper-compilation-targets': 7.27.2
       '@babel/helper-plugin-utils': 7.27.1
-      debug: 4.4.0
+      debug: 4.4.1
       lodash.debounce: 4.0.8
       resolve: 1.22.10
     transitivePeerDependencies:
@@ -4176,7 +4185,7 @@ snapshots:
       '@babel/parser': 7.27.2
       '@babel/template': 7.27.2
       '@babel/types': 7.27.1
-      debug: 4.4.0
+      debug: 4.4.1
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -4429,7 +4438,7 @@ snapshots:
     dependencies:
       serialize-javascript: 6.0.2
       smob: 1.5.0
-      terser: 5.39.0
+      terser: 5.39.1
     optionalDependencies:
       rollup: 2.79.2
 
@@ -4549,13 +4558,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.1.3(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))':
+  '@vitest/mocker@3.1.3(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1))':
     dependencies:
       '@vitest/spy': 3.1.3
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+      vite: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
 
   '@vitest/pretty-format@3.1.3':
     dependencies:
@@ -5002,6 +5011,10 @@ snapshots:
       ms: 2.1.3
 
   debug@4.4.0:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.1:
     dependencies:
       ms: 2.1.3
 
@@ -5805,15 +5818,15 @@ snapshots:
 
   known-css-properties@0.36.0: {}
 
-  laravel-echo@2.1.0(pusher-js@8.4.0)(socket.io-client@4.8.1):
+  laravel-echo@2.1.3(pusher-js@8.4.0)(socket.io-client@4.8.1):
     dependencies:
       pusher-js: 8.4.0
       socket.io-client: 4.8.1
 
-  laravel-vite-plugin@1.2.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)):
+  laravel-vite-plugin@1.2.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)):
     dependencies:
       picocolors: 1.1.1
-      vite: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+      vite: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
       vite-plugin-full-reload: 1.2.0
 
   leven@3.1.0: {}
@@ -6823,7 +6836,7 @@ snapshots:
       type-fest: 0.16.0
       unique-string: 2.0.0
 
-  terser@5.39.0:
+  terser@5.39.1:
     dependencies:
       '@jridgewell/source-map': 0.3.6
       acorn: 8.14.1
@@ -6958,13 +6971,13 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-node@3.1.3(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1):
+  vite-node@3.1.3(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+      vite: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -6984,18 +6997,18 @@ snapshots:
       picocolors: 1.1.1
       picomatch: 2.3.1
 
-  vite-plugin-pwa@1.0.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))(workbox-build@7.3.0)(workbox-window@7.3.0):
+  vite-plugin-pwa@1.0.0(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1))(workbox-build@7.3.0)(workbox-window@7.3.0):
     dependencies:
       debug: 4.4.0
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.13
-      vite: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+      vite: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
       workbox-build: 7.3.0
       workbox-window: 7.3.0
     transitivePeerDependencies:
       - supports-color
 
-  vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1):
+  vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1):
     dependencies:
       esbuild: 0.25.4
       fdir: 6.4.4(picomatch@4.0.2)
@@ -7006,13 +7019,13 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
       jiti: 1.21.7
-      terser: 5.39.0
+      terser: 5.39.1
       yaml: 2.7.1
 
-  vitest@3.1.3(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1):
+  vitest@3.1.3(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1):
     dependencies:
       '@vitest/expect': 3.1.3
-      '@vitest/mocker': 3.1.3(vite@6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1))
+      '@vitest/mocker': 3.1.3(vite@6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1))
       '@vitest/pretty-format': 3.1.3
       '@vitest/runner': 3.1.3
       '@vitest/snapshot': 3.1.3
@@ -7029,8 +7042,8 @@ snapshots:
       tinyglobby: 0.2.13
       tinypool: 1.0.2
       tinyrainbow: 2.0.0
-      vite: 6.3.5(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
-      vite-node: 3.1.3(jiti@1.21.7)(terser@5.39.0)(yaml@2.7.1)
+      vite: 6.3.5(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
+      vite-node: 3.1.3(jiti@1.21.7)(terser@5.39.1)(yaml@2.7.1)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - jiti
