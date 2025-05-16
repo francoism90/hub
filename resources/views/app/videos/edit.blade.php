@@ -124,7 +124,6 @@
             ->button()
             ->type('submit')
             ->text('Save Changes')
-            ->class('btn btn-primary')
-            ->attribute('wire:loading.attr', 'disabled'),
+            ->class('btn btn-primary'),
     ])
 ]) }}

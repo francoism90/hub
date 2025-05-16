@@ -71,7 +71,7 @@ class VideoIndexController extends Page
 
     protected function getCandidatesLimit(): int
     {
-        return 18;
+        return 16;
     }
 
     protected function getFetchLimits(): ?int
