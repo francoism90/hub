@@ -115,7 +115,7 @@ trait InteractsWithVod
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview')
+            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview', true)
         )->shouldCache();
     }
 

@@ -17,7 +17,7 @@ server {
     #auth_request_set $auth_cookie $upstream_http_set_cookie;
 
     # vod settings
-    vod_mode remote;
+    vod_mode mapped;
     vod_upstream_location /json;
     vod_remote_upstream_location /proxy;
     vod_base_url ${NGINX_VOD_LIVE_URL};
@@ -40,6 +40,12 @@ server {
         proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
         proxy_ignore_headers Set-Cookie;
         include /etc/nginx/config/proxy.conf;
+    }
+
+    # proxy
+    location ~ /proxy/([^/]+)/(.*) {
+        internal;
+        proxy_pass $1://$2;
     }
 
     # DASH format
