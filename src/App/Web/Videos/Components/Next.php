@@ -16,7 +16,7 @@ class Next extends Section
     #[Computed(persist: true, seconds: 60 * 20)]
     public function items(): Collection
     {
-        return app(GetSimilarVideos::class)->execute($this->getVideo(), limit: 16)->collect();
+        return app(GetSimilarVideos::class)->execute($this->getVideo(), limit: $this->getLimit())->collect();
     }
 
     protected function getTitle(): ?string

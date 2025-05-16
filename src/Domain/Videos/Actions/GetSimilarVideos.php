@@ -46,7 +46,7 @@ class GetSimilarVideos
         return $items
             ->flatten()
             ->reject(fn (Video $item) => $item->is($model))
-            ->take(12)
+            ->take(16)
             ->unique();
     }
 
@@ -66,7 +66,7 @@ class GetSimilarVideos
             ])
             ->whereKeyNot($model)
             ->inRandomOrder()
-            ->take(12)
+            ->take(16)
             ->cursor();
     }
 
@@ -76,7 +76,7 @@ class GetSimilarVideos
             ->published()
             ->whereKeyNot($model)
             ->inRandomOrder()
-            ->take(12)
+            ->take(16)
             ->cursor();
     }
 }

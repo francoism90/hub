@@ -62,6 +62,11 @@ abstract class Section extends Component
         return null;
     }
 
+    protected function getLimit(): int
+    {
+        return 24;
+    }
+
     protected function getModelClass(): ?string
     {
         return Video::class;

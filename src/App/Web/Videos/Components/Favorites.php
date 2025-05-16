@@ -22,7 +22,7 @@ class Favorites extends Section
             ->videos()
             ->published()
             ->orderByDesc('videoables.updated_at')
-            ->take(24)
+            ->take($this->getLimit())
             ->get();
     }
 

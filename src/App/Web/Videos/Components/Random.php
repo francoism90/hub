@@ -19,7 +19,7 @@ class Random extends Section
             ->whereKeyNot($this->getVideoKey())
             ->published()
             ->inRandomOrder()
-            ->take(24)
+            ->take($this->getLimit())
             ->get();
     }
 
