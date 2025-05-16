@@ -6,6 +6,8 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
 use Domain\Videos\Actions\GetManifestUrl;
+use Domain\Videos\Actions\GetPreviewManifestUrl;
+use Domain\Videos\Actions\GetVideoManifestUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -106,14 +108,14 @@ trait InteractsWithVod
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetManifestUrl::class)->execute($this, config('vod.format'), live: false)
+            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'stream')
         )->shouldCache();
     }
 
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetManifestUrl::class)->execute($this, config('vod.format'), live: true)
+            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview')
         )->shouldCache();
     }
 

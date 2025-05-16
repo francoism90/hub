@@ -11,7 +11,7 @@ use Domain\Videos\Support\Vod\Manifest;
 use Domain\Videos\Support\Vod\Sequence;
 use Illuminate\Support\Collection;
 
-class GetStreamManifest
+class GetVideoManifest
 {
     public function execute(Video $model): array
     {

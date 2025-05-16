@@ -7,33 +7,29 @@ namespace Domain\Videos\Actions;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Uri;
 
-class GetManifestUrl
+class GetVideoManifestUrl
 {
-    public function execute(Video $video, string $format, bool $live = false): Uri
+    public function execute(Video $video, string $type, bool $live = false, ?string $format = null): Uri
     {
         abort_if(! $video->hasMedia('clips'), 404);
+
+        $baseUrl = $live ? config('vod.live_url') : config('vod.url');
+
+        $format ??= config('vod.format', 'dash');
 
         $parameters = fluent(match ($format) {
             'dash' => config('vod.dash'),
             'hls' => config('vod.hls'),
-            default => abort(400, 'Invalid format'),
+            default => abort(400, 'Invalid format given'),
         });
 
-        $baseUrl = $live ? config('vod.live_url') : config('vod.url');
-
-        $relativePath = trim(route('api.videos.manifest', compact('video', 'format'), false), '/');
+        $relativePath = trim(route('api.videos.manifest', compact('video', 'type', 'format'), false), '/');
 
         $path = implode('/', [$parameters->path, $relativePath, $parameters->name]);
 
-        logger($path);
-
-        $uri = Uri::of($baseUrl)
+        return Uri::of($baseUrl)
             ->withPath($path)
             ->withQuery($parameters->query ?? [])
             ->withFragment($parameters->fragment ?? '');
-
-        logger($uri);
-
-        return $uri;
     }
 }
