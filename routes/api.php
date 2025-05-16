@@ -14,7 +14,7 @@ Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
 
-    // VOD
+    // Video-on-demand
     Route::get('/subscription', SubscriptionController::class)->name('subscription');
 
     // Media
