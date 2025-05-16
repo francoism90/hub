@@ -13,9 +13,8 @@ Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network
 Network=hub.network
-ExposeHostPort=8080
-ExposeHostPort=8081
-ExposeHostPort=8082
+ExposeHostPort=1935
+ExposeHostPort=1936
 
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env

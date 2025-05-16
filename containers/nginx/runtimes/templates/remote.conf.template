@@ -27,7 +27,7 @@ server {
     # auth
     location = /auth {
         internal;
-        proxy_pass http://hub/api/v1/subscription;
+        proxy_pass http://api/api/v1/subscription;
         proxy_pass_request_body off;
         proxy_cache auth-zone;
         proxy_set_header Host $http_host;
@@ -39,7 +39,7 @@ server {
 
     location ^~ /json/ {
         internal;
-        proxy_pass http://hub/;
+        proxy_pass http://api/;
         proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;

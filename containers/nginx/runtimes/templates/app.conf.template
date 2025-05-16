@@ -1,7 +1,7 @@
 resolver ${NGINX_LOCAL_RESOLVERS} valid=60s;
 resolver_timeout 5s;
 
-upstream hub {
+upstream api {
     server systemd-hub:8080 max_fails=3 fail_timeout=30s;
     keepalive 32;
 }
@@ -14,42 +14,4 @@ upstream vod {
 upstream live {
     server localhost:1936 max_fails=0;
     keepalive 32;
-}
-
-server {
-    listen 8080 reuseport;
-    listen [::]:8080 reuseport;
-
-    server_name localhost;
-    root /usr/share/nginx/html;
-
-    # security
-    include /etc/nginx/config/security.conf;
-
-    # index
-    index index.html;
-
-    # vod
-    location ^~ /vod/ {
-        proxy_pass http://mapped/;
-        proxy_set_header Host $host;
-        include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
-    }
-
-    # live
-    location ^~ /live/ {
-        proxy_pass http://remote/;
-        proxy_set_header Host $host;
-        include /etc/nginx/config/proxy.conf;
-        include /etc/nginx/config/cors.conf;
-    }
-
-    # index.html fallback
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    # additional config
-    include /etc/nginx/config/general.conf;
 }
