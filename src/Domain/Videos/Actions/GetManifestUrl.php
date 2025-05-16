@@ -21,7 +21,7 @@ class GetManifestUrl
 
         $baseUrl = $live ? config('vod.live_url') : config('vod.url');
 
-        $relativePath = route('api.videos.manifest', compact('video', 'format'), false);
+        $relativePath = trim(route('api.videos.manifest', compact('video', 'format'), false), '/');
 
         $path = implode('/', [$parameters->path, $relativePath, $parameters->name]);
 
