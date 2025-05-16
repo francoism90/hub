@@ -85,9 +85,8 @@ RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/local/src/*
 
-EXPOSE 8080
-EXPOSE 8081
-EXPOSE 8082
+EXPOSE 1935
+EXPOSE 1936
 
 STOPSIGNAL SIGQUIT
 

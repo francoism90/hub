@@ -68,8 +68,8 @@ To access Hub, make sure to append the following entries to your hosts (`/etc/ho
 
 ```text
 # hub
-127.0.0.1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
-::1 hub.test ws.hub.test play.hub.test s3.hub.test mc.hub.test
+127.0.0.1 hub.test ws.hub.test play.hub.test live.hub.test s3.hub.test mc.hub.test
+::1 hub.test ws.hub.test play.hub.test live.hub.test s3.hub.test mc.hub.test
 ```
 
 > **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` requests to your homelab server.

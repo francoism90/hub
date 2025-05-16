@@ -14,7 +14,7 @@ Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
 
-    // VOD
+    // Video-on-demand
     Route::get('/subscription', SubscriptionController::class)->name('subscription');
 
     // Media
@@ -26,6 +26,6 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
-        Route::get('/{video}/manifest/{type}', ManifestController::class)->name('manifest');
+        Route::get('/{video}/manifest/{type}/{format}', ManifestController::class)->name('manifest');
     });
 });

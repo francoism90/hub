@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Api\Videos\Controllers;
 
 use Domain\Videos\Actions\GetPreviewManifest;
-use Domain\Videos\Actions\GetStreamManifest;
+use Domain\Videos\Actions\GetVideoManifest;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
@@ -24,13 +24,13 @@ class ManifestController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Video $model, string $type): JsonResponse
+    public function __invoke(Video $model, string $type, string $format): JsonResponse
     {
         Gate::authorize('view', $model);
 
         return response()->json(match ($type) {
             'preview' => app(GetPreviewManifest::class)->execute($model),
-            default => app(GetStreamManifest::class)->execute($model),
-        }, 200, [], JSON_UNESCAPED_SLASHES);
+            default => app(GetVideoManifest::class)->execute($model),
+        }, 200, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
 }

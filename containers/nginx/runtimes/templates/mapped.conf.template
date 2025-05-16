@@ -11,12 +11,18 @@ server {
     # index
     index index.html;
 
+    # authentication requests
+    auth_request /auth;
+    auth_request_set $auth_header $upstream_http_authorization;
+    auth_request_set $auth_cookie $upstream_http_set_cookie;
+
     # vod settings
     vod_mode mapped;
     vod_upstream_location /json;
-    vod_upstream_extra_args $args;
     vod_base_url ${NGINX_VOD_URL};
     vod_segments_base_url ${NGINX_VOD_URL};
+    vod_manifest_segment_durations_mode accurate;
+    vod_align_segments_to_key_frames on;
     vod_ignore_edit_list on;
     vod_max_mapping_response_size 64k;
     vod_max_metadata_size 256m;
@@ -24,9 +30,23 @@ server {
     # vod security
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
+    # auth
+    location = /auth {
+        internal;
+        proxy_pass http://api/api/v1/subscription;
+        proxy_pass_request_body off;
+        proxy_cache auth-zone;
+        proxy_set_header Host $http_host;
+        proxy_set_header Content-Length "";
+        proxy_set_header X-Original-URI $scheme://$http_host$request_uri;
+        proxy_ignore_headers Set-Cookie;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # DASH format
     location ^~ /json/dash/ {
         internal;
-        proxy_pass http://hub/;
+        proxy_pass http://api/;
         proxy_set_header Host $http_host;
         proxy_cache short-zone;
         include /etc/nginx/config/proxy.conf;
@@ -36,8 +56,92 @@ server {
         vod dash;
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
-        vod_manifest_duration_policy min;
-        vod_manifest_segment_durations_mode accurate;
+    }
+
+    # HLS format
+    location ^~ /json/hls/ {
+        internal;
+        proxy_pass http://api/;
+        proxy_set_header Host $http_host;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ ^/hls/ {
+        vod hls;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 4000;
+    }
+
+    # HLS segments
+    location ~ ^(.*/seg\-)([1-3])([^0-9].*\.ts)$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache long-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ ^(.*/seg\-)(\d+)(.*\.ts)$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # HLS manifest
+    location ~ ^.*\.m3u8$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache long-zone;
+    }
+
+    # DASH segments
+    location ~ ^(.*/fragment\-)([1-3])([^0-9].*\.m4s)$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache long-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    location ~ ^(.*/fragment\-)(\d+)(.*\.m4s)$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # DASH init segment
+    location ~ ^.*/init-[^/]+\.mp4$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache long-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # DASH manifest
+    location ~ ^.*\.mpd$ {
+        proxy_pass http://localhost:1935;
+        proxy_cache long-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # default proxy to origin (no cache)
+    location / {
+        proxy_pass http://localhost:1935;
+        proxy_set_header Host $http_host;
+        include /etc/nginx/config/proxy.conf;
+    }
+
+    # vod status page
+    location = /vod_status {
+        allow 127.0.0.1/32;
+        deny all;
+
+        vod_status;
+    }
+
+    # nginx status page
+    location = /nginx_status {
+        allow 127.0.0.1/32;
+        deny all;
+
+        stub_status on;
     }
 
     # additional config

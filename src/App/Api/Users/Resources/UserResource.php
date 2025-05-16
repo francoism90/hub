@@ -13,7 +13,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->getRouteKey(),
             'avatar' => $this->whenAppended('avatar'),
-            $this->mergeWhen($request->user()->hasRole('super-admin'), [
+            $this->mergeWhen($this->whenAppended('settings') && ($request->user()->is($this) ?? $request->user()->hasRole('super-admin')), [
                 'email' => $this->whenAppended('email'),
                 'permissions' => $this->whenAppended('permissions', $this->getAllPermissions()->pluck('name')),
                 'roles' => $this->whenAppended('roles', $this->getRoleNames()),
