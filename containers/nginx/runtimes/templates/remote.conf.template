@@ -12,7 +12,7 @@ server {
     index index.html;
 
     # vod settings
-    vod_mode mapped;
+    vod_mode remote;
     vod_upstream_location /json;
     vod_remote_upstream_location /proxy;
     vod_upstream_extra_args $args;

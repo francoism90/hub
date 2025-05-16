@@ -13,10 +13,11 @@ server {
 
     # vod settings
     vod_mode mapped;
-    vod_upstream_location /json;
-    vod_upstream_extra_args $args;
+    vod_upstream_location /json/;
     vod_base_url ${NGINX_VOD_URL};
     vod_segments_base_url ${NGINX_VOD_URL};
+    vod_manifest_segment_durations_mode accurate;
+    vod_align_segments_to_key_frames on;
     vod_ignore_edit_list on;
     vod_max_mapping_response_size 64k;
     vod_max_metadata_size 256m;
@@ -24,7 +25,7 @@ server {
     # vod security
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
-    location ^~ /json/dash/ {
+    location ^~ /json/ {
         internal;
         proxy_pass http://hub/;
         proxy_set_header Host $http_host;
@@ -36,8 +37,14 @@ server {
         vod dash;
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
-        vod_manifest_duration_policy min;
-        vod_manifest_segment_durations_mode accurate;
+    }
+
+    location ~ ^/hls/ {
+        vod hls;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 2000;
+        vod_bootstrap_segment_durations 4000;
     }
 
     # additional config

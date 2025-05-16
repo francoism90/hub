@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
-use Domain\Videos\Actions\GetDashUrl;
+use Domain\Videos\Actions\GetManifestUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -106,21 +106,21 @@ trait InteractsWithVod
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetDashUrl::class)->execute($this, type: 'stream')
+            get: fn () => app(GetManifestUrl::class)->execute($this, config('vod.format'), live: false)
         )->shouldCache();
     }
 
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetDashUrl::class)->execute($this, type: 'preview', live: true)
+            get: fn () => app(GetManifestUrl::class)->execute($this, config('vod.format'), live: true)
         )->shouldCache();
     }
 
     public function download(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addMinutes(60 * 30))
+            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addHours(3))
         )->shouldCache();
     }
 
