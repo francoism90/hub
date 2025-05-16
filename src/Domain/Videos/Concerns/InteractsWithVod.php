@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
-use Domain\Videos\Actions\GetManifestUrl;
-use Domain\Videos\Actions\GetPreviewManifestUrl;
 use Domain\Videos\Actions\GetVideoManifestUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
@@ -122,7 +120,7 @@ trait InteractsWithVod
     public function download(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addHours(3))
+            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addDay())
         )->shouldCache();
     }
 
