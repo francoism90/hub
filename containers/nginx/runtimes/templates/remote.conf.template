@@ -20,9 +20,14 @@ server {
     vod_mode remote;
     vod_upstream_location /json;
     vod_remote_upstream_location /proxy;
-    vod_upstream_extra_args $args;
     vod_base_url ${NGINX_VOD_LIVE_URL};
     vod_segments_base_url ${NGINX_VOD_LIVE_URL};
+    vod_ignore_edit_list on;
+    vod_max_mapping_response_size 64k;
+    vod_max_metadata_size 256m;
+
+    # vod security
+    vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";
 
     # auth
     location = /auth {
@@ -37,7 +42,8 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
-    location ^~ /json/ {
+    # DASH format
+    location ^~ /json/dash/ {
         internal;
         proxy_pass http://api/;
         proxy_set_header Host $http_host;
@@ -49,6 +55,15 @@ server {
         vod dash;
         vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
+    }
+
+    # HLS format
+    location ^~ /json/hls/ {
+        internal;
+        proxy_pass http://api/;
+        proxy_set_header Host $http_host;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
     }
 
     location ~ ^/hls/ {
