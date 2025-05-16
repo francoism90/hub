@@ -18,7 +18,7 @@ server {
 
     # vod settings
     vod_mode mapped;
-    vod_upstream_location /json/;
+    vod_upstream_location /json;
     vod_base_url ${NGINX_VOD_URL};
     vod_segments_base_url ${NGINX_VOD_URL};
     vod_secret_key "${NGINX_VOD_KEY}-$vod_filepath";

@@ -13,14 +13,14 @@ vite.hub.test {
 play.hub.test {
 	import tls
     import compress
-    import cors hub.test
+    import cors https://hub.test
 	reverse_proxy systemd-hub-vod:1935
 }
 
 live.hub.test {
 	import tls
     import compress
-    import cors hub.test
+    import cors https://hub.test
 	reverse_proxy systemd-hub-vod:1936
 }
 
