@@ -6,23 +6,13 @@ upstream hub {
     keepalive 32;
 }
 
-upstream mapped {
+upstream vod {
     server localhost:1935 max_fails=0;
     keepalive 32;
 }
 
-upstream remote {
-    server localhost:1936 max_fails=0;
-    keepalive 32;
-}
-
-upstream vod {
-    server localhost:8081 max_fails=0;
-    keepalive 32;
-}
-
 upstream live {
-    server localhost:8082  max_fails=0;
+    server localhost:1936 max_fails=0;
     keepalive 32;
 }
 
@@ -41,16 +31,16 @@ server {
 
     # vod
     location ^~ /vod/ {
-        proxy_pass http://vod/;
-        proxy_set_header Host $http_host;
+        proxy_pass http://mapped/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
         include /etc/nginx/config/cors.conf;
     }
 
     # live
     location ^~ /live/ {
-        proxy_pass http://live/;
-        proxy_set_header Host $http_host;
+        proxy_pass http://remote/;
+        proxy_set_header Host $host;
         include /etc/nginx/config/proxy.conf;
         include /etc/nginx/config/cors.conf;
     }
