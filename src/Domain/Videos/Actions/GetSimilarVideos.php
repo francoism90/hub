@@ -27,7 +27,7 @@ class GetSimilarVideos
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array(mb_strtolower($word), ['and', 'a', 'or']))
             ->take(6)
-            ->prepend([$model->identifier])
+            ->merge([$model->identifier])
             ->filter()
             ->unique();
 
