@@ -13,6 +13,8 @@ return [
 
     'url' => env('VOD_URL'),
 
+    'live_url' => env('VOD_LIVE_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | VOD Format Parameters

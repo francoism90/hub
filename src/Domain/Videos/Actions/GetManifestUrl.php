@@ -19,7 +19,7 @@ class GetManifestUrl
             default => abort(400, 'Invalid format'),
         });
 
-        $rootUrl = $live ? config('vod.live_url') : config('vod.url');
+        $baseUrl = $live ? config('vod.live_url') : config('vod.url');
 
         $relativePath = route('api.videos.manifest', compact('video', 'format'), false);
 
@@ -27,7 +27,7 @@ class GetManifestUrl
 
         logger($path);
 
-        $uri = Uri::of($rootUrl)
+        $uri = Uri::of($baseUrl)
             ->withPath($path)
             ->withQuery($parameters->query ?? [])
             ->withFragment($parameters->fragment ?? '');
