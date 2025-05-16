@@ -25,7 +25,7 @@
                         html()->element('dl')->class('list text-xs text-secondary-300')
                             ->childrenIf($video->duration, [
                                 html()->element('dt')->text('Time')->class('sr-only'),
-                                html()->element('dd')->text(duration($video->duration))
+                                html()->element('dd')->text($video->timestamp)
                             ])
                             ->childrenIf($video->identifier, [
                                 html()->element('dt')->text('ID')->class('sr-only'),

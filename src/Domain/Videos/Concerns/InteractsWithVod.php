@@ -65,7 +65,7 @@ trait InteractsWithVod
 
         $timeCode = (float) $this->modelCached('timecode', 0);
 
-        return Number::clamp($timeCode, 0, $this->duration);
+        return Number::clamp($timeCode, 0, $this->durationInSeconds());
     }
 
     protected function clips(): Attribute
@@ -100,6 +100,13 @@ trait InteractsWithVod
     {
         return Attribute::make(
             get: fn () => $this->durationInSeconds()
+        )->shouldCache();
+    }
+
+    protected function timestamp(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => duration($this->duration)
         )->shouldCache();
     }
 
