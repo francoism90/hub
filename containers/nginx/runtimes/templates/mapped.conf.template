@@ -41,8 +41,8 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
-    # proxy
-    location ^~ /json/ {
+    # DASH format
+    location ^~ /json/dash/ {
         internal;
         proxy_pass http://api/;
         proxy_set_header Host $http_host;
@@ -50,7 +50,6 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
-    # DASH format
     location ~ ^/dash/ {
         vod dash;
         vod_segment_duration 4000;
@@ -58,6 +57,14 @@ server {
     }
 
     # HLS format
+    location ^~ /json/hls/ {
+        internal;
+        proxy_pass http://api/;
+        proxy_set_header Host $http_host;
+        proxy_cache short-zone;
+        include /etc/nginx/config/proxy.conf;
+    }
+
     location ~ ^/hls/ {
         vod hls;
         vod_bootstrap_segment_durations 2000;
