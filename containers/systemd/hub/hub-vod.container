@@ -9,6 +9,7 @@ AutoUpdate=local
 EnvironmentFile=%h/.config/containers/systemd/hub/config/nginx.env
 LogDriver=none
 UserNS=keep-id
+AddDevice=/dev/dri/:/dev/dri/
 Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
 Network=proxy.network

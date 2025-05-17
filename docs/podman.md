@@ -51,6 +51,24 @@ cd ~/.config/containers/systemd/hub/config
 vi app.env postgres.env ..
 ```
 
+#### Hardware acceleration
+
+> **NOTE:** Hardware acceleration profiles are not provided yet.
+
+To use hardware acceleration, you need to allow the container to access the render device. If you are using container-selinux-2.226 or later, you have to set the container_use_dri_devices flag in selinux or the container will not be able to use it:
+
+```bash
+# setsebool -P container_use_dri_devices 1
+```
+
+In the systemd containers uncommend or append the following line:
+
+```systemd
+[Container]
+Image=localhost/hub-app:latest
+AddDevice=/dev/dri/:/dev/dri/
+```
+
 ### Configure Proxy
 
 [Caddy](https://caddyserver.com/) is used as proxy. However you are free to use something else.
