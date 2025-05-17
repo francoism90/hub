@@ -29,18 +29,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Videos
-    Route::name('videos.')->prefix('video')->group(function () {
+    Route::name('videos.')->prefix('videos')->group(function () {
         Route::get('/{video}', VideoViewController::class)->name('view');
         Route::get('/{video}/edit', VideoEditController::class)->name('edit');
     });
 
     // Groups
-    Route::name('groups.')->prefix('list')->group(function () {
+    Route::name('groups.')->prefix('lists')->group(function () {
         Route::get('/{group}', GroupViewController::class)->name('view');
     });
 
     // Tags
-    Route::name('tags.')->prefix('tag')->group(function () {
+    Route::name('tags.')->prefix('tags')->group(function () {
         Route::get('/', TagIndexController::class)->name('index');
         Route::get('/{tag}', TagViewController::class)->name('view');
         Route::get('/{tag}/edit', TagEditController::class)->name('edit');
