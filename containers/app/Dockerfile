@@ -10,7 +10,7 @@ WORKDIR /app
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=${TZ}
-ENV OCTANE_COMMAND="/usr/bin/php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8080"
+ENV OCTANE_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8080"
 ENV OCTANE_USER="docker"
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
@@ -42,7 +42,6 @@ RUN install-php-extensions @composer apcu bcmath bz2 calendar ev event exif gd \
 COPY runtimes/container-entrypoint.sh /usr/local/bin/container-entrypoint.sh
 COPY runtimes/php-production.ini /usr/local/etc/php/conf.d/99-user.ini
 
-RUN setcap "cap_net_bind_service=+ep" /usr/bin/php
 RUN chmod +x /usr/local/bin/container-entrypoint.sh
 
 RUN groupadd --force -g ${GID} docker \
