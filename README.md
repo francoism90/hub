@@ -10,7 +10,7 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 Hub uses the following stack:
 
-- [nginx-vod-module (main branch)](https://github.com/kaltura/nginx-vod-module)
+- [nginx-vod-module (main branch)](https://github.com/diogoazevedos/nginx-vod-module)
 - [Laravel 12.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
 - [PostgreSQL 17.x](https://www.postgresql.org/)

@@ -5,6 +5,8 @@
     "keywords": [
         "framework",
         "laravel",
+        "nginx-vod-module",
+        "ngx-vod-module",
         "vod",
         "video-on-demand",
         "media"
