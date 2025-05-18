@@ -21,8 +21,6 @@ server {
     vod_upstream_location /json;
     vod_base_url ${NGINX_VOD_URL};
     vod_segments_base_url ${NGINX_VOD_URL};
-    vod_manifest_segment_durations_mode accurate;
-    vod_align_segments_to_key_frames on;
     vod_ignore_edit_list on;
     vod_max_mapping_response_size 64k;
     vod_max_metadata_size 256m;
