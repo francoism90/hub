@@ -25,7 +25,8 @@ class GenerateUserSuggestions extends Algo
             ...$this->getTagMixers(),
         ]);
 
-        return $this->success()
+        return $this
+            ->success()
             ->with('items', $items);
     }
 
