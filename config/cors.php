@@ -27,7 +27,7 @@ return [
 
     'exposed_headers' => ['Content-Range', 'Date', 'Precognition'],
 
-    'max_age' => 0,
+    'max_age' => 60 * 60,
 
     'supports_credentials' => true,
 
