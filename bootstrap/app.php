@@ -34,8 +34,8 @@ $app = Application::configure(basePath: $basePath)
             AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        $middleware->throttleWithRedis();
         $middleware->statefulApi();
+        $middleware->throttleWithRedis();
         $middleware->redirectGuestsTo(fn () => route('login'));
 
         $middleware->alias([
@@ -45,6 +45,7 @@ $app = Application::configure(basePath: $basePath)
             'cache_model' => \Support\ResponseCache\Middlewares\CacheModelResponse::class,
             'cache_response' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
             'private' => \Foundation\Http\Middlewares\EnsureRequestHasPrivateSubnet::class,
+            'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
