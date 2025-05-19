@@ -19,7 +19,7 @@
         "tailwindcss": "^3.4.17"
     },
     "devDependencies": {
-        "@eslint/js": "^9.26.0",
+        "@eslint/js": "^9.27.0",
         "autoprefixer": "^10.4.21",
         "chokidar": "^4.0.3",
         "concurrently": "^9.1.2",
