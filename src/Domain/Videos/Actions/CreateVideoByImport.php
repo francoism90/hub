@@ -27,7 +27,7 @@ class CreateVideoByImport
             app(MarkAsFinished::class)($model);
             app(RegenerateVideo::class)($video);
 
-            return $next($video);
+            return $next($model, $video);
         });
     }
 }
