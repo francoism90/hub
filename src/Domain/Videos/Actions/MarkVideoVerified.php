@@ -12,11 +12,9 @@ class MarkVideoVerified
 {
     public function __invoke(Video $model, Closure $next): mixed
     {
-        if (! $model->state->canTransitionTo(Verified::class)) {
-            return $next($model);
+        if ($model->state->canTransitionTo(Verified::class)) {
+            $model->state->transitionTo(Verified::class);
         }
-
-        $model->state->transitionTo(Verified::class);
 
         return $next($model);
     }
