@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Closure;
 use Domain\Videos\Models\Video;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe\DataMapping\Stream;
@@ -13,10 +14,10 @@ use Support\FFMpeg\Format\Subtitle\WebVTT;
 
 class ExtractVideoCaptions
 {
-    public function execute(Video $model): void
+    public function __invoke(Video $model, Closure $next): mixed
     {
         if ($model->hasCaptions() || ! $model->hasMedia('clips')) {
-            return;
+            return $next($model);
         }
 
         $temporaryDirectory = $this->createTemporaryDirectory();
@@ -49,8 +50,9 @@ class ExtractVideoCaptions
                 forceDisableVideo: true,
             ));
 
+        // Check if any captions were extracted
         if ($collect->isNotEmpty()) {
-            // Process video captions
+            // Extract video captions
             $video->save();
 
             // Import captions to the media library
@@ -60,6 +62,8 @@ class ExtractVideoCaptions
                 ->toMediaCollection('captions')
             );
         }
+
+        return $next($model);
     }
 
     protected function createTemporaryDirectory(): BaseTemporaryDirectory

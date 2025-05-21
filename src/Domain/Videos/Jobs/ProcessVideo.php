@@ -7,6 +7,7 @@ namespace Domain\Videos\Jobs;
 use Domain\Videos\Actions\CreateVideoPreview;
 use Domain\Videos\Actions\ExtractVideoCaptions;
 use Domain\Videos\Actions\SetVideoMetadata;
+use Domain\Videos\Events\VideoHasBeenProcessed;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -15,6 +16,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Pipeline;
 
 class ProcessVideo implements ShouldQueue
 {
@@ -57,15 +59,13 @@ class ProcessVideo implements ShouldQueue
 
     public function handle(): void
     {
-        $actions = [
-            SetVideoMetadata::class,
-            ExtractVideoCaptions::class,
-            CreateVideoPreview::class,
-        ];
-
-        foreach ($actions as $action) {
-            rescue(fn () => app($action)->execute($this->video));
-        }
+        Pipeline::send($this->video)
+            ->through([
+                SetVideoMetadata::class,
+                ExtractVideoCaptions::class,
+                CreateVideoPreview::class,
+            ])
+            ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }
 
     /**

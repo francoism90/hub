@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Closure;
 use Domain\Imports\Actions\MarkAsFinished;
 use Domain\Imports\Models\Import;
 use Domain\Videos\Models\Video;
@@ -12,20 +13,21 @@ use Illuminate\Support\Facades\DB;
 
 class CreateVideoByImport
 {
-    public function execute(Import $import): void
+    public function __invoke(Import $model, Closure $next): mixed
     {
-        DB::transaction(function () use ($import) {
-            $model = Video::create(
-                Arr::only($import->toArray(), ['name', 'user_id'])
+        return DB::transaction(function () use ($model, $next) {
+            $video = Video::create(
+                Arr::only($model->toArray(), ['name', 'user_id'])
             );
 
-            $model
-                ->addMediaFromDisk($import->file_name, 'import')
+            $video
+                ->addMediaFromDisk($model->file_name, 'import')
                 ->toMediaCollection('clips');
 
-            app(MarkAsFinished::class)->execute($import);
+            app(MarkAsFinished::class)($model);
+            app(RegenerateVideo::class)($video);
 
-            app(RegenerateVideo::class)->execute($model);
+            return $next($video);
         });
     }
 }
