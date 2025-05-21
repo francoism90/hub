@@ -32,7 +32,7 @@ class ReleaseVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60 * 2;
+    public $timeout = 60 * 60;
 
     /**
      * @var int
