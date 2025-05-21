@@ -14,7 +14,7 @@ class Next extends Section
     use WithVideo;
 
     #[Computed(persist: true, seconds: 60 * 20)]
-    public function lists(): Collection
+    public function items(): Collection
     {
         $algo = GenerateVideoSuggestions::make()
             ->model($this->getVideo())
