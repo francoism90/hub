@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Closure;
 use Domain\Media\Models\Media;
 use Domain\Videos\Models\Video;
 use FFMpeg\FFMpeg;
 
 class SetVideoMetadata
 {
-    public function execute(Video $model): void
+    public function __invoke(Video $model, Closure $next): mixed
     {
         $ffmpeg = FFMpeg::create([
             'ffmpeg.binaries' => config('media-library.ffmpeg_path'),
             'ffprobe.binaries' => config('media-library.ffprobe_path'),
+            'ffmpeg.threads' => 0,
+            'timeout' => 60 * 20,
         ]);
 
         $model->clips->each(function (Media $media) use ($ffmpeg) {
@@ -34,5 +37,7 @@ class SetVideoMetadata
             $media->setCustomProperty('pix_fmt', $stream->get('pix_fmt', 'N/A'));
             $media->saveOrFail();
         });
+
+        return $next($model);
     }
 }

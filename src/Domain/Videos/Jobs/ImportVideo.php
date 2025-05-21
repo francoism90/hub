@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
+use Domain\Imports\Events\ImportHasBeenProcessed;
 use Domain\Imports\Models\Import;
 use Domain\Videos\Actions\CreateVideoByImport;
 use Illuminate\Bus\Batchable;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Pipeline;
 
 class ImportVideo implements ShouldQueue
 {
@@ -30,7 +32,7 @@ class ImportVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60 * 2;
+    public $timeout = 60 * 60 * 4;
 
     /**
      * @var int
@@ -48,14 +50,18 @@ class ImportVideo implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected Import $video,
+        protected Import $import,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(CreateVideoByImport::class)->execute($this->video);
+        Pipeline::send($this->import)
+            ->through([
+                CreateVideoByImport::class,
+            ])
+            ->then(fn (Import $import) => event(new ImportHasBeenProcessed($import)));
     }
 
     /**
@@ -64,7 +70,7 @@ class ImportVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            new WithoutOverlapping($this->video->getKey()),
+            new WithoutOverlapping($this->import->getKey()),
         ];
     }
 

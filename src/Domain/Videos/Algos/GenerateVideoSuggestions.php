@@ -2,32 +2,57 @@
 
 declare(strict_types=1);
 
-namespace Domain\Videos\Actions;
+namespace Domain\Videos\Algos;
 
 use Domain\Tags\Models\Tag;
 use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
+use Foxws\Algos\Algos\Algo;
+use Foxws\Algos\Algos\Result;
 use Illuminate\Support\LazyCollection;
 
-class GetSimilarVideos
+class GenerateVideoSuggestions extends Algo
 {
-    public function execute(Video $model, int $limit = 24): LazyCollection
+    public function __construct(
+        protected ?Video $video = null,
+        protected ?int $limit = null,
+    ) {}
+
+    public function handle(): Result
     {
-        return LazyCollection::make([
-            ...$this->phrases($model),
-            ...$this->tagged($model),
-            ...$this->random($model),
-        ])->take($limit);
+        $items = collect([
+            ...$this->phrases(),
+            ...$this->tagged(),
+            ...$this->random(),
+        ]);
+
+        return $this
+            ->success()
+            ->with('items', $items);
     }
 
-    protected function phrases(Video $model): LazyCollection
+    public function model(Video $video): static
     {
-        $query = str($model->name)
+        $this->video = $video;
+
+        return $this;
+    }
+
+    public function limit(int $value): static
+    {
+        $this->limit = $value;
+
+        return $this;
+    }
+
+    protected function phrases(): LazyCollection
+    {
+        $query = str($this->video->name)
             ->title()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array(mb_strtolower($word), ['and', 'a', 'or']))
             ->take(6)
-            ->merge([$model->identifier])
+            ->merge([$this->video->identifier])
             ->filter()
             ->unique();
 
@@ -45,14 +70,14 @@ class GetSimilarVideos
 
         return $items
             ->flatten()
-            ->reject(fn (Video $item) => $item->is($model))
+            ->reject(fn (Video $item) => $item->is($this->video))
             ->take(16)
             ->unique();
     }
 
-    protected function tagged(Video $model): LazyCollection
+    protected function tagged(): LazyCollection
     {
-        $relatables = $model->tags
+        $relatables = $this->video->tags
             ->loadMissing('relatables')
             ->flatMap(fn (Tag $tag) => $tag->related)
             ->unique()
@@ -61,20 +86,20 @@ class GetSimilarVideos
         return Video::query()
             ->published()
             ->withAnyTagsOfAnyType([
-                ...$model->tags,
+                ...$this->video->tags,
                 ...$relatables,
             ])
-            ->whereKeyNot($model)
+            ->whereKeyNot($this->video)
             ->inRandomOrder()
             ->take(16)
             ->cursor();
     }
 
-    protected function random(Video $model): LazyCollection
+    protected function random(): LazyCollection
     {
         return Video::query()
             ->published()
-            ->whereKeyNot($model)
+            ->whereKeyNot($this->video)
             ->inRandomOrder()
             ->take(16)
             ->cursor();

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Videos\Actions\CreateVideoThumbnail;
+use Domain\Videos\Events\VideoHasBeenProcessed;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Pipeline;
 
 class OptimizeVideo implements ShouldQueue
 {
@@ -55,7 +57,11 @@ class OptimizeVideo implements ShouldQueue
 
     public function handle(): void
     {
-        app(CreateVideoThumbnail::class)->execute($this->video);
+        Pipeline::send($this->video)
+            ->through([
+                CreateVideoThumbnail::class,
+            ])
+            ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }
 
     /**

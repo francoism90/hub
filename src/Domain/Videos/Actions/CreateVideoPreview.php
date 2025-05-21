@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Closure;
 use Domain\Videos\Models\Video;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Coordinate\TimeCode;
@@ -16,10 +17,10 @@ use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
 
 class CreateVideoPreview
 {
-    public function execute(Video $model): void
+    public function __invoke(Video $model, Closure $next): mixed
     {
         if (! $model->hasMedia('clips')) {
-            return;
+            return $next($model);
         }
 
         $temporaryDirectory = $this->createTemporaryDirectory();
@@ -71,6 +72,8 @@ class CreateVideoPreview
         $model
             ->addMedia($path)
             ->toMediaCollection('previews');
+
+        return $next($model);
     }
 
     protected function getSegments(float $duration = 0, int $count = 14): Collection
