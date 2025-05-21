@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04c51cceabcea2036e77445d3673b779",
+    "content-hash": "9e9bd60d82fbae4fbc4ea7dd463c154d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -941,16 +941,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.343.13",
+            "version": "3.343.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "eb50d111a09ef39675358e74801260ac129ee346"
+                "reference": "554d983fbe1a9fd388d0e916cbeec2a5c48d58ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eb50d111a09ef39675358e74801260ac129ee346",
-                "reference": "eb50d111a09ef39675358e74801260ac129ee346",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/554d983fbe1a9fd388d0e916cbeec2a5c48d58ef",
+                "reference": "554d983fbe1a9fd388d0e916cbeec2a5c48d58ef",
                 "shasum": ""
             },
             "require": {
@@ -1032,9 +1032,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.343.13"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.343.15"
             },
-            "time": "2025-05-16T18:24:39+00:00"
+            "time": "2025-05-20T18:05:45+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -3053,16 +3053,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.14.1",
+            "version": "v12.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "84b142958d1638a7e89de94ce75c2821c601d3d7"
+                "reference": "2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/84b142958d1638a7e89de94ce75c2821c601d3d7",
-                "reference": "84b142958d1638a7e89de94ce75c2821c601d3d7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
+                "reference": "2ef7fb183f18e547af4eb9f5a55b2ac1011f0b77",
                 "shasum": ""
             },
             "require": {
@@ -3264,7 +3264,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-05-13T17:50:51+00:00"
+            "time": "2025-05-20T15:10:44+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -8068,16 +8068,16 @@
         },
         {
             "name": "spatie/laravel-responsecache",
-            "version": "7.6.5",
+            "version": "7.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-responsecache.git",
-                "reference": "c7a155d96579194e4e7c092d080d45896e638cc2"
+                "reference": "d551f0498dbb2d98df47359364e5a1c8203a6376"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/c7a155d96579194e4e7c092d080d45896e638cc2",
-                "reference": "c7a155d96579194e4e7c092d080d45896e638cc2",
+                "url": "https://api.github.com/repos/spatie/laravel-responsecache/zipball/d551f0498dbb2d98df47359364e5a1c8203a6376",
+                "reference": "d551f0498dbb2d98df47359364e5a1c8203a6376",
                 "shasum": ""
             },
             "require": {
@@ -8135,7 +8135,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-responsecache/tree/7.6.5"
+                "source": "https://github.com/spatie/laravel-responsecache/tree/7.7.0"
             },
             "funding": [
                 {
@@ -8147,7 +8147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-10T16:20:10+00:00"
+            "time": "2025-05-20T08:39:19+00:00"
         },
         {
             "name": "spatie/laravel-sluggable",
