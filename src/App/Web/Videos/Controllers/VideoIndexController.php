@@ -42,7 +42,7 @@ class VideoIndexController extends Page
         $this->fetch();
     }
 
-    #[Computed(persist: true, seconds: 3600)]
+    #[Computed(persist: true, seconds: 60 * 30)]
     public function lists(): Collection
     {
         $algo = GenerateUserSuggestions::make()

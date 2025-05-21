@@ -7,8 +7,6 @@ namespace Domain\Videos\Jobs;
 use Domain\Imports\Events\ImportHasBeenProcessed;
 use Domain\Imports\Models\Import;
 use Domain\Videos\Actions\CreateVideoByImport;
-use Domain\Videos\Events\VideoHasBeenImported;
-use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
