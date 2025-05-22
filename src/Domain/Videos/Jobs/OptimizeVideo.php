@@ -61,7 +61,7 @@ class OptimizeVideo implements ShouldQueue
         Pipeline::send($this->video)
             ->through([
                 CreateVideoThumbnail::class,
-                CreateVideoPreview::class
+                CreateVideoPreview::class,
             ])
             ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }

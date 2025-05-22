@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\CreateVideoPreview;
 use Domain\Videos\Actions\ExtractVideoCaptions;
 use Domain\Videos\Actions\SetVideoMetadata;
 use Domain\Videos\Events\VideoHasBeenProcessed;
