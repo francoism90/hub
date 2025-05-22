@@ -42,6 +42,9 @@ server {
         include /etc/nginx/config/proxy.conf;
     }
 
+    # additional config
+    include /etc/nginx/config/general.conf;
+
     # proxy
     location ~ /proxy/([^/]+)/(.*) {
         internal;
@@ -147,7 +150,4 @@ server {
 
         stub_status on;
     }
-
-    # additional config
-    include /etc/nginx/config/general.conf;
 }
