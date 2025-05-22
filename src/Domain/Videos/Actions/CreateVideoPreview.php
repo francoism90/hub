@@ -19,7 +19,7 @@ class CreateVideoPreview
 {
     public function __invoke(Video $model, Closure $next): mixed
     {
-        if (! $model->hasMedia('clips')) {
+        if ($model->hasMedia('previews') || ! $model->hasMedia('clips')) {
             return $next($model);
         }
 

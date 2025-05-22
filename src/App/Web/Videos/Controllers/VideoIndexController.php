@@ -46,7 +46,7 @@ class VideoIndexController extends Page
     public function lists(): Collection
     {
         $algo = GenerateUserSuggestions::make()
-            ->model($this->getAuthModel())
+            ->forModel($this->getAuthModel())
             ->run();
 
         return $algo->meta['items'];

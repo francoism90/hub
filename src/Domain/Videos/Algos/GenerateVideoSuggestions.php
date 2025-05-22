@@ -31,7 +31,7 @@ class GenerateVideoSuggestions extends Algo
             ->with('items', $items);
     }
 
-    public function model(Video $video): static
+    public function forModel(Video $video): static
     {
         $this->video = $video;
 
@@ -47,12 +47,14 @@ class GenerateVideoSuggestions extends Algo
 
     protected function phrases(): LazyCollection
     {
-        $query = str($this->video->name)
+        $model = $this->getVideo();
+
+        $query = str($model->name)
             ->title()
             ->matchAll('/[\p{L}\p{N}]+/u')
             ->reject(fn (string $word) => in_array(mb_strtolower($word), ['and', 'a', 'or']))
             ->take(6)
-            ->merge([$this->video->identifier])
+            ->merge([$model->identifier])
             ->filter()
             ->unique();
 
@@ -70,14 +72,16 @@ class GenerateVideoSuggestions extends Algo
 
         return $items
             ->flatten()
-            ->reject(fn (Video $item) => $item->is($this->video))
+            ->reject(fn (Video $item) => $item->is($model))
             ->take(16)
             ->unique();
     }
 
     protected function tagged(): LazyCollection
     {
-        $relatables = $this->video->tags
+        $model = $this->getVideo();
+
+        $relatables = $model->tags
             ->loadMissing('relatables')
             ->flatMap(fn (Tag $tag) => $tag->related)
             ->unique()
@@ -86,12 +90,12 @@ class GenerateVideoSuggestions extends Algo
         return Video::query()
             ->published()
             ->withAnyTagsOfAnyType([
-                ...$this->video->tags,
+                ...$model->tags,
                 ...$relatables,
             ])
-            ->whereKeyNot($this->video)
+            ->whereKeyNot($model)
             ->inRandomOrder()
-            ->take(16)
+            ->take($this->getLimit())
             ->cursor();
     }
 
@@ -99,9 +103,19 @@ class GenerateVideoSuggestions extends Algo
     {
         return Video::query()
             ->published()
-            ->whereKeyNot($this->video)
+            ->whereKeyNot($this->getVideo())
             ->inRandomOrder()
-            ->take(16)
+            ->take($this->getLimit())
             ->cursor();
+    }
+
+    protected function getVideo(): Video
+    {
+        return $this->video;
+    }
+
+    protected function getLimit(): int
+    {
+        return $this->limit ?? 16;
     }
 }

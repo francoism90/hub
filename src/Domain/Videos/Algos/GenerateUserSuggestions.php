@@ -30,7 +30,7 @@ class GenerateUserSuggestions extends Algo
             ->with('items', $items);
     }
 
-    public function model(User $user): static
+    public function forModel(User $user): static
     {
         $this->user = $user;
 
@@ -63,12 +63,22 @@ class GenerateUserSuggestions extends Algo
         $items = Tag::query()
             ->withWhereHas('videos')
             ->inRandomOrder()
-            ->take(14)
+            ->take($this->getLimit())
             ->cursor();
 
         return $items->map(fn (Tag $item) => fluent([
             'key' => $item->getRouteKey(),
             'label' => $item->name,
         ]));
+    }
+
+    protected function getLimit(): int
+    {
+        return $this->limit ?? 16;
+    }
+
+    protected function getUser(): User
+    {
+        return $this->user ?? auth()->user();
     }
 }

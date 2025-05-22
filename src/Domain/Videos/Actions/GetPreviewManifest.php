@@ -44,9 +44,11 @@ class GetPreviewManifest
 
         $bucket = config('filesystems.disks.conversions.bucket');
 
+        // nginx-vod requires the URL to be in the format /http/{bucket}/{path}
         return str("/{$bucket}/{$media->getPath()}")
             ->prepend($url)
             ->replaceFirst('http://', '/http/')
+            ->replaceFirst('https://', '/http/')
             ->value();
     }
 }

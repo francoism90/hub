@@ -19,7 +19,7 @@ class AssetController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            new Middleware('cache:public;max_age=604800;etag'),
+            new Middleware('cache:public;max_age=604800;immutable;etag'),
         ];
     }
 

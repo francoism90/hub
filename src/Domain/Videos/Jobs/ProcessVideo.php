@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\CreateVideoPreview;
 use Domain\Videos\Actions\ExtractVideoCaptions;
 use Domain\Videos\Actions\SetVideoMetadata;
 use Domain\Videos\Events\VideoHasBeenProcessed;
@@ -34,7 +33,7 @@ class ProcessVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60 * 2;
+    public $timeout = 60 * 60;
 
     /**
      * @var int
@@ -63,7 +62,6 @@ class ProcessVideo implements ShouldQueue
             ->through([
                 SetVideoMetadata::class,
                 ExtractVideoCaptions::class,
-                CreateVideoPreview::class,
             ])
             ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }

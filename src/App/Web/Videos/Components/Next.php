@@ -17,7 +17,7 @@ class Next extends Section
     public function items(): Collection
     {
         $algo = GenerateVideoSuggestions::make()
-            ->model($this->getVideo())
+            ->forModel($this->getVideo())
             ->limit($this->getLimit())
             ->run();
 

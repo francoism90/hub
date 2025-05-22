@@ -15,10 +15,11 @@ class GetPopularTags extends Algo
     public function handle(): Result
     {
         $items = Cache::remember(
-            'tags-popular', 60 * 60 * 4, fn () => $this->getTaggables()->collect()
+            'tags-popular', now()->addDay(), fn () => $this->getTaggables()->collect()
         );
 
-        return $this->success()
+        return $this
+            ->success()
             ->with('items', $items);
     }
 
