@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
+use Domain\Videos\Actions\CreateVideoPreview;
 use Domain\Videos\Actions\CreateVideoThumbnail;
 use Domain\Videos\Events\VideoHasBeenProcessed;
 use Domain\Videos\Models\Video;
@@ -60,6 +61,7 @@ class OptimizeVideo implements ShouldQueue
         Pipeline::send($this->video)
             ->through([
                 CreateVideoThumbnail::class,
+                CreateVideoPreview::class
             ])
             ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }

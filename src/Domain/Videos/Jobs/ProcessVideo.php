@@ -34,7 +34,7 @@ class ProcessVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60 * 2;
+    public $timeout = 60 * 60;
 
     /**
      * @var int
@@ -63,7 +63,6 @@ class ProcessVideo implements ShouldQueue
             ->through([
                 SetVideoMetadata::class,
                 ExtractVideoCaptions::class,
-                CreateVideoPreview::class,
             ])
             ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
     }
