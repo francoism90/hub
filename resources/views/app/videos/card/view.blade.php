@@ -15,7 +15,7 @@
                 ->class('absolute inset-0 z-20 size-full max-h-48')
                 ->attributes([
                     'x-on:mouseover' => 'load($refs.video, manifest)',
-                    'x-on:mouseleave' => 'unload()',
+                    'x-on:mouseout' => 'unload()',
                     'x-on:touchstart.passive' => 'load($refs.video, manifest)',
                     'x-on:touchend.passive' => 'unload()',
                 ])
@@ -57,7 +57,7 @@
                 ->attributes([
                     'x-cloak',
                     'x-ref' => 'video',
-                    'x-show' => 'ready',
+                    'x-show' => 'shown && ready',
                     'x-transition.opacity',
                     'playsinline',
                     'autoplay',
