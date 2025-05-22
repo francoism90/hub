@@ -27,8 +27,6 @@
         },
 
         async destroy() {
-            this.ready = false;
-
             await this.unload();
         },
 
@@ -117,6 +115,9 @@
                 await this.manager?.release();
                 await this.instance?.detach();
             } catch (e) {}
+
+            // Set ready state
+            this.ready = false;
         },
 
         async sync() {

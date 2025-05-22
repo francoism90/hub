@@ -13,8 +13,6 @@
         },
 
         async destroy() {
-            this.ready = false;
-
             await this.unload();
         },
 
@@ -67,6 +65,9 @@
             try {
                 await this.instance?.detach();
             } catch (e) {}
+
+            // Set ready state
+            this.ready = false;
         },
     }));
 </script>

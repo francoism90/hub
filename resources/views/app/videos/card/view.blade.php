@@ -6,7 +6,8 @@
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->attributes([
         'x-data' => '{ shown: false, manifest: $el.dataset.manifest }',
-        'x-intersect.once' => 'shown = true',
+        'x-intersect:enter' => 'shown = true',
+        'x-intersect:leave' => 'shown = false',
     ])
     ->children([
         html()
@@ -17,9 +18,7 @@
                 'x-cloak',
                 'x-show' => 'shown',
                 'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
-                'x-on:mouseout.prevent' => 'unload()',
                 'x-on:touchstart.passive' => 'load($refs.video, manifest)',
-                'x-on:touchend.passive' => 'unload()',
             ])
             ->children([
                 html()
@@ -40,8 +39,11 @@
                     ->class('absolute inset-0 z-10 w-full h-48 min-h-48 max-h-48 rounded object-fill brightness-95')
                     ->attributes([
                         'x-cloak',
+                        'x-show' => 'shown && ready',
                         'x-ref' => 'video',
-                        'x-show' => 'ready',
+                        'x-on:mouseleave.prevent' => 'unload()',
+                        'x-on:touchend.passive' => 'unload()',
+                        'x-transition.opacity',
                         'playsinline',
                         'autoplay',
                         'muted',
