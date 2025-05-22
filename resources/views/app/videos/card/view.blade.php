@@ -12,7 +12,7 @@
         html()
             ->a()
             ->link('videos.view', $video)
-            ->class('relative z-0 shrink-0 block size-full h-48 min-h-48 max-h-48')
+            ->class('relative z-0 shrink-0 block w-full h-48 min-h-48 max-h-48')
             ->attributes([
                 'x-cloak',
                 'x-show' => 'shown',
@@ -24,7 +24,7 @@
             ->children([
                 html()
                     ->img($video->thumbnail, $video->title)
-                    ->class('absolute inset-0 z-0 size-full min-h-48 max-h-48 rounded object-fill brightness-85')
+                    ->class('absolute inset-0 z-0 w-full h-48 min-h-48 max-h-48 rounded object-fill brightness-85')
                     ->srcset($video->srcset)
                     ->loading('lazy')
                     ->crossorigin('use-credentials')
@@ -37,7 +37,7 @@
                 html()
                     ->element('video')
                     ->ignore()
-                    ->class('absolute inset-0 z-10 size-full min-h-48 max-h-48 rounded object-fill brightness-95')
+                    ->class('absolute inset-0 z-10 w-full h-48 min-h-48 max-h-48 rounded object-fill brightness-95')
                     ->attributes([
                         'x-cloak',
                         'x-ref' => 'video',
