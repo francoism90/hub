@@ -198,7 +198,7 @@
         },
 
         async getTextTracks() {
-            return this.instance.getTextTracks() || [];
+            return this.instance?.getTextTracks() || [];
         },
 
         async setTextTrack() {
