@@ -19,6 +19,8 @@
                 'x-show' => 'shown',
                 'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
                 'x-on:touchstart.passive' => 'load($refs.video, manifest)',
+                'x-on:mouseleave.prevent' => 'unload()',
+                'x-on:touchend.passive' => 'unload()',
             ])
             ->children([
                 html()
@@ -27,11 +29,7 @@
                     ->srcset($video->srcset)
                     ->loading('lazy')
                     ->crossorigin('use-credentials')
-                    ->attributes([
-                        'x-cloak',
-                        'x-show' => 'shown',
-                        'sizes' => '(min-width: 768px) 768px, 320px',
-                    ]),
+                    ->attribute('sizes',  '(min-width: 768px) 768px, 320px'),
 
                 html()
                     ->element('video')
@@ -39,10 +37,8 @@
                     ->class('absolute inset-0 z-10 w-full h-48 min-h-48 max-h-48 rounded object-fill brightness-95')
                     ->attributes([
                         'x-cloak',
-                        'x-show' => 'shown && ready',
                         'x-ref' => 'video',
-                        'x-on:mouseleave.prevent' => 'unload()',
-                        'x-on:touchend.passive' => 'unload()',
+                        'x-show' => 'ready',
                         'x-transition.opacity',
                         'playsinline',
                         'autoplay',

@@ -67,6 +67,11 @@
         },
 
         async load(manifest = null, timecode = null) {
+            // Do not load if elements are not defined
+            if (this.$refs.container === undefined || this.$refs.video === undefined) {
+                return;
+            }
+
             try {
                 const container = this.$refs.container;
                 const video = this.$refs.video;
@@ -111,17 +116,22 @@
         },
 
         async unload() {
-            try {
-                await this.manager?.release();
-                await this.instance?.detach();
-            } catch (e) {}
-
             // Set ready state
             this.ready = false;
+
+            // Do not unload if instance is not defined
+            if (this.instance === undefined || this.manager === undefined) {
+                return;
+            }
+
+            try {
+                await this.manager.release();
+                await this.instance.detach();
+            } catch (e) {}
         },
 
         async sync() {
-            if ($wire.syncSession === undefined) {
+            if ($wire.syncSession === undefined || this.instance === undefined) {
                 return;
             }
 
@@ -163,7 +173,7 @@
         },
 
         async seekTo(event) {
-            const range = this.instance?.seekRange();
+            const range = this.instance.seekRange();
             const time = event.target?.value || 0;
 
             if (range !== undefined && time >= range.start && time <= range.end) {
@@ -172,7 +182,7 @@
         },
 
         async backward() {
-            const range = this.instance?.seekRange();
+            const range = this.instance.seekRange();
 
             if (range !== undefined) {
                 this.instance.getMediaElement().currentTime -= 10;
@@ -180,7 +190,7 @@
         },
 
         async forward() {
-            const range = this.instance?.seekRange();
+            const range = this.instance.seekRange();
 
             if (range !== undefined) {
                 this.instance.getMediaElement().currentTime += 30;
@@ -188,10 +198,15 @@
         },
 
         async getTextTracks() {
-            return this.instance?.getTextTracks() || [];
+            return this.instance.getTextTracks() || [];
         },
 
         async setTextTrack() {
+            // Do not set text track if instance is not defined
+            if (this.instance === undefined) {
+                return;
+            }
+
             this.textTrack = parseInt(this.textTrack || -1)
 
             const tracks = await this.getTextTracks();

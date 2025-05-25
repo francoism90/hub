@@ -48,6 +48,11 @@
         },
 
         async load(video = undefined, manifest = null) {
+            // Do not load if elements are not defined
+            if (video === undefined || manifest === null) {
+                return;
+            }
+
             try {
                 // Make sure player exists
                 await this.create();
@@ -62,12 +67,17 @@
         },
 
         async unload() {
+            // Set ready state
+            this.ready = false;
+
+            // Do not unload if instance is not defined
+            if (this.instance === undefined) {
+                return;
+            }
+
             try {
                 await this.instance?.detach();
             } catch (e) {}
-
-            // Set ready state
-            this.ready = false;
         },
     }));
 </script>
