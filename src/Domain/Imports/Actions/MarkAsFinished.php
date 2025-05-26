@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace Domain\Imports\Actions;
 
-use Closure;
 use Domain\Imports\Models\Import;
 use Domain\Imports\States\Finished;
+use Illuminate\Support\Facades\DB;
 
 class MarkAsFinished
 {
-    public function __invoke(Import $model, Closure $next): mixed
+    public function execute(Import $model): mixed
     {
-        if ($model->state->canTransitionTo(Finished::class)) {
-            $model->state->transitionTo(Finished::class);
-        }
+        return DB::transaction(function () use ($model) {
+            if ($model->state->canTransitionTo(Finished::class)) {
+                $model->state->transitionTo(Finished::class);
+            }
 
-        $model->updateOrFail(['finished_at' => now()]);
+            $model->updateOrFail(['finished_at' => now()]);
 
-        return $next($model);
+            return $model;
+        });
     }
 }

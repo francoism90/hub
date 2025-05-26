@@ -24,8 +24,8 @@ class CreateVideoByImport
                 ->addMediaFromDisk($model->file_name, 'import')
                 ->toMediaCollection('clips');
 
-            app(MarkAsFinished::class)($model);
-            app(RegenerateVideo::class)($video);
+            app(MarkAsFinished::class)->execute($model);
+            app(RegenerateVideo::class)->execute($video);
 
             return $next($model, $video);
         });
