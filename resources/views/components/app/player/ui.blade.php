@@ -67,15 +67,16 @@
         },
 
         async load(manifest = null, timecode = null) {
+            const container = this.$refs.container;
+            const video = this.$refs.video;
+
             // Do not load if elements are not defined
-            if (this.$refs.container === undefined || this.$refs.video === undefined) {
+            if (container === undefined || video === undefined) {
                 return;
             }
 
             try {
-                const container = this.$refs.container;
-                const video = this.$refs.video;
-                const h = Alpine.throttle(() => this.sync(), 750);
+                const h = Alpine.throttle(() => this.sync(), 800);
 
                 // Make sure player exists
                 await this.create();
@@ -173,7 +174,7 @@
         },
 
         async seekTo(event) {
-            const range = this.instance.seekRange();
+            const range = this.instance?.seekRange();
             const time = event.target?.value || 0;
 
             if (range !== undefined && time >= range.start && time <= range.end) {
@@ -182,7 +183,7 @@
         },
 
         async backward() {
-            const range = this.instance.seekRange();
+            const range = this.instance?.seekRange();
 
             if (range !== undefined) {
                 this.instance.getMediaElement().currentTime -= 10;
@@ -190,7 +191,7 @@
         },
 
         async forward() {
-            const range = this.instance.seekRange();
+            const range = this.instance?.seekRange();
 
             if (range !== undefined) {
                 this.instance.getMediaElement().currentTime += 30;
