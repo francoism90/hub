@@ -7,8 +7,7 @@
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->attributes([
         'x-data' => '{ shown: false, manifest: $el.dataset.manifest }',
-        'x-intersect:enter' => 'shown = true',
-        'x-intersect:leave' => 'shown = false',
+        'x-intersect' => 'shown = true',
     ])
     ->children([
         html()
@@ -30,7 +29,7 @@
                     ->srcset($video->srcset)
                     ->loading('lazy')
                     ->crossorigin('use-credentials')
-                    ->attribute('sizes',  '(min-width: 768px) 768px, 320px'),
+                    ->attribute('sizes' => '(min-width: 768px) 768px, 320px'),
 
                 html()
                     ->element('video')

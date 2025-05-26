@@ -70,11 +70,6 @@
             // Set ready state
             this.ready = false;
 
-            // Do not unload if instance is not defined
-            if (this.instance === undefined) {
-                return;
-            }
-
             try {
                 await this.instance?.detach();
             } catch (e) {}
