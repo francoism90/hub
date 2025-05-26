@@ -35,7 +35,8 @@ RUN apt-get update && apt-get upgrade -y \
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN install-php-extensions @composer apcu bcmath bz2 calendar ev event exif gd \
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+    && install-php-extensions @composer apcu bcmath bz2 calendar ev event exif gd \
     gettext igbinary imagick imap inotify intl msgpack opcache pcntl pcov \
     pdo_mysql pdo_pgsql pgsql redis sockets swoole uv zip
 
