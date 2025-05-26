@@ -29,7 +29,11 @@
                     ->srcset($video->srcset)
                     ->loading('lazy')
                     ->crossorigin('use-credentials')
-                    ->attribute('sizes' => '(min-width: 768px) 768px, 320px'),
+                    ->attributes([
+                        'x-cloak',
+                        'x-show' => 'shown',
+                        'sizes' => '(min-width: 768px) 768px, 320px)',
+                    ]),
 
                 html()
                     ->element('video')
@@ -38,7 +42,7 @@
                     ->attributes([
                         'x-cloak',
                         'x-ref' => 'video',
-                        'x-show' => 'ready',
+                        'x-show' => 'shown && ready',
                         'x-transition.opacity',
                         'playsinline',
                         'autoplay',
