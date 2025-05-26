@@ -3,6 +3,7 @@
 {{ html()
     ->element('article')
     ->data('manifest', $video->preview)
+    ->id('item-' . $video->getRouteKey())
     ->class('card w-full h-60 min-w-60 min-h-60 max-h-60')
     ->attributes([
         'x-data' => '{ shown: false, manifest: $el.dataset.manifest }',
