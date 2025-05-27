@@ -1,5 +1,7 @@
 # Upgrading
 
+> **TIP:** You may want to enable `podman-auto-update.timer` to automatically update containers.
+
 1. Sync with the latest changes:
 
 ```fish
@@ -11,10 +13,15 @@ git pull
 
 ```fish
 ./bin/make-containers --no-cache
-systemctl --user restart hub
 ```
 
-1. Update the application:
+1. Restart the affected containers:
+
+```fish
+systemctl --user restart hub hub-queue hub-reverb hub-schedule
+```
+
+1. To update the application:
 
 ```fish
 hub composer install

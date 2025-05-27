@@ -59,6 +59,8 @@ systemctl --user start proxy hub
 systemctl --user status hub
 ```
 
+> **NOTE:** Make sure MinIO is configured first.
+
 Enter the `systemd-hub` container, and execute the followings commands:
 
 ```bash

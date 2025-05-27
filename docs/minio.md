@@ -20,6 +20,12 @@ To learn more about MinIO, consider reading the following resources:
 
 ## Usage
 
+1. Make sure minio is up and running:
+
+```bash
+systemctl --user start hub-minio
+```
+
 1. Create an access key (<https://mc.hub.test/access-keys>).
 
 1. Update `AWS_ACCESS_KEY_ID` `AWS_SECRET_ACCESS_KEY` in `.env`.
