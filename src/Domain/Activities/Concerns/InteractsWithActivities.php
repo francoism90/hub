@@ -6,7 +6,7 @@ namespace Domain\Activities\Concerns;
 
 use Domain\Activities\Enums\ActivityType;
 use Domain\Activities\Models\Activity;
-use Domain\Users\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait InteractsWithActivities
@@ -16,11 +16,21 @@ trait InteractsWithActivities
         return $this->hasMany(Activity::class)->chaperone();
     }
 
-    public function hasFavoritedBy(User $user): bool
+    public function getActivity(?Model $model = null, ?ActivityType $type = null): ?Activity
+    {
+        return $this->getActivities($model, $type)->first();
+    }
+
+    public function hasActivity(?Model $model = null, ?ActivityType $type = null): bool
+    {
+        return $this->getActivities($model, $type)->exists();
+    }
+
+    public function getActivities(?Model $model = null, ?ActivityType $type = null): HasMany
     {
         return $this->activities()
-            ->where('user_id', $user->getKey())
-            ->where('type', ActivityType::Favorite)
-            ->exists();
+            ->when($model, fn ($query) => $query->whereMorph('model', $model))
+            ->when($type, fn ($query) => $query->where('type', $type))
+            ->latest();
     }
 }

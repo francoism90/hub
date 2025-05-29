@@ -11,6 +11,7 @@ use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -20,6 +21,7 @@ use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 class Activity extends Model
 {
     use BroadcastsEvents;
+    use HasUlids;
     use HasFactory;
     use HasPrefixedId;
     use InteractsWithUser;
@@ -32,7 +34,7 @@ class Activity extends Model
         'model_type',
         'model_id',
         'user_id',
-        'name',
+        'content',
         'options',
         'type',
     ];

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table
-                ->string('prefixed_id')
+                ->ulid()
                 ->unique();
             $table
                 ->foreignId('user_id')
@@ -20,7 +20,6 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
-            $table->string('name')->index()->nullable();
             $table->mediumText('content')->nullable();
             $table->string('type')->nullable()->index();
             $table->json('options')->nullable();

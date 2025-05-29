@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ActivityQueryBuilder extends Builder
 {
-    //
+    public function type(string $type): self
+    {
+        return $this->where('type', $type);
+    }
+
+    public function types(array $types): self
+    {
+        return $this->whereIn('type', $types);
+    }
 }

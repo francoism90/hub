@@ -12,9 +12,9 @@ use Illuminate\Support\Str;
 
 class CreateNewUser
 {
-    public function execute(array $attributes): void
+    public function execute(array $attributes): mixed
     {
-        DB::transaction(function () use ($attributes) {
+        return DB::transaction(function () use ($attributes) {
             $attributes['password'] = Hash::make(
                 $attributes['password'] ?? Str::random()
             );
@@ -24,7 +24,7 @@ class CreateNewUser
                 Arr::only($attributes, app(User::class)->getFillable()),
             );
 
-            app(RegenerateUser::class)->execute($model);
+            return $model;
         });
     }
 }

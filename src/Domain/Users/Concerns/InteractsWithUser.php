@@ -13,7 +13,7 @@ trait InteractsWithUser
     public static function bootInteractsWithUser(): void
     {
         static::creating(function (Model $model) {
-            if (blank($model->user_id)) {
+            if (blank($model->user_id) && auth()->check()) {
                 $model->user_id = auth()->id();
             }
         });
