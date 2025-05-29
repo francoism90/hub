@@ -65,6 +65,24 @@ class GroupViewController extends Page
         $this->dispatch('$refresh');
     }
 
+    public function delete(): void
+    {
+        $this->canDelete($this->getGroup());
+
+        $this->getGroup()->deleteOrFail();
+
+        $this->refresh();
+    }
+
+    public function clear(): void
+    {
+        $this->canUpdate($this->getGroup());
+
+        $this->getGroup()->videos()->detach();
+
+        $this->refresh();
+    }
+
     protected function getTypes(): array
     {
         return [

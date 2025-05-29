@@ -7,9 +7,9 @@ namespace Domain\Groups\Enums;
 enum GroupType: string
 {
     case System = 'system';
+    case Mixer = 'mixer';
     case Private = 'private';
     case Public = 'public';
-    case Mixer = 'mixer';
 
     public function label(): string
     {

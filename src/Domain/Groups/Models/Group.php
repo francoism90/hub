@@ -142,6 +142,11 @@ class Group extends Model implements HasMedia, Sortable
             ->where('created_at', '<=', now()->subDay());
     }
 
+    public function isReserved(): bool
+    {
+        return in_array($this->type, [GroupType::System, GroupType::Mixer]);
+    }
+
     public function toSearchableArray(): array
     {
         return [

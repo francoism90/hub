@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Groups\Policies;
 
+use Domain\Groups\Enums\GroupType;
 use Domain\Groups\Models\Group;
 use Domain\Users\Models\User;
 
@@ -31,6 +32,10 @@ class GroupPolicy
 
     public function delete(User $user, Group $group): bool
     {
+        if ($group->isReserved()) {
+            return false;
+        }
+
         return $group->user()->is($user) || $user->hasRole('super-admin');
     }
 

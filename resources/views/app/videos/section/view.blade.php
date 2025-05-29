@@ -1,7 +1,7 @@
 {{ html()->div()->class('container h-80 min-h-80 max-h-80 flex flex-col gap-y-3')->open() }}
     {{ html()->element('nav')->class('flex flex-nowrap items-center justify-between gap-x-3 w-full')
         ->child(html()->element('h1')->text($title)->class('text-2xl'))
-        ->childIf($url && $this->items->count(), html()->a()->href($url)->attribute('wire:navigate')->text('View all')->class('btn btn-sm'))
+        ->childIf($url, html()->a()->href($url)->attribute('wire:navigate')->text('View all')->class('btn btn-sm'))
     }}
 
     {{ html()->div()->attribute('wire:poll.600s')->class('carousel carousel-start w-full gap-x-4')->open() }}
