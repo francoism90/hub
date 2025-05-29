@@ -42,7 +42,7 @@ class ReleaseUser implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected User $model,
+        protected User $user,
     ) {
         $this->onQueue('processing');
     }
@@ -58,7 +58,7 @@ class ReleaseUser implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
+            (new WithoutOverlapping("process:{$this->user->getKey()}"))->shared(),
         ];
     }
 
