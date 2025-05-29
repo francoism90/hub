@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Users\Commands;
 
-use Domain\Users\Jobs\ProcessUser;
+use Domain\Users\Actions\RegenerateUser;
 use Domain\Users\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
@@ -25,7 +25,7 @@ class RegenerateUsers extends Command implements Isolatable
     public function handle(): void
     {
         $this->getCollection()->each(
-            fn (User $model) => ProcessUser::dispatch($model)
+            fn (User $user) => app(RegenerateUser::class)->execute($user)
         );
 
         $this->components->info('User regenerating has been dispatched successfully.');

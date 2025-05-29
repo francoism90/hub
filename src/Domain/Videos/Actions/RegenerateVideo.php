@@ -12,12 +12,16 @@ use Illuminate\Support\Facades\Bus;
 
 class RegenerateVideo
 {
-    public function execute(Video $model): void
+    public function execute(Video $video): void
     {
+        if ($video->trashed()) {
+            return;
+        }
+
         Bus::chain([
-            new ProcessVideo($model),
-            new OptimizeVideo($model),
-            new ReleaseVideo($model),
+            new ProcessVideo($video),
+            new OptimizeVideo($video),
+            new ReleaseVideo($video),
         ])->dispatch();
     }
 }
