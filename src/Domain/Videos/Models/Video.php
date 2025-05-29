@@ -8,6 +8,7 @@ use Database\Factories\VideoFactory;
 use Domain\Groups\Concerns\InteractsWithGroups;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Users\Models\User;
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithVod;
@@ -171,6 +172,45 @@ class Video extends Model implements HasMedia
                 'image/png',
                 'image/webp',
             ]);
+    }
+
+    public function isFavorited(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->favorites()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
+    }
+
+    public function isWatchlisted(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->saves()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
+    }
+
+    public function isViewed(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->views()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
     }
 
     /**

@@ -33,10 +33,7 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $user->groups()
-            ->favorites()
-            ->whereRelation('videos', 'id', $this->getVideoKey())
-            ->exists();
+        return $this->getVideo()->isFavorited($user);
     }
 
     #[Computed]
@@ -46,10 +43,7 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $user->groups()
-            ->saves()
-            ->whereRelation('videos', 'id', $this->getVideoKey())
-            ->exists();
+        return $this->getVideo()->isWatchlisted($user);
     }
 
     public function toggleFavorite(): void
@@ -58,7 +52,7 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsFavorited::class)->execute($user, $this->video);
+        app(MarkAsFavorited::class)->execute($user, $this->getVideo());
     }
 
     public function toggleSave(): void
@@ -67,17 +61,17 @@ class VideoViewController extends Page
             return;
         }
 
-        app(MarkAsSaved::class)->execute($user, $this->video);
+        app(MarkAsSaved::class)->execute($user, $this->getVideo());
     }
 
     protected function getTitle(): ?string
     {
-        return (string) $this->video->title;
+        return (string) $this->getVideo()->title;
     }
 
     protected function getDescription(): ?string
     {
-        return (string) $this->video->summary;
+        return (string) $this->getVideo()->summary;
     }
 
     public function getListeners(): array

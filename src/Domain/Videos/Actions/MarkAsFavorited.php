@@ -21,21 +21,12 @@ class MarkAsFavorited
             }
 
             // Toggle state
-            $force === true || ! $this->isFavorited($user, $video)
+            $force === true || ! $video->isFavorited($user)
                 ? $video->attachGroup($group)
                 : $video->detachGroup($group);
 
             // Touch parent to trigger broadcast
             $group->touch();
         });
-    }
-
-    protected function isFavorited(User $user, Video $video): bool
-    {
-        return $user
-            ->groups()
-            ->favorites()
-            ->whereRelation('videos', 'id', $video->getKey())
-            ->exists();
     }
 }

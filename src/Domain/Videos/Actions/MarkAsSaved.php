@@ -21,21 +21,12 @@ class MarkAsSaved
             }
 
             // Toggle state
-            $force === true || ! $this->isSaved($user, $video)
+            $force === true || ! $video->isWatchlisted($user)
                 ? $video->attachGroup($group)
                 : $video->detachGroup($group);
 
             // Touch parent to trigger broadcast
             $group->touch();
         });
-    }
-
-    protected function isSaved(User $user, Video $video): bool
-    {
-        return $user
-            ->groups()
-            ->saves()
-            ->whereRelation('videos', 'id', $video->getKey())
-            ->exists();
     }
 }
