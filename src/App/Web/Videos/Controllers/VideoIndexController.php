@@ -49,7 +49,7 @@ class VideoIndexController extends Page
             ->forModel($this->getAuthModel())
             ->run();
 
-        return $algo->meta['items'];
+        return $algo->get('items');
     }
 
     public function populate(): void
