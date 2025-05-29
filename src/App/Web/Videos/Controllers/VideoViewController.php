@@ -35,7 +35,7 @@ class VideoViewController extends Page
 
         return $user->groups()
             ->favorites()
-            ->whereHas('videos', fn ($query) => $query->where('id', $this->getVideoKey()))
+            ->whereRelation('videos', 'id', $this->getVideoKey())
             ->exists();
     }
 
@@ -48,7 +48,7 @@ class VideoViewController extends Page
 
         return $user->groups()
             ->saves()
-            ->whereHas('videos', fn ($query) => $query->where('id', $this->getVideoKey()))
+            ->whereRelation('videos', 'id', $this->getVideoKey())
             ->exists();
     }
 

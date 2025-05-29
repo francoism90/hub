@@ -35,7 +35,7 @@ class MarkAsFavorited
         return $user
             ->groups()
             ->favorites()
-            ->whereHas('videos', fn ($query) => $query->where('id', $video->getKey()))
+            ->whereRelation('videos', 'id', $video->getKey())
             ->exists();
     }
 }

@@ -35,7 +35,7 @@ class MarkAsSaved
         return $user
             ->groups()
             ->saves()
-            ->whereHas('videos', fn ($query) => $query->where('id', $video->getKey()))
+            ->whereRelation('videos', 'id', $video->getKey())
             ->exists();
     }
 }
