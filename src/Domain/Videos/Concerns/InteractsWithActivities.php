@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\Activities\Concerns;
+namespace Domain\Videos\Concerns;
 
 use Domain\Activities\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait HasActivities
+trait InteractsWithActivities
 {
     public function activities(): MorphMany
     {

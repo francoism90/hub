@@ -8,6 +8,7 @@ use Domain\Activities\Collections\ActivityCollection;
 use Domain\Activities\Enums\ActivityType;
 use Domain\Activities\QueryBuilders\ActivityQueryBuilder;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
@@ -72,6 +74,11 @@ class Activity extends Model
     public function model(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function videos(): MorphToMany
+    {
+        return $this->morphedByMany(Video::class, 'model');
     }
 
     /**

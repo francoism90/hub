@@ -9,6 +9,7 @@ use Domain\Activities\Concerns\HasActivities;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
+use Domain\Videos\Concerns\InteractsWithActivities;
 use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithGroups;
 use Domain\Videos\Concerns\InteractsWithVod;
@@ -31,12 +32,12 @@ use Spatie\Translatable\HasTranslations;
 class Video extends Model implements HasMedia
 {
     use BroadcastsEvents;
-    use HasActivities;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
     use HasTags;
     use HasTranslations;
+    use InteractsWithActivities;
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;

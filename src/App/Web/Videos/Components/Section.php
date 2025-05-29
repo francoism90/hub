@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Components;
 
+use App\Web\Videos\Concerns\WithVideos;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Auth\Concerns\WithAuthentication;
 use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
@@ -16,6 +17,7 @@ abstract class Section extends Component
 {
     use WithAuthentication;
     use WithQueryBuilder;
+    use WithVideos;
 
     public function render(): View
     {
