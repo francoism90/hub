@@ -40,7 +40,8 @@ class Saved extends Section
     {
         return $this->getAuthModel()
             ->groups()
-            ->saved();
+            ->saves()
+            ->first();
     }
 
     public function getListeners(): array

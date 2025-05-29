@@ -40,7 +40,8 @@ class Viewed extends Section
     {
         return $this->getAuthModel()
             ->groups()
-            ->viewed();
+            ->views()
+            ->first();
     }
 
     public function getListeners(): array

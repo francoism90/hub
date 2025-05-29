@@ -18,7 +18,7 @@ class VideoViewController extends Page
 
     public function mount(): void
     {
-        app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->video);
+        app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
     }
 
     public function render(): View
@@ -33,9 +33,10 @@ class VideoViewController extends Page
             return false;
         }
 
-        return false;
-
-        // return $this->video->isFavoritedBy($user);
+        return $user->groups()
+            ->favorites()
+            ->whereHas('videos', fn ($query) => $query->where('id', $this->getVideoKey()))
+            ->exists();
     }
 
     #[Computed]
@@ -45,9 +46,10 @@ class VideoViewController extends Page
             return false;
         }
 
-        return false;
-
-        // return $this->video->isSavedBy($user);
+        return $user->groups()
+            ->saves()
+            ->whereHas('videos', fn ($query) => $query->where('id', $this->getVideoKey()))
+            ->exists();
     }
 
     public function toggleFavorite(): void

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Domain\Groups\Concerns;
 
 use ArrayAccess;
+use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Models\Group;
 use Domain\Groups\Models\Groupable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
@@ -69,5 +71,20 @@ trait InteractsWithGroups
         return collect($values)
             ->map(fn (Group|int|string $value) => $value instanceof Group ? $value : Group::find($value))
             ->filter();
+    }
+
+    public function hasGroup(GroupSet|string|null $type = null): bool
+    {
+        return $this
+            ->groups()
+            ->when($type, fn ($query) => $query->where('type', $type))
+            ->exists();
+    }
+
+    public function scopeWithGroup($query, ?GroupSet $type = null): Builder
+    {
+        return $query->whereHas('groups', fn ($query) => $query
+            ->when($type, fn ($query) => $query->where('type', $type->value))
+        );
     }
 }

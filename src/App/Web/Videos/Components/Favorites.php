@@ -40,7 +40,8 @@ class Favorites extends Section
     {
         return $this->getAuthModel()
             ->groups()
-            ->favorites();
+            ->favorites()
+            ->first();
     }
 
     public function getListeners(): array

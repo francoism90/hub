@@ -6,7 +6,6 @@ namespace Domain\Groups\QueryBuilders;
 
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
-use Domain\Groups\Models\Group;
 use Domain\Groups\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,24 +32,24 @@ class GroupQueryBuilder extends Builder
             ->whereIn('type', [GroupType::Private, GroupType::Public]);
     }
 
-    public function favorites(): ?Group
+    public function favorites(): self
     {
         return $this
             ->system()
-            ->firstWhere('kind', GroupSet::Favorite);
+            ->where('kind', GroupSet::Favorite);
     }
 
-    public function saved(): ?Group
+    public function saves(): self
     {
         return $this
             ->system()
-            ->firstWhere('kind', GroupSet::Saved);
+            ->where('kind', GroupSet::Saved);
     }
 
-    public function viewed(): ?Group
+    public function views(): self
     {
         return $this
             ->system()
-            ->firstWhere('kind', GroupSet::Viewed);
+            ->where('kind', GroupSet::Viewed);
     }
 }

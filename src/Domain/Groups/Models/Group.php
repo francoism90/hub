@@ -11,7 +11,6 @@ use Domain\Groups\QueryBuilders\GroupQueryBuilder;
 use Domain\Groups\States\GroupState;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Concerns\InteractsWithUser;
-use Domain\Videos\Concerns\HasVideos;
 use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
