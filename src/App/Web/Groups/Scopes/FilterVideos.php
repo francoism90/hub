@@ -18,8 +18,8 @@ class FilterVideos
     public function __invoke(Builder $query): void
     {
         $query
-            ->when($this->form->is('type', 'newest'), fn (Builder $query) => $query->orderByDesc('videoables.created_at'))
-            ->when($this->form->is('type', 'oldest'), fn (Builder $query) => $query->orderBy('videoables.created_at'))
+            ->when($this->form->is('type', 'newest'), fn (Builder $query) => $query->orderByDesc('groupables.created_at'))
+            ->when($this->form->is('type', 'oldest'), fn (Builder $query) => $query->orderBy('groupables.created_at'))
             ->when($this->form->is('type', 'recommended'), fn (Builder $query) => $query->inRandomOrder());
     }
 }

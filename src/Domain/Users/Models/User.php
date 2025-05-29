@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
-use Domain\Groups\Concerns\InteractsWithGroups;
+use Domain\Users\Concerns\InteractsWithGroups;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;

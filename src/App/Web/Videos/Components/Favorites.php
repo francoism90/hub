@@ -21,7 +21,7 @@ class Favorites extends Section
         return $this->getGroup()
             ->videos()
             ->published()
-            ->orderByDesc('videoables.updated_at')
+            ->orderByDesc('groupables.updated_at')
             ->take($this->getLimit())
             ->get();
     }

@@ -17,9 +17,9 @@ class MarkAsSaved
             $model = $user->groups()->saved();
 
             // Toggle state
-            $force === true || ! $video->isSavedBy($user)
-                ? $model->attachVideo($video)
-                : $model->detachVideo($video);
+            // $force === true || ! $video->isSavedBy($user)
+            //     ? $model->attachVideo($video)
+            //     : $model->detachVideo($video);
 
             // Touch parent to trigger broadcast
             $model->touch();

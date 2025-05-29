@@ -17,9 +17,9 @@ class MarkAsFavorited
             $model = $user->groups()->favorites();
 
             // Toggle state
-            $force === true || ! $video->isFavoritedBy($user)
-                ? $model->attachVideo($video)
-                : $model->detachVideo($video);
+            // $force === true || ! $video->isFavoritedBy($user)
+            //     ? $model->attachVideo($video)
+            //     : $model->detachVideo($video);
 
             // Touch parent to trigger broadcast
             $model->touch();

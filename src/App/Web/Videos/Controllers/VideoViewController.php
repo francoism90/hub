@@ -33,7 +33,9 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $this->video->isFavoritedBy($user);
+        return false;
+
+        // return $this->video->isFavoritedBy($user);
     }
 
     #[Computed]
@@ -43,7 +45,9 @@ class VideoViewController extends Page
             return false;
         }
 
-        return $this->video->isSavedBy($user);
+        return false;
+
+        // return $this->video->isSavedBy($user);
     }
 
     public function toggleFavorite(): void

@@ -14,13 +14,13 @@ class MarkAsViewed
     {
         DB::transaction(function () use ($user, $video) {
             // Get group model
-            $model = $user->groups()->viewed();
+            $group = $user->groups()->viewed();
 
-            // Update videos
-            $model->attachVideo($video);
+            // Attach video to group
+            $video->attachGroup($group);
 
             // Touch parent to trigger broadcast
-            $model->touch();
+            $group->touch();
         });
     }
 }
