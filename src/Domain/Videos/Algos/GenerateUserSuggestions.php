@@ -77,8 +77,8 @@ class GenerateUserSuggestions extends Algo
         return $this->limit ?? 16;
     }
 
-    protected function getUser(): User
+    protected function getUser(): ?User
     {
-        return $this->user ?? auth()->user();
+        return $this->user;
     }
 }
