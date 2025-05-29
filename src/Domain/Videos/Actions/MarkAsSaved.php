@@ -14,7 +14,7 @@ class MarkAsSaved
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $force) {
-            $group = $this->getGroup($user);
+            $group = $user->groups()->saves()->first();
 
             if (! $group instanceof Group) {
                 return;
@@ -30,14 +30,10 @@ class MarkAsSaved
         });
     }
 
-    protected function getGroup(User $user): ?Group
-    {
-        return $user->groups()->saves()->first();
-    }
-
     protected function isSaved(User $user, Video $video): bool
     {
-        return $user->groups()
+        return $user
+            ->groups()
             ->saves()
             ->whereHas('videos', fn ($query) => $query->where('id', $video->getKey()))
             ->exists();

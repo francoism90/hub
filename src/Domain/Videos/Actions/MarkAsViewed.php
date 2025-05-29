@@ -14,7 +14,7 @@ class MarkAsViewed
     public function execute(User $user, Video $video): void
     {
         DB::transaction(function () use ($user, $video) {
-            $group = $this->getGroup($user);
+            $group = $user->groups()->views()->first();
 
             if (! $group instanceof Group) {
                 return;
@@ -26,10 +26,5 @@ class MarkAsViewed
             // Touch parent to trigger broadcast
             $group->touch();
         });
-    }
-
-    protected function getGroup(User $user): ?Group
-    {
-        return $user->groups()->views()->first();
     }
 }

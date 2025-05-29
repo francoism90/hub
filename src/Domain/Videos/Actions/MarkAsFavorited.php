@@ -14,7 +14,7 @@ class MarkAsFavorited
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $force) {
-            $group = $this->getGroup($user);
+            $group = $user->groups()->favorites()->first();
 
             if (! $group instanceof Group) {
                 return;
@@ -30,14 +30,10 @@ class MarkAsFavorited
         });
     }
 
-    protected function getGroup(User $user): ?Group
-    {
-        return $user->groups()->favorites()->first();
-    }
-
     protected function isFavorited(User $user, Video $video): bool
     {
-        return $user->groups()
+        return $user
+            ->groups()
             ->favorites()
             ->whereHas('videos', fn ($query) => $query->where('id', $video->getKey()))
             ->exists();
