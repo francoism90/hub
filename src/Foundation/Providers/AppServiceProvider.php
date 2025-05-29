@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Foundation\Providers;
 
-use Domain\Activities\Models\Activity;
 use Domain\Groups\Models\Group;
 use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
@@ -50,7 +49,6 @@ class AppServiceProvider extends ServiceProvider
     protected function configureMorphMap(): void
     {
         Relation::enforceMorphMap([
-            'activity' => Activity::class,
             'import' => Import::class,
             'media' => Media::class,
             'group' => Group::class,
@@ -66,7 +64,6 @@ class AppServiceProvider extends ServiceProvider
         PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
 
         PrefixedIds::registerModels([
-            'activity-' => Activity::class,
             'list-' => Group::class,
             'tag-' => Tag::class,
             'user-' => User::class,

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
-use Domain\Activities\Concerns\HasActivities;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Collections\VideoCollection;
@@ -31,7 +30,6 @@ use Spatie\Translatable\HasTranslations;
 class Video extends Model implements HasMedia
 {
     use BroadcastsEvents;
-    use HasActivities;
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
