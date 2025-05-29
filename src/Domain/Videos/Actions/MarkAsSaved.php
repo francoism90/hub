@@ -38,7 +38,7 @@ class MarkAsSaved
     protected function isSaved(User $user, Video $video): bool
     {
         return $user->groups()
-            ->favorites()
+            ->saves()
             ->whereHas('videos', fn ($query) => $query->where('id', $video->getKey()))
             ->exists();
     }

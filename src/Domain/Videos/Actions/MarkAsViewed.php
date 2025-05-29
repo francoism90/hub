@@ -30,6 +30,6 @@ class MarkAsViewed
 
     protected function getGroup(User $user): ?Group
     {
-        return $user->groups()->viewed()->first();
+        return $user->groups()->views()->first();
     }
 }
