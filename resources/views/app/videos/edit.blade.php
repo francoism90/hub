@@ -2,7 +2,7 @@
 @use('Illuminate\Support\Number')
 
 {{ html()->div()->class('container py-4')->children([
-    html()->element('h1')->text($video->title)->class('text-3xl hyphens-auto line-clamp-2'),
+    html()->element('h1')->text($video->title)->class('text-2xl hyphens-auto line-clamp-2'),
     html()->element('dl')->class('dl text-sm text-secondary-100')
         ->childrenIf($video->created_at, [
             html()->element('dt')->text('Added')->class('sr-only'),

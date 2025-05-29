@@ -4,7 +4,7 @@
 
 {{ html()->div()->attribute('x-data', 'preview')->class('container py-4 flex flex-col gap-y-3')->open() }}
     {{ html()->element('section')->children([
-        html()->element('h1')->text($title)->class('text-3xl hyphens-auto line-clamp-2'),
+        html()->element('h1')->text($title)->class('text-2xl hyphens-auto line-clamp-2'),
         html()->element('dl')->class('dl text-sm text-secondary-100')
             ->childrenIf($group->user_id, [
                 html()->element('dt')->text('Creator')->class('sr-only'),
