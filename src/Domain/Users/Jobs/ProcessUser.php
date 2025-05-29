@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Users\Jobs;
 
 use Domain\Groups\Actions\CreateUserGroups;
-use Domain\Users\Actions\RegenerateUser;
 use Domain\Users\Events\UserHasBeenProcessed;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;

@@ -5,8 +5,8 @@ namespace Domain\Users\Actions;
 use Domain\Users\Jobs\OptimizeUser;
 use Domain\Users\Jobs\ProcessUser;
 use Domain\Users\Jobs\ReleaseUser;
-use Illuminate\Support\Facades\Bus;
 use Domain\Users\Models\User;
+use Illuminate\Support\Facades\Bus;
 
 class RegenerateUser
 {
