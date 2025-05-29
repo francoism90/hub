@@ -31,6 +31,10 @@ class GroupPolicy
 
     public function delete(User $user, Group $group): bool
     {
+        if ($group->isReserved()) {
+            return false;
+        }
+
         return $group->user()->is($user) || $user->hasRole('super-admin');
     }
 

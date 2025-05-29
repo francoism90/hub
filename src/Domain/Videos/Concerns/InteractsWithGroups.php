@@ -6,7 +6,6 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Groups\Models\Group;
 use Domain\Users\Models\User;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait InteractsWithGroups
@@ -50,19 +49,5 @@ trait InteractsWithGroups
             ->videos()
             ->where('video_id', $this->getKey())
             ->exists();
-    }
-
-    protected function isFavorited(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->isFavoritedBy()
-        )->shouldCache();
-    }
-
-    protected function isSaved(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->isSavedBy()
-        )->shouldCache();
     }
 }

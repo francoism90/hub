@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Users\Jobs;
 
-use Domain\Users\Actions\RegenerateUser;
+use Domain\Groups\Actions\CreateUserGroups;
+use Domain\Users\Events\UserHasBeenProcessed;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Pipeline;
 
 class ProcessUser implements ShouldQueue
 {
@@ -43,14 +45,18 @@ class ProcessUser implements ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected User $model,
+        protected User $user,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(RegenerateUser::class)->execute($this->model);
+        Pipeline::send($this->user)
+            ->through([
+                CreateUserGroups::class,
+            ])
+            ->then(fn (User $user) => event(new UserHasBeenProcessed($user)));
     }
 
     /**
@@ -59,7 +65,7 @@ class ProcessUser implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->model->getKey()}"))->shared(),
+            (new WithoutOverlapping("process:{$this->user->getKey()}"))->shared(),
         ];
     }
 

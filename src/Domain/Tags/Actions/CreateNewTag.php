@@ -13,7 +13,7 @@ class CreateNewTag
     public function execute(array $attributes): Tag
     {
         return DB::transaction(function () use ($attributes) {
-            $attributes['type'] = TagType::from($attributes['type'])->value;
+            $attributes['type'] = TagType::from($attributes['type'])?->value;
 
             $model = Tag::findOrCreate(
                 $attributes['name'],

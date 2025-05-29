@@ -2,19 +2,24 @@
 
 namespace Domain\Users\Actions;
 
-use Domain\Groups\Actions\CreateUserGroups;
+use Domain\Users\Jobs\OptimizeUser;
+use Domain\Users\Jobs\ProcessUser;
+use Domain\Users\Jobs\ReleaseUser;
 use Domain\Users\Models\User;
+use Illuminate\Support\Facades\Bus;
 
 class RegenerateUser
 {
-    public array $actions = [
-        CreateUserGroups::class,
-    ];
-
-    public function execute(User $model): void
+    public function execute(User $user): void
     {
-        foreach ($this->actions as $action) {
-            app($action)->execute($model);
+        if ($user->trashed()) {
+            return;
         }
+
+        Bus::chain([
+            new ProcessUser($user),
+            new OptimizeUser($user),
+            new ReleaseUser($user),
+        ])->dispatch();
     }
 }

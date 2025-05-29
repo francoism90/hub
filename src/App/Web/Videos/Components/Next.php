@@ -21,7 +21,7 @@ class Next extends Section
             ->limit($this->getLimit())
             ->run();
 
-        return $algo->meta['items'];
+        return $algo->get('items');
     }
 
     protected function getTitle(): ?string

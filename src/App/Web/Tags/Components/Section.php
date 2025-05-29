@@ -37,6 +37,7 @@ class Section extends Component
     {
         return $this->getQuery()
             ->type($this->type)
+            ->withCount('videos')
             ->simplePaginate(
                 perPage: $this->getCandidatesLimit(),
                 page: $this->getPage(),

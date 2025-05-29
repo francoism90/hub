@@ -1,5 +1,5 @@
 @php
-    $items = Number::abbreviate($tag->videos()->count());
+    $items = Number::abbreviate($tag->videos_count);
 @endphp
 
 {{ html()

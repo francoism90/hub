@@ -70,7 +70,7 @@ class ImportVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            new WithoutOverlapping($this->import->getKey()),
+            (new WithoutOverlapping("process:{$this->import->getKey()}"))->shared(),
         ];
     }
 
