@@ -12,7 +12,7 @@ trait WithVideo
 
     public function bootWithVideo(): void
     {
-        $this->authorize('view', $this->video);
+        $this->authorize('view', $this->getVideo());
     }
 
     public function onVideoDeleted(): void

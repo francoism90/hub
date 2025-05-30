@@ -11,7 +11,7 @@ use Domain\Groups\QueryBuilders\GroupQueryBuilder;
 use Domain\Groups\States\GroupState;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Concerns\InteractsWithUser;
-use Domain\Videos\Concerns\HasVideos;
+use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
@@ -35,7 +36,6 @@ class Group extends Model implements HasMedia, Sortable
     use HasFactory;
     use HasPrefixedId;
     use HasStates;
-    use HasVideos;
     use InteractsWithMedia;
     use InteractsWithUser;
     use Notifiable;
@@ -87,6 +87,11 @@ class Group extends Model implements HasMedia, Sortable
     public function getRouteKeyName(): string
     {
         return 'prefixed_id';
+    }
+
+    public function videos(): MorphToMany
+    {
+        return $this->morphedByMany(Video::class, 'groupable');
     }
 
     /**

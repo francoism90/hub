@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Domain\Groups\Models\Group;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
@@ -13,16 +14,19 @@ class MarkAsFavorited
     public function execute(User $user, Video $video, ?bool $force = null): void
     {
         DB::transaction(function () use ($user, $video, $force) {
-            // Get group model
-            $model = $user->groups()->favorites();
+            $group = $user->groups()->favorites()->first();
+
+            if (! $group instanceof Group) {
+                return;
+            }
 
             // Toggle state
             $force === true || ! $video->isFavoritedBy($user)
-                ? $model->attachVideo($video)
-                : $model->detachVideo($video);
+                ? $video->attachGroup($group)
+                : $video->detachGroup($group);
 
             // Touch parent to trigger broadcast
-            $model->touch();
+            $group->touch();
         });
     }
 }

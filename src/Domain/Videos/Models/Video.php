@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
+use Domain\Groups\Concerns\InteractsWithGroups;
 use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Users\Models\User;
 use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Concerns\InteractsWithCache;
-use Domain\Videos\Concerns\InteractsWithGroups;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
 use Domain\Videos\States\VideoState;
@@ -171,6 +172,45 @@ class Video extends Model implements HasMedia
                 'image/png',
                 'image/webp',
             ]);
+    }
+
+    public function isFavoritedBy(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->favorites()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
+    }
+
+    public function isSavedBy(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->saves()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
+    }
+
+    public function isViewedBy(?User $user = null): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user
+            ->groups()
+            ->views()
+            ->whereRelation('videos', 'id', $this->getKey())
+            ->exists();
     }
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Domain\Groups\Models\Group;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
@@ -13,14 +14,17 @@ class MarkAsViewed
     public function execute(User $user, Video $video): void
     {
         DB::transaction(function () use ($user, $video) {
-            // Get group model
-            $model = $user->groups()->viewed();
+            $group = $user->groups()->views()->first();
 
-            // Update videos
-            $model->attachVideo($video);
+            if (! $group instanceof Group) {
+                return;
+            }
+
+            // Attach video to group
+            $video->attachGroup($group);
 
             // Touch parent to trigger broadcast
-            $model->touch();
+            $group->touch();
         });
     }
 }
