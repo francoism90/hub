@@ -12,7 +12,7 @@ trait WithTag
 
     public function bootWithTag(): void
     {
-        $this->authorize('view', $this->tag);
+        $this->authorize('view', $this->getTag());
     }
 
     public function onTagDeleted(): void

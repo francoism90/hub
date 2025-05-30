@@ -12,7 +12,7 @@ trait WithGroup
 
     public function bootWithGroup(): void
     {
-        $this->authorize('view', $this->group);
+        $this->authorize('view', $this->getGroup());
     }
 
     public function onGroupDeleted(): void

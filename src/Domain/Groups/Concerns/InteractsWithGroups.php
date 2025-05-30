@@ -81,7 +81,7 @@ trait InteractsWithGroups
             ->exists();
     }
 
-    public function scopeWithGroup(Builder $query, ?GroupSet $type = null): Builder
+    public function scopeByGroup(Builder $query, ?GroupSet $type = null): Builder
     {
         return $query->whereHas('groups', fn ($query) => $query
             ->when($type, fn ($query) => $query->where('type', $type->value))
