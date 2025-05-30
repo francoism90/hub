@@ -187,7 +187,7 @@ class Video extends Model implements HasMedia
             ->exists();
     }
 
-    public function isWatchlisted(?User $user = null): bool
+    public function isSavedBy(?User $user = null): bool
     {
         if ($user === null) {
             return false;
@@ -200,7 +200,7 @@ class Video extends Model implements HasMedia
             ->exists();
     }
 
-    public function isViewed(?User $user = null): bool
+    public function isViewedBy(?User $user = null): bool
     {
         if ($user === null) {
             return false;
