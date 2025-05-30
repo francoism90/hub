@@ -57,6 +57,8 @@ class VideoIndexController extends Page
         $this->form->reset('list');
 
         unset($this->lists);
+
+        $this->updatedForm();
     }
 
     protected function getBuilder(): Paginator
