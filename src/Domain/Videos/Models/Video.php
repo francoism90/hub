@@ -174,7 +174,7 @@ class Video extends Model implements HasMedia
             ]);
     }
 
-    public function isFavorited(?User $user = null): bool
+    public function isFavoritedBy(?User $user = null): bool
     {
         if ($user === null) {
             return false;

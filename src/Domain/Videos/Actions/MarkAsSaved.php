@@ -21,7 +21,7 @@ class MarkAsSaved
             }
 
             // Toggle state
-            $force === true || ! $video->isWatchlisted($user)
+            $force === true || ! $video->isSavedBy($user)
                 ? $video->attachGroup($group)
                 : $video->detachGroup($group);
 

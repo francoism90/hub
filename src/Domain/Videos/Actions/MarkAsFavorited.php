@@ -21,7 +21,7 @@ class MarkAsFavorited
             }
 
             // Toggle state
-            $force === true || ! $video->isFavorited($user)
+            $force === true || ! $video->isFavoritedBy($user)
                 ? $video->attachGroup($group)
                 : $video->detachGroup($group);
 
