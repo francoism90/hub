@@ -13,7 +13,7 @@
     ],
     "build": {
         "dockerfile": "./../containers/app/Dockerfile",
-        "context": "./../containers"
+        "context": "./../containers/app"
     },
     "customizations": {
         "vscode": {
