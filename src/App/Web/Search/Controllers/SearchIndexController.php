@@ -40,6 +40,8 @@ class SearchIndexController extends Page
     {
         $this->form->submit();
 
+        $this->resetPage();
+
         $this->refresh();
     }
 
