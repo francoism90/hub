@@ -5,7 +5,7 @@
         html()->div()->class('form-control')->children([
             html()
                 ->text()
-                ->wireModel('form.query', 'live.debounce.250ms')
+                ->wireModel('form.query', 'live.debounce.300ms')
                 ->autofocus()
                 ->placeholder('Name')
                 ->class('input'),
