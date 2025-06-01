@@ -9,6 +9,7 @@ use Domain\Users\Events\UserHasBeenProcessed;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +17,7 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Pipeline;
 
-class ProcessUser implements ShouldQueue
+class ProcessUser implements ShouldBeEncrypted, ShouldQueue
 {
     use Batchable;
     use Dispatchable;

@@ -7,13 +7,14 @@ namespace Domain\Users\Jobs;
 use Domain\Users\Models\User;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
-class OptimizeUser implements ShouldQueue
+class OptimizeUser implements ShouldBeEncrypted, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
