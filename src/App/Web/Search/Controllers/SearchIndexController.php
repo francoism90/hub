@@ -38,19 +38,10 @@ class SearchIndexController extends Page
 
     public function updatedForm(): void
     {
-        $this->form->submit();
-
-        $this->resetPage();
-
-        $this->refresh();
+        $this->submit();
     }
 
-    public function updatedPage(): void
-    {
-        unset($this->items);
-    }
-
-    #[Computed(persist: true, seconds: 60 * 60 * 24)]
+    #[Computed]
     public function items(): Paginator
     {
         $query = $this->form->query();
@@ -64,14 +55,14 @@ class SearchIndexController extends Page
     {
         $this->form->submit();
 
-        $this->refresh();
+        $this->resetPage();
     }
 
     public function blank(): void
     {
         $this->form->forget();
 
-        $this->form->clear();
+        $this->submit();
     }
 
     public function refresh(): void
