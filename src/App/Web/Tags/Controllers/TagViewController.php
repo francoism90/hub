@@ -58,6 +58,8 @@ class TagViewController extends Page
 
     public function blank(): void
     {
+        $this->form->reset();
+
         $this->form->forget();
 
         $this->submit();

@@ -27,7 +27,7 @@
         ) }}
     @else
         {{ html()->div()->class('flex flex-nowrap gap-2 items-center py-1.5 overflow-x-auto *:shrink-0')
-            ->child(html()->button()->attribute('wire:click', 'blank')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-backspace', 'size-4 text-white')))
+            ->child(html()->button()->attribute('wire:click.prevent', 'blank')->class('btn btn-sm btn-outlined')->child(html()->icon()->svg('heroicon-s-backspace', 'size-4 text-white')))
             ->children($types, fn (GroupSet $type) => html()->div()->wireKey("filter-{$type->value}")->children([
                 html()
                     ->radio('types')
