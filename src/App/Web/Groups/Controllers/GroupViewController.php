@@ -39,23 +39,30 @@ class GroupViewController extends Page
 
     public function updatedForm(): void
     {
-        $this->form->submit();
-
-        $this->refresh();
+        $this->submit();
     }
 
-    public function updatedPage(): void
-    {
-        unset($this->items);
-    }
-
-    #[Computed(persist: true, seconds: 60 * 60 * 24)]
+    #[Computed]
     public function items(): Paginator
     {
         return $this->getGroup()
             ->videos()
             ->tap(new FilterVideos(form: $this->form, group: $this->group))
             ->simplePaginate(perPage: 24);
+    }
+
+    public function submit(): void
+    {
+        $this->form->submit();
+
+        $this->resetPage();
+    }
+
+    public function blank(): void
+    {
+        $this->form->forget();
+
+        $this->submit();
     }
 
     public function refresh(): void
