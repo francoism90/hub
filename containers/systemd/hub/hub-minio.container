@@ -8,8 +8,8 @@ LogDriver=none
 EnvironmentFile=%h/.config/containers/systemd/hub/config/minio.env
 Exec=minio server /data --console-address ":8900"
 Volume=hub-minio:/data:rw,Z,U
-Network=proxy.network
 Network=hub.network
+Network=proxy.network
 ExposeHostPort=8900
 ExposeHostPort=9000
 

@@ -13,7 +13,6 @@ AddDevice=/dev/dri/:/dev/dri/
 Volume=${APP_PATH}:/app:rw,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z
 Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z
-Network=proxy.network
 Network=hub.network
 
 [Service]

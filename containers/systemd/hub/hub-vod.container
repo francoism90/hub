@@ -12,8 +12,8 @@ UserNS=keep-id
 AddDevice=/dev/dri/:/dev/dri/
 Volume=${APP_PATH}:/app:ro,z
 Volume=${MEDIA_PATH}:/app/storage/app/media:ro,z
-Network=proxy.network
 Network=hub.network
+Network=proxy.network
 ExposeHostPort=1935
 ExposeHostPort=1936
 
