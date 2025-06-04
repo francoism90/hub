@@ -47,6 +47,12 @@ jobs:
               with:
                   version: 10
 
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: 'pnpm'
+
             - name: Setup PHP extensions cache
               id: phpextcache
               uses: shivammathur/cache-extensions@v1
