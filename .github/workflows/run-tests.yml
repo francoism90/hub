@@ -75,4 +75,4 @@ jobs:
             - name: Execute tests
               run: |
                   bun test
-                  php artisan test
+                  ./vendor/bin/pest
