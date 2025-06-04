@@ -27,6 +27,5 @@
         <env name="REDIS_HOST" value="127.0.0.1"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
-        <env name="WIREUSE_CACHE_STORE" value="false"/>
     </php>
 </phpunit>
