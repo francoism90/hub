@@ -23,10 +23,10 @@ jobs:
                 ports:
                     - 5432:5432
             redis:
-                image: redis
+                image: valkey:latest
                 ports:
                     - 6379:6379
-                options: --entrypoint redis-server
+                options: --entrypoint valkey-server
 
         runs-on: ${{ matrix.os }}
 
