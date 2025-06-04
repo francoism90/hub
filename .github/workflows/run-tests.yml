@@ -14,6 +14,14 @@ jobs:
                 os: [ubuntu-latest]
                 php: [8.3, 8.4]
         services:
+            postgres:
+                image: postgres:latest
+                env:
+                    POSTGRES_DB: testing
+                    POSTGRES_USER: laravel
+                    POSTGRES_PASSWORD: password
+                ports:
+                    - 5432:5432
             redis:
                 image: redis
                 ports:
@@ -66,7 +74,8 @@ jobs:
 
             - name: Build application
               run: |
-                  composer install --no-progress --prefer-dist --optimize-autoloader
+                  cp .env.ci .env
+                  composer install --prefer-dist --no-interaction --optimize-autoloader
                   php artisan key:generate
                   php artisan storage:link
                   bun install && bun build
