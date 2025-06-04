@@ -42,6 +42,11 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Setup Node
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 10
+
             - name: Setup PHP extensions cache
               id: phpextcache
               uses: shivammathur/cache-extensions@v1
@@ -80,9 +85,9 @@ jobs:
                   composer install --prefer-dist --no-interaction --optimize-autoloader
                   php artisan key:generate
                   php artisan storage:link
-                  bun install && bun build
+                  pnpm install && pnpm build
 
             - name: Execute tests
               run: |
-                  bun test
+                  pnpm test
                   php artisan test
