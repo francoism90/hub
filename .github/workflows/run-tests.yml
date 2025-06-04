@@ -1,0 +1,72 @@
+name: Tests
+
+on: [push, pull_request]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    test:
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest]
+                php: [8.3, 8.4]
+
+        runs-on: ${{ matrix.os }}
+
+        name: P${{ matrix.php }} - ${{ matrix.os }}
+
+        env:
+            php-extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo, pcov
+            key: ${{ matrix.os }}_Php${{ matrix.php }}
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP extensions cache
+              id: phpextcache
+              uses: shivammathur/cache-extensions@v1
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: ${{ env.php-extensions }}
+                  key: ${{ env.key }}
+
+            - name: 'Determine composer cache directory'
+              id: 'composer-cache-directory'
+              run: 'echo "::set-output name=directory::$(composer config cache-dir)"'
+
+            - name: Cache php extensions & composer downloads
+              uses: actions/cache@v4
+              with:
+                  key: ${{ env.key }}
+                  path: |
+                      ${{ steps.phpextcache.outputs.dir }}
+                      ${{ steps.composer-cache-directory.outputs.directory }}
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: ${{ env.php-extensions }}
+                  coverage: pcov
+
+            - name: Setup problem matchers
+              run: |
+                  echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+                  echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+            - name: Build application
+              run: |
+                  cp .env.example .env
+                  composer install --no-progress --prefer-dist --optimize-autoloader
+                  php artisan key:generate
+                  php artisan storage:link
+                  bun install && bun build
+
+            - name: Execute tests
+              run: |
+                  bun test
+                  php artisan test
