@@ -20,6 +20,6 @@ return [
      */
     'cache' => [
         'driver' => \Spatie\StructureDiscoverer\Cache\LaravelDiscoverCacheDriver::class,
-        'store' => false,
+        'store' => null,
     ],
 ];
