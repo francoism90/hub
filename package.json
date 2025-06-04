@@ -14,7 +14,7 @@
         "@tailwindcss/forms": "^0.5.10",
         "@tailwindcss/typography": "^0.5.16",
         "axios": "^1.9.0",
-        "laravel-echo": "^2.1.4",
+        "laravel-echo": "^2.1.5",
         "pusher-js": "^8.4.0",
         "shaka-player": "^4.14.15",
         "tailwindcss": "^3.4.17"
