@@ -1,6 +1,8 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+    push:
+    pull_request:
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,10 +25,10 @@ jobs:
                 ports:
                     - 5432:5432
             redis:
-                image: valkey:latest
+                image: redis:latest
                 ports:
                     - 6379:6379
-                options: --entrypoint valkey-server
+                options: --entrypoint redis-server
 
         runs-on: ${{ matrix.os }}
 
