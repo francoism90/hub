@@ -12,7 +12,7 @@ class AppUpdate extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'app:update {--assets} {--regenerate}';
+    protected $signature = 'app:update {--assets}';
 
     /**
      * @var string
@@ -29,6 +29,9 @@ class AppUpdate extends Command implements Isolatable
         $this->call('cache:clear');
         $this->call('optimize:clear');
 
+        // Create symlinks
+        $this->call('storage:link');
+
         // Run migrations
         $this->call('migrate', ['--force' => true, '--seed' => true]);
 
@@ -42,10 +45,5 @@ class AppUpdate extends Command implements Isolatable
 
         // Sync settings
         $this->call('scout:sync-index-settings');
-
-        // Regenerate models
-        if ($this->option('regenerate')) {
-            $this->call('users:regenerate');
-        }
     }
 }
