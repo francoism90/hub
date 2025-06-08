@@ -15,16 +15,16 @@ git pull
 ./bin/make-containers --no-cache
 ```
 
-1. Restart the affected containers:
-
-```fish
-systemctl --user restart hub hub-queue hub-reverb hub-schedule
-```
-
 1. To update the application:
 
 ```fish
 hub composer install
 hub pnpm install && hub pnpm build
 hub a app:update --assets
+```
+
+1. Restart the affected containers:
+
+```fish
+systemctl --user restart hub hub-queue hub-reverb hub-schedule
 ```
