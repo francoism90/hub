@@ -5,10 +5,6 @@
         ready: false,
 
         async init() {
-            // Make sure polyfills are always installed
-            await window.shaka.polyfill.installAll();
-
-            // Create instance
             await this.create();
         },
 
@@ -22,21 +18,17 @@
                 return;
             }
 
+            // Install polyfills to patch browser incompatibilities
+            await window.shaka.polyfill.installAll();
+
             // Create instance
             this.instance = new window.shaka.Player();
 
             // Configure player
-            this.instance.configure({
-                streaming: {
-                    lowLatencyMode: true,
-                    ignoreTextStreamFailures: true,
-                    inaccurateManifestTolerance: 0,
-                    rebufferingGoal: 0.01,
-                    segmentPrefetchLimit: 2,
-                    updateIntervalSeconds: 0.1,
-                },
+            this.instance.configurationForLowLatency({
                 manifest: {
                     disableAudio: true,
+                    disableText: true,
                     disableThumbnails: true,
                 },
             });
@@ -70,8 +62,13 @@
             // Set ready state
             this.ready = false;
 
+            // Do not unload if instance is not defined
+            if (this.instance === undefined) {
+                return;
+            }
+
             try {
-                await this.instance?.detach();
+                await this.instance.detach();
             } catch (e) {}
         },
     }));

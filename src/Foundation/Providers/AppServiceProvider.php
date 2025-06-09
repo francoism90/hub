@@ -36,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
 
     protected function configureUrls(): void
     {
-        URL::forceRootUrl(config('app.url'));
         URL::forceHttps();
     }
 

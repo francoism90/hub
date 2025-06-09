@@ -28,13 +28,6 @@ class Relatable extends Model
         'options',
     ];
 
-    /**
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        //
-    ];
-
     protected function casts(): array
     {
         return [

@@ -7,9 +7,9 @@
         'x-cloak',
         'x-ref' => 'container',
         'x-intersect.once' => "load('{$manifest}', '{$timecode}')",
-        'x-on:click' => 'showOverlay',
-        'x-on:mousemove' => 'showOverlay',
-        'x-on:touchmove' => 'showOverlay',
+        'x-on:click.prevent' => 'showOverlay',
+        'x-on:mousemove.prevent' => 'showOverlay',
+        'x-on:touchmove.passive' => 'showOverlay',
     ])
     ->children([
         html()

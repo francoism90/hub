@@ -17,9 +17,9 @@
             ->attributes([
                 'x-cloak',
                 'x-show' => 'shown',
-                'x-on:mouseover.prevent' => 'load($refs.video, manifest)',
-                'x-on:touchstart.passive' => 'load($refs.video, manifest)',
+                'x-on:mouseenter.prevent' => 'load($refs.video, manifest)',
                 'x-on:mouseleave.prevent' => 'unload()',
+                'x-on:touchstart.passive' => 'load($refs.video, manifest)',
                 'x-on:touchend.passive' => 'unload()',
             ])
             ->children([

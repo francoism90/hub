@@ -16,9 +16,6 @@
         idle: 0.0,
 
         async init() {
-            // Install polyfills to patch browser incompatibilities
-            await window.shaka.polyfill.installAll();
-
             // Create instances
             await this.create();
 
@@ -36,29 +33,12 @@
                 return;
             }
 
+            // Install polyfills to patch browser incompatibilities
+            await window.shaka.polyfill.installAll();
+
             // Create instances
             this.instance = new window.shaka.Player();
             this.manager = new window.shaka.util.EventManager();
-
-            // Configure player
-            this.instance.configure({
-                streaming: {
-                    ignoreTextStreamFailures: true,
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                manifest: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-                drm: {
-                    retryParameters: {
-                        baseDelay: 100,
-                    },
-                },
-            });
 
             // Configure networking
             this.instance.getNetworkingEngine().registerRequestFilter(
@@ -76,7 +56,7 @@
             }
 
             try {
-                const h = Alpine.throttle(() => this.sync(), 800);
+                const h = Alpine.throttle(() => this.sync(), 850);
 
                 // Make sure player exists
                 await this.create();
