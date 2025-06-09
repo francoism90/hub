@@ -28,6 +28,7 @@
     {!! SEOMeta::generate() !!}
     <link
         rel="apple-touch-icon"
+        type="image/png"
         sizes="180x180"
         href="{{ asset('storage/images/apple-touch-icon.png') }}"
     >
