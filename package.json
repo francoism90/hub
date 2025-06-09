@@ -17,7 +17,7 @@
         "laravel-echo": "^2.1.5",
         "pusher-js": "^8.4.0",
         "shaka-player": "^4.15.2",
-        "tailwindcss": "^3.4.17"
+        "tailwindcss": "^4.1.8"
     },
     "devDependencies": {
         "@eslint/js": "^9.28.0",
