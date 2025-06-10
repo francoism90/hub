@@ -18,11 +18,22 @@ defineProps({
 
   <PageBody>
     <PageActions>
-      <template #title>
-        <h1 class="text-2xl font-bold">Videos</h1>
-      </template>
+      <UDrawer
+        title="Title"
+        description="Description"
+        direction="left"
+        :handle="false"
+        noBodyStyles
+      >
+        <UButton
+          label="Open"
+          trailing-icon="i-lucide-chevron-up"
+        />
 
-      <template #actions> <div>foo</div> </template>
+        <template #body>
+          <div class="size-full max-w-xs min-w-xs">foo</div>
+        </template>
+      </UDrawer>
     </PageActions>
 
     <PageSection

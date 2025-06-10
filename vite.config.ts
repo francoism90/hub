@@ -54,6 +54,21 @@ export default defineConfig({
             root: 'w-full',
           },
         },
+        drawer: {
+          slots: {
+            overlay: 'fixed inset-0 z-40 bg-black/50',
+            content: 'z-50',
+          },
+          compoundVariants: [
+            {
+              direction: 'left',
+              inset: false,
+              class: {
+                content: 'rounded-none',
+              },
+            },
+          ],
+        },
       },
     }),
   ],

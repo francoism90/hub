@@ -7,7 +7,7 @@ import ProfileMenu from '@/components/Ui/ProfileMenu.vue'
 
 <template>
   <header
-    class="fixed top-0 z-50 h-(--ui-header-height) w-full border-b border-b-neutral-500/30 bg-neutral-950"
+    class="sticky top-0 z-30 h-(--ui-header-height) w-full border-b border-b-neutral-500/30 bg-default"
   >
     <div
       class="mx-auto flex size-full max-w-(--ui-container) items-center justify-between gap-3 px-3"
