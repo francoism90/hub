@@ -7,7 +7,7 @@ import NavMenu from '@/components/ui/NavMenu.vue'
   <UApp>
     <NavBar />
 
-    <div class="flex min-h-[calc(100vh-var(--ui-header-height))]">
+    <div class="flex min-h-[calc(100vh-var(--ui-header-height))] w-full">
       <main class="flex-1">
         <slot />
       </main>
