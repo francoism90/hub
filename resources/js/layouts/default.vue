@@ -4,7 +4,7 @@ import NavMenu from '@/components/ui/NavMenu.vue'
 </script>
 
 <template>
-  <div>
+  <UApp>
     <NavBar />
 
     <UContainer class="flex min-h-[calc(100vh-var(--ui-header-height))]">
@@ -14,5 +14,5 @@ import NavMenu from '@/components/ui/NavMenu.vue'
 
       <NavMenu />
     </UContainer>
-  </div>
+  </UApp>
 </template>

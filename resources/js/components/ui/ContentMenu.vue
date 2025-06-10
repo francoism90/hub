@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import type { DropdownMenuItem } from '@nuxt/ui'
+import { ref } from 'vue'
 
-const items: DropdownMenuItem[] = [
+const items = ref<DropdownMenuItem[]>([
   {
     label: 'New Provider',
     icon: 'i-lucide-plug',
-    to: '/',
+    to: '/providers/new',
   },
-]
+])
 </script>
 
 <template>
