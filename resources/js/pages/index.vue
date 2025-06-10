@@ -1,12 +1,4 @@
-<script lang="ts" setup>
-definePageMeta({
-  middleware: ['sanctum:auth'],
-})
-
-useSeoMeta({
-  title: 'Dashboard',
-})
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div>index</div>
