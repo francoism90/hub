@@ -15,6 +15,9 @@
         "dockerfile": "./../containers/app/Dockerfile",
         "context": "./../containers/app"
     },
+    "mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"
+	],
     "customizations": {
         "vscode": {
             "settings": {
