@@ -15,15 +15,12 @@ defineProps({
   <Head title="Videos" />
 
   <PageSection>
-    <PageSection>
-      <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <div
-          v-for="video in videos.data"
-          :key="video.id"
-        >
-          <VideoCard :video />
-        </div>
-      </div>
-    </PageSection>
+    <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <VideoCard
+        v-for="video in videos.data"
+        :key="video.id"
+        :video
+      />
+    </div>
   </PageSection>
 </template>
