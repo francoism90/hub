@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User, Video } from '@/types/model'
+import type { Video } from '@/types/model'
 
 interface Props {
   video: Video
