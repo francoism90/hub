@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Foundation\Broadcasting;
+namespace App\Api\Videos\Broadcasts;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;

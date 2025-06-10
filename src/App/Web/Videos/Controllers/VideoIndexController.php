@@ -4,105 +4,34 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
-use App\Web\Videos\Forms\QueryForm;
-use App\Web\Videos\Scopes\FilterVideos;
-use Domain\Videos\Algos\GenerateUserSuggestions;
+use App\Api\Videos\Resources\VideoCollection;
+use App\Web\Videos\Scopes\VideoListScope;
 use Domain\Videos\Models\Video;
-use Foxws\WireUse\Models\Concerns\WithPaginateScroll;
-use Foxws\WireUse\Views\Support\Page;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
-use Illuminate\View\View;
-use Livewire\Attributes\Computed;
-use Livewire\WithoutUrlPagination;
+use Foundation\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
+use Inertia\Response;
 
-class VideoIndexController extends Page
+class VideoIndexController extends Controller
 {
-    use WithoutUrlPagination;
-    use WithPaginateScroll;
-
-    public QueryForm $form;
-
-    public function mount(): void
+    public function __invoke(Request $request): Response
     {
-        $this->form->restore();
+        Gate::authorize('viewAny', Video::class);
+
+        return Inertia::render('Videos/VideoIndex', [
+            'videos' => fn () => VideoCollection::make(
+                $this->getBuilder($request)->simplePaginate(16)
+            ),
+        ]);
     }
 
-    public function render(): View
+    protected function getBuilder(Request $request): Builder
     {
-        return view('app.videos.index');
-    }
-
-    public function updatedForm(): void
-    {
-        $this->form->submit();
-
-        $this->clear();
-
-        $this->fetch();
-    }
-
-    #[Computed(persist: true, seconds: 60 * 30)]
-    public function lists(): Collection
-    {
-        $algo = GenerateUserSuggestions::make()
-            ->forModel($this->getAuthModel())
-            ->run();
-
-        return $algo->get('items');
-    }
-
-    public function populate(): void
-    {
-        $this->form->reset('list');
-
-        unset($this->lists);
-
-        $this->updatedForm();
-    }
-
-    protected function getBuilder(): Paginator
-    {
-        return $this->getQuery()
-            ->tap(new FilterVideos($this->form, $this->getAuthModel(), $this->getCandidatesLimit()))
-            ->simplePaginate(
-                perPage: $this->getCandidatesLimit(),
-                page: $this->getPage(),
-            );
-    }
-
-    protected function getCandidatesLimit(): int
-    {
-        return 24;
-    }
-
-    protected function getFetchLimits(): ?int
-    {
-        return 32 * $this->getCandidatesLimit();
-    }
-
-    protected function getModelClass(): ?string
-    {
-        return Video::class;
-    }
-
-    protected function getTitle(): ?string
-    {
-        return __('Stream Videos');
-    }
-
-    protected function getDescription(): ?string
-    {
-        return __('Browse and watch videos');
-    }
-
-    public function getListeners(): array
-    {
-        $id = $this->getAuthKey();
-
-        return [
-            "echo-private:user.{$id},.video.trashed" => 'refresh',
-            "echo-private:user.{$id},.video.updated" => 'refresh',
-        ];
+        return Video::query()->tap(new VideoListScope(
+            user: $request->user(),
+            limit: 16,
+        ));
     }
 }

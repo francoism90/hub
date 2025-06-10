@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Marketing\Controllers\HomeController;
+use App\Web\Videos\Controllers\VideoIndexController;
 use Illuminate\Support\Facades\Route;
 
 // Home
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', VideoIndexController::class)->name('home');

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Api\Videos\Broadcasts\VideoChannel;
 use Foundation\Broadcasting\GroupChannel;
 use Foundation\Broadcasting\TagChannel;
 use Foundation\Broadcasting\UserChannel;
-use Foundation\Broadcasting\VideoChannel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*

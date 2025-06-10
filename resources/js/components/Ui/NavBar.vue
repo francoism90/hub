@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import CommandPalette from '@/components/ui/CommandPalette.vue'
-import ContentMenu from '@/components/ui/ContentMenu.vue'
-import Logo from '@/components/ui/Logo.vue'
-import ProfileMenu from '@/components/ui/ProfileMenu.vue'
+import CommandPalette from '@/components/Ui/CommandPalette.vue'
+import ContentMenu from '@/components/Ui/ContentMenu.vue'
+import Logo from '@/components/Ui/Logo.vue'
+import ProfileMenu from '@/components/Ui/ProfileMenu.vue'
 </script>
 
 <template>

@@ -12,6 +12,6 @@ class HomeController extends Controller
 {
     public function __invoke(): Response
     {
-        return Inertia::render('marketing/Index');
+        return Inertia::render('Marketing/Index');
     }
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import NavBar from '@/components/ui/NavBar.vue'
-import NavMenu from '@/components/ui/NavMenu.vue'
+import NavBar from '@/components/Ui/NavBar.vue'
+import NavMenu from '@/components/Ui/NavMenu.vue'
 </script>
 
 <template>
