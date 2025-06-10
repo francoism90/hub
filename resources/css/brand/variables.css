@@ -1,0 +1,6 @@
+:root {
+  --ui-bg: var(--ui-color-neutral-950);
+  --ui-primary: var(--ui-color-primary-300);
+  --ui-border-accented: var(--ui-color-neutral-800);
+  --ui-header-height: 3.5rem;
+}
