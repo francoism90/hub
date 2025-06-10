@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AuthLayout from '@/layouts/Minimal.vue'
+import AuthLayout from '@/layouts/MinimalLayout.vue'
 import { useForm } from '@inertiajs/vue3'
 
 defineOptions({

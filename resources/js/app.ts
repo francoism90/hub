@@ -3,7 +3,7 @@ import ui from '@nuxt/ui/vue-plugin'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createApp, h, type DefineComponent } from 'vue'
 
-import AppLayout from '@/layouts/Default.vue'
+import AppLayout from '@/layouts/DefaultLayout.vue'
 import '../css/app.css'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
