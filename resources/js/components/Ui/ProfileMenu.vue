@@ -19,7 +19,7 @@ const items = ref<DropdownMenuItem[]>([
       color="neutral"
       size="md"
       icon="i-lucide-circle-user"
-      variant="ghost"
+      variant="link"
     />
   </UDropdownMenu>
 </template>

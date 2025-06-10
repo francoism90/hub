@@ -20,11 +20,11 @@ defineProps({
     <VideoFilters />
 
     <PageList>
-      <!-- <VideoCard
+      <VideoCard
         v-for="video in videos.data"
         :key="video.id"
         :video
-      /> -->
+      />
     </PageList>
   </PageBody>
 </template>

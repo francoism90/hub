@@ -40,7 +40,7 @@ const items = ref(<NavigationMenuItem[][]>[
     variant="link"
     :items="items"
     :ui="{
-      root: 'sticky top-0 flex h-dvh max-h-dvh w-14 items-center overflow-y-auto py-2 lg:w-64 lg:items-stretch lg:px-4',
+      root: 'sticky top-0 flex h-viewport w-14 items-center overflow-y-auto border-t border-default py-2 lg:w-64 lg:items-stretch lg:border-0 lg:px-4',
       link: 'h-10 gap-2.5 px-2',
       linkLabel: 'hidden lg:block',
       separator: 'my-2 bg-primary-500/40',

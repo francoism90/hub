@@ -1,7 +1,7 @@
 <template>
-  <nav class="sticky top-0 bg-default pt-3">
+  <nav class="sticky top-(--ui-header-height) bg-default">
     <div
-      class="flex flex-col divide-y divide-default rounded-b-none border border-default *:px-3"
+      class="flex flex-col divide-y divide-default rounded-b-none border-t border-r border-default *:px-4 lg:border-l"
     >
       <slot />
     </div>
