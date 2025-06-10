@@ -6,7 +6,6 @@ import NavMenu from '@/components/Ui/NavMenu.vue'
   <UApp>
     <div class="flex h-dvh min-h-dvh flex-col">
       <div class="relative flex justify-center">
-        <NavMenu />
         <slot />
         <NavMenu />
       </div>
