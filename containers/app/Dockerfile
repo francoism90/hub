@@ -10,7 +10,7 @@ WORKDIR /app
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=${TZ}
-ENV OCTANE_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8080"
+ENV OCTANE_COMMAND="php -d variables_order=EGPCS /app/artisan octane:start --server=swoole --host=0.0.0.0 --port=8080 --watch"
 ENV OCTANE_USER="docker"
 
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
@@ -41,7 +41,7 @@ RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     pdo_mysql pdo_pgsql pgsql redis sockets swoole uv zip
 
 COPY runtimes/container-entrypoint.sh /usr/local/bin/container-entrypoint.sh
-COPY runtimes/php-production.ini /usr/local/etc/php/conf.d/99-user.ini
+COPY runtimes/php-development.ini /usr/local/etc/php/conf.d/99-user.ini
 
 RUN chmod +x /usr/local/bin/container-entrypoint.sh
 
