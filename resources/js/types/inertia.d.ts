@@ -1,5 +1,5 @@
-import type { User } from '@/modules/users/types'
 import type { Page } from '@inertiajs/core'
+import type { User } from '@types/model'
 
 declare module '@inertiajs/core' {
   interface PageProps {

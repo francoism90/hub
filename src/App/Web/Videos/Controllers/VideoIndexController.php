@@ -10,19 +10,30 @@ use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class VideoIndexController extends Controller
+class VideoIndexController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('verified'),
+        ];
+    }
+
     public function __invoke(Request $request): Response
     {
         Gate::authorize('viewAny', Video::class);
 
         return Inertia::render('Videos/VideoIndex', [
             'videos' => fn () => VideoCollection::make(
-                $this->getBuilder($request)->simplePaginate(16)
+                $this
+                    ->getBuilder($request)
+                    ->simplePaginate(16)
             ),
         ]);
     }
@@ -31,7 +42,6 @@ class VideoIndexController extends Controller
     {
         return Video::query()->tap(new VideoListScope(
             user: $request->user(),
-            limit: 16,
         ));
     }
 }

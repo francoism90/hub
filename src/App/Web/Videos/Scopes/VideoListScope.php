@@ -10,14 +10,13 @@ use Illuminate\Database\Eloquent\Builder;
 class VideoListScope
 {
     public function __construct(
-        protected readonly User $user,
-        protected readonly int $limit,
+        protected readonly ?User $user = null,
+        protected readonly ?int $limit = null,
     ) {}
 
     public function __invoke(Builder $query): void
     {
         $query
-            ->published()
-            ->limit($this->limit);
+            ->published();
     }
 }
