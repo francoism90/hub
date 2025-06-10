@@ -30,7 +30,10 @@ const submit = async () => {
 </script>
 
 <template>
-  <UCard variant="soft">
+  <UCard
+    variant="soft"
+    class="w-full"
+  >
     <template #header>
       <h2 class="text-md font-semibold">Login to your account</h2>
     </template>

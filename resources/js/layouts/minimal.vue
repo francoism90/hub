@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>Auth</h1>
+  <UContainer class="flex h-screen max-w-md items-center justify-center">
     <slot />
-  </div>
+  </UContainer>
 </template>
