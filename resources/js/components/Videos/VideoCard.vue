@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { User, Video } from '@/types/model'
-import { Link } from '@inertiajs/vue3'
 
 interface Props {
   video: Video
@@ -11,14 +10,7 @@ defineProps<Props>()
 
 <template>
   <div class="card bg-base-300 w-full">
-    <figure class="bg-base-200 h-40">
-      <img
-        class="h-40 max-h-40 w-full"
-        :srcset="video.srcset"
-        :src="video.thumbnail"
-        :alt="video.name"
-      />
-    </figure>
+    <figure class="bg-base-200 h-40"></figure>
 
     <div class="card-body p-4">
       <h2 class="card-title text-xs font-medium">{{ video.name }}</h2>

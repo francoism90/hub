@@ -17,23 +17,16 @@ defineProps({
   <Head title="Videos" />
 
   <PageBody>
-    <PageActions
-      title="Videos"
-      icon="i-lucide-file-video"
-    >
-      <template #actions>
-        <Link
-          href="/videos/create"
-          class="btn btn-primary btn-sm"
-        >
-          <i class="fa-solid fa-plus" />
-          Add Video
-        </Link>
+    <PageActions>
+      <template #title>
+        <h1 class="text-2xl font-bold">Videos</h1>
       </template>
+
+      <template #actions> <div>foo</div> </template>
     </PageActions>
 
     <PageSection
-      class="grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class="grid gap-3 py-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <VideoCard
         v-for="video in videos.data"
@@ -43,4 +36,3 @@ defineProps({
     </PageSection>
   </PageBody>
 </template>
-P

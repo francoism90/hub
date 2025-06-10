@@ -5,14 +5,18 @@ import NavMenu from '@/components/Ui/NavMenu.vue'
 
 <template>
   <UApp>
-    <NavBar />
+    <div class="flex flex-col">
+      <NavBar />
 
-    <div class="flex min-h-[calc(100vh-var(--ui-header-height))] w-full">
-      <main class="flex-1">
-        <slot />
-      </main>
+      <div
+        class="mx-auto flex min-h-[calc(100vh-var(--ui-header-height))] w-full max-w-(--ui-container)"
+      >
+        <main class="flex-1">
+          <slot />
+        </main>
 
-      <NavMenu />
+        <NavMenu />
+      </div>
     </div>
   </UApp>
 </template>
