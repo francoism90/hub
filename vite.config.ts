@@ -44,6 +44,7 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
     ui({
+      inertia: true,
       ui: {
         colors: {
           primary: 'slate',
