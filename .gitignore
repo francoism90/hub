@@ -1,6 +1,8 @@
 _ide_helper_models.php
 _ide_helper.php
 !.env.example
+auto-imports.d.ts
+components.d.ts
 .DS_Store
 .env
 .env.*
