@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { DropdownMenuItem } from '@nuxt/ui'
+import { ref } from 'vue'
 
-const items: DropdownMenuItem[] = [
+const items = ref<DropdownMenuItem[]>([
   {
     label: 'Logout',
     icon: 'i-lucide-log-out',
@@ -9,7 +10,7 @@ const items: DropdownMenuItem[] = [
     //   await logout()
     // },
   },
-]
+])
 </script>
 
 <template>

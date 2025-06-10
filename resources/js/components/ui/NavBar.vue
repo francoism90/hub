@@ -17,7 +17,7 @@ import ProfileMenu from '@/components/ui/ProfileMenu.vue'
       <div class="inline-flex">
         <div class="flex items-center gap-1.5">
           <CommandPalette />
-          <!-- <ContentMenu /> -->
+          <ContentMenu />
           <ProfileMenu />
         </div>
       </div>
