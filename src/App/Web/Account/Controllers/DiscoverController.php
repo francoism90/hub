@@ -32,10 +32,16 @@ class DiscoverController extends Controller implements HasMiddleware
 
         return Inertia::render('Account/DiscoverIndex', [
             'tab' => fn () => $request->query('tab', 'discover'),
-            'items' => fn () => VideoCollection::make(
-                $this->getBuilder($request)->simplePaginate(16)
-            ),
+            'items' => Inertia::defer(fn () => $this->getCollection($request))->deepMerge(),
         ]);
+    }
+
+    protected function getCollection(Request $request): VideoCollection
+    {
+        return VideoCollection::make($this
+            ->getBuilder($request)
+            ->simplePaginate(perPage: 16, page: $request->input('page', 1))
+        );
     }
 
     protected function getBuilder(Request $request): Builder

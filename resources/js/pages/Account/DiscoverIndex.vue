@@ -2,18 +2,15 @@
 import DiscoverController from '@/actions/App/Web/Account/Controllers/DiscoverController'
 import NavBar from '@/components/Ui/NavBar.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
-import PageCard from '@/components/Ui/PageCard.vue'
 import PageList from '@/components/Ui/PageList.vue'
-import type { Video } from '@/types/model'
+import type { Items } from '@/types/model'
 import { Head, router } from '@inertiajs/vue3'
 import type { TabsItem } from '@nuxt/ui'
 import { computed, ref } from 'vue'
 
 interface Props {
   tab: string
-  items: {
-    data: Video[]
-  }
+  items?: Items
 }
 
 const props = defineProps<Props>()
@@ -55,12 +52,9 @@ const active = computed({
       :ui="{ trigger: 'grow' }"
     />
 
-    <PageList>
-      <PageCard
-        v-for="item in items.data"
-        :key="item.id"
-        :item
-      />
-    </PageList>
+    <PageList
+      v-if="items"
+      :items
+    />
   </PageBody>
 </template>

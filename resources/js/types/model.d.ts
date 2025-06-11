@@ -33,3 +33,23 @@ export type Video = {
   updated_human: string
   tags: Tag[]
 }
+
+export type Links = {
+  first: string | null
+  last: string | null
+  prev: string | null
+  next: string | null
+}
+
+export type Meta = {
+  current_page: number | null
+  from: number | null
+  per_page: number | null
+  to: number | null
+}
+
+export type Items = {
+  data: Video[]
+  links: Links
+  meta: Meta
+}
