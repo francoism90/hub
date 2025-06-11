@@ -30,6 +30,7 @@ class VideoIndexController extends Controller implements HasMiddleware
         Gate::authorize('viewAny', Video::class);
 
         return Inertia::render('Videos/VideoIndex', [
+            'tab' => fn () => $request->query('tab', 'discover'),
             'videos' => fn () => VideoCollection::make(
                 $this->getBuilder($request)->simplePaginate(16)
             ),

@@ -1,22 +1,22 @@
 <script setup lang="ts">
+import VideoIndexController from '@/actions/App/Web/Videos/Controllers/VideoIndexController'
 import NavBar from '@/components/Ui/NavBar.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageList from '@/components/Ui/PageList.vue'
 import VideoCard from '@/components/Videos/VideoCard.vue'
 import type { Video } from '@/types/model'
-import { Head, router, usePage } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import type { TabsItem } from '@nuxt/ui'
 import { computed, ref } from 'vue'
 
 interface Props {
+  tab: string
   videos: {
     data: Video[]
   }
 }
 
-defineProps<Props>()
-
-const page = usePage()
+const props = defineProps<Props>()
 
 const items = ref<TabsItem[]>([
   {
@@ -31,11 +31,11 @@ const items = ref<TabsItem[]>([
 
 const active = computed({
   get() {
-    return (page.props.tab as string) || 'discover'
+    return props.tab || 'discover'
   },
 
   set(tab) {
-    router.get('/', { tab }, { replace: true })
+    router.get(VideoIndexController.url(), { tab })
   },
 })
 </script>
@@ -46,12 +46,14 @@ const active = computed({
   <PageBody>
     <NavBar />
 
+    {{ props.tab }}
+
     <UTabs
       v-model="active"
       :content="false"
       :items="items"
       variant="link"
-      class="w-full gap-4"
+      class="sticky top-0 w-full gap-4 bg-default"
       :ui="{ trigger: 'grow' }"
     />
 

@@ -6,6 +6,7 @@ import laravel from 'laravel-vite-plugin'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import { wayfinder } from '@laravel/vite-plugin-wayfinder'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,6 +32,7 @@ export default defineConfig({
       ssr: 'resources/js/ssr.ts',
       refresh: true,
     }),
+    wayfinder(),
     vue({
       template: {
         transformAssetUrls: {

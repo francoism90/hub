@@ -31,6 +31,7 @@
         "laravel/scout": "^10.15.0",
         "laravel/telescope": "^5.9.1",
         "laravel/tinker": "^2.10.1",
+        "laravel/wayfinder": "^0.1.6",
         "league/flysystem-aws-s3-v3": "^3.29",
         "league/flysystem-read-only": "^3.28",
         "meilisearch/meilisearch-php": "^1.15.0",
