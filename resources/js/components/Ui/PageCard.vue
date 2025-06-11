@@ -2,12 +2,17 @@
 import VideoViewController from '@/actions/App/Web/Videos/Controllers/VideoViewController'
 import type { Video } from '@/types/model'
 import { Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
 
 interface Props {
   item: Video
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const numbers = computed(() =>
+  [props.item.timestamp, props.item.created_human].filter(Boolean).join(' · '),
+)
 </script>
 
 <template>
@@ -16,8 +21,8 @@ defineProps<Props>()
     :ui="{
       root: 'divide-y-0 rounded-none ring-0',
       header: 'flex items-center justify-between gap-2',
-      footer: 'flex items-center justify-between gap-2',
-      body: 'flex flex-col gap-1',
+      footer: 'flex items-center justify-between gap-2 pt-0',
+      body: 'flex flex-col gap-2',
     }"
   >
     <Link
@@ -33,38 +38,41 @@ defineProps<Props>()
         class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
       />
 
-      <div class="flex items-center gap-2">
-        <time class="text-xs font-medium text-neutral-400">
-          {{ item.created_human }}
-        </time>
+      <div class="flex flex-col gap-1">
+        <div
+          v-if="numbers"
+          class="flex items-center gap-1 text-xs font-medium text-neutral-400"
+        >
+          {{ numbers }}
+        </div>
+
+        <h2
+          v-if="item.name"
+          class="text-base font-semibold"
+        >
+          {{ item.name }}
+        </h2>
+
+        <p
+          v-if="item.summary"
+          class="line-clamp-3 text-neutral-300"
+        >
+          {{ item.summary }}
+        </p>
       </div>
-
-      <h2
-        v-if="item.name"
-        class="text-base font-semibold"
-      >
-        {{ item.name }}
-      </h2>
-
-      <p
-        v-if="item.summary"
-        class="line-clamp-3 text-neutral-300"
-      >
-        {{ item.summary }}
-      </p>
     </Link>
 
     <p
       v-if="item.tags"
       class="flex flex-wrap items-center gap-x-2 gap-y-1"
     >
-      <span
+      <UBadge
         v-for="tag in item.tags"
         :key="tag.id"
-        class="inline-flex text-sm text-neutral-400"
+        variant="soft"
       >
-        #{{ tag.name }}
-      </span>
+        {{ tag.name }}
+      </UBadge>
     </p>
 
     <template #footer>
