@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import VideoViewController from '@/actions/App/Web/Videos/Controllers/VideoViewController'
 import type { Video } from '@/types/model'
+import { Link } from '@inertiajs/vue3'
 
 interface Props {
   item: Video
@@ -14,7 +16,7 @@ defineProps<Props>()
     :ui="{
       root: 'divide-y-0 rounded-none py-1 ring-0',
       header: 'flex items-center justify-end gap-2 py-3',
-      body: 'flex flex-col gap-3 p-3 !py-0',
+      body: 'flex flex-col gap-3 !py-0',
       footer: 'flex items-center justify-start gap-2 py-3',
     }"
   >
@@ -24,25 +26,30 @@ defineProps<Props>()
       </time>
     </template>
 
-    <img
-      :src="item.thumbnail"
-      :srcset="item.srcset"
-      :alt="item.name"
-      loading="lazy"
-      decoding="async"
-      class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
-    />
-
-    <h2 class="text-base font-semibold text-default">
-      {{ item.name }}
-    </h2>
-
-    <p
-      v-if="item.summary"
-      class="line-clamp-3"
+    <Link
+      :href="VideoViewController.url(item.id)"
+      class="flex flex-col gap-3"
     >
-      {{ item.summary }}
-    </p>
+      <img
+        :src="item.thumbnail"
+        :srcset="item.srcset"
+        :alt="item.name"
+        loading="lazy"
+        decoding="async"
+        class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
+      />
+
+      <h2 class="text-base font-semibold text-default">
+        {{ item.name }}
+      </h2>
+
+      <p
+        v-if="item.summary"
+        class="line-clamp-3"
+      >
+        {{ item.summary }}
+      </p>
+    </Link>
 
     <p
       v-if="item.tags"

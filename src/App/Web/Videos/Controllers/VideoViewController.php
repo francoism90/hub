@@ -4,80 +4,29 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
-use App\Web\Videos\Concerns\WithVideo;
-use Domain\Videos\Actions\MarkAsFavorited;
-use Domain\Videos\Actions\MarkAsSaved;
-use Domain\Videos\Actions\MarkAsViewed;
-use Foxws\WireUse\Views\Support\Page;
-use Illuminate\View\View;
-use Livewire\Attributes\Computed;
+use Domain\Videos\Models\Video;
+use Foundation\Http\Controllers\Controller;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
+use Inertia\Response;
 
-class VideoViewController extends Page
+class VideoViewController extends Controller implements HasMiddleware
 {
-    use WithVideo;
-
-    public function mount(): void
-    {
-        app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
-    }
-
-    public function render(): View
-    {
-        return view('app.videos.view');
-    }
-
-    #[Computed]
-    public function isFavorited(): bool
-    {
-        if (! $user = $this->getAuthModel()) {
-            return false;
-        }
-
-        return $this->getVideo()->isFavoritedBy($user);
-    }
-
-    #[Computed]
-    public function isSaved(): bool
-    {
-        if (! $user = $this->getAuthModel()) {
-            return false;
-        }
-
-        return $this->getVideo()->isSavedBy($user);
-    }
-
-    public function toggleFavorite(): void
-    {
-        if (! $user = $this->getAuthModel()) {
-            return;
-        }
-
-        app(MarkAsFavorited::class)->execute($user, $this->getVideo());
-    }
-
-    public function toggleSave(): void
-    {
-        if (! $user = $this->getAuthModel()) {
-            return;
-        }
-
-        app(MarkAsSaved::class)->execute($user, $this->getVideo());
-    }
-
-    protected function getTitle(): ?string
-    {
-        return (string) $this->getVideo()->title;
-    }
-
-    protected function getDescription(): ?string
-    {
-        return (string) $this->getVideo()->summary;
-    }
-
-    public function getListeners(): array
+    public static function middleware(): array
     {
         return [
-            ...$this->getVideoListeners(),
+            new Middleware('verified'),
         ];
+    }
+
+    public function __invoke(Video $video): Response
+    {
+        Gate::authorize('view', $video);
+
+        return Inertia::render('Videos/VideoView', [
+            'video' => fn () => $video->load(['user', 'tags']),
+        ]);
     }
 }

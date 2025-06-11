@@ -9,7 +9,7 @@ export type User = {
 
 export type Tag = {
   id: string
-  name: string
+  name: Record<string, string>
   type: string
   videos: number
   created: string
@@ -19,7 +19,7 @@ export type Tag = {
 export type Video = {
   id: string
   user: User
-  name: string
+  name: Record<string, string>
   summary: string
   content: string
   thumbnail: string

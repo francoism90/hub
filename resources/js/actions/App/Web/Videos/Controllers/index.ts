@@ -1,7 +1,7 @@
-import VideoIndexController from './VideoIndexController'
+import VideoViewController from './VideoViewController'
 
 const Controllers = {
-    VideoIndexController,
+    VideoViewController,
 }
 
 export default Controllers
