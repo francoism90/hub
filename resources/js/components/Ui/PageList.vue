@@ -5,13 +5,13 @@ import { Deferred, WhenVisible } from '@inertiajs/vue3'
 import { computed } from 'vue'
 
 interface Props {
-  items: Items
+  items?: Items
 }
 
 const props = defineProps<Props>()
 
-const hasMorePages = computed(() => props.items.links?.next !== null)
-const currentPage = computed(() => props.items.meta?.current_page || 1)
+const hasMorePages = computed(() => props.items?.links?.next !== null)
+const currentPage = computed(() => props.items?.meta?.current_page || 1)
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const currentPage = computed(() => props.items.meta?.current_page || 1)
       </template>
 
       <PageCard
-        v-for="item in items.data"
+        v-for="item in items?.data"
         :key="item.id"
         :item
       />

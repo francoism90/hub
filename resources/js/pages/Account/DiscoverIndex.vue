@@ -55,9 +55,6 @@ const active = computed({
       }"
     />
 
-    <PageList
-      v-if="items"
-      :items
-    />
+    <PageList :items />
   </PageBody>
 </template>
