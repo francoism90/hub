@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NavBar from '@/components/Ui/NavBar.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageList from '@/components/Ui/PageList.vue'
 import VideoCard from '@/components/Videos/VideoCard.vue'
@@ -17,6 +18,8 @@ defineProps({
   <Head title="Videos" />
 
   <PageBody>
+    <NavBar />
+
     <VideoFilters />
 
     <PageList>

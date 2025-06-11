@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-1 contain-inline-size contain-layout contain-paint contain-style"
+    class="max-w-xl flex-1 border-r border-default contain-inline-size contain-layout contain-paint contain-style lg:border-l"
   >
     <slot />
   </div>

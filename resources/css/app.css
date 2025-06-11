@@ -12,6 +12,7 @@
 @import './brand/theme.css';
 @import './brand/variables.css';
 
+/* Utilities */
 @utility h-viewport {
   min-height: calc(100vh - var(--ui-header-height));
 }
