@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use App\Api\Videos\Resources\VideoResource;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -26,7 +27,7 @@ class VideoViewController extends Controller implements HasMiddleware
         Gate::authorize('view', $video);
 
         return Inertia::render('Videos/VideoView', [
-            'video' => fn () => $video->load(['user', 'tags']),
+            'item' => fn () => VideoResource::make($video->load(['media', 'tags'])),
         ]);
     }
 }
