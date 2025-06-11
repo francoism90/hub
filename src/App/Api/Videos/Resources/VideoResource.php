@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Resources;
 
+use App\Api\Tags\Resources\TagCollection;
 use App\Api\Users\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -36,6 +37,7 @@ class VideoResource extends JsonResource
             'updated' => $this->updated_at,
             'updated_human' => $this->updated_at->diffForHumans(),
             'links' => $this->links(),
+            'tags' => TagCollection::make($this->whenLoaded('tags')),
             // 'routes' => $this->when($request->routeIs('dashboard.*'), $this->routes()),
             // 'playlists' => PlaylistCollection::make($this->whenLoaded('playlists')),
             'user' => UserResource::make($this->whenLoaded('user')),

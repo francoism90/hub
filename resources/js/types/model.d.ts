@@ -2,9 +2,18 @@ export type User = {
   id: string
   name: string
   email: string
-  email_verified_at: string
-  created_at: string
-  updated_at: string
+  email_verified: string
+  created: string
+  updated: string
+}
+
+export type Tag = {
+  id: string
+  name: string
+  type: string
+  videos: number
+  created: string
+  updated: string
 }
 
 export type Video = {
@@ -22,4 +31,5 @@ export type Video = {
   created_human: string
   updated: string
   updated_human: string
+  tags: Tag[]
 }
