@@ -17,6 +17,12 @@ const items = ref(<NavigationMenuItem[][]>[
       to: '/notifications',
     },
     {
+      label: 'Search',
+      icon: 'i-lucide-search',
+      slot: 'content',
+      to: '/notifications',
+    },
+    {
       label: 'Collections',
       icon: 'i-lucide-library',
       slot: 'content',
@@ -25,8 +31,8 @@ const items = ref(<NavigationMenuItem[][]>[
   ],
   [
     {
-      label: 'Providers',
-      icon: 'i-lucide-plug',
+      label: 'Account',
+      icon: 'i-lucide-circle-user',
       slot: 'account',
       to: '/providers',
     },
@@ -40,10 +46,10 @@ const items = ref(<NavigationMenuItem[][]>[
     variant="link"
     :items="items"
     :ui="{
-      root: 'sticky top-0 flex max-h-dvh h-viewport w-12 items-center overflow-y-auto py-2 lg:w-64 lg:items-stretch lg:px-4',
+      root: 'sticky top-0 flex max-h-dvh h-viewport w-12 items-center overflow-y-auto lg:w-64 lg:items-stretch lg:px-4',
+      list: 'py-2',
       link: 'h-10 gap-2.5 px-2',
       linkLabel: 'hidden lg:block',
-      separator: 'my-2 bg-primary-500/40',
     }"
   />
 </template>

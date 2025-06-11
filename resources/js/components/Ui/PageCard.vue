@@ -12,28 +12,26 @@ defineProps<Props>()
   <UCard
     as="article"
     :ui="{
-      root: 'divide-y-0 rounded-none ring-0',
-      header: 'flex flex-col gap-3 pb-0',
-      body: 'flex flex-col gap-1.5 !py-3',
-      footer: 'flex items-start justify-between gap-2',
+      root: 'divide-y-0 rounded-none py-1 ring-0',
+      header: 'flex items-center justify-end gap-2 py-3',
+      body: 'flex flex-col gap-3 p-3 !py-0',
+      footer: 'flex items-center justify-start gap-2 py-3',
     }"
   >
     <template #header>
-      <time
-        class="flex items-center justify-end gap-2 text-xs font-medium text-neutral-400"
-      >
+      <time class="text-xs font-medium text-neutral-400">
         {{ item.created_human }}
       </time>
-
-      <img
-        :src="item.thumbnail"
-        :srcset="item.srcset"
-        :alt="item.name"
-        loading="lazy"
-        decoding="async"
-        class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
-      />
     </template>
+
+    <img
+      :src="item.thumbnail"
+      :srcset="item.srcset"
+      :alt="item.name"
+      loading="lazy"
+      decoding="async"
+      class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
+    />
 
     <h2 class="text-base font-semibold text-default">
       {{ item.name }}
@@ -46,36 +44,39 @@ defineProps<Props>()
       {{ item.summary }}
     </p>
 
-    <div class="flex flex-wrap items-center gap-2">
+    <p
+      v-if="item.tags"
+      class="flex flex-wrap items-center gap-x-2 gap-y-1"
+    >
       <span
         v-for="tag in item.tags"
         :key="tag.id"
-        class="text-sm text-neutral-400"
+        class="inline-flex text-sm text-neutral-400"
       >
         #{{ tag.name }}
       </span>
-    </div>
+    </p>
 
     <template #footer>
       <UButton
         icon="i-lucide-heart"
         size="sm"
         variant="link"
-        class="inline-flex flex-1 items-center justify-center"
+        class="inline-flex items-center justify-center"
       />
 
       <UButton
         icon="i-lucide-heart"
         size="sm"
         variant="link"
-        class="inline-flex flex-1 items-center justify-center"
+        class="inline-flex items-center justify-center"
       />
 
       <UButton
         icon="i-lucide-heart"
         size="sm"
         variant="link"
-        class="inline-flex flex-1 items-center justify-center"
+        class="inline-flex items-center justify-center"
       />
     </template>
   </UCard>
