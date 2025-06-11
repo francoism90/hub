@@ -5,6 +5,7 @@
     "containerEnv": {
         "HOME": "/home/docker"
     },
+    "forwardPorts": [5173],
     "runArgs": [
         "--entrypoint=/usr/bin/bash",
         "--tz=local",
@@ -16,13 +17,6 @@
         "context": "./../containers/app"
     },
     "mounts": [
-		"source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"
-	],
-    "customizations": {
-        "vscode": {
-            "settings": {
-                //
-            }
-        }
-    }
+        "source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"
+    ]
 }

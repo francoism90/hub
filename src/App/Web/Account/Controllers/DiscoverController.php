@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Account\Controllers;
 
 use App\Api\Videos\Resources\VideoCollection;
+use App\Web\Account\Scopes\DiscoverScope;
 use App\Web\Videos\Scopes\VideoListScope;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
@@ -29,9 +30,9 @@ class DiscoverController extends Controller implements HasMiddleware
     {
         Gate::authorize('viewAny', Video::class);
 
-        return Inertia::render('Videos/VideoIndex', [
+        return Inertia::render('Account/DiscoverIndex', [
             'tab' => fn () => $request->query('tab', 'discover'),
-            'videos' => fn () => VideoCollection::make(
+            'items' => fn () => VideoCollection::make(
                 $this->getBuilder($request)->simplePaginate(16)
             ),
         ]);
@@ -39,7 +40,7 @@ class DiscoverController extends Controller implements HasMiddleware
 
     protected function getBuilder(Request $request): Builder
     {
-        return Video::query()->tap(new VideoListScope(
+        return Video::query()->tap(new DiscoverScope(
             user: $request->user(),
         ));
     }
