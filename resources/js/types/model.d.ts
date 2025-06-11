@@ -15,8 +15,11 @@ export type Video = {
   content: string
   thumbnail: string
   duration: number
+  timestamp: string
   thumbnail: string
   srcset: string
-  created_at: string
-  updated_at: string
+  created: string
+  created_human: string
+  updated: string
+  updated_human: string
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid h-full grid-cols-1 gap-3 px-3 py-6">
+  <div class="grid h-full grid-cols-1 divide-y divide-default">
     <slot />
   </div>
 </template>
