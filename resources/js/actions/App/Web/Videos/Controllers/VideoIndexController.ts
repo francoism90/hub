@@ -2,7 +2,7 @@ import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Web\Videos\Controllers\VideoIndexController::__invoke
 * @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
-* @route '/'
+* @route '/videos/videos'
 */
 const VideoIndexController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -14,13 +14,13 @@ const VideoIndexController = (options?: { query?: QueryParams, mergeQuery?: Quer
 
 VideoIndexController.definition = {
     methods: ['get','head'],
-    url: '/',
+    url: '/videos/videos',
 }
 
 /**
 * @see \App\Web\Videos\Controllers\VideoIndexController::__invoke
 * @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
-* @route '/'
+* @route '/videos/videos'
 */
 VideoIndexController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return VideoIndexController.definition.url + queryParams(options)
@@ -29,7 +29,7 @@ VideoIndexController.url = (options?: { query?: QueryParams, mergeQuery?: QueryP
 /**
 * @see \App\Web\Videos\Controllers\VideoIndexController::__invoke
 * @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
-* @route '/'
+* @route '/videos/videos'
 */
 VideoIndexController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -42,7 +42,7 @@ VideoIndexController.get = (options?: { query?: QueryParams, mergeQuery?: QueryP
 /**
 * @see \App\Web\Videos\Controllers\VideoIndexController::__invoke
 * @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
-* @route '/'
+* @route '/videos/videos'
 */
 VideoIndexController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

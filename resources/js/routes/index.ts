@@ -219,8 +219,8 @@ telescope.head = (args?: { view?: string | number } | [view: string | number ] |
 })
 
 /**
-* @see \App\Web\Videos\Controllers\VideoIndexController::home
-* @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
+* @see \App\Web\Account\Controllers\DiscoverController::home
+* @see src/App/Web/Account/Controllers/DiscoverController.php:28
 * @route '/'
 */
 export const home = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -237,8 +237,8 @@ home.definition = {
 }
 
 /**
-* @see \App\Web\Videos\Controllers\VideoIndexController::home
-* @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
+* @see \App\Web\Account\Controllers\DiscoverController::home
+* @see src/App/Web/Account/Controllers/DiscoverController.php:28
 * @route '/'
 */
 home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -246,8 +246,8 @@ home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 }
 
 /**
-* @see \App\Web\Videos\Controllers\VideoIndexController::home
-* @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
+* @see \App\Web\Account\Controllers\DiscoverController::home
+* @see src/App/Web/Account/Controllers/DiscoverController.php:28
 * @route '/'
 */
 home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -259,8 +259,8 @@ home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Web\Videos\Controllers\VideoIndexController::home
-* @see src/App/Web/Videos/Controllers/VideoIndexController.php:28
+* @see \App\Web\Account\Controllers\DiscoverController::home
+* @see src/App/Web/Account/Controllers/DiscoverController.php:28
 * @route '/'
 */
 home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
