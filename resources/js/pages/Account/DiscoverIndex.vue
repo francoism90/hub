@@ -48,8 +48,11 @@ const active = computed({
       :content="false"
       :items="tabs"
       variant="link"
-      class="sticky top-0 w-full gap-4 bg-default"
-      :ui="{ trigger: 'grow' }"
+      :ui="{
+        root: 'sticky top-0 w-full gap-4 bg-default',
+        list: 'h-(--ui-navbar-height)',
+        trigger: 'grow',
+      }"
     />
 
     <PageList
