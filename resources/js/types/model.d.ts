@@ -55,4 +55,10 @@ export type Items = {
   data: Video[]
   links: Links
   meta: Meta
+  current_page: number | null
+  current_page_url: string | null
+  first_page_url: string | null
+  last_page_url: string | null
+  next_page_url: string | null
+  prev_page_url: string | null
 }

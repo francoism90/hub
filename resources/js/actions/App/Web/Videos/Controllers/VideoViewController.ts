@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::__invoke
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:30
 * @route '/videos/{video}'
 */
 const VideoViewController = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ VideoViewController.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::__invoke
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:30
 * @route '/videos/{video}'
 */
 VideoViewController.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -50,7 +50,7 @@ VideoViewController.url = (args: { video: string | { prefixed_id: string } } | [
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::__invoke
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:30
 * @route '/videos/{video}'
 */
 VideoViewController.get = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -63,7 +63,7 @@ VideoViewController.get = (args: { video: string | { prefixed_id: string } } | [
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::__invoke
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:30
 * @route '/videos/{video}'
 */
 VideoViewController.head = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

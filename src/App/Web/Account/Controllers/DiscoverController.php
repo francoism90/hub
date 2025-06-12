@@ -6,7 +6,6 @@ namespace App\Web\Account\Controllers;
 
 use App\Api\Videos\Resources\VideoCollection;
 use App\Web\Account\Scopes\DiscoverScope;
-use App\Web\Videos\Scopes\VideoListScope;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;

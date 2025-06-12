@@ -15,8 +15,7 @@ defineProps<Props>()
     :description="item.summary?.en ?? 'Video Player'"
     :ui="{
       overlay: 'bg-black/70',
-      content:
-        'max-h-3/4 w-full max-w-6xl rounded-none bg-transparent ring-0 sm:max-h-3/5',
+      content: 'max-h-3/4 w-full max-w-6xl rounded-none bg-transparent ring-0 sm:max-h-3/5',
     }"
   >
     <img
@@ -26,7 +25,7 @@ defineProps<Props>()
       role="img"
       loading="lazy"
       decoding="async"
-      class="aspect-video h-64 w-full cursor-pointer rounded border border-default bg-black object-center"
+      class="aspect-auto size-full cursor-pointer rounded border border-default bg-black object-center"
     />
 
     <template #content>

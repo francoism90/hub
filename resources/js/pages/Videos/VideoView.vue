@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageCard from '@/components/Ui/PageCard.vue'
-import type { Video } from '@/types/model'
+import PageList from '@/components/Ui/PageList.vue'
+import type { Items, Video } from '@/types/model'
 import { Head } from '@inertiajs/vue3'
 
 interface Props {
   item: Video
+  items?: Items
 }
 
 defineProps<Props>()
@@ -16,5 +18,10 @@ defineProps<Props>()
 
   <PageBody>
     <PageCard :item />
+
+    <PageList
+      variant="compact"
+      :items
+    />
   </PageBody>
 </template>
