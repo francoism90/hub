@@ -9,7 +9,7 @@ use Illuminate\Support\Uri;
 
 class GetVideoManifestUrl
 {
-    public function execute(Video $video, string $type, bool $live = false, ?string $format = null): string
+    public function execute(Video $video, string $type, bool $live = false, ?string $format = null): Uri
     {
         abort_if(! $video->hasMedia('clips'), 404);
 
@@ -30,7 +30,6 @@ class GetVideoManifestUrl
         return Uri::of($baseUrl)
             ->withPath($path)
             ->withQuery($parameters->query ?? [])
-            ->withFragment($parameters->fragment ?? '')
-            ->value();
+            ->withFragment($parameters->fragment ?? '');
     }
 }
