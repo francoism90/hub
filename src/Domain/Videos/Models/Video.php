@@ -300,17 +300,17 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function srcset(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getFirstMedia('thumbnail')?->getSrcset()
-        )->shouldCache();
-    }
-
     public function thumbnail(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->getFirstMediaUrl('thumbnail')
+        )->shouldCache();
+    }
+
+    public function srcset(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMedia('thumbnail')?->getSrcset()
         )->shouldCache();
     }
 

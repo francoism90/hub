@@ -7,9 +7,9 @@ namespace Foundation\Providers;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\Horizon;
-use Laravel\Horizon\HorizonApplicationServiceProvider as ServiceProvider;
+use Laravel\Horizon\HorizonApplicationServiceProvider;
 
-class HorizonServiceProvider extends ServiceProvider
+class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
     public function boot(): void
     {

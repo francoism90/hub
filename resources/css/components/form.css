@@ -1,9 +1,0 @@
-@layer components {
-    .form-control {
-        @apply flex flex-col gap-y-1;
-    }
-
-    .form-control-inline {
-        @apply flex flex-row items-center gap-x-1.5;
-    }
-}

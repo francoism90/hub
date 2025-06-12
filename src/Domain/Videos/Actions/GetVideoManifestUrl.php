@@ -19,8 +19,7 @@ class GetVideoManifestUrl
 
         $parameters = fluent(match ($format) {
             'dash' => config('vod.dash'),
-            'hls' => config('vod.hls'),
-            default => abort(400, 'Invalid format given'),
+            default => config('vod.hls'),
         });
 
         $relativePath = trim(route('api.videos.manifest', compact('video', 'type', 'format'), false), '/');

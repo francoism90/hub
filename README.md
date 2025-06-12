@@ -69,6 +69,7 @@ composer install
 php artisan key:generate
 php artisan storage:link
 pnpm install && pnpm build
+php artisan wayfinder:generate
 php artisan app:install
 ```
 

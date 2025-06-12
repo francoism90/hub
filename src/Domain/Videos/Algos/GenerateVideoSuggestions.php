@@ -9,12 +9,13 @@ use Domain\Videos\Models\Video;
 use Domain\Videos\States\Verified;
 use Foxws\Algos\Algos\Algo;
 use Foxws\Algos\Algos\Result;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\LazyCollection;
 
 class GenerateVideoSuggestions extends Algo
 {
     public function __construct(
-        protected ?Video $video = null,
+        protected ?Video $entity = null,
         protected ?int $limit = null,
     ) {}
 
@@ -31,9 +32,9 @@ class GenerateVideoSuggestions extends Algo
             ->with('items', $items);
     }
 
-    public function forModel(Video $video): static
+    public function forEntity(Model $entity): static
     {
-        $this->video = $video;
+        $this->entity = $entity;
 
         return $this;
     }
@@ -47,7 +48,7 @@ class GenerateVideoSuggestions extends Algo
 
     protected function phrases(): LazyCollection
     {
-        $model = $this->getVideo();
+        $model = $this->getEntity();
 
         $query = str($model->name)
             ->title()
@@ -79,7 +80,7 @@ class GenerateVideoSuggestions extends Algo
 
     protected function tagged(): LazyCollection
     {
-        $model = $this->getVideo();
+        $model = $this->getEntity();
 
         $relatables = $model->tags
             ->loadMissing('relatables')
@@ -103,15 +104,15 @@ class GenerateVideoSuggestions extends Algo
     {
         return Video::query()
             ->published()
-            ->whereKeyNot($this->getVideo())
+            ->whereKeyNot($this->getEntity())
             ->inRandomOrder()
             ->take($this->getLimit())
             ->cursor();
     }
 
-    protected function getVideo(): Video
+    protected function getEntity(): Model
     {
-        return $this->video;
+        return $this->entity;
     }
 
     protected function getLimit(): int

@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import { useShaka } from '@/composables/shaka'
+import { onMounted, ref } from 'vue'
+
+interface Props {
+  url?: string
+  time?: number
+}
+
+const props = defineProps<Props>()
+
+const element = ref<HTMLElement | null>()
+const video = ref<HTMLMediaElement | null>()
+
+onMounted(async () => {
+  const { container, load, attach } = useShaka(props.url)
+
+  if (element.value && video.value) {
+    // Attach video to container
+    await container(element.value)
+    await attach(video.value)
+
+    // Load the video
+    await load()
+  }
+})
+</script>
+
+<template>
+  <div ref="element">
+    <video
+      ref="video"
+      rel="video"
+      class="aspect-video size-full max-h-2/4 sm:max-h-1/3 lg:rounded"
+      loading="lazy"
+      decoding="async"
+      controls
+      playsinline
+    />
+  </div>
+</template>

@@ -8,9 +8,9 @@ use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
-use Laravel\Telescope\TelescopeApplicationServiceProvider as ServiceProvider;
+use Laravel\Telescope\TelescopeApplicationServiceProvider;
 
-class TelescopeServiceProvider extends ServiceProvider
+class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 {
     public function boot()
     {
