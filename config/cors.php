@@ -25,9 +25,9 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => ['Content-Range', 'Date', 'Precognition'],
+    'exposed_headers' => ['Content-Length', 'Content-Range', 'Date', 'Precognition', 'Precognition-Success'],
 
-    'max_age' => 60 * 60,
+    'max_age' => 1728000,
 
     'supports_credentials' => true,
 

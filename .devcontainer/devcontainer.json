@@ -5,6 +5,7 @@
     "containerEnv": {
         "HOME": "/home/docker"
     },
+    "forwardPorts": [5173],
     "runArgs": [
         "--entrypoint=/usr/bin/bash",
         "--tz=local",
@@ -15,28 +16,7 @@
         "dockerfile": "./../containers/app/Dockerfile",
         "context": "./../containers/app"
     },
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "Laravel.phpCommand": "/usr/bin/php",
-                "php.validate.executablePath": "/usr/bin/php",
-                "php.executablePath": "/usr/bin/php"
-            },
-            "extensions": [
-                "aaron-bond.better-comments",
-                "bmewburn.vscode-intelephense-client",
-                "bradlc.vscode-tailwindcss",
-                "christian-kohler.npm-intellisense",
-                "christian-kohler.path-intellisense",
-                "davidanson.vscode-markdownlint",
-                "dbaeumer.vscode-eslint",
-                "devsense.composer-php-vscode",
-                "EditorConfig.EditorConfig",
-                "esbenp.prettier-vscode",
-                "laravel.vscode-laravel",
-                "ms-azuretools.vscode-docker",
-                "stylelint.vscode-stylelint"
-            ]
-        }
-    }
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"
+    ]
 }

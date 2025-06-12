@@ -3,7 +3,6 @@
         "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "eslint.useFlatConfig": true,
     "tailwindCSS.classAttributes": ["class", "ui"],
@@ -12,11 +11,13 @@
         ":\\s*?[\"'`]([^\"'`]*).*?,",
         "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
         "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]",
-        ["(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]"],
+        [
+            "(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]"
+        ],
         ["@?class\\(([^)]*)\\)", "['|\"]([^'\"]*)['|\"]"],
         ["\\s*.className\\s*=\\s*['\\\"](.*?)['\\\"]"],
         ["classList.(?:add|remove|toggle)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-        ["Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]"],
+        ["Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);", "['\"`]([^'\"`]*)['\"`]"]
     ],
     "tailwindCSS.includeLanguages": {
         "blade": "html",

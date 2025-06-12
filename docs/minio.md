@@ -26,16 +26,20 @@ To learn more about MinIO, consider reading the following resources:
 systemctl --user start hub-minio
 ```
 
-1. Create an access key (<https://mc.hub.test/access-keys>).
-
-1. Update `AWS_ACCESS_KEY_ID` `AWS_SECRET_ACCESS_KEY` in `.env`.
-
 1. Setup connection using the generated access keys:
 
 ```bash
-mc alias set myminio http://systemd-hub-minio:9000
+mc alias set myminio http://systemd-hub-minio:9000 <username> <password>
 mc admin info myminio
 ```
+
+1. Generate an access key + secret key:
+
+```bash
+mc admin user svcacct add myminio hub
+```
+
+1. Update `AWS_ACCESS_KEY_ID` `AWS_SECRET_ACCESS_KEY` in `.env`.
 
 1. Create required buckets (add your own if required):
 
