@@ -21,42 +21,24 @@ class VideoResource extends JsonResource
             'id' => $this->getRouteKey(),
             'name' => $this->name,
             'titles' => $this->titles,
-            'content' => $this->content,
             'summary' => $this->summary,
             'season' => $this->season,
             'episode' => $this->episode,
             'part' => $this->part,
             'adult' => $this->adult,
-            'duration' => $this->duration,
-            'timestamp' => $this->timestamp,
             'thumbnail' => $this->thumbnail,
             'srcset' => $this->srcset,
+            'manifest' => $this->manifest,
+            'preview' => $this->preview,
+            'duration' => $this->duration,
+            'timestamp' => $this->timestamp,
             'state' => $this->state,
             'created' => $this->created_at,
             'created_human' => $this->created_at->diffForHumans(),
             'updated' => $this->updated_at,
             'updated_human' => $this->updated_at->diffForHumans(),
-            'links' => $this->links(),
             'tags' => TagCollection::make($this->whenLoaded('tags')),
-            // 'routes' => $this->when($request->routeIs('dashboard.*'), $this->routes()),
-            // 'playlists' => PlaylistCollection::make($this->whenLoaded('playlists')),
             'user' => UserResource::make($this->whenLoaded('user')),
-        ];
-    }
-
-    public function links(): array
-    {
-        return [
-            // 'update' => route('api.videos.update', $this),
-            // 'destroy' => route('api.videos.destroy', $this),
-        ];
-    }
-
-    public function routes(): array
-    {
-        return [
-            'index' => inertia_route('videos.index'),
-            'show' => inertia_route('videos.show', $this),
         ];
     }
 }

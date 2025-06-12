@@ -24,6 +24,8 @@ export type Video = {
   content: string
   thumbnail: string
   duration: number
+  manifest: string
+  preview: string
   timestamp: string
   thumbnail: string
   srcset: string

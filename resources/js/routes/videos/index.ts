@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::show
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:24
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
 * @route '/videos/{video}'
 */
 export const show = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ show.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::show
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:24
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
 * @route '/videos/{video}'
 */
 show.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -50,7 +50,7 @@ show.url = (args: { video: string | { prefixed_id: string } } | [video: string |
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::show
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:24
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
 * @route '/videos/{video}'
 */
 show.get = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -63,7 +63,7 @@ show.get = (args: { video: string | { prefixed_id: string } } | [video: string |
 
 /**
 * @see \App\Web\Videos\Controllers\VideoViewController::show
-* @see src/App/Web/Videos/Controllers/VideoViewController.php:24
+* @see src/App/Web/Videos/Controllers/VideoViewController.php:25
 * @route '/videos/{video}'
 */
 show.head = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

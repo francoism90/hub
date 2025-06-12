@@ -110,17 +110,17 @@ trait InteractsWithVod
         )->shouldCache();
     }
 
-    public function stream(): Attribute
+    public function manifest(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'stream')
+            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'manifest')
         )->shouldCache();
     }
 
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview', true)
+            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview', live: true)
         )->shouldCache();
     }
 
