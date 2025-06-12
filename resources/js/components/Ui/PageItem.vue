@@ -24,7 +24,7 @@ defineProps<Props>()
       <CardTitle :item />
     </div>
 
-    <div class="size-20">
+    <div class="size-24">
       <CardImage :item />
     </div>
   </UCard>
