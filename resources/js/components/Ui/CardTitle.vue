@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import VideoViewController from '@/actions/App/Web/Videos/Controllers/VideoViewController'
 import type { Video } from '@/types/model'
+import { Link } from '@inertiajs/vue3'
 import { computed } from 'vue'
 
 interface Props {
@@ -14,7 +16,10 @@ const numbers = computed(() =>
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
+  <Link
+    :href="VideoViewController.url(item.id)"
+    class="flex flex-col gap-1 py-3"
+  >
     <div
       v-if="numbers"
       class="flex items-center gap-1 text-xs font-medium text-neutral-400"
@@ -24,7 +29,7 @@ const numbers = computed(() =>
 
     <h2
       v-if="item.name"
-      class="text-base font-semibold"
+      class="line-clamp-3 text-base font-semibold text-neutral-100"
     >
       {{ item.name }}
     </h2>
@@ -35,5 +40,5 @@ const numbers = computed(() =>
     >
       {{ item.summary }}
     </p>
-  </div>
+  </Link>
 </template>

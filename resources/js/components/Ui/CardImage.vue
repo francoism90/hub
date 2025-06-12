@@ -17,7 +17,7 @@ defineProps<Props>()
       role="img"
       loading="lazy"
       decoding="async"
-      class="aspect-video h-56 w-full rounded border border-default bg-black object-center"
+      class="aspect-video h-64 w-full rounded border border-default bg-black object-center"
     />
   </div>
 </template>

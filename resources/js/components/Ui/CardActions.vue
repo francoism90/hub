@@ -9,7 +9,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <div class="flex items-center justify-between gap-2">
+  <div class="flex items-center gap-4 pt-3">
     <UButton
       icon="i-lucide-heart"
       size="sm"

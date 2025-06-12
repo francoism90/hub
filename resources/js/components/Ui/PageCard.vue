@@ -21,13 +21,11 @@ defineProps<Props>()
       root: 'divide-y-0 rounded-none ring-0',
       header: 'pb-0',
       footer: 'pt-0',
-      body: 'flex flex-col gap-2 py-3',
+      body: 'flex flex-col py-0 sm:py-0',
     }"
   >
     <template #header>
-      <Link :href="VideoViewController.url(item.id)">
-        <CardImage :item />
-      </Link>
+      <CardImage :item />
     </template>
 
     <CardTitle :item />

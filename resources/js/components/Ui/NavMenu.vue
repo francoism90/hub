@@ -8,6 +8,7 @@ const items = ref(<NavigationMenuItem[][]>[
       label: 'Explore',
       icon: 'i-lucide-compass',
       slot: 'content',
+      exact: true,
       to: '/',
     },
     {
