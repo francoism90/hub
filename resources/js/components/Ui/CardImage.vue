@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Video } from '@/types/model'
-import CardActions from './CardActions.vue'
+import VideoPlayer from './VideoPlayer.vue'
 
 interface Props {
   item: Video
@@ -11,6 +11,8 @@ defineProps<Props>()
 
 <template>
   <UModal
+    :title="item.name?.en ?? 'Video'"
+    :description="item.summary?.en ?? 'Video Player'"
     :ui="{
       overlay: 'bg-black/70',
       content:
@@ -28,7 +30,7 @@ defineProps<Props>()
     />
 
     <template #content>
-      <div class="h-dvh w-full rounded-none bg-white">foo</div>
+      <VideoPlayer :url="item.manifest" />
     </template>
   </UModal>
 </template>

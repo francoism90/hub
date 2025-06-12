@@ -10,6 +10,7 @@ export type User = {
 export type Tag = {
   id: string
   name: Record<string, string>
+  description: Record<string, string>
   type: string
   videos: number
   created: string
@@ -20,8 +21,8 @@ export type Video = {
   id: string
   user: User
   name: Record<string, string>
-  summary: string
-  content: string
+  summary: Record<string, string>
+  content: Record<string, string>
   thumbnail: string
   duration: number
   manifest: string

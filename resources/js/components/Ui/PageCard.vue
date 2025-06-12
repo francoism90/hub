@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import VideoViewController from '@/actions/App/Web/Videos/Controllers/VideoViewController'
 import type { Video } from '@/types/model'
-import { Link } from '@inertiajs/vue3'
 import CardImage from './CardImage.vue'
 import CardTitle from './CardTitle.vue'
 import CardLabel from './CardLabel.vue'

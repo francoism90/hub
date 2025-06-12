@@ -9,16 +9,16 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const ui = ref<HTMLElement | null>()
-const element = ref<HTMLMediaElement | null>()
+const element = ref<HTMLElement | null>()
+const video = ref<HTMLMediaElement | null>()
 
 onMounted(async () => {
   const { container, load, attach } = useShaka(props.url)
 
-  if (element.value && ui.value) {
+  if (element.value && video.value) {
     // Attach video to container
-    await container(ui.value)
-    await attach(element.value)
+    await container(element.value)
+    await attach(video.value)
 
     // Load the video
     await load()
@@ -27,9 +27,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div ref="ui">
+  <div ref="element">
     <video
-      ref="element"
+      ref="video"
+      rel="video"
+      class="aspect-video size-full max-h-2/4 sm:max-h-1/3 lg:rounded"
+      loading="lazy"
+      decoding="async"
       controls
       playsinline
     />
