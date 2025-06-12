@@ -140,8 +140,8 @@ return [
     */
 
     'model_locations' => [
-        base_path('src/Domain/*/Models'),
-        base_path('src/Support*/Models'),
+        'src/Domain',
+        'src/Support',
     ],
 
     /*

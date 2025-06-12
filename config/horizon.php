@@ -222,7 +222,7 @@ return [
             'memory' => 512,
             'tries' => 1,
             'timeout' => 60 * 60 * 24,
-            'nice' => 9,
+            'nice' => 19,
         ],
     ],
 
