@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLogo from '@/components/Ui/AppLogo.vue'
+import HistoryBack from '@/components/Actions/HistoryBack.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageCard from '@/components/Ui/PageCard.vue'
 import PageList from '@/components/Ui/PageList.vue'
@@ -20,13 +20,7 @@ defineProps<Props>()
 
   <PageBody>
     <ToolBar>
-      <UButton
-        icon="i-lucide-arrow-left"
-        color="primary"
-        variant="link"
-        label="Back"
-        class="px-0"
-      />
+      <HistoryBack />
     </ToolBar>
 
     <PageCard :item />
