@@ -37,7 +37,7 @@ class VideoResource extends JsonResource
             'created_human' => $this->created_at->diffForHumans(),
             'updated' => $this->updated_at,
             'updated_human' => $this->updated_at->diffForHumans(),
-            'tags' => TagCollection::make($this->whenLoaded('tags')),
+            'tags' => TagCollection::make($this->tags),
             'user' => UserResource::make($this->whenLoaded('user')),
         ];
     }

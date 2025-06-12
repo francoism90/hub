@@ -2,8 +2,6 @@
 import type { Video } from '@/types/model'
 import CardImage from './CardImage.vue'
 import CardTitle from './CardTitle.vue'
-import CardLabel from './CardLabel.vue'
-import CardActions from './CardActions.vue'
 
 interface Props {
   item: Video
@@ -24,10 +22,9 @@ defineProps<Props>()
   >
     <div class="flex-1">
       <CardTitle :item />
-      <CardLabel :item />
     </div>
 
-    <div class="size-20 sm:size-24">
+    <div class="size-20">
       <CardImage :item />
     </div>
   </UCard>

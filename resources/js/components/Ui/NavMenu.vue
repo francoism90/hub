@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { NavigationMenuItem } from '@nuxt/ui'
+import DiscoverController from '@/actions/App/Web/Account/Controllers/DiscoverController'
 
 const items = ref(<NavigationMenuItem[][]>[
   [
@@ -8,8 +9,8 @@ const items = ref(<NavigationMenuItem[][]>[
       label: 'Explore',
       icon: 'i-lucide-compass',
       slot: 'content',
+      to: DiscoverController.url(),
       exact: true,
-      to: '/',
     },
     {
       label: 'Notifications',

@@ -2,8 +2,6 @@
 import type { Video } from '@/types/model'
 import CardImage from './CardImage.vue'
 import CardTitle from './CardTitle.vue'
-import CardLabel from './CardLabel.vue'
-import CardActions from './CardActions.vue'
 
 interface Props {
   item: Video
@@ -18,8 +16,8 @@ defineProps<Props>()
     :ui="{
       root: 'divide-y-0 rounded-none ring-0',
       header: 'h-68 pb-0',
-      footer: 'pt-0',
-      body: 'flex flex-col py-0 sm:py-0',
+      footer: 'p-3',
+      body: 'flex flex-col pt-3 sm:pt-3',
     }"
   >
     <template #header>
@@ -27,10 +25,5 @@ defineProps<Props>()
     </template>
 
     <CardTitle :item />
-    <CardLabel :item />
-
-    <template #footer>
-      <CardActions :item />
-    </template>
   </UCard>
 </template>

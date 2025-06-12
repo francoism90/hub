@@ -12,7 +12,9 @@ const size = computed(() => props.size ?? 'sm')
 </script>
 
 <template>
-  <div class="flex items-center gap-3 pt-3">
+  <div class="flex items-center gap-3 border-t border-default pt-1">
+    <slot />
+
     <UButton
       icon="i-lucide-heart"
       variant="link"

@@ -10,26 +10,28 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const numbers = computed(() =>
-  [props.item.timestamp, props.item.created_human].filter(Boolean).join(' · '),
-)
+const url = computed(() => VideoViewController.url(props.item.id))
+const time = computed(() => [props.item.timestamp, props.item.created_human].filter(Boolean).join(' · '))
 </script>
 
 <template>
   <Link
-    :href="VideoViewController.url(item.id)"
-    class="flex flex-col gap-1 py-3"
+    :href="url"
+    class="flex flex-col gap-1"
+    :class="{
+      'pointer-events-none': url == $page.url,
+    }"
   >
     <div
-      v-if="numbers"
+      v-if="time"
       class="flex items-center gap-1 text-xs font-medium text-neutral-400"
     >
-      {{ numbers }}
+      {{ time }}
     </div>
 
     <h2
       v-if="item.name"
-      class="line-clamp-3 text-base font-semibold text-neutral-100"
+      class="line-clamp-2 text-base font-semibold text-neutral-100"
     >
       {{ item.name }}
     </h2>
@@ -40,5 +42,18 @@ const numbers = computed(() =>
     >
       {{ item.summary }}
     </p>
+
+    <div
+      v-if="item.tags"
+      class="flex flex-wrap items-center gap-1.5"
+    >
+      <UBadge
+        v-for="tag in item.tags"
+        :key="tag.id"
+        variant="soft"
+      >
+        {{ tag.name }}
+      </UBadge>
+    </div>
   </Link>
 </template>

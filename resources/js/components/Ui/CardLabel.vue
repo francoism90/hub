@@ -11,7 +11,7 @@ defineProps<Props>()
 <template>
   <div
     v-if="item.tags"
-    class="flex flex-wrap items-center gap-x-2 gap-y-1"
+    class="flex flex-wrap items-center gap-1.5"
   >
     <UBadge
       v-for="tag in item.tags"

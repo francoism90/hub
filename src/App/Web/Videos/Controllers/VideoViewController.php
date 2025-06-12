@@ -48,9 +48,7 @@ class VideoViewController extends Controller implements HasMiddleware
             ->limit(16)
             ->run();
 
-        return VideoCollection::make($algo->get('items'))->simplePaginate(
-            perPage: 16,
-            page: $request->input('page', 1)
-        );
+        return VideoCollection::make($algo->get('items'))
+            ->simplePaginate(perPage: 16, page: $request->input('page', 1));
     }
 }
