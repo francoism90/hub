@@ -25,7 +25,10 @@ defineProps<Props>()
     }"
   >
     <template #header>
-      <Link :href="VideoViewController.url(item.id)">
+      <Link
+        :href="VideoViewController.url(item.id)"
+        preserve-scroll
+      >
         <CardImage :item />
       </Link>
     </template>
