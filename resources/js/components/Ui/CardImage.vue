@@ -25,7 +25,7 @@ defineProps<Props>()
       role="img"
       loading="lazy"
       decoding="async"
-      class="aspect-auto size-full cursor-pointer rounded border border-default bg-black object-center"
+      class="size-full cursor-pointer rounded border border-default bg-black object-center"
     />
 
     <template #content>
