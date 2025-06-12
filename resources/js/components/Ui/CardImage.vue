@@ -28,7 +28,7 @@ defineProps<Props>()
     />
 
     <template #content>
-      <div class="size-full h-dvh rounded-none bg-white">foo</div>
+      <div class="h-dvh w-full rounded-none bg-white">foo</div>
     </template>
   </UModal>
 </template>
