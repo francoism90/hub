@@ -5,18 +5,11 @@
     "containerEnv": {
         "HOME": "/home/docker"
     },
-    "forwardPorts": [5173],
-    "runArgs": [
-        "--entrypoint=/usr/bin/bash",
-        "--tz=local",
-        "--userns=keep-id",
-        "--network=systemd-hub"
-    ],
     "build": {
         "dockerfile": "./../containers/app/Dockerfile",
         "context": "./../containers/app"
     },
-    "mounts": [
-        "source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"
-    ]
+    "runArgs": ["--entrypoint=/usr/bin/bash", "--tz=local", "--userns=keep-id", "--network=systemd-hub"],
+    "mounts": ["source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"],
+    "forwardPorts": [3000, 5173]
 }
