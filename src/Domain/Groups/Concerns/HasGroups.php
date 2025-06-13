@@ -66,19 +66,19 @@ trait HasGroups
         return $this;
     }
 
-    public static function convertToGroups(array|ArrayAccess|Collection $values): Collection
-    {
-        return collect($values)
-            ->map(fn (Group|int|string $value) => $value instanceof Group ? $value : Group::find($value))
-            ->filter();
-    }
-
     public function hasGroup(GroupSet|string|null $type = null): bool
     {
         return $this
             ->groups()
             ->when($type, fn ($query) => $query->where('type', $type))
             ->exists();
+    }
+
+    public static function convertToGroups(array|ArrayAccess|Collection|Group $values): Collection
+    {
+        return collect($values)
+            ->map(fn (Group|int|string $value) => $value instanceof Group ? $value : Group::find($value))
+            ->filter();
     }
 
     public function scopeByGroup(Builder $query, ?GroupSet $type = null): Builder
