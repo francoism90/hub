@@ -1,5 +1,8 @@
 {
     "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.sortImports": "always",
+        "source.removeUnusedImports": "always",
         "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -17,10 +20,7 @@
         ["twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
         ["(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]"],
         ["\\s*.className\\s*=\\s*['\\\"](.*?)['\\\"]"],
-        [
-            "classList.(?:add|remove|toggle)\\(([^)]*)\\)",
-            "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"
-        ]
+        ["classList.(?:add|remove|toggle)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"]
     ],
     "tailwindCSS.includeLanguages": {
         "blade": "html",
