@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
-use Domain\Activities\Concerns\InteractsWithActivities;
+use Domain\Groups\Concerns\InteractsWithGroups;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
-use Domain\Users\Concerns\InteractsWithGroups;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
 use Domain\Users\States\UserState;
 use Domain\Videos\Concerns\InteractsWithVideos;
@@ -36,7 +35,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
-    use InteractsWithActivities;
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
