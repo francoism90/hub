@@ -11,5 +11,4 @@
     },
     "runArgs": ["--entrypoint=/usr/bin/bash", "--tz=local", "--userns=keep-id", "--network=systemd-hub"],
     "mounts": ["source=${localEnv:HOME}/.ssh,target=/home/docker/.ssh,type=bind,consistency=cached"],
-    "forwardPorts": [3000, 5173]
 }
