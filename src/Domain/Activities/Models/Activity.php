@@ -8,6 +8,7 @@ use Domain\Activities\Collections\ActivityCollection;
 use Domain\Activities\Enums\ActivityType;
 use Domain\Activities\QueryBuilders\ActivityQueryBuilder;
 use Domain\Users\Concerns\InteractsWithUser;
+use Domain\Users\Models\User;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;

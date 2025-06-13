@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Api\Activities\Controllers\ActivityController;
 use App\Api\Authentication\Controllers\HomeController;
 use App\Api\Media\Controllers\AssetController;
 use App\Api\Media\Controllers\DownloadController;
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
-
-    // Video-on-demand
     Route::post('/subscription', SubscriptionController::class)->name('subscription');
+
+    // Activities
+    Route::name('activities.')->prefix('activities')->group(function () {
+        Route::post('/', ActivityController::class)->name('update');
+    });
 
     // Media
     Route::name('media.')->group(function () {

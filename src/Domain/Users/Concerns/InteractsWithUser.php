@@ -26,7 +26,7 @@ trait InteractsWithUser
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeByUser(Builder $query, User $user): Builder
+    public function scopeForUser(Builder $query, User $user): Builder
     {
         return $query->where('user_id', $user->getKey());
     }
