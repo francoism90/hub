@@ -6,14 +6,14 @@ import { queryParams, type QueryParams } from './../../../../../wayfinder'
 */
 const SubscriptionController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
-    method: 'get',
+    method: 'post',
 } => ({
     url: SubscriptionController.url(options),
-    method: 'get',
+    method: 'post',
 })
 
 SubscriptionController.definition = {
-    methods: ['get','head'],
+    methods: ['post'],
     url: '/api/v1/subscription',
 }
 
@@ -31,25 +31,12 @@ SubscriptionController.url = (options?: { query?: QueryParams, mergeQuery?: Quer
 * @see src/App/Api/Users/Controllers/SubscriptionController.php:26
 * @route '/api/v1/subscription'
 */
-SubscriptionController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+SubscriptionController.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
-    method: 'get',
+    method: 'post',
 } => ({
     url: SubscriptionController.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Api\Users\Controllers\SubscriptionController::__invoke
-* @see src/App/Api/Users/Controllers/SubscriptionController.php:26
-* @route '/api/v1/subscription'
-*/
-SubscriptionController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
-    url: SubscriptionController.url(options),
-    method: 'head',
+    method: 'post',
 })
 
 export default SubscriptionController

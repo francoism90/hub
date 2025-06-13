@@ -5,7 +5,6 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Support\Inertia\Middlewares\HandleInertiaRequests;
 
 $basePath = $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__);

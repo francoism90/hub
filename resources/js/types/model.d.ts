@@ -37,6 +37,12 @@ export type Video = {
   tags: Tag[]
 }
 
+export type Activity = {
+  model: Video | Tag | string
+  force?: boolean
+  args?: object
+}
+
 export type Links = {
   first: string | null
   last: string | null

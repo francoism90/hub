@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Users\Models;
 
 use Database\Factories\UserFactory;
+use Domain\Activities\Concerns\InteractsWithActivities;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
@@ -35,6 +36,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
+    use InteractsWithActivities;
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;

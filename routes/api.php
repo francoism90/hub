@@ -15,7 +15,7 @@ Route::name('api.')->prefix('v1')->group(function () {
     Route::get('/', HomeController::class)->name('home');
 
     // Video-on-demand
-    Route::get('/subscription', SubscriptionController::class)->name('subscription');
+    Route::post('/subscription', SubscriptionController::class)->name('subscription');
 
     // Media
     Route::name('media.')->group(function () {

@@ -6,7 +6,6 @@ namespace Foundation\Providers;
 
 use Domain\Users\Models\User;
 use Domain\Users\Policies\UserPolicy;
-use Domain\Videos\Models\Video;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Password;

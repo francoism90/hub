@@ -1,30 +1,19 @@
 import shaka from 'shaka-player/dist/shaka-player.ui'
-import {
-  readonly,
-  shallowRef,
-  toValue,
-  watchEffect,
-  type MaybeRefOrGetter,
-} from 'vue'
+import { readonly, shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from 'vue'
 
-export function useShaka(
-  url?: MaybeRefOrGetter<string>,
-  time?: MaybeRefOrGetter<number>,
-) {
+export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter<number>) {
   const player = shallowRef<shaka.Player>()
   const manager = shallowRef<shaka.media.PreloadManager | null>()
   const events = shallowRef<shaka.util.EventManager | null>()
 
-  const preload = async (assetUri: string, startTime?: number) =>
-    player.value?.preload(assetUri, startTime)
+  const preload = async (assetUri: string, startTime?: number) => player.value?.preload(assetUri, startTime)
 
   const load = async (assetUri?: string, startTime?: number) =>
     player.value?.load(assetUri ?? manager.value ?? '', startTime)
 
   const unload = async () => player.value?.unload()
 
-  const container = async (el: HTMLElement | null) =>
-    player.value?.setVideoContainer(el)
+  const container = async (el: HTMLElement | null) => player.value?.setVideoContainer(el)
 
   const attach = async (el: HTMLMediaElement) => player.value?.attach(el)
 

@@ -61,14 +61,14 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 */
 export const subscription = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
-    method: 'get',
+    method: 'post',
 } => ({
     url: subscription.url(options),
-    method: 'get',
+    method: 'post',
 })
 
 subscription.definition = {
-    methods: ['get','head'],
+    methods: ['post'],
     url: '/api/v1/subscription',
 }
 
@@ -86,25 +86,12 @@ subscription.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams })
 * @see src/App/Api/Users/Controllers/SubscriptionController.php:26
 * @route '/api/v1/subscription'
 */
-subscription.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+subscription.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
-    method: 'get',
+    method: 'post',
 } => ({
     url: subscription.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Api\Users\Controllers\SubscriptionController::subscription
-* @see src/App/Api/Users/Controllers/SubscriptionController.php:26
-* @route '/api/v1/subscription'
-*/
-subscription.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
-    url: subscription.url(options),
-    method: 'head',
+    method: 'post',
 })
 
 const api = {

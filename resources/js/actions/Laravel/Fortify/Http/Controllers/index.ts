@@ -2,9 +2,6 @@ import AuthenticatedSessionController from './AuthenticatedSessionController'
 import PasswordResetLinkController from './PasswordResetLinkController'
 import NewPasswordController from './NewPasswordController'
 import RegisteredUserController from './RegisteredUserController'
-import EmailVerificationPromptController from './EmailVerificationPromptController'
-import VerifyEmailController from './VerifyEmailController'
-import EmailVerificationNotificationController from './EmailVerificationNotificationController'
 import ProfileInformationController from './ProfileInformationController'
 import PasswordController from './PasswordController'
 import ConfirmablePasswordController from './ConfirmablePasswordController'
@@ -21,9 +18,6 @@ const Controllers = {
     PasswordResetLinkController,
     NewPasswordController,
     RegisteredUserController,
-    EmailVerificationPromptController,
-    VerifyEmailController,
-    EmailVerificationNotificationController,
     ProfileInformationController,
     PasswordController,
     ConfirmablePasswordController,

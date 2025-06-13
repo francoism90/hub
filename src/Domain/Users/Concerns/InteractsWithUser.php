@@ -8,6 +8,7 @@ use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 trait InteractsWithUser
 {
@@ -15,7 +16,7 @@ trait InteractsWithUser
     {
         static::creating(function (Model $model) {
             if (blank($model->user_id)) {
-                $model->user_id = auth()->id();
+                $model->user_id = Auth::id();
             }
         });
     }

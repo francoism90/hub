@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use App\Api\Videos\Resources\VideoCollection;
 use App\Api\Videos\Resources\VideoResource;
+use Domain\Videos\Algos\GenerateVideoSuggestions;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Api\Videos\Resources\VideoCollection;
-use App\Web\Account\Scopes\DiscoverScope;
-use Domain\Videos\Algos\GenerateVideoSuggestions;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
 class VideoViewController extends Controller implements HasMiddleware
 {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Users\Actions;
 
-use Domain\Users\Concerns\PasswordValidationRules;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

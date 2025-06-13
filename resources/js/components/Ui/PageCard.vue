@@ -17,7 +17,7 @@ defineProps<Props>()
       root: 'divide-y-0 rounded-none ring-0',
       header: 'h-68 pb-0',
       footer: 'p-3',
-      body: 'flex flex-col pt-3 sm:pt-3',
+      body: 'flex flex-col py-3 sm:py-3',
     }"
   >
     <template #header>
