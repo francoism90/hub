@@ -13,12 +13,6 @@ const items = ref(<NavigationMenuItem[][]>[
       exact: true,
     },
     {
-      label: 'Notifications',
-      icon: 'i-lucide-bell',
-      slot: 'content',
-      to: '/notifications',
-    },
-    {
       label: 'Search',
       icon: 'i-lucide-search',
       slot: 'content',
@@ -32,6 +26,12 @@ const items = ref(<NavigationMenuItem[][]>[
     },
   ],
   [
+    {
+      label: 'Notifications',
+      icon: 'i-lucide-bell',
+      slot: 'account',
+      to: '/notifications',
+    },
     {
       label: 'Account',
       icon: 'i-lucide-circle-user',
