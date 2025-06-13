@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import HistoryBack from '@/components/Actions/HistoryBack.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageCard from '@/components/Ui/PageCard.vue'
 import PageList from '@/components/Ui/PageList.vue'
@@ -13,17 +12,26 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const navigate = () => window.history.back()
 </script>
 
 <template>
   <Head :title="item.name?.en" />
 
   <PageBody>
-    <PageCard :item />
-
     <ToolBar>
-      <HistoryBack />
+      <UButton
+        icon="i-lucide-arrow-left"
+        color="primary"
+        variant="link"
+        label="Video"
+        class="px-0"
+        @click="navigate"
+      />
     </ToolBar>
+
+    <PageCard :item />
 
     <PageList
       variant="compact"

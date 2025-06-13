@@ -8,6 +8,8 @@ use App\Api\Videos\Resources\VideoResource;
 use Domain\Groups\Actions\MarkAsSaved;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -23,12 +25,14 @@ class SaveController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Video $video): VideoResource
+    public function __invoke(Video $video, Request $request): RedirectResponse|VideoResource
     {
         Gate::authorize('view', $video);
 
         app(MarkAsSaved::class)->execute(Auth::user(), $video);
 
-        return VideoResource::make($video);
+        return $request->inertia()
+            ? redirect()->back()
+            : VideoResource::make($video);
     }
 }

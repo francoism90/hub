@@ -6,6 +6,7 @@ namespace App\Api\Videos\Resources;
 
 use App\Api\Tags\Resources\TagCollection;
 use App\Api\Users\Resources\UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VideoResource extends JsonResource
@@ -15,7 +16,7 @@ class VideoResource extends JsonResource
      */
     public $preserveKeys = true;
 
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'id' => $this->getRouteKey(),
@@ -26,16 +27,20 @@ class VideoResource extends JsonResource
             'episode' => $this->episode,
             'part' => $this->part,
             'adult' => $this->adult,
+            'duration' => $this->duration,
+            'timestamp' => $this->timestamp,
             'thumbnail' => $this->thumbnail,
             'srcset' => $this->srcset,
             'manifest' => $this->manifest,
             'preview' => $this->preview,
-            'duration' => $this->duration,
-            'timestamp' => $this->timestamp,
+            $this->mergeWhen($request->user(), [
+                'favorited' => (bool) $request->user()->hasFavorited($this->resource),
+                'saved' => (bool) $request->user()->hasSaved($this->resource),
+            ]),
             'state' => $this->state,
             'created' => $this->created_at,
-            'created_human' => $this->created_at->diffForHumans(),
             'updated' => $this->updated_at,
+            'created_human' => $this->created_at->diffForHumans(),
             'updated_human' => $this->updated_at->diffForHumans(),
             'tags' => TagCollection::make($this->tags),
             'user' => UserResource::make($this->whenLoaded('user')),

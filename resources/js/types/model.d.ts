@@ -30,6 +30,8 @@ export type Video = {
   timestamp: string
   thumbnail: string
   srcset: string
+  favorited: boolean
+  saved: boolean
   created: string
   created_human: string
   updated: string

@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Videos\Controllers\SaveController::__invoke
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 const SaveController = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ SaveController.definition = {
 
 /**
 * @see \App\Api\Videos\Controllers\SaveController::__invoke
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 SaveController.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -50,7 +50,7 @@ SaveController.url = (args: { video: string | { prefixed_id: string } } | [video
 
 /**
 * @see \App\Api\Videos\Controllers\SaveController::__invoke
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 SaveController.post = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

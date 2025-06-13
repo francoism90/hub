@@ -71,7 +71,7 @@ manifest.head = (args: { video: string | { prefixed_id: string }, type: string |
 
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::favorite
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 export const favorite = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -89,7 +89,7 @@ favorite.definition = {
 
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::favorite
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 favorite.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -120,7 +120,7 @@ favorite.url = (args: { video: string | { prefixed_id: string } } | [video: stri
 
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::favorite
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 favorite.post = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -133,7 +133,7 @@ favorite.post = (args: { video: string | { prefixed_id: string } } | [video: str
 
 /**
 * @see \App\Api\Videos\Controllers\SaveController::save
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 export const save = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -151,7 +151,7 @@ save.definition = {
 
 /**
 * @see \App\Api\Videos\Controllers\SaveController::save
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 save.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -182,7 +182,7 @@ save.url = (args: { video: string | { prefixed_id: string } } | [video: string |
 
 /**
 * @see \App\Api\Videos\Controllers\SaveController::save
-* @see src/App/Api/Videos/Controllers/SaveController.php:26
+* @see src/App/Api/Videos/Controllers/SaveController.php:28
 * @route '/api/v1/videos/{video}/save'
 */
 save.post = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

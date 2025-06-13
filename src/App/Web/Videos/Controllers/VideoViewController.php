@@ -32,7 +32,7 @@ class VideoViewController extends Controller implements HasMiddleware
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video->load(['media', 'tags'])),
-            'items' => Inertia::defer(fn () => $this->getCollection($video, $request))->deepMerge(),
+            'items' => Inertia::deepMerge(fn () => $this->getCollection($video, $request)),
         ]);
     }
 

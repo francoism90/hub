@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::__invoke
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 const FavoriteController = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ FavoriteController.definition = {
 
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::__invoke
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 FavoriteController.url = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -50,7 +50,7 @@ FavoriteController.url = (args: { video: string | { prefixed_id: string } } | [v
 
 /**
 * @see \App\Api\Videos\Controllers\FavoriteController::__invoke
-* @see src/App/Api/Videos/Controllers/FavoriteController.php:26
+* @see src/App/Api/Videos/Controllers/FavoriteController.php:28
 * @route '/api/v1/videos/{video}/favorite'
 */
 FavoriteController.post = (args: { video: string | { prefixed_id: string } } | [video: string | { prefixed_id: string } ] | string | { prefixed_id: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

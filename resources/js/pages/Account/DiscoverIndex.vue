@@ -32,7 +32,14 @@ const active = computed({
   },
 
   set(tab) {
-    router.get(DiscoverController.url(), { tab })
+    router.get(
+      DiscoverController.url(),
+      { tab },
+      {
+        preserveState: true,
+        replace: true,
+      },
+    )
   },
 })
 </script>
