@@ -9,6 +9,7 @@ use App\Api\Media\Controllers\ResponsiveController;
 use App\Api\Users\Controllers\SubscriptionController;
 use App\Api\Videos\Controllers\FavoriteController;
 use App\Api\Videos\Controllers\ManifestController;
+use App\Api\Videos\Controllers\SaveController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->prefix('v1')->group(function () {
@@ -25,7 +26,8 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
-        Route::get('/{video}/manifest/{type}/{format}', ManifestController::class)->name('manifest');
+        Route::get('/{video}/manifest/{type}', ManifestController::class)->name('manifest');
         Route::post('/{video}/favorite', FavoriteController::class)->name('favorite');
+        Route::post('/{video}/save', SaveController::class)->name('save');
     });
 });

@@ -22,7 +22,7 @@ class GetVideoManifestUrl
             default => config('vod.hls'),
         });
 
-        $relativePath = trim(route('api.videos.manifest', compact('video', 'type', 'format'), false), '/');
+        $relativePath = trim(route('api.videos.manifest', compact('video', 'type'), false), '/');
 
         $path = implode('/', [$parameters->path, $relativePath, $parameters->name]);
 
