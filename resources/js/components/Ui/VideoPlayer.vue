@@ -31,7 +31,7 @@ onMounted(async () => {
     <video
       ref="video"
       rel="video"
-      class="aspect-video size-full max-h-2/4 sm:max-h-1/3 lg:rounded"
+      class="size-full min-h-64 border border-default bg-black object-center lg:rounded"
       loading="lazy"
       decoding="async"
       controls
