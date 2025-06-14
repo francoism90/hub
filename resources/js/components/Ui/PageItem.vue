@@ -14,10 +14,10 @@ defineProps<Props>()
   <UCard
     as="article"
     :ui="{
-      root: 'divide-y-0 rounded-none ring-0',
-      header: 'pb-0',
-      footer: 'pt-0',
-      body: 'flex items-center gap-3 py-3 sm:py-3',
+      root: 'divide-y-0 rounded-none py-3 ring-0',
+      header: 'py-0',
+      footer: 'py-0',
+      body: 'flex items-center justify-between gap-3 py-0 sm:py-0',
     }"
   >
     <div class="flex-1">
