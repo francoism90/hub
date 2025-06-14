@@ -31,6 +31,7 @@ class VideoViewController extends Controller implements HasMiddleware
         Gate::authorize('view', $video);
 
         return Inertia::render('Videos/VideoView', [
+            'tab' => fn () => $request->query('tab', 'related'),
             'item' => fn () => VideoResource::make($video->load(['media', 'tags'])),
             'items' => Inertia::deepMerge(fn () => $this->getCollection($video, $request)),
         ]);

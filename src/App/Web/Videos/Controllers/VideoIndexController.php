@@ -32,7 +32,7 @@ class VideoIndexController extends Controller implements HasMiddleware
         return Inertia::render('Videos/VideoIndex', [
             'tab' => fn () => $request->query('tab', 'discover'),
             'videos' => fn () => VideoCollection::make(
-                $this->getBuilder($request)->simplePaginate(16)
+                $this->getBuilder($request)->simplePaginate(24)
             ),
         ]);
     }

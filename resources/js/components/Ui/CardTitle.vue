@@ -17,7 +17,6 @@ const time = computed(() => [props.item.timestamp, props.item.created_human].fil
 <template>
   <Link
     :href="url"
-    class="flex flex-col gap-1"
     :class="{
       'pointer-events-none': url == $page.url,
     }"
@@ -42,18 +41,5 @@ const time = computed(() => [props.item.timestamp, props.item.created_human].fil
     >
       {{ item.summary }}
     </p>
-
-    <div
-      v-if="item.tags"
-      class="flex flex-wrap items-center gap-1.5"
-    >
-      <UBadge
-        v-for="tag in item.tags"
-        :key="tag.id"
-        variant="soft"
-      >
-        {{ tag.name }}
-      </UBadge>
-    </div>
   </Link>
 </template>
