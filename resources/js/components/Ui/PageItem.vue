@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Video } from '@/types/model'
 import CardImage from './CardImage.vue'
+import CardLabel from './CardLabel.vue'
 import CardTitle from './CardTitle.vue'
 
 interface Props {
@@ -22,6 +23,7 @@ defineProps<Props>()
   >
     <div class="flex-1">
       <CardTitle :item />
+      <CardLabel :item />
     </div>
 
     <div class="size-24 flex-shrink-0">
