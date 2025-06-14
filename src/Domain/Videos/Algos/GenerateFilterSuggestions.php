@@ -44,7 +44,7 @@ class GenerateUserSuggestions extends Algo
         return $this;
     }
 
-    protected function getUserMixers(): LazyCollection
+    protected function GenerateFilterSuggestions(): LazyCollection
     {
         $items = LazyCollection::make([
             GroupSet::All,

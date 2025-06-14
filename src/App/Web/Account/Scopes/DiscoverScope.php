@@ -17,6 +17,8 @@ class DiscoverScope
     public function __invoke(Builder $query): void
     {
         $query
-            ->published();
+            ->with(['media', 'tags'])
+            ->published()
+            ->inRandomOrder();
     }
 }
