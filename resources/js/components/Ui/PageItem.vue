@@ -21,7 +21,7 @@ defineProps<Props>()
       body: 'flex items-center justify-between gap-3 py-0 sm:py-0',
     }"
   >
-    <div class="flex-1">
+    <div class="flex flex-1 flex-col gap-1.5">
       <CardTitle :item />
       <CardLabel :item />
     </div>
