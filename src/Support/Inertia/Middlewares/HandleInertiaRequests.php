@@ -34,8 +34,6 @@ class HandleInertiaRequests extends Middleware
             'query' => fn () => $request->query(),
             'flash' => fn () => $this->when($request->hasSession(), fn () => $request->session()->get('laravel_flash_message')),
             'auth.user' => fn () => $this->when($request->user(), fn () => UserResource::make($request->user()->load('roles'))),
-            'auth.login.route' => fn () => route('login'),
-            'auth.logout.route' => fn () => route('logout'),
         ]);
     }
 

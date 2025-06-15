@@ -1,11 +1,12 @@
+import type { User } from '@/types'
 import type { Page } from '@inertiajs/core'
-import type { User } from '@types/model'
 
 declare module '@inertiajs/core' {
   interface PageProps {
     app: string
     locale: string
     location: string
+    query: string
     flash: {
       message: string
       class: string
@@ -13,12 +14,6 @@ declare module '@inertiajs/core' {
     }
     auth: {
       user: User | undefined
-      login: {
-        route: string
-      }
-      logout: {
-        route: string
-      }
     }
   }
 }

@@ -8,6 +8,8 @@ export type User = {
   email: string
   email_verified: string
   avatar?: string
+  roles?: string[]
+  permissions?: string[]
   created: string
   updated: string
 }
@@ -36,13 +38,9 @@ export type Video = {
   srcset: string
   favorited: boolean
   saved: boolean
+  published: string
   created: string
   updated: string
-  editable: boolean
-  deletable: boolean
-  views: number
-  created_human: string
-  updated_human: string
   tags: Tag[]
 }
 
