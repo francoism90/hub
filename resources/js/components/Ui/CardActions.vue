@@ -19,7 +19,7 @@ defineProps<Props>()
 
     <UModal>
       <UButton
-        v-if="item.editable"
+        v-if="$page.props.auth.user?.roles?.includes('super-admin')"
         variant="link"
         class="gap-0 p-0"
         size="xs"
