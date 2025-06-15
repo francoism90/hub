@@ -11,20 +11,18 @@ defineProps<Props>()
 
 <template>
   <div class="list h-(--ui-action-bar-height) border-t border-default">
-    <slot />
-
     <UButton
       variant="link"
-      class="inline-flex items-center gap-0 p-0"
+      class="gap-0 p-0"
       size="xs"
-      label="Edit"
+      label="Save"
     />
 
     <UButton
       variant="link"
-      class="inline-flex items-center gap-0 p-0"
+      class="gap-0 p-0"
       size="xs"
-      label="Save"
+      label="Edit"
     />
   </div>
 </template>
