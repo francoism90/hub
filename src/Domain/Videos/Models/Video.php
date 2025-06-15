@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -230,12 +231,12 @@ class Video extends Model implements HasMedia
             'summary' => (string) $this->summary,
             'duration' => (float) $this->duration,
             'caption' => (bool) $this->caption,
-            'released' => (string) $this->released,
             'adult' => (bool) $this->adult,
             'tags' => (string) $this->tags_translated,
             'relatables' => (string) $this->tags_related,
             'tagged' => (array) $this->tags->modelKeys(),
             'state' => (string) $this->state,
+            'released_at' => (int) $this->released_at->getTimestamp(),
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
         ];
@@ -274,17 +275,10 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function released(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->released_at?->toDateString()
-        )->shouldCache();
-    }
-
     public function published(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->released_at ?: $this->created_at
+            get: fn () => Carbon::make($this->released_at ?: $this->updated_at)->diffForHumans()
         )->shouldCache();
     }
 }

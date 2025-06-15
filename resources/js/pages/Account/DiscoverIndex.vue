@@ -3,7 +3,7 @@ import DiscoverController from '@/actions/App/Web/Account/Controllers/DiscoverCo
 import NavBar from '@/components/Ui/NavBar.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import PageList from '@/components/Ui/PageList.vue'
-import type { Items } from '@/types/model'
+import type { Items } from '@/types'
 import { Head, router } from '@inertiajs/vue3'
 import type { TabsItem } from '@nuxt/ui'
 import { computed, ref } from 'vue'

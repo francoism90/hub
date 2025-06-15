@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PageCard from '@/components/Ui/PageCard.vue'
-import type { Items } from '@/types/model'
+import type { Items } from '@/types'
 import { Deferred, WhenVisible } from '@inertiajs/vue3'
 import { computed } from 'vue'
 import PageItem from './PageItem.vue'

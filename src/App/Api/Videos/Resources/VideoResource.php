@@ -33,15 +33,11 @@ class VideoResource extends JsonResource
             'srcset' => $this->srcset,
             'manifest' => $this->manifest,
             'preview' => $this->preview,
-            $this->mergeWhen($request->user(), [
-                'favorited' => (bool) $request->user()->hasFavorited($this->resource),
-                'saved' => (bool) $request->user()->hasSaved($this->resource),
-            ]),
-            'state' => $this->state,
+            'published' => $this->published,
+            'released' => $this->released_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,
-            'created_human' => $this->created_at->diffForHumans(),
-            'updated_human' => $this->updated_at->diffForHumans(),
+            'state' => $this->state,
             'tags' => TagCollection::make($this->tags),
             'user' => UserResource::make($this->whenLoaded('user')),
         ];

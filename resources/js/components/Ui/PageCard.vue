@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Video } from '@/types/model'
+import type { Video } from '@/types'
 import CardActions from './CardActions.vue'
 import CardImage from './CardImage.vue'
 import CardLabel from './CardLabel.vue'

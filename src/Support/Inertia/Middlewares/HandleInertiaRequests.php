@@ -7,10 +7,13 @@ namespace Support\Inertia\Middlewares;
 use App\Api\Users\Resources\UserResource;
 use Domain\Users\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Traits\Conditionable;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    use Conditionable;
+
     /**
      * @see https://inertiajs.com/server-side-setup#root-template
      *
@@ -30,30 +33,11 @@ class HandleInertiaRequests extends Middleware
             'locale' => fn () => app()->currentLocale(),
             'location' => fn () => $request->url(),
             'query' => fn () => $request->query(),
-            'flash' => fn () => $this->flash($request),
-            'auth.user' => fn () => $this->user($request),
+            'flash' => fn () => $this->when($request->hasSession(), fn () => $this->getFlashMessage($request)),
+            'auth.user' => fn () => $this->when($request->user(), fn () => UserResource::make($request->user())),
             'auth.login.route' => fn () => route('login'),
             'auth.logout.route' => fn () => route('logout'),
         ]);
-    }
-
-    public function flash(Request $request): ?array
-    {
-        if (! $request->hasSession()) {
-            return null;
-        }
-
-        return $request->session()->get('laravel_flash_message');
-    }
-
-    public function user(Request $request): ?UserResource
-    {
-        /** @var User $user */
-        if (! $user = $request->user()) {
-            return null;
-        }
-
-        return UserResource::make($user->append('avatar'));
     }
 
     /**
@@ -62,5 +46,10 @@ class HandleInertiaRequests extends Middleware
     public function version(Request $request): ?string
     {
         return parent::version($request);
+    }
+
+    protected function getFlashMessage(Request $request): mixed
+    {
+        return $request->session()->get('laravel_flash_message');
     }
 }

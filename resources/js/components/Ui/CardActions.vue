@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Video } from '@/types/model'
+import type { Video } from '@/types'
 
 interface Props {
   item: Video
-  size?: 'sm' | 'md' | 'lg' | 'xl' | null
 }
 
 defineProps<Props>()
@@ -18,11 +17,14 @@ defineProps<Props>()
       label="Save"
     />
 
-    <UButton
-      variant="link"
-      class="gap-0 p-0"
-      size="xs"
-      label="Edit"
-    />
+    <UModal>
+      <UButton
+        v-if="item.editable"
+        variant="link"
+        class="gap-0 p-0"
+        size="xs"
+        label="Edit"
+      />
+    </UModal>
   </div>
 </template>

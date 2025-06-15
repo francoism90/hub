@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VideoViewController from '@/actions/App/Web/Videos/Controllers/VideoViewController'
-import type { Video } from '@/types/model'
+import type { Video } from '@/types'
 import { Link } from '@inertiajs/vue3'
 import { computed } from 'vue'
 
