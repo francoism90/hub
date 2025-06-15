@@ -32,8 +32,8 @@ class HandleInertiaRequests extends Middleware
             'locale' => fn () => app()->currentLocale(),
             'location' => fn () => $request->url(),
             'query' => fn () => $request->query(),
-            'flash' => fn () => $this->when($request->hasSession(), fn () => $this->getFlashMessage($request)),
-            'auth.user' => fn () => $this->when($request->user(), fn () => UserResource::make($request->user())),
+            'flash' => fn () => $this->when($request->hasSession(), fn () => $request->session()->get('laravel_flash_message')),
+            'auth.user' => fn () => $this->when($request->user(), fn () => UserResource::make($request->user()->load('roles'))),
             'auth.login.route' => fn () => route('login'),
             'auth.logout.route' => fn () => route('logout'),
         ]);
@@ -45,10 +45,5 @@ class HandleInertiaRequests extends Middleware
     public function version(Request $request): ?string
     {
         return parent::version($request);
-    }
-
-    protected function getFlashMessage(Request $request): mixed
-    {
-        return $request->session()->get('laravel_flash_message');
     }
 }
