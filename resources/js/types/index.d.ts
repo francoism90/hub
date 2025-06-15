@@ -16,8 +16,8 @@ export type User = {
 
 export type Tag = {
   id: string
-  name: Record<string, string>
-  description: Record<string, string>
+  name: string
+  description: string
   type: string
   videos: number
   created: string
@@ -27,9 +27,9 @@ export type Tag = {
 export type Video = {
   id: string
   user: User
-  name: Record<string, string>
-  summary: Record<string, string>
-  content: Record<string, string>
+  name: string
+  summary: string
+  content: string
   duration: number
   manifest: string
   preview: string
@@ -68,10 +68,10 @@ export type Items = {
   data: Video[]
   links: Links
   meta: Meta
-  current_page: number | null
-  current_page_url: string | null
-  first_page_url: string | null
-  last_page_url: string | null
-  next_page_url: string | null
-  prev_page_url: string | null
+  current_page?: number | null
+  current_page_url?: string | null
+  first_page_url?: string | null
+  last_page_url?: string | null
+  next_page_url?: string | null
+  prev_page_url?: string | null
 }

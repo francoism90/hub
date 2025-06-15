@@ -11,8 +11,8 @@ defineProps<Props>()
 
 <template>
   <UModal
-    :title="item.name?.en ?? 'Video'"
-    :description="item.summary?.en ?? 'Video Player'"
+    :title="item.name || 'Playing Video'"
+    :description="item.summary || 'Playback in progress...'"
     :ui="{
       overlay: 'bg-black/70',
       content: 'max-h-3/4 w-full max-w-6xl rounded-none bg-transparent ring-0 sm:max-h-3/5',
@@ -21,7 +21,7 @@ defineProps<Props>()
     <img
       :src="item.thumbnail"
       :srcset="item.srcset"
-      :alt="item.name.en"
+      :alt="item.name"
       role="img"
       loading="lazy"
       decoding="async"

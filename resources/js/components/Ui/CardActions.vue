@@ -17,7 +17,7 @@ defineProps<Props>()
       label="Save"
     />
 
-    <UModal>
+    <UModal :title="item.name || 'Edit Video'">
       <UButton
         v-if="$page.props.auth.user?.roles?.includes('super-admin')"
         variant="link"
@@ -25,6 +25,8 @@ defineProps<Props>()
         size="xs"
         label="Edit"
       />
+
+      <template #body> foo </template>
     </UModal>
   </div>
 </template>
