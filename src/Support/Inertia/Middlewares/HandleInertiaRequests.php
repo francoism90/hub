@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Support\Inertia\Middlewares;
 
 use App\Api\Users\Resources\UserResource;
-use Domain\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Traits\Conditionable;
 use Inertia\Middleware;
