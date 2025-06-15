@@ -17,6 +17,7 @@ const time = computed(() => [props.item.timestamp, props.item.created_human].fil
 <template>
   <Link
     :href="url"
+    class="flex flex-col gap-0.5"
     :class="{
       'pointer-events-none': url == $page.url,
     }"
