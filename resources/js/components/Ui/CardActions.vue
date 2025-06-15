@@ -1,39 +1,30 @@
 <script setup lang="ts">
 import type { Video } from '@/types/model'
-import { computed } from 'vue'
 
 interface Props {
   item: Video
   size?: 'sm' | 'md' | 'lg' | 'xl' | null
 }
 
-const props = defineProps<Props>()
-const size = computed(() => props.size ?? 'sm')
+defineProps<Props>()
 </script>
 
 <template>
-  <div class="flex items-center gap-3 border-t border-default pt-1">
+  <div class="list h-(--ui-action-bar-height) border-t border-default">
     <slot />
 
     <UButton
-      icon="i-lucide-heart"
       variant="link"
-      class="inline-flex items-center justify-center px-0"
-      :size
+      class="inline-flex items-center gap-0 p-0"
+      size="xs"
+      label="Edit"
     />
 
     <UButton
-      icon="i-lucide-heart"
       variant="link"
-      class="inline-flex items-center justify-center px-0"
-      :size
-    />
-
-    <UButton
-      icon="i-lucide-heart"
-      variant="link"
-      class="inline-flex items-center justify-center px-0"
-      :size
+      class="inline-flex items-center gap-0 p-0"
+      size="xs"
+      label="Save"
     />
   </div>
 </template>

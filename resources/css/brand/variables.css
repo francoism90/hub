@@ -2,6 +2,8 @@
   --ui-bg: var(--ui-color-neutral-950);
   --ui-primary: var(--ui-color-primary-300);
   --ui-border-accented: var(--ui-color-neutral-800);
+  --ui-divider-symbol: '·';
   --ui-header-height: 3.5rem;
   --ui-navbar-height: 2.5rem;
+  --ui-action-bar-height: 2rem;
 }
