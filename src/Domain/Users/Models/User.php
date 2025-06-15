@@ -24,6 +24,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\ModelStates\HasStates;
+use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
@@ -33,6 +34,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasApiTokens;
     use HasFactory;
     use HasPrefixedId;
+    use HasPermissions;
     use HasRoles;
     use HasStates;
     use InteractsWithCache;
