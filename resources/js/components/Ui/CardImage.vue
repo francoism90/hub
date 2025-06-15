@@ -15,7 +15,7 @@ defineProps<Props>()
     :description="item.summary || 'Playback in progress...'"
     :ui="{
       overlay: 'bg-black/70',
-      content: 'max-h-3/4 w-full max-w-6xl rounded-none bg-transparent ring-0 sm:max-h-3/5',
+      content: 'max-h-3/4 w-full max-w-6xl rounded-none bg-black ring-0 sm:max-h-3/5',
     }"
   >
     <img
