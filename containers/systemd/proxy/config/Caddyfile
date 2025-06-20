@@ -15,7 +15,7 @@
     header @origin Access-Control-Allow-Methods "OPTIONS,HEAD,GET,POST,PUT,PATCH,DELETE"
     header @origin Access-Control-Allow-Headers "Accept,Authorization,Content-Type,Origin,X-Requested-With"
     header @origin Access-Control-Expose-Headers "Content-Length,Content-Range,Date,Range"
-    header @origin Access-Control-Max-Age "3600"
+    header @origin Access-Control-Max-Age "1728000"
 }
 
 (tls) {
