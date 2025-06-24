@@ -1,7 +1,7 @@
+import laravel, { refreshPaths } from 'laravel-vite-plugin'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import laravel, { refreshPaths } from 'laravel-vite-plugin'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -71,9 +71,9 @@ export default defineConfig({
       external: ['workbox-window'],
       output: {
         manualChunks: {
-          utils: ['axios'],
+          http: ['axios'],
           ws: ['pusher-js', 'laravel-echo'],
-          player: ['shaka-player'],
+          video: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
           pwa: ['virtual:pwa-register'],
         },
       },

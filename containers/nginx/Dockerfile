@@ -34,7 +34,7 @@ RUN mkdir -p /usr/local/src && rm -rf /usr/local/src/* \
     && CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p')
 
 RUN cd /usr/local/src \
-    && git clone --depth 1 --branch v1.2.0 https://github.com/diogoazevedos/nginx-vod-module.git \
+    && git clone --depth 1 https://github.com/diogoazevedos/nginx-vod-module.git \
     && MODULEDIR=$(pwd)/nginx-vod-module \
     && cd /usr/local/src/nginx \
     && ./configure --with-compat ${CONFARGS} --add-dynamic-module=${MODULEDIR} --with-file-aio --with-threads --with-cc-opt="-O3 -mpopcnt" \
