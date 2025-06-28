@@ -10,7 +10,7 @@ Hub is a video on demand (VOD) media distribution system that allows users to ac
 
 Hub uses the following stack:
 
-- [nginx-vod-module (main branch)](https://github.com/diogoazevedos/nginx-vod-module)
+- [nginx-vod-module](https://github.com/diogoazevedos/nginx-vod-module)
 - [Laravel 12.x](https://laravel.com/)
 - [Livewire 3.x](https://livewire.laravel.com/)
 - [PostgreSQL 17.x](https://www.postgresql.org/)
@@ -23,7 +23,7 @@ This is the preferred stack, please submit a PR if you would like to support oth
 
 - Any modern hardware (AArch64 is untested).
 - Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..). - WSLv2 is untested.
-- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux support.
+- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux or AppArmor support.
 
 > **NOTE:** Docker is unsupported, but should work with a `docker-compose.yml` file. PRs are welcome.
 
