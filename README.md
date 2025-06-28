@@ -90,7 +90,7 @@ php artisan db:seed --class=UserSeeder:class
 To import videos:
 
 ```bash
-chcon -Rt container_file_t ~/projects/hub/storage/app/import/* # if running SELinux
+chcon -Rv system_u:object_r:container_file_t:s0 /path/to/import/* # if running SELinux
 hub a videos:import
 ```
 
