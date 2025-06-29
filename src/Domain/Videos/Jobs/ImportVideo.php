@@ -9,6 +9,7 @@ use Domain\Imports\Models\Import;
 use Domain\Videos\Actions\CreateVideoByImport;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +17,7 @@ use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Pipeline;
 
-class ImportVideo implements ShouldQueue
+class ImportVideo implements ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -37,7 +38,7 @@ class ImportVideo implements ShouldQueue
     /**
      * @var int
      */
-    public $backoff = 60;
+    public $uniqueFor = 60 * 60;
 
     /**
      * @var bool
@@ -70,8 +71,13 @@ class ImportVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->import->getKey()}"))->shared(),
+            (new WithoutOverlapping("import:{$this->uniqueId()}"))->shared(),
         ];
+    }
+
+    public function uniqueId(): string
+    {
+        return hash('crc32', $this->import->identifier);
     }
 
     public function retryUntil(): \DateTime

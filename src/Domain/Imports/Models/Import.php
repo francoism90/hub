@@ -8,6 +8,7 @@ use Database\Factories\ImportFactory;
 use Domain\Imports\QueryBuilders\ImportQueryBuilder;
 use Domain\Imports\States\ImportState;
 use Domain\Users\Concerns\InteractsWithUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
@@ -56,5 +57,12 @@ class Import extends Model
     public function prunable(): ImportQueryBuilder
     {
         return static::where('created_at', '<=', now()->subMonth());
+    }
+
+    public function identifier(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => implode('-', array_filter([$this->file_name, $this->size]))
+        )->shouldCache();
     }
 }

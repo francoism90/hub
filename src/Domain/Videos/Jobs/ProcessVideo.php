@@ -36,11 +36,6 @@ class ProcessVideo implements ShouldQueue
     public $timeout = 60 * 60;
 
     /**
-     * @var int
-     */
-    public $backoff = 60;
-
-    /**
      * @var bool
      */
     public $failOnTimeout = true;
@@ -72,7 +67,7 @@ class ProcessVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("process:{$this->video->getKey()}"))->shared(),
+            (new WithoutOverlapping("video:{$this->video->getKey()}"))->shared(),
         ];
     }
 
