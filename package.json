@@ -35,7 +35,7 @@
         "stylelint": "^16.21.0",
         "stylelint-config-standard-scss": "^15.0.1",
         "vite": "^6.3.5",
-        "vite-plugin-pwa": "^1.0.0",
+        "vite-plugin-pwa": "^1.0.1",
         "vitest": "^3.2.4"
     }
 }
