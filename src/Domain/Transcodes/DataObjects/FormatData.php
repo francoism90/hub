@@ -14,5 +14,7 @@ class FormatData extends Data
         public string $audio_codec = 'aac',
         public int $video_bitrate = 1500,
         public array $additional_parameters = [],
+        public bool $copyVideo = true,
+        public bool $copyAudio = true,
     ) {}
 }

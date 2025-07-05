@@ -17,9 +17,9 @@ class GenerateHlsTranscode
         $ffmpeg = FFMpeg::fromDisk($pipeline->disk)
             ->open($pipeline->path)
             ->exportForHLS()
+            ->toDisk($pipeline->destination)
             ->setSegmentLength($pipeline->segmentLength)
-            ->setKeyFrameInterval($pipeline->frameInterval)
-            ->toDisk($pipeline->destination);
+            ->setKeyFrameInterval($pipeline->frameInterval);
 
         $copyVideoFormat = ($video = $ffmpeg->getVideoStream()) && in_array($video->get('codec_name'), $this->copyVideoCodec());
 
@@ -27,8 +27,8 @@ class GenerateHlsTranscode
 
         foreach ($pipeline->formats as $format) {
             $ffmpeg->addFormat($this->videoFormat()
-                ->setVideoCodec($copyVideoFormat ? 'copy' : $format->video_codec)
-                ->setAudioCodec($copyAudioFormat ? 'copy' : $format->audio_codec)
+                ->setVideoCodec($format->copyVideo && $copyVideoFormat ? 'copy' : $format->video_codec)
+                ->setAudioCodec($format->copyAudio && $copyAudioFormat ? 'copy' : $format->audio_codec)
                 ->setKiloBitrate($format->video_bitrate)
                 ->setAdditionalParameters($format->additional_parameters)
             );
