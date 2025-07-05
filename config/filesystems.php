@@ -106,6 +106,14 @@ return [
             'report' => false,
         ],
 
+        'transcodes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/transcodes'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
         'import' => [
             'driver' => 'local',
             'root' => storage_path('app/import'),

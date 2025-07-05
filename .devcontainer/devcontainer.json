@@ -1,5 +1,5 @@
 {
-    "name": "libreapi-devcontainer",
+    "name": "hub-devcontainer",
     "remoteUser": "docker",
     "containerUser": "docker",
     "containerEnv": {

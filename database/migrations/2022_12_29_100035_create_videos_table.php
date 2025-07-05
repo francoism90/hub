@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->nullableMorphs('model');
             $table
                 ->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->nullableMorphs('model');
             $table->string('prefixed_id')->unique();
             $table->json('name');
             $table->json('content')->nullable();
