@@ -18,10 +18,9 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
-            $table->json('pipeline')->nullable();
-            $table->json('metadata')->nullable();
+            $table->jsonb('pipeline')->nullable();
+            $table->jsonb('metadata')->nullable();
             $table->timestamp('expires_at')->nullable();
-            $table->timestamp('failed_at')->nullable();
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });

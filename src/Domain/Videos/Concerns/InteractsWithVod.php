@@ -16,8 +16,8 @@ trait InteractsWithVod
     {
         return $this->getMedia('clips')->sortBy([
             ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->height', 'desc'],
             ['custom_properties->width', 'desc'],
+            ['custom_properties->height', 'desc'],
         ]);
     }
 

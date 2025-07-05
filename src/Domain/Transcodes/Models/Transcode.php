@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Storage;
 
 class Transcode extends Model
 {
@@ -25,14 +27,10 @@ class Transcode extends Model
         'user_id',
         'model_type',
         'model_id',
-        'disk',
-        'inputs',
         'pipeline',
         'metadata',
-        'available_at',
         'expires_at',
-        'failed_at',
-        'completed_at',
+        'finished_at',
     ];
 
     /**
@@ -50,10 +48,8 @@ class Transcode extends Model
         return [
             'pipeline' => PipelineData::class,
             'metadata' => AsArrayObject::class,
-            'available_at' => 'datetime',
-            'completed_at' => 'datetime',
             'expires_at' => 'datetime',
-            'failed_at' => 'datetime',
+            'finished_at' => 'datetime',
         ];
     }
 
@@ -70,5 +66,15 @@ class Transcode extends Model
     public function model(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function getDisk(): FilesystemAdapter
+    {
+        return Storage::disk($this->disk);
+    }
+
+    public function getPath(): string
+    {
+        return (string) $this->getKey();
     }
 }

@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace Domain\Transcodes\Actions;
 
-use Domain\Transcodes\DataObjects\PipelineData;
+use Closure;
+use Domain\Transcodes\Models\Transcode;
 use FFMpeg\Format\Video\DefaultVideo;
-use ProtoneMedia\LaravelFFMpeg\MediaOpener;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Support\FFMpeg\Format\Video\X264;
 
 class GenerateHlsTranscode
 {
-    public function handle(PipelineData $pipeline): MediaOpener
+    public function handle(Transcode $transcode, Closure $next): mixed
     {
+        $pipeline = $transcode->pipeline;
+
         $ffmpeg = FFMpeg::fromDisk($pipeline->disk)
             ->open($pipeline->path)
             ->exportForHLS()
@@ -34,7 +36,9 @@ class GenerateHlsTranscode
             );
         }
 
-        return $ffmpeg->save($pipeline->name);
+        $ffmpeg->save("{$transcode->getPath()}/{$pipeline->name}");
+
+        return $next($transcode);
     }
 
     protected function videoFormat(): DefaultVideo

@@ -9,8 +9,6 @@ use Domain\Transcodes\DataObjects\PipelineData;
 use Domain\Transcodes\Models\Transcode;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 class CreateVideoTranscode
 {
@@ -18,41 +16,30 @@ class CreateVideoTranscode
     {
         return DB::transaction(function () use ($video, $attributes, $next) {
             // Ensure the video has clips
-            if (! $video->hasMedia('clips')) {
+            $clips = $video->getClipCollection();
+
+            if ($clips->isEmpty()) {
                 return $next($video, null);
             }
+
+            // Ensure first clip is used for transcode
+            $clip = $video->getClipCollection()->first();
 
             // Model attributes
             $attributes['model_type'] = $video->getMorphClass();
             $attributes['model_id'] = $video->getKey();
 
             // Pipeline attribute
-            $attributes['pipeline'] = $this->getPipelineData($video);
+            $attributes['pipeline'] = PipelineData::from([
+                'disk' => $clip->disk,
+                'path' => $clip->getPathRelativeToRoot(),
+                'name' => 'manifest.m3u8',
+            ]);
 
             // Create Model
             $model = Transcode::create($attributes);
 
             return $next($model, $video);
         });
-    }
-
-    protected function getPipelineData(Video $video): PipelineData
-    {
-        $clip = $video->getMedia('clips')->first();
-
-        return PipelineData::from([
-            'disk' => $clip->disk,
-            'path' => $clip->getPathRelativeToRoot(),
-            'name' => Str::slug($video->getRouteKey(), '-'),
-        ]);
-    }
-
-    protected function getClipCollection(Video $video): MediaCollection
-    {
-        return $video->getMedia('clips')->sortBy([
-            ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->width', 'desc'],
-            ['custom_properties->height', 'desc'],
-        ]);
     }
 }
