@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Transcodes\Models;
 
-use Domain\Users\Concerns\InteractsWithUser;
-use Domain\Transcodes\DataObjects\InputData;
 use Domain\Transcodes\DataObjects\PipelineData;
+use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Filesystem\FilesystemAdapter;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
-use Spatie\LaravelData\DataCollection;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class Transcode extends Model
 {
