@@ -23,9 +23,17 @@ trait HasTranscodes
     public function currentTranscode(): MorphOne
     {
         return $this->morphOne(Transcode::class, 'transcodeable')->ofMany([
+            'finished_at' => 'max',
             'expires_at' => 'max',
-            'created_at' => 'max',
             'id' => 'max',
         ]);
+    }
+
+    public function hasBeenTranscoded(): bool
+    {
+        /** @var Transcode $current */
+        $current = $this->currentTranscode();
+
+        return $current->finished_at?->isPast() && $current->expires_at?->isFuture();
     }
 }

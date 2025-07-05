@@ -5,20 +5,14 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Transcodes\Actions\CreateVideoTranscode;
-use Domain\Transcodes\Actions\GenerateHlsTranscode;
-use Domain\Videos\Actions\ExtractVideoCaptions;
-use Domain\Videos\Actions\SetVideoMetadata;
-use Domain\Videos\Events\VideoHasBeenProcessed;
-use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\Middleware\WithoutOverlapping;
+use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Pipeline;
 
 class TranscodeVideo implements ShouldQueue
 {
@@ -56,11 +50,7 @@ class TranscodeVideo implements ShouldQueue
 
     public function handle(): void
     {
-        Pipeline::send($this->video)
-            ->through([
-                CreateVideoTranscode::class,
-            ])
-            ->then(fn (Video $video) => event(new VideoHasBeenTranscoded($video)));
+        app(CreateVideoTranscode::class)->handle($this->video);
     }
 
     /**
@@ -69,7 +59,7 @@ class TranscodeVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            (new WithoutOverlapping("video:{$this->video->getKey()}"))->shared(),
+            Skip::when(! $this->video->hasMedia('clips') || $this->video->hasBeenTranscoded()),
         ];
     }
 

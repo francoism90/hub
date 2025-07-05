@@ -8,7 +8,7 @@ return [
         ['name' => 'default', 'video_bitrate' => 1500],
     ],
 
-    'video_format' => \Support\FFMpeg\Format\Video\X264::class,
+    'container' => \Support\FFMpeg\Format\Video\X264::class,
 
     'copy_video_codecs' => [
         'h264',

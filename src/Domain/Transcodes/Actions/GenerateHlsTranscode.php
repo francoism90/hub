@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\Transcodes\Actions;
 
-use Closure;
 use Domain\Transcodes\Models\Transcode;
-use FFMpeg\Format\Video\DefaultVideo;
+use ProtoneMedia\LaravelFFMpeg\MediaOpener;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-use Support\FFMpeg\Format\Video\X264;
 
 class GenerateHlsTranscode
 {
-    public function handle(Transcode $transcode, Closure $next): mixed
+    public function handle(Transcode $transcode): MediaOpener
     {
         $pipeline = $transcode->pipeline;
 
@@ -23,12 +21,12 @@ class GenerateHlsTranscode
             ->setSegmentLength($pipeline->segmentLength)
             ->setKeyFrameInterval($pipeline->frameInterval);
 
-        $copyVideoFormat = ($video = $ffmpeg->getVideoStream()) && in_array($video->get('codec_name'), $this->copyVideoCodec());
+        $copyVideoFormat = ($video = $ffmpeg->getVideoStream()) && in_array($video->get('codec_name'), Transcode::copyVideoCodec());
 
-        $copyAudioFormat = ($audio = $ffmpeg->getAudioStream()) && in_array($audio->get('codec_name'), $this->copyAudioCodec());
+        $copyAudioFormat = ($audio = $ffmpeg->getAudioStream()) && in_array($audio->get('codec_name'), Transcode::copyAudioCodec());
 
         foreach ($pipeline->formats as $format) {
-            $ffmpeg->addFormat($this->videoFormat()
+            $ffmpeg->addFormat(Transcode::container()
                 ->setVideoCodec($format->copyVideo && $copyVideoFormat ? 'copy' : $format->video_codec)
                 ->setAudioCodec($format->copyAudio && $copyAudioFormat ? 'copy' : $format->audio_codec)
                 ->setKiloBitrate($format->video_bitrate)
@@ -36,23 +34,7 @@ class GenerateHlsTranscode
             );
         }
 
-        $ffmpeg->save("{$transcode->getPath()}/{$pipeline->name}");
-
-        return $next($transcode);
+        return $ffmpeg->save("{$transcode->getPath()}/{$pipeline->name}");
     }
 
-    protected function videoFormat(): DefaultVideo
-    {
-        return app(config('transcode.video_format', X264::class));
-    }
-
-    protected function copyVideoCodec(): array
-    {
-        return config('transcode.copy_video_codecs', []);
-    }
-
-    protected function copyAudioCodec(): array
-    {
-        return config('transcode.copy_audio_codecs', []);
-    }
 }
