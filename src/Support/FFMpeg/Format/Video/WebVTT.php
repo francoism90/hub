@@ -2,13 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Support\FFMpeg\Format\Subtitle;
+namespace Support\FFMpeg\Format\Video;
 
 use FFMpeg\Format\Video\DefaultVideo;
 
-/**
- * The WebVTT subtitle format.
- */
 class WebVTT extends DefaultVideo
 {
     public function __construct($audioCodec = 'copy', $videoCodec = 'copy')

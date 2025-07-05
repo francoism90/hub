@@ -18,8 +18,6 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->morphs('model');
-            $table->string('disk')->index();
-            $table->json('inputs')->nullable();
             $table->json('pipeline')->nullable();
             $table->json('metadata')->nullable();
             $table->timestamp('expires_at')->nullable();

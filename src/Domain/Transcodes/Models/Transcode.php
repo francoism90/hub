@@ -55,7 +55,6 @@ class Transcode extends Model
     protected function casts(): array
     {
         return [
-            'inputs' => DataCollection::class.':'.InputData::class,
             'pipeline' => PipelineData::class,
             'metadata' => AsArrayObject::class,
             'available_at' => 'datetime',
