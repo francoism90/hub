@@ -77,4 +77,9 @@ class Transcode extends Model
     {
         return (string) $this->getKey();
     }
+
+    public function getAbsolutePath(): string
+    {
+        return $this->getDisk()->path($this->getPath());
+    }
 }
