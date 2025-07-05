@@ -108,7 +108,7 @@ return [
 
         'transcodes' => [
             'driver' => 'local',
-            'root' => storage_path('app/transcodes'),
+            'root' => storage_path('app/transcode'),
             'visibility' => 'private',
             'throw' => false,
             'report' => false,
