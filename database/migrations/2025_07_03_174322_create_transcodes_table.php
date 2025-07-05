@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->nullableMorphs('model');
+            $table->nullableMorphs('transcodeable');
             $table->jsonb('pipeline')->nullable();
             $table->jsonb('metadata')->nullable();
             $table->timestamp('expires_at')->nullable();
