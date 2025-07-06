@@ -9,7 +9,7 @@ use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 
-class MarkAsViewed
+class MarkVideoAsViewed
 {
     public function execute(User $user, Video $video): void
     {

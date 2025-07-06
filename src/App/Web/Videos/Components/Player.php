@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Web\Videos\Components;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Illuminate\Support\Uri;
 use Illuminate\View\View;
 use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Session;

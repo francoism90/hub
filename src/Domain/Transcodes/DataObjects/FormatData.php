@@ -12,10 +12,11 @@ class FormatData extends Data
     public function __construct(
         public string $name = 'default',
         public string $container = X264::class,
-        public string $video_codec = 'h264',
-        public string $audio_codec = 'aac',
-        public int $video_bitrate = 1500,
-        public array $additional_parameters = [],
+        public string $videoCodec = 'libx264',
+        public string $audioCodec = 'aac',
+        public int $bitrate = 0,
+        public int $passes = 1,
+        public array $parameters = [],
         public bool $copyVideo = true,
         public bool $copyAudio = true,
     ) {}

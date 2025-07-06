@@ -10,7 +10,6 @@ use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
 use Domain\Transcodes\Scopes\OrderedScope;
 use Domain\Users\Concerns\InteractsWithUser;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +32,7 @@ class Transcode extends Model
         'model_type',
         'model_id',
         'pipeline',
-        'metadata',
+        'collection',
         'expires_at',
         'finished_at',
     ];
@@ -52,7 +51,6 @@ class Transcode extends Model
     {
         return [
             'pipeline' => PipelineData::class,
-            'metadata' => AsArrayObject::class,
             'expires_at' => 'datetime',
             'finished_at' => 'datetime',
         ];

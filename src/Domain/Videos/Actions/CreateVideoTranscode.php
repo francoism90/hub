@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Domain\Videos\Actions;
 
 use Domain\Transcodes\Actions\GenerateHlsTranscode;
+use Domain\Transcodes\Actions\MarkTranscodeAsFinished;
 use Domain\Transcodes\DataObjects\PipelineData;
+use Domain\Transcodes\Models\Transcode;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Pipeline;
 
 class CreateVideoTranscode
 {
@@ -23,19 +26,29 @@ class CreateVideoTranscode
                 'name' => 'manifest.m3u8',
                 'disk' => $clip->disk,
                 'path' => $clip->getPathRelativeToRoot(),
-                'destination' => (string) config('transcode.disk', 'transcode'),
-                'segmentLength' => (int) config('transcode.segment_length', 10),
-                'frameInterval' => (int) config('transcode.frame_interval', 48),
+                'destination' => config('transcode.disk', 'transcode'),
+                'segmentLength' => config('transcode.segment_length', 10),
+                'frameInterval' => config('transcode.frame_interval', 48),
                 'formats' => config('transcode.formats', []),
             ]);
 
             $transcode = $video->transcodes()->create($attributes);
 
             // Perform the transcode
-            app(GenerateHlsTranscode::class)->handle($transcode);
+            $this->performTranscode($transcode);
 
-            // Dispatch the event after the transcode is created
-            event(new VideoHasBeenTranscoded($video));
+            // Fire event that the video has been transcoded
+            VideoHasBeenTranscoded::dispatch($video);
         });
+    }
+
+    protected function performTranscode(Transcode $transcode): Transcode
+    {
+        return Pipeline::send($transcode)
+            ->through([
+                GenerateHlsTranscode::class,
+                MarkTranscodeAsFinished::class,
+            ])
+            ->thenReturn();
     }
 }

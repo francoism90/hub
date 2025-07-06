@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Videos\Actions\ExtractVideoCaptions;
+use Domain\Videos\Actions\MarkVideoAsProcessed;
 use Domain\Videos\Actions\SetVideoMetadata;
-use Domain\Videos\Events\VideoHasBeenProcessed;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -57,8 +57,9 @@ class ProcessVideo implements ShouldQueue
             ->through([
                 SetVideoMetadata::class,
                 ExtractVideoCaptions::class,
+                MarkVideoAsProcessed::class,
             ])
-            ->then(fn (Video $video) => event(new VideoHasBeenProcessed($video)));
+            ->thenReturn();
     }
 
     /**

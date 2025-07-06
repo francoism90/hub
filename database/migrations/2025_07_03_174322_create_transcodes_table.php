@@ -19,7 +19,7 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->nullableMorphs('transcodeable');
             $table->jsonb('pipeline')->nullable();
-            $table->jsonb('metadata')->nullable();
+            $table->string('collection')->nullable()->index();
             $table->timestamp('expires_at')->nullable();
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();

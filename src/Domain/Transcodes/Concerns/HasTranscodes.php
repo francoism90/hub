@@ -13,12 +13,4 @@ trait HasTranscodes
     {
         return $this->morphMany(Transcode::class, 'transcodeable')->chaperone();
     }
-
-    public function hasBeenTranscoded(): bool
-    {
-        /** @var Transcode $current */
-        $current = $this->currentTranscode();
-
-        return $current->finished_at?->isPast() && $current->expires_at?->isFuture();
-    }
 }

@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Controllers;
 
-use Domain\Transcodes\Models\Transcode;
-use Domain\Videos\Actions\GetPreviewManifest;
-use Domain\Videos\Actions\GetVideoManifest;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PlaylistController extends Controller implements HasMiddleware

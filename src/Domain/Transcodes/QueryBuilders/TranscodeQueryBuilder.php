@@ -22,7 +22,7 @@ class TranscodeQueryBuilder extends Builder
             ->where('expires_at', '<=', now());
     }
 
-    public function current(): self
+    public function active(): self
     {
         return $this
             ->finished()
