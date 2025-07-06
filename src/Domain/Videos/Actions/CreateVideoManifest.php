@@ -7,7 +7,6 @@ namespace Domain\Videos\Actions;
 use Domain\Transcodes\Actions\GenerateHlsTranscode;
 use Domain\Transcodes\Actions\MarkTranscodeAsFinished;
 use Domain\Transcodes\DataObjects\PipelineData;
-use Domain\Transcodes\Models\Transcode;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
