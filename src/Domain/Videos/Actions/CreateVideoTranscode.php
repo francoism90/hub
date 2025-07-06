@@ -19,13 +19,13 @@ class CreateVideoTranscode
     {
         return DB::transaction(function () use ($video, $attributes) {
             // Get the first clip from the video
-            $clip = $video->getClipCollection()->first();
+            $media = $video->getClipCollection()->first();
 
             // Create transcode model
             $attributes['pipeline'] = PipelineData::from([
                 'name' => 'manifest.m3u8',
-                'disk' => $clip->disk,
-                'path' => $clip->getPathRelativeToRoot(),
+                'disk' => $media->disk,
+                'path' => $media->getPathRelativeToRoot(),
                 'destination' => config('transcode.disk', 'transcode'),
                 'segmentLength' => config('transcode.segment_length', 10),
                 'frameInterval' => config('transcode.frame_interval', 48),

@@ -104,6 +104,21 @@ class Transcode extends Model
         return $this->getFilesystem()->path($this->getPath());
     }
 
+    public function isFinished(): bool
+    {
+        return $this->finished_at !== null && $this->finished_at->isPast();
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expires_at !== null && $this->expires_at->isPast();
+    }
+
+    public function isActive(): bool
+    {
+        return $this->isFinished() && ! $this->isExpired();
+    }
+
     public static function copyVideoCodec(): array
     {
         return config('transcode.copy_video_codecs', []);

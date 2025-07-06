@@ -59,7 +59,6 @@ class CreateVideoThumbnail
 
     protected function createTemporaryDirectory(): BaseTemporaryDirectory
     {
-        return TemporaryDirectory::create()
-            ->deleteWhenDestroyed();
+        return TemporaryDirectory::create()->deleteWhenDestroyed();
     }
 }
