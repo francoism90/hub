@@ -23,7 +23,6 @@ return [
         'libopus',
         'libvo_aacenc',
         'libvorbis',
-        'mp3',
     ],
 
 ];
