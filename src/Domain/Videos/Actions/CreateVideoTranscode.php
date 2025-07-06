@@ -26,7 +26,7 @@ class CreateVideoTranscode
                 'name' => 'manifest.m3u8',
                 'disk' => $media->disk,
                 'path' => $media->getPathRelativeToRoot(),
-                'destination' => config('transcode.disk', 'transcode'),
+                'destination' => config('transcode.disk_name', 'transcode'),
                 'segmentLength' => config('transcode.segment_length', 10),
                 'frameInterval' => config('transcode.frame_interval', 48),
                 'formats' => config('transcode.formats', []),
