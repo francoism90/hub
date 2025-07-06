@@ -10,20 +10,6 @@ vite.hub.test {
 	reverse_proxy systemd-hub:5173
 }
 
-play.hub.test {
-	import tls
-    import compress
-    import cors https://hub.test
-	reverse_proxy systemd-hub-vod:1935
-}
-
-live.hub.test {
-	import tls
-    import compress
-    import cors https://hub.test
-	reverse_proxy systemd-hub-vod:1936
-}
-
 ws.hub.test {
 	import tls
     import compress
@@ -34,9 +20,4 @@ s3.hub.test {
     import tls
     import cors hub.test
     reverse_proxy systemd-hub-minio:9000
-}
-
-mc.hub.test {
-    import tls
-    reverse_proxy systemd-hub-minio:8900
 }
