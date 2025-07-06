@@ -18,6 +18,7 @@ return [
 
     'copy_video_codecs' => [
         'libx264',
+        'h264',
     ],
 
     'copy_audio_codecs' => [

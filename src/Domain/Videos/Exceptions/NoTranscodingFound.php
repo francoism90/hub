@@ -6,9 +6,9 @@ namespace Domain\Videos\Exceptions;
 
 use Exception;
 
-class VideoException extends Exception
+class NoTranscodingFound extends Exception
 {
-    public static function emptyTranscodeCollection(): self
+    public static function make(): self
     {
         return new self('The given video has no transcodes.');
     }

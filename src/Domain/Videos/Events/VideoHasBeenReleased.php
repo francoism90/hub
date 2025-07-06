@@ -9,6 +9,8 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Events\ShouldDispatchAfterCommit;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\PrivateChannel;
 
 class VideoHasBeenReleased implements ShouldDispatchAfterCommit
 {
@@ -17,4 +19,14 @@ class VideoHasBeenReleased implements ShouldDispatchAfterCommit
     use SerializesModels;
 
     public function __construct(public Video $video) {}
+
+    public function broadcastOn(): Channel
+    {
+        return new PrivateChannel('video.'.$this->video->getRouteKey());
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'released';
+    }
 }

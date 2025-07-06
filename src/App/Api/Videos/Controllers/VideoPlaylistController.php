@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Controllers;
 
+use Domain\Videos\Exceptions\NoTranscodingFound;
 use Domain\Videos\Exceptions\VideoException;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
@@ -30,7 +31,7 @@ class VideoPlaylistController extends Controller implements HasMiddleware
         // Check if the video has been transcoded
         $transcode = $video->currentTranscode();
 
-        throw_if(! $transcode, VideoException::emptyTranscodeCollection());
+        throw_if(! $transcode, NoTranscodingFound::make());
 
         // Prevent directory traversal
         $path = str($path)->replace(['../', './'], '')->value();
