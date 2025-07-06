@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
-use Domain\Videos\Actions\GetVideoManifestUrl;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -113,7 +112,7 @@ trait InteractsWithVod
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => ''
+            get: fn () => route('api.videos.manifest', ['video' => $this])
         )->shouldCache();
     }
 

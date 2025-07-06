@@ -26,7 +26,10 @@ class GenerateHlsTranscode
 
         $copyAudioFormat = ($audio = $ffmpeg->getAudioStream()) && in_array($audio->get('codec_name'), Transcode::copyAudioCodec());
 
-        $pipeline->format->each(fn (FormatData $format) => $ffmpeg->addFormat(app($format->container)
+        logger($video->get('codec_name'));
+        logger($audio->get('codec_name'));
+
+        $pipeline->formats->each(fn (FormatData $format) => $ffmpeg->addFormat(app($format->container)
             ->setVideoCodec($format->copyVideo && $copyVideoFormat ? 'copy' : $format->video_codec)
             ->setAudioCodec($format->copyAudio && $copyAudioFormat ? 'copy' : $format->audio_codec)
             ->setKiloBitrate($format->video_bitrate)

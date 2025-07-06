@@ -12,25 +12,29 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ManifestController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
         return [
-            new Middleware('private'),
-            new Middleware('throttle:none'),
-            new Middleware('cache_model:600,video'),
+            // new Middleware('cache_model:600,video'),
         ];
     }
 
-    public function __invoke(Video $model, string $type, string $format): JsonResponse
+    public function __invoke(Video $video)
     {
-        Gate::authorize('view', $model);
+        Gate::authorize('view', $video);
 
-        return response()->json(match ($type) {
-            'preview' => app(GetPreviewManifest::class)->execute($model),
-            default => app(GetVideoManifest::class)->execute($model),
-        }, 200, [], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        $transcode = $video->transcodes()->first();
+
+        $pipeline = $transcode->pipeline;
+
+        return FFMpeg::dynamicHLSPlaylist()
+            ->fromDisk($pipeline->destination)
+            ->open("{$transcode->getPath()}/{$pipeline->name}")
+            ->setPlaylistUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'transcode' => $transcode, 'path' => $path]))
+            ->setMediaUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'transcode' => $transcode, 'path' => $path]));
     }
 }

@@ -18,9 +18,6 @@ class PipelineData extends Data
         public Optional|int $frameInterval,
         public FormatDataCollection $formats,
     ) {
-        $this->destination = (string) config('transcode.disk', 'transcode');
-        $this->segmentLength = (int) config('transcode.segment_length', 10);
-        $this->frameInterval = (int) config('transcode.frame_interval', 48);
-        $this->formats = FormatDataCollection::from(config('transcode.formats', []));
+        //
     }
 }

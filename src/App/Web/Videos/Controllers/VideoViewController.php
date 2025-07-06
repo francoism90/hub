@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
+use Domain\Videos\Actions\CreateVideoTranscode;
 use Domain\Videos\Actions\MarkAsFavorited;
 use Domain\Videos\Actions\MarkAsSaved;
 use Domain\Videos\Actions\MarkAsViewed;
@@ -18,7 +19,10 @@ class VideoViewController extends Page
 
     public function mount(): void
     {
-        app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
+        // app(CreateVideoTranscode::class)->handle($this->getVideo());
+        // app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
+
+        // dd('view');
     }
 
     public function render(): View

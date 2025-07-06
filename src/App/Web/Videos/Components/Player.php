@@ -41,7 +41,7 @@ class Player extends Component
         $this->getVideo()->modelCache('timecode', $time, now()->addWeeks(2));
     }
 
-    protected function getManifestUrl(): Uri
+    protected function getManifestUrl(): string
     {
         return $this->video->stream;
     }

@@ -20,8 +20,13 @@ class CreateVideoTranscode
 
             // Create transcode model
             $attributes['pipeline'] = PipelineData::from([
+                'name' => 'manifest.m3u8',
                 'disk' => $clip->disk,
                 'path' => $clip->getPathRelativeToRoot(),
+                'destination' => (string) config('transcode.disk', 'transcode'),
+                'segmentLength' => (int) config('transcode.segment_length', 10),
+                'frameInterval' => (int) config('transcode.frame_interval', 48),
+                'formats' => config('transcode.formats', []),
             ]);
 
             $transcode = $video->transcodes()->create($attributes);

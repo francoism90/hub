@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Domain\Transcodes\Models;
 
+use Domain\Transcodes\Collections\TranscodeCollection;
 use Domain\Transcodes\DataObjects\PipelineData;
+use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
+use Domain\Transcodes\Scopes\OrderedScope;
 use Domain\Users\Concerns\InteractsWithUser;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 
+#[ScopedBy(OrderedScope::class)]
 class Transcode extends Model
 {
     use HasFactory;
@@ -53,6 +58,16 @@ class Transcode extends Model
         ];
     }
 
+    public function newEloquentBuilder($query): TranscodeQueryBuilder
+    {
+        return new TranscodeQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): TranscodeCollection
+    {
+        return new TranscodeCollection($models);
+    }
+
     public function uniqueIds(): array
     {
         return ['ulid'];
@@ -63,7 +78,7 @@ class Transcode extends Model
         return 'ulid';
     }
 
-    public function model(): MorphTo
+    public function transcodeable(): MorphTo
     {
         return $this->morphTo();
     }

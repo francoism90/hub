@@ -8,6 +8,7 @@ use App\Api\Media\Controllers\DownloadController;
 use App\Api\Media\Controllers\ResponsiveController;
 use App\Api\Users\Controllers\SubscriptionController;
 use App\Api\Videos\Controllers\ManifestController;
+use App\Api\Videos\Controllers\PlaylistController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->prefix('v1')->group(function () {
@@ -26,6 +27,7 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
-        Route::get('/{video}/manifest/{type}/{format}', ManifestController::class)->name('manifest');
+        Route::get('/{video}/playlist/{transcode}/{path}', PlaylistController::class)->name('playlist');
+        Route::get('/{video}/manifest', ManifestController::class)->name('manifest');
     });
 });

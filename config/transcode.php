@@ -17,10 +17,13 @@ return [
 
     'copy_audio_codecs' => [
         'aac',
-        'libvo_aacenc',
         'libfaac',
-        'libmp3lame',
         'libfdk_aac',
+        'libmp3lame',
+        'libopus',
+        'libvo_aacenc',
+        'libvorbis',
+        'mp3',
     ],
 
 ];

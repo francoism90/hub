@@ -9,6 +9,7 @@ use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
+use Domain\Transcodes\Models\Transcode;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
@@ -48,11 +49,12 @@ class AppServiceProvider extends ServiceProvider
     protected function configureMorphMap(): void
     {
         Relation::enforceMorphMap([
+            'group' => Group::class,
             'import' => Import::class,
             'media' => Media::class,
-            'group' => Group::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,
+            'transcode' => Transcode::class,
             'user' => User::class,
             'video' => Video::class,
         ]);
