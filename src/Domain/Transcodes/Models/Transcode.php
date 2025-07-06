@@ -85,11 +85,6 @@ class Transcode extends Model
         return $this->getDisk()->path($this->getPath());
     }
 
-    public static function container(): DefaultVideo
-    {
-        return app(config('transcode.container', X264::class));
-    }
-
     public static function copyVideoCodec(): array
     {
         return config('transcode.copy_video_codecs', []);

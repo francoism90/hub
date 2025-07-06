@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Transcodes\Actions;
 
+use Domain\Transcodes\DataObjects\FormatData;
 use Domain\Transcodes\Models\Transcode;
 use ProtoneMedia\LaravelFFMpeg\MediaOpener;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -25,16 +26,13 @@ class GenerateHlsTranscode
 
         $copyAudioFormat = ($audio = $ffmpeg->getAudioStream()) && in_array($audio->get('codec_name'), Transcode::copyAudioCodec());
 
-        foreach ($pipeline->formats as $format) {
-            $ffmpeg->addFormat(Transcode::container()
-                ->setVideoCodec($format->copyVideo && $copyVideoFormat ? 'copy' : $format->video_codec)
-                ->setAudioCodec($format->copyAudio && $copyAudioFormat ? 'copy' : $format->audio_codec)
-                ->setKiloBitrate($format->video_bitrate)
-                ->setAdditionalParameters($format->additional_parameters)
-            );
-        }
+        $pipeline->format->each(fn (FormatData $format) => $ffmpeg->addFormat(app($format->container)
+            ->setVideoCodec($format->copyVideo && $copyVideoFormat ? 'copy' : $format->video_codec)
+            ->setAudioCodec($format->copyAudio && $copyAudioFormat ? 'copy' : $format->audio_codec)
+            ->setKiloBitrate($format->video_bitrate)
+            ->setAdditionalParameters($format->additional_parameters)
+        ));
 
         return $ffmpeg->save("{$transcode->getPath()}/{$pipeline->name}");
     }
-
 }

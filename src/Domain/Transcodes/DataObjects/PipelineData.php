@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Transcodes\DataObjects;
 
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Optional;
 
 class PipelineData extends Data
 {
@@ -12,9 +13,9 @@ class PipelineData extends Data
         public string $disk,
         public string $path,
         public string $name,
-        public string $destination,
-        public int $segmentLength,
-        public int $frameInterval,
+        public Optional|string $destination,
+        public Optional|int $segmentLength,
+        public Optional|int $frameInterval,
         public FormatDataCollection $formats,
     ) {
         $this->destination = (string) config('transcode.disk', 'transcode');
