@@ -59,7 +59,7 @@ class TranscodeVideo implements ShouldQueue
     public function middleware(): array
     {
         return [
-            Skip::when(! $this->video->hasMedia('clips') || $this->video->hasBeenTranscoded()),
+            Skip::when($this->video->hasBeenTranscoded() || ! $this->video->hasMedia('clips')),
         ];
     }
 

@@ -10,7 +10,7 @@ use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe\DataMapping\Stream;
 use Spatie\MediaLibrary\Support\TemporaryDirectory;
 use Spatie\TemporaryDirectory\TemporaryDirectory as BaseTemporaryDirectory;
-use Support\FFMpeg\Format\Subtitle\WebVTT;
+use Support\FFMpeg\Format\Video\WebVTT;
 
 class ExtractVideoCaptions
 {
@@ -68,7 +68,6 @@ class ExtractVideoCaptions
 
     protected function createTemporaryDirectory(): BaseTemporaryDirectory
     {
-        return TemporaryDirectory::create()
-            ->deleteWhenDestroyed();
+        return TemporaryDirectory::create()->deleteWhenDestroyed();
     }
 }

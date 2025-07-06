@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Transcodes\Actions;
 
 use Domain\Transcodes\DataObjects\PipelineData;
+use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,9 @@ class CreateVideoTranscode
 
             // Perform the transcode
             app(GenerateHlsTranscode::class)->handle($transcode);
+
+            // Dispatch the event after the transcode is created
+            event(new VideoHasBeenTranscoded($video));
         });
     }
 }
