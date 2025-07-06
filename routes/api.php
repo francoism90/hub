@@ -27,7 +27,7 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::name('videos.')->prefix('videos')->group(function () {
+        Route::get('/{video}/asset/{path}', VideoTranscodeController::class)->name('transcode');
         Route::get('/{video}/playlist/{path}', VideoPlaylistController::class)->name('playlist');
-        Route::get('/{video}/media/{path}', VideoTranscodeController::class)->name('transcode');
     });
 });
