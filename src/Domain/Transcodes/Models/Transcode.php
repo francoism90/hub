@@ -6,7 +6,6 @@ namespace Domain\Transcodes\Models;
 
 use Domain\Transcodes\DataObjects\PipelineData;
 use Domain\Users\Concerns\InteractsWithUser;
-use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
-use Support\FFMpeg\Format\Video\X264;
 
 class Transcode extends Model
 {
