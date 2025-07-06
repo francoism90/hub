@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Transcodes\Actions\CreateVideoTranscode;
+use Domain\Videos\Actions\CreateVideoManifest;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -50,7 +50,7 @@ class TranscodeVideo implements ShouldQueue
 
     public function handle(): void
     {
-        app(CreateVideoTranscode::class)->handle($this->video);
+        app(CreateVideoManifest::class)->handle($this->video);
     }
 
     /**

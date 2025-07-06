@@ -13,7 +13,7 @@ use Domain\Videos\Models\Video;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Pipeline;
 
-class CreateVideoTranscode
+class CreateVideoManifest
 {
     public function handle(Video $video, array $attributes = []): mixed
     {
@@ -35,20 +35,15 @@ class CreateVideoTranscode
             $transcode = $video->transcodes()->create($attributes);
 
             // Perform the transcode
-            $this->performTranscode($transcode);
+            Pipeline::send($transcode)
+                ->through([
+                    GenerateHlsTranscode::class,
+                    MarkTranscodeAsFinished::class,
+                ])
+                ->thenReturn();
 
             // Fire event that the video has been transcoded
             VideoHasBeenTranscoded::dispatch($video);
         });
-    }
-
-    protected function performTranscode(Transcode $transcode): Transcode
-    {
-        return Pipeline::send($transcode)
-            ->through([
-                GenerateHlsTranscode::class,
-                MarkTranscodeAsFinished::class,
-            ])
-            ->thenReturn();
     }
 }
