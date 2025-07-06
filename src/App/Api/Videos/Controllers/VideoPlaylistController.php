@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Gate;
 use ProtoneMedia\LaravelFFMpeg\Http\DynamicHLSPlaylist;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
-class ManifestController extends Controller implements HasMiddleware
+class VideoPlaylistController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -38,7 +38,7 @@ class ManifestController extends Controller implements HasMiddleware
         return FFMpeg::dynamicHLSPlaylist()
             ->fromDisk($transcode->pipeline->destination)
             ->open("{$transcode->getPath()}/{$path}")
-            ->setPlaylistUrlResolver(fn (string $path) => route('api.videos.manifest', ['video' => $video, 'path' => $path]))
-            ->setMediaUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'path' => $path]));
+            ->setPlaylistUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'path' => $path]))
+            ->setMediaUrlResolver(fn (string $path) => route('api.videos.transcode', ['video' => $video, 'path' => $path]));
     }
 }

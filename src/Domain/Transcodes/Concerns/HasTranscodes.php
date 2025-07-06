@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Transcodes\Concerns;
 
 use Domain\Transcodes\Models\Transcode;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasTranscodes

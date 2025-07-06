@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Controllers;
 
+use Domain\Videos\Exceptions\VideoException;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -12,23 +13,29 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class PlaylistController extends Controller implements HasMiddleware
+class VideoTranscodeController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
         return [
+            new Middleware('auth:sanctum'),
             // new Middleware('cache_model:600,video'),
         ];
     }
 
     public function __invoke(Video $video, string $path): StreamedResponse
     {
-        // Gate::authorize('view', $video);
+        Gate::authorize('view', $video);
 
-        $transcode = $video->transcodes()->first();
+        // Check if the video has been transcoded
+        $transcode = $video->currentTranscode();
 
-        $pipeline = $transcode->pipeline;
+        throw_if(! $transcode, VideoException::emptyTranscodeCollection());
 
-        return Storage::disk($pipeline->destination)->response("{$transcode->getPath()}/{$path}");
+        // Prevent directory traversal
+        $path = str($path)->replace(['../', './'], '')->value();
+
+        return Storage::disk($transcode->pipeline->destination)
+            ->response("{$transcode->getPath()}/{$path}");
     }
 }
