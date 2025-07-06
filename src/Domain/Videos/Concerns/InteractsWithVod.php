@@ -113,14 +113,14 @@ trait InteractsWithVod
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'stream')
+            get: fn () => ''
         )->shouldCache();
     }
 
     public function preview(): Attribute
     {
         return Attribute::make(
-            get: fn () => app(GetVideoManifestUrl::class)->execute($this, 'preview', true)
+            get: fn () => ''
         )->shouldCache();
     }
 

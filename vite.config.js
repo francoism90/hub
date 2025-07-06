@@ -9,11 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    hmr: { host: 'localhost' },
-    https: {},
-    watch: {
-      ignored: ['**/storage/**'],
-    },
+    hmr: { host: 'vite.aqua.test', clientPort: 443, protocol: 'wss' },
   },
   resolve: {
     alias: {
@@ -73,7 +69,7 @@ export default defineConfig({
         manualChunks: {
           http: ['axios'],
           ws: ['pusher-js', 'laravel-echo'],
-          video: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
+          play: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
           pwa: ['virtual:pwa-register'],
         },
       },

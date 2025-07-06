@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Actions;
 
+use Domain\Transcodes\Actions\GenerateHlsTranscode;
 use Domain\Transcodes\DataObjects\PipelineData;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
