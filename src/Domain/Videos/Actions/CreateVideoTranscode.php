@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Transcodes\Actions;
+namespace Domain\Videos\Actions;
 
 use Domain\Transcodes\DataObjects\PipelineData;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
