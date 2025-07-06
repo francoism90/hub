@@ -13,4 +13,9 @@ trait HasTranscodes
     {
         return $this->morphMany(Transcode::class, 'transcodeable')->chaperone();
     }
+
+    public function currentTranscode(): ?Transcode
+    {
+        return $this->transcodes()->active()->first();
+    }
 }

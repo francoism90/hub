@@ -9,7 +9,7 @@ use Domain\Users\Models\User;
 
 class MediaPolicy
 {
-    public function viewAny(?User $user): bool
+    public function viewAny(User $user): bool
     {
         return $user->hasRole('super-admin');
     }

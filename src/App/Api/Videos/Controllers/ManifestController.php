@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Controllers;
 
+use Domain\Videos\Exceptions\VideoException;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -17,6 +18,7 @@ class ManifestController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
+            new Middleware('auth:sanctum'),
             // new Middleware('cache_model:600,video'),
         ];
     }
@@ -26,21 +28,15 @@ class ManifestController extends Controller implements HasMiddleware
         Gate::authorize('view', $video);
 
         // Check if the video has been transcoded
-        $transcode = $video->transcodes()->active()->first();
+        $transcode = $video->currentTranscode();
 
-        dd($transcode);
-
-        if (! $transcode) {
-            abort(404, 'Video has not been transcoded yet.');
-        }
+        throw_if(! $transcode, VideoException::emptyTranscodeCollection());
 
         // Prevent directory traversal
         $path = str($path)->replace(['../', './'], '')->value();
 
-        $pipeline = $transcode->pipeline;
-
         return FFMpeg::dynamicHLSPlaylist()
-            ->fromDisk($pipeline->destination)
+            ->fromDisk($transcode->pipeline->destination)
             ->open("{$transcode->getPath()}/{$path}")
             ->setPlaylistUrlResolver(fn (string $path) => route('api.videos.manifest', ['video' => $video, 'path' => $path]))
             ->setMediaUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'path' => $path]));
