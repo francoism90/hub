@@ -19,7 +19,7 @@ class VideoPlaylistController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            // new Middleware('cache_model:600,video'),
+            new Middleware('cache_response:300'),
         ];
     }
 
