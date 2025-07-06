@@ -220,6 +220,7 @@ class Video extends Model implements HasMedia
      */
     public function broadcastOn(string $event): array
     {
+        logger($event);
         if ($event === 'deleted') {
             return [];
         }

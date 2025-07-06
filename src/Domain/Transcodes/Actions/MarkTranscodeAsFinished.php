@@ -16,7 +16,7 @@ class MarkTranscodeAsFinished
             'finished_at' => now(),
         ]);
 
-        event(new TranscodeHasBeenProcessed($transcode));
+        TranscodeHasBeenProcessed::dispatch($transcode);
 
         return $next($transcode);
     }

@@ -11,8 +11,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class VideoHasBeenProcessed implements ShouldDispatchAfterCommit
+class VideoHasBeenProcessed implements ShouldBroadcast, ShouldDispatchAfterCommit
 {
     use Dispatchable;
     use InteractsWithSockets;
@@ -28,5 +29,10 @@ class VideoHasBeenProcessed implements ShouldDispatchAfterCommit
     public function broadcastAs(): string
     {
         return 'processed';
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
     }
 }

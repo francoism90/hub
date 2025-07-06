@@ -6,13 +6,14 @@ namespace Domain\Videos\Events;
 
 use Domain\Videos\Models\Video;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Events\ShouldDispatchAfterCommit;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Events\ShouldDispatchAfterCommit;
 
-class VideoHasBeenTranscoded implements ShouldDispatchAfterCommit
+class VideoHasBeenTranscoded implements ShouldBroadcast, ShouldDispatchAfterCommit
 {
     use Dispatchable;
     use InteractsWithSockets;
@@ -28,5 +29,10 @@ class VideoHasBeenTranscoded implements ShouldDispatchAfterCommit
     public function broadcastAs(): string
     {
         return 'transcoded';
+    }
+
+    public function broadcastQueue(): string
+    {
+        return 'broadcasts';
     }
 }
