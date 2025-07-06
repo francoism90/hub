@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Api\Videos\Controllers;
 
 use Domain\Videos\Exceptions\NoTranscodingFound;
-use Domain\Videos\Exceptions\VideoException;
 use Domain\Videos\Models\Video;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;

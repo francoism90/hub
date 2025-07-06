@@ -45,7 +45,6 @@ trait WithVideo
         return [
             "echo-private:video.{$this->getVideoId()},.video.trashed" => 'onVideoDeleted',
             "echo-private:video.{$this->getVideoId()},.video.updated" => 'onVideoUpdated',
-            "echo-private:video.{$this->getVideoId()},.video.transcoded" => 'onVideoUpdated',
         ];
     }
 }

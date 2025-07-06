@@ -5,14 +5,9 @@ declare(strict_types=1);
 namespace App\Web\Videos\Controllers;
 
 use App\Web\Videos\Concerns\WithVideo;
-use Domain\Videos\Actions\CreateVideoManifest;
-use Domain\Videos\Actions\CreateVideoTranscode;
-use Domain\Videos\Actions\MarkAsFavorited;
-use Domain\Videos\Actions\MarkAsSaved;
-use Domain\Videos\Actions\MarkAsViewed;
 use Domain\Videos\Actions\MarkVideoAsFavorited;
 use Domain\Videos\Actions\MarkVideoAsSaved;
-use Domain\Videos\Jobs\TranscodeVideo;
+use Domain\Videos\Actions\MarkVideoAsViewed;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -23,11 +18,7 @@ class VideoViewController extends Page
 
     public function mount(): void
     {
-        TranscodeVideo::dispatchIf(! $this->getVideo()->currentTranscode(), $this->getVideo());
-
-        // app(MarkAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
-
-        // dd('view');
+        app(MarkVideoAsViewed::class)->execute($this->getAuthModel(), $this->getVideo());
     }
 
     public function render(): View

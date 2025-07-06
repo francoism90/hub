@@ -33,4 +33,9 @@ trait InteractsWithTranscodes
     {
         return $this->transcodes()->active()->first();
     }
+
+    public function isTranscoding(): bool
+    {
+        return $this->transcodes()->pending()->exists();
+    }
 }
