@@ -1,2 +1,2 @@
 #!/bin/sh
-podman build -t hub:latest -f ./containers/dev.Dockerfile "$@"
+podman build -t hub:latest -f ./containers/app/dev.Dockerfile "$@"
