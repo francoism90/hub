@@ -6,9 +6,11 @@ namespace Domain\Transcodes\Models;
 
 use Domain\Transcodes\Collections\TranscodeCollection;
 use Domain\Transcodes\DataObjects\PipelineData;
+use Domain\Transcodes\Observers\TranscodeObserver;
 use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
 use Domain\Transcodes\Scopes\OrderedScope;
 use Domain\Users\Concerns\InteractsWithUser;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 
+#[ObservedBy(TranscodeObserver::class)]
 #[ScopedBy(OrderedScope::class)]
 class Transcode extends Model
 {
@@ -81,9 +84,9 @@ class Transcode extends Model
         return $this->morphTo();
     }
 
-    public function getDisk(): FilesystemAdapter
+    public function getDisk(): string
     {
-        return Storage::disk($this->disk);
+        return $this->pipeline->destination ?? config('transcode.disk');
     }
 
     public function getPath(): string
@@ -91,9 +94,14 @@ class Transcode extends Model
         return (string) $this->getKey();
     }
 
+    public function getFilesystem(): FilesystemAdapter
+    {
+        return Storage::disk($this->getDisk());
+    }
+
     public function getAbsolutePath(): string
     {
-        return $this->getDisk()->path($this->getPath());
+        return $this->getFilesystem()->path($this->getPath());
     }
 
     public static function copyVideoCodec(): array

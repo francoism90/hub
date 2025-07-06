@@ -36,7 +36,7 @@ class VideoPlaylistController extends Controller implements HasMiddleware
         $path = str($path)->replace(['../', './'], '')->value();
 
         return FFMpeg::dynamicHLSPlaylist()
-            ->fromDisk($transcode->pipeline->destination)
+            ->fromDisk($transcode->getDisk())
             ->open("{$transcode->getPath()}/{$path}")
             ->setPlaylistUrlResolver(fn (string $path) => route('api.videos.playlist', ['video' => $video, 'path' => $path]))
             ->setMediaUrlResolver(fn (string $path) => route('api.videos.transcode', ['video' => $video, 'path' => $path]));

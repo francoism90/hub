@@ -10,7 +10,6 @@ use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class VideoTranscodeController extends Controller implements HasMiddleware
@@ -35,7 +34,6 @@ class VideoTranscodeController extends Controller implements HasMiddleware
         // Prevent directory traversal
         $path = str($path)->replace(['../', './'], '')->value();
 
-        return Storage::disk($transcode->pipeline->destination)
-            ->response("{$transcode->getPath()}/{$path}");
+        return $transcode->getFilesystem()->response("{$transcode->getPath()}/{$path}");
     }
 }
