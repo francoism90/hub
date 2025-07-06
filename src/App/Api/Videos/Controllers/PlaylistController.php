@@ -15,6 +15,7 @@ use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PlaylistController extends Controller implements HasMiddleware
 {
@@ -25,9 +26,11 @@ class PlaylistController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Video $model, Transcode $transcode, string $path)
+    public function __invoke(Video $video, string $path): StreamedResponse
     {
-        Gate::authorize('view', $model);
+        // Gate::authorize('view', $video);
+
+        $transcode = $video->transcodes()->first();
 
         $pipeline = $transcode->pipeline;
 

@@ -18,6 +18,7 @@ class GenerateHlsTranscode
         $ffmpeg = FFMpeg::fromDisk($pipeline->disk)
             ->open($pipeline->path)
             ->exportForHLS()
+            ->withoutPlaylistEndLine()
             ->toDisk($pipeline->destination)
             ->setSegmentLength($pipeline->segmentLength)
             ->setKeyFrameInterval($pipeline->frameInterval);

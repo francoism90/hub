@@ -66,7 +66,7 @@
                 await this.instance.load(manifest, timecode);
 
                 // Set tracks
-                await this.setTextTrack();
+                // await this.setTextTrack();
 
                 // Attach event listeners
                 const onBuffering = (event) => {
@@ -81,7 +81,7 @@
 
                 const onTimeUpdate = (event) => {
                     this.currentTime = event.target.currentTime;
-                    h();
+                    // h();
                 };
 
                 this.manager.listen(this.instance, 'mediaqualitychanged', onBuffering);
@@ -112,11 +112,11 @@
         },
 
         async sync() {
-            if ($wire.syncSession === undefined || this.instance === undefined) {
-                return;
-            }
+            // if ($wire.syncSession === undefined || this.instance === undefined) {
+            //     return;
+            // }
 
-            await $wire.syncSession(this.currentTime);
+            // await $wire.syncSession(this.currentTime);
         },
 
         async toggleFullscreen() {

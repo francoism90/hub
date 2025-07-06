@@ -112,7 +112,7 @@ trait InteractsWithVod
     public function stream(): Attribute
     {
         return Attribute::make(
-            get: fn () => route('api.videos.manifest', ['video' => $this])
+            get: fn () => route('api.videos.manifest', ['video' => $this, 'path' => 'manifest.m3u8'])
         )->shouldCache();
     }
 
