@@ -86,7 +86,7 @@ class Transcode extends Model
 
     public function getDisk(): string
     {
-        return $this->pipeline->destination ?? config('transcode.disk');
+        return $this->pipeline->destination ?? config('transcode.disk_name');
     }
 
     public function getPath(): string
