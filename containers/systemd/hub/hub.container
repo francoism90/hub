@@ -2,16 +2,15 @@
 Description=Hub container
 Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service
 After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service
-Wants=hub-queue.service hub-schedule.service hub-reverb.service hub-vod.service
+Wants=hub-reverb.service hub-queue.service hub-schedule.service
 
 [Container]
 Image=localhost/hub:latest
 AutoUpdate=local
 LogDriver=none
 UserNS=keep-id
+AddDevice=/dev/dri/:/dev/dri/
 Volume=${APP_PATH}:/app:rw,z,U
-Volume=${MEDIA_PATH}:/app/storage/app/media:rw,z,U
-Volume=${IMPORT_PATH}:/app/storage/app/import:rw,z,U
 Network=hub.network
 Network=proxy.network
 ExposeHostPort=8080
