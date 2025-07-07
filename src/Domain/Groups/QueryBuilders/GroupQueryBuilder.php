@@ -6,14 +6,13 @@ namespace Domain\Groups\QueryBuilders;
 
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
-use Domain\Groups\States\Verified;
 use Illuminate\Database\Eloquent\Builder;
 
 class GroupQueryBuilder extends Builder
 {
     public function published(): self
     {
-        return $this->whereState('state', Verified::class);
+        return $this->whereDate('published_at', '<=', now());
     }
 
     public function mixer(): self

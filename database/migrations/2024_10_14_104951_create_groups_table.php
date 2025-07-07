@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('kind')->nullable()->index();
             $table->string('type')->nullable()->index();
             $table->unsignedInteger('order_column')->nullable()->index();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
