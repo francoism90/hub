@@ -7,7 +7,7 @@ use App\Web\Entities\Controllers\EntityController;
 use Illuminate\Support\Facades\Route;
 
 // Home
-Route::get('/', HomeController::class)->name('home');
+// Route::get('/', HomeController::class)->name('home');
 
 // Resources
 Route::resources([

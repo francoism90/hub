@@ -15,12 +15,9 @@ use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
-use Spatie\PrefixedIds\PrefixedIds;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,10 +26,8 @@ class AppServiceProvider extends ServiceProvider
         $this->configureUrls();
         $this->configureModels();
         $this->configureMorphMap();
-        $this->configurePrefixedIds();
         $this->configureCommands();
         $this->configureJsonResource();
-        $this->configureMacros();
     }
 
     protected function configureUrls(): void
@@ -60,18 +55,6 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function configurePrefixedIds(): void
-    {
-        PrefixedIds::generateUniqueIdUsing(fn () => Str::random(10));
-
-        PrefixedIds::registerModels([
-            'list-' => Group::class,
-            'tag-' => Tag::class,
-            'user-' => User::class,
-            'video-' => Video::class,
-        ]);
-    }
-
     protected function configureCommands(): void
     {
         DB::prohibitDestructiveCommands(
@@ -82,23 +65,5 @@ class AppServiceProvider extends ServiceProvider
     protected function configureJsonResource(): void
     {
         JsonResource::withoutWrapping();
-    }
-
-    protected function configureMacros(): void
-    {
-        Collection::macro('options', function (string $label = 'name') {
-            /** @var Collection $this */
-            return $this->map(fn (Model $item) => [
-                'id' => $item->getRouteKey(),
-                'name' => $item->getAttribute($label),
-            ]);
-        });
-
-        Collection::macro('toModels', function () {
-            /** @var Collection $this */
-            return $this
-                ->map(fn (string $item) => PrefixedIds::find($item))
-                ->filter();
-        });
     }
 }

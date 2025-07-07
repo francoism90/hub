@@ -31,7 +31,7 @@ class UserPolicy
 
     public function delete(User $user, UserModel $model): bool
     {
-        return $user->is($model) || $user->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     public function restore(User $user, UserModel $model): bool

@@ -12,7 +12,6 @@ trait InteractsWithCache
     public static function bootInteractsWithCache(): void
     {
         static::updated(fn (User $model) => static::clearResponseCache($model));
-
         static::deleted(fn (User $model) => static::clearResponseCache($model));
     }
 

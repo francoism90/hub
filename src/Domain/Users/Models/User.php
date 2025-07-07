@@ -8,14 +8,13 @@ use Database\Factories\UserFactory;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Collections\UserCollection;
 use Domain\Users\Concerns\InteractsWithCache;
-use Domain\Users\Concerns\InteractsWithGroups;
 use Domain\Users\QueryBuilders\UserQueryBuilder;
-use Domain\Users\States\UserState;
 use Domain\Videos\Concerns\InteractsWithVideos;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,8 +34,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasPrefixedId;
     use HasRoles;
     use HasStates;
+    use HasUlids;
     use InteractsWithCache;
-    use InteractsWithGroups;
     use InteractsWithMedia;
     use InteractsWithVideos;
     use Notifiable;
@@ -73,7 +72,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'state' => UserState::class,
         ];
     }
 
@@ -87,14 +85,19 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return new UserCollection($models);
     }
 
-    public function guardName(): array
+    public function uniqueIds(): array
     {
-        return ['api', 'web'];
+        return ['ulid'];
     }
 
     public function getRouteKeyName(): string
     {
-        return 'prefixed_id';
+        return 'ulid';
+    }
+
+    public function guardName(): array
+    {
+        return ['api', 'web'];
     }
 
     public function registerMediaCollections(): void
@@ -167,7 +170,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             'id' => (int) $this->getScoutKey(),
             'name' => (string) $this->name,
             'email' => (string) $this->email,
-            'state' => (string) $this->state,
             'created' => (int) $this->created_at->getTimestamp(),
             'updated' => (int) $this->updated_at->getTimestamp(),
         ];
@@ -177,6 +179,13 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return Attribute::make(
             get: fn () => $this->getFirstMediaUrl('avatar')
+        )->shouldCache();
+    }
+
+    public function srcset(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getFirstMedia('avatar')?->getSrcset()
         )->shouldCache();
     }
 }
