@@ -148,22 +148,6 @@ class Video extends Model implements HasMedia
             ]);
 
         $this
-            ->addMediaCollection('previews')
-            ->useDisk('conversions')
-            ->storeConversionsOnDisk('conversions')
-            ->singleFile()
-            ->acceptsMimeTypes([
-                'video/av1',
-                'video/mp4',
-                'video/mp4v-es',
-                'video/ogg',
-                'video/quicktime',
-                'video/webm',
-                'video/x-m4v',
-                'video/x-matroska',
-            ]);
-
-        $this
             ->addMediaCollection('thumbnail')
             ->useDisk('conversions')
             ->storeConversionsOnDisk('conversions')

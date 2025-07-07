@@ -164,14 +164,14 @@ return [
         Spatie\MediaLibrary\Conversions\ImageGenerators\Avif::class,
         Spatie\MediaLibrary\Conversions\ImageGenerators\Pdf::class,
         Spatie\MediaLibrary\Conversions\ImageGenerators\Svg::class,
-        // Spatie\MediaLibrary\Conversions\ImageGenerators\Video::class,
+        Spatie\MediaLibrary\Conversions\ImageGenerators\Video::class,
     ],
 
     /*
      * The path where to store temporary files while performing image conversions.
      * If set to null, storage_path('media-library/temp') will be used.
      */
-    'temporary_directory_path' => null,
+    'temporary_directory_path' => env('FFMPEG_TEMPORARY_FILES_ROOT', sys_get_temp_dir()),
 
     /*
      * The engine that should perform the image conversions.

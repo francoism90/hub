@@ -13,7 +13,7 @@ class CleanVideos extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'videos:clean {--force=true}';
+    protected $signature = 'videos:clean';
 
     /**
      * @var string

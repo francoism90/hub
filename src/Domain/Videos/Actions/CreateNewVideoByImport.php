@@ -8,6 +8,7 @@ use Domain\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use SplFileInfo;
+use Domain\Videos\Models\Video;
 
 class CreateNewVideoByImport
 {
@@ -18,6 +19,7 @@ class CreateNewVideoByImport
 
             $name = Str::of($file->getBasename(".{$file->getExtension()}"))->title();
 
+            /** @var Video $video **/
             $video = $user->videos()->create([
                 'name' => $name->value(),
             ]);
@@ -26,6 +28,7 @@ class CreateNewVideoByImport
                 ->addMedia($path)
                 ->usingName($file->getFilename())
                 ->usingFileName("vid.{$file->getExtension()}")
+                ->withResponsiveImages()
                 ->toMediaCollection('clips');
 
             return $video;
