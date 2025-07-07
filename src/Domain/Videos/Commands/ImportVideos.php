@@ -68,9 +68,7 @@ class ImportVideos extends Command implements Isolatable
             label: 'Importing videos',
             steps: $files->getIterator(),
             callback: function (string $path, $progress) use ($user) {
-                $progress
-                    ->label("Importing {$path}")
-                    ->hint(now()->toDateTimeString());
+                $progress->label("Importing {$path}");
 
                 return ImportVideo::dispatch($user, $this->option('disk'), $path);
             }
