@@ -142,7 +142,6 @@ return [
             User::class => [
                 'filterableAttributes' => [
                     'id',
-                    'state',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -156,7 +155,6 @@ return [
                 'sortableAttributes' => [
                     'name',
                     'email',
-                    'state',
                     'created_at',
                     'updated_at',
                 ],
@@ -167,7 +165,6 @@ return [
                     'id',
                     'kind',
                     'type',
-                    'state',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -183,7 +180,6 @@ return [
                     'name',
                     'kind',
                     'type',
-                    'state',
                     'created_at',
                     'updated_at',
                 ],
@@ -210,7 +206,6 @@ return [
                     'adult',
                     'caption',
                     'tagged',
-                    'state',
                     'created_at',
                     'updated_at',
                     '__soft_deleted',
@@ -240,7 +235,6 @@ return [
                     'part',
                     'released',
                     'duration',
-                    'state',
                     'created_at',
                     'updated_at',
                 ],

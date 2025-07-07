@@ -64,7 +64,6 @@ class Video extends Model implements HasMedia
         'part',
         'adult',
         'snapshot',
-        'state',
         'released_at',
     ];
 
@@ -94,7 +93,9 @@ class Video extends Model implements HasMedia
     {
         return [
             'snapshot' => 'decimal:2',
-            'released_at' => 'date:Y-m-d',
+            'expires_at' => 'datetime',
+            'published_at' => 'datetime',
+            'released_at' => 'datetime',
         ];
     }
 
@@ -276,7 +277,6 @@ class Video extends Model implements HasMedia
             'tags' => (string) $this->tags_translated,
             'relatables' => (string) $this->tags_related,
             'tagged' => (array) $this->tags->modelKeys(),
-            'state' => (string) $this->state,
             'created_at' => (int) $this->created_at->getTimestamp(),
             'updated_at' => (int) $this->updated_at->getTimestamp(),
         ];
