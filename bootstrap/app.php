@@ -18,7 +18,7 @@ $app = Application::configure(basePath: $basePath)
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware) {
+    ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR |
             Request::HEADER_X_FORWARDED_HOST |
             Request::HEADER_X_FORWARDED_PORT |
@@ -47,18 +47,15 @@ $app = Application::configure(basePath: $basePath)
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions) {
+    ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->dontReport([
-            NoPrefixedModelFound::class,
             NoTranscodingFound::class,
         ]);
 
-        $exceptions->render(fn (NoPrefixedModelFound $e) => abort(404));
         $exceptions->render(fn (NoTranscodingFound $e) => abort(404));
     })
     ->withCommands([
         \Support\Scout\Commands\SyncIndexes::class,
-        \Domain\Users\Commands\CreateUser::class,
     ])
     ->create();
 
