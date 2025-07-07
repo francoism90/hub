@@ -6,7 +6,6 @@ namespace Domain\Videos\Policies;
 
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
-use Domain\Videos\States\Verified;
 
 class VideoPolicy
 {
@@ -17,10 +16,6 @@ class VideoPolicy
 
     public function view(User $user, Video $video): bool
     {
-        if ($video->state->equals(Verified::class)) {
-            return true;
-        }
-
         return $video->user()->is($user) || $user->hasRole('super-admin');
     }
 

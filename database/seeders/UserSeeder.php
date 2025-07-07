@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Domain\Users\Models\User;
-use Domain\Users\States\Verified;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 

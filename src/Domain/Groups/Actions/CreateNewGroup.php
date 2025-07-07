@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Groups\Actions;
 
 use Domain\Groups\Models\Group;
-use Domain\Groups\States\Verified;
 use Domain\Users\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
