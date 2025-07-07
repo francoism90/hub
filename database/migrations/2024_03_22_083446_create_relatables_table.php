@@ -14,7 +14,6 @@ return new class extends Migration
             $table->morphs('relate');
             $table->float('score')->nullable();
             $table->float('boost')->nullable();
-            $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['model_id', 'model_type', 'relate_id', 'relate_type']);
             $table->index(['model_id', 'model_type']);

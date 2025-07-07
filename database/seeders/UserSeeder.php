@@ -17,9 +17,5 @@ class UserSeeder extends Seeder
         );
 
         $model->assignRole('super-admin');
-
-        if ($model->state->canTransitionTo(Verified::class)) {
-            $model->state->transitionTo(Verified::class);
-        }
     }
 }

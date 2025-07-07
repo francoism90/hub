@@ -10,15 +10,15 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulid')->unique();
             $table
                 ->foreignId('user_id')
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
-            $table->string('prefixed_id')->unique();
-            $table->json('name');
-            $table->json('slug');
-            $table->json('description')->nullable();
+            $table->jsonb('name');
+            $table->jsonb('slug');
+            $table->jsonb('description')->nullable();
             $table->string('type')->nullable()->index();
             $table->boolean('adult')->default(false)->index();
             $table->unsignedInteger('order_column')->nullable()->index();

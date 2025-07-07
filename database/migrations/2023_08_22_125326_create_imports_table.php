@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulid')->unique();
             $table->nullableMorphs('model');
             $table
                 ->foreignId('user_id')
@@ -20,7 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('size');
             $table->string('name')->nullable();
             $table->string('mime_type')->nullable();
-            $table->string('state')->index();
             $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();

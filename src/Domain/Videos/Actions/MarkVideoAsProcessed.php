@@ -7,18 +7,17 @@ namespace Domain\Videos\Actions;
 use Closure;
 use Domain\Videos\Events\VideoHasBeenProcessed;
 use Domain\Videos\Models\Video;
-use Domain\Videos\States\Verified;
 
 class MarkVideoAsProcessed
 {
-    public function __invoke(Video $model, Closure $next): mixed
+    public function __invoke(Video $video, Closure $next): mixed
     {
-        if ($model->state->canTransitionTo(Verified::class)) {
-            $model->state->transitionTo(Verified::class);
-        }
+        $video->updateOrFail([
+            'finished_at' => now(),
+        ]);
 
-        VideoHasBeenProcessed::dispatch($model);
+        VideoHasBeenProcessed::dispatch($video);
 
-        return $next($model);
+        return $next($video);
     }
 }

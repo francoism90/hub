@@ -10,23 +10,24 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulid')->unique();
             $table
                 ->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('model');
-            $table->string('prefixed_id')->unique();
-            $table->json('name');
-            $table->json('content')->nullable();
-            $table->json('summary')->nullable();
-            $table->json('titles')->nullable();
+            $table->jsonb('name');
+            $table->jsonb('content')->nullable();
+            $table->jsonb('summary')->nullable();
+            $table->jsonb('titles')->nullable();
             $table->string('season')->nullable()->index();
             $table->string('episode')->nullable()->index();
             $table->string('part')->nullable()->index();
             $table->boolean('adult')->default(false)->index();
             $table->float('snapshot')->nullable();
-            $table->string('state')->index();
+            $table->timestamp('expires_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

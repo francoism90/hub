@@ -16,6 +16,7 @@
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.9.3",
         "http-interop/http-factory-guzzle": "^1.2",
+        "inertiajs/inertia-laravel": "^2.0.3",
         "laravel/fortify": "^1.27.0",
         "laravel/framework": "^12.19.3",
         "laravel/horizon": "^5.33.1",
@@ -39,7 +40,8 @@
         "spatie/laravel-medialibrary": "^11.13.0",
         "spatie/laravel-permission": "^6.20.0",
         "spatie/laravel-responsecache": "^7.7.0",
-        "spatie/laravel-tags": "^4.10.0"
+        "spatie/laravel-tags": "^4.10.0",
+        "spatie/laravel-translatable": "^6.11.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.5.5",

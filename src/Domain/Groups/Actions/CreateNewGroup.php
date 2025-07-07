@@ -20,10 +20,6 @@ class CreateNewGroup
                 Arr::only($attributes, app(Group::class)->getFillable()),
             );
 
-            if ($model->state->canTransitionTo(Verified::class)) {
-                $model->state->transitionTo(Verified::class);
-            }
-
             return $model;
         });
     }

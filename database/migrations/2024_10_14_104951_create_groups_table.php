@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('prefixed_id')->unique();
+            $table->ulid('ulid')->unique();
             $table
                 ->foreignId('user_id')
                 ->nullable()
@@ -18,11 +18,9 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('name')->nullable();
-            $table->text('content')->nullable();
+            $table->jsonb('content')->nullable();
             $table->string('kind')->nullable()->index();
             $table->string('type')->nullable()->index();
-            $table->string('state')->index();
-            $table->json('options')->nullable();
             $table->unsignedInteger('order_column')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
@@ -36,7 +34,6 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->morphs('groupable');
             $table->unsignedInteger('order_column')->nullable()->index();
-            $table->json('options')->nullable();
             $table->timestamps();
             $table->unique(['group_id', 'groupable_id', 'groupable_type']);
             $table->index(['groupable_id', 'groupable_type']);
