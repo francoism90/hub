@@ -14,13 +14,13 @@ class MediaPolicy
         return $user->hasRole('super-admin');
     }
 
-    public function view(?User $user, Media $media): bool
+    public function view(User $user, Media $media): bool
     {
         if (in_array($media->collection_name, ['avatar', 'placeholder', 'thumbnail'])) {
             return true;
         }
 
-        return $user?->hasRole('super-admin');
+        return $user->hasRole('super-admin');
     }
 
     public function create(User $user): bool

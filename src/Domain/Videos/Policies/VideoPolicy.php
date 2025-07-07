@@ -10,18 +10,18 @@ use Domain\Videos\States\Verified;
 
 class VideoPolicy
 {
-    public function viewAny(?User $user): bool
+    public function viewAny(User $user): bool
     {
         return true;
     }
 
-    public function view(?User $user, Video $video): bool
+    public function view(User $user, Video $video): bool
     {
         if ($video->state->equals(Verified::class)) {
             return true;
         }
 
-        return $user && ($video->user()->is($user) || $user->hasRole('super-admin'));
+        return $video->user()->is($user) || $user->hasRole('super-admin');
     }
 
     public function create(User $user): bool

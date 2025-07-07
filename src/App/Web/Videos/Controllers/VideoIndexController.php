@@ -9,6 +9,7 @@ use App\Web\Videos\Scopes\FilterVideos;
 use Domain\Videos\Algos\GenerateUserSuggestions;
 use Domain\Videos\Models\Video;
 use Foxws\WireUse\Models\Concerns\WithPaginateScroll;
+use Foxws\WireUse\Models\Concerns\WithQueryBuilder;
 use Foxws\WireUse\Views\Support\Page;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;

@@ -9,12 +9,12 @@ use Domain\Users\Models\User;
 
 class TagPolicy
 {
-    public function viewAny(?User $user): bool
+    public function viewAny(User $user): bool
     {
         return true;
     }
 
-    public function view(?User $user, Tag $tag): bool
+    public function view(User $user, Tag $tag): bool
     {
         return true;
     }
