@@ -10,5 +10,5 @@ Route::get('/', HomeController::class)->name('home');
 
 // Resources
 // Route::resources([
-    // 'entities' => EntityController::class,
+// 'entities' => EntityController::class,
 // ]);

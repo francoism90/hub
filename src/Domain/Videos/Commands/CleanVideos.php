@@ -27,7 +27,6 @@ class CleanVideos extends Command implements Isolatable
             $model->forceDelete();
         });
 
-
         // $items = Video::onlyTrashed()->lazy();
 
         // if ($items->isEmpty()) {

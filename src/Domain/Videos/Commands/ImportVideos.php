@@ -41,6 +41,7 @@ class ImportVideos extends Command implements Isolatable
 
         if ($files->isEmpty()) {
             info('No video files found in the import directory.');
+
             return;
         }
 

@@ -7,13 +7,13 @@ namespace Domain\Media\Listeners;
 use Domain\Media\Models\Media;
 use FFMpeg\FFProbe\DataMapping\Stream;
 use Illuminate\Support\Collection;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-use Spatie\MediaLibrary\Conversions\Events\ConversionWillStartEvent;
 use Illuminate\Support\Str;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAddedEvent;
 
 class SetMediaStreamData
 {
-    public function handle(ConversionWillStartEvent $event): void
+    public function handle(MediaHasBeenAddedEvent $event): void
     {
         if (! Str::startsWith($event->media->mime_type, ['audio/', 'video/'])) {
             return;
