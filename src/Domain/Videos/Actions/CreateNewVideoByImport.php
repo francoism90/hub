@@ -6,29 +6,23 @@ namespace Domain\Videos\Actions;
 
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use SplFileInfo;
 use Domain\Videos\Models\Video;
 
 class CreateNewVideoByImport
 {
-    public function handle(User $user, string $path): mixed
+    public function handle(User $user, string $disk, string $path): mixed
     {
-        return DB::transaction(function () use ($user, $path) {
+        return DB::transaction(function () use ($user, $disk, $path) {
             $file = new SplFileInfo($path);
-
-            $name = Str::of($file->getBasename(".{$file->getExtension()}"))->title();
 
             /** @var Video $video **/
             $video = $user->videos()->create([
-                'name' => $name->value(),
+                'name' => $file->getBasename(".{$file->getExtension()}"),
             ]);
 
             $video
-                ->addMedia($path)
-                ->usingName($file->getFilename())
-                ->usingFileName("vid.{$file->getExtension()}")
-                ->preservingOriginal()
+                ->addMediaFromDisk($path, $disk)
                 ->withResponsiveImages()
                 ->toMediaCollection('clips');
 

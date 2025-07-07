@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
@@ -137,29 +138,16 @@ class Video extends Model implements HasMedia
                 'video/x-m4v',
                 'video/x-matroska',
             ]);
+    }
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
         $this
-            ->addMediaCollection('captions')
-            ->useDisk('media')
-            ->storeConversionsOnDisk('conversions')
-            ->acceptsMimeTypes([
-                'text/plain',
-                'text/vtt',
-            ]);
-
-        $this
-            ->addMediaCollection('thumbnail')
-            ->useDisk('conversions')
-            ->storeConversionsOnDisk('conversions')
-            ->singleFile()
-            ->withResponsiveImages()
-            ->acceptsMimeTypes([
-                'image/avif',
-                'image/jpg',
-                'image/jpeg',
-                'image/png',
-                'image/webp',
-            ]);
+            ->addMediaConversion('thumb')
+            ->performOnCollections('clips')
+            ->width(368)
+            ->height(232)
+            ->queued();
     }
 
     public function isFavoritedBy(?User $user = null): bool

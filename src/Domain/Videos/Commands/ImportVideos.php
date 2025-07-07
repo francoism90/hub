@@ -8,11 +8,11 @@ use Domain\Users\Models\User;
 use Domain\Videos\Jobs\ImportVideo;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\progress;
@@ -25,7 +25,7 @@ class ImportVideos extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'videos:import';
+    protected $signature = 'videos:import {--disk=import}';
 
     /**
      * @var string
@@ -39,16 +39,16 @@ class ImportVideos extends Command implements Isolatable
             callback: fn () => $this->getCollection()
         );
 
-        if ($files->count() === 0) {
+        if ($files->isEmpty()) {
             info('No video files found in the import directory.');
             return;
         }
 
         table(
             headers: ['Filename', 'Filesize'],
-            rows: collect($files->getIterator())->map(fn (SplFileInfo $file) => [
-                Str::limit($file->getFilename()),
-                Number::fileSize($file->getSize()),
+            rows: collect($files->getIterator())->map(fn (string $path) => [
+                Str::limit($path),
+                Number::fileSize($this->getFileSystem()->size($path)),
             ])->all()
         );
 
@@ -66,26 +66,24 @@ class ImportVideos extends Command implements Isolatable
         progress(
             label: 'Importing videos',
             steps: $files->getIterator(),
-            callback: function (SplFileInfo $file, $progress) use ($user) {
+            callback: function (string $path, $progress) use ($user) {
                 $progress
-                    ->label("Importing {$file->getFilename()}")
-                    ->hint("Filesize {$file->getSize()} bytes");
+                    ->label("Importing {$path}")
+                    ->hint(now()->toDateTimeString());
 
-                return ImportVideo::dispatch($user, $file->getRealPath());
+                return ImportVideo::dispatch($user, $this->option('disk'), $path);
             }
         );
     }
 
-    protected function getCollection(): Finder
+    protected function getCollection(): Collection
     {
-        $path = Storage::disk('import')->path('');
+        return collect($this->getFileSystem()->allFiles())
+            ->filter(fn (string $path) => rescue(fn () => str_starts_with($this->getFileSystem()->mimeType($path), 'video/'), report: false));
+    }
 
-        return Finder::create()
-            ->in($path)
-            ->files()
-            ->sortByName(useNaturalSort: true)
-            ->filter(fn (SplFileInfo $file) => $file->isWritable() && str_starts_with(
-                mime_content_type($file->getRealPath()), 'video/')
-            );
+    protected function getFileSystem(): FilesystemAdapter
+    {
+        return Storage::disk($this->option('disk'));
     }
 }

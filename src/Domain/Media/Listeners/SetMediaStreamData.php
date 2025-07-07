@@ -2,33 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Domain\Media\Actions;
+namespace Domain\Media\Listeners;
 
-use Closure;
 use Domain\Media\Models\Media;
 use FFMpeg\FFProbe\DataMapping\Stream;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Spatie\MediaLibrary\Conversions\Events\ConversionWillStartEvent;
+use Illuminate\Support\Str;
 
-class SetMediaProperties
+class SetMediaStreamData
 {
-    public function __invoke(Media $media, Closure $next): mixed
+    public function handle(ConversionWillStartEvent $event): void
     {
-        return DB::transaction(function () use ($media, $next) {
-            $keys = $this->getStreamKeys();
+        if (! Str::startsWith($event->media->mime_type, ['audio/', 'video/'])) {
+            return;
+        }
 
-            if (! str($media->mime_type)->startsWith('audio/', 'video/')) {
-                return;
-            }
+        $keys = $this->getStreamKeys();
 
-            $streams = $this->parseStreams($media, $keys);
+        $streams = $this->parseStreams($event->media, $keys);
 
-            $media->setCustomProperty('streams', $streams->toArray());
-            $media->saveOrFail();
-
-            return $next($media);
-        });
+        $event->media->setCustomProperty('streams', $streams->toArray());
+        $event->media->saveOrFail();
     }
 
     protected function parseStreams(Media $media, array $keys): Collection

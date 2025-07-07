@@ -22,21 +22,27 @@ class CleanVideos extends Command implements Isolatable
 
     public function handle(): void
     {
-        $items = Video::onlyTrashed()->lazy();
-
-        if ($items->isEmpty()) {
-            $this->components->info('No videos found for deletion');
-
-            return;
-        }
-
-        throw_if(! $this->confirm("Are you sure to delete {$items->count()} videos?"));
-
-        $items->each(function (Video $model) {
-            if ($model->trashed()) {
-                $this->components->info("deleting {$model->name} ({$model->getKey()})");
-                $model->forceDelete();
-            }
+        // TODO: only temp!
+        Video::all()->each(function (Video $model) {
+            $model->forceDelete();
         });
+
+
+        // $items = Video::onlyTrashed()->lazy();
+
+        // if ($items->isEmpty()) {
+        //     $this->components->info('No videos found for deletion');
+
+        //     return;
+        // }
+
+        // throw_if(! $this->confirm("Are you sure to delete {$items->count()} videos?"));
+
+        // $items->each(function (Video $model) {
+        //     if ($model->trashed()) {
+        //         $this->components->info("deleting {$model->name} ({$model->getKey()})");
+        //         $model->forceDelete();
+        //     }
+        // });
     }
 }

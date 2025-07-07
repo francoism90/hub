@@ -50,6 +50,7 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
 
     public function __construct(
         protected User $user,
+        protected string $disk,
         protected string $path,
     ) {
         $this->onQueue('processing');
@@ -57,7 +58,7 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        app(CreateNewVideoByImport::class)->handle($this->user, $this->path);
+        app(CreateNewVideoByImport::class)->handle($this->user, $this->disk, $this->path);
     }
 
     /**
