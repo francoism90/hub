@@ -28,7 +28,7 @@ class VideoHasBeenReleased implements ShouldBroadcast, ShouldDispatchAfterCommit
 
     public function broadcastAs(): string
     {
-        return 'released';
+        return 'video.updated';
     }
 
     public function broadcastQueue(): string

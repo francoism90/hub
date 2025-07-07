@@ -1,6 +1,5 @@
 {{ html()
     ->element('main')
-    ->ignore()
     ->class('relative size-full')
     ->attributes([
         'x-data' => 'player',

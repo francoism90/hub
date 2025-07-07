@@ -28,7 +28,7 @@ class VideoHasBeenTranscoded implements ShouldBroadcast, ShouldDispatchAfterComm
 
     public function broadcastAs(): string
     {
-        return 'transcoded';
+        return 'video.updated';
     }
 
     public function broadcastQueue(): string

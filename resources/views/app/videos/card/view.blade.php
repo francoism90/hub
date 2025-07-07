@@ -37,7 +37,6 @@
 
                 html()
                     ->element('video')
-                    ->ignore()
                     ->class('absolute inset-0 z-10 w-full h-48 min-h-48 max-h-48 rounded object-fill brightness-95')
                     ->attributes([
                         'x-cloak',

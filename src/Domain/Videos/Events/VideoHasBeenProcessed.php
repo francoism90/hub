@@ -28,7 +28,7 @@ class VideoHasBeenProcessed implements ShouldBroadcast, ShouldDispatchAfterCommi
 
     public function broadcastAs(): string
     {
-        return 'processed';
+        return 'video.updated';
     }
 
     public function broadcastQueue(): string
