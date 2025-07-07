@@ -51,7 +51,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: 'pnpm'
+                  cache: "pnpm"
 
             - name: Setup PHP extensions cache
               id: phpextcache
@@ -61,8 +61,8 @@ jobs:
                   extensions: ${{ env.php-extensions }}
                   key: ${{ env.key }}
 
-            - name: 'Determine composer cache directory'
-              id: 'composer-cache-directory'
+            - name: "Determine composer cache directory"
+              id: "composer-cache-directory"
               run: 'echo "::set-output name=directory::$(composer config cache-dir)"'
 
             - name: Cache php extensions & composer downloads
@@ -87,7 +87,7 @@ jobs:
 
             - name: Build application
               run: |
-                  cp .env.ci .env
+                  cp .env.example .env
                   composer install --prefer-dist --no-interaction --optimize-autoloader
                   php artisan key:generate
                   php artisan storage:link
