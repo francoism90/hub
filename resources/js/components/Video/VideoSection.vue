@@ -2,8 +2,7 @@
 import type { Video } from '@/types'
 
 interface Props {
-  title?: string
-  description?: string
+  label: string
   items?: Video[]
 }
 
@@ -11,16 +10,24 @@ defineProps<Props>()
 </script>
 
 <template>
-  <UCarousel
-    v-slot="{ item }"
-    :items="items"
-    :ui="{ item: 'basis-1/3' }"
-  >
-    <img
-      :src="item"
-      width="234"
-      height="234"
-      class="rounded-lg"
-    />
-  </UCarousel>
+  <section class="flex flex-col gap-3">
+    <div class="flex items-center justify-between">
+      <h2 class="font-serif text-lg font-semibold tracking-tight">{{ label }}</h2>
+    </div>
+
+    <div
+      v-for="item in items"
+      :key="item.id"
+    >
+      <!-- {{ item.name }} -->
+      <!-- {{ item.thumbnail }} -->
+      {{ item.srcset }}
+
+      <img
+        :src="item.thumbnail"
+        :alt="item.name"
+        class="h-auto w-full rounded-lg"
+      />
+    </div>
+  </section>
 </template>

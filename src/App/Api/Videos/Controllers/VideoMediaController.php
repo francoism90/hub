@@ -12,7 +12,7 @@ use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class VideoTranscodeController extends Controller implements HasMiddleware
+class VideoMediaController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {

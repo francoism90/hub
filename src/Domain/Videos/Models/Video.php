@@ -143,8 +143,9 @@ class Video extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
-            ->addMediaConversion('thumb')
+            ->addMediaConversion('thumbnail')
             ->performOnCollections('clips')
+            ->withResponsiveImages()
             ->width(368)
             ->height(232)
             ->queued();
@@ -275,31 +276,17 @@ class Video extends Model implements HasMedia
         )->shouldCache();
     }
 
-    public function srcset(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getFirstMedia('thumbnail')?->getSrcset()
-        )->shouldCache();
-    }
-
     public function thumbnail(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->getFirstMediaUrl('thumbnail')
+            get: fn () => $this->getFirstMediaUrl('clips', 'thumbnail')
         )->shouldCache();
     }
 
-    public function released(): Attribute
+    public function srcset(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->released_at?->toDateString()
-        )->shouldCache();
-    }
-
-    public function published(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->released_at ?: $this->created_at
+            get: fn () => $this->getFirstMedia('clips')?->getSrcset('thumbnail')
         )->shouldCache();
     }
 }

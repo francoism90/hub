@@ -12,11 +12,11 @@ class VideoResource extends JsonResource
     {
         return [
             'id' => $this->getRouteKey(),
-            'name' => 'name',
-            'summary' => 'summary',
-            'season' => 'season',
-            'episode' => 'episode',
-            'part' => 'part',
+            'name' => $this->name,
+            'summary' => $this->summary,
+            'season' => $this->season,
+            'episode' => $this->episode,
+            'part' => $this->part,
             'thumbnail' => $this->thumbnail,
             'srcset' => $this->srcset,
             'duration' => $this->duration,

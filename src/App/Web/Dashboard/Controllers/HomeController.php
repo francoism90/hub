@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Dashboard\Controllers;
 
-use Illuminate\Http\Request;
+use Domain\Videos\Algos\GenerateVideoRecommendation;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Inertia\Inertia;
@@ -19,10 +19,10 @@ class HomeController implements HasMiddleware
         ];
     }
 
-    public function __invoke(Request $request): Response
+    public function __invoke(): Response
     {
         return Inertia::render('Dashboard/DashboardIndex', [
-            //
+            'recent' => Inertia::defer(fn () => GenerateVideoRecommendation::make()),
         ]);
     }
 }

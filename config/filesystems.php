@@ -34,7 +34,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/private'),
             'serve' => true,
-            'throw' => true,
+            'throw' => false,
             'report' => true,
         ],
 
@@ -43,8 +43,8 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-            'throw' => true,
-            'report' => true,
+            'throw' => false,
+            'report' => false,
         ],
 
         's3' => [
@@ -59,38 +59,37 @@ return [
             'visibility' => 'private',
             'throw' => false,
             'report' => false,
-            'read-only' => false,
         ],
 
         'conversions' => [
             'driver' => 'local',
             'root' => storage_path('app/conversions'),
-            'visibility' => 'private',
-            'throw' => true,
+            'serve' => true,
+            'throw' => false,
             'report' => true,
         ],
 
         'media' => [
             'driver' => 'local',
             'root' => storage_path('app/media'),
-            'visibility' => 'private',
-            'throw' => true,
+            'serve' => true,
+            'throw' => false,
             'report' => true,
         ],
 
         'transcode' => [
             'driver' => 'local',
             'root' => storage_path('app/transcode'),
-            'visibility' => 'private',
-            'throw' => true,
+            'serve' => true,
+            'throw' => false,
             'report' => true,
         ],
 
         'import' => [
             'driver' => 'local',
             'root' => storage_path('app/import'),
-            'visibility' => 'private',
-            'throw' => true,
+            'serve' => true,
+            'throw' => false,
             'report' => true,
         ],
 

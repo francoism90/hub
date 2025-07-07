@@ -1,28 +1,28 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
 /**
-* @see \App\Api\Videos\Controllers\VideoTranscodeController::transcode
-* @see src/App/Api/Videos/Controllers/VideoTranscodeController.php:25
+* @see \App\Api\Videos\Controllers\VideoMediaController::media
+* @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
 * @route '/api/v1/videos/{video}/asset/{path}'
 */
-export const transcode = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+export const media = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
-    url: transcode.url(args, options),
+    url: media.url(args, options),
     method: 'get',
 })
 
-transcode.definition = {
+media.definition = {
     methods: ['get','head'],
     url: '/api/v1/videos/{video}/asset/{path}',
 }
 
 /**
-* @see \App\Api\Videos\Controllers\VideoTranscodeController::transcode
-* @see src/App/Api/Videos/Controllers/VideoTranscodeController.php:25
+* @see \App\Api\Videos\Controllers\VideoMediaController::media
+* @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
 * @route '/api/v1/videos/{video}/asset/{path}'
 */
-transcode.url = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+media.url = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
         args = {
             video: args[0],
@@ -37,35 +37,35 @@ transcode.url = (args: { video: string | { ulid: string }, path: string | number
         path: args.path,
     }
 
-    return transcode.definition.url
+    return media.definition.url
             .replace('{video}', parsedArgs.video.toString())
             .replace('{path}', parsedArgs.path.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
-* @see \App\Api\Videos\Controllers\VideoTranscodeController::transcode
-* @see src/App/Api/Videos/Controllers/VideoTranscodeController.php:25
+* @see \App\Api\Videos\Controllers\VideoMediaController::media
+* @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
 * @route '/api/v1/videos/{video}/asset/{path}'
 */
-transcode.get = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+media.get = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
-    url: transcode.url(args, options),
+    url: media.url(args, options),
     method: 'get',
 })
 
 /**
-* @see \App\Api\Videos\Controllers\VideoTranscodeController::transcode
-* @see src/App/Api/Videos/Controllers/VideoTranscodeController.php:25
+* @see \App\Api\Videos\Controllers\VideoMediaController::media
+* @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
 * @route '/api/v1/videos/{video}/asset/{path}'
 */
-transcode.head = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+media.head = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({
-    url: transcode.url(args, options),
+    url: media.url(args, options),
     method: 'head',
 })
 
@@ -140,7 +140,7 @@ playlist.head = (args: { video: string | { ulid: string }, path: string | number
 })
 
 const videos = {
-    transcode,
+    media,
     playlist,
 }
 

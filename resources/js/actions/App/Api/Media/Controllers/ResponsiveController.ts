@@ -2,9 +2,9 @@ import { queryParams, type QueryParams, validateParameters } from './../../../..
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
 * @see src/App/Api/Media/Controllers/ResponsiveController.php:15
-* @route '/api/v1/responsive/{media}/{conversion?}'
+* @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
-const ResponsiveController = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+const ResponsiveController = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -14,24 +14,26 @@ const ResponsiveController = (args: { media: string | { uuid: string }, conversi
 
 ResponsiveController.definition = {
     methods: ['get','head'],
-    url: '/api/v1/responsive/{media}/{conversion?}',
+    url: '/api/v1/responsive/{media}/{conversion?}/{path?}',
 }
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
 * @see src/App/Api/Media/Controllers/ResponsiveController.php:15
-* @route '/api/v1/responsive/{media}/{conversion?}'
+* @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
-ResponsiveController.url = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+ResponsiveController.url = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
         args = {
             media: args[0],
             conversion: args[1],
+            path: args[2],
         }
     }
 
     validateParameters(args, [
         "conversion",
+        "path",
     ])
 
     const parsedArgs = {
@@ -39,20 +41,22 @@ ResponsiveController.url = (args: { media: string | { uuid: string }, conversion
         ? args.media.uuid
         : args.media,
         conversion: args.conversion,
+        path: args.path,
     }
 
     return ResponsiveController.definition.url
             .replace('{media}', parsedArgs.media.toString())
             .replace('{conversion?}', parsedArgs.conversion?.toString() ?? '')
+            .replace('{path?}', parsedArgs.path?.toString() ?? '')
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
 * @see src/App/Api/Media/Controllers/ResponsiveController.php:15
-* @route '/api/v1/responsive/{media}/{conversion?}'
+* @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
-ResponsiveController.get = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+ResponsiveController.get = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -63,9 +67,9 @@ ResponsiveController.get = (args: { media: string | { uuid: string }, conversion
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
 * @see src/App/Api/Media/Controllers/ResponsiveController.php:15
-* @route '/api/v1/responsive/{media}/{conversion?}'
+* @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
-ResponsiveController.head = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+ResponsiveController.head = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({

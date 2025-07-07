@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import Page from '@/components/Ui/Page.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
+import VideoSection from '@/components/Video/VideoSection.vue'
 import type { Video } from '@/types'
+import { Deferred } from '@inertiajs/vue3'
 
 interface Props {
-  items?: Video[]
+  recent?: Video[]
 }
 
 defineProps<Props>()
@@ -12,6 +14,17 @@ defineProps<Props>()
 
 <template>
   <Page>
-    <PageBody> foo </PageBody>
+    <PageBody>
+      <Deferred data="recent">
+        <template #fallback>
+          <div class="sr-only">Loading sections...</div>
+        </template>
+
+        <VideoSection
+          label="Continue Watching"
+          :items="recent"
+        />
+      </Deferred>
+    </PageBody>
   </Page>
 </template>

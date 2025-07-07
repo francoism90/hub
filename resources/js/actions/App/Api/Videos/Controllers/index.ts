@@ -1,8 +1,8 @@
-import VideoTranscodeController from './VideoTranscodeController'
+import VideoMediaController from './VideoMediaController'
 import VideoPlaylistController from './VideoPlaylistController'
 
 const Controllers = {
-    VideoTranscodeController,
+    VideoMediaController,
     VideoPlaylistController,
 }
 
