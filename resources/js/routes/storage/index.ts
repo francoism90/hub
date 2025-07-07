@@ -3,15 +3,15 @@ import { queryParams, type QueryParams } from './../../wayfinder'
 * @see vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php:98
 * @route '/storage/{path}'
 */
-export const local = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+export const importMethod = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
-    url: local.url(args, options),
+    url: importMethod.url(args, options),
     method: 'get',
 })
 
-local.definition = {
+importMethod.definition = {
     methods: ['get','head'],
     url: '/storage/{path}',
 }
@@ -20,7 +20,7 @@ local.definition = {
 * @see vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php:98
 * @route '/storage/{path}'
 */
-local.url = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+importMethod.url = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { path: args }
     }
@@ -35,7 +35,7 @@ local.url = (args: { path: string | number } | [path: string | number ] | string
         path: args.path,
     }
 
-    return local.definition.url
+    return importMethod.definition.url
             .replace('{path}', parsedArgs.path.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
@@ -44,11 +44,11 @@ local.url = (args: { path: string | number } | [path: string | number ] | string
 * @see vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php:98
 * @route '/storage/{path}'
 */
-local.get = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+importMethod.get = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
-    url: local.url(args, options),
+    url: importMethod.url(args, options),
     method: 'get',
 })
 
@@ -56,16 +56,16 @@ local.get = (args: { path: string | number } | [path: string | number ] | string
 * @see vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php:98
 * @route '/storage/{path}'
 */
-local.head = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+importMethod.head = (args: { path: string | number } | [path: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({
-    url: local.url(args, options),
+    url: importMethod.url(args, options),
     method: 'head',
 })
 
 const storage = {
-    local,
+    import: importMethod,
 }
 
 export default storage

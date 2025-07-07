@@ -19,14 +19,14 @@ defineProps<Props>()
       v-for="item in items"
       :key="item.id"
     >
-      <!-- {{ item.name }} -->
+      {{ item.name }}
       <!-- {{ item.thumbnail }} -->
-      {{ item.srcset }}
 
       <img
         :src="item.thumbnail"
+        :srcset="item.srcset"
         :alt="item.name"
-        class="h-auto w-full rounded-lg"
+        class="size-32 rounded-lg"
       />
     </div>
   </section>

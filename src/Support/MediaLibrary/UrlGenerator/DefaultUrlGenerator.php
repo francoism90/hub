@@ -29,8 +29,6 @@ class DefaultUrlGenerator extends BaseUrlGenerator
 
     public function getResponsiveImagesDirectoryUrl(): string
     {
-        $path = $this->pathGenerator->getPathForResponsiveImages($this->media);
-
         $url = route('api.media.responsive', [
             'media' => $this->media,
             'conversion' => $this->conversion?->getName(),

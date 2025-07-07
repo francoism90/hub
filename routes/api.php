@@ -18,7 +18,7 @@ Route::name('api.')->prefix('v1')->group(function () {
     Route::name('media.')->group(function () {
         Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
         Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
-        Route::get('/responsive/{media}/{conversion?}/{path?}', ResponsiveController::class)->name('responsive')->where('path', '.*');
+        Route::get('/responsive/{media}/{conversion?}/{path?}', ResponsiveController::class)->name('responsive');
     });
 
     // Videos

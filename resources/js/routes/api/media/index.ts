@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../wayfinder'
 /**
 * @see \App\Api\Media\Controllers\AssetController::asset
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 export const asset = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ asset.definition = {
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::asset
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 asset.url = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -49,7 +49,7 @@ asset.url = (args: { media: string | { uuid: string }, conversion?: string | num
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::asset
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 asset.get = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -62,7 +62,7 @@ asset.get = (args: { media: string | { uuid: string }, conversion?: string | num
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::asset
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 asset.head = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -149,7 +149,7 @@ download.head = (args: { media: string | { uuid: string }, conversion?: string |
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::responsive
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 export const responsive = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -167,7 +167,7 @@ responsive.definition = {
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::responsive
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 responsive.url = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -201,7 +201,7 @@ responsive.url = (args: { media: string | { uuid: string }, conversion?: string 
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::responsive
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 responsive.get = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -214,7 +214,7 @@ responsive.get = (args: { media: string | { uuid: string }, conversion?: string 
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::responsive
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 responsive.head = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

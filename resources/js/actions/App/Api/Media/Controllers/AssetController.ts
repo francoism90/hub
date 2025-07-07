@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Media\Controllers\AssetController::__invoke
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 const AssetController = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ AssetController.definition = {
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::__invoke
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 AssetController.url = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -49,7 +49,7 @@ AssetController.url = (args: { media: string | { uuid: string }, conversion?: st
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::__invoke
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 AssetController.get = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -62,7 +62,7 @@ AssetController.get = (args: { media: string | { uuid: string }, conversion?: st
 
 /**
 * @see \App\Api\Media\Controllers\AssetController::__invoke
-* @see src/App/Api/Media/Controllers/AssetController.php:26
+* @see src/App/Api/Media/Controllers/AssetController.php:24
 * @route '/api/v1/asset/{media}/{conversion?}'
 */
 AssetController.head = (args: { media: string | { uuid: string }, conversion?: string | number } | [media: string | { uuid: string }, conversion: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

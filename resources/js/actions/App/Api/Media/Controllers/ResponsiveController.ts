@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 const ResponsiveController = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ ResponsiveController.definition = {
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 ResponsiveController.url = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -53,7 +53,7 @@ ResponsiveController.url = (args: { media: string | { uuid: string }, conversion
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 ResponsiveController.get = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -66,7 +66,7 @@ ResponsiveController.get = (args: { media: string | { uuid: string }, conversion
 
 /**
 * @see \App\Api\Media\Controllers\ResponsiveController::__invoke
-* @see src/App/Api/Media/Controllers/ResponsiveController.php:15
+* @see src/App/Api/Media/Controllers/ResponsiveController.php:25
 * @route '/api/v1/responsive/{media}/{conversion?}/{path?}'
 */
 ResponsiveController.head = (args: { media: string | { uuid: string }, conversion?: string | number, path?: string | number } | [media: string | { uuid: string }, conversion: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
