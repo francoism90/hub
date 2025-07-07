@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Foundation\Providers;
 
 use Domain\Groups\Models\Group;
-use Domain\Imports\Models\Import;
 use Domain\Media\Models\Media;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
@@ -45,7 +44,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::enforceMorphMap([
             'group' => Group::class,
-            'import' => Import::class,
             'media' => Media::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,

@@ -64,7 +64,9 @@ class Video extends Model implements HasMedia
         'part',
         'adult',
         'snapshot',
-        'released_at',
+        'expires_at' => 'datetime',
+        'published_at' => 'datetime',
+        'released_at' => 'datetime',
     ];
 
     /**

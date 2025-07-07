@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Imports\Events\ImportHasBeenProcessed;
-use Domain\Imports\Models\Import;
-use Domain\Videos\Actions\CreateVideoByImport;
+use Domain\Users\Models\User;
+use Domain\Videos\Actions\CreateNewVideoByImport;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -15,7 +14,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Pipeline;
 
 class ImportVideo implements ShouldBeUnique, ShouldQueue
 {
@@ -51,18 +49,15 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected Import $import,
+        protected User $user,
+        protected string $path,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        Pipeline::send($this->import)
-            ->through([
-                CreateVideoByImport::class,
-            ])
-            ->then(fn (Import $import) => event(new ImportHasBeenProcessed($import)));
+        app(CreateNewVideoByImport::class)->handle($this->user, $this->path);
     }
 
     /**
@@ -77,7 +72,7 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
 
     public function uniqueId(): string
     {
-        return hash('crc32', $this->import->identifier);
+        return hash('xxh128', implode(':', [static::class, $this->path]));
     }
 
     public function retryUntil(): \DateTime
