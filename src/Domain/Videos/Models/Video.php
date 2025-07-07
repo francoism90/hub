@@ -14,33 +14,28 @@ use Domain\Videos\Collections\VideoCollection;
 use Domain\Videos\Concerns\InteractsWithCache;
 use Domain\Videos\Concerns\InteractsWithVod;
 use Domain\Videos\QueryBuilders\VideoQueryBuilder;
-use Domain\Videos\States\VideoState;
-use Foxws\ModelCache\Concerns\InteractsWithModelCache;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\ModelStates\HasStates;
-use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Translatable\HasTranslations;
 
 class Video extends Model implements HasMedia
 {
     use BroadcastsEvents;
     use HasFactory;
-    use HasPrefixedId;
-    use HasStates;
     use HasTags;
     use HasTranslations;
+    use HasUlids;
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
-    use InteractsWithModelCache;
     use InteractsWithTranscodes;
     use InteractsWithUser;
     use InteractsWithVod;
@@ -98,7 +93,6 @@ class Video extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'state' => VideoState::class,
             'snapshot' => 'decimal:2',
             'released_at' => 'date:Y-m-d',
         ];
@@ -114,9 +108,14 @@ class Video extends Model implements HasMedia
         return new VideoCollection($models);
     }
 
+    public function uniqueIds(): array
+    {
+        return ['ulid'];
+    }
+
     public function getRouteKeyName(): string
     {
-        return 'prefixed_id';
+        return 'ulid';
     }
 
     public function registerMediaCollections(): void
@@ -220,7 +219,6 @@ class Video extends Model implements HasMedia
      */
     public function broadcastOn(string $event): array
     {
-        logger($event);
         if ($event === 'deleted') {
             return [];
         }

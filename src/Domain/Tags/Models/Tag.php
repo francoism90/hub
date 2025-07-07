@@ -17,11 +17,11 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 use Spatie\Tags\Tag as BaseTag;
 
 #[ScopedBy(OrderedScope::class)]
@@ -29,8 +29,8 @@ class Tag extends BaseTag implements HasMedia
 {
     use BroadcastsEvents;
     use HasFactory;
-    use HasPrefixedId;
     use HasRelates;
+    use HasUlids;
     use InteractsWithMedia;
     use InteractsWithUser;
     use Searchable;
@@ -76,9 +76,14 @@ class Tag extends BaseTag implements HasMedia
         return new TagCollection($models);
     }
 
+    public function uniqueIds(): array
+    {
+        return ['ulid'];
+    }
+
     public function getRouteKeyName(): string
     {
-        return 'prefixed_id';
+        return 'ulid';
     }
 
     public function videos(): MorphToMany

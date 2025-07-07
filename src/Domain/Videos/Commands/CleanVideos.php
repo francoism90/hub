@@ -34,8 +34,7 @@ class CleanVideos extends Command implements Isolatable
 
         $items->each(function (Video $model) {
             if ($model->trashed()) {
-                $this->info("deleting {$model->name} ({$model->getKey()})");
-
+                $this->components->info("deleting {$model->name} ({$model->getKey()})");
                 $model->forceDelete();
             }
         });

@@ -8,7 +8,6 @@ use Domain\Groups\Collections\GroupCollection;
 use Domain\Groups\Enums\GroupSet;
 use Domain\Groups\Enums\GroupType;
 use Domain\Groups\QueryBuilders\GroupQueryBuilder;
-use Domain\Groups\States\GroupState;
 use Domain\Media\Concerns\InteractsWithMedia;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Videos\Models\Video;
@@ -17,6 +16,7 @@ use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
@@ -27,15 +27,12 @@ use Laravel\Scout\Searchable;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\ModelStates\HasStates;
-use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
 class Group extends Model implements HasMedia, Sortable
 {
     use BroadcastsEvents;
     use HasFactory;
-    use HasPrefixedId;
-    use HasStates;
+    use HasUlids;
     use InteractsWithMedia;
     use InteractsWithUser;
     use Notifiable;
@@ -67,7 +64,6 @@ class Group extends Model implements HasMedia, Sortable
     protected function casts(): array
     {
         return [
-            'state' => GroupState::class,
             'kind' => GroupSet::class,
             'type' => GroupType::class,
             'options' => AsArrayObject::class,
@@ -84,9 +80,14 @@ class Group extends Model implements HasMedia, Sortable
         return new GroupCollection($models);
     }
 
+    public function uniqueIds(): array
+    {
+        return ['ulid'];
+    }
+
     public function getRouteKeyName(): string
     {
-        return 'prefixed_id';
+        return 'ulid';
     }
 
     public function videos(): MorphToMany
