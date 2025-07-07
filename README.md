@@ -4,28 +4,20 @@
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
 
-> **NOTE:** This is a personal project, and is still in development. Use at your own risk!
-
 ## Details
 
 Hub uses the following stack:
 
-- [nginx-vod-module](https://github.com/diogoazevedos/nginx-vod-module)
 - [Laravel 12.x](https://laravel.com/)
-- [Livewire 3.x](https://livewire.laravel.com/)
+- [Inertia 2.x](https://inertiajs.com/)
 - [PostgreSQL 17.x](https://www.postgresql.org/)
 - [Podman 5.x](https://podman.io/)
 - [Meilisearch 1.x](https://www.meilisearch.com/)
 
-This is the preferred stack, please submit a PR if you would like to support other solutions.
-
 ## Prerequisites
 
-- Any modern hardware (AArch64 is untested).
-- Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..). - WSLv2 is untested.
-- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) and SELinux or AppArmor support.
-
-> **NOTE:** Docker is unsupported, but should work with a `docker-compose.yml` file. PRs are welcome.
+- Linux (Debian, Fedora, Arch, CentOS, Ubuntu, ..).
+- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) support.
 
 ## Installation
 
@@ -38,86 +30,34 @@ cd ~/projects
 git https://github.com/francoism90/hub.git
 ```
 
-1. Configure Hub with your favorite editor:
+1. Setup [Podman Quadlet](docs/podman.md).
+
+1. Open the project with VSCode and run it as a dev-container.
+
+1. Perform the following commands in a terminal:
 
 ```bash
-cd ~/projects/hub
-cp .env.example .env
-vi .env
+composer install
+php artisan storage:link
+php artisan key:generate
+php artisan google-fonts:fetch
+php artisan migrate --seed
+pnpm install && pnpm build
 ```
-
-1. See [Podman guide](docs/podman.md) to configure Podman Quadlet.
-
-1. See [MinIO guide](docs/minio.md) to configure MinIO.
 
 ## Usage
 
-The Hub instance should be available at <https://hub.test>, after running:
+The instance should be available at <https://hub.test>.
 
-```bash
-systemctl --user start proxy hub
-systemctl --user status hub
-```
-
-> **NOTE:** Make sure MinIO is configured first.
-
-Enter the `systemd-hub` container, and execute the followings commands:
-
-```bash
-$ podman exec -it systemd-hub /bin/bash # or hub shell
-composer install
-php artisan key:generate
-php artisan storage:link
-pnpm install && pnpm build
-php artisan app:install
-```
-
-The following services are only accessible when being a super-admin (see `database/seeders/UserSeeder.php` for example):
+The following services are only accessible when being a *super-admin*:
 
 - <https://hub.test/horizon> - Laravel Horizon
-- <https://hub.test/telescope> - Laravel Telescope (disabled by default)
+- <https://hub.test/telescope> - Laravel Telescope (disabled by default - only use on development)
 
 To seed an example super-admin user:
 
 ```bash
 php artisan db:seed --class=UserSeeder:class
-```
-
-### Manage application
-
-> **TIP:** Run `hub a` and `hub help` for all available commands.
-
-To import videos:
-
-```bash
-chcon -Rv system_u:object_r:container_file_t:s0 /path/to/import/* # if running SELinux
-hub a videos:import
-```
-
-To create a tag:
-
-```bash
-hub a tag:create
-```
-
-To create an user:
-
-```bash
-hub a user:create
-```
-
-To force the removal of deleted videos:
-
-> **WARNING:** This will remove any soft-deleted videos!
-
-```bash
-hub a videos:clean
-```
-
-To force (re-)indexing of all models:
-
-```bash
-hub a scout:sync
 ```
 
 ## Upgrading

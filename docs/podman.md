@@ -16,8 +16,8 @@ To learn more about Podman Quadlet, please consider reading the following resour
 
 ## Prerequisites
 
-- Linux (Debian, Ubuntu, SUSE, CentOS, Arch, ..).
-- [Podman 5.2 or higher](https://podman.io/), with Quadlet (systemd) and SELinux or AppArmor support.
+- Linux (Debian, Fedora, Arch, CentOS, Ubuntu, ..).
+- [Podman 5.3 or higher](https://podman.io/) with Quadlet (systemd) support.
 
 It's recommend running a rootless setup:
 
@@ -32,7 +32,7 @@ Build the Docker images (this may take some time):
 
 ```bash
 cd ~/projects/hub
-bin/build-containers
+./bin/build-containers
 ```
 
 ### Systemd units
@@ -60,24 +60,25 @@ The given configuration assumes you want to use self-signed certificates:
 ```bash
 cd ~/.config/containers/systemd/proxy/config
 vi Caddyfile sites/hub.caddy
-systemctl --user enable podman.socket --now`
+systemctl --user enable podman.socket --now
+systemctl --user daemon-reload
 systemctl --user start proxy`
 ```
 
-To access Hub, make sure to append the following entries to your hosts (`/etc/hosts`) file:
+Make sure to append the following entries to your hosts (`/etc/hosts`) file:
 
 ```text
 # hub
-127.0.0.1 hub.test ws.hub.test play.hub.test live.hub.test s3.hub.test mc.hub.test
-::1 hub.test ws.hub.test play.hub.test live.hub.test s3.hub.test mc.hub.test
+127.0.0.1 hub.test ws.hub.test vite.hub.test
+::1 hub.test ws.hub.test vite.hub.test
 ```
 
-> **TIP:** You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` requests to your homelab server.
+> Tip: You may want to use [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) instead, and rewrite `hub.test` & `*.hub.test` requests to your (homelab) server.
 
 To copy the generated Caddy CA that can be imported into your browsers certificate keychain:
 
 ```bash
-podman cp systemd-proxy:/data/caddy/pki/authorities/local/root.crt ~/Downloads/proxy.crt
+podman cp systemd-proxy:/data/caddy/pki/authorities/local/root.crt ~/Downloads/caddy.crt
 ```
 
 ## Usage
@@ -86,20 +87,12 @@ Make sure to reload systemd on configuration changes:
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user restart hub
 ```
 
-To start Hub:
+On first install, make sure the network has been created:
 
 ```bash
-systemctl --user start proxy
-systemctl --user start hub
-```
-
-To stop Hub:
-
-```bash
-systemctl --user stop hub
+systemctl --user start hub-network.service
 ```
 
 ## Shell utility
@@ -112,19 +105,17 @@ To install, create a shell `alias`, e.g. when using [fish-shell](https://fishshe
 alias --save hub '~/projects/hub/bin/quadlet'
 ```
 
-This allows interacting with the `systemd-hub` container using the same logic like Laravel Sail:
+This allows interacting with the app container using the same logic like Laravel Sail:
 
 ```fish
 hub help
 hub shell
-hub a app:update
-hub a app:optimize
-hub a videos:import
+hub tinker
 hub a migrate
 ```
 
 To interact with the container without the utility:
 
 ```bash
-podman exec -it systemd-hub php artisan app:optimize
+podman exec -it systemd-hub php artisan help
 ```
