@@ -28,6 +28,7 @@ class CreateNewVideoByImport
                 ->addMedia($path)
                 ->usingName($file->getFilename())
                 ->usingFileName("vid.{$file->getExtension()}")
+                ->preservingOriginal()
                 ->withResponsiveImages()
                 ->toMediaCollection('clips');
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+use function Laravel\Prompts\info;
 use function Laravel\Prompts\progress;
 use function Laravel\Prompts\search;
 use function Laravel\Prompts\spin;
@@ -37,6 +38,11 @@ class ImportVideos extends Command implements Isolatable
             message: 'Retrieving files...',
             callback: fn () => $this->getCollection()
         );
+
+        if ($files->count() === 0) {
+            info('No video files found in the import directory.');
+            return;
+        }
 
         table(
             headers: ['Filename', 'Filesize'],
