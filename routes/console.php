@@ -1,8 +1,10 @@
 <?php
 
 declare(strict_types=1);
-use Domain\Groups\Models\Group;
-use Domain\Imports\Models\Import;
+
+use Domain\Activities\Models\Activity;
+use Domain\Entities\Models\Entity;
+use Domain\Nodes\Models\Node;
 use Illuminate\Auth\Console\ClearResetsCommand;
 use Illuminate\Cache\Console\PruneStaleTagsCommand;
 use Illuminate\Database\Console\PruneCommand as PruneModels;
@@ -38,8 +40,9 @@ Schedule::command(PruneCommand::class)
 
 Schedule::command(PruneModels::class, [
     '--model' => [
-        Import::class,
-        Group::class,
+        Activity::class,
+        Entity::class,
+        Node::class,
     ],
 ])
     ->withoutOverlapping(1440)

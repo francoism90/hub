@@ -1,21 +1,9 @@
 @layer components {
-    dd {
-        @apply flex appearance-none items-center;
+  .list {
+    @apply flex items-center *:after:mx-1.5 *:after:inline-flex *:after:self-center *:after:content-(--ui-divider-symbol);
+
+    :last-child {
+      @apply after:mx-0 after:hidden;
     }
-
-    .list {
-        @apply flex flex-wrap items-center *:after:mx-1 *:after:content-["-"];
-
-        :last-child {
-            @apply after:hidden;
-        }
-    }
-
-    .dl {
-        @apply flex flex-wrap items-center *:after:mx-1.5 *:after:h-3 *:after:w-[1px] *:after:bg-secondary-400 *:after:content-["\00a0_"];
-
-        :last-child {
-            @apply after:hidden;
-        }
-    }
+  }
 }

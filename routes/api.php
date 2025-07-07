@@ -6,7 +6,6 @@ use App\Api\Authentication\Controllers\HomeController;
 use App\Api\Media\Controllers\AssetController;
 use App\Api\Media\Controllers\DownloadController;
 use App\Api\Media\Controllers\ResponsiveController;
-use App\Api\Users\Controllers\SubscriptionController;
 use App\Api\Videos\Controllers\VideoPlaylistController;
 use App\Api\Videos\Controllers\VideoTranscodeController;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
-
-    // Video-on-demand
-    Route::get('/subscription', SubscriptionController::class)->name('subscription');
 
     // Media
     Route::name('media.')->group(function () {

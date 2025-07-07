@@ -1,8 +1,17 @@
-/* Styles */
-@import "base/_all.css";
-@import "components/_all.css";
-
 /* Tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' theme(static);
+@import '@nuxt/ui';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.vue';
+
+/* Branding */
+@import './brand/theme.css';
+@import './brand/variables.css';
+@import './brand/utilities.css';
+
+/* Components */
+@import './components/divider.css';

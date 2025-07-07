@@ -4,7 +4,7 @@ Requires=hub.service
 After=hub.service
 
 [Container]
-Image=localhost/hub-app:latest
+Image=localhost/hub:latest
 AutoUpdate=local
 LogDriver=none
 Exec=php /app/artisan horizon
