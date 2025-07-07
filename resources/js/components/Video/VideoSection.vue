@@ -2,7 +2,9 @@
 import type { Video } from '@/types'
 
 interface Props {
-  items: Video[]
+  title?: string
+  description?: string
+  items?: Video[]
 }
 
 defineProps<Props>()
