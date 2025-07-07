@@ -19,7 +19,7 @@ class UpdateVideoDetails
             );
 
             if (array_key_exists('tags', $attributes)) {
-                $tags = collect(data_get($attributes['tags'], '*.id', []))->toModels();
+                $tags = collect(data_get($attributes['tags'], '*.id', []));
 
                 $model->syncTags($tags);
             }

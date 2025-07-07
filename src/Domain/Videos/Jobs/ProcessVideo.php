@@ -55,9 +55,8 @@ class ProcessVideo implements ShouldQueue
     {
         Pipeline::send($this->video)
             ->through([
-                SetVideoMetadata::class,
-                ExtractVideoCaptions::class,
-                MarkVideoAsProcessed::class,
+                // ExtractVideoCaptions::class,
+                // MarkVideoAsProcessed::class,
             ])
             ->thenReturn();
     }

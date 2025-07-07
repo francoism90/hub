@@ -24,20 +24,22 @@ export type Tag = {
   updated: string
 }
 
-export type Post = {
+export type Video = {
   id: string
   user: User
   name: string
   summary: string
   content: string
+  titles: string[]
+  season: string
+  episode: string
+  part: string
   duration: number
-  manifest: string
-  preview: string
-  timestamp: string
   thumbnail: string
   srcset: string
   favorited: boolean
   saved: boolean
+  expires: string
   published: string
   created: string
   updated: string
@@ -51,17 +53,10 @@ export type Links = {
   next: string | null
 }
 
-export type Meta = {
-  current_page: number | null
-  from: number | null
-  per_page: number | null
-  to: number | null
-}
-
-export type Items = {
-  data: Post[]
-  links: Links
-  meta: Meta
+export type Page = {
+  from?: number | null
+  per_page?: number | null
+  to?: number | null
   current_page?: number | null
   current_page_url?: string | null
   first_page_url?: string | null

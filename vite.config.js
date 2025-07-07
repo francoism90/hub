@@ -45,12 +45,12 @@ export default defineConfig({
       inertia: true,
       ui: {
         colors: {
-          primary: 'green',
+          primary: 'purple',
           secondary: 'neutral',
           neutral: 'zinc',
         },
         container: {
-          base: '!px-4',
+          base: 'max-w-5xl !px-4',
         },
         input: {
           slots: {
