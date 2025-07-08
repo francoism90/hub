@@ -15,6 +15,5 @@ return [
     Foundation\Providers\FortifyServiceProvider::class,
     Foundation\Providers\HorizonServiceProvider::class,
     Foundation\Providers\RouteServiceProvider::class,
-    Foundation\Providers\SanctumServiceProvider::class,
     Foundation\Providers\TelescopeServiceProvider::class,
 ];

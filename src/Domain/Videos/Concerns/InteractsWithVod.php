@@ -6,7 +6,6 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Support\Number;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 trait InteractsWithVod
@@ -54,17 +53,6 @@ trait InteractsWithVod
             ->first();
 
         return (float) $media?->getCustomProperty('duration') ?: 0;
-    }
-
-    public function timeCode(): float
-    {
-        if (! auth()->check()) {
-            return 0;
-        }
-
-        $timeCode = (float) $this->modelCached('timecode', 0);
-
-        return Number::clamp($timeCode, 0, $this->durationInSeconds());
     }
 
     protected function clips(): Attribute

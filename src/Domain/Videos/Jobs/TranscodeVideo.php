@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Transcodes\Actions\MarkVideoAsTranscoded;
 use Domain\Videos\Actions\CreateVideoTranscode;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
@@ -57,9 +56,8 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
         Pipeline::send($this->video)
             ->through([
                 CreateVideoTranscode::class,
-                MarkVideoAsTranscoded::class,
             ])
-            ->then(fn (Video $video) => event(new VideoHasBeenTranscoded($video)));
+            ->then(fn (Video $video) => VideoHasBeenTranscoded::dispatch($video));
     }
 
     /**
