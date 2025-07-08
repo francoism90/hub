@@ -164,8 +164,6 @@ class Transcode extends Model
 
     public function prunable(): TranscodeQueryBuilder
     {
-        return static::query()
-            ->whereNotNull('expires_at')
-            ->where('expires_at', '<=', now());
+        return static::query()->expired();
     }
 }
