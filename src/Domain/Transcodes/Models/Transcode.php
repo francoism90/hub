@@ -9,6 +9,7 @@ use Domain\Transcodes\Observers\TranscodeObserver;
 use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
 use Domain\Transcodes\Scopes\OrderedScope;
 use Domain\Users\Concerns\InteractsWithUser;
+use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -36,10 +37,7 @@ class Transcode extends Model
         'transcodeable_type',
         'transcodeable_id',
         'disk',
-        'path',
-        'destination',
-        'name',
-        'format',
+        'file_name',
         'collection',
         'expires_at',
         'finished_at',
@@ -140,7 +138,9 @@ class Transcode extends Model
 
     public static function getVideoFormats(): Collection
     {
-        return collect(config('transcode.video_formats', []));
+        return collect(config('transcode.video_formats', []))
+            ->filter(fn (string $format) => is_subclass_of($format, DefaultVideo::class))
+            ->map(fn (string $format) => app($format));
     }
 
     public static function getExpiresAfter(): ?Carbon

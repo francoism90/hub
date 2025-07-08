@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use Domain\Videos\Jobs\TranscodeVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -37,6 +38,8 @@ class VideoController implements HasMiddleware
     public function show(Video $video)
     {
         Gate::authorize('view', $video);
+
+        TranscodeVideo::dispatch($video);
 
         return Inertia::render('Videos/VideoView', [
             'item' => $video,

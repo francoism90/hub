@@ -16,7 +16,6 @@ class CreateVideoTranscode
     public function handle(Video $video, Closure $next): mixed
     {
         return DB::transaction(function () use ($video, $next) {
-            // Get the best available media clip for the video
             $media = $video->getClipCollection()->first();
 
             if (! $media) {
@@ -46,9 +45,9 @@ class CreateVideoTranscode
             $audioCodec = $ffmpeg->getAudioStream()->get('codec_name');
 
             $format = $formats->first(
-                fn (DefaultVideo $format) => method_exists($format, 'getAvailableVideoCodecs')
-                    && in_array($audioCodec, $format->getAvailableAudioCodecs())
-                    && in_array($videoCodec, $format->getAvailableVideoCodecs()),
+                fn (DefaultVideo $videoFormat) => method_exists($videoFormat, 'getAvailableVideoCodecs')
+                    && in_array($audioCodec, $videoFormat->getAvailableAudioCodecs())
+                    && in_array($videoCodec, $videoFormat->getAvailableVideoCodecs()),
                 fn () => $formats->first()
             );
 
@@ -57,12 +56,13 @@ class CreateVideoTranscode
             $copyVideoFormat = (Transcode::copyVideoCodec() && in_array($videoCodec, $format->getAvailableVideoCodecs()));
 
             // Add the format to the ffmpeg exporter
-            $ffmpeg->addFormat(app($format)
-                ->setAudioCodec($copyAudioFormat ? 'copy' : $format->getAudioCodec())
-                ->setVideoCodec($copyVideoFormat ? 'copy' : $format->getVideoCodec())
-                ->setKiloBitrate(Transcode::getKiloBitrate()) // on copy, this is ignored
-                ->setPasses(Transcode::getPasses()) // on copy, this is ignored
-                ->setAdditionalParameters(Transcode::getAdditionalParameters())
+            $ffmpeg->addFormat(
+                $format
+                    ->setAudioCodec($copyAudioFormat ? 'copy' : $format->getAudioCodec())
+                    ->setVideoCodec($copyVideoFormat ? 'copy' : $format->getVideoCodec())
+                    ->setKiloBitrate(Transcode::getKiloBitrate()) // on copy, this is ignored
+                    ->setPasses(Transcode::getPasses()) // on copy, this is ignored
+                    ->setAdditionalParameters(Transcode::getAdditionalParameters())
             );
 
             // Run the transcoding process
