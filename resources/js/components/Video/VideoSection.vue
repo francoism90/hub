@@ -19,10 +19,12 @@ defineProps<Props>()
 
       <UNavigationMenu
         v-if="menu"
+        variant="link"
         :items="menu"
         :ui="{
-          root: 'flex items-center gap-2',
-          item: 'text-sm font-medium text-neutral-500 hover:text-neutral-700',
+          root: 'items-center gap-2',
+          list: 'inline-flex size-full items-center gap-4',
+          link: 'px-0',
         }"
       />
     </div>
