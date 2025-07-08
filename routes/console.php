@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use Domain\Activities\Models\Activity;
-use Domain\Entities\Models\Entity;
-use Domain\Nodes\Models\Node;
+use Domain\Transcodes\Models\Transcode;
 use Illuminate\Auth\Console\ClearResetsCommand;
 use Illuminate\Cache\Console\PruneStaleTagsCommand;
 use Illuminate\Database\Console\PruneCommand as PruneModels;
@@ -40,9 +38,7 @@ Schedule::command(PruneCommand::class)
 
 Schedule::command(PruneModels::class, [
     '--model' => [
-        Activity::class,
-        Entity::class,
-        Node::class,
+        Transcode::class,
     ],
 ])
     ->withoutOverlapping(1440)

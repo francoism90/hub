@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Web\Videos\Controllers\VideoController::index
-* @see src/App/Web/Videos/Controllers/VideoController.php:23
+* @see src/App/Web/Videos/Controllers/VideoController.php:24
 * @route '/videos'
 */
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ index.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::index
-* @see src/App/Web/Videos/Controllers/VideoController.php:23
+* @see src/App/Web/Videos/Controllers/VideoController.php:24
 * @route '/videos'
 */
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::index
-* @see src/App/Web/Videos/Controllers/VideoController.php:23
+* @see src/App/Web/Videos/Controllers/VideoController.php:24
 * @route '/videos'
 */
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::index
-* @see src/App/Web/Videos/Controllers/VideoController.php:23
+* @see src/App/Web/Videos/Controllers/VideoController.php:24
 * @route '/videos'
 */
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -54,7 +54,7 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::create
-* @see src/App/Web/Videos/Controllers/VideoController.php:28
+* @see src/App/Web/Videos/Controllers/VideoController.php:29
 * @route '/videos/create'
 */
 export const create = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -72,7 +72,7 @@ create.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::create
-* @see src/App/Web/Videos/Controllers/VideoController.php:28
+* @see src/App/Web/Videos/Controllers/VideoController.php:29
 * @route '/videos/create'
 */
 create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -81,7 +81,7 @@ create.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::create
-* @see src/App/Web/Videos/Controllers/VideoController.php:28
+* @see src/App/Web/Videos/Controllers/VideoController.php:29
 * @route '/videos/create'
 */
 create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -94,7 +94,7 @@ create.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::create
-* @see src/App/Web/Videos/Controllers/VideoController.php:28
+* @see src/App/Web/Videos/Controllers/VideoController.php:29
 * @route '/videos/create'
 */
 create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -107,7 +107,7 @@ create.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::show
-* @see src/App/Web/Videos/Controllers/VideoController.php:37
+* @see src/App/Web/Videos/Controllers/VideoController.php:38
 * @route '/videos/{video}'
 */
 export const show = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -125,7 +125,7 @@ show.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::show
-* @see src/App/Web/Videos/Controllers/VideoController.php:37
+* @see src/App/Web/Videos/Controllers/VideoController.php:38
 * @route '/videos/{video}'
 */
 show.url = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -156,7 +156,7 @@ show.url = (args: { video: string | { ulid: string } } | [video: string | { ulid
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::show
-* @see src/App/Web/Videos/Controllers/VideoController.php:37
+* @see src/App/Web/Videos/Controllers/VideoController.php:38
 * @route '/videos/{video}'
 */
 show.get = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -169,7 +169,7 @@ show.get = (args: { video: string | { ulid: string } } | [video: string | { ulid
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::show
-* @see src/App/Web/Videos/Controllers/VideoController.php:37
+* @see src/App/Web/Videos/Controllers/VideoController.php:38
 * @route '/videos/{video}'
 */
 show.head = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -182,7 +182,7 @@ show.head = (args: { video: string | { ulid: string } } | [video: string | { uli
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::edit
-* @see src/App/Web/Videos/Controllers/VideoController.php:42
+* @see src/App/Web/Videos/Controllers/VideoController.php:51
 * @route '/videos/{video}/edit'
 */
 export const edit = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -200,7 +200,7 @@ edit.definition = {
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::edit
-* @see src/App/Web/Videos/Controllers/VideoController.php:42
+* @see src/App/Web/Videos/Controllers/VideoController.php:51
 * @route '/videos/{video}/edit'
 */
 edit.url = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -231,7 +231,7 @@ edit.url = (args: { video: string | { ulid: string } } | [video: string | { ulid
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::edit
-* @see src/App/Web/Videos/Controllers/VideoController.php:42
+* @see src/App/Web/Videos/Controllers/VideoController.php:51
 * @route '/videos/{video}/edit'
 */
 edit.get = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -244,7 +244,7 @@ edit.get = (args: { video: string | { ulid: string } } | [video: string | { ulid
 
 /**
 * @see \App\Web\Videos\Controllers\VideoController::edit
-* @see src/App/Web/Videos/Controllers/VideoController.php:42
+* @see src/App/Web/Videos/Controllers/VideoController.php:51
 * @route '/videos/{video}/edit'
 */
 edit.head = (args: { video: string | { ulid: string } } | [video: string | { ulid: string } ] | string | { ulid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
