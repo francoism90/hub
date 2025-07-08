@@ -25,6 +25,6 @@ class X265 extends DefaultVideo
      */
     public function getAvailableVideoCodecs()
     {
-        return ['copy', 'libx265'];
+        return ['copy', 'libx265', 'h265'];
     }
 }

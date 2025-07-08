@@ -34,7 +34,7 @@ class CreateVideoTranscode
                 ->open($media->getPathRelativeToRoot())
                 ->exportForHLS()
                 ->withoutPlaylistEndLine()
-                ->toDisk($transcode->destination)
+                ->toDisk($transcode->disk)
                 ->setSegmentLength(Transcode::getSegmentLength())
                 ->setKeyFrameInterval(Transcode::getFrameInterval());
 
@@ -66,10 +66,12 @@ class CreateVideoTranscode
             );
 
             // Run the transcoding process
-            $ffmpeg->save("{$transcode->getPath()}/{$transcode->name}");
+            $ffmpeg->save("{$transcode->getPath()}/{$transcode->file_name}");
 
             // Mark the transcode as finished
             $transcode->updateOrFail(['finished_at' => now()]);
+
+            return $next($video);
         });
     }
 }

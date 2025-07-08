@@ -18,6 +18,6 @@ class X264 extends DefaultVideo
      */
     public function getAvailableVideoCodecs()
     {
-        return ['copy', 'libx264'];
+        return ['copy', 'libx264', 'h264'];
     }
 }
