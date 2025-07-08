@@ -36,5 +36,5 @@ Schedule::command(PruneModels::class, [
         Transcode::class,
     ],
 ])
-    ->everyFifteenMinutes()
+    ->hourly()
     ->runInBackground();
