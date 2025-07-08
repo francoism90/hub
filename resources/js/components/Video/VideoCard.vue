@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { show } from '@/actions/App/Web/Videos/Controllers/VideoController'
 import type { Video } from '@/types'
+import { Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
 
 interface Props {
   item: Video
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const link = computed(() => show.url(props.item.id))
 </script>
 
 <template>
@@ -17,11 +22,13 @@ defineProps<Props>()
       footer: 'absolute inset-x-0 bottom-0 z-10 h-14 min-h-14 bg-neutral-200/10 !p-0 backdrop-blur-sm',
     }"
   >
-    <img
-      src="https://picsum.photos/id/237/400/300"
-      :alt="item.name"
-      class="h-52 w-full rounded-2xl object-fill"
-    />
+    <Link :href="link">
+      <img
+        src="https://picsum.photos/id/237/400/300"
+        :alt="item.name"
+        class="h-52 w-full rounded-2xl object-fill"
+      />
+    </Link>
 
     <template #footer>
       <div class="flex size-full items-center gap-2 px-4">

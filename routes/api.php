@@ -15,15 +15,15 @@ Route::name('api.')->prefix('v1')->group(function () {
     // Authentication
     Route::get('/', HomeController::class)->name('home');
 
+    // Videos
+    Route::apiResource('videos', VideoController::class);
+
     // Media
     Route::name('media.')->group(function () {
         Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
         Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
         Route::get('/responsive/{media}/{conversion?}/{path?}', ResponsiveController::class)->name('responsive');
     });
-
-    // Videos
-    Route::apiResource('videos', VideoController::class);
 
     // VOD
     Route::name('vod.')->prefix('play')->group(function () {

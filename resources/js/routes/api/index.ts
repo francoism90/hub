@@ -1,6 +1,7 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
-import media from './media'
 import videos from './videos'
+import media from './media'
+import vod from './vod'
 /**
 * @see \App\Api\Authentication\Controllers\HomeController::home
 * @see src/App/Api/Authentication/Controllers/HomeController.php:21
@@ -56,8 +57,9 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 const api = {
     home,
-    media,
     videos,
+    media,
+    vod,
 }
 
 export default api

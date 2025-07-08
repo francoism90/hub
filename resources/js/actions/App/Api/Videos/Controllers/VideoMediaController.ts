@@ -2,7 +2,7 @@ import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Videos\Controllers\VideoMediaController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
-* @route '/api/v1/videos/{video}/asset/{path}'
+* @route '/api/v1/play/{video}/media/{path}'
 */
 const VideoMediaController = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -14,13 +14,13 @@ const VideoMediaController = (args: { video: string | { ulid: string }, path: st
 
 VideoMediaController.definition = {
     methods: ['get','head'],
-    url: '/api/v1/videos/{video}/asset/{path}',
+    url: '/api/v1/play/{video}/media/{path}',
 }
 
 /**
 * @see \App\Api\Videos\Controllers\VideoMediaController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
-* @route '/api/v1/videos/{video}/asset/{path}'
+* @route '/api/v1/play/{video}/media/{path}'
 */
 VideoMediaController.url = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
@@ -46,7 +46,7 @@ VideoMediaController.url = (args: { video: string | { ulid: string }, path: stri
 /**
 * @see \App\Api\Videos\Controllers\VideoMediaController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
-* @route '/api/v1/videos/{video}/asset/{path}'
+* @route '/api/v1/play/{video}/media/{path}'
 */
 VideoMediaController.get = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -59,7 +59,7 @@ VideoMediaController.get = (args: { video: string | { ulid: string }, path: stri
 /**
 * @see \App\Api\Videos\Controllers\VideoMediaController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoMediaController.php:25
-* @route '/api/v1/videos/{video}/asset/{path}'
+* @route '/api/v1/play/{video}/media/{path}'
 */
 VideoMediaController.head = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

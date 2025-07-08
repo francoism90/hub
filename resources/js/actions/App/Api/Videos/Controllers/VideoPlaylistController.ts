@@ -2,7 +2,7 @@ import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Videos\Controllers\VideoPlaylistController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoPlaylistController.php:26
-* @route '/api/v1/videos/{video}/playlist/{path}'
+* @route '/api/v1/play/{video}/playlist/{path}'
 */
 const VideoPlaylistController = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -14,13 +14,13 @@ const VideoPlaylistController = (args: { video: string | { ulid: string }, path:
 
 VideoPlaylistController.definition = {
     methods: ['get','head'],
-    url: '/api/v1/videos/{video}/playlist/{path}',
+    url: '/api/v1/play/{video}/playlist/{path}',
 }
 
 /**
 * @see \App\Api\Videos\Controllers\VideoPlaylistController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoPlaylistController.php:26
-* @route '/api/v1/videos/{video}/playlist/{path}'
+* @route '/api/v1/play/{video}/playlist/{path}'
 */
 VideoPlaylistController.url = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
@@ -46,7 +46,7 @@ VideoPlaylistController.url = (args: { video: string | { ulid: string }, path: s
 /**
 * @see \App\Api\Videos\Controllers\VideoPlaylistController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoPlaylistController.php:26
-* @route '/api/v1/videos/{video}/playlist/{path}'
+* @route '/api/v1/play/{video}/playlist/{path}'
 */
 VideoPlaylistController.get = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
@@ -59,7 +59,7 @@ VideoPlaylistController.get = (args: { video: string | { ulid: string }, path: s
 /**
 * @see \App\Api\Videos\Controllers\VideoPlaylistController::__invoke
 * @see src/App/Api/Videos/Controllers/VideoPlaylistController.php:26
-* @route '/api/v1/videos/{video}/playlist/{path}'
+* @route '/api/v1/play/{video}/playlist/{path}'
 */
 VideoPlaylistController.head = (args: { video: string | { ulid: string }, path: string | number } | [video: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,

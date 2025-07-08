@@ -36,7 +36,13 @@ class VideoController implements HasMiddleware
 
     public function show(Video $video)
     {
-        //
+        Gate::authorize('view', $video);
+
+        return Inertia::render('Videos/VideoView', [
+            'item' => $video,
+            // 'items' => $video->comments,
+            // 'tab' => $request->get('tab', 'comments'),
+        ]);
     }
 
     public function edit(Video $video)

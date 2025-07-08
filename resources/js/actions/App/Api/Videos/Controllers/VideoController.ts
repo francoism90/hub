@@ -1,4 +1,4 @@
-import { queryParams, type QueryParams } from './../../../wayfinder'
+import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Videos\Controllers\VideoController::index
 * @see src/App/Api/Videos/Controllers/VideoController.php:24
@@ -286,12 +286,6 @@ destroy.delete = (args: { video: string | number } | [video: string | number ] |
     method: 'delete',
 })
 
-const videos = {
-    index,
-    store,
-    show,
-    update,
-    destroy,
-}
+const VideoController = { index, store, show, update, destroy }
 
-export default videos
+export default VideoController

@@ -1,11 +1,11 @@
 import Authentication from './Authentication'
-import Media from './Media'
 import Videos from './Videos'
+import Media from './Media'
 
 const Api = {
     Authentication,
-    Media,
     Videos,
+    Media,
 }
 
 export default Api
