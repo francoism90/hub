@@ -22,7 +22,7 @@ class DashboardIndex implements HasMiddleware
     public function __invoke(): Response
     {
         return Inertia::render('Dashboard/DashboardIndex', [
-            'recent' => Inertia::defer(fn () => GenerateVideoRecommendation::make()),
+            'recent' => Inertia::defer(fn () => GenerateVideoRecommendation::make(), 'sections'),
         ]);
     }
 }
