@@ -5,8 +5,8 @@ import VideoCard from './VideoCard.vue'
 
 interface Props {
   label: string
-  menu?: NavigationMenuItem[]
   items?: Video[]
+  actions?: NavigationMenuItem[]
 }
 
 defineProps<Props>()
@@ -18,9 +18,9 @@ defineProps<Props>()
       <h2 class="font-serif text-lg font-semibold tracking-tight">{{ label }}</h2>
 
       <UNavigationMenu
-        v-if="menu"
+        v-if="actions && actions.length"
         variant="link"
-        :items="menu"
+        :items="actions"
         :ui="{
           root: 'items-center gap-2',
           list: 'inline-flex size-full items-center gap-4',
