@@ -42,5 +42,5 @@ Schedule::command(PruneModels::class, [
     ],
 ])
     ->withoutOverlapping(1440)
-    ->dailyAt('04:30')
+    ->everyFifteenMinutes()
     ->runInBackground();
