@@ -13,7 +13,7 @@ class GenerateVideoRecommendation
     public static function make(?string $type = null, ?int $limit = null): ResourceCollection
     {
         return Video::query()
-            ->inRandomOrder()
+            ->orderByDesc('created_at')
             ->get()
             ->toResourceCollection(VideoResource::class);
     }

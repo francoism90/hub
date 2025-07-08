@@ -9,7 +9,7 @@
 
     <div
       v-if="$slots.default"
-      class="lg:col-span-8"
+      class="col-span-full"
     >
       <slot />
     </div>

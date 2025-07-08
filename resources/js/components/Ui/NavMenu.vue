@@ -5,24 +5,24 @@ import { ref } from 'vue'
 const items = ref<NavigationMenuItem[][]>([
   [
     {
-      avatar: { icon: 'i-lucide-home', size: 'lg' },
+      avatar: { icon: 'i-hugeicons-home-10', size: 'lg' },
       to: '/',
     },
   ],
   [
     {
       label: 'Search',
-      icon: 'i-lucide-search',
+      icon: 'i-hugeicons-search-01',
       to: '/search',
     },
     {
       label: 'Lists',
-      icon: 'i-lucide-library',
+      icon: 'i-hugeicons-folder-library',
       to: '/lists',
     },
     {
       label: 'Profile',
-      icon: 'i-lucide-user',
+      icon: 'i-hugeicons-user-02',
       to: '/profile',
     },
   ],
