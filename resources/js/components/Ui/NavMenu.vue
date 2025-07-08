@@ -36,7 +36,7 @@ const items = ref<NavigationMenuItem[][]>([
     :items="items"
     :ui="{
       root: 'size-full items-center',
-      list: 'inline-flex size-full items-center gap-4',
+      list: 'inline-flex size-full items-center gap-4 sm:gap-6',
       link: 'px-0',
       linkLabel: 'sr-only',
       linkTrailingIcon: 'hidden',
