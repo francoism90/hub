@@ -12,27 +12,27 @@ use Laravel\Sanctum\Console\Commands\PruneExpired;
 use Laravel\Telescope\Console\PruneCommand;
 
 Schedule::command(PruneStaleTagsCommand::class)
-    ->withoutOverlapping(600)
+    ->withoutOverlapping(10)
     ->hourly()
     ->runInBackground();
 
 Schedule::command(ClearResetsCommand::class)
-    ->withoutOverlapping(600)
+    ->withoutOverlapping(10)
     ->everyFifteenMinutes()
     ->runInBackground();
 
 Schedule::command(SnapshotCommand::class)
-    ->withoutOverlapping(240)
+    ->withoutOverlapping(10)
     ->everyFiveMinutes()
     ->runInBackground();
 
 Schedule::command(PruneExpired::class, ['--hours=24'])
-    ->withoutOverlapping(1440)
+    ->withoutOverlapping(10)
     ->dailyAt('01:30')
     ->runInBackground();
 
 Schedule::command(PruneCommand::class)
-    ->withoutOverlapping(1440)
+    ->withoutOverlapping(10)
     ->dailyAt('02:00')
     ->runInBackground();
 
@@ -41,6 +41,6 @@ Schedule::command(PruneModels::class, [
         Transcode::class,
     ],
 ])
-    ->withoutOverlapping(1440)
+    ->withoutOverlapping(10)
     ->everyFifteenMinutes()
     ->runInBackground();
