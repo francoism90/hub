@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Carbon;
@@ -28,6 +29,7 @@ class Transcode extends Model
     use HasFactory;
     use HasUlids;
     use InteractsWithUser;
+    use Prunable;
 
     /**
      * @var array<int, string>
@@ -158,5 +160,12 @@ class Transcode extends Model
     public static function copyAudioCodec(): bool
     {
         return config('transcode.copy_audio_codec', true);
+    }
+
+    public function prunable(): TranscodeQueryBuilder
+    {
+        return static::query()
+            ->whereNotNull('expires_at')
+            ->where('expires_at', '<=', now());
     }
 }
