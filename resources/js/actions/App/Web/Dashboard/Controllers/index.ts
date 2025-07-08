@@ -1,7 +1,7 @@
-import HomeController from './HomeController'
+import DashboardIndex from './DashboardIndex'
 
 const Controllers = {
-    HomeController,
+    DashboardIndex,
 }
 
 export default Controllers

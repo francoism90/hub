@@ -219,8 +219,8 @@ telescope.head = (args?: { view?: string | number } | [view: string | number ] |
 })
 
 /**
-* @see \App\Web\Dashboard\Controllers\HomeController::home
-* @see src/App/Web/Dashboard/Controllers/HomeController.php:22
+* @see \App\Web\Dashboard\Controllers\DashboardIndex::home
+* @see src/App/Web/Dashboard/Controllers/DashboardIndex.php:22
 * @route '/'
 */
 export const home = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -237,8 +237,8 @@ home.definition = {
 }
 
 /**
-* @see \App\Web\Dashboard\Controllers\HomeController::home
-* @see src/App/Web/Dashboard/Controllers/HomeController.php:22
+* @see \App\Web\Dashboard\Controllers\DashboardIndex::home
+* @see src/App/Web/Dashboard/Controllers/DashboardIndex.php:22
 * @route '/'
 */
 home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -246,8 +246,8 @@ home.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 }
 
 /**
-* @see \App\Web\Dashboard\Controllers\HomeController::home
-* @see src/App/Web/Dashboard/Controllers/HomeController.php:22
+* @see \App\Web\Dashboard\Controllers\DashboardIndex::home
+* @see src/App/Web/Dashboard/Controllers/DashboardIndex.php:22
 * @route '/'
 */
 home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -259,8 +259,8 @@ home.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Web\Dashboard\Controllers\HomeController::home
-* @see src/App/Web/Dashboard/Controllers/HomeController.php:22
+* @see \App\Web\Dashboard\Controllers\DashboardIndex::home
+* @see src/App/Web/Dashboard/Controllers/DashboardIndex.php:22
 * @route '/'
 */
 home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

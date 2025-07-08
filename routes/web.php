@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Web\Dashboard\Controllers\HomeController;
+use App\Web\Dashboard\Controllers\DashboardIndex;
 use Illuminate\Support\Facades\Route;
 
-// Home
-Route::get('/', HomeController::class)->name('home');
+// Dashboard
+Route::get('/', DashboardIndex::class)->name('home');
 
 // Resources
 // Route::resources([
