@@ -13,7 +13,7 @@ defineProps<Props>()
 <template>
   <section class="flex flex-col gap-3">
     <div class="flex items-center justify-between">
-      <h2 class="font-serif text-lg leading-tight font-semibold tracking-tight">{{ label }}</h2>
+      <h2 class="font-serif text-lg font-semibold tracking-tight">{{ label }}</h2>
     </div>
 
     <UCarousel
