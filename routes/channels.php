@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-use Foundation\Broadcasting\GroupChannel;
-use Foundation\Broadcasting\TagChannel;
-use Foundation\Broadcasting\UserChannel;
-use Foundation\Broadcasting\VideoChannel;
+use App\Api\Users\Broadcasting\UserChannel;
+use App\Api\Videos\Broadcasts\VideoChannel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -20,6 +18,4 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('user.{user}', UserChannel::class);
-Broadcast::channel('group.{group}', GroupChannel::class);
-Broadcast::channel('tag.{tag}', TagChannel::class);
 Broadcast::channel('video.{video}', VideoChannel::class);
