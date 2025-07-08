@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Transcodes\Models;
 
 use Domain\Transcodes\Collections\TranscodeCollection;
-use Domain\Transcodes\DataObjects\PipelineData;
 use Domain\Transcodes\Observers\TranscodeObserver;
 use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
 use Domain\Transcodes\Scopes\OrderedScope;
@@ -17,6 +16,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 #[ObservedBy(TranscodeObserver::class)]
@@ -32,9 +33,13 @@ class Transcode extends Model
      */
     protected $fillable = [
         'user_id',
-        'model_type',
-        'model_id',
-        'pipeline',
+        'transcodeable_type',
+        'transcodeable_id',
+        'disk',
+        'path',
+        'destination',
+        'name',
+        'format',
         'collection',
         'expires_at',
         'finished_at',
@@ -53,7 +58,6 @@ class Transcode extends Model
     protected function casts(): array
     {
         return [
-            'pipeline' => PipelineData::class,
             'expires_at' => 'datetime',
             'finished_at' => 'datetime',
         ];
@@ -86,7 +90,7 @@ class Transcode extends Model
 
     public function getDisk(): string
     {
-        return $this->pipeline->destination ?? config('transcode.disk_name');
+        return $this->disk ?? config('transcode.disk_name');
     }
 
     public function getPath(): string
@@ -104,28 +108,55 @@ class Transcode extends Model
         return $this->getFilesystem()->path($this->getPath());
     }
 
-    public function isFinished(): bool
+    public static function getSegmentLength(): int
     {
-        return $this->finished_at !== null && $this->finished_at->isPast();
+        return config('transcode.segment_length', 10);
     }
 
-    public function isExpired(): bool
+    public static function getFrameInterval(): int
     {
-        return $this->expires_at !== null && $this->expires_at->isPast();
+        return config('transcode.frame_interval', 48);
     }
 
-    public function isActive(): bool
+    public static function getKiloBitrate(): int
     {
-        return $this->isFinished() && ! $this->isExpired();
+        return config('transcode.kilo_bitrate', 1500);
     }
 
-    public static function copyVideoCodec(): array
+    public static function getPasses(): int
     {
-        return config('transcode.copy_video_codecs', []);
+        return config('transcode.passes', 1);
     }
 
-    public static function copyAudioCodec(): array
+    public static function getAdditionalParameters(): array
     {
-        return config('transcode.copy_audio_codecs', []);
+        return config('transcode.additional_parameters', []);
+    }
+
+    public static function getDestinationDisk(): string
+    {
+        return config('transcode.disk_name', 'transcode');
+    }
+
+    public static function getVideoFormats(): Collection
+    {
+        return collect(config('transcode.video_formats', []));
+    }
+
+    public static function getExpiresAfter(): ?Carbon
+    {
+        $expires = config('transcode.expires_after');
+
+        return $expires === null ? null : Carbon::now()->addSeconds($expires);
+    }
+
+    public static function copyVideoCodec(): bool
+    {
+        return config('transcode.copy_video_codec', true);
+    }
+
+    public static function copyAudioCodec(): bool
+    {
+        return config('transcode.copy_audio_codec', true);
     }
 }

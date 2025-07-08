@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\CreateVideoManifest;
+use Domain\Transcodes\Actions\MarkVideoAsTranscoded;
+use Domain\Videos\Actions\CreateVideoTranscode;
+use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -14,6 +16,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Pipeline;
 
 class TranscodeVideo implements ShouldBeUnique, ShouldQueue
 {
@@ -51,7 +54,12 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        app(CreateVideoManifest::class)->handle($this->video);
+        Pipeline::send($this->video)
+            ->through([
+                CreateVideoTranscode::class,
+                MarkVideoAsTranscoded::class,
+            ])
+            ->then(fn (Video $video) => event(new VideoHasBeenTranscoded($video)));
     }
 
     /**

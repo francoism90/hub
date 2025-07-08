@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Support\FFMpeg\Format\Video;
 
-use FFMpeg\Format\Video\X264 as DefaultVideo;
+use FFMpeg\Format\Video\WebM as DefaultVideo;
 
-class X264 extends DefaultVideo
+class WebM extends DefaultVideo
 {
     public function getAvailableAudioCodecs()
     {
-        return ['copy', 'aac', 'libvo_aacenc', 'libfaac', 'libmp3lame', 'libfdk_aac', 'libopus'];
+        return ['copy', 'libvorbis', 'libopus'];
     }
 
     /**
@@ -18,6 +18,6 @@ class X264 extends DefaultVideo
      */
     public function getAvailableVideoCodecs()
     {
-        return ['copy', 'libx264'];
+        return ['copy', 'libvpx', 'libvpx-vp9'];
     }
 }

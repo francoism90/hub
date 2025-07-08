@@ -14,6 +14,8 @@ class TranscodeObserver
             return;
         }
 
-        $transcode->getFilesystem()->deleteDirectory($transcode->getPath());
+        if ($transcode->getFilesystem()->directoryExists($transcode->getPath())) {
+            $transcode->getFilesystem()->deleteDirectory($transcode->getPath());
+        }
     }
 }

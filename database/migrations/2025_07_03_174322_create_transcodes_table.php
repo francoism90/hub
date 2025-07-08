@@ -18,7 +18,8 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->nullableMorphs('transcodeable');
-            $table->jsonb('pipeline')->nullable();
+            $table->string('disk');
+            $table->string('file_name');
             $table->string('collection')->nullable()->index();
             $table->timestamp('expires_at')->nullable();
             $table->timestamp('finished_at')->nullable();
