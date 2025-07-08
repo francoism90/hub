@@ -42,7 +42,6 @@ $app = Application::configure(basePath: $basePath)
             'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
             'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
             'cache' => \Foundation\Http\Middlewares\SetCacheHeaders::class,
-            'cache_model' => \Support\ResponseCache\Middlewares\CacheModelResponse::class,
             'cache_response' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
             'private' => \Foundation\Http\Middlewares\EnsureRequestHasPrivateSubnet::class,
             'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
