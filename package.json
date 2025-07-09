@@ -14,11 +14,10 @@
         "format": "prettier --write resources/"
     },
     "dependencies": {
-        "@iconify-json/lucide": "^1.2.56",
+        "@iconify-json/hugeicons": "^1.2.5",
         "@inertiajs/vue3": "^2.0.14",
         "@nuxt/ui": "^3.2.0",
         "@tailwindcss/vite": "^4.1.11",
-        "@vueuse/core": "^13.5.0",
         "axios": "^1.10.0",
         "laravel-echo": "^2.1.6",
         "laravel-precognition-vue-inertia": "^0.7.2",

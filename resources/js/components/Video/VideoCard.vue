@@ -24,7 +24,8 @@ const link = computed(() => show.url(props.item.id))
   >
     <Link :href="link">
       <img
-        src="https://picsum.photos/id/237/400/300"
+        :srcset="item.srcset"
+        :src="item.thumbnail"
         :alt="item.name"
         class="h-52 w-full rounded-2xl object-fill"
       />
@@ -33,8 +34,8 @@ const link = computed(() => show.url(props.item.id))
     <template #footer>
       <div class="flex size-full items-center gap-2 px-4">
         <div class="w-6">
-          <UIcon
-            name="i-hugeicons-play"
+          <UButton
+            icon="i-hugeicons-play"
             class="size-6 rounded-full bg-neutral-100/30 p-1 text-neutral-100"
           />
         </div>
