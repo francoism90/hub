@@ -61,12 +61,40 @@ return [
             'report' => false,
         ],
 
-        'conversions' => [
-            'driver' => 'local',
-            'root' => storage_path('app/conversions'),
-            'serve' => true,
+        'assets' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => 'assets',
+            'url' => env('AWS_URL').'/assets',
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'visibility' => 'public',
             'throw' => false,
-            'report' => true,
+            'report' => false,
+            'read-only' => false,
+            'options' => [
+                'CacheControl' => 'public, max-age=604800, immutable, etag',
+            ],
+        ],
+
+        'conversions' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => 'conversions',
+            'url' => env('AWS_URL').'/conversions',
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+            'read-only' => false,
+            'options' => [
+                'CacheControl' => 'public, max-age=604800, immutable, etag',
+            ],
         ],
 
         'media' => [

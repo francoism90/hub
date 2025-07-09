@@ -1,6 +1,5 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
 import videos from './videos'
-import media from './media'
 import vod from './vod'
 /**
 * @see \App\Api\Authentication\Controllers\HomeController::home
@@ -58,7 +57,6 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 const api = {
     home,
     videos,
-    media,
     vod,
 }
 

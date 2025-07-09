@@ -1,7 +1,7 @@
 [Unit]
 Description=Hub container
-Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service
-After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service
+Requires=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
+After=hub-redis.service hub-pgsql.service hub-meilisearch.service hub-mailpit.service hub-minio.service
 Wants=hub-reverb.service hub-queue.service hub-schedule.service
 
 [Container]

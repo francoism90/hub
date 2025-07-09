@@ -3,9 +3,6 @@
 declare(strict_types=1);
 
 use App\Api\Authentication\Controllers\HomeController;
-use App\Api\Media\Controllers\AssetController;
-use App\Api\Media\Controllers\DownloadController;
-use App\Api\Media\Controllers\ResponsiveController;
 use App\Api\Videos\Controllers\VideoController;
 use App\Api\Videos\Controllers\VideoMediaController;
 use App\Api\Videos\Controllers\VideoPlaylistController;
@@ -17,13 +14,6 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Videos
     Route::apiResource('videos', VideoController::class);
-
-    // Media
-    Route::name('media.')->group(function () {
-        Route::get('/asset/{media}/{conversion?}', AssetController::class)->name('asset');
-        Route::get('/download/{media}/{conversion?}', DownloadController::class)->name('download');
-        Route::get('/responsive/{media}/{conversion?}/{path?}', ResponsiveController::class)->name('responsive');
-    });
 
     // VOD
     Route::name('vod.')->prefix('play')->group(function () {
