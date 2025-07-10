@@ -24,10 +24,6 @@
             ]))
         ])
         ->children([
-            html()->element('dt')->text('Download')->class('sr-only'),
-            html()->element('dd')->child(html()->a()->href($video->download)->text('Download'))
-        ])
-        ->children([
             html()->element('dt')->text('View')->class('sr-only'),
             html()->element('dd')->child(html()->a()->link('videos.view', $video, modifiers: 'exact')->text('View')),
         ]),

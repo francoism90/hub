@@ -124,13 +124,6 @@ trait InteractsWithVod
         )->shouldCache();
     }
 
-    public function download(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addDay())
-        )->shouldCache();
-    }
-
     public function fileSize(): Attribute
     {
         return Attribute::make(
