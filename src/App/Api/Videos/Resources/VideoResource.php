@@ -29,7 +29,7 @@ class VideoResource extends JsonResource
             'published' => $this->published_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,
-            'manifests' => TranscodeCollection::make($this->whenLoaded('transcodes')),
+            'manifest' => TranscodeCollection::make($this->whenLoaded('transcodes')),
             'user' => UserResource::make($this->whenLoaded('user')),
         ];
     }
