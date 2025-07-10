@@ -96,7 +96,7 @@ return [
      * When urls to files get generated, this class will be called. Use the default
      * if your files are stored locally above the site root or on s3.
      */
-    'url_generator' => Support\MediaLibrary\UrlGenerator\DefaultUrlGenerator::class,
+    'url_generator' => Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator::class,
 
     /*
      * Moves media on updating to keep path consistent. Enable it only with a custom
@@ -171,7 +171,7 @@ return [
      * The path where to store temporary files while performing image conversions.
      * If set to null, storage_path('media-library/temp') will be used.
      */
-    'temporary_directory_path' => null,
+    'temporary_directory_path' => env('FFMPEG_TEMPORARY_FILES_ROOT', sys_get_temp_dir()),
 
     /*
      * The engine that should perform the image conversions.

@@ -52,8 +52,8 @@ mc mb myminio/local
 1. Set anonymous `download` permissions:
 
 ```bash
-mc anonymous set download myminio/assets
-mc anonymous set download myminio/conversions
+mc anonymous set download myminio/assets --recursive
+mc anonymous set download myminio/conversions --recursive
 ```
 
 ## Disable bucket listing
