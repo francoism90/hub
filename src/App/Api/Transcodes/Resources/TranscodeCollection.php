@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Api\Videos\Resources;
+namespace App\Api\Transcodes\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class VideoCollection extends ResourceCollection
+class TranscodeCollection extends ResourceCollection
 {
     /**
      * @var string
      */
-    public $collects = VideoResource::class;
+    public $collects = TranscodeResource::class;
 
     /**
      * @var bool
