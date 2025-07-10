@@ -76,7 +76,7 @@ return [
             'report' => false,
             'read-only' => false,
             'options' => [
-                'CacheControl' => 'public, max-age=604800, immutable, etag',
+                'CacheControl' => 'public, max-age=604800, immutable',
             ],
         ],
 
@@ -94,7 +94,7 @@ return [
             'report' => false,
             'read-only' => false,
             'options' => [
-                'CacheControl' => 'public, max-age=604800, immutable, etag',
+                'CacheControl' => 'public, max-age=604800, immutable',
             ],
         ],
 

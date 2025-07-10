@@ -20,15 +20,14 @@ RUN sed -i 's/^Components: main$/& contrib non-free/' /etc/apt/sources.list.d/de
 RUN apt-get update && apt-get upgrade -y \
     && mkdir -p /etc/apt/keyrings \
     && apt-get install -y gnupg curl ca-certificates zip unzip git sqlite3 postgresql-common dnsutils fswatch \
-    && apt-get install -y libpng-dev librsvg2-bin libjpeg-dev libfreetype6-dev libwebp-dev libxpm-dev \
     && apt-get install -y ffmpeg gifsicle jpegoptim optipng pngquant \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_VERSION}.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
     && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y \
-    && curl -sLS https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /usr/local/bin/mc \
-    && chmod +x /usr/local/bin/mc \
     && apt-get install -y postgresql-client-${POSTGRES_VERSION} \
     && apt-get install -y nodejs \
+    && curl -sLS https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /usr/local/bin/mc \
+    && chmod +x /usr/local/bin/mc \
     && npm install -g npm \
     && npm install -g pnpm \
     && npm install -g svgo
