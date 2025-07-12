@@ -6,6 +6,7 @@ namespace App\Web\Videos\Controllers;
 
 use App\Api\Playlists\Resources\PlaylistCollection;
 use App\Api\Videos\Resources\VideoResource;
+use Domain\Videos\Algos\GenerateVideoRecommendation;
 use Domain\Videos\Jobs\PlaylistVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class VideoController implements HasMiddleware
         // ]);
     }
 
-    public function show(Video $video): Response
+    public function show(Video $video, Request $request): Response
     {
         Gate::authorize('view', $video);
 
@@ -47,6 +48,7 @@ class VideoController implements HasMiddleware
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
             'assets' => fn () => PlaylistCollection::make($video->playlists),
+            'queue' => Inertia::defer(fn () => GenerateVideoRecommendation::make(), 'sections'),
         ]);
     }
 

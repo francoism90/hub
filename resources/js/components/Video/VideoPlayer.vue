@@ -37,7 +37,7 @@ onMounted(async () => {
   >
     <video
       data-shaka-player
-      class="size-full rounded-2xl bg-black"
+      class="w-full rounded-2xl bg-black"
       ref="element"
       controls
       playsinline

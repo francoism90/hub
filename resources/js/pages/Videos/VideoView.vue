@@ -2,12 +2,14 @@
 import Page from '@/components/Ui/Page.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
 import VideoPlayer from '@/components/Video/VideoPlayer.vue'
+import VideoSection from '@/components/Video/VideoSection.vue'
 import type { Playlist, Video } from '@/types'
-import { Head } from '@inertiajs/vue3'
+import { Deferred, Head } from '@inertiajs/vue3'
 
 interface Props {
   item: Video
   assets: Playlist[]
+  queue?: Video[]
 }
 
 defineProps<Props>()
@@ -26,9 +28,20 @@ defineProps<Props>()
           v-if="item.summary?.length"
           class="text-sm text-neutral-500"
         />
-
-        {{ assets }}
       </div>
+
+      <Deferred :data="['queue']">
+        <template #fallback>
+          <div class="sr-only">Loading sections...</div>
+        </template>
+
+        <VideoSection
+          v-if="queue?.length"
+          label="Up Next"
+          :items="queue"
+          :actions="[{ label: 'Show List', href: '/related', trailingIcon: 'i-hugeicons-arrow-right-01' }]"
+        />
+      </Deferred>
     </PageBody>
   </Page>
 </template>

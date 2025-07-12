@@ -14,6 +14,7 @@ class GenerateVideoRecommendation
     {
         return Video::query()
             ->orderByDesc('created_at')
+            ->take($limit ?? 12)
             ->get()
             ->toResourceCollection(VideoResource::class);
     }

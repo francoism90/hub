@@ -21,10 +21,10 @@ defineProps<Props>()
         </template>
 
         <VideoSection
-          v-if="recent && recent.length"
+          v-if="recent?.length"
           label="Continue Watching"
           :items="recent"
-          :actions="[{ label: 'Show List', href: '/videos', trailingIcon: 'i-hugeicons-arrow-right-01' }]"
+          :actions="[{ label: 'All Watching', href: '/videos', trailingIcon: 'i-hugeicons-arrow-right-01' }]"
         />
       </Deferred>
     </PageBody>

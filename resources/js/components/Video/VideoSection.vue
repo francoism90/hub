@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import VideoCard from '@/components/Video/VideoCard.vue'
 import type { Video } from '@/types'
 import type { NavigationMenuItem } from '@nuxt/ui'
-import VideoCard from './VideoCard.vue'
 
 interface Props {
   label: string
@@ -13,8 +13,8 @@ defineProps<Props>()
 </script>
 
 <template>
-  <section class="flex flex-col gap-3">
-    <div class="flex items-center justify-between gap-4">
+  <section class="flex flex-col">
+    <div class="flex items-center justify-between gap-3">
       <h2 class="font-serif text-lg font-semibold tracking-tight">{{ label }}</h2>
 
       <UNavigationMenu
