@@ -1,6 +1,6 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
 import videos from './videos'
-import transcodes from './transcodes'
+import playlists from './playlists'
 /**
 * @see \App\Api\Authentication\Controllers\HomeController::home
 * @see src/App/Api/Authentication/Controllers/HomeController.php:21
@@ -57,7 +57,7 @@ home.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 const api = {
     home,
     videos,
-    transcodes,
+    playlists,
 }
 
 export default api

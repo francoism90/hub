@@ -1,7 +1,7 @@
 import Controllers from './Controllers'
 
-const Transcodes = {
+const Playlists = {
     Controllers,
 }
 
-export default Transcodes
+export default Playlists

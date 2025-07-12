@@ -1,11 +1,11 @@
 import Authentication from './Authentication'
 import Videos from './Videos'
-import Transcodes from './Transcodes'
+import Playlists from './Playlists'
 
 const Api = {
     Authentication,
     Videos,
-    Transcodes,
+    Playlists,
 }
 
 export default Api
