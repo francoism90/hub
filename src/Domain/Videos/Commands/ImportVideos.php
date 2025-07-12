@@ -78,7 +78,8 @@ class ImportVideos extends Command implements Isolatable
     protected function getCollection(): Collection
     {
         return collect($this->getFileSystem()->allFiles())
-            ->filter(fn (string $path) => rescue(fn () => str_starts_with($this->getFileSystem()->mimeType($path), 'video/'), report: false));
+            ->filter(fn (string $path) => rescue(fn () => str_starts_with($this->getFileSystem()->mimeType($path), 'video/'), report: false))
+            ->sort();
     }
 
     protected function getFileSystem(): FilesystemAdapter
