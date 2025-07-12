@@ -45,7 +45,7 @@ trait HasRelates
         return Relatable::where($this->getRelatableValues($item, $type))->delete();
     }
 
-    public function syncRelated(Collection|array $items, bool $detaching = true): void
+    public function syncRelated(Collection|array $items = [], bool $detaching = true): void
     {
         $items = $this->getSyncRelatedValues($items);
 
