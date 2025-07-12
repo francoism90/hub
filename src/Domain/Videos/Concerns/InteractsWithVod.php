@@ -7,15 +7,16 @@ namespace Domain\Videos\Concerns;
 use Domain\Media\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Illuminate\Support\Collection;
 
 trait InteractsWithVod
 {
     public function getClipCollection(): MediaCollection
     {
         return $this->getMedia('clips')->sortBy([
-            ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->width', 'desc'],
-            ['custom_properties->height', 'desc'],
+            ['custom_properties->streams->bit_rate', 'desc'],
+            ['custom_properties->streams->width', 'desc'],
+            ['custom_properties->streams->height', 'desc'],
         ]);
     }
 
@@ -24,50 +25,29 @@ trait InteractsWithVod
         return $this->getMedia('captions');
     }
 
+    public function getVideoStreams(): Collection
+    {
+        return $this
+            ->getClipCollection()
+            ->flatMap(fn (Media $media) => $media->getCustomProperty('streams', []))
+            ->filter(fn (array $stream) => data_get($stream, 'codec_type') === 'video');
+    }
+
     public function hasCaptions(): bool
     {
         if ($this->getCaptionCollection()->isNotEmpty()) {
             return true;
         }
 
-        return $this
-            ->getMedia('clips')
-            ->filter(fn (Media $media) => $media->getCustomProperty('closed_captions', false))
-            ->isNotEmpty();
+        return (bool) data_get($this->getVideoStreams()->first(), 'closed_captions', false);
     }
 
     public function durationInSeconds(): float
     {
-        $media = $this
-            ->getMedia('clips')
-            ->sortByDesc(fn (Media $media) => $media->getCustomProperty('duration', 0))
-            ->first();
-
-        return (float) $media?->getCustomProperty('duration') ?: 0;
-    }
-
-    protected function clips(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getClipCollection()
-        )->shouldCache();
+        return (float) data_get($this->getVideoStreams()->first(), 'duration', 0);
     }
 
     protected function captions(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getCaptionCollection()
-        )->shouldCache();
-    }
-
-    protected function previews(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getPreviewCollection()
-        )->shouldCache();
-    }
-
-    protected function caption(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->hasCaptions()

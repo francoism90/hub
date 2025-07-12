@@ -43,6 +43,7 @@ export type Video = {
   episode: string
   part: string
   duration: number
+  timestamp: string
   manifest: string
   thumbnail: string
   srcset: string

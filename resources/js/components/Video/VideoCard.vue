@@ -47,7 +47,9 @@ const link = computed(() => show.url(props.item.id))
 
         <div class="flex w-20 justify-end gap-3">
           <div class="w-[1px] bg-gradient-to-t from-neutral-100/0 via-neutral-100/25 to-neutral-100/0"></div>
-          <UBadge class="rounded-full"> 02:28:05 </UBadge>
+          <UBadge class="rounded-full">
+            {{ item.timestamp }}
+          </UBadge>
         </div>
       </div>
     </template>
