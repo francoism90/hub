@@ -12,6 +12,7 @@ use Domain\Users\Concerns\InteractsWithUser;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,7 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 #[ObservedBy(TranscodeObserver::class)]
 #[ScopedBy(OrderedScope::class)]
@@ -88,6 +90,11 @@ class Transcode extends Model
         return $this->morphTo();
     }
 
+    public function getModel(): Model
+    {
+        return $this->transcodeable;
+    }
+
     public function getDisk(): string
     {
         return $this->disk ?? config('transcode.disk_name');
@@ -98,14 +105,46 @@ class Transcode extends Model
         return (string) $this->getKey();
     }
 
+    public function getAbsolutePath(): string
+    {
+        return $this->getFilesystem()->path($this->getPath());
+    }
+
     public function getFilesystem(): FilesystemAdapter
     {
         return Storage::disk($this->getDisk());
     }
 
-    public function getAbsolutePath(): string
+    public function toResponse(?string $path = null): StreamedResponse
     {
-        return $this->getFilesystem()->path($this->getPath());
+        return $this->getFilesystem()->response(implode('/', [$this->getPath(), $path ?? $this->file_name]));
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expires_at?->isPast() ?? false;
+    }
+
+    public function isFinished(): bool
+    {
+        return $this->finished_at?->isPast() ?? false;
+    }
+
+    public function isActive(): bool
+    {
+        return ! $this->isExpired() && ! $this->isFinished();
+    }
+
+    public function prunable(): TranscodeQueryBuilder
+    {
+        return static::query()->expired();
+    }
+
+    public function assetUri(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => route('api.transcodes.playlist', [$this->getModel(), $this->getPath()]),
+        )->shouldCache();
     }
 
     public static function getSegmentLength(): int
@@ -160,10 +199,5 @@ class Transcode extends Model
     public static function copyAudioCodec(): bool
     {
         return config('transcode.copy_audio_codec', true);
-    }
-
-    public function prunable(): TranscodeQueryBuilder
-    {
-        return static::query()->expired();
     }
 }

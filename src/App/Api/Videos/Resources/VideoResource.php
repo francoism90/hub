@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Api\Videos\Resources;
 
-use App\Api\Transcodes\Resources\TranscodeCollection;
 use App\Api\Users\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,7 +28,6 @@ class VideoResource extends JsonResource
             'published' => $this->published_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,
-            'manifest' => TranscodeCollection::make($this->whenLoaded('transcodes')),
             'user' => UserResource::make($this->whenLoaded('user')),
         ];
     }

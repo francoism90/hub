@@ -24,6 +24,14 @@ export type Tag = {
   updated: string
 }
 
+export type Transcode = {
+  id: string
+  asset: string
+  expires: string
+  created: string
+  updated: string
+}
+
 export type Video = {
   id: string
   user: User
@@ -35,6 +43,7 @@ export type Video = {
   episode: string
   part: string
   duration: number
+  manifest: string
   thumbnail: string
   srcset: string
   favorited: boolean

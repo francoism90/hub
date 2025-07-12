@@ -24,15 +24,6 @@ trait InteractsWithVod
         return $this->getMedia('captions');
     }
 
-    public function getPreviewCollection(): MediaCollection
-    {
-        return $this->getMedia('previews')->sortBy([
-            ['custom_properties->bitrate', 'desc'],
-            ['custom_properties->height', 'desc'],
-            ['custom_properties->width', 'desc'],
-        ]);
-    }
-
     public function hasCaptions(): bool
     {
         if ($this->getCaptionCollection()->isNotEmpty()) {
@@ -97,31 +88,10 @@ trait InteractsWithVod
         )->shouldCache();
     }
 
-    public function stream(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => route('api.videos.playlist', ['video' => $this, 'path' => 'manifest.m3u8'])
-        )->shouldCache();
-    }
-
-    public function preview(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => ''
-        )->shouldCache();
-    }
-
-    public function download(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->getFirstMedia('clips')->getTemporaryUrl(now()->addDay())
-        )->shouldCache();
-    }
-
     public function fileSize(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->clips?->totalSizeInBytes(),
+            get: fn () => $this->getClipCollection()->totalSizeInBytes(),
         )->shouldCache();
     }
 }

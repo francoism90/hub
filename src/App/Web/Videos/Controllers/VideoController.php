@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
+use App\Api\Transcodes\Resources\TranscodeCollection;
+use App\Api\Videos\Resources\VideoResource;
 use Domain\Videos\Jobs\TranscodeVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class VideoController implements HasMiddleware
 {
@@ -35,16 +38,15 @@ class VideoController implements HasMiddleware
         // ]);
     }
 
-    public function show(Video $video)
+    public function show(Video $video): Response
     {
         Gate::authorize('view', $video);
 
         TranscodeVideo::dispatch($video);
 
         return Inertia::render('Videos/VideoView', [
-            'item' => $video,
-            // 'items' => $video->comments,
-            // 'tab' => $request->get('tab', 'comments'),
+            'item' => fn () => VideoResource::make($video),
+            'assets' => fn () => TranscodeCollection::make($video->transcodes)
         ]);
     }
 

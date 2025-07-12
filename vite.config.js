@@ -66,8 +66,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           http: ['axios'],
-          ws: ['pusher-js', 'laravel-echo'],
-          play: ['shaka-player', 'shaka-player/dist/shaka-player.compiled.js', 'shaka-player/dist/shaka-player.ui.js'],
+          broadcast: ['pusher-js', 'laravel-echo'],
+          video: ['shaka-player'],
         },
       },
     },

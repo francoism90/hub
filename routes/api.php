@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use App\Api\Authentication\Controllers\HomeController;
+use App\Api\Transcodes\Controllers\TranscodeMediaController;
+use App\Api\Transcodes\Controllers\TranscodePlaylistController;
 use App\Api\Videos\Controllers\VideoController;
-use App\Api\Videos\Controllers\VideoMediaController;
-use App\Api\Videos\Controllers\VideoPlaylistController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('api.')->prefix('v1')->group(function () {
@@ -15,9 +15,9 @@ Route::name('api.')->prefix('v1')->group(function () {
     // Videos
     Route::apiResource('videos', VideoController::class);
 
-    // VOD
-    Route::name('vod.')->prefix('play')->group(function () {
-        Route::get('/{video}/media/{path}', VideoMediaController::class)->name('media');
-        Route::get('/{video}/playlist/{path}', VideoPlaylistController::class)->name('playlist');
+    // Transcodes
+    Route::name('transcodes.')->prefix('play')->group(function () {
+        Route::get('/{transcode}/media/{path}', TranscodeMediaController::class)->name('media');
+        Route::get('/{transcode}/playlist/{path}', TranscodePlaylistController::class)->name('playlist');
     });
 });

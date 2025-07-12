@@ -24,7 +24,7 @@ class CreateVideoTranscode
 
             // Make sure transcode record exists
             $transcode = $video->transcodes()->create([
-                'file_name' => 'manifest.m3u8',
+                'file_name' => 'index.m3u8',
                 'disk' => Transcode::getDestinationDisk(),
                 'expires_at' => Transcode::getExpiresAfter(),
             ]);

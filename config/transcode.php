@@ -20,6 +20,8 @@ return [
 
     'copy_audio_codec' => (bool) env('TRANSCODE_COPY_AUDIO_CODEC', true),
 
+    'additional_parameters' => (array) env('TRANSCODE_ADDITIONAL_PARAMETERS', []),
+
     'video_formats' => [
         \Support\FFMpeg\Format\Video\X264::class,
         // \Support\FFMpeg\Format\Video\X265::class,

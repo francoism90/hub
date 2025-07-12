@@ -1,4 +1,4 @@
-import shaka from 'shaka-player/dist/shaka-player.ui'
+import shaka from 'shaka-player'
 import { readonly, shallowRef, toValue, watchEffect, type MaybeRefOrGetter } from 'vue'
 
 export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter<number>) {

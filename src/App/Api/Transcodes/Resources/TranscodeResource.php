@@ -12,6 +12,8 @@ class TranscodeResource extends JsonResource
     {
         return [
             'id' => $this->getRouteKey(),
+            'asset' => $this->asset_uri,
+            'expires' => $this->expires_at,
             'created' => $this->created_at,
             'updated' => $this->updated_at,
         ];
