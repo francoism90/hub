@@ -46,7 +46,7 @@ class VideoController implements HasMiddleware
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video),
-            'assets' => fn () => PlaylistCollection::make($video->playlists)
+            'assets' => fn () => PlaylistCollection::make($video->playlists),
         ]);
     }
 

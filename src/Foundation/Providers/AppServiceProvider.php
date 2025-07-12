@@ -6,9 +6,9 @@ namespace Foundation\Providers;
 
 use Domain\Groups\Models\Group;
 use Domain\Media\Models\Media;
+use Domain\Playlists\Models\Playlist;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
-use Domain\Playlists\Models\Playlist;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;

@@ -6,8 +6,8 @@ namespace Domain\Videos\Models;
 
 use Database\Factories\VideoFactory;
 use Domain\Groups\Concerns\InteractsWithGroups;
-use Domain\Tags\Concerns\HasTags;
 use Domain\Playlists\Concerns\InteractsWithPlaylists;
+use Domain\Tags\Concerns\HasTags;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Users\Models\User;
 use Domain\Videos\Collections\VideoCollection;
@@ -65,9 +65,9 @@ class Video extends Model implements HasMedia
         'part',
         'adult',
         'snapshot',
-        'expires_at' => 'datetime',
-        'published_at' => 'datetime',
-        'released_at' => 'datetime',
+        'expires_at',
+        'published_at',
+        'released_at',
     ];
 
     /**

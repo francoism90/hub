@@ -30,7 +30,7 @@ class MediaController extends Controller implements HasMiddleware
         throw_if($playlist->isExpired(), ExpiredPlaylistException::make());
 
         // Sanitize the path to prevent directory traversal attacks
-        $path = (new WhitespacePathNormalizer())->normalizePath($path);
+        $path = (new WhitespacePathNormalizer)->normalizePath($path);
 
         return $playlist->toResponse($path);
     }

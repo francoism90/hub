@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Videos\Actions\CreateVideoPlaylist;
-use Domain\Videos\Events\VideoHasBeenPlaylistd;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;

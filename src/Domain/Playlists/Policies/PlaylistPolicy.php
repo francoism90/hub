@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Playlists\Policies;
 
-use Domain\Users\Models\User;
 use Domain\Playlists\Models\Playlist;
+use Domain\Users\Models\User;
 
 class PlaylistPolicy
 {
