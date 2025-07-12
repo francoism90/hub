@@ -2,9 +2,9 @@ import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::__invoke
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-const PlaylistController = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+const PlaylistController = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -14,29 +14,31 @@ const PlaylistController = (args: { transcode: string | number, path: string | n
 
 PlaylistController.definition = {
     methods: ['get','head'],
-    url: '/api/v1/play/{transcode}/playlist/{path}',
+    url: '/api/v1/play/{playlist}/playlist/{path}',
 }
 
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::__invoke
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-PlaylistController.url = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+PlaylistController.url = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
         args = {
-            transcode: args[0],
+            playlist: args[0],
             path: args[1],
         }
     }
 
     const parsedArgs = {
-        transcode: args.transcode,
+        playlist: typeof args.playlist === 'object'
+        ? args.playlist.ulid
+        : args.playlist,
         path: args.path,
     }
 
     return PlaylistController.definition.url
-            .replace('{transcode}', parsedArgs.transcode.toString())
+            .replace('{playlist}', parsedArgs.playlist.toString())
             .replace('{path}', parsedArgs.path.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
@@ -44,9 +46,9 @@ PlaylistController.url = (args: { transcode: string | number, path: string | num
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::__invoke
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-PlaylistController.get = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+PlaylistController.get = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -57,9 +59,9 @@ PlaylistController.get = (args: { transcode: string | number, path: string | num
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::__invoke
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-PlaylistController.head = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+PlaylistController.head = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({

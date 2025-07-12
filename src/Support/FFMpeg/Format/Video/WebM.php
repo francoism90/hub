@@ -10,7 +10,7 @@ class WebM extends DefaultVideo
 {
     public function getAvailableAudioCodecs()
     {
-        return ['copy', 'libvorbis', 'libopus'];
+        return ['copy', 'libvorbis'];
     }
 
     /**

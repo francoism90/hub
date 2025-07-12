@@ -2,9 +2,9 @@ import { queryParams, type QueryParams } from './../../../wayfinder'
 /**
 * @see \App\Api\Playlists\Controllers\MediaController::media
 * @see src/App/Api/Playlists/Controllers/MediaController.php:26
-* @route '/api/v1/play/{transcode}/media/{path}'
+* @route '/api/v1/play/{playlist}/media/{path}'
 */
-export const media = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+export const media = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -14,29 +14,31 @@ export const media = (args: { transcode: string | number, path: string | number 
 
 media.definition = {
     methods: ['get','head'],
-    url: '/api/v1/play/{transcode}/media/{path}',
+    url: '/api/v1/play/{playlist}/media/{path}',
 }
 
 /**
 * @see \App\Api\Playlists\Controllers\MediaController::media
 * @see src/App/Api/Playlists/Controllers/MediaController.php:26
-* @route '/api/v1/play/{transcode}/media/{path}'
+* @route '/api/v1/play/{playlist}/media/{path}'
 */
-media.url = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+media.url = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
         args = {
-            transcode: args[0],
+            playlist: args[0],
             path: args[1],
         }
     }
 
     const parsedArgs = {
-        transcode: args.transcode,
+        playlist: typeof args.playlist === 'object'
+        ? args.playlist.ulid
+        : args.playlist,
         path: args.path,
     }
 
     return media.definition.url
-            .replace('{transcode}', parsedArgs.transcode.toString())
+            .replace('{playlist}', parsedArgs.playlist.toString())
             .replace('{path}', parsedArgs.path.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
@@ -44,9 +46,9 @@ media.url = (args: { transcode: string | number, path: string | number } | [tran
 /**
 * @see \App\Api\Playlists\Controllers\MediaController::media
 * @see src/App/Api/Playlists/Controllers/MediaController.php:26
-* @route '/api/v1/play/{transcode}/media/{path}'
+* @route '/api/v1/play/{playlist}/media/{path}'
 */
-media.get = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+media.get = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -57,9 +59,9 @@ media.get = (args: { transcode: string | number, path: string | number } | [tran
 /**
 * @see \App\Api\Playlists\Controllers\MediaController::media
 * @see src/App/Api/Playlists/Controllers/MediaController.php:26
-* @route '/api/v1/play/{transcode}/media/{path}'
+* @route '/api/v1/play/{playlist}/media/{path}'
 */
-media.head = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+media.head = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({
@@ -70,9 +72,9 @@ media.head = (args: { transcode: string | number, path: string | number } | [tra
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::playlist
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-export const playlist = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+export const playlist = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -82,29 +84,31 @@ export const playlist = (args: { transcode: string | number, path: string | numb
 
 playlist.definition = {
     methods: ['get','head'],
-    url: '/api/v1/play/{transcode}/playlist/{path}',
+    url: '/api/v1/play/{playlist}/playlist/{path}',
 }
 
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::playlist
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-playlist.url = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+playlist.url = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (Array.isArray(args)) {
         args = {
-            transcode: args[0],
+            playlist: args[0],
             path: args[1],
         }
     }
 
     const parsedArgs = {
-        transcode: args.transcode,
+        playlist: typeof args.playlist === 'object'
+        ? args.playlist.ulid
+        : args.playlist,
         path: args.path,
     }
 
     return playlist.definition.url
-            .replace('{transcode}', parsedArgs.transcode.toString())
+            .replace('{playlist}', parsedArgs.playlist.toString())
             .replace('{path}', parsedArgs.path.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
@@ -112,9 +116,9 @@ playlist.url = (args: { transcode: string | number, path: string | number } | [t
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::playlist
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-playlist.get = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+playlist.get = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -125,9 +129,9 @@ playlist.get = (args: { transcode: string | number, path: string | number } | [t
 /**
 * @see \App\Api\Playlists\Controllers\PlaylistController::playlist
 * @see src/App/Api/Playlists/Controllers/PlaylistController.php:27
-* @route '/api/v1/play/{transcode}/playlist/{path}'
+* @route '/api/v1/play/{playlist}/playlist/{path}'
 */
-playlist.head = (args: { transcode: string | number, path: string | number } | [transcode: string | number, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+playlist.head = (args: { playlist: string | { ulid: string }, path: string | number } | [playlist: string | { ulid: string }, path: string | number ], options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({

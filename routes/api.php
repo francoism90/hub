@@ -17,7 +17,7 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Playlists
     Route::name('playlists.')->prefix('play')->group(function () {
-        Route::get('/{transcode}/media/{path}', MediaController::class)->name('media')->where('path', '.*');
-        Route::get('/{transcode}/playlist/{path}', PlaylistController::class)->name('playlist')->where('path', '.*');
+        Route::get('/{playlist}/media/{path}', MediaController::class)->name('media');
+        Route::get('/{playlist}/playlist/{path}', PlaylistController::class)->name('playlist');
     });
 });

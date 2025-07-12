@@ -26,7 +26,6 @@ return [
         \Support\FFMpeg\Format\Video\X264::class,
         \Support\FFMpeg\Format\Video\X265::class,
         \Support\FFMpeg\Format\Video\WebM::class,
-        \Support\FFMpeg\Format\Video\AOMedia::class,
     ],
 
 ];

@@ -19,7 +19,7 @@ class MediaController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            // new Middleware('cache:public;max_age=604800;immutable'),
+            new Middleware('cache:public;max_age=604800;immutable'),
         ];
     }
 
