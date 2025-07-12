@@ -13,7 +13,7 @@ const props = defineProps({
 const ui = ref<HTMLElement | null>()
 const element = ref<HTMLMediaElement | null>()
 
-const asset = computed(() => props.assets?.find((asset) => asset.asset.length))
+const asset = computed(() => props.assets?.find((item) => item.asset?.length))
 
 onMounted(async () => {
   // Preload video
