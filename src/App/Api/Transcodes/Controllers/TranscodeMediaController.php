@@ -8,6 +8,7 @@ use Domain\Transcodes\Exceptions\ExpiredTranscodeException;
 use Domain\Transcodes\Models\Transcode;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
 use League\Flysystem\WhitespacePathNormalizer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -17,7 +18,7 @@ class TranscodeMediaController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('auth:sanctum'),
+            new Middleware('auth:sanctum'),
             // new Middleware('cache:public;max_age=604800;immutable'),
         ];
     }
