@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Api\Transcodes\Resources;
+namespace App\Api\Playlists\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class TranscodeCollection extends ResourceCollection
+class PlaylistCollection extends ResourceCollection
 {
     /**
      * @var string
      */
-    public $collects = TranscodeResource::class;
+    public $collects = PlaylistResource::class;
 
     /**
      * @var bool

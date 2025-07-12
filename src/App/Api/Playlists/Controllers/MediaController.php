@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Api\Transcodes\Controllers;
+namespace App\Api\Playlists\Controllers;
 
-use Domain\Transcodes\Exceptions\ExpiredTranscodeException;
-use Domain\Transcodes\Models\Transcode;
+use Domain\Playlists\Exceptions\ExpiredPlaylistException;
+use Domain\Playlists\Models\Playlist;
 use Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Gate;
 use League\Flysystem\WhitespacePathNormalizer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class TranscodeMediaController extends Controller implements HasMiddleware
+class MediaController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -23,15 +23,15 @@ class TranscodeMediaController extends Controller implements HasMiddleware
         ];
     }
 
-    public function __invoke(Transcode $transcode, string $path): StreamedResponse
+    public function __invoke(Playlist $playlist, string $path): StreamedResponse
     {
-        Gate::authorize('view', [$transcode->getModel(), $transcode]);
+        Gate::authorize('view', [$playlist->getModel(), $playlist]);
 
-        throw_if($transcode->isExpired(), ExpiredTranscodeException::make());
+        throw_if($playlist->isExpired(), ExpiredPlaylistException::make());
 
         // Sanitize the path to prevent directory traversal attacks
         $path = (new WhitespacePathNormalizer())->normalizePath($path);
 
-        return $transcode->toResponse($path);
+        return $playlist->toResponse($path);
     }
 }

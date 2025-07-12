@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Api\Transcodes\Resources;
+namespace App\Api\Playlists\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TranscodeResource extends JsonResource
+class PlaylistResource extends JsonResource
 {
     public function toArray($request): array
     {

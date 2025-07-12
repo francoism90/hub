@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Transcodes\Scopes;
+namespace Domain\Playlists\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -8,7 +8,7 @@ use Domain\Groups\Models\Group;
 use Domain\Media\Models\Media;
 use Domain\Relates\Models\Relatable;
 use Domain\Tags\Models\Tag;
-use Domain\Transcodes\Models\Transcode;
+use Domain\Playlists\Models\Playlist;
 use Domain\Users\Models\User;
 use Domain\Videos\Models\Video;
 use Illuminate\Database\Eloquent\Model;
@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
             'media' => Media::class,
             'relatable' => Relatable::class,
             'tag' => Tag::class,
-            'transcode' => Transcode::class,
+            'playlist' => Playlist::class,
             'user' => User::class,
             'video' => Video::class,
         ]);

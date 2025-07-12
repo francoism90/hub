@@ -10,6 +10,6 @@ class NoTranscodingFound extends Exception
 {
     public static function make(): self
     {
-        return new self('The given video has no transcodes.');
+        return new self('The given video has no playlists.');
     }
 }

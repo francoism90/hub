@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\CreateVideoTranscode;
+use Domain\Videos\Actions\CreateVideoPlaylist;
+use Domain\Videos\Events\VideoHasBeenPlaylistd;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
@@ -17,7 +18,7 @@ use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Pipeline;
 
-class TranscodeVideo implements ShouldBeUnique, ShouldQueue
+class PlaylistVideo implements ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -55,7 +56,7 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
     {
         Pipeline::send($this->video)
             ->through([
-                CreateVideoTranscode::class,
+                CreateVideoPlaylist::class,
             ])
             ->then(fn (Video $video) => VideoHasBeenTranscoded::dispatch($video));
     }
@@ -66,7 +67,7 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
     public function middleware(): array
     {
         return [
-            Skip::when($this->video->currentTranscode() || ! $this->video->hasMedia('clips')),
+            Skip::when($this->video->currentPlaylist() || ! $this->video->hasMedia('clips')),
         ];
     }
 

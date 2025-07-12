@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('transcodes', function (Blueprint $table) {
+        Schema::create('playlists', function (Blueprint $table) {
             $table->id();
             $table->ulid('ulid')->unique();
             $table
@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->nullableMorphs('transcodeable');
+            $table->nullableMorphs('playlistable');
             $table->string('disk');
             $table->string('file_name');
             $table->string('collection')->nullable()->index();
@@ -29,6 +29,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('transcodes');
+        Schema::dropIfExists('playlists');
     }
 };

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Web\Videos\Controllers;
 
-use App\Api\Transcodes\Resources\TranscodeCollection;
+use App\Api\Playlists\Resources\PlaylistCollection;
 use App\Api\Videos\Resources\VideoResource;
-use Domain\Videos\Jobs\TranscodeVideo;
+use Domain\Videos\Jobs\PlaylistVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -42,11 +42,11 @@ class VideoController implements HasMiddleware
     {
         Gate::authorize('view', $video);
 
-        TranscodeVideo::dispatch($video);
+        PlaylistVideo::dispatch($video);
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video),
-            'assets' => fn () => TranscodeCollection::make($video->transcodes)
+            'assets' => fn () => PlaylistCollection::make($video->playlists)
         ]);
     }
 

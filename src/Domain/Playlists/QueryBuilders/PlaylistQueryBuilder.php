@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Transcodes\QueryBuilders;
+namespace Domain\Playlists\QueryBuilders;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class TranscodeQueryBuilder extends Builder
+class PlaylistQueryBuilder extends Builder
 {
     public function pending(): self
     {

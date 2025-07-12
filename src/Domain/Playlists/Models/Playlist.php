@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Domain\Transcodes\Models;
+namespace Domain\Playlists\Models;
 
-use Domain\Transcodes\Collections\TranscodeCollection;
-use Domain\Transcodes\Observers\TranscodeObserver;
-use Domain\Transcodes\QueryBuilders\TranscodeQueryBuilder;
-use Domain\Transcodes\Scopes\OrderedScope;
+use Domain\Playlists\Collections\PlaylistCollection;
+use Domain\Playlists\Observers\PlaylistObserver;
+use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
+use Domain\Playlists\Scopes\OrderedScope;
 use Domain\Users\Concerns\InteractsWithUser;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -24,9 +24,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-#[ObservedBy(TranscodeObserver::class)]
+#[ObservedBy(PlaylistObserver::class)]
 #[ScopedBy(OrderedScope::class)]
-class Transcode extends Model
+class Playlist extends Model
 {
     use HasFactory;
     use HasUlids;
@@ -38,8 +38,8 @@ class Transcode extends Model
      */
     protected $fillable = [
         'user_id',
-        'transcodeable_type',
-        'transcodeable_id',
+        'playlistable_type',
+        'playlistable_id',
         'disk',
         'file_name',
         'collection',
@@ -65,14 +65,14 @@ class Transcode extends Model
         ];
     }
 
-    public function newEloquentBuilder($query): TranscodeQueryBuilder
+    public function newEloquentBuilder($query): PlaylistQueryBuilder
     {
-        return new TranscodeQueryBuilder($query);
+        return new PlaylistQueryBuilder($query);
     }
 
-    public function newCollection(array $models = []): TranscodeCollection
+    public function newCollection(array $models = []): PlaylistCollection
     {
-        return new TranscodeCollection($models);
+        return new PlaylistCollection($models);
     }
 
     public function uniqueIds(): array
@@ -85,19 +85,19 @@ class Transcode extends Model
         return 'ulid';
     }
 
-    public function transcodeable(): MorphTo
+    public function playlistable(): MorphTo
     {
         return $this->morphTo();
     }
 
     public function getModel(): Model
     {
-        return $this->transcodeable;
+        return $this->playlistable;
     }
 
     public function getDisk(): string
     {
-        return $this->disk ?? config('transcode.disk_name');
+        return $this->disk ?? config('playlist.disk_name');
     }
 
     public function getPath(): string
@@ -135,7 +135,7 @@ class Transcode extends Model
         return ! $this->isExpired() && ! $this->isFinished();
     }
 
-    public function prunable(): TranscodeQueryBuilder
+    public function prunable(): PlaylistQueryBuilder
     {
         return static::query()->expired();
     }
@@ -143,61 +143,61 @@ class Transcode extends Model
     public function assetUri(): Attribute
     {
         return Attribute::make(
-            get: fn () => route('api.transcodes.playlist', [$this, $this->file_name]),
+            get: fn () => route('api.playlists.playlist', [$this, $this->file_name]),
         )->shouldCache();
     }
 
     public static function getSegmentLength(): int
     {
-        return config('transcode.segment_length', 10);
+        return config('playlist.segment_length', 10);
     }
 
     public static function getFrameInterval(): int
     {
-        return config('transcode.frame_interval', 48);
+        return config('playlist.frame_interval', 48);
     }
 
     public static function getKiloBitrate(): int
     {
-        return config('transcode.kilo_bitrate', 1500);
+        return config('playlist.kilo_bitrate', 1500);
     }
 
     public static function getPasses(): int
     {
-        return config('transcode.passes', 1);
+        return config('playlist.passes', 1);
     }
 
     public static function getAdditionalParameters(): array
     {
-        return config('transcode.additional_parameters', []);
+        return config('playlist.additional_parameters', []);
     }
 
     public static function getDestinationDisk(): string
     {
-        return config('transcode.disk_name', 'transcode');
+        return config('playlist.disk_name', 'playlist');
     }
 
     public static function getVideoFormats(): Collection
     {
-        return collect(config('transcode.video_formats', []))
+        return collect(config('playlist.video_formats', []))
             ->filter(fn (string $format) => is_subclass_of($format, DefaultVideo::class))
             ->map(fn (string $format) => app($format));
     }
 
     public static function getExpiresAfter(): ?Carbon
     {
-        $expires = config('transcode.expires_after');
+        $expires = config('playlist.expires_after');
 
         return $expires === null ? null : Carbon::now()->addSeconds($expires);
     }
 
     public static function copyVideoCodec(): bool
     {
-        return config('transcode.copy_video_codec', true);
+        return config('playlist.copy_video_codec', true);
     }
 
     public static function copyAudioCodec(): bool
     {
-        return config('transcode.copy_audio_codec', true);
+        return config('playlist.copy_audio_codec', true);
     }
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Transcodes\Collections;
+namespace Domain\Playlists\Collections;
 
 use Illuminate\Database\Eloquent\Collection;
 
-class TranscodeCollection extends Collection
+class PlaylistCollection extends Collection
 {
     //
 }

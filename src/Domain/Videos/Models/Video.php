@@ -7,7 +7,7 @@ namespace Domain\Videos\Models;
 use Database\Factories\VideoFactory;
 use Domain\Groups\Concerns\InteractsWithGroups;
 use Domain\Tags\Concerns\HasTags;
-use Domain\Transcodes\Concerns\InteractsWithTranscodes;
+use Domain\Playlists\Concerns\InteractsWithPlaylists;
 use Domain\Users\Concerns\InteractsWithUser;
 use Domain\Users\Models\User;
 use Domain\Videos\Collections\VideoCollection;
@@ -37,7 +37,7 @@ class Video extends Model implements HasMedia
     use InteractsWithCache;
     use InteractsWithGroups;
     use InteractsWithMedia;
-    use InteractsWithTranscodes;
+    use InteractsWithPlaylists;
     use InteractsWithUser;
     use InteractsWithVod;
     use Searchable;
