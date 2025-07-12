@@ -8,8 +8,7 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
 
   const preload = async (assetUri: string, startTime?: number) => player.value?.preload(assetUri, startTime)
 
-  const load = async (assetUri?: string, startTime?: number) =>
-    player.value?.load(assetUri ?? manager.value ?? '', startTime)
+  const load = async (assetUri?: string, startTime?: number) => player.value?.load(assetUri ?? manager.value ?? '', startTime)
 
   const unload = async () => player.value?.unload()
 
@@ -22,16 +21,20 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
   const destroy = async () => player.value?.destroy()
 
   watchEffect(async () => {
+    // Install polyfills
     shaka.polyfill.installAll()
 
+    // Check browser support
     if (!shaka.Player.isBrowserSupported()) {
       console.error('Browser not supported')
       return
     }
 
+    // Setup player and events
     player.value = new shaka.Player()
     events.value = new shaka.util.EventManager()
 
+    // Setup preload manager
     if (url) {
       manager.value = await preload(toValue(url), toValue(time))
     }
