@@ -1,4 +1,4 @@
-import { queryParams, type QueryParams } from './../../wayfinder'
+import { queryParams, type QueryParams } from './../../../../../wayfinder'
 /**
 * @see \App\Web\Videos\Controllers\VideoController::index
 * @see src/App/Web/Videos/Controllers/VideoController.php:27
@@ -255,11 +255,6 @@ edit.head = (args: { video: string | { ulid: string } } | [video: string | { uli
     method: 'head',
 })
 
-const videos = {
-    index,
-    create,
-    show,
-    edit,
-}
+const VideoController = { index, create, show, edit }
 
-export default videos
+export default VideoController

@@ -17,7 +17,7 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     // Transcodes
     Route::name('transcodes.')->prefix('play')->group(function () {
-        Route::get('/{transcode}/media/{path}', TranscodeMediaController::class)->name('media');
-        Route::get('/{transcode}/playlist/{path}', TranscodePlaylistController::class)->name('playlist');
+        Route::get('/{transcode}/media/{path}', TranscodeMediaController::class)->name('media')->where('path', '.*');
+        Route::get('/{transcode}/playlist/{path}', TranscodePlaylistController::class)->name('playlist')->where('path', '.*');
     });
 });

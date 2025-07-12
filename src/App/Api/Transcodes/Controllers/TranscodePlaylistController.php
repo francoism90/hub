@@ -19,7 +19,7 @@ class TranscodePlaylistController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            // new Middleware('auth:sanctum'),
+            new Middleware('auth:sanctum'),
             // new Middleware('cache_response:90'),
         ];
     }

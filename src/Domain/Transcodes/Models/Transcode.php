@@ -143,7 +143,7 @@ class Transcode extends Model
     public function assetUri(): Attribute
     {
         return Attribute::make(
-            get: fn () => route('api.transcodes.playlist', [$this->getModel(), $this->getPath()]),
+            get: fn () => route('api.transcodes.playlist', [$this, $this->file_name]),
         )->shouldCache();
     }
 
