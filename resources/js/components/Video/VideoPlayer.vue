@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useShaka } from '@/composables/shaka'
-import type { Transcode } from '@/types'
+import type { Playlist } from '@/types'
 import { computed, onMounted, ref, type PropType } from 'vue'
 
 const props = defineProps({
   assets: {
-    type: Object as PropType<Transcode[]>,
+    type: Object as PropType<Playlist[]>,
     required: false,
   },
 })
@@ -33,12 +33,11 @@ onMounted(async () => {
 <template>
   <div
     data-shaka-player-container
-    class="relative size-full"
     ref="ui"
   >
     <video
       data-shaka-player
-      class="size-full"
+      class="size-full rounded-2xl bg-black"
       ref="element"
       controls
       playsinline

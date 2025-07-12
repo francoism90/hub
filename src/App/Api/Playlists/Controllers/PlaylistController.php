@@ -20,7 +20,7 @@ class PlaylistController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            // new Middleware('cache_response:90'),
+            new Middleware('cache_response:90'),
         ];
     }
 

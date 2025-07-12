@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-8 flex flex-col space-y-12 pb-24">
+  <div class="mt-6 flex flex-col pb-24">
     <slot />
   </div>
 </template>

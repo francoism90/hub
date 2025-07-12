@@ -24,7 +24,7 @@ export type Tag = {
   updated: string
 }
 
-export type Transcode = {
+export type Playlist = {
   id: string
   asset: string
   expires: string
