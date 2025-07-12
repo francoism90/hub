@@ -21,7 +21,7 @@ defineProps<Props>()
       <VideoPlayer :assets />
 
       <div class="flex flex-col gap-1 py-3">
-        <h1 class="line-clamp-2 font-serif text-xl font-bold">{{ item.name }}</h1>
+        <h1 class="line-clamp-2 font-serif text-xl font-semibold">{{ item.name }}</h1>
         <p
           v-if="item.summary?.length"
           class="text-sm text-neutral-500"
