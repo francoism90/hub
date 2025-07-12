@@ -8,7 +8,7 @@ const items = ref<NavigationMenuItem[][]>([
       label: 'Stry',
       to: '/',
       ui: {
-        linkLabel: 'font-serif text-neutral-300 font-bold uppercase',
+        linkLabel: 'font-serif text-neutral-500 font-bold uppercase',
       },
     },
   ],
