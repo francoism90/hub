@@ -48,6 +48,7 @@ export type Video = {
   srcset: string
   favorited: boolean
   saved: boolean
+  released: string
   expires: string
   published: string
   created: string

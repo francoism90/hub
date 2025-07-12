@@ -16,8 +16,8 @@ class TagResource extends JsonResource
             'name' => $this->name,
             'type' => $this->type,
             'videos' => $this->whenCounted('videos'),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created' => $this->created_at,
+            'updated' => $this->updated_at,
         ];
     }
 }

@@ -20,10 +20,10 @@ defineProps<Props>()
     <PageBody>
       <VideoPlayer :assets />
 
-      <div class="flex flex-col gap-1 py-3">
+      <section class="flex flex-col gap-1 py-3">
         <h1 class="line-clamp-2 font-serif text-xl font-bold">{{ item.name }}</h1>
         {{ assets }}
-      </div>
+      </section>
     </PageBody>
   </Page>
 </template>
