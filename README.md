@@ -45,6 +45,12 @@ php artisan migrate --seed
 pnpm install && pnpm build
 ```
 
+1. To seed example users:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
 ## Usage
 
 The instance should be available at <https://hub.test>.
@@ -53,12 +59,6 @@ The following services are only accessible when being a *super-admin*:
 
 - <https://hub.test/horizon> - Laravel Horizon
 - <https://hub.test/telescope> - Laravel Telescope (disabled by default - only use on development)
-
-To seed an example super-admin user:
-
-```bash
-php artisan db:seed --class=UserSeeder:class
-```
 
 ## Upgrading
 
