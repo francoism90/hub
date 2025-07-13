@@ -9,6 +9,7 @@ use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Support\Facades\DB;
+use ProtoneMedia\LaravelFFMpeg\FFMpeg\CopyVideoFormat;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class CreateVideoPlaylist
@@ -44,6 +45,7 @@ class CreateVideoPlaylist
             $videoCodec = $ffmpeg->getVideoStream()->get('codec_name');
             $audioCodec = $ffmpeg->getAudioStream()->get('codec_name');
 
+            // Try to find a suitable format based on the codecs
             $format = $formats->first(
                 fn (DefaultVideo $videoFormat) => method_exists($videoFormat, 'getAvailableVideoCodecs')
                     && in_array($audioCodec, $videoFormat->getAvailableAudioCodecs())
@@ -55,13 +57,17 @@ class CreateVideoPlaylist
             $copyAudioFormat = (Playlist::copyAudioCodec() && in_array($audioCodec, $format->getAvailableAudioCodecs()));
             $copyVideoFormat = (Playlist::copyVideoCodec() && in_array($videoCodec, $format->getAvailableVideoCodecs()));
 
+            if ($copyAudioFormat && $copyVideoFormat) {
+                $format = app(CopyVideoFormat::class);
+            }
+
             // Add the format to the ffmpeg exporter
             $ffmpeg->addFormat(
                 $format
                     ->setAudioCodec($copyAudioFormat ? 'copy' : $format->getAudioCodec())
                     ->setVideoCodec($copyVideoFormat ? 'copy' : $format->getVideoCodec())
-                    ->setKiloBitrate(Playlist::getKiloBitrate()) // on copy, this is ignored
-                    ->setPasses(Playlist::getPasses()) // on copy, this is ignored
+                    ->setKiloBitrate($copyVideoFormat ? 0 : Playlist::getKiloBitrate())
+                    ->setPasses(Playlist::getPasses())
                     ->setAdditionalParameters(Playlist::getAdditionalParameters())
             );
 
