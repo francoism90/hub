@@ -39,7 +39,6 @@ defineProps<Props>()
           v-if="queue?.length"
           label="Up Next"
           :items="queue"
-          :actions="[{ label: 'Show List', href: '/related', trailingIcon: 'i-hugeicons-arrow-right-01' }]"
         />
       </Deferred>
     </PageBody>
