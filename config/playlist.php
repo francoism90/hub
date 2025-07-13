@@ -28,6 +28,8 @@ return [
     |
     */
 
+    'hls_generator' => env('PLAYLIST_HLS_GENERATOR', Domain\Playlists\Actions\CreateNewHlsPlaylist::class),
+
     'hls_playlists' => [
         ['name' => 'default', 'bit_rate' => 1500],
         // ['name' => 'low', 'bit_rate' => 500],

@@ -169,6 +169,11 @@ class Playlist extends Model
             ->map(fn (string $format) => app($format));
     }
 
+    public static function getHlsGenerator(): string
+    {
+        return config('playlist.hls_generator');
+    }
+
     public static function getHlsPlaylists(): Collection
     {
         return collect(config('playlist.hls_playlists', []))

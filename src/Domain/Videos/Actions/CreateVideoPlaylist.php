@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Videos\Actions;
 
 use Domain\Playlists\Actions\CreateNewHlsPlaylist;
+use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Exceptions\EmptyClipCollection;
 use Domain\Videos\Models\Video;
@@ -20,7 +21,7 @@ class CreateVideoPlaylist
             $media = $video->getClipCollection()->first();
 
             // Create a new playlist for the video
-            app(CreateNewHlsPlaylist::class)->handle($video, $media->disk, $media->getPathRelativeToRoot());
+            app(Playlist::getHlsGenerator())->handle($video, $media->disk, $media->getPathRelativeToRoot());
 
             // Dispatch the event that the video has been transcoded
             VideoHasBeenTranscoded::dispatch($video);

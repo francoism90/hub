@@ -73,7 +73,7 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
 
     public function uniqueId(): string
     {
-        return hash('xxh128', implode(':', [static::class, $this->path]));
+        return hash('xxh128', implode(':', [$this->disk, $this->path]));
     }
 
     public function retryUntil(): \DateTime
