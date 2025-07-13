@@ -157,21 +157,6 @@ class Playlist extends Model
         return config('playlist.frame_interval', 48);
     }
 
-    public static function getKiloBitrate(): int
-    {
-        return config('playlist.kilo_bitrate', 1500);
-    }
-
-    public static function getPasses(): int
-    {
-        return config('playlist.passes', 1);
-    }
-
-    public static function getAdditionalParameters(): array
-    {
-        return config('playlist.additional_parameters', []);
-    }
-
     public static function getDestinationDisk(): string
     {
         return config('playlist.disk_name', 'playlist');
@@ -182,6 +167,13 @@ class Playlist extends Model
         return collect(config('playlist.video_formats', []))
             ->filter(fn (string $format) => is_subclass_of($format, DefaultVideo::class))
             ->map(fn (string $format) => app($format));
+    }
+
+    public static function getHlsPlaylists(): Collection
+    {
+        return collect(config('playlist.hls_playlists', []))
+            ->map(fn (array $playlist) => fluent($playlist))
+            ->sortBy('bit_rate');
     }
 
     public static function getExpiresAfter(): ?Carbon
@@ -199,5 +191,10 @@ class Playlist extends Model
     public static function copyAudioCodec(): bool
     {
         return config('playlist.copy_audio_codec', true);
+    }
+
+    public static function preventTranscoding(): bool
+    {
+        return config('playlist.prevent_transcoding', true);
     }
 }

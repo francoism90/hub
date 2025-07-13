@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Domain\Videos\Actions;
 
 use Closure;
+use Domain\Playlists\Actions\GetPlaylistVideoFormat;
 use Domain\Playlists\Models\Playlist;
 use Domain\Videos\Models\Video;
-use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Fluent;
 use ProtoneMedia\LaravelFFMpeg\FFMpeg\CopyVideoFormat;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
@@ -23,53 +24,16 @@ class CreateVideoPlaylist
                 return $next($video);
             }
 
-            // Create a new playlist for the video
-            $playlist = $video->playlists()->create([
-                'file_name' => 'index.m3u8',
-                'disk' => Playlist::getDestinationDisk(),
-                'expires_at' => Playlist::getExpiresAfter(),
-            ]);
 
-            // Initialize ffmpeg exporter
-            $ffmpeg = FFMpeg::fromDisk($media->disk)
-                ->open($media->getPathRelativeToRoot())
-                ->exportForHLS()
-                ->withoutPlaylistEndLine()
-                ->toDisk($playlist->disk)
-                ->setSegmentLength(Playlist::getSegmentLength())
-                ->setKeyFrameInterval(Playlist::getFrameInterval());
 
-            // Validate codecs and formats
-            $formats = Playlist::getVideoFormats();
 
-            $videoCodec = $ffmpeg->getVideoStream()->get('codec_name');
-            $audioCodec = $ffmpeg->getAudioStream()->get('codec_name');
 
-            // Try to find a suitable format based on the codecs
-            $format = $formats->first(
-                fn (DefaultVideo $videoFormat) => method_exists($videoFormat, 'getAvailableVideoCodecs')
-                    && in_array($audioCodec, $videoFormat->getAvailableAudioCodecs())
-                    && in_array($videoCodec, $videoFormat->getAvailableVideoCodecs()),
-                fn () => $formats->first()
-            );
 
-            // Check if the format can be copied or needs transcoding
-            $copyAudioFormat = (Playlist::copyAudioCodec() && in_array($audioCodec, $format->getAvailableAudioCodecs()));
-            $copyVideoFormat = (Playlist::copyVideoCodec() && in_array($videoCodec, $format->getAvailableVideoCodecs()));
 
-            if ($copyAudioFormat && $copyVideoFormat) {
-                $format = app(CopyVideoFormat::class);
-            }
 
-            // Add the format to the ffmpeg exporter
-            $ffmpeg->addFormat(
-                $format
-                    ->setAudioCodec($copyAudioFormat ? 'copy' : $format->getAudioCodec())
-                    ->setVideoCodec($copyVideoFormat ? 'copy' : $format->getVideoCodec())
-                    ->setKiloBitrate($copyVideoFormat ? 0 : Playlist::getKiloBitrate())
-                    ->setPasses(Playlist::getPasses())
-                    ->setAdditionalParameters(Playlist::getAdditionalParameters())
-            );
+
+
+
 
             // Run the transcoding process
             $ffmpeg->save("{$playlist->getPath()}/{$playlist->file_name}");
