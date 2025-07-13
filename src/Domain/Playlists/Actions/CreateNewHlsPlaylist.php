@@ -42,7 +42,7 @@ class CreateNewHlsPlaylist
 
             // Get the video format to use
             // Default to X264 if no specific format is provided
-            $videoFormat = $formats->get('format', new X264());
+            $videoFormat = $formats->get('format', new X264);
 
             // Check if codecs can be copied or needs transcoding
             $copyVideoFormat = $formats->get('copy_video', false);
@@ -60,6 +60,7 @@ class CreateNewHlsPlaylist
 
                 if ($format instanceof CopyVideoFormat) {
                     $ffmpeg->addFormat($format);
+
                     return;
                 }
 

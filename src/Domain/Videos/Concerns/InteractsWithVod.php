@@ -6,8 +6,8 @@ namespace Domain\Videos\Concerns;
 
 use Domain\Media\Models\Media;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Illuminate\Support\Collection;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 trait InteractsWithVod
 {

@@ -7,7 +7,7 @@ namespace App\Web\Videos\Controllers;
 use App\Api\Playlists\Resources\PlaylistCollection;
 use App\Api\Videos\Resources\VideoResource;
 use Domain\Videos\Algos\GenerateVideoRecommendation;
-use Domain\Videos\Jobs\PlaylistVideo;
+use Domain\Videos\Jobs\TranscodeVideo;
 use Domain\Videos\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -43,7 +43,7 @@ class VideoController implements HasMiddleware
     {
         Gate::authorize('view', $video);
 
-        PlaylistVideo::dispatch($video);
+        TranscodeVideo::dispatch($video);
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
