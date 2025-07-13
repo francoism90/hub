@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('file_name');
             $table->string('collection')->nullable()->index();
             $table->timestamp('expires_at')->nullable();
-            $table->timestamp('finished_at')->nullable();
+            $table->timestamp('transcoded_at')->nullable();
             $table->timestamps();
         });
     }

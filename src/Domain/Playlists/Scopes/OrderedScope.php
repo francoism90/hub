@@ -14,7 +14,7 @@ class OrderedScope implements Scope
     {
         $builder
             ->orderByDesc('expires_at')
-            ->orderByDesc('finished_at')
+            ->orderByDesc('transcoded_at')
             ->orderByDesc('id');
     }
 }

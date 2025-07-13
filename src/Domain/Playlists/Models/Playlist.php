@@ -44,7 +44,7 @@ class Playlist extends Model
         'file_name',
         'collection',
         'expires_at',
-        'finished_at',
+        'transcoded_at',
     ];
 
     /**
@@ -61,7 +61,7 @@ class Playlist extends Model
     {
         return [
             'expires_at' => 'datetime',
-            'finished_at' => 'datetime',
+            'transcoded_at' => 'datetime',
         ];
     }
 
@@ -125,14 +125,14 @@ class Playlist extends Model
         return $this->expires_at?->isPast() ?? false;
     }
 
-    public function isFinished(): bool
+    public function isTranscoded(): bool
     {
-        return $this->finished_at?->isPast() ?? false;
+        return $this->transcoded_at?->isPast() ?? false;
     }
 
     public function isActive(): bool
     {
-        return ! $this->isExpired() && ! $this->isFinished();
+        return ! $this->isExpired() && ! $this->isTranscoded();
     }
 
     public function prunable(): PlaylistQueryBuilder

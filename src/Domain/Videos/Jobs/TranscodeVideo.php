@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Videos\Jobs;
 
 use Domain\Videos\Actions\CreateVideoPlaylist;
-use Domain\Videos\Events\VideoHasBeenTranscoded;
 use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -15,9 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Pipeline;
 
-class PlaylistVideo implements ShouldBeUnique, ShouldQueue
+class TranscodeVideo implements ShouldBeUnique, ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -33,7 +31,7 @@ class PlaylistVideo implements ShouldBeUnique, ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 60 * 60 * 4;
+    public $timeout = 60 * 60 * 8;
 
     /**
      * @var bool
@@ -53,11 +51,7 @@ class PlaylistVideo implements ShouldBeUnique, ShouldQueue
 
     public function handle(): void
     {
-        Pipeline::send($this->video)
-            ->through([
-                CreateVideoPlaylist::class,
-            ])
-            ->then(fn (Video $video) => VideoHasBeenTranscoded::dispatch($video));
+        app(CreateVideoPlaylist::class)->handle($this->video);
     }
 
     /**

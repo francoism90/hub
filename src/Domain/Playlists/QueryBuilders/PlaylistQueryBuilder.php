@@ -11,7 +11,7 @@ class PlaylistQueryBuilder extends Builder
     public function pending(): self
     {
         return $this
-            ->whereNull('finished_at')
+            ->whereNull('transcoded_at')
             ->whereNull('expires_at')
             ->orWhere('expires_at', '>', now());
     }
@@ -19,8 +19,8 @@ class PlaylistQueryBuilder extends Builder
     public function finished(): self
     {
         return $this
-            ->whereNotNull('finished_at')
-            ->where('finished_at', '<=', now());
+            ->whereNotNull('transcoded_at')
+            ->where('transcoded_at', '<=', now());
     }
 
     public function expired(): self
