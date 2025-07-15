@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Playlists\Actions;
 
+use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Models\Playlist;
+use Domain\Videos\Jobs\PlaylistProgress;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +15,7 @@ use ProtoneMedia\LaravelFFMpeg\FFMpeg\CopyVideoFormat;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Support\FFMpeg\Format\Video\X264;
 
-class CreateNewHlsPlaylist
+class CreateHlsPlaylist
 {
     public function handle(Model $model, string $disk, string $path): Playlist
     {
@@ -38,7 +40,12 @@ class CreateNewHlsPlaylist
                 ->withoutPlaylistEndLine()
                 ->toDisk(Playlist::getDestinationDisk())
                 ->setSegmentLength(Playlist::getSegmentLength())
-                ->setKeyFrameInterval(Playlist::getFrameInterval());
+                ->setKeyFrameInterval(Playlist::getFrameInterval())
+                ->onProgress(fn (?float $percentage = null, ?float $remaining = null, ?float $rate = null) => PlaylistProgress::dispatch($playlist, PlaylistProgressData::from([
+                    'percentage' => $percentage,
+                    'remaining' => $remaining,
+                    'rate' => $rate,
+                ])));
 
             // Get the video format to use
             // Default to X264 if no specific format is provided

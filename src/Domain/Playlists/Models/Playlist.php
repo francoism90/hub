@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Playlists\Models;
 
 use Domain\Playlists\Collections\PlaylistCollection;
+use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Observers\PlaylistObserver;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\Scopes\OrderedScope;
@@ -61,6 +62,7 @@ class Playlist extends Model
     protected function casts(): array
     {
         return [
+            'progress' => PlaylistProgressData::class,
             'expires_at' => 'datetime',
             'transcoded_at' => 'datetime',
         ];
