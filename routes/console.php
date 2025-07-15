@@ -36,5 +36,5 @@ Schedule::command(PruneModels::class, [
         Playlist::class,
     ],
 ])
-    ->hourly()
+    ->everyFifteenMinutes()
     ->runInBackground();
