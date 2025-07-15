@@ -100,25 +100,33 @@ return [
         'media' => [
             'driver' => 'local',
             'root' => storage_path('app/media'),
-            'serve' => true,
+            'serve' => false,
             'throw' => false,
+            'report' => false,
+        ],
+
+        'import' => [
+            'driver' => 'local',
+            'root' => storage_path('app/import'),
+            'serve' => false,
+            'throw' => true,
             'report' => true,
         ],
 
         'transcode' => [
             'driver' => 'local',
             'root' => storage_path('app/transcode'),
-            'serve' => true,
+            'serve' => false,
             'throw' => false,
-            'report' => true,
+            'report' => false,
         ],
 
-        'import' => [
+        'secrets' => [
             'driver' => 'local',
-            'root' => storage_path('app/import'),
-            'serve' => true,
+            'root' => storage_path('app/secrets'),
+            'serve' => false,
             'throw' => false,
-            'report' => true,
+            'report' => false,
         ],
 
     ],
