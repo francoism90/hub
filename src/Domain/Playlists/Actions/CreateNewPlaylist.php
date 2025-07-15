@@ -11,7 +11,7 @@ class CreateNewPlaylist
 {
     public function handle(Model $model, array $attributes = []): Playlist
     {
-        return $model->playlists()->create(...[
+        return $model->playlists()->create([
             'file_name' => 'index.m3u8',
             'disk' => Playlist::getTranscodeDisk(),
             'secret_disk' => Playlist::getRotationKeyDisk(),

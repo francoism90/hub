@@ -23,7 +23,6 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 #[ObservedBy(PlaylistObserver::class)]
 #[ScopedBy(OrderedScope::class)]
@@ -109,9 +108,9 @@ class Playlist extends Model
         return $this->secret_disk;
     }
 
-    public function getPath(): string
+    public function getPath(string $path = ''): string
     {
-        return (string) $this->getKey();
+        return (string) implode('/', [$this->getKey(), $path]);
     }
 
     public function getAbsolutePath(): string
@@ -127,11 +126,6 @@ class Playlist extends Model
     public function getSecretFilesystem(): FilesystemAdapter
     {
         return Storage::disk($this->getSecretDisk());
-    }
-
-    public function toResponse(?string $path = null): StreamedResponse
-    {
-        return $this->getFilesystem()->response(implode('/', [$this->getPath(), $path ?? $this->file_name]));
     }
 
     public function isExpired(): bool

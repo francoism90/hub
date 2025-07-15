@@ -40,7 +40,7 @@ class CreateHlsPlaylist
             $secrets = $playlist->getSecretFilesystem();
 
             if (Playlist::useRotationKeys()) {
-                $ffmpeg->withRotatingEncryptionKey(fn (string $filename, string $contents) => $secrets->put("{$playlist->getPath()}/{$filename}", $contents),
+                $ffmpeg->withRotatingEncryptionKey(fn (string $filename, string $contents) => $secrets->put($playlist->getPath($filename), $contents),
                     segmentsPerKey: Playlist::getRotationKeysSections()
                 );
             }
@@ -86,7 +86,7 @@ class CreateHlsPlaylist
             });
 
             // Run the transcoding process
-            $ffmpeg->save("{$playlist->getPath()}/{$playlist->file_name}");
+            $ffmpeg->save($playlist->getPath($playlist->file_name));
 
             // Mark the playlist as transcoded
             $playlist->touch('transcoded_at');

@@ -32,6 +32,6 @@ class PlaylistKeyController extends Controller implements HasMiddleware
         // Sanitize the path to prevent directory traversal attacks
         $path = (new WhitespacePathNormalizer)->normalizePath($path);
 
-        return $playlist->toResponse($path);
+        return $playlist->getSecretFilesystem()->response($playlist->getPath($path));
     }
 }
