@@ -19,6 +19,10 @@ return [
 
     'expires_after' => (int) env('PLAYLIST_EXPIRES_AFTER', 60 * 60 * 4), // 4 hours
 
+    'jobs' => [
+        'sync_progress' => \Domain\Playlists\Jobs\PlaylistProgress::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | HLS Configuration
@@ -43,6 +47,8 @@ return [
     'frame_interval' => (int) env('PLAYLIST_FRAME_INTERVAL', 48),
 
     'rotation_keys' => (bool) env('PLAYLIST_ROTATION_KEYS', true),
+
+    'rotation_keys_disk' => env('PLAYLIST_ROTATION_KEYS_DISK', 'secrets'),
 
     'rotation_keys_sections' => (int) env('PLAYLIST_ROTATION_KEYS_SECTIONS', 10),
 

@@ -43,6 +43,7 @@ class Playlist extends Model
         'playlistable_id',
         'disk',
         'file_name',
+        'secret_disk',
         'progress',
         'collection',
         'expires_at',
@@ -103,6 +104,11 @@ class Playlist extends Model
         return $this->disk ?? config('playlist.disk_name');
     }
 
+    public function getSecretDisk(): string
+    {
+        return $this->secret_disk ?? config('playlist.rotation_keys_disk');
+    }
+
     public function getPath(): string
     {
         return (string) $this->getKey();
@@ -116,6 +122,11 @@ class Playlist extends Model
     public function getFilesystem(): FilesystemAdapter
     {
         return Storage::disk($this->getDisk());
+    }
+
+    public function getSecretFilesystem(): FilesystemAdapter
+    {
+        return Storage::disk($this->getSecretDisk());
     }
 
     public function toResponse(?string $path = null): StreamedResponse

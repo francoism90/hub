@@ -14,7 +14,7 @@ use League\Flysystem\WhitespacePathNormalizer;
 use ProtoneMedia\LaravelFFMpeg\Http\DynamicHLSPlaylist;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
-class PlaylistController extends Controller implements HasMiddleware
+class PlaylistManifestController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
@@ -36,7 +36,8 @@ class PlaylistController extends Controller implements HasMiddleware
         return FFMpeg::dynamicHLSPlaylist()
             ->fromDisk($playlist->getDisk())
             ->open("{$playlist->getPath()}/{$path}")
-            ->setPlaylistUrlResolver(fn (string $path) => route('api.playlists.playlist', ['playlist' => $playlist, 'path' => $path]))
-            ->setMediaUrlResolver(fn (string $path) => route('api.playlists.media', ['playlist' => $playlist, 'path' => $path]));
+            ->setKeyUrlResolver(fn (string $path) => route('api.playlists.key', ['playlist' => $playlist, 'path' => $path]))
+            ->setMediaUrlResolver(fn (string $path) => route('api.playlists.media', ['playlist' => $playlist, 'path' => $path]))
+            ->setPlaylistUrlResolver(fn (string $path) => route('api.playlists.playlist', ['playlist' => $playlist, 'path' => $path]));
     }
 }

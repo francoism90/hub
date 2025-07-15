@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Gate;
 use League\Flysystem\WhitespacePathNormalizer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class MediaController extends Controller implements HasMiddleware
+class PlaylistMediaController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->nullableMorphs('playlistable');
             $table->string('disk');
             $table->string('file_name');
+            $table->string('secret_disk')->nullable();
             $table->json('progress')->nullable();
             $table->string('collection')->nullable()->index();
             $table->timestamp('expires_at')->nullable();

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Playlists\Actions;
 
-use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Models\Playlist;
-use Domain\Playlists\Jobs\PlaylistProgress;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -21,16 +19,12 @@ class CreateHlsPlaylist
     {
         return DB::transaction(function () use ($model, $disk, $path) {
             /** @var Playlist $playlist */
-            $playlist = $model->playlists()->create([
-                'file_name' => 'index.m3u8',
-                'disk' => Playlist::getDestinationDisk(),
-                'expires_at' => Playlist::getExpiresAfter(),
-            ]);
+            $playlist = app(CreateNewPlaylist::class)->handle($model);
 
             // Get valid codecs and formats
             $formats = app(GetPlaylistVideoFormat::class)->handle($disk, $path);
 
-            // Get the playlists that can be created
+            // Get the HLS playlists that can be used
             $playlists = Playlist::getHlsPlaylists();
 
             // Initialize ffmpeg exporter
@@ -40,12 +34,24 @@ class CreateHlsPlaylist
                 ->withoutPlaylistEndLine()
                 ->toDisk(Playlist::getDestinationDisk())
                 ->setSegmentLength(Playlist::getSegmentLength())
-                ->setKeyFrameInterval(Playlist::getFrameInterval())
-                ->onProgress(fn (?float $percentage = null, ?float $remaining = null, ?float $rate = null) => PlaylistProgress::dispatch($playlist, PlaylistProgressData::from([
-                    'percentage' => $percentage,
-                    'remaining' => $remaining,
-                    'rate' => $rate,
-                ])));
+                ->setKeyFrameInterval(Playlist::getFrameInterval());
+
+            // Use rotation key if specified
+            $secrets = $playlist->getSecretFilesystem();
+
+            if (Playlist::useRotationKeys()) {
+                $ffmpeg->withRotatingEncryptionKey(fn (string $filename, string $contents) => $secrets->put("{$playlist->getPath()}/{$filename}", $contents),
+                    segmentsPerKey: Playlist::getRotationKeysSections()
+                );
+            }
+
+            // Monitor progress of the transcoding
+            $ffmpeg->onProgress(fn (?float $percentage = null, ?float $remaining = null, ?float $rate = null) => app(SyncPlaylistProgress::class)->handle(
+                playlist: $playlist,
+                percentage: $percentage,
+                remaining: $remaining,
+                rate: $rate
+            ));
 
             // Get the video format to use
             // Default to X264 if no specific format is provided
