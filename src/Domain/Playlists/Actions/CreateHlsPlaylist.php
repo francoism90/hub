@@ -77,10 +77,11 @@ class CreateHlsPlaylist
                     return;
                 }
 
-                $ffmpeg->addFormat($format
-                    ->setVideoCodec($copyVideoFormat ? 'copy' : $playlist->get('video_codec', $videoFormat->getVideoCodec()))
-                    ->setAudioCodec($copyAudioFormat ? 'copy' : $playlist->get('audio_codec', $videoFormat->getAudioCodec()))
-                    ->setKiloBitrate($playlist->get('kilo_bitrate', $videoFormat->getKiloBitrate()))
+                $ffmpeg->addFormat(
+                    $format
+                        ->setVideoCodec($copyVideoFormat ? 'copy' : $playlist->get('video_codec', $videoFormat->getVideoCodec()))
+                        ->setAudioCodec($copyAudioFormat ? 'copy' : $playlist->get('audio_codec', $videoFormat->getAudioCodec()))
+                        ->setKiloBitrate($playlist->get('kilo_bitrate', $videoFormat->getKiloBitrate()))
                 );
             });
 
