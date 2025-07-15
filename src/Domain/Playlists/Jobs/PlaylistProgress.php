@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Videos\Jobs;
+namespace Domain\Playlists\Jobs;
 
 use Domain\Playlists\Actions\UpdatePlaylistProgress;
 use Domain\Playlists\DataObjects\PlaylistProgressData;

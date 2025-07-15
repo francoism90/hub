@@ -6,7 +6,7 @@ namespace Domain\Playlists\Actions;
 
 use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Models\Playlist;
-use Domain\Videos\Jobs\PlaylistProgress;
+use Domain\Playlists\Jobs\PlaylistProgress;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
