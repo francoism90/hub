@@ -42,6 +42,10 @@ return [
 
     'frame_interval' => (int) env('PLAYLIST_FRAME_INTERVAL', 48),
 
+    'rotation_keys' => (bool) env('PLAYLIST_ROTATION_KEYS', true),
+
+    'rotation_keys_sections' => (int) env('PLAYLIST_ROTATION_KEYS_SECTIONS', 10),
+
     /*
     |--------------------------------------------------------------------------
     | Video Format Selection
