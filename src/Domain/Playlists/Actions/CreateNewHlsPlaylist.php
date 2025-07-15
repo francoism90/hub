@@ -75,7 +75,7 @@ class CreateNewHlsPlaylist
             $ffmpeg->save("{$playlist->getPath()}/{$playlist->file_name}");
 
             // Mark the playlist as transcoded
-            $playlist->updateOrFail(['transcoded_at' => now()]);
+            $playlist->touch('transcoded_at');
 
             return $playlist;
         });

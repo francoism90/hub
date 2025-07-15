@@ -49,9 +49,9 @@ class ImportVideo implements ShouldBeUnique, ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        protected User $user,
-        protected string $disk,
-        protected string $path,
+        public User $user,
+        public string $disk,
+        public string $path,
     ) {
         $this->onQueue('processing');
     }

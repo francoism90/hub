@@ -42,6 +42,7 @@ class Playlist extends Model
         'playlistable_id',
         'disk',
         'file_name',
+        'progress',
         'collection',
         'expires_at',
         'transcoded_at',

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Domain\Videos\Jobs;
 
-use Domain\Videos\Actions\CreateVideoPlaylist;
-use Domain\Videos\Models\Video;
+use Domain\Playlists\Actions\UpdatePlaylistProgress;
+use Domain\Playlists\DataObjects\PlaylistProgressData;
+use Domain\Playlists\Models\Playlist;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\Middleware\Skip;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
-class TranscodeVideo implements ShouldBeUnique, ShouldQueue
+class PlaylistProgress implements ShouldQueue
 {
     use Batchable;
     use Dispatchable;
@@ -44,14 +44,15 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
     public $deleteWhenMissingModels = true;
 
     public function __construct(
-        public Video $video,
+        public Playlist $playlist,
+        public PlaylistProgressData $progress,
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(CreateVideoPlaylist::class)->handle($this->video);
+        app(UpdatePlaylistProgress::class)->handle($this->playlist, $this->progress);
     }
 
     /**
@@ -60,17 +61,12 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
     public function middleware(): array
     {
         return [
-            Skip::when($this->video->currentPlaylist() || ! $this->video->hasMedia('clips')),
+            (new WithoutOverlapping($this->playlist->getKey()))->releaseAfter(5),
         ];
     }
 
     public function retryUntil(): \DateTime
     {
         return now()->addHour();
-    }
-
-    public function uniqueId(): string
-    {
-        return (string) $this->video->getKey();
     }
 }
