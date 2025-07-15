@@ -13,8 +13,6 @@ class UpdatePlaylistProgress
     public function handle(Playlist $playlist, PlaylistProgressData $progress): mixed
     {
         return DB::transaction(function () use ($playlist, $progress) {
-            logger($progress->toArray());
-
             $playlist->updateOrFail(['progress' => $progress]);
 
             return $playlist;
