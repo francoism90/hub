@@ -20,7 +20,6 @@ class PlaylistManifestController extends Controller implements HasMiddleware
     {
         return [
             new Middleware('auth:sanctum'),
-            new Middleware('cache_response:90'),
         ];
     }
 
