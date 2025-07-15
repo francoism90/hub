@@ -22,7 +22,7 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
 
   watchEffect(async () => {
     // Install polyfills
-    shaka.polyfill.installAll()
+    await shaka.polyfill.installAll()
 
     // Check browser support
     if (!shaka.Player.isBrowserSupported()) {
