@@ -32,7 +32,7 @@ class CreateHlsPlaylist
                 ->open($path)
                 ->exportForHLS()
                 ->withoutPlaylistEndLine()
-                ->toDisk(Playlist::getDestinationDisk())
+                ->toDisk($playlist->getDisk())
                 ->setSegmentLength(Playlist::getSegmentLength())
                 ->setKeyFrameInterval(Playlist::getFrameInterval());
 

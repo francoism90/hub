@@ -101,12 +101,12 @@ class Playlist extends Model
 
     public function getDisk(): string
     {
-        return $this->disk ?? config('playlist.disk_name');
+        return $this->disk;
     }
 
     public function getSecretDisk(): string
     {
-        return $this->secret_disk ?? config('playlist.rotation_keys_disk');
+        return $this->secret_disk;
     }
 
     public function getPath(): string
@@ -171,9 +171,14 @@ class Playlist extends Model
         return config('playlist.frame_interval', 48);
     }
 
-    public static function getDestinationDisk(): string
+    public static function getTranscodeDisk(): string
     {
-        return config('playlist.disk_name', 'playlist');
+        return config('playlist.disk_name', 'transcodes');
+    }
+
+    public static function getRotationKeyDisk(): string
+    {
+        return config('playlist.rotation_keys_disk', 'secrets');
     }
 
     public static function getVideoFormats(): Collection

@@ -13,7 +13,7 @@ return [
 
     'enabled' => (bool) env('PLAYLIST_ENABLED', true),
 
-    'disk_name' => env('PLAYLIST_DISK', 'transcode'),
+    'disk_name' => env('PLAYLIST_DISK', 'transcodes'),
 
     'max_disk_usage' => (int) env('PLAYLIST_MAX_DISK_USAGE', 100 * 1024 * 1024 * 1024), // 100 GB
 

@@ -113,9 +113,9 @@ return [
             'report' => true,
         ],
 
-        'transcode' => [
+        'transcodes' => [
             'driver' => 'local',
-            'root' => storage_path('app/transcode'),
+            'root' => storage_path('app/transcodes'),
             'serve' => false,
             'throw' => false,
             'report' => false,

@@ -13,8 +13,8 @@ class CreateNewPlaylist
     {
         return $model->playlists()->create(...[
             'file_name' => 'index.m3u8',
-            'disk' => Playlist::getDestinationDisk(),
-            'secret_disk' => Playlist::getSecretDisk(),
+            'disk' => Playlist::getTranscodeDisk(),
+            'secret_disk' => Playlist::getRotationKeyDisk(),
             'expires_at' => Playlist::getExpiresAfter(),
         ], ...$attributes);
     }
