@@ -32,11 +32,13 @@ const link = computed(() => show.url(props.item.id))
         loading="lazy"
       />
 
-      <div class="absolute inset-x-4 bottom-4 z-20 grid h-20 content-end">
-        <h2 class="line-clamp-2 text-sm font-medium tracking-tight text-neutral-100">{{ item.name }}</h2>
-        <p class="line-clamp-1 text-xs font-light tracking-tight text-neutral-100">
-          {{ item.timestamp }}
-        </p>
+      <div class="absolute inset-x-4 bottom-4 z-20 block group-hover:hidden">
+        <div class="grid content-end">
+          <h2 class="line-clamp-2 text-sm font-medium tracking-tight text-neutral-100">{{ item.name }}</h2>
+          <p class="line-clamp-1 text-xs font-light tracking-tight text-neutral-100">
+            {{ item.timestamp }}
+          </p>
+        </div>
       </div>
     </Link>
 
