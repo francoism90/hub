@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Playlists\Observers;
 
+use Domain\Playlists\Actions\CleanupPlaylistFilesystem;
 use Domain\Playlists\Models\Playlist;
 
 class PlaylistObserver
@@ -14,8 +15,6 @@ class PlaylistObserver
             return;
         }
 
-        if ($playlist->getFilesystem()->directoryExists($playlist->getPath())) {
-            $playlist->getFilesystem()->deleteDirectory($playlist->getPath());
-        }
+        app(CleanupPlaylistFilesystem::class)->handle($playlist);
     }
 }
