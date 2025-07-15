@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Domain\Transcodes\Models\Transcode;
+use Domain\Playlists\Models\Playlist;
 use Illuminate\Auth\Console\ClearResetsCommand;
 use Illuminate\Cache\Console\PruneStaleTagsCommand;
 use Illuminate\Database\Console\PruneCommand as PruneModels;
@@ -33,7 +33,7 @@ Schedule::command(PruneCommand::class)
 
 Schedule::command(PruneModels::class, [
     '--model' => [
-        Transcode::class,
+        Playlist::class,
     ],
 ])
     ->hourly()
