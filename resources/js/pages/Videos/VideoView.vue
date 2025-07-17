@@ -23,7 +23,7 @@ defineProps<Props>()
     <PageBody>
       <VideoPlayer :assets />
 
-      <div class="flex flex-col gap-1">
+      <div class="flex flex-col gap-1.5">
         <h1 class="line-clamp-2 font-serif font-semibold tracking-tight">{{ item.name }}</h1>
         <p
           v-if="item.summary?.length"
