@@ -17,6 +17,8 @@ defineProps<Props>()
   <Head :title="item.name" />
 
   <Page>
-    <PageBody> edit </PageBody>
+    <PageBody>
+      {{ $page.props.auth.user }}
+    </PageBody>
   </Page>
 </template>

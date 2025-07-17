@@ -17,8 +17,8 @@ class UserResource extends JsonResource
             $this->mergeWhen(($user = $request->user()) && $user->is($this) ?? $user->hasRole('super-admin'), [
                 'email' => $this->whenAppended('email'),
                 'email_verified' => $this->whenAppended('email_verified'),
-                'permissions' => $this->whenAppended('permissions', $this->getAllPermissions()->pluck('name')),
-                'roles' => $this->whenAppended('roles', $this->getRoleNames()),
+                'permissions' => $this->whenLoaded('permissions', $this->getAllPermissions()->pluck('name')),
+                'roles' => $this->whenLoaded('roles', $this->getRoleNames()),
                 'created' => $this->whenAppended('created_at'),
                 'updated' => $this->whenAppended('updated_at'),
             ]),
