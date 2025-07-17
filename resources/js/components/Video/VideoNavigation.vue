@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { edit } from '@/actions/App/Web/Videos/Controllers/VideoController'
 import type { Video } from '@/types'
 import type { NavigationMenuItem } from '@nuxt/ui'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 interface Props {
   item: Video
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const link = computed(() => edit.url(props.item.id))
 
 const items = ref<NavigationMenuItem[][]>([
   [
@@ -19,7 +22,7 @@ const items = ref<NavigationMenuItem[][]>([
     {
       label: 'Edit',
       icon: 'i-lucide-clipboard-pen',
-      to: '/search',
+      to: link,
     },
     {
       label: 'Save',

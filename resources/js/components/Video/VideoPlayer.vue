@@ -4,7 +4,7 @@ import type { Playlist } from '@/types'
 import { computed, onMounted, ref, type PropType } from 'vue'
 
 const props = defineProps({
-  assets: {
+  manifests: {
     type: Object as PropType<Playlist[]>,
     required: false,
   },
@@ -13,11 +13,11 @@ const props = defineProps({
 const ui = ref<HTMLElement | null>()
 const element = ref<HTMLMediaElement | null>()
 
-const asset = computed(() => props.assets?.find((item) => item.asset?.length))
+const manifest = computed(() => props.manifests?.find((item) => item.asset?.length))
 
 onMounted(async () => {
   // Preload video
-  const { container, load, attach } = useShaka(asset.value?.asset || '')
+  const { container, load, attach } = useShaka(manifest.value?.asset || '')
 
   if (element.value && ui.value) {
     // Attach video to container

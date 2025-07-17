@@ -9,7 +9,7 @@ import { Deferred, Head } from '@inertiajs/vue3'
 
 interface Props {
   item: Video
-  assets: Playlist[]
+  manifests: Playlist[]
   queue?: Video[]
 }
 
@@ -21,7 +21,7 @@ defineProps<Props>()
 
   <Page>
     <PageBody>
-      <VideoPlayer :assets />
+      <VideoPlayer :manifests />
 
       <div class="flex flex-col gap-1.5">
         <h1 class="line-clamp-2 font-serif font-semibold tracking-tight">{{ item.name }}</h1>

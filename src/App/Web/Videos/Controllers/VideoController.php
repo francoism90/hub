@@ -39,7 +39,7 @@ class VideoController implements HasMiddleware
         // ]);
     }
 
-    public function show(Video $video, Request $request): Response
+    public function show(Video $video): Response
     {
         Gate::authorize('view', $video);
 
@@ -47,13 +47,18 @@ class VideoController implements HasMiddleware
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
-            'assets' => fn () => PlaylistCollection::make($video->playlists),
+            'manifests' => fn () => PlaylistCollection::make($video->playlists),
             'queue' => Inertia::defer(fn () => GenerateVideoRecommendation::make(), 'sections'),
         ]);
     }
 
-    public function edit(Video $video)
+    public function edit(Video $video): Response
     {
-        //
+        Gate::authorize('update', $video);
+
+        return Inertia::render('Videos/VideoEdit', [
+            'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
+            'manifests' => fn () => PlaylistCollection::make($video->playlists),
+        ]);
     }
 }
