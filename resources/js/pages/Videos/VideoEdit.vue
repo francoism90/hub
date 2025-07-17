@@ -18,7 +18,7 @@ defineProps<Props>()
 
   <Page>
     <PageBody>
-      {{ $page.props.auth.user }}
+      {{ $page.props.auth.user?.permissions?.includes('edit videos') }}
     </PageBody>
   </Page>
 </template>
