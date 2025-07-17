@@ -14,7 +14,7 @@ defineProps<Props>()
 
 <template>
   <section class="flex flex-col">
-    <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center justify-between gap-2">
       <h2 class="font-serif text-lg font-semibold tracking-tight">{{ label }}</h2>
 
       <UNavigationMenu

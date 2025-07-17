@@ -24,7 +24,7 @@ defineProps<Props>()
           v-if="recent?.length"
           label="Continue Watching"
           :items="recent"
-          :actions="[{ label: 'All Watching', href: '/videos', trailingIcon: 'i-hugeicons-arrow-right-01' }]"
+          :actions="[{ label: 'All Watching', href: '/videos', trailingIcon: 'i-lucide-chevron-right' }]"
         />
       </Deferred>
     </PageBody>

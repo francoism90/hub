@@ -14,24 +14,24 @@ const items = ref<NavigationMenuItem[][]>([
   ],
   [
     {
-      label: 'Search',
-      icon: 'i-hugeicons-search-01',
-      to: '/search',
-      ui: {
-        linkLabel: 'sr-only',
-      },
-    },
-    {
       label: 'Lists',
-      icon: 'i-hugeicons-folder-library',
+      icon: 'i-lucide-library',
       to: '/lists',
       ui: {
         linkLabel: 'sr-only',
       },
     },
     {
+      label: 'Search',
+      icon: 'i-lucide-search',
+      to: '/search',
+      ui: {
+        linkLabel: 'sr-only',
+      },
+    },
+    {
       label: 'Profile',
-      icon: 'i-hugeicons-user-02',
+      icon: 'i-lucide-user',
       to: '/profile',
       ui: {
         linkLabel: 'sr-only',

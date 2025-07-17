@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Page from '@/components/Ui/Page.vue'
 import PageBody from '@/components/Ui/PageBody.vue'
+import VideoNavigation from '@/components/Video/VideoNavigation.vue'
 import VideoPlayer from '@/components/Video/VideoPlayer.vue'
 import VideoSection from '@/components/Video/VideoSection.vue'
 import type { Playlist, Video } from '@/types'
@@ -28,6 +29,8 @@ defineProps<Props>()
           v-if="item.summary?.length"
           class="text-sm text-neutral-500"
         />
+
+        <VideoNavigation :item />
       </div>
 
       <Deferred :data="['queue']">
