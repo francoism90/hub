@@ -13,13 +13,14 @@ class UserResource extends JsonResource
         return [
             'id' => $this->getRouteKey(),
             'avatar' => $this->whenAppended('avatar'),
-            $this->mergeWhen($this->whenAppended('settings') && ($request->user()->is($this) ?? $request->user()->hasRole('super-admin')), [
+            'name' => $this->whenAppended('name'),
+            $this->mergeWhen(($user = $request->user()) && $user->is($this) ?? $user->hasRole('super-admin'), [
                 'email' => $this->whenAppended('email'),
+                'email_verified' => $this->whenAppended('email_verified'),
                 'permissions' => $this->whenAppended('permissions', $this->getAllPermissions()->pluck('name')),
                 'roles' => $this->whenAppended('roles', $this->getRoleNames()),
-                'settings' => $this->whenAppended('settings'),
-                'created_at' => $this->whenAppended('created_at'),
-                'updated_at' => $this->whenAppended('updated_at'),
+                'created' => $this->whenAppended('created_at'),
+                'updated' => $this->whenAppended('updated_at'),
             ]),
         ];
     }

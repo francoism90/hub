@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Api\Users\Broadcasting\UserChannel;
-use App\Api\Videos\Broadcasts\VideoChannel;
+use App\Api\Videos\Broadcasting\VideoChannel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
