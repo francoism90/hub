@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "@iconify-json/hugeicons": "^1.2.6",
-        "@inertiajs/vue3": "^2.0.14",
+        "@inertiajs/vue3": "^2.0.15",
         "@nuxt/ui": "^3.2.0",
         "@tailwindcss/vite": "^4.1.11",
         "axios": "^1.10.0",
