@@ -47,7 +47,7 @@ class VideoController implements HasMiddleware
 
         return Inertia::render('Videos/VideoView', [
             'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
-            'manifests' => fn () => PlaylistCollection::make($video->playlists),
+            'playlists' => fn () => PlaylistCollection::make($video->playlists),
             'queue' => Inertia::defer(fn () => GenerateVideoRecommendation::make(), 'sections'),
         ]);
     }
@@ -58,7 +58,7 @@ class VideoController implements HasMiddleware
 
         return Inertia::render('Videos/VideoEdit', [
             'item' => fn () => VideoResource::make($video->append(['content', 'titles'])),
-            'manifests' => fn () => PlaylistCollection::make($video->playlists),
+            'playlists' => fn () => PlaylistCollection::make($video->playlists),
         ]);
     }
 }

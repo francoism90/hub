@@ -6,21 +6,24 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
   const manager = shallowRef<shaka.media.PreloadManager | null>()
   const events = shallowRef<shaka.util.EventManager | null>()
 
-  const preload = async (assetUri: string, startTime?: number) => player.value?.preload(assetUri, startTime)
-
-  const load = async (assetUri?: string, startTime?: number) => player.value?.load(assetUri ?? manager.value ?? '', startTime)
+  const load = async () => player.value?.load(manager.value || '')
 
   const unload = async () => player.value?.unload()
 
-  const container = async (el: HTMLElement | null) => player.value?.setVideoContainer(el)
+  const container = async (el: HTMLElement) => player.value?.setVideoContainer(el)
 
   const attach = async (el: HTMLMediaElement) => player.value?.attach(el)
 
   const detach = async () => player.value?.detach()
 
-  const destroy = async () => player.value?.destroy()
+  const leave = async () => player.value?.unloadAndSavePreload()
+
+  const destroy = async () => manager.value?.destroy()
 
   watchEffect(async () => {
+    const assetUri = toValue(url)
+    const startTime = toValue(time)
+
     // Install polyfills
     await shaka.polyfill.installAll()
 
@@ -35,8 +38,8 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
     events.value = new shaka.util.EventManager()
 
     // Setup preload manager
-    if (url) {
-      manager.value = await preload(toValue(url), toValue(time))
+    if (assetUri) {
+      manager.value = await player.value?.preload(assetUri, startTime)
     }
   })
 
@@ -46,8 +49,10 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
     container,
     attach,
     detach,
+    leave,
     destroy,
     events: readonly(events),
+    manager: readonly(manager),
     state: readonly(player),
   }
 }
