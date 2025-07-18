@@ -6,6 +6,8 @@ import VideoPlayer from '@/components/Video/VideoPlayer.vue'
 import VideoSection from '@/components/Video/VideoSection.vue'
 import type { Playlist, Video } from '@/types'
 import { Deferred, Head } from '@inertiajs/vue3'
+import { useEcho } from '@laravel/echo-vue'
+import { computed } from 'vue'
 
 interface Props {
   item: Video
@@ -13,7 +15,13 @@ interface Props {
   queue?: Video[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const channel = computed(() => `videos.${props.item.id}`)
+
+useEcho<Video>(channel.value, 'video.updated', (e: unknown) => {
+  console.log(e)
+})
 </script>
 
 <template>

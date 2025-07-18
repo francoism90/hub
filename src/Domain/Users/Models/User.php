@@ -130,7 +130,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function broadcastAs(string $event): ?string
     {
         return str($event)
-            ->prepend('user.')
+            ->prepend('users.')
             ->trim('.')
             ->value();
     }

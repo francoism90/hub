@@ -118,7 +118,7 @@ class Tag extends BaseTag implements HasMedia
         }
 
         return [
-            new PrivateChannel('tag.'.$this->getRouteKey()),
+            new PrivateChannel('tags.'.$this->getRouteKey()),
         ];
     }
 

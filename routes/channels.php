@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('user.{user}', UserChannel::class);
-Broadcast::channel('video.{video}', VideoChannel::class);
+Broadcast::channel('users.{user}', UserChannel::class);
+Broadcast::channel('videos.{video}', VideoChannel::class);

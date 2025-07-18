@@ -23,7 +23,7 @@ class VideoHasBeenReleased implements ShouldBroadcast, ShouldDispatchAfterCommit
 
     public function broadcastOn(): Channel
     {
-        return new PrivateChannel('video.'.$this->video->getRouteKey());
+        return new PrivateChannel('videos.'.$this->video->getRouteKey());
     }
 
     public function broadcastAs(): string

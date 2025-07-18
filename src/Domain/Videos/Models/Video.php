@@ -199,8 +199,8 @@ class Video extends Model implements HasMedia
         }
 
         return [
-            new PrivateChannel('user.'.$this->user->getRouteKey()),
-            new PrivateChannel('video.'.$this->getRouteKey()),
+            new PrivateChannel('users.'.$this->user->getRouteKey()),
+            new PrivateChannel('videos.'.$this->getRouteKey()),
         ];
     }
 

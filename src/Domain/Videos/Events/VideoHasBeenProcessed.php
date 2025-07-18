@@ -23,7 +23,7 @@ class VideoHasBeenProcessed implements ShouldBroadcast, ShouldDispatchAfterCommi
 
     public function broadcastOn(): Channel
     {
-        return new PrivateChannel('video.'.$this->video->getRouteKey());
+        return new PrivateChannel('videos.'.$this->video->getRouteKey());
     }
 
     public function broadcastAs(): string
