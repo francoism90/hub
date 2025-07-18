@@ -6,9 +6,7 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
   const manager = shallowRef<shaka.media.PreloadManager | null>()
   const events = shallowRef<shaka.util.EventManager | null>()
 
-  const ready = () => player.value?.getManifest() !== null
-
-  const load = async () => player.value?.load(manager.value || '')
+  const load = async () => (manager.value ? player.value?.load(manager.value) : '')
 
   const unload = async () => player.value?.unload()
 
@@ -46,7 +44,6 @@ export function useShaka(url?: MaybeRefOrGetter<string>, time?: MaybeRefOrGetter
   })
 
   return {
-    ready,
     load,
     unload,
     container,

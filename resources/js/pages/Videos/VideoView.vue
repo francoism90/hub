@@ -17,6 +17,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
 const player = useTemplateRef('video-player')
 
 const channel = computed(() => `videos.${props.item.id}`)
@@ -24,10 +25,10 @@ const playlist = computed(() => props.playlists.find((playlist) => playlist.asse
 
 useEcho<Video>(channel.value, '.video.updated', () => router.reload({ only: ['item', 'playlists'] }))
 
-const { ready, container, attach, load } = useShaka(playlist.value?.asset)
+const { container, attach, load } = useShaka(playlist.value?.asset)
 
 onMounted(async () => {
-  if (ready() && player.value?.shakaUi && player.value?.shakaVideo) {
+  if (player.value?.shakaUi && player.value?.shakaVideo) {
     await container(player.value.shakaUi)
     await attach(player.value.shakaVideo)
     await load()
