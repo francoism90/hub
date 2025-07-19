@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Playlists\Jobs;
 
 use Domain\Playlists\Actions\UpdatePlaylistProgress;
-use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Models\Playlist;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -45,14 +44,14 @@ class PlaylistProgress implements ShouldQueue
 
     public function __construct(
         public Playlist $playlist,
-        public PlaylistProgressData $progress,
+        public array $attributes = [],
     ) {
         $this->onQueue('processing');
     }
 
     public function handle(): void
     {
-        app(UpdatePlaylistProgress::class)->handle($this->playlist, $this->progress);
+        app(UpdatePlaylistProgress::class)->handle($this->playlist, $this->attributes);
     }
 
     /**

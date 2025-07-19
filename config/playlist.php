@@ -19,10 +19,6 @@ return [
 
     'expires_after' => (int) env('PLAYLIST_EXPIRES_AFTER', 60 * 60 * 4), // 4 hours
 
-    'jobs' => [
-        'sync_progress' => \Domain\Playlists\Jobs\PlaylistProgress::class,
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | HLS Configuration
@@ -32,9 +28,7 @@ return [
     |
     */
 
-    'hls_generator' => env('PLAYLIST_HLS_GENERATOR', Domain\Playlists\Actions\CreateHlsPlaylist::class),
-
-    'hls_playlists' => [
+    'hls_formats' => [
         ['name' => 'default', 'bit_rate' => 1500],
         // ['name' => 'low', 'bit_rate' => 500],
         // ['name' => 'mid', 'bit_rate' => 3000],

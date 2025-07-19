@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Playlists\Models;
 
 use Domain\Playlists\Collections\PlaylistCollection;
-use Domain\Playlists\DataObjects\PlaylistProgressData;
 use Domain\Playlists\Observers\PlaylistObserver;
 use Domain\Playlists\QueryBuilders\PlaylistQueryBuilder;
 use Domain\Playlists\Scopes\OrderedScope;
@@ -13,6 +12,7 @@ use Domain\Users\Concerns\InteractsWithUser;
 use FFMpeg\Format\Video\DefaultVideo;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,7 +62,7 @@ class Playlist extends Model
     protected function casts(): array
     {
         return [
-            'progress' => PlaylistProgressData::class,
+            'progress' => AsArrayObject::class,
             'expires_at' => 'datetime',
             'transcoded_at' => 'datetime',
         ];
@@ -111,6 +111,11 @@ class Playlist extends Model
     public function getPath(string $path = ''): string
     {
         return (string) implode('/', [$this->getKey(), $path]);
+    }
+
+    public function getPathRelativeToRoot(): string
+    {
+        return $this->getPath($this->file_name);
     }
 
     public function getAbsolutePath(): string
@@ -182,15 +187,10 @@ class Playlist extends Model
             ->map(fn (string $format) => app($format));
     }
 
-    public static function getHlsGenerator(): string
+    public static function getHlsFormats(): Collection
     {
-        return config('playlist.hls_generator');
-    }
-
-    public static function getHlsPlaylists(): Collection
-    {
-        return collect(config('playlist.hls_playlists', []))
-            ->map(fn (array $playlist) => fluent($playlist))
+        return collect(config('playlist.hls_formats', []))
+            ->map(fn (array $format) => fluent($format))
             ->sortBy('bit_rate');
     }
 
