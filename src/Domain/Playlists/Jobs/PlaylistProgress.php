@@ -8,13 +8,13 @@ use Domain\Playlists\Actions\UpdatePlaylistProgress;
 use Domain\Playlists\Models\Playlist;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\ShouldQueueAfterCommit;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
-class PlaylistProgress implements ShouldQueue
+class PlaylistProgress implements ShouldQueueAfterCommit
 {
     use Batchable;
     use Dispatchable;

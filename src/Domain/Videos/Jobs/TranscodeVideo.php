@@ -9,12 +9,12 @@ use Domain\Videos\Models\Video;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Queue\ShouldQueueAfterCommit;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class TranscodeVideo implements ShouldBeUnique, ShouldQueue
+class TranscodeVideo implements ShouldBeUnique, ShouldQueueAfterCommit
 {
     use Batchable;
     use Dispatchable;

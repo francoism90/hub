@@ -22,7 +22,7 @@ class PerformConversionsJob extends BasePerformConversionsJob
      *
      * @var int
      */
-    public $timeout = 60 * 30;
+    public $timeout = 60 * 60;
 
     /**
      * Indicate if the job should be marked as failed on timeout.
