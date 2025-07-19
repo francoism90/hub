@@ -10,7 +10,6 @@ Environment=MP_DATA_FILE=/data/mailpit.db
 Environment=MP_SMTP_AUTH_ACCEPT_ANY=1
 Environment=MP_SMTP_AUTH_ALLOW_INSECURE=1
 Volume=hub-mailpit:/data:rw,Z,U
-Network=proxy.network
 Network=hub.network
 ExposeHostPort=1025
 ExposeHostPort=8025
