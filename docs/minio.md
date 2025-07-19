@@ -44,6 +44,7 @@ mc admin user svcacct add myminio hub
 1. Create required buckets (add your own if required):
 
 ```bash
+mc mb myminio/local
 mc mb myminio/assets
 mc mb myminio/conversions
 ```
