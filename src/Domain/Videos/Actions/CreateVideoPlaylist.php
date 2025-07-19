@@ -26,7 +26,7 @@ class CreateVideoPlaylist
             $playlist = app(CreateNewPlaylist::class)->handle($video);
 
             // Create a new playlist for the video
-            app(CreateHlsPlaylist::class)->handle($video, $media->disk, $media->getPathRelativeToRoot());
+            app(CreateHlsPlaylist::class)->handle($playlist, $media->disk, $media->getPathRelativeToRoot());
 
             // Dispatch the event that the video has been transcoded
             VideoHasBeenTranscoded::dispatch($video);
