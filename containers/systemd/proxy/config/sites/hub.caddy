@@ -18,6 +18,5 @@ ws.hub.test {
 
 s3.hub.test {
     import tls
-    import cors https://hub.test
     reverse_proxy systemd-hub-minio:9000
 }
