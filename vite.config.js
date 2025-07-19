@@ -72,8 +72,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           http: ['axios'],
-          ws: ['pusher-js', 'laravel-echo'],
-          video: ['shaka-player', 'shaka-player/dist/shaka-player.ui'],
+          broadcast: ['pusher-js', 'laravel-echo'],
+          video: ['shaka-player'],
           pwa: ['virtual:pwa-register'],
         },
       },

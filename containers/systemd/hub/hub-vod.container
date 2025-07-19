@@ -19,7 +19,7 @@ ExposeHostPort=1936
 [Service]
 EnvironmentFile=%h/.config/containers/systemd/hub/config/app.env
 TimeoutStartSec=90
-Restart=on-failure
+Restart=unless-stopped
 
 [Install]
 WantedBy=multi-user.target
