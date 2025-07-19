@@ -106,15 +106,18 @@ elif [ -f ./.env ]; then
 fi
 
 # Define environment variables...
+export APP_NAME=${APP_NAME:-"hub"}
 export APP_PORT=${APP_PORT:-443}
 export APP_SERVICE=${APP_SERVICE:-"systemd-hub"}
 export DB_PORT=${DB_PORT:-3306}
 export WWWUSER=${1000:-$UID}
 export WWWGROUP=${1000:-$(id -g)}
 
-# Function that outputs Foxws is not running...
+# Function that outputs container is not running...
 function container_is_not_running {
     echo "${BOLD}Container is not running.${NC}" >&2
+    echo "" >&2
+    echo "${BOLD}You may use the following commands:${NC} systemctl --user start ${APP_NAME}" >&2
 
     exit 1
 }
