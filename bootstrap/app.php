@@ -1,6 +1,5 @@
 <?php
 
-use Domain\Videos\Exceptions\NoTranscodingFound;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -48,11 +47,8 @@ $app = Application::configure(basePath: $basePath)
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->dontReport([
-            NoTranscodingFound::class,
-        ]);
-
-        $exceptions->render(fn (NoTranscodingFound $e) => abort(404));
+        // $exceptions->dontReport([]);
+        // $exceptions->render(fn (InvalidModel $e) => abort(404));
     })
     ->withCommands([
         \Support\Scout\Commands\SyncIndexes::class,

@@ -12,7 +12,6 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\Middleware\Skip;
 use Illuminate\Queue\SerializesModels;
 
 class TranscodeVideo implements ShouldBeUnique, ShouldQueue
@@ -52,16 +51,6 @@ class TranscodeVideo implements ShouldBeUnique, ShouldQueue
     public function handle(): void
     {
         app(CreateVideoPlaylist::class)->handle($this->video);
-    }
-
-    /**
-     * @return array<int, object>
-     */
-    public function middleware(): array
-    {
-        return [
-            Skip::when($this->video->currentPlaylist() || ! $this->video->hasMedia('clips')),
-        ];
     }
 
     public function retryUntil(): \DateTime

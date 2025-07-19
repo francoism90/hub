@@ -43,6 +43,7 @@ class VideoController implements HasMiddleware
     {
         Gate::authorize('view', $video);
 
+        // TODO: remove this debugging line
         TranscodeVideo::dispatch($video);
 
         return Inertia::render('Videos/VideoView', [
