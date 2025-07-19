@@ -5,6 +5,7 @@
  */
 
 return [
+
     'meta' => [
         /*
          * The default configurations to be used by the meta generator.
@@ -70,4 +71,5 @@ return [
             'images' => [],
         ],
     ],
+
 ];

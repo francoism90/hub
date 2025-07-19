@@ -59,7 +59,6 @@ return [
             'visibility' => 'private',
             'throw' => false,
             'report' => false,
-            'read-only' => false,
         ],
 
         'assets' => [
@@ -101,7 +100,7 @@ return [
         'media' => [
             'driver' => 'local',
             'root' => storage_path('app/media'),
-            'visibility' => 'private',
+            'serve' => false,
             'throw' => false,
             'report' => false,
         ],
@@ -109,9 +108,9 @@ return [
         'import' => [
             'driver' => 'local',
             'root' => storage_path('app/import'),
-            'visibility' => 'private',
-            'throw' => false,
-            'report' => false,
+            'serve' => false,
+            'throw' => true,
+            'report' => true,
         ],
 
     ],
