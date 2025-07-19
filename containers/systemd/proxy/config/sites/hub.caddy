@@ -15,3 +15,9 @@ ws.hub.test {
     import compress
 	reverse_proxy systemd-hub-reverb:6001
 }
+
+s3.hub.test {
+    import tls
+    import cors https://hub.test
+    reverse_proxy systemd-hub-minio:9000
+}
