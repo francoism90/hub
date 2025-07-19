@@ -13,9 +13,6 @@ class CreateNewPlaylist
     public function handle(Model $model, array $attributes = []): Playlist
     {
         return DB::transaction(function () use ($model, $attributes) {
-            // Ensure the model has a valid playlist relationship
-            throw_unless($model->getRelation('playlists'), new \Exception('Model does not have a playlists relationship'));
-
             return $model->playlists()->create([
                 'file_name' => 'index.m3u8',
                 'disk' => Playlist::getTranscodeDisk(),
