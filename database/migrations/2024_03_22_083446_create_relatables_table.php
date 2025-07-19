@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->unique(['model_id', 'model_type', 'relate_id', 'relate_type']);
             $table->index(['model_id', 'model_type']);
+            $table->index(['relate_id', 'relate_type']);
         });
     }
 
