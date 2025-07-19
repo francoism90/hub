@@ -44,7 +44,7 @@
         "spatie/laravel-translatable": "^6.11.4"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^3.5.5",
+        "barryvdh/laravel-ide-helper": "^3.6.0",
         "fakerphp/faker": "^1.24.1",
         "laravel/envoy": "^2.10.2",
         "laravel/pail": "^1.2.3",
