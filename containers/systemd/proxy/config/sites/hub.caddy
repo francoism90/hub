@@ -16,6 +16,11 @@ ws.hub.test {
 	reverse_proxy systemd-hub-reverb:6001
 }
 
+s3.hub.test {
+    import tls
+    reverse_proxy systemd-hub-minio:9000
+}
+
 play.hub.test {
 	import tls
     import compress
@@ -28,10 +33,4 @@ live.hub.test {
     import compress
     import cors https://hub.test
 	reverse_proxy systemd-hub-vod:1936
-}
-
-s3.hub.test {
-    import tls
-    import cors https://hub.test
-    reverse_proxy systemd-hub-minio:9000
 }
