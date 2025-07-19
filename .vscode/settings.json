@@ -1,5 +1,8 @@
 {
     "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.sortImports": "always",
+        "source.removeUnusedImports": "always",
         "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -11,9 +14,7 @@
         ":\\s*?[\"'`]([^\"'`]*).*?,",
         "(?:\"|')class(?:\"|')[\\s]*=>[\\s]*(?:\"|')([^\"']*)",
         "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]",
-        [
-            "(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]"
-        ],
+        ["(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*['\"]([^'\"]*)['\"]"],
         ["@?class\\(([^)]*)\\)", "['|\"]([^'\"]*)['|\"]"],
         ["\\s*.className\\s*=\\s*['\\\"](.*?)['\\\"]"],
         ["classList.(?:add|remove|toggle)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],

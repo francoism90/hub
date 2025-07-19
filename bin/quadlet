@@ -33,57 +33,57 @@ function display_help {
     echo "Podman Quadlet"
     echo
     echo "${YELLOW}Usage:${NC}" >&2
-    echo "  hub COMMAND [options] [arguments]"
+    echo "  COMMAND [options] [arguments]"
     echo
     echo "Unknown commands are passed to the podman binary."
     echo
     echo "${YELLOW}Artisan Commands:${NC}"
-    echo "  ${GREEN}hub artisan ...${NC}          Run an Artisan command"
-    echo "  ${GREEN}hub artisan queue:work${NC}"
+    echo "  ${GREEN}artisan ...${NC}          Run an Artisan command"
+    echo "  ${GREEN}artisan queue:work${NC}"
     echo
     echo "${YELLOW}PHP Commands:${NC}"
-    echo "  ${GREEN}hub php ...${NC}   Run a snippet of PHP code"
-    echo "  ${GREEN}hub php -v${NC}"
+    echo "  ${GREEN}php ...${NC}   Run a snippet of PHP code"
+    echo "  ${GREEN}php -v${NC}"
     echo
     echo "${YELLOW}Composer Commands:${NC}"
-    echo "  ${GREEN}hub composer ...${NC}                       Run a Composer command"
-    echo "  ${GREEN}hub composer require laravel/sanctum${NC}"
+    echo "  ${GREEN}composer ...${NC}                       Run a Composer command"
+    echo "  ${GREEN}composer require laravel/sanctum${NC}"
     echo
     echo "${YELLOW}Node Commands:${NC}"
-    echo "  ${GREEN}hub node ...${NC}         Run a Node command"
-    echo "  ${GREEN}hub node --version${NC}"
+    echo "  ${GREEN}node ...${NC}         Run a Node command"
+    echo "  ${GREEN}node --version${NC}"
     echo
     echo "${YELLOW}NPM Commands:${NC}"
-    echo "  ${GREEN}hub npm ...${NC}        Run a npm command"
-    echo "  ${GREEN}hub npx${NC}            Run a npx command"
-    echo "  ${GREEN}hub npm run prod${NC}"
+    echo "  ${GREEN}npm ...${NC}        Run a npm command"
+    echo "  ${GREEN}npx${NC}            Run a npx command"
+    echo "  ${GREEN}npm run prod${NC}"
     echo
     echo "${YELLOW}Yarn Commands:${NC}"
-    echo "  ${GREEN}hub yarn ...${NC}        Run a Yarn command"
-    echo "  ${GREEN}hub yarn run prod${NC}"
+    echo "  ${GREEN}yarn ...${NC}        Run a Yarn command"
+    echo "  ${GREEN}yarn run prod${NC}"
     echo
     echo "${YELLOW}Database Commands:${NC}"
-    echo "  ${GREEN}hub psql${NC}      Start a PostgreSQL CLI session within the 'pgsql' container"
-    echo "  ${GREEN}hub redis${NC}     Start a Redis CLI session within the 'redis' container"
+    echo "  ${GREEN}psql${NC}      Start a PostgreSQL CLI session within the 'pgsql' container"
+    echo "  ${GREEN}redis${NC}     Start a Redis CLI session within the 'redis' container"
     echo
     echo "${YELLOW}Debugging:${NC}"
-    echo "  ${GREEN}hub debug ...${NC}          Run an Artisan command in debug mode"
-    echo "  ${GREEN}hub debug queue:work${NC}"
+    echo "  ${GREEN}debug ...${NC}          Run an Artisan command in debug mode"
+    echo "  ${GREEN}debug queue:work${NC}"
     echo
     echo "${YELLOW}Running Tests:${NC}"
-    echo "  ${GREEN}hub test${NC}          Run the PHPUnit tests via the Artisan test command"
-    echo "  ${GREEN}hub pest ...${NC}      Run Pest"
-    echo "  ${GREEN}hub pint ...${NC}      Run Pint"
+    echo "  ${GREEN}test${NC}          Run the PHPUnit tests via the Artisan test command"
+    echo "  ${GREEN}pest ...${NC}      Run Pest"
+    echo "  ${GREEN}pint ...${NC}      Run Pint"
     echo
     echo "${YELLOW}Container CLI:${NC}"
-    echo "  ${GREEN}hub shell${NC}        Start a shell session within the application container"
-    echo "  ${GREEN}hub bash${NC}         Alias for 'hub shell'"
-    echo "  ${GREEN}hub root-shell${NC}   Start a root shell session within the application container"
-    echo "  ${GREEN}hub root-bash${NC}    Alias for 'hub root-shell'"
-    echo "  ${GREEN}hub tinker${NC}       Start a new Laravel Tinker session"
+    echo "  ${GREEN}shell${NC}        Start a shell session within the application container"
+    echo "  ${GREEN}bash${NC}         Alias for 'shell'"
+    echo "  ${GREEN}root-shell${NC}   Start a root shell session within the application container"
+    echo "  ${GREEN}root-bash${NC}    Alias for 'root-shell'"
+    echo "  ${GREEN}tinker${NC}       Start a new Laravel Tinker session"
     echo
     echo "${YELLOW}Binaries:${NC}"
-    echo "  ${GREEN}hub bin ...${NC}   Run Composer binary scripts from the vendor/bin directory"
+    echo "  ${GREEN}bin ...${NC}   Run Composer binary scripts from the vendor/bin directory"
 
     exit 1
 }
