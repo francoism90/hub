@@ -16,7 +16,7 @@
         "axios": "^1.10.0",
         "laravel-echo": "^2.1.6",
         "pusher-js": "^8.4.0",
-        "shaka-player": "^4.15.7",
+        "shaka-player": "^4.15.8",
         "tailwindcss": "^3.4.17"
     },
     "devDependencies": {
