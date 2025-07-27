@@ -22,6 +22,7 @@ server {
     vod_remote_upstream_location /proxy;
     vod_base_url ${NGINX_VOD_LIVE_URL};
     vod_segments_base_url ${NGINX_VOD_LIVE_URL};
+    vod_segment_duration 4000;
     vod_ignore_edit_list on;
     vod_max_mapping_response_size 64k;
     vod_max_metadata_size 256m;
@@ -59,7 +60,6 @@ server {
 
     location ~ ^/dash/ {
         vod dash;
-        vod_segment_duration 4000;
         vod_dash_manifest_format segmenttemplate;
     }
 
@@ -74,6 +74,8 @@ server {
 
     location ~ ^/hls/ {
         vod hls;
+        vod_hls_container_format fmp4;
+        vod_hls_force_unmuxed_segments on;
         vod_bootstrap_segment_durations 2000;
         vod_bootstrap_segment_durations 2000;
         vod_bootstrap_segment_durations 2000;
