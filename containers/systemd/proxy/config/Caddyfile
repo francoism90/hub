@@ -8,22 +8,18 @@
     }
 }
 
+(site) {
+    tls internal
+    encode zstd gzip
+}
+
 (cors) {
 	@origin header Origin {args[0]}
     header @origin Access-Control-Allow-Origin "{args[0]}"
     header @origin Access-Control-Allow-Credentials "true"
     header @origin Access-Control-Allow-Methods "OPTIONS,HEAD,GET,POST,PUT,PATCH,DELETE"
     header @origin Access-Control-Allow-Headers "Accept,Authorization,Content-Type,Origin,X-Requested-With"
-    header @origin Access-Control-Expose-Headers "Content-Length,Content-Range,Date,Range"
     header @origin Access-Control-Max-Age "1728000"
 }
 
-(tls) {
-    tls internal
-}
-
-(compress) {
-    encode zstd gzip
-}
-
-import /etc/caddy/sites/*.caddy
+import /etc/caddy/sites/*.caddyfile
