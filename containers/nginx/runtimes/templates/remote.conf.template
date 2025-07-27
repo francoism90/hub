@@ -76,10 +76,6 @@ server {
         vod hls;
         vod_hls_container_format fmp4;
         vod_hls_force_unmuxed_segments on;
-        vod_bootstrap_segment_durations 2000;
-        vod_bootstrap_segment_durations 2000;
-        vod_bootstrap_segment_durations 2000;
-        vod_bootstrap_segment_durations 4000;
     }
 
     # HLS segments
