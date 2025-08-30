@@ -1,10 +1,10 @@
 # Hub
 
+> **NOTICE**: My focus is currently on [stry](https://github.com/francoism90/stry). This project will likely no longer receive updates.
+
 ## Introduction
 
 Hub is a video on demand (VOD) media distribution system that allows users to access to videos, television shows and films.
-
-> **NOTE:** This is a personal project, and is still in development. Use at your own risk!
 
 ## Details
 
@@ -59,7 +59,7 @@ systemctl --user start proxy hub
 systemctl --user status hub
 ```
 
-> **NOTE:** Make sure MinIO is configured first.
+> **NOTE**: Make sure MinIO is configured first.
 
 Enter the `systemd-hub` container, and execute the followings commands:
 
@@ -85,7 +85,7 @@ php artisan db:seed --class=UserSeeder:class
 
 ### Manage application
 
-> **TIP:** Run `hub a` and `hub help` for all available commands.
+> **TIP**: Run `hub a` and `hub help` for all available commands.
 
 To import videos:
 
@@ -108,7 +108,7 @@ hub a user:create
 
 To force the removal of deleted videos:
 
-> **WARNING:** This will remove any soft-deleted videos!
+> **WARNING**: This will remove any soft-deleted videos!
 
 ```bash
 hub a videos:clean
